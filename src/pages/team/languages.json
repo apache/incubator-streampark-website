@@ -1,0 +1,226 @@
+{
+  "zh-CN": {
+    "info": {
+      "desc": "StreamX 社区由贡献者组成。 贡献者可以直接访问 StreamX 项目的源代码并参与贡献当中(包括但不限于代码的贡献)。 贡献者通过提交补丁和建议来改善项目。 该项目的贡献者数量是无限的。 无论是琐碎的清理工作，重要的新功能还是其他重大的奖励，对 StreamX 所做的所有贡献都将受到极大的赞赏。",
+      "tip": "(排名不分先后)"
+    },
+    "contributor": [
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821",
+        "email": "yulin.ying@outlook.com",
+        "gitUrl": "https://github.com/Al-assad",
+        "githubId": "Al-assad",
+        "name": "Al-assad"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744",
+        "email": "benjobs@qq.com",
+        "gitUrl": "https://github.com/wolfboys",
+        "githubId": "wolfboys",
+        "name": "benjobs"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/95013770",
+        "email": "eo65535@163.com",
+        "gitUrl": "https://github.com/zhangjun0x01",
+        "githubId": "leo65535",
+        "name": "leo65535"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241",
+        "email": "xinzhuxiansheng@126.com",
+        "gitUrl": "https://github.com/xinzhuxiansheng",
+        "githubId": "xinzhuxiansheng",
+        "name": "xinzhuxiansheng"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/26395958",
+        "email": "xiejiajun02@163.com",
+        "gitUrl": "https://github.com/xiejiajun",
+        "githubId": "xiejiajun",
+        "name": "xiejiajun"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29206593",
+        "email": "",
+        "gitUrl": "https://github.com/wuchunfu",
+        "githubId": "wuchunfu",
+        "name": "wuchunfu"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491",
+        "email": "",
+        "gitUrl": "https://github.com/lvshaokang",
+        "githubId": "lvshaokang",
+        "name": "lvshaokang"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/10227558",
+        "email": "soberchina0@gmail.com",
+        "gitUrl": "https://github.com/SoberChina",
+        "githubId": "SoberChina",
+        "name": "SoberChina"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7892927",
+        "email": "1179320652@qq.com",
+        "gitUrl": "https://github.com/yiwei00000",
+        "githubId": "yiwei00000",
+        "name": "yiwei"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/31752986",
+        "email": "",
+        "gitUrl": "https://github.com/Zclhlmgqzc",
+        "githubId": "Zclhlmgqzc",
+        "name": "Zclhlmgqzc"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
+        "email": "",
+        "gitUrl": "https://github.com/WilsonWangCS",
+        "githubId": "WilsonWangCS",
+        "name": "WilsonWangCS"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129",
+        "email": "",
+        "gitUrl": "https://github.com/monrg",
+        "githubId": "monrg",
+        "name": "monrg"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/25563794",
+        "email": "zhangjunemail@126.com",
+        "gitUrl": "https://github.com/zhangjun0x01",
+        "githubId": "zhangjun0x01",
+        "name": "zhangjun"
+      }
+    ]
+  },
+  "en": {
+    "info": {
+      "desc": "The StreamX team is comprised of Members and Contributors. Members have direct access to the source of StreamX project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. All contributions to StreamX are greatly appreciated, whether for trivial cleanups, big new features or other material rewards.",
+      "tip": "(In no particular order)"
+    },
+    "contributor": [
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821",
+        "email": "yulin.ying@outlook.com",
+        "gitUrl": "https://github.com/Al-assad",
+        "githubId": "Al-assad",
+        "name": "Al-assad"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744",
+        "email": "benjobs@qq.com",
+        "gitUrl": "https://github.com/wolfboys",
+        "githubId": "wolfboys",
+        "name": "benjobs"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/95013770",
+        "email": "eo65535@163.com",
+        "gitUrl": "https://github.com/zhangjun0x01",
+        "githubId": "leo65535",
+        "name": "leo65535"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241",
+        "email": "xinzhuxiansheng@126.com",
+        "gitUrl": "https://github.com/xinzhuxiansheng",
+        "githubId": "xinzhuxiansheng",
+        "name": "xinzhuxiansheng"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/26395958",
+        "email": "xiejiajun02@163.com",
+        "gitUrl": "https://github.com/xiejiajun",
+        "githubId": "xiejiajun",
+        "name": "xiejiajun"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29206593",
+        "email": "",
+        "gitUrl": "https://github.com/wuchunfu",
+        "githubId": "wuchunfu",
+        "name": "wuchunfu"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491",
+        "email": "",
+        "gitUrl": "https://github.com/lvshaokang",
+        "githubId": "lvshaokang",
+        "name": "lvshaokang"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/10227558",
+        "email": "soberchina0@gmail.com",
+        "gitUrl": "https://github.com/SoberChina",
+        "githubId": "SoberChina",
+        "name": "SoberChina"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7892927",
+        "email": "1179320652@qq.com",
+        "gitUrl": "https://github.com/yiwei00000",
+        "githubId": "yiwei00000",
+        "name": "yiwei"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/31752986",
+        "email": "",
+        "gitUrl": "https://github.com/Zclhlmgqzc",
+        "githubId": "Zclhlmgqzc",
+        "name": "Zclhlmgqzc"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
+        "email": "",
+        "gitUrl": "https://github.com/WilsonWangCS",
+        "githubId": "WilsonWangCS",
+        "name": "WilsonWangCS"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129",
+        "email": "",
+        "gitUrl": "https://github.com/monrg",
+        "githubId": "monrg",
+        "name": "monrg"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/25563794",
+        "email": "zhangjunemail@126.com",
+        "gitUrl": "https://github.com/zhangjun0x01",
+        "githubId": "zhangjun0x01",
+        "name": "zhangjun"
+      }
+    ]
+  }
+}

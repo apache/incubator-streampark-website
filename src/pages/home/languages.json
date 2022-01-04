@@ -1,0 +1,145 @@
+{
+  "zh-CN": {
+    "common": {
+      "getStart": "快速开始",
+      "architecture": "系统架构",
+      "learnMore": "了解更多",
+      "coreFeatures": "核心特性",
+      "scaffold": "开发脚手架",
+      "ourUsers": "Our Users",
+      "readMore": "阅读更多",
+      "download": "下载",
+      "releaseDate": "发布日期",
+      "newFeatures": "新特性",
+      "enhancement": "增强点",
+      "bugFixs": "Bug修复",
+      "changeLog": "详细变更"
+    },
+    "slogan": {
+      "key1": "一个神奇的框框",
+      "key2": "让 Flink & Spark 更简单!",
+      "description": "StreamX 的初衷是为了让 Flink 的开发更简单.\n 打造一个一站式大数据平台,流批一体,湖仓一体的解决方案"
+    },
+    "feature": [
+      {
+        "title": "源码可控",
+        "icon": "lni-code",
+        "details": "高质量的代码,重要步骤注释清晰,后端代码通过阿里代码规范检查,前端代码全部经过eslint语法的严格检验,保证可读性和健壮性"
+      },
+      {
+        "title": "简单易用",
+        "icon": "lni-layers",
+        "details": "StreamX 的初衷就是让Flink开发更简单,提供了一系列快捷api和Connector,开箱即用,让开发者更方便快速的开发"
+      },
+      {
+        "title": "文档详尽",
+        "icon": "lni-library",
+        "details": "从概念到上手再到进阶高级,每个使用细节和注意事项都详细罗列,文档通俗易懂拒绝复杂概念,并辅助大量代码示例,让开发者一目了然"
+      },
+      {
+        "title": "健壮稳定",
+        "icon": "lni-magnet",
+        "details": "由Apache Flink contributor 打造,每个API,每处设计都经过精心打磨,测试用例齐全,经历线上项目验证,保证稳定可靠"
+      },
+      {
+        "title": "流批一体",
+        "icon": "lni-shuffle",
+        "details": "StreamX 以 Flink 为底层框架,在Flink SQL中融合了DataStream api,在线Flink SQL开发,独创的依赖管理,让流批一体落地更加简单"
+      },
+      {
+        "title": "一站式解决方案",
+        "icon": "lni-display-alt",
+        "details": "Streamx-console集成了项目编译,发布,参数配置,任务监控,flinkSQL等众多功能于一身,是一个一站式综合数据平台"
+      }
+    ],
+    "scaffold": [
+      {
+        "icon": "lni-code",
+        "title": "编写代码",
+        "description": "使用 streamx 快速开始开发代码"
+      },
+      {
+        "icon": "lni-bug",
+        "title": "调式代码",
+        "description": "传入约定的任务配置,开始本地代码调式"
+      },
+      {
+        "icon": "lni-bolt-alt",
+        "title": "部署任务",
+        "description": "使用streamx-console部署任务和管理任务"
+      }
+    ]
+  },
+  "en": {
+    "common": {
+      "getStart": "Quick Start",
+      "architecture": "System Architecture",
+      "description": "Description",
+      "learnMore": "Learn More",
+      "coreFeatures": "Core Features",
+      "scaffold": "Development scaffold",
+      "ourUsers": "Our Users",
+      "readMore": "Read More",
+      "download": "Download",
+      "releaseDate": "Release Date",
+      "newFeatures": "New Features",
+      "enhancement": "Enhancement point",
+      "bugFixs": "Bug Fix",
+      "changeLog": "Change Log"
+    },
+    "slogan": {
+      "key1": "A magical framework",
+      "key2": "make Flink & Spark easier!",
+      "description":  "The original intention of StreamX is to make the development of Flink easier. provide a one-stop big data solution integrating stream processing, batch processing, data warehouse and data laker."
+    },
+    "feature": [
+      {
+        "title": "Code controllable",
+        "icon": "lni-code",
+        "details": "High-quality code, the back-end code has passed the Ali code specification inspection, and the front-end code has been strictly inspected by eslint syntax to ensure readability and robustness"
+      },
+      {
+        "title": "Easy to use",
+        "icon": "lni-layers",
+        "details": "The original intention of StreamX is to make Flink development easier, providing a series of quick APIs and Connectors, out of the box, allowing developers to develop more conveniently and quickly."
+      },
+      {
+        "title": "Complete docs",
+        "icon": "lni-library",
+        "details": "From concept to getting started and then to advanced advanced level, each use detail is listed in detail, and a large number of code examples are assisted, so that developers can see at a glance"
+      },
+      {
+        "title": "Robust and stable",
+        "icon": "lni-magnet",
+        "details": "Created by Apache Flink contributor, each API and design have been carefully polished, complete test cases, and verified by online projects to ensure stability and reliability"
+      },
+      {
+        "title": "Batch & Streaming",
+        "icon": "lni-shuffle",
+        "details": "StreamX uses Flink as the underlying framework, Flink SQL IDE, and original dependency management, which makes the integration of streaming batch easier"
+      },
+      {
+        "title": "One-stop solution",
+        "icon": "lni-display-alt",
+        "details": "Streamx-console integrates many functions such as project compilation, release, parameter configuration, task monitoring, flinkSQL, etc., and is a one-stop comprehensive data platform"
+      }
+    ],
+    "scaffold": [
+      {
+        "icon": "lni-code",
+        "title": "Write code",
+        "description": "Start developing code quickly using the streamx"
+      },
+      {
+        "icon": "lni-bug",
+        "title": "Debug code",
+        "description": "Pass in the job configuration,Start the job and quickly debug the code"
+      },
+      {
+        "icon": "lni-bolt-alt",
+        "title": "Deployment Job",
+        "description": "Deployment job to streamx-console to facilitate and quickly manage job"
+      }
+    ]
+  }
+}
