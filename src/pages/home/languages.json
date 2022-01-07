@@ -28,7 +28,7 @@
       {
         "title": "简单易用",
         "icon": "lni-layers",
-        "details": "StreamX 的初衷是为了让流处理更简单,提供了一系列快捷Api和Connector,开箱即用,简化开发工作"
+        "details": "StreamX 的初衷是为了让流处理更简单,提供了一系列快捷Api和Connector,开箱即用,提高效率,简化开发工作"
       },
       {
         "title": "文档详尽",
@@ -99,7 +99,7 @@
       {
         "title": "Easy to use",
         "icon": "lni-layers",
-        "details": "The original intention of StreamX is to make stream processing simpler, simplify the complex, and use it out of the box to make development work more convenient."
+        "details": "The original intention of StreamX is to make stream processing easier, providing a series of shortcut Api and Connector, out of the box, greatly simplifying the development work"
       },
       {
         "title": "Complete docs",
