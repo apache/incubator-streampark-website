@@ -11,6 +11,7 @@ const config = {
     favicon: 'image/favicon.ico',
     organizationName: 'Streamxhub',
     projectName: 'StreamX',
+    themes: ['@docusaurus/theme-live-codeblock'],
     i18n: {
         defaultLocale: "en",
         locales: ["en", "zh-CN"],
@@ -27,7 +28,7 @@ const config = {
     },
     presets: [
         [
-            'classic',
+            '@docusaurus/preset-classic',
             ({
                 docs: {
                     sidebarPath: require.resolve('./sidebars.js'),
