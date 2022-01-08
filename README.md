@@ -20,7 +20,7 @@ dev #default branch
 This website is compiled using node, using Docusaurus framework components
 
 1. Download and install nodejs (version>12.5.0)
-2. Clone the code to the local `git clone git@github.com:streamxhub/streamx.git`
+2. Clone the code to the local `git clone git@github.com:streamxhub/streamx-website.git`
 2. Run `npm install` to install the required dependent libraries.
 3. Run `npm run start` in the root directory, you can visit http://localhost:3000 to view the English mode preview of the site
 4. Run `npm run start-zh` in the root directory, you can visit http://localhost:3000 to view the Chinese mode preview of the site
