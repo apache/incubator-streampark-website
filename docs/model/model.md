@@ -191,7 +191,7 @@ public class JavaStreamTableApp {
 
 ## RunTime Context
 
-<strong> RunTime Context </strong> — <strong> StreamingContext </strong> , <strong> TableContext </strong> , <strong> StreamTableContext </strong> 是 StreamX 中几个非常重要三个对象,接下来我们具体看看这三个 <strong> Context </strong> 的定义和作用
+**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamX 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
 
 <center>
 <img src="/doc/image/streamx_coreapi.png" width="60%"/>
@@ -200,7 +200,7 @@ public class JavaStreamTableApp {
 ### StreamingContext
 `StreamingContext` 继承自 `StreamExecutionEnvironment`, 在 `StreamExecutionEnvironment` 的基础之上增加了 `ParameterTool` ,简单可以理解为:
 
-<strong> StreamingContext </strong> = <strong> ParameterTool </strong> + <strong> StreamExecutionEnvironment </strong>
+**StreamingContext** = **ParameterTool** + **StreamExecutionEnvironment**
 
 具体定义如下:
 
@@ -279,7 +279,7 @@ StreamingContext context = new StreamingContext(JavaConfig);
 ### TableContext
 `TableContext` 继承自` TableEnvironment` ,在 `TableEnvironment` 的基础之上增加了 `ParameterTool` ,用来创建 `Table` & `SQL` 程序的上下文执行环境,简单可以理解为:
 
-<strong> TableContext </strong> = <strong> ParameterTool </strong> + <strong> TableEnvironment </strong>
+**TableContext** = **ParameterTool** + **TableEnvironment**
 
 具体定义如下:
 
@@ -359,7 +359,7 @@ TableContext context = new TableContext(config);
 `StreamTableContext` 继承自 `StreamTableEnvironment`,用于流计算场景,流计算的对象是 `DataStream`, 相比 `TableEnvironment`, `StreamTableEnvironment` 提供了 `DataStream` 和 `Table` 之间相互转换的接口,
 `StreamTableContext` 在 `StreamTableEnvironment` 的基础之上增加了 `ParameterTool`,又直接接入了 `StreamTableEnvironment` 的API,简单可以理解为:
 
-<strong> StreamTableContext </strong> = <strong> ParameterTool </strong> + <strong> StreamTableEnvironment </strong> + <strong> StreamExecutionEnvironment </strong>
+**StreamTableContext** = **ParameterTool** + **StreamTableEnvironment** + **StreamExecutionEnvironment**
 
 具体定义如下:
 
@@ -443,7 +443,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 
 :::info 特别提示
 
-在 `StreamTableContext` 中可以直接使用 `StreamExecutionEnvironment` 的 `API`, <strong> 以$打头的方法 </strong> 都是 `StreamExecutionEnvironment` 的 API
+在 `StreamTableContext` 中可以直接使用 `StreamExecutionEnvironment` 的 `API`, **以$打头的方法** 都是 `StreamExecutionEnvironment` 的 API
 
 ![](/doc/image/streamx_apis.jpeg)
 

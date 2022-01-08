@@ -140,6 +140,7 @@ pre {
 
 .markdown > pre, .markdown > ul, .markdown > p {
   line-height: 30px !important;
+  font-weight: normal;
 }
 
 .markdown > h2 {
@@ -149,5 +150,5 @@ pre {
 }
 
 .tabs {
-  font-weight: 400;
+  font-weight: 500;
 }
