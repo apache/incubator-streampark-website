@@ -40,7 +40,7 @@ original: true
 以上的配置基本都是比较普遍且通用的,是每个程序上来第一步就要定义的,是一项重复的工作
 
 当程序写好后,要上线运行,任务启动提交都差不多用下面的命令行的方式,设置各种启动参数,
-这时就得开发者清楚的知道每个参数的含义,如果再设置几个运行时资源参数,那启动命名会很长,可读性很差,参数解析用到了强校验,一旦设置错误,会直接报错,导致任务启动失败,最直接的异常是 ==找不到程序的jar==
+这时就得开发者清楚的知道每个参数的含义,如果再设置几个运行时资源参数,那启动命名会很长,可读性很差,参数解析用到了强校验,一旦设置错误,会直接报错,导致任务启动失败,最直接的异常是 **找不到程序的jar**
 
 ```bash 
 
@@ -110,9 +110,9 @@ public class JavaTableApp {
 
 ## 相关术语
 
-为了方便开发者理解和相互交流,我们把上面引出的,把程序的一系列参数从开发到部署阶段按照特定的格式配置到文件里,这个有特定作用的文件就是项目的 <strong> ==`配置文件`== </strong>
+为了方便开发者理解和相互交流,我们把上面引出的,把程序的一系列参数从开发到部署阶段按照特定的格式配置到文件里,这个有特定作用的文件就是项目的 <strong> **`配置文件`** </strong>
 
-Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用的文件就是项目的 <strong> ==`sql文件`== </strong>
+Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用的文件就是项目的 <strong> `sql文件` </strong>
 
 ## 配置文件
 
@@ -213,7 +213,7 @@ deployment下放的是部署相关的参数和配置项,具体又分为两类
 </ClientOnly>
 `parallelism` (-p) 并行度不支持在option里配置,会在后面的property里配置
 `class` (-c) 程序main不支持在option里配置,会在后面的property里配置
-::: info 注意事项
+:::info 注意事项
 option下的参数必须是 `完整参数名`
 :::
 #### property
@@ -225,7 +225,7 @@ option下的参数必须是 `完整参数名`
 <ClientOnly>
   <table-data name="property"></table-data>
 </ClientOnly>
-::: info 注意事项
+:::info 注意事项
 `$internal.application.main` 和 `yarn.application.name` 这两个参数是必须的
 :::
 如您需要设置更多的参数,可参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html)
@@ -254,7 +254,7 @@ Flink JVM 进程的进程总内存（Total Process Memory）包含了由 Flink �
 </ClientOnly>
 
 
-::: danger 注意事项
+:::danger 注意事项
 不建议同时设置进程总内存和 Flink 总内存。 这可能会造成内存配置冲突，从而导致部署失败。 额外配置其他内存部分时，同样需要注意可能产生的配置冲突。
 :::
 
@@ -302,7 +302,7 @@ state:
 如果`backend`的保存类型为`rocksdb`,则可能要进一步设置`rocksdb`相关的配置,可以参考[`官网`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend)来进行相关配置,
 需要注意的是官网关于`rocksdb`的配置都是以`state.backend`为前缀,而当前的命名空间就是在`state.backend`下,注意要保证参数名正确
 
-::: info 注意事项
+:::info 注意事项
 `value`项非标准配置,该项用来设置状态的保存类型(`jobmanager` | `filesystem` | `rocksdb`),其他项均为标准配置,遵守官网的规范
 :::
 
@@ -336,7 +336,7 @@ state:
 <table-data name="fixed-delay"></table-data>
 </ClientOnly>
 
-::: tip 示例
+:::tip 示例
 
 ```yaml
 attempts: 5
@@ -350,7 +350,7 @@ delay: 3 s
 <table-data name="failure-rate"></table-data>
 </ClientOnly>
 
-::: tip 示例
+:::tip 示例
 
 ```yaml
  max-failures-per-interval: 10
@@ -424,7 +424,7 @@ sql: |
 ```
 `sql`为当前sql的id,必须是唯一的,后面的内容则是具体的sql
 
-::: danger 特别注意
+:::danger 特别注意
 
 上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, StreamX封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
 :::
