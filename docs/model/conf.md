@@ -213,9 +213,13 @@ deployment下放的是部署相关的参数和配置项,具体又分为两类
 </ClientOnly>
 `parallelism` (-p) 并行度不支持在option里配置,会在后面的property里配置
 `class` (-c) 程序main不支持在option里配置,会在后面的property里配置
-::: info 注意事项
+
+:::info 注意事项
+
 option下的参数必须是 `完整参数名`
+
 :::
+
 #### property
 `property`下放的参数是标准参数-D下的参数,可以分为两类
 - 基础参数
@@ -225,8 +229,11 @@ option下的参数必须是 `完整参数名`
 <ClientOnly>
   <table-data name="property"></table-data>
 </ClientOnly>
-::: info 注意事项
+
+:::info 注意事项
+
 `$internal.application.main` 和 `yarn.application.name` 这两个参数是必须的
+
 :::
 如您需要设置更多的参数,可参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html)
 一定要将这些参数放到`property`下,并且参数名称要正确,`StreamX`会自动解析这些参数并生效
@@ -254,7 +261,7 @@ Flink JVM 进程的进程总内存（Total Process Memory）包含了由 Flink �
 </ClientOnly>
 
 
-::: danger 注意事项
+:::danger 注意事项
 不建议同时设置进程总内存和 Flink 总内存。 这可能会造成内存配置冲突，从而导致部署失败。 额外配置其他内存部分时，同样需要注意可能产生的配置冲突。
 :::
 
@@ -302,7 +309,7 @@ state:
 如果`backend`的保存类型为`rocksdb`,则可能要进一步设置`rocksdb`相关的配置,可以参考[`官网`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend)来进行相关配置,
 需要注意的是官网关于`rocksdb`的配置都是以`state.backend`为前缀,而当前的命名空间就是在`state.backend`下,注意要保证参数名正确
 
-::: info 注意事项
+:::info 注意事项
 `value`项非标准配置,该项用来设置状态的保存类型(`jobmanager` | `filesystem` | `rocksdb`),其他项均为标准配置,遵守官网的规范
 :::
 
@@ -336,7 +343,7 @@ state:
 <table-data name="fixed-delay"></table-data>
 </ClientOnly>
 
-::: tip 示例
+:::tip 示例
 
 ```yaml
 attempts: 5
@@ -350,7 +357,7 @@ delay: 3 s
 <table-data name="failure-rate"></table-data>
 </ClientOnly>
 
-::: tip 示例
+:::tip 示例
 
 ```yaml
  max-failures-per-interval: 10
@@ -424,7 +431,7 @@ sql: |
 ```
 `sql`为当前sql的id,必须是唯一的,后面的内容则是具体的sql
 
-::: danger 特别注意
+:::danger 特别注意
 
 上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, StreamX封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
 :::
