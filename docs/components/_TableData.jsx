@@ -1,41 +1,51 @@
 import React from 'react';
 import './TableData.less';
 import dataSource from './data';
+import Clipboard from './clipboard.min.js'
+import Toast from './Toast'
+
+new Clipboard('.icon-copy').on('success', e => {
+    Toast.success(' 复制成功 ! ',1000)
+}).on('error', e => {
+
+})
 
 const ClientOption = () => {
     return (
-        <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
-            <thead>
-            <tr>
-                <td style={{width: '80px'}}>短参数</td>
-                <td>完整参数(前缀"--")</td>
-                <td style={{width: '60px'}}>有效</td>
-                <td>取值范围值或类型</td>
-                <td>作用描述</td>
-            </tr>
-            </thead>
-            <tbody>
-            {
-                dataSource.option.map((item, i) => (
-                    <tr key={i}>
-                        <td>{item.opt}</td>
-                        <td>{item.longOpt}</td>
-                        <td>
-                            {
-                                item.deprecated
-                                    ?
-                                    <span className="icon-check"></span>
-                                    :
-                                    <span className="icon-times"></span>
-                            }
-                        </td>
-                        <td>{item.value}</td>
-                        <td>{item.desc}</td>
-                    </tr>
-                ))
-            }
-            </tbody>
-        </table>
+        <div>
+            <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
+                <thead>
+                <tr>
+                    <td style={{width: '80px'}}>短参数</td>
+                    <td>完整参数(前缀"--")</td>
+                    <td style={{width: '60px'}}>有效</td>
+                    <td>取值范围值或类型</td>
+                    <td>作用描述</td>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    dataSource.option.map((item, i) => (
+                        <tr key={i}>
+                            <td>{item.opt}</td>
+                            <td>{item.longOpt}</td>
+                            <td>
+                                {
+                                    item.deprecated
+                                        ?
+                                        <span className="icon-check"></span>
+                                        :
+                                        <span className="icon-times"></span>
+                                }
+                            </td>
+                            <td>{item.value}</td>
+                            <td>{item.desc}</td>
+                        </tr>
+                    ))
+                }
+                </tbody>
+            </table>
+        </div>
     );
 };
 
@@ -56,7 +66,7 @@ const ClientProperty = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>
@@ -94,7 +104,7 @@ const ClientMemory = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                         </tr>
@@ -125,11 +135,11 @@ const ClientTotalMem = () => {
                             <td>{item.group}</td>
                             <td>
                                 <span className="label-info">{item.tm}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.tm}></i>
                             </td>
                             <td>
                                 <span className="label-info">{item.jm}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.jm}></i>
                             </td>
                         </tr>
                     ))
@@ -186,7 +196,7 @@ const ClientBackend = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -218,7 +228,7 @@ const ClientFixedDelay = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -249,7 +259,7 @@ const ClientFailureRate = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -280,7 +290,7 @@ const ClientTables = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="icon-copy"></i>
+                                <i className="icon-copy" data-clipboard-text={item.name}></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
