@@ -14,7 +14,7 @@ ClientBackend,
 ClientFixedDelay,
 ClientFailureRate,
 ClientTables
-} from './components/_TableData.jsx';
+} from '../components/_TableData.jsx';
 
 配置在`StreamX`中是非常重要的概念,先说说为什么需要配置
 

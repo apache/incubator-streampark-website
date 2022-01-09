@@ -4,7 +4,7 @@ title: '平台部署'
 sidebar_position: 1
 ---
 
-import { ClientEnvs } from './components/_TableData.jsx';
+import { ClientEnvs } from '../components/_TableData.jsx';
 
 StreamX 总体组件栈架构如下， 由 streamx-core 和 streamx-console 两个大的部分组成 , streamx-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
 

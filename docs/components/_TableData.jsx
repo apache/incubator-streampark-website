@@ -24,9 +24,9 @@ const ClientOption = () => {
                             {
                                 item.deprecated
                                     ?
-                                    <span className="fa fa-check" style={{color: 'green'}}></span>
+                                    <span className="icon-check"></span>
                                     :
-                                    <span className="fa fa-times" style={{color: 'red'}}></span>
+                                    <span className="icon-times"></span>
                             }
                         </td>
                         <td>{item.value}</td>
@@ -56,16 +56,16 @@ const ClientProperty = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>
                                 {
                                     item.required
                                         ?
-                                        <span className="fa fa-toggle-on" style={{color: 'green'}} title="必须"></span>
+                                        <span className="icon-toggle-on" title="必须"></span>
                                         :
-                                        <span className="fa fa-toggle-off" style={{color: 'gray'}} title="可选"></span>
+                                        <span className="icon-toggle-off" title="可选"></span>
                                 }
                             </td>
                         </tr>
@@ -94,7 +94,7 @@ const ClientMemory = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                         </tr>
@@ -125,11 +125,11 @@ const ClientTotalMem = () => {
                             <td>{item.group}</td>
                             <td>
                                 <span className="label-info">{item.tm}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>
                                 <span className="label-info">{item.jm}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                         </tr>
                     ))
@@ -182,11 +182,11 @@ const ClientBackend = () => {
                 </thead>
                 <tbody>
                 {
-                    dataSource.checkpoints.map((item, i) => (
+                    dataSource.backend.map((item, i) => (
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -218,7 +218,7 @@ const ClientFixedDelay = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -249,7 +249,7 @@ const ClientFailureRate = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -280,7 +280,7 @@ const ClientTables = () => {
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
-                                <i className="fa fa-copy"></i>
+                                <i className="icon-copy"></i>
                             </td>
                             <td>{item.desc}</td>
                             <td>{item.value}</td>
@@ -294,6 +294,44 @@ const ClientTables = () => {
 };
 
 
+const ClientEnvs = () => {
+    return (
+        <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
+            <thead>
+            <tr>
+                <td>要求</td>
+                <td>版本</td>
+                <td>是否必须</td>
+                <td>其他事项</td>
+            </tr>
+            </thead>
+            <tbody>
+            {
+                dataSource.envs.map((item, i) => (
+                    <tr key={i}>
+                        <td>
+                            <span className="label-info">{item.name}</span>
+                        </td>
+                        <td>{item.version}</td>
+                        <td>
+                            {
+                                item.required
+                                    ?
+                                    <span className="icon-toggle-on" title="必须"></span>
+                                    :
+                                    <span className="icon-toggle-off" title="可选"></span>
+                            }
+                        </td>
+                        <td>{item.other}</td>
+                    </tr>
+                ))
+            }
+            </tbody>
+        </table>
+    );
+};
+
+
 export {
     ClientOption,
     ClientProperty,
@@ -303,5 +341,6 @@ export {
     ClientBackend,
     ClientFixedDelay,
     ClientFailureRate,
-    ClientTables
+    ClientTables,
+    ClientEnvs
 };
