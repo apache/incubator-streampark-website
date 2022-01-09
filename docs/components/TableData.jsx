@@ -1,8 +1,8 @@
-import React from 'react';
-import './TableData.less';
-import dataSource from './data';
+import React from 'react'
+import './TableData.less'
+import dataSource from './data'
 import Toast from './Toast'
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 const alertCopy = () => {
     Toast.success('复制成功!')
