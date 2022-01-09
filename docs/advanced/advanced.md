@@ -1,8 +1,7 @@
 ---
+id: 'advanced'
 title: '高级扩展'
-author: 'benjobs'
-original: true
-time: 2020/03/25
+sidebar_position: 1
 ---
 
 ### ---待更新---

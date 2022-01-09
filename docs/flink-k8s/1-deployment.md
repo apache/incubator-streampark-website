@@ -1,9 +1,7 @@
 ---
+id: 'k8s-dev'
 title: 'Flink K8s 集成支持'
-sidebar: true
-author: 'Al-assad'
-original: true
-date: 2021/09/27
+sidebar_position: 1
 ---
 
 StreamX Flink Kubernetes 基于 [Flink Native Kubernetes](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/resource-providers/native_kubernetes/) 实现，支持以下 Flink 运行模式：

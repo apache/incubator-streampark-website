@@ -1,21 +1,20 @@
 ---
-title: '安装部署'
-sidebar: true
-author: 'benjobs'
-original: true
-date: 2020/03/25
+id: 'deployment'
+title: '平台部署'
+sidebar_position: 1
 ---
 
-> streamx-console 是一个综合实时数据平台，低代码 ( Low Code ) ,Flink Sql 平台，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint,火焰图 ( flame graph ) ,Flink SQL,监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+import { ClientEnvs } from '../components/_TableData.jsx';
+
+StreamX 总体组件栈架构如下， 由 streamx-core 和 streamx-console 两个大的部分组成 , streamx-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+
+![Streamx Archite](/doc/image/streamx_archite.png)
 
 streamx-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
 
 ## 环境要求
 
-<ClientOnly>
-  <table-data name="envs"></table-data>
-</ClientOnly>
-
+<ClientEnvs></ClientEnvs>
 
 
 目前 StreamX 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
@@ -118,17 +117,17 @@ streamx-console-service-1.0.0
 
 ### 启动
 
-进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是 ==10000==,如果没啥意外则会启动成功
+进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是 **10000**,如果没啥意外则会启动成功
 
 ```bash
 cd streamx-console-service-1.0.0/bin
 bash startup.sh
 ```
-相关的日志会输出到 ==streamx-console-service-1.0.0/logs/streamx.out== 里
+相关的日志会输出到 **streamx-console-service-1.0.0/logs/streamx.out** 里
 
-打开浏览器 输入 <strong> ==http://$host:10000== </strong> 即可登录，登录界面如下
+打开浏览器 输入 <strong> **http://$host:10000** </strong> 即可登录，登录界面如下
 
-<img src="/streamx-docs/assets/img/doc-img/streamx_login.jpeg"/>
+![StreamX Login](/doc/image/streamx_login.jpeg)
 
 :::info 提示
 默认密码: <strong> admin / streamx </strong>
@@ -138,7 +137,7 @@ bash startup.sh
 
 进入系统之后，第一件要做的事情就是修改系统配置，在菜单/StreamX/Setting 下，操作界面如下:
 
-<img src="/streamx-docs/assets/img/doc-img/streamx_settings.png"/>
+![StreamX Settings](/doc/image/streamx_settings.png)
 
 主要配置项分为以下几类
 

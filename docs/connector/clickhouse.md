@@ -1,5 +1,5 @@
 ---
-title: 'Clickhouse Connector'
+id: 'Clickhouse-Connector'
 name: 'Clickhouse Connector'
 original: true
 ---

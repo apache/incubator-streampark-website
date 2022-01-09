@@ -1,9 +1,7 @@
 ---
+id: 'hadoop-resource-integration'
 title: 'Hadoop 资源集成'
-sidebar: true
-author: 'Al-assad'
-original: true
-time: 2021/09/27
+sidebar_position: 3
 ---
 
 ## 在 K8s 上使用 Hadoop 资源

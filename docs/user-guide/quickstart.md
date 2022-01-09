@@ -1,16 +1,14 @@
 ---
+id: 'quick-start'
 title: '快速开始'
-sidebar: true
-author: 'benjobs'
-date: 2020/04/13
-original: true
+sidebar_position: 2
 ---
 
 ## 如何使用
 
-streamx-console 定位是流批一体的大数据平台，一站式解决方案，使用起来非常简单，没有复杂的概念和繁琐的操作，标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 streamx-console 之旅
+在上个章节已经详细介绍了一站式平台 `streamx-console` 的安装, 本章节看看如果用 `streamx-console` 快速部署运行一个作业, `streamx-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 `streamx-console` 之旅
 
-`streamx-quickstart` 是 StreamX 开发 Flink 的上手示例程序，具体请查阅
+`streamx-quickstart` 是 StreamX 开发 Flink 的上手示例程序，具体请查阅:
 
 - Github: [https://github.com/streamxhub/streamx-quickstart.git](https://github.com/streamxhub/streamx-quickstart.git)
 - Gitee: [https://gitee.com/streamxhub/streamx-quickstart.git](https://gitee.com/streamxhub/streamx-quickstart.git)
@@ -72,6 +70,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 -   使用到 maven 依赖如下
 
 ```xml
+
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -95,14 +94,17 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
     <artifactId>flink-json</artifactId>
     <version>1.12.0</version>
 </dependency>
+
 ```
 -   Kafka 模拟发送的数据如下
 
 ```json
+
 {"user_id": "543462", "item_id":"1715", "category_id": "1464116", "behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "learning flink", "ts":"2021-02-01T01:00:00Z"}
+
 ```
 
 ### 任务启动流程

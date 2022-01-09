@@ -1,14 +1,15 @@
 ---
+id: 'Jdbc-Connector'
 title: 'Jdbc Connector'
-name: 'Jdbc Connector'
-author: 'benjobs'
-time: 2020/03/24
-original: true
+sidebar_position: 2
 ---
 
-Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器,用于从 JDBC 中读取或者向其中写入数据,可提供 ==AT_LEAST_ONCE== (至少一次)的处理语义
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-`StreamX`中基于两阶段提交实现了 ==EXACTLY_ONCE== (精确一次)语义的`JdbcSink`,并且采用[`光 HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
+Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器,用于从 JDBC 中读取或者向其中写入数据,可提供 **AT_LEAST_ONCE** (至少一次)的处理语义
+
+`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`光 HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
 
 ## Jdbc 信息配置
 
@@ -29,7 +30,7 @@ jdbc:
 
 ### semantic 语义配置
 
-`semantic`这个参数是在`JdbcSink`写时候的语义,仅对 ==`JdbcSink`== 有效,`JdbcSource`会自动屏蔽该参数,有三个可选项
+`semantic`这个参数是在`JdbcSink`写时候的语义,仅对 **JdbcSink** 有效,`JdbcSource`会自动屏蔽该参数,有三个可选项
 
 <div class="counter">
 
@@ -45,7 +46,7 @@ jdbc:
 
 #### AT_LEAST_ONCE && NONE
 
-默认不指定会采用`NONE`语义,这两种配置效果一样,都是保证 ==至少一次== 语义
+默认不指定会采用`NONE`语义,这两种配置效果一样,都是保证 **至少一次** 语义
 
 :::tip 提示
 开启`EXACTLY_ONCE`精确一次的好处是显而易见的,保证了数据的准确性,但成本也是高昂的,需要`checkpoint`的支持,底层模拟了事务的提交读,对实时性有一定的损耗,如果你的业务对数据的准确性要求不是那么高,则建议采用`AT_LEAST_ONCE`语义
@@ -53,7 +54,7 @@ jdbc:
 
 ### 其他配置
 
-除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 ==`光 HikariCP`== 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
+除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 **光 HikariCP** 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
 
 
 ## Jdbc 读取数据
@@ -69,8 +70,8 @@ jdbc:
 
 jdbc配置和读取代码如下
 
-<CodeGroup>
-<CodeGroupItem title="配置" active>
+<Tabs>
+<TabItem value="配置" default>
 
 ```yaml
 jdbc:
@@ -80,8 +81,8 @@ jdbc:
   password: 123456
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="scala">
+</TabItem>
+<TabItem value="Scala" label="Scala">
 
 ```scala
 import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
@@ -95,7 +96,7 @@ object MySQLSourceApp extends FlinkStreaming {
     JdbcSource().getDataStream[Order](lastOne => {
       //防止抽取过于密集,间隔5秒抽取一次数据                          
       Thread.sleep(5000);
-      val laseOffset = if (lastOne == null) "2020-12-16 12:00:00" else lastOne.timestamp
+      val laseOffset = if (lastOne ** null) "2020-12-16 12:00:00" else lastOne.timestamp
       s"select * from t_order where timestamp > '$laseOffset' order by timestamp asc "
     },
       _.map(x => new Order(x("market_id").toString, x("timestamp").toString))
@@ -108,8 +109,8 @@ object MySQLSourceApp extends FlinkStreaming {
 class Order(val marketId: String, val timestamp: String) extends Serializable
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="java">
+</TabItem>
+<TabItem value="Java" label="Java">
 
 ```java 
 import com.streamxhub.streamx.flink.core.java.function.SQLQueryFunction;
@@ -135,7 +136,7 @@ public class MySQLJavaApp {
                             //防止抽取过于密集,间隔5秒抽取一次数据                          
                             Thread.sleep(5000);
                             
-                            Serializable lastOffset = lastOne == null 
+                            Serializable lastOffset = lastOne ** null 
                             ? "2020-12-16 12:00:00" 
                             : lastOne.timestamp;
                             
@@ -163,8 +164,8 @@ public class MySQLJavaApp {
     }
 }
 ```
-</CodeGroupItem>
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 以`java` api为例,这里要传入两个参数
 
@@ -198,7 +199,7 @@ public interface SQLQueryFunction<T> extends Serializable {
 所以上面的代码中,第一次上来`lastOne`(最后一条记录)为null,会判断一下,为null则取需求里默认的`offset`,查询的sql里根据`timestamp`字段正序排,这样在第一次查询之后,会返回最后的那条记录,下次直接可以使用这条记录作为下一次查询的根据
 
 :::info 注意事项
-`JdbcSource`实现了`CheckpointedFunction`,即当程序开启 ==`checkpoint`== 后,会将这些诸如`laseOffset`的状态数据保存到`state backend`,这样程序挂了,再次启动会自动从`checkpoint`中恢复`offset`,会接着上次的位置继续读取数据,
+`JdbcSource`实现了`CheckpointedFunction`,即当程序开启 **checkpoint** 后,会将这些诸如`laseOffset`的状态数据保存到`state backend`,这样程序挂了,再次启动会自动从`checkpoint`中恢复`offset`,会接着上次的位置继续读取数据,
 一般在生产环境,更灵活的方式是将`lastOffset`写入如`redis`等存储中,每次查询完之后再将最后的记录更新到`redis`,这样即便程序意外挂了,再次启动,也可以从`redis`中获取到最后的`offset`进行数据的抽取,也可以很方便的人为的任意调整这个`offset`进行数据的回放
 :::
 
@@ -226,8 +227,8 @@ public interface SQLResultFunction<T> extends Serializable {
 
 `StreamX`中`JdbcSink`是用来写入数据,我们看看具体如何用`JdbcSink`写入数据,假如需求是需要从`kakfa`中读取数据,写入到`mysql`
 
-<CodeGroup>
-<CodeGroupItem title="配置" active>
+<Tabs>
+<TabItem value="配置" default>
 
 ```yaml
 kafka.source:
@@ -245,12 +246,12 @@ jdbc:
   password: 123456
 ```
 :::danger 注意事项
-配置里`jdbc`下的 ==`semantic`== 是写入的语义,在上面[Jdbc信息配置](#jdbc-信息配置)有介绍,该配置只会在`JdbcSink`下生效,`StreamX`中基于两阶段提交实现了 ==EXACTLY_ONCE== 语义,
+配置里`jdbc`下的 **semantic** 是写入的语义,在上面[Jdbc信息配置](#jdbc-信息配置)有介绍,该配置只会在`JdbcSink`下生效,`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** 语义,
 这本身需要被操作的数据库(`mysql`,`oracle`,`MariaDB`,`MS SQL Server`)等支持事务,理论上所有支持标准Jdbc事务的数据库都可以做到EXACTLY_ONCE(精确一次)的写入
 :::
 
-</CodeGroupItem>
-<CodeGroupItem title="scala">
+</TabItem>
+<TabItem value="Scala" label="Scala">
 
 ```scala
 import com.streamxhub.streamx.common.util.JsonUtils
@@ -283,8 +284,8 @@ case class User(name:String,age:Int,gender:Int,address:String)
 
 ```
 
-</CodeGroupItem>
-<CodeGroupItem title="java">
+</TabItem>
+<TabItem value="Java" label="Java">
 
 ```java 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -339,8 +340,8 @@ class JavaUser implements Serializable {
 }
 
 ```
-</CodeGroupItem>
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### 根据数据流生成目标SQL
 

@@ -1,23 +1,15 @@
 ---
+id: 'development'
 title: '开发环境'
-sidebar: true
-author: 'benjobs'
-original: true
-date: 2020/07/05
+sidebar_position: 3
 ---
 
-<p><span style={{backgroundColor:'#F6FAFE'}}>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><a href="https://github.com/streamxhub/streamx" target="_blank">StreamX</a><span style={{backgroundColor:'#F6FAFE'}}>&nbsp;</span>遵循 Apache-2.0 开源协议，将会是个长期更新的活跃项目，欢迎大家提交<a href="https://github.com/streamxhub/streamx/pulls">PR</a> 或 <a href="https://github.com/streamxhub/streamx/issues/new/choose">Issue</a>。喜欢请给个 <a href="https://github.com/streamxhub/streamx/stargazers">Star</a>。您的支持是我们最大的动力， 该项目从开源以来受到不少朋友的关注和认可，表示感谢，已陆续有来自金融，数据分析，车联网，智能广告，地产等公司的朋友在使用或二开，也不乏来自一线大厂的朋友在研究使用，欢迎更多的开发者加入一块贡献，不只是代码的贡献，还寻求使用文档，体验报告，问答等方面的贡献</p>
+> [StreamX](https://github.com/streamxhub/streamx) 遵循 Apache-2.0 开源协议，将会是个长期更新的活跃项目，欢迎大家提交 [PR](https://github.com/streamxhub/streamx/pulls) 或 [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose) 喜欢请给个 [Star](https://github.com/streamxhub/streamx/stargazers) 您的支持是我们最大的动力。 该项目自开源以来就受到不少朋友的关注和认可，表示感谢。已陆续有来自金融，数据分析，车联网，智能广告，地产等公司的朋友在使用，也不乏来自一线大厂的朋友在使用。
+同时 StreamX 社区是一个非常开放,相互协助,尊重人才的社区。我们也非常欢迎更多的开发者加入一块贡献，不只是代码的贡献，还寻求使用文档，体验报告，问答等方面的贡献。
 
-StreamX 总体组件栈架构如下， 由 streamx-core 和 streamx-console 两个大的部分组成，其中 streamx-core 是开发时框架，这里不做讲解，本章节具体讲讲如何在本地搭建 streamx-console 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streamx-console` 均指 `streamx-console 平台 `
-
-<center>
-<img src="/doc/image/streamx_archite.png"/><br></br>
-</center>
-
+越来越多的开发者已经不满足简单的安装使用，需要进一步研究或基于其源码二开或扩展相关功能，这就需要进一步的对 StreamX 深入了解。 本章节具体讲讲如何在本地搭建 `streamx-console` 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streamx-console` 均指 `streamx-console 平台`。 
 
 StreamX Console 从 1.2.0 开始实现了 Flink-Runtime 的解耦，即**不强制依赖 Hadoop 或 Kubernetes 环境**，可以根据实际开发/使用需求自行安装 Hadoop 或 Kubernetes。
-
-<br></br>
 
 ## 安装 Hadoop（可选，YARN Runtime）
 

@@ -1,13 +1,12 @@
 ---
+id: 'Kafka-Connector'
 title: 'Apache Kafka Connector'
-author: 'benjobs'
-time: 2020/03/20
-original: true
+sidebar_position: 1
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 ==精确一次== 的处理语义
+[Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 **精确一次** 的处理语义
 
 `StreamX`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
 
@@ -31,7 +30,9 @@ import TabItem from '@theme/TabItem';
     </dependency>
 
 ```
+
 同时在开发阶段,以下的依赖也是必要的
+
 ```xml 
     <!--以下scope为provided的依赖也是必须要导入的-->
     <dependency>
@@ -70,9 +71,6 @@ val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStr
 可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`StreamX`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
 ### 基础消费示例
-
-
-
 
 ```yaml
 kafka.source:
@@ -178,13 +176,13 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
 ### 消费多个Kafka实例
 
 在框架开发之初就考虑到了多个不同实例的kafka的配置情况.如何来统一配置,并且规范格式呢?在streamx中是这么解决的,假如我们要同时消费两个不同实例的kafka,配置文件定义如下,
-可以看到在`kafka.source`下直接放kafka的实例名称(名字可以任意),在这里我们统一称为 ==`alias`== , ==`alias`== 必须是唯一的,来区别不同的实例,然后别的参数还是按照之前的规范,
-统统放到当前这个实例的namespace下即可.如果只有一个kafka实例,则可以不用配置`alias`
-在写代码消费时注意指定对应的 ==`alias`== 即可,配置和代码如下
+可以看到在 `kafka.source` 下直接放kafka的实例名称(名字可以任意),在这里我们统一称为 **alias** , **alias** 必须是唯一的,来区别不同的实例,然后别的参数还是按照之前的规范,
+统统放到当前这个实例的 `namespace` 下即可.如果只有一个kafka实例,则可以不用配置 `alias`
+在写代码消费时注意指定对应的 **alias** 即可,配置和代码如下
 
-<CodeGroup>
+<Tabs>
 
-<CodeGroupItem title="配置" active>
+<TabItem value="配置" label="配置" default>
 
 ```yaml
 kafka.source:
@@ -201,9 +199,9 @@ kafka.source:
     auto.offset.reset: earliest
     enable.auto.commit: true    
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala">
 
 ```scala
 //消费kafka1实例的数据
@@ -219,9 +217,9 @@ KafkaSource().getDataStream[String](alias = "kafka2")
   .print()  
   
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
@@ -245,16 +243,16 @@ context.start();
 java api在编写代码时,一定要将`alias`等这些参数的设置放到调用`.getDataStream()`之前
 :::
 
-</CodeGroupItem>
-</CodeGroup>
+</TabItem>
+</Tabs>
 
 ### 消费多个Topic
 
 配置消费多个topic也很简单,在配置文件`topic`下配置多个topic名称即可,用`,`或空格分隔,代码消费处理的时候指定topic参数即可,`scala` api下如果是消费一个topic,则直接传入topic名称即可,如果要消费多个,传入一个`List`即可
 `java`api通过 `topic()`方法传入要消费topic的名称,是一个String类型的可变参数,可以传入一个或多个`topic`名称,配置和代码如下
 
-<CodeGroup>
-<CodeGroupItem title="配置">
+<Tabs>
+<TabItem value="配置" label="配置">
 
 ```yaml
 kafka.source:
@@ -264,9 +262,9 @@ kafka.source:
   auto.offset.reset: earliest # (earliest | latest)
   ...
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala" default>
 
 ```scala
 //消费指定单个topic的数据
@@ -282,9 +280,9 @@ KafkaSource().getDataStream[String](topic = List("topic1","topic2","topic3"))
 .print()
 
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 //消费指定单个topic的数据
@@ -301,9 +299,9 @@ DataStream<String> source1 = new KafkaSource<String>(context)
         
 ```        
 
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 :::tip 提示
 `topic`支持配置多个`topic`实例,每个`topic`直接用`,`分隔或者空格分隔,如果topic下配置多个实例,在消费的时必须指定具体的topic名称
@@ -318,8 +316,8 @@ DataStream<String> source1 = new KafkaSource<String>(context)
 Flink Kafka Consumer 还能够使用正则表达式基于 Topic 名称的模式匹配来发现 Topic,详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
 在`StreamX`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
 
-<CodeGroup>
-<CodeGroupItem title="配置">
+<Tabs>
+<TabItem value="配置" label="配置">
 
 ```yaml
 kafka.source:
@@ -330,9 +328,9 @@ kafka.source:
   ...
 ```
 
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala" default>
 
 ```scala
 //消费正则topic数据
@@ -341,9 +339,9 @@ KafkaSource().getDataStream[String](topic = "topic-a")
 .name("kfkSource1")
 .print()
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
@@ -358,9 +356,9 @@ new KafkaSource<String>(context)
 context.start();         
 ```        
 
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 
 :::danger 特别注意
@@ -372,8 +370,8 @@ context.start();
 
 Flink Kafka Consumer 允许通过配置来确定 Kafka 分区的起始位置,[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#kafka-consumers-start-position-configuration)Kafka 分区的起始位置具体操作方式如下
 
-<CodeGroup>
-<CodeGroupItem title="scala" active>
+<Tabs>
+<TabItem value="scala" default>
 
 ```scala 
 val env = StreamExecutionEnvironment.getExecutionEnvironment()
@@ -386,9 +384,9 @@ myConsumer.setStartFromGroupOffsets()  // 默认的方法
 val stream = env.addSource(myConsumer)
 ...
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -402,10 +400,10 @@ myConsumer.setStartFromGroupOffsets(); // 默认的方法
 DataStream<String> stream = env.addSource(myConsumer);
 ...
 ```
-</CodeGroupItem>
-</CodeGroup>
+</TabItem>
+</Tabs>
 
-在`StreamX`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 ==`auto.offset.reset`== 即可
+在`StreamX`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
 
 * `earliest` 从最早的记录开始
 * `latest` 从最新的记录开始
@@ -433,8 +431,8 @@ kafka.source:
 
 默认不指定`deserializer`则在内部采用String的方式反序列化topic中的数据,可以手动指定`deserializer`,这样可以一步直接返回目标`DataStream`,具体完整代码如下
 
-<CodeGroup>
-<CodeGroupItem title="scala">
+<Tabs>
+<TabItem value="Scala" label="Scala">
 
 ```scala
 import com.streamxhub.streamx.common.util.JsonUtils
@@ -469,9 +467,9 @@ class UserSchema extends KafkaDeserializationSchema[User] {
 case class User(name:String,age:Int,gender:Int,address:String)
 
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -523,9 +521,9 @@ class JavaUser implements Serializable {
 }
 ```
 
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 ### 返回记录KafkaRecord
 
@@ -537,11 +535,11 @@ class JavaUser implements Serializable {
 
 在许多场景中,记录的时间戳是(显式或隐式)嵌入到记录本身中。此外,用户可能希望定期或以不规则的方式`Watermark`,例如基于`Kafka`流中包含当前事件时间的`watermark`的特殊记录。对于这些情况，`Flink Kafka Consumer`是允许指定`AssignerWithPeriodicWatermarks`或`AssignerWithPunctuatedWatermarks`
 
-在`StreamX`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 ==`orderTime`== 是时间类型,我们以这个为基准,为其分配一个`Watermark`
+在`StreamX`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
 
-<CodeGroup>
+<Tabs>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala">
 
 ```scala
 import com.streamxhub.streamx.common.util.JsonUtils
@@ -588,9 +586,9 @@ class UserSchema extends KafkaDeserializationSchema[User] {
 case class User(name: String, age: Int, gender: Int, address: String, orderTime: Date)
 
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -657,29 +655,29 @@ class JavaUser implements Serializable {
     Date orderTime;
 }
 ```
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 :::info 注意事项
-如果`watermark assigner`依赖于从`Kafka`读取的消息来上涨其`watermark`(通常就是这种情况),那么所有主题和分区都需要有连续的消息流。否则, ==整个应用程序的`watermark`将无法上涨== ，所有基于时间的算子(例如时间窗口或带有计时器的函数)也无法运行。单个的`Kafka`分区也会导致这种反应。考虑设置适当的 ==[`idelness timeouts`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/event_timestamps_watermarks.html#dealing-with-idle-sources)== 来缓解这个问题。
+如果`watermark assigner`依赖于从`Kafka`读取的消息来上涨其`watermark`(通常就是这种情况),那么所有主题和分区都需要有连续的消息流。否则, **整个应用程序的`watermark`将无法上涨** ，所有基于时间的算子(例如时间窗口或带有计时器的函数)也无法运行。单个的`Kafka`分区也会导致这种反应。考虑设置适当的 **[`idelness timeouts`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/event_timestamps_watermarks.html#dealing-with-idle-sources)** 来缓解这个问题。
 :::
 
 ## Kafka Sink (Producer)
 
 在`StreamX`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
 
-<CodeGroup>
+<Tabs>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala">
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
  KafkaSink().sink(source)     
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
@@ -692,9 +690,9 @@ class JavaUser implements Serializable {
  
  context.start();
 ```
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 `sink`是具体的写入数据的方法,参数列表如下
 
@@ -779,17 +777,17 @@ kafka.sink:
 ```
 在写入的时候,需要手动指定`alias`,注意下`scala` api和`java` api在代码上稍有不同,`scala`直接在`sink`方法里指定参数,`java` api则是通过`alias()`方法来设置,其底层实现是完全一致的
 
-<CodeGroup>
+<Tabs>
 
-<CodeGroupItem title="scala">
+<TabItem value="Scala" label="Scala">
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
  KafkaSink().sink(source,alias = "kafka_cluster1")     
 ```
-</CodeGroupItem>
+</TabItem>
 
-<CodeGroupItem title="java">
+<TabItem value="Java" label="Java">
 
 ```java 
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
@@ -802,9 +800,9 @@ kafka.sink:
  
  context.start();
 ```
-</CodeGroupItem>
+</TabItem>
 
-</CodeGroup>
+</Tabs>
 
 
 ### 指定SerializationSchema
@@ -990,10 +988,10 @@ class JavaUser implements Serializable {
 
 ### 指定partitioner
 
-`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`StreamX`内置的 ==KafkaEqualityPartitioner== 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
+`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`StreamX`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
 `java` api中是通过`partitioner()`方法来设置的
 
 :::tip 注意事项
-Flink Kafka Connector中默认使用的是 ==FlinkFixedPartitioner== 分区器,该分区器需要特别注意`sink`的并行度和`kafka`的分区数,不然会出现往一个分区写
+Flink Kafka Connector中默认使用的是 **FlinkFixedPartitioner** 分区器,该分区器需要特别注意`sink`的并行度和`kafka`的分区数,不然会出现往一个分区写
 :::
 

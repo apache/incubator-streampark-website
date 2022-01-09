@@ -1,9 +1,7 @@
 ---
+id: 'k8s-pvc-integration'
 title: 'K8s PVC 资源使用'
-sidebar: true
-author: 'Al-assad'
-original: true
-time: 2021/09/27
+sidebar_position: 2
 ---
 
 ## K8s PVC 资源使用说明

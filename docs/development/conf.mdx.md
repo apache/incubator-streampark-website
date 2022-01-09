@@ -1,10 +1,20 @@
 ---
+id: 'config'
 title: '项目配置'
-sidebar: true
-author: 'benjobs'
-date: 2020/03/20
-original: true
+sidebar_position: 2
 ---
+
+import { 
+ClientOption,
+ClientProperty,
+ClientMemory,
+ClientTotalMem,
+ClientCheckpoints,
+ClientBackend,
+ClientFixedDelay,
+ClientFailureRate,
+ClientTables
+} from '../components/_TableData.jsx';
 
 配置在`StreamX`中是非常重要的概念,先说说为什么需要配置
 
@@ -12,20 +22,14 @@ original: true
 
 开发`DataStream`程序,大体流程都可以抽象为以下4步
 
-<div class="counter">
-
 - StreamExecutionEnvironment初始并配置
 - Source接入数据
 - Transformation逻辑处理
 - Sink结果数据落地
 
-</div>
-
 ![](/doc/image/process_steps.png)
 
 开发`DataStream`程序都需要定义`Environment`初始化并且配置环境相关的参数,一般我们都会在第一步初始化`Environment`并配置各种参数,配置的参数大概有以下几类
-
-<div class="counter">
 
 * Parallelism 默认并行度配置
 * TimeCharacteristic 时间特征配置
@@ -35,17 +39,13 @@ original: true
 * Restart Strategy 重启策略配置
 * 其他配置...
 
-</div>
-
 以上的配置基本都是比较普遍且通用的,是每个程序上来第一步就要定义的,是一项重复的工作
 
 当程序写好后,要上线运行,任务启动提交都差不多用下面的命令行的方式,设置各种启动参数,
-这时就得开发者清楚的知道每个参数的含义,如果再设置几个运行时资源参数,那启动命名会很长,可读性很差,参数解析用到了强校验,一旦设置错误,会直接报错,导致任务启动失败,最直接的异常是 ==找不到程序的jar==
+这时就得开发者清楚的知道每个参数的含义,如果再设置几个运行时资源参数,那启动命名会很长,可读性很差,参数解析用到了强校验,一旦设置错误,会直接报错,导致任务启动失败,最直接的异常是 **找不到程序的jar**
 
 ```bash 
-
 flink run -m yarn-cluster -p 1 -c com.xx.Main job.jar
-
 ```
 
 
@@ -95,8 +95,7 @@ public class JavaTableApp {
 
 ```
 
-我们会看到除了设置EnvironmentSettings参数之外,剩下的几乎大段大段的代码都是在写`sql`,用java代码拼接各种sql,这种编码的方式,极不优雅,如果业务复杂,更是难以维护,而且会发现,整个编码的模式是统一的,
-都是声明一段sql,然后调用`executeSql`方法
+我们会看到除了设置 `EnvironmentSettings` 参数之外,剩下的几乎大段大段的代码都是在写 `sql`,用java代码拼接各种sql,这种编码的方式,极不优雅,如果业务复杂,更是难以维护,而且会发现,整个编码的模式是统一的, 都是声明一段sql,然后调用 `executeSql` 方法
 
 **我们的设想是**:能不能以一种更好的方式将这种重复的工作简单化,将`DataStream`和`Flink Sql`任务中的一些环境初始化相关的参数和启动相关参数简化,最好一行代码都不写,针对`Flink Sql`作业,也不想在代码里写大段的sql,能不能以一种更优雅的方式解决? 
 
@@ -110,9 +109,9 @@ public class JavaTableApp {
 
 ## 相关术语
 
-为了方便开发者理解和相互交流,我们把上面引出的,把程序的一系列参数从开发到部署阶段按照特定的格式配置到文件里,这个有特定作用的文件就是项目的 <strong> ==`配置文件`== </strong>
+为了方便开发者理解和相互交流,我们把上面引出的,把程序的一系列参数从开发到部署阶段按照特定的格式配置到文件里,这个有特定作用的文件就是项目的 <strong> **`配置文件`** </strong>
 
-Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用的文件就是项目的 <strong> ==`sql文件`== </strong>
+Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用的文件就是项目的 <strong> `sql文件` </strong>
 
 ## 配置文件
 
@@ -207,42 +206,37 @@ deployment下放的是部署相关的参数和配置项,具体又分为两类
 * `option`
 * `property`
 #### option
+
 `option`下放的参数是flink run 下支持的参数,目前支持的参数如下
-<ClientOnly>
-  <table-data name="option"></table-data>
-</ClientOnly>
+
+<ClientOption></ClientOption>
+
 `parallelism` (-p) 并行度不支持在option里配置,会在后面的property里配置
 `class` (-c) 程序main不支持在option里配置,会在后面的property里配置
 
 :::info 注意事项
-
 option下的参数必须是 `完整参数名`
-
 :::
 
 #### property
+
 `property`下放的参数是标准参数-D下的参数,可以分为两类
 - 基础参数
 - Memory参数
 ##### 基础参数
 基础参数可以配置的选项非常之多,这里举例5个最基础的设置
-<ClientOnly>
-  <table-data name="property"></table-data>
-</ClientOnly>
+
+<ClientProperty></ClientProperty>
 
 :::info 注意事项
-
 `$internal.application.main` 和 `yarn.application.name` 这两个参数是必须的
-
 :::
 如您需要设置更多的参数,可参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html)
 一定要将这些参数放到`property`下,并且参数名称要正确,`StreamX`会自动解析这些参数并生效
 ##### Memory参数
 Memory相关的参数设置也非常之多,一般常见的配置如下
 
-<ClientOnly>
-  <table-data name="memory"></table-data>
-</ClientOnly>
+<ClientMemory></ClientMemory>
 
 同样,如你想配置更多的内存相关的参数,请参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/memory/mem_setup.html) 查看[`Flink Process Memory`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/memory/mem_setup.html) , [`jobmanager`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/memory/mem_setup_tm.html) 及 [`taskmanager`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/memory/mem_setup_jobmanager.html)
 相关的内存配置将这些参数放到`property`下,保证参数正确即可生效
@@ -256,9 +250,7 @@ Flink JVM 进程的进程总内存（Total Process Memory）包含了由 Flink �
 
 配置 Flink 进程内存最简单的方法是指定以下两个配置项中的任意一个：
 
-<ClientOnly>
-<table-data name="totalMem"></table-data>
-</ClientOnly>
+<ClientTotalMem></ClientTotalMem>
 
 
 :::danger 注意事项
@@ -269,10 +261,7 @@ Flink JVM 进程的进程总内存（Total Process Memory）包含了由 Flink �
 
 Checkpoints 的配置比较简单,按照下面的方式进行配置即可
 
-<ClientOnly>
-  <table-data name="checkpoints"></table-data>
-</ClientOnly>
-
+<ClientCheckpoints></ClientCheckpoints>
 
 ### Watermark
 
@@ -302,9 +291,7 @@ state:
 #### backend
 很直观的,`backend`下是设置状态后端相关的配置,状态后台的配置遵照[`官网文档`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html)的配置规则,在这里支持以下配置
 
-<ClientOnly>
-  <table-data name="backend"></table-data>
-</ClientOnly>
+<ClientBackend></ClientBackend>
 
 如果`backend`的保存类型为`rocksdb`,则可能要进一步设置`rocksdb`相关的配置,可以参考[`官网`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend)来进行相关配置,
 需要注意的是官网关于`rocksdb`的配置都是以`state.backend`为前缀,而当前的命名空间就是在`state.backend`下,注意要保证参数名正确
@@ -330,18 +317,12 @@ state:
 ```
 `value`下配置具体的选择哪种重启策略
 
-<div class="counter">
-
 * fixed-delay
 * failure-rate
 * none
 
-</div>
-
 #### fixed-delay(固定间隔)
-<ClientOnly>
-<table-data name="fixed-delay"></table-data>
-</ClientOnly>
+<ClientFixedDelay></ClientFixedDelay>
 
 :::tip 示例
 
@@ -353,9 +334,7 @@ delay: 3 s
 :::
 
 #### failure-rate(失败率)
-<ClientOnly>
-<table-data name="failure-rate"></table-data>
-</ClientOnly>
+<ClientFailureRate></ClientFailureRate>
 
 :::tip 示例
 
@@ -390,10 +369,7 @@ delay: 3 s
 * catalog
 * database
 
-<ClientOnly>
-  <table-data name="tables"></table-data>
-</ClientOnly>
-
+<ClientTables></ClientTables>
 
 ## Sql 文件
 

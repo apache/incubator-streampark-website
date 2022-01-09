@@ -33,7 +33,7 @@ export default function () {
                             <div className="welcome_text_area">
                                 <h2 className="wow fadeInUp" data-wow-delay="0.2s" style={{marginBottom: '30px'}}>
                                     <span>StreamX ──</span><br/>
-                                    <span>{dataSource.slogan.key1}<br/>{dataSource.slogan.key2}</span>
+                                    <span>{dataSource.slogan.key}</span>
                                 </h2>
                                 <h5 className="wow fadeInUp" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
                                     {dataSource.slogan.description}
