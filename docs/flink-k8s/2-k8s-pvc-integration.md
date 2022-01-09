@@ -1,6 +1,7 @@
 ---
 id: 'k8s-pvc-integration'
 title: 'K8s PVC 资源使用'
+sidebar_position: 2
 ---
 
 ## K8s PVC 资源使用说明

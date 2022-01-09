@@ -1,6 +1,7 @@
 ---
 id: 'hadoop-resource-integration'
 title: 'Hadoop 资源集成'
+sidebar_position: 3
 ---
 
 ## 在 K8s 上使用 Hadoop 资源

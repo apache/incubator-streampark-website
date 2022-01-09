@@ -1,6 +1,7 @@
 ---
 id: 'Kafka-Connector'
 title: 'Apache Kafka Connector'
+sidebar_position: 1
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

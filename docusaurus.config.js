@@ -81,7 +81,7 @@ const config = {
                     label: 'Download'
                 },
                 {
-                    to: '/docs/quickstart/intro',
+                    to: '/docs/intro',
                     label: 'Document',
                     position: 'right',
                     activeBaseRegex: `/docs`,

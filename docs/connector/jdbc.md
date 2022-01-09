@@ -1,6 +1,7 @@
 ---
 id: 'Jdbc-Connector'
 title: 'Jdbc Connector'
+sidebar_position: 2
 ---
 
 import Tabs from '@theme/Tabs';
