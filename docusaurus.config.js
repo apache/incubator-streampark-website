@@ -142,7 +142,7 @@ const config = {
         prism: {
             theme: require('prism-react-renderer/themes/vsLight'),
             darkTheme: darkCodeTheme,
-            additionalLanguages: ['powershell','java','scala'],
+            additionalLanguages: ['powershell','java','scala','yaml'],
         }
 
     }),

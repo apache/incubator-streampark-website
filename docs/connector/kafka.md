@@ -729,7 +729,9 @@ kafka.sink:
     batch.size: 1
 ```
 
-:::tip 注意事项
+<details>
+  
+<summary> kafka <code>EXACTLY_ONCE</code> 语义说明</summary>
 
 `Semantic.EXACTLY_ONCE`模式依赖于事务提交的能力。事务提交发生于触发 checkpoint 之前，以及从 checkpoint 恢复之后。如果从 Flink 应用程序崩溃到完全重启的时间超过了 Kafka 的事务超时时间，那么将会有数据丢失（Kafka 会自动丢弃超出超时时间的事务）。考虑到这一点，请根据预期的宕机时间来合理地配置事务超时时间。
 
@@ -754,7 +756,7 @@ kafka.sink:
 
 注意：`Semantic.EXACTLY_ONCE` 会尽一切可能不留下任何逗留的事务，否则会阻塞其他消费者从这个 Kafka topic 中读取数据。但是，如果 Flink 应用程序在第一次 checkpoint 之前就失败了，那么在重新启动此类应用程序后，系统中不会有先前池大小（pool size）相关的信息。因此，在第一次 checkpoint 完成前对 Flink 应用程序进行缩容，且并发数缩容倍数大于安全系数 FlinkKafkaProducer.SAFE_SCALE_DOWN_FACTOR 的值的话，是不安全的。
 
-:::
+</details>
 
 ### 多实例kafka指定alias
 

@@ -172,26 +172,26 @@ streamx-console-service-1.2.1
 进入到 `conf` 下，修改 `conf/application.yml`,找到 datasource 这一项，找到 mysql 的配置，修改成对应的信息即可，如下
 
 ```yaml
-  datasource:
-    dynamic:
-      # 是否开启 SQL 日志输出，生产环境建议关闭，有性能损耗
-      p6spy: false
-      hikari:
-        connection-timeout: 30000
-        max-lifetime: 1800000
-        max-pool-size: 15
-        min-idle: 5
-        connection-test-query: select 1
-        pool-name: HikariCP-DS-POOL
-      # 配置默认数据源
-      primary: primary
-      datasource:
-        # 数据源-1，名称为 primary
-        primary:
-          username: $user
-          password: $password
-          driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+datasource:
+  dynamic:
+    # 是否开启 SQL 日志输出，生产环境建议关闭，有性能损耗
+    p6spy: false
+    hikari:
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      max-pool-size: 15
+      min-idle: 5
+      connection-test-query: select 1
+      pool-name: HikariCP-DS-POOL
+    # 配置默认数据源
+    primary: primary
+    datasource:
+      # 数据源-1，名称为 primary
+      primary:
+        username: $user
+        password: $password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
 ##### 启动后端
