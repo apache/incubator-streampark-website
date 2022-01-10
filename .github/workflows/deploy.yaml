@@ -24,7 +24,7 @@ jobs:
         run: |
           npm run build
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3.8.0
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
-          github_token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
           publish_dir: build
