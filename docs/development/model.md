@@ -76,7 +76,7 @@ public class MyFlinkJavaApp {
 
 用 `Java` API 开发由于语言本身的限制没法省掉 `main()` 方法,所以会是一个标准的 `main()` 函数, 需要用户手动创建 `StreamingContext`,`StreamingContext` 是非常重要的一个类,稍后会介绍
 
-:::notice 提示
+:::tip 提示
 
 以上几行 `scala` 和 `Java` 代码就是用 StreamX 开发 `DataStream` 必不可少的最基本的骨架代码,用 StreamX 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
 
@@ -128,7 +128,7 @@ public class JavaTableApp {
 </TabItem>
 </Tabs>
 
-:::notice 提示
+:::tip 提示
 
 以上几行 Scala 和 Java 代码就是用 StreamX 开发 TableEnvironment 必不可少的最基本的骨架代码,用 StreamX 开发 TableEnvironment 程序,从这几行代码开始,
 Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContext ,需要开发者手动启动任务 `start`
@@ -182,7 +182,7 @@ public class JavaStreamTableApp {
 </Tabs>
 
 
-:::danger 特别注意
+:::tip 特别注意
 以上几行 scala 和 Java 代码就是用 StreamX 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 StreamX 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
 :::
 
@@ -222,7 +222,7 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
   ...  
 }  
 ```
-:::danger 特别注意
+:::tip 特别注意
 这个对象非常重要,在 `DataStream` 作业中会贯穿整个任务的生命周期, `StreamingContext` 本身继承自 `StreamExecutionEnvironment` ,配置文件会完全融合到 `StreamingContext` 中,这样就可以非常方便的从 `StreamingContext` 中获取各种参数
 :::
 
@@ -438,7 +438,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 ...
 ```
 
-:::notice 特别提示
+:::info 特别提示
 
 在 `StreamTableContext` 中可以直接使用 `StreamExecutionEnvironment` 的 `API`, **以$打头的方法** 都是 `StreamExecutionEnvironment` 的 API
 
@@ -496,14 +496,14 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 **config** 阶段的目的是让开发者可以通过钩子的方式设置更多的参数(约定的配置文件以外的其他参数),在 **config** 阶段会将 `parameter`(*init* 阶段解析的配置文件里所有的参数)和*init* 阶段初始化好的`StreamExecutionEnvironment`对象传给开发者,
 这样开发者就可以配置更多的参数
 
-:::info 提示
+:::note 说明
 **config** 阶段是需要开发者参与的阶段,是可选的阶段
 :::
 ### 生命周期之 — ready
 
 **ready** 阶段是在参数都设置完毕了,给开发者提供的一个用于做其他动作的入口, 该阶段是在**初始化完成之后**在**程序启动之前**进行
 
-:::info 提示
+:::note 说明
 **ready** 阶段是需要开发者参与的阶段,是可选的阶段
 :::
 
@@ -511,7 +511,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 
 **handle** 阶段是接入开发者编写的代码的阶段,是开发者编写代码的入口,也是最重要的一个阶段, 这个`handle` 方法会强制让开发者去实现
 
-:::info 提示
+:::note 说明
 **handle** 阶段是需要开发者参与的阶段,是必须的阶段
 :::
 
@@ -523,7 +523,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 
 **destroy** 阶段,是程序运行完毕了,在jvm退出之前的最后一个阶段,一般用于收尾的工作
 
-:::info 提示
+:::note 说明
 **destroy** 阶段是需要开发者参与的阶段,是可选的阶段
 :::
 

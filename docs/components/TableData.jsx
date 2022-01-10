@@ -5,7 +5,7 @@ import Toast from './Toast'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 const alertCopy = () => {
-    Toast.success('复制成功!')
+    Toast.success('复制成功 🎉')
 }
 
 const ClientOption = () => {
