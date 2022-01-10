@@ -1,0 +1,23 @@
+name: Deploy Github pages
+on: [push]
+
+jobs:
+  deploy:
+    name: Install and Build 🔧
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+          cache: yarn
+      - name: Build website
+        working-directory: website
+        run: |
+          yarn install --frozen-lockfile
+          yarn build
+      - name: Deploy 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          publish_dir: build
