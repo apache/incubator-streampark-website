@@ -83,6 +83,7 @@
   --ifm-pre-color: inherit;
   --ifm-pre-line-height: 1.45;
   --ifm-pre-padding: 1rem;
+  --ifm-container-width-xl: 1350px;
 }
 
 html {
@@ -111,7 +112,6 @@ html {
   height: 60px;
   width: 60px;
 }
-
 
 .footer__link-item svg,.navbar__link svg {
   display: none;
@@ -152,3 +152,4 @@ pre {
 .tabs {
   font-weight: 500;
 }
+

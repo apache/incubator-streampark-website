@@ -2,6 +2,9 @@ import React from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from './languages.json';
+
+
+import Particles from 'reactparticles.js';
 import './index.less';
 
 export default function () {
@@ -12,6 +15,8 @@ export default function () {
     return (
         <section className="coverpage">
             <section className="hero-barishal welcome_area">
+
+                <Particles id="particles" className="particles" config="assets/particles.json"/>
 
                 <div className="background-shapes">
                     <div className="box1"></div>
@@ -31,27 +36,27 @@ export default function () {
                     <div className="row h-100 justify-content-between align-items-center">
                         <div className="col-12 col-md-6">
                             <div className="welcome_text_area">
-                                <h2 className="wow fadeInUp" data-wow-delay="0.2s" style={{marginBottom: '30px'}}>
+                                <h2 className="wow fadeInUp ztop" data-wow-delay="0.2s" style={{marginBottom: '30px'}}>
                                     <span>StreamX ──</span><br/>
                                     <span>{dataSource.slogan.key}</span>
                                 </h2>
-                                <h5 className="wow fadeInUp" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
+                                <h5 className="wow fadeInUp ztop" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
                                     {dataSource.slogan.description}
                                 </h5>
-                                <a className="btn streamx-btn btn mt-30" href="https://github.com/streamxhub/streamx"
+                                <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/streamxhub/streamx"
                                    target="_blank">
                                     <i className="lni-github-original"></i>&nbsp;GitHub
                                 </a>
-                                <a className="btn streamx-btn btn-purple mt-30 ml-2"
+                                <a className="btn streamx-btn btn-purple mt-30 ml-2 ztop"
                                    href="https://gitee.com/streamxhub/streamx" target="_blank"
                                    style={{marginLeft: '15px'}}>
                                     <img src={useBaseUrl('/home/gitee.png')} className="icon-gitee"></img>&nbsp;Gitee
                                 </a>
-                                <a className="btn streamx-btn btn-green mt-30 ml-2" href="/docs/user-guide/quick-start"
+                                <a className="btn streamx-btn btn-green mt-30 ml-2 ztop" href="/docs/user-guide/quick-start"
                                    style={{marginLeft: '15px'}}>
                                     <i className="lni-play"></i>&nbsp;Start
                                 </a>
-                                <div style={{marginTop: '20px'}} className="shields">
+                                <div style={{marginTop: '20px'}} className="shields ztop">
                                     <a href="https://www.apache.org/licenses/LICENSE-2.0.html">
                                         <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" className="wow fadeInUp"></img>
                                     </a>
@@ -62,7 +67,7 @@ export default function () {
                             </div>
                         </div>
                         <div className="col-12 col-md-6">
-                            <div className="welcome_area_thumb text-center" data-wow-delay="0.2s">
+                            <div className="welcome_area_thumb text-center ztop" data-wow-delay="0.2s">
                                 <a href="https://gitee.com/gvp" target="_blank">
                                     <img src={useBaseUrl('/home/gvp2021.png')} alt="StreamX GVP"></img>
                                 </a>
@@ -78,6 +83,7 @@ export default function () {
             </section>
 
             <section className="using_benefits_area" id="benefits" style={{backgroundColor: '#F6FAFE', paddingBottom: "100px"}}>
+                <Particles id="particles1" className="particles" config="assets/particles.json"/>
 
                 <div className="mask-bg"></div>
 
