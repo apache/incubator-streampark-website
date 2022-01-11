@@ -17,13 +17,13 @@ sidebar_position: 2
 
 下面的示例演示了如何部署一个 DataStream 应用
 
-<video src="/streamx-docs/assets/video/datastream.mp4" controls="controls" width="100%" height="100%"></video>
+<video src="http://assets.streamxhub.com/datastream.mp4" controls="controls" width="100%" height="100%"></video>
 
 ### 部署 FlinkSql 任务
 
 下面的示例演示了如何部署一个 FlinkSql 应用
 
-<video src="/streamx-docs/assets/video/flinksql.mp4" controls="controls" width="100%" height="100%"></video>
+<video src="http://assets.streamxhub.com//flinksql.mp4" controls="controls" width="100%" height="100%"></video>
 
 - 项目演示使用到的 flink sql 如下
 

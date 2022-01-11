@@ -47,7 +47,7 @@ export default function () {
                                    style={{marginLeft: '15px'}}>
                                     <img src={useBaseUrl('/home/gitee.png')} className="icon-gitee"></img>&nbsp;Gitee
                                 </a>
-                                <a className="btn streamx-btn btn-green mt-30 ml-2" href="../../../zh/doc/guide/intro/"
+                                <a className="btn streamx-btn btn-green mt-30 ml-2" href="/docs/user-guide/quick-start"
                                    style={{marginLeft: '15px'}}>
                                     <i className="lni-play"></i>&nbsp;Start
                                 </a>
