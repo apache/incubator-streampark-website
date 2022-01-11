@@ -90,8 +90,8 @@
         "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
         "email": "",
         "gitUrl": "https://github.com/WilsonWangCS",
-        "githubId": "WilsonWangCS",
-        "name": "WilsonWangCS"
+        "githubId": "Wilson-BT",
+        "name": "Wilson-BT"
       },
       {
         "apacheId": "",
@@ -108,6 +108,46 @@
         "gitUrl": "https://github.com/zhangjun0x01",
         "githubId": "zhangjun0x01",
         "name": "zhangjun"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/30107417",
+        "email": "",
+        "gitUrl": "https://github.com/Whojohn",
+        "githubId": "Whojohn",
+        "name": "Whojohn"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/1220443",
+        "email": "whistler@member.fsf.org",
+        "gitUrl": "https://github.com/weimzh",
+        "githubId": "weimzh",
+        "name": "weimzh"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
+        "email": "msn734506700@live.com",
+        "gitUrl": "https://github.com/phillip2019",
+        "githubId": "phillip2019",
+        "name": "phillip2019"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
+        "email": "msn734506700@live.com",
+        "gitUrl": "https://github.com/phillip2019",
+        "githubId": "phillip2019",
+        "name": "phillip2019"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7589426",
+        "email": "",
+        "gitUrl": "https://github.com/haoziaigemao",
+        "githubId": "haoziaigemao",
+        "name": "haoziaigemao"
       }
     ]
   },
@@ -202,8 +242,8 @@
         "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
         "email": "",
         "gitUrl": "https://github.com/WilsonWangCS",
-        "githubId": "WilsonWangCS",
-        "name": "WilsonWangCS"
+        "githubId": "Wilson-BT",
+        "name": "Wilson-BT"
       },
       {
         "apacheId": "",
@@ -220,6 +260,46 @@
         "gitUrl": "https://github.com/zhangjun0x01",
         "githubId": "zhangjun0x01",
         "name": "zhangjun"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/30107417",
+        "email": "",
+        "gitUrl": "https://github.com/Whojohn",
+        "githubId": "Whojohn",
+        "name": "Whojohn"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/1220443",
+        "email": "whistler@member.fsf.org",
+        "gitUrl": "https://github.com/weimzh",
+        "githubId": "weimzh",
+        "name": "weimzh"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
+        "email": "msn734506700@live.com",
+        "gitUrl": "https://github.com/phillip2019",
+        "githubId": "phillip2019",
+        "name": "phillip2019"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
+        "email": "msn734506700@live.com",
+        "gitUrl": "https://github.com/phillip2019",
+        "githubId": "phillip2019",
+        "name": "phillip2019"
+      },
+      {
+        "apacheId": "",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7589426",
+        "email": "",
+        "gitUrl": "https://github.com/haoziaigemao",
+        "githubId": "haoziaigemao",
+        "name": "haoziaigemao"
       }
     ]
   }

@@ -3,7 +3,7 @@
 
 [English](README.md) | [中文](README_ZH.md)
 
-This is the repository containing all the source code of `https://streamxhub.com`.
+This is the repository containing all the source code of `http://streamxhub.com`.
 This guide will guide you how to contribute to the StreamX website.
 
 
@@ -92,7 +92,7 @@ css and other style files are placed in the `src/css` directory
 > Except for the homepage, team, user, Docs>All Version module page, all other pages can be directly jumped to the corresponding github resource modification page through the'Edit this page' button at the bottom
 
 ### 3.5 Home page modification
-Visit the page https://streamxhub.com
+Visit the page http://streamxhub.com
 Located in `src/pages/home`
 
 ```
@@ -101,7 +101,7 @@ Located in `src/pages/home`
 │ index.less     // homepage style
 ```
 ### 3.6 Team page modification
-Visit the page https://streamxhub.com/team
+Visit the page http://streamxhub.com/team
 Located in `src/pages/team`
 ```
 ├─team
@@ -110,7 +110,7 @@ Located in `src/pages/team`
 │ index.less
 ```
 ### 3.7 User list page modification
-Visit the page https://streamxhub.com/user
+Visit the page http://streamxhub.com/user
 ```
 Located in `src/pages/user`
 └─versions
