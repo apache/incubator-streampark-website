@@ -1,11 +1,21 @@
 import React from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import config from './languages.json';
 
-
-import Particles from 'reactparticles.js';
 import './index.less';
+
+const Particles = () => {
+    return (
+        <BrowserOnly>
+            {() => {
+                const Particles = require('reactparticles.js').default;
+                return <Particles id="particles" className="particles" config="assets/particles.json"/>;
+            }}
+        </BrowserOnly>
+    );
+};
 
 export default function () {
     const isBrowser = useIsBrowser();
@@ -16,7 +26,7 @@ export default function () {
         <section className="coverpage">
             <section className="hero-barishal welcome_area">
 
-                <Particles id="particles" className="particles" config="assets/particles.json"/>
+                <Particles />
 
                 <div className="background-shapes">
                     <div className="box1"></div>
