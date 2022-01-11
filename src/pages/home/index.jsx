@@ -100,8 +100,7 @@ export default function () {
                 </div>
             </section>
 
-            <section className="using_benefits_area" id="benefits"
-                     style={{backgroundColor: '#F6FAFE', paddingBottom: "100px"}}>
+            <section className="using_benefits_area">
 
                 <Particles/>
 
@@ -137,7 +136,7 @@ export default function () {
                 </div>
             </section>
 
-            <section className="showcode_area" id="showcode">
+            <section className="showcode_area">
                 <div className="container" style={{marginTop: '90px', marginBottom: '40px'}}>
                     <div className="row justify-content-center">
                         <div className="col-12 col-sm-8 col-lg-6">
