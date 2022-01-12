@@ -96,7 +96,7 @@ object MySQLSourceApp extends FlinkStreaming {
     JdbcSource().getDataStream[Order](lastOne => {
       //防止抽取过于密集,间隔5秒抽取一次数据                          
       Thread.sleep(5000);
-      val laseOffset = if (lastOne ** null) "2020-12-16 12:00:00" else lastOne.timestamp
+      val laseOffset = if (lastOne == null) "2020-12-16 12:00:00" else lastOne.timestamp
       s"select * from t_order where timestamp > '$laseOffset' order by timestamp asc "
     },
       _.map(x => new Order(x("market_id").toString, x("timestamp").toString))
@@ -136,7 +136,7 @@ public class MySQLJavaApp {
                             //防止抽取过于密集,间隔5秒抽取一次数据                          
                             Thread.sleep(5000);
                             
-                            Serializable lastOffset = lastOne ** null 
+                            Serializable lastOffset = lastOne == null 
                             ? "2020-12-16 12:00:00" 
                             : lastOne.timestamp;
                             
