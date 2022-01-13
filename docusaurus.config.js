@@ -120,6 +120,23 @@ const config = {
             style: 'light',
             links: [
                 {
+                    title: 'StreamX',
+                    items: [
+                        {
+                            label: 'Document',
+                            href: '/docs/intro',
+                        },
+                        {
+                            label: 'FAQ',
+                            href: 'https://github.com/streamxhub/streamx/issues/507',
+                        },
+                        {
+                            label: 'Releases',
+                            href: 'https://github.com/streamxhub/streamx/releases',
+                        },
+                    ],
+                },
+                {
                     title: 'Community',
                     items: [
                         {
@@ -137,7 +154,7 @@ const config = {
                     ],
                 }
             ],
-            copyright: `<p style="padding: 0 20px 30px;color: #999999;font-weight: 400;">Apache LICENSE 2.0 Licensed, Copyright © 2019-${new Date().getFullYear()} streamxhub All Rights Reserved</p>`,
+            copyright: `<p style="padding: 0 20px 30px;color: #999999; font-weight: 400;">Apache LICENSE 2.0 Licensed, Copyright © 2019-${new Date().getFullYear()} streamxhub All Rights Reserved</p>`,
         },
 
         prism: {
