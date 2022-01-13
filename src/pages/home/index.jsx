@@ -3,7 +3,7 @@ import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from './languages.json';
 import Particles from "react-tsparticles";
-import {option} from "./particles.jsx";
+import option from "./particles.json";
 
 import './index.less';
 
