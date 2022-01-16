@@ -70,7 +70,6 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 -   使用到 maven 依赖如下
 
 ```xml
-
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -79,7 +78,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 
 <dependency>
     <groupId>org.apache.flink</groupId>
-    <artifactId>flink-sql-connector-kafka_2.12</artifactId>
+    <artifactId>flink-sql-connector-kafka_2.11</artifactId>
     <version>1.12.0</version>
 </dependency>
 
