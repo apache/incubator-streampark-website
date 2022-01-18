@@ -104,7 +104,6 @@ streamx-console-service-${version}
 │    ├── yaml.sh
 ├── conf
 │    ├── application.yaml
-│    ├── application-prod.yml
 │    ├── flink-application.template
 │    ├── logback-spring.xml
 │    └── ...
@@ -120,13 +119,13 @@ streamx-console-service-${version}
 
 #### 配置
 
-用 IDE 导入刚从 git 上 clone 下来的 StreamX 源码 ( 推荐使用 `IntelliJ IDEA` ) ,进入到 `resources` 下，编辑 application-prod.xml,找到 `datasource`,修改下 jdbc 的连接信息，具体可参考安装部署章节 [修改配置](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) 部分
+用 IDE 导入刚从 git 上 clone 下来的 StreamX 源码 ( 推荐使用 `IntelliJ IDEA` ) ,进入到 `resources` 下，编辑 application.xml,找到 `datasource`,修改下 jdbc 的连接信息，具体可参考安装部署章节 [修改配置](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) 部分
 
-<img src="/doc/image/console_conf.jpg" />
+<img src="/doc/image/streamx_conf.jpg" />
 
 如果你要连接的目标集群开启了 kerberos 认证，则需要配置 kerberos 信息，在 `resources` 下找到 `kerberos.xml` 配置上相关信息即可，默认 kerberos 是关闭状态，要启用需将 `enable` 设置为 true, 如下:
 
-```yaml
+```yml
 security:
   kerberos:
     login:
@@ -152,7 +151,8 @@ java:
 ```
 <br></br>
 如果开发机使用的 jdk 版本是 jdk1.8 以上版本， 则需要加上如下参数: <br></br>
-```yaml
+
+```shell
 --add-opens java.base/jdk.internal.loader=ALL-UNNAMED --add-opens jdk.zipfs/jdk.nio.zipfs=ALL-UNNAMED
 ```
 
@@ -169,30 +169,23 @@ java:
 
 streamx web 前端部分采用 nodejs + vue 开发，因此需要在机器上按照 node 环境，完整流程如下:
 
-#### 修改请求 URL
+#### 修改配置
 
-由于是前后端分离项目，前端需要知道后端 ( streamx-console ) 的访问地址，才能前后配合工作，因此需要后端的 URL,具体位置在:
-`streamx-console/streamx-console-webapp/src/api/baseUrl.js`
+由于是前后端分离项目，前端需要知道后端 ( streamx-console ) 的访问地址，才能前后配合工作，因此需要更改Base API,具体位置在:
+`streamx-console/streamx-console-webapp/.env.development`
+
+![web配置](/doc/image/streamx_websetting.png)
 
 配置默认如下:
 
 ```javascript
-export function baseUrl() {
-    let url = ''
-    switch (process.env.NODE_ENV) {
-        //混合打包 ( production,不用配置，maven 编译项目阶段-Denv=prod 自动将环境参数透传到这里 )
-        case 'production':
-            url = (arguments[0] || null) ? (location.protocol + '//' + location.host) : '/'
-            break
-        //开发测试阶段采用前后端分离，这里配置后端的请求 URI
-        case 'development':
-            url = 'http://localhost:10000'
-            break
-    }
-    return url
-}
+VUE_APP_PORT = 10003
+VUE_APP_BASE_API = http://localhost:10000
 ```
-将 `development` 下的 URL 连接改为后端的 URI 即可
+
+参数说明:
+* `VUE_APP_PORT`: 前端项目启动的端口
+* `VUE_APP_BASE_API`: 请求后端的url地址
 
 #### 编译项目
 
