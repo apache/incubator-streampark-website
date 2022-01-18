@@ -16,6 +16,10 @@ streamx-console 提供了开箱即用的安装包，安装之前对环境有些�
 
 <ClientEnvs></ClientEnvs>
 
+:::tip 注意
+当前StreamX 1.2.1之前(包含)的版本,只支持`scala 2.11`,切忌使用`flink`时要检查对应的`scala`版本
+:::
+
 
 目前 StreamX 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
 
@@ -135,7 +139,6 @@ streamx-console-service-1.2.1
 │    ├── yaml.sh                              //内部使用解析 yaml 参数的脚本 ( 内部使用，用户无需关注 )
 ├── conf                                     
 │    ├── application.yaml                     //项目的配置文件 ( 注意不要改动名称 )
-│    ├── application-prod.yml                 //项目的配置文件 ( 开发者部署需要改动的文件，注意不要改动名称 )
 │    ├── flink-application.template           //flink 配置模板 ( 内部使用，用户无需关注 )
 │    ├── logback-spring.xml                   //logback
 │    └── ...                                 
@@ -149,7 +152,7 @@ streamx-console-service-1.2.1
 │     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
 ├── logs                                      //程序 log 目录
                                              
-├── temp                                      //内部使用到的零时路径，不要删除
+├── temp                                      //内部使用到的临时路径，不要删除
 ```
 
 ##### 初始化表结构
