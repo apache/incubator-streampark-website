@@ -54,7 +54,7 @@ jdbc:
 
 ### 其他配置
 
-除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 **光 HikariCP** 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
+除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 ** HikariCP** 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
 
 
 ## Jdbc 读取数据
