@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器,用于从 JDBC 中读取或者向其中写入数据,可提供 **AT_LEAST_ONCE** (至少一次)的处理语义
 
-`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`光 HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
+`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
 
 ## Jdbc 信息配置
 
