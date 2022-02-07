@@ -4,7 +4,6 @@ title: 'Redis Connector'
 sidebar_position: 4
 ---
 
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -13,10 +12,10 @@ import TabItem from '@theme/TabItem';
 hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了事务（transactions） 和不同级别的 磁盘持久化（persistence），
 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。
 
-flink官方提供写入reids数据的连接器。Streamx 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
+flink官方提供写入reids数据的连接器。StreamX 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
 封装了RedisSink、配置redis连接参数，即可自动创建redis连接简化开发。目前RedisSink支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
 
-Streamx使用Redis的**MULTI**命令开启事务，**EXEC**命令提交事务，细节见链接:  
+StreamX 使用Redis的 **MULTI** 命令开启事务，**EXEC**命令提交事务，细节见链接:  
 http://www.redis.cn/topics/transactions.html ，使用RedisSink 默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE语义。
 
 :::tip 提示
@@ -25,7 +24,7 @@ EXACTLY_ONCE语义下会在flink作业checkpoint整体完成情况下批量写�
 :::
 
 ## Redis写入依赖
-Flink Connector Redis 官方提供两种，以下两种api均相同，Streamx使用的是org.apache.bahir依赖
+Flink Connector Redis 官方提供两种，以下两种api均相同，StreamX 使用的是org.apache.bahir依赖
 ```xml
 <dependency>
     <groupId>org.apache.bahir</groupId>
@@ -41,15 +40,15 @@ Flink Connector Redis 官方提供两种，以下两种api均相同，Streamx使
 </dependency>
 ```
 
+## 常规方式写Redis
+
 常规方式下使用Flink Connector Redis写入数据的方式如下:  
-1.生成测试数据的source
+
+### 1.接入source
+
 ```java
-
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
-
 import scala.util.Random;
-
-
 
 public class TestSource implements SourceFunction<TestEntity> {
 
@@ -112,7 +111,7 @@ class TestEntity {
 
 ```
 
-2.数据写入redis
+### 2. 写入redis
 
 ```java
 import org.apache.flink.api.common.functions.MapFunction;
@@ -168,10 +167,13 @@ public class FlinkRedisSink {
 ```
 
 以上创建FlinkJedisPoolConfig较繁琐，redis的每种操作都要构建RedisMapper,非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置redis 
-连接参数、flink运行参数，streamx会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## flink redis 写入策略及相关配置
+## StreamX 写入 Redis
+
 RedisSink 默认为AT_LEAST_ONCE (至少一次)的处理语义，在开启checkpoint情况下两阶段段提交支持EXACTLY_ONCE语义，可使用的连接类型： 单节点模式、哨兵模式。
+
+### 1. 配置策略和连接信息
 
 <Tabs>
 <TabItem value="单节点配置" default>
@@ -215,9 +217,13 @@ redis.sink:
 
 </Tabs>
 
+### 2. 写入Redis
+
+用 StreamX 写入redis非常简单,代码如下:
+
 <Tabs>
 
-<TabItem value="scala" default>
+<TabItem value="scala">
 
 ```scala
 
@@ -273,7 +279,8 @@ case class RedisMapper[T](cmd: RedisCommand, additionalKey: String, key: T => St
 ```
 </TabItem>
 </Tabs>
-如代码所示，Streamx会自动加载配置创建RedisSink，用户通过创建需要的RedisMapper对象即完成redis写入操作，**additionalKey为hset时为最外层key其他写入命令无效**。
+
+如代码所示，StreamX 会自动加载配置创建RedisSink，用户通过创建需要的RedisMapper对象即完成redis写入操作，**additionalKey为hset时为最外层key其他写入命令无效**。
 RedisSink.sink()写入相应的key时候未指定过期时间，如果未指定默认使用java Integer.MAX_VALUE,(67年)。如代码所示：
 
 ```scala
@@ -293,7 +300,9 @@ class RedisSink() extends Sink {
 
 ```
 
-支持redis操作命令如下：
+### 支持的redis操作命令
+
+支持redis操作命令如下:
 
 ```java
 public enum RedisCommand {
@@ -350,15 +359,12 @@ public enum RedisCommand {
 }
 ```
 
-
 :::info 警告
-RedisSink 目前支持单节点模式、哨兵模式连接，集群模式不支持事务，Streamx目前为支持，如有使用场景，请调用Flink Connector Redis官方api。<br></br>
+RedisSink 目前支持单节点模式、哨兵模式连接，集群模式不支持事务，StreamX 目前为支持，如有使用场景，请调用Flink Connector Redis官方api。<br></br>
 EXACTLY_ONCE语义下必须开启checkpoint，否则程序会抛出参数异常。<br></br>
 EXACTLY_ONCE语义下checkpoint的数据sink缓存在内存里面，需要根据实际数据合理设置checkpoint时间间隔，否则有**oom**的风险。<br></br>
 :::
 
-
-
 ## 其他配置
 
-其他的所有的配置都必须遵守 ** Streamx ** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)

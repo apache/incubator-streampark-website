@@ -9,18 +9,18 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 一些后台服务通过http请求接收数据，这种场景下flink可以通过http请求写入结果数据，目前flink官方未提供通过http请求写入
-数据的连接器。Streamx 基于asynchttpclient封装了HttpSink异步实时写入数据。
+数据的连接器。StreamX 基于asynchttpclient封装了HttpSink异步实时写入数据。
 
 `HttpSink`写入不支持事务，向目标服务写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。异步写入重试多次失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据。
 
 
 ## http异步写入依赖
 ```xml
-        <dependency>
-            <groupId>org.asynchttpclient</groupId>
-            <artifactId>async-http-client</artifactId>
-            <optional>true</optional>
-        </dependency>
+<dependency>
+    <groupId>org.asynchttpclient</groupId>
+    <artifactId>async-http-client</artifactId>
+    <optional>true</optional>
+</dependency>
 ```
 
 
