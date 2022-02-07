@@ -184,7 +184,7 @@ redis.sink:
   port: 6379
   database: 2
   password: 
-  connectType: jedispool #可选参数：jedispool（默认）|sentinel|cluster
+  connectType: jedisPool #可选参数：jedisPool（默认）|sentinel
   maxTotal: 
   maxIdle: 
   minIdle: 
