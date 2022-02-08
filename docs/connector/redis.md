@@ -15,11 +15,11 @@ hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置
 flink官方提供写入reids数据的连接器。StreamX 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
 封装了RedisSink、配置redis连接参数，即可自动创建redis连接简化开发。目前RedisSink支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
 
-StreamX 使用Redis的 **MULTI** 命令开启事务，**EXEC**命令提交事务，细节见链接:  
+StreamX 使用Redis的 **MULTI** 命令开启事务，**EXEC** 命令提交事务，细节见链接:  
 http://www.redis.cn/topics/transactions.html ，使用RedisSink 默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE语义。
 
 :::tip 提示
-redis 为key,value类型数据库，AT_LEAST_ONCE语义下flink作业出现异常重启后最新的数据会覆盖上一版本数据，达到最终数据一致。如果有外部程序在重启期间读取了数据会有和最终数据不一致的风险。
+redis 为key,value类型数据库，AT_LEAST_ONCE语义下flink作业出现异常重启后最新的数据会覆盖上一版本数据，达到最终数据一致。如果有外部程序在重启期间读取了数据会有和最终数据不一致的风险。  
 EXACTLY_ONCE语义下会在flink作业checkpoint整体完成情况下批量写入redis，会有一个checkpoint时间间隔的延时。请根据业务场景选择合适语义。
 :::
 
@@ -281,7 +281,7 @@ case class RedisMapper[T](cmd: RedisCommand, additionalKey: String, key: T => St
 </Tabs>
 
 如代码所示，StreamX 会自动加载配置创建RedisSink，用户通过创建需要的RedisMapper对象即完成redis写入操作，**additionalKey为hset时为最外层key其他写入命令无效**。
-RedisSink.sink()写入相应的key时候未指定过期时间，如果未指定默认使用java Integer.MAX_VALUE,(67年)。如代码所示：
+RedisSink.sink()写入相应的key对应数据是需要指定过期时间，如果未指定默认过期时间为java Integer.MAX_VALUE (67年)。如代码所示：
 
 ```scala
 class RedisSink() extends Sink {

@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 [JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)封装了ClickHouseSink用于向clickhouse实时写入数据。
 
 `ClickHouse`写入不支持事务，使用 JDBC 向其中写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。使用 HTTP客户端 异步写入，对异步写入重试多次
-失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据。
+失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据，实现最终数据一致。
 
 ## JDBC 同步写入
 
@@ -67,8 +67,7 @@ public class ClickHouseUtil {
 
 用`StreamX`接入 `clickhouse`的数据, 只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
-<Tabs>
-<TabItem value="配置" default>
+#### 配置信息
 
 ```yaml
 clickhouse:
@@ -86,7 +85,9 @@ clickhouse:
       delaytime: 6000000
 ```
 
-</TabItem>
+#### 写入clickhouse
+
+<Tabs>
 <TabItem value="Scala" label="Scala">
 
 ```scala
@@ -132,8 +133,8 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 :::tip 提示
 clickhouse 可支持多个节点均衡写入，只需在jdbcUrl配置可写入的节点即可<br></br>
 由于ClickHouse单次插入的延迟比较高，建议设置 batch.size 来批量插入数据提高性能,同时为了提高实时性，
-支持按照数据量或者间隔时间 batch.delaytime 来批次写入。<br></br>
-在ClickHouseSink的实现中，若最后一批数据的数目不足BatchSize，则会在关闭连接时候插入剩余数据。
+支持按照数据量或者间隔时间 batch.delaytime 来批次写入<br></br>
+在ClickHouseSink的实现中，若最后一批数据的数目不足BatchSize，则会在关闭连接时候插入剩余数据
 :::
 
 ## HTTP 异步写入
@@ -155,7 +156,7 @@ $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data
 
 在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
-这里采用asynchttpclient作为http异步客户端来进行写入,先导入asynchttpclient的jar
+这里采用asynchttpclient作为http异步客户端来进行写入,先导入 asynchttpclient 的jar
 
 ```xml
 <!--clickhouse async need asynchttpclient -->
@@ -166,8 +167,7 @@ $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data
 </dependency>
 ```
 
-<Tabs>
-<TabItem value="配置" default>
+#### 异步写入配置及失败恢复组件配置
 
 ```yaml
 
@@ -199,11 +199,11 @@ clickhouse:
       storage: kafka #kafka|mysql|hbase|hdfs
       mysql:
         driverClassName: com.mysql.cj.jdbc.Driver
-        jdbcUrl: jdbc:mysql://10.10.130.220:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+        jdbcUrl: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true
         username: $user
         password: $pass
       kafka:
-        bootstrap.servers: slave3.test.gitv.we:9092,slave4.test.gitv.we:9092,slave2.test.gitv.we:9092
+        bootstrap.servers: localhost:9092
         topic: test1
         group.id: user_01
         auto.offset.reset: latest
@@ -212,11 +212,12 @@ clickhouse:
         zookeeper.property.clientPort: 2181 
       hdfs:
         path: /data/chfailover
-        namenode: hdfs://master2.test.gitv.we:8020
+        namenode: hdfs://localhost:8020
         user: hdfs
 ```
+#### 写入clickhouse
 
-</TabItem>
+<Tabs>
 <TabItem value="Scala" label="Scala">
 
 ```scala
@@ -269,4 +270,4 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 
 ## 其他配置
 
-其他的所有的配置都必须遵守 **ClickHouseDataSource** 连接池的配置,具体可配置项和各个参数的作用请参考`光 clickhouse-jdbc`[官网文档](https://github.com/ClickHouse/clickhouse-jdbc).
+其他的所有的配置都必须遵守 **ClickHouseDataSource** 连接池的配置,具体可配置项和各个参数的作用请参考`clickhouse-jdbc`[官网文档](https://github.com/ClickHouse/clickhouse-jdbc).

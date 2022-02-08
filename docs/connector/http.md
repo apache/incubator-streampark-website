@@ -11,10 +11,13 @@ import TabItem from '@theme/TabItem';
 一些后台服务通过http请求接收数据，这种场景下flink可以通过http请求写入结果数据，目前flink官方未提供通过http请求写入
 数据的连接器。StreamX 基于asynchttpclient封装了HttpSink异步实时写入数据。
 
-`HttpSink`写入不支持事务，向目标服务写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。异步写入重试多次失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据。
+`HttpSink`写入不支持事务，向目标服务写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。异步写入重试多次失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）
+,最终通过人为介入来恢复数据，达到最终数据一致。
 
 
-## http异步写入依赖
+## http异步写入
+异步写入采用 asynchttpclient 作为客户端,需要先导入 asynchttpclient 的jar
+
 ```xml
 <dependency>
     <groupId>org.asynchttpclient</groupId>
@@ -23,8 +26,9 @@ import TabItem from '@theme/TabItem';
 </dependency>
 ```
 
+## StreamX 方式写入
 
-## http异步写入信息配置
+### http异步写入支持类型
 
 HttpSink 支持http协议的get 、post 、patch 、put 、delete 、options 、trace 对应至HttpSink同名方法，具体信息如下:
 
@@ -62,10 +66,7 @@ afterSink(sink, parallelism, name, uid)
 ```
 </TabItem>
 
-在`StreamX`中`HttpSink` 约定的配置见配置列表，运行程序样例为scala，详细信息如下
-
-<Tabs>
-<TabItem value="配置" default>
+### http异步写入配置参数列表
 
 ```yaml
 http.sink:
@@ -95,7 +96,10 @@ http.sink:
       format: yyyy-MM-dd
 ```
 
-</TabItem>
+### http异步写入数据
+运行程序样例为scala
+
+<Tabs>
 <TabItem value="Scala" label="Scala">
 
 ```scala
@@ -108,30 +112,15 @@ import org.apache.flink.streaming.api.scala.DataStream
 object HttpSinkApp extends FlinkStreaming {
 
   override def handle(): Unit = {
-    val createTable =
-      """
-        |create TABLE test.orders(
-        |userId UInt16,
-        |orderId UInt16,
-        |siteId UInt8,
-        |cityId UInt8,
-        |orderStatus UInt8,
-        |price Float64,
-        |quantity UInt8,
-        |timestamp UInt16
-        |)ENGINE = TinyLog;
-        |""".stripMargin
-
-    println(createTable)
-
+    
+//接入数据
     val source = context.addSource(new TestSource)
 
-    source.print()
     val value: DataStream[String] = source.map(x => s"http://127.0.0.1:8080?userId=(${x.userId}&siteId=${x.siteId})")
+//    通过调用HttpSink和http协议对应的方法来写入数据
     HttpSink().post(value).setParallelism(1)
 
   }
-
 }
 
 ```
@@ -145,3 +134,4 @@ object HttpSinkApp extends FlinkStreaming {
 :::
 
 ## 其他配置
+其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
