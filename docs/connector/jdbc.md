@@ -13,7 +13,7 @@ Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-rel
 
 ## Jdbc 信息配置
 
-在`StreamX`中`Jdbc Connector`的实现用到了[`光 HikariCP`](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
+在`StreamX`中`Jdbc Connector`的实现用到了[` HikariCP `](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
 
 ```yaml
 jdbc:
