@@ -12,7 +12,7 @@ Hadoop体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 ![](/blog/doris.png)
 <center style={{"color": "gray"}}>(这里借用一下Doris官方的架构图)</center>
 
-<br/>
+<br/><br/>
 
 # 2. 遇到的问题
 
@@ -27,11 +27,14 @@ Hadoop体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 3. 提交任务能否简化打包镜像的流程?
 4. 如何减少开发压力？ 
 
-<br/>
+
+<br/><br/>
 
 # 3. 解决问题的过程      
 
 以上的这些其实都是需要解决的问题，如果单纯的使用命令行去提交每个任务，是不现实的，任务量大了，会变得不可维护。如何解决这些问题变成一个不得不面对的问题。
+
+<br/>
 
 ## 简化镜像构建
 
@@ -42,6 +45,7 @@ Hadoop体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 Flink从1.13版本开始，就支持Pod Template，我们可以在Pod Template中利用数据卷挂载的方式再将宿主机目录挂载到每个pod中。从而无需镜像打包而直接在K8s上运行Flink程序。如上图，我们将s3先通过s3-fuse Pod挂载在Node1、Node2的/mnt/data-s3fs目录下，然后再将/mnt/data-s3fs挂载到Pod A中。
 但是，因为对象存储随机写入或追加文件需要重写整个对象，导致这种方式仅适合于频繁读。而这刚好满足我们现在的场景。
 
+<br/>
 
 ## 引入StreamX
 
@@ -138,7 +142,7 @@ Flink从1.13版本开始，就支持Pod Template，我们可以在Pod Template�
 
 <center style={{"color": "gray"}}>(StreamX K8S部署演示视频)</center>
 
-<br/><br/>
+<br/>
 
 ### K8s Native Application 模式
 
@@ -165,7 +169,7 @@ Sql校验能力和 Zeppelin基本一致:
 
 <center style={{"color": "gray"}}>(以上是依据个人理解绘制的任务提交流程图,如有错误,敬请谅解)</center>
 
-<br/><br/>
+<br/>
 
 
 ### K8s Native Session 模式
@@ -201,13 +205,14 @@ Native-session模式需要事先使用Flink命令创建一个运行在K8s中的F
 
 可以看到，其实StreamX是将jar包通过Rest Api上传到Flink集群上，并调度执行任务的。
 
-<br/><br/>
-
+<br/>
 
 ### Custom Code模式
 
 
 另我们惊喜的是，StreamX 还支持代码编写DataStream/FlinkSql任务。对于特殊需求，我们可以自己写Java/Scala实现。可以根据StreamX推荐的脚手架方式编写任务，也可以编写一个标准普通的Flink任务，通过这种方式我们可以将代码管理交由Git实现，平台可以用来自动化编译打包与部署。当然，如果能用Sql实现的功能，我们会尽量避免自定义DataStream，减少不必要的运维麻烦。
+
+<br/><br/>
 
 # 4. 意见和规划      
 
@@ -224,6 +229,7 @@ Native-session模式需要事先使用Flink命令创建一个运行在K8s中的F
 
 众所周知，一个新事物的出现一开始总会不是那么完美。尽管有些许问题和需要改进的point，但是瑕不掩瑜，我们仍然选择StreamX作为我们的Flink DevOps，我们也将会和主开发人员一道共同完善StreamX，也欢迎更多的人来使用，为StreamX带来更多进步。
 
+<br/>
 
 ## 未来规划
 
@@ -238,7 +244,6 @@ Native-session模式需要事先使用Flink命令创建一个运行在K8s中的F
 附:
 
 Streamx Github: https://github.com/streamxhub/streamx <br/>
-AWS s3挂载到K8s: https://zhuanlan.zhihu.com/p/372250644 <br/>
 Doris Github: https://github.com/apache/incubator-doris
 
 ![](/blog/author.png)
