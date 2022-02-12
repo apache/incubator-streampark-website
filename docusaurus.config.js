@@ -41,10 +41,6 @@ const config = {
                     ],
                 },
 
-                pages: {
-                    remarkPlugins: [require('@docusaurus/remark-plugin-npm2yarn')],
-                },
-
                 blog: {
                     showReadingTime: true,
                     // Please change this to your repo.
@@ -98,6 +94,12 @@ const config = {
                     label: 'Users',
                     position: 'right',
                     activeBaseRegex: `/user`,
+                },
+                {
+                    to: '/blog',
+                    label: 'Blog',
+                    position: 'right',
+                    activeBaseRegex: `/blog`,
                 },
                 {
                     to: 'https://github.com/streamxhub/streamx/issues/507',
