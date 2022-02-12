@@ -1,5 +1,5 @@
 ---
-slug: StreamX
+slug: flink-development-framework-streamx
 title: Flink开发利器StreamX
 tags: [StreamX, DataStream, FlinkSQL]
 ---
