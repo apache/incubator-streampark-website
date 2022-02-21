@@ -12,7 +12,7 @@ import TabItem from '@theme/TabItem';
 hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了事务（transactions） 和不同级别的 磁盘持久化（persistence），
 并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。
 
-flink官方提供写入reids数据的连接器。StreamX 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
+flink官方未提供写入reids数据的连接器。StreamX 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
 封装了RedisSink、配置redis连接参数，即可自动创建redis连接简化开发。目前RedisSink支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
 
 StreamX 使用Redis的 **MULTI** 命令开启事务，**EXEC** 命令提交事务，细节见链接:  
