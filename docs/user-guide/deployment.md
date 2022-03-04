@@ -197,6 +197,19 @@ datasource:
         url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
+###### 修改workspace
+进入到 `conf` 下，修改 `conf/application.yml`,找到 streamx 这一项，找到 workspace 的配置，修改成一个用户有权限的目录
+
+```yaml
+streamx:
+  # HADOOP_USER_NAME 如果是on yarn模式( yarn-prejob | yarn-application | yarn-session)则需要配置 hadoop-user-name
+  hadoop-user-name: hdfs
+  # 本地的工作空间,用于存放项目源码,构建的目录等.
+  workspace:
+    local: /opt/streamx_workspace # 本地的一个工作空间目录(很重要),用户可自行更改目录,建议单独放到其他地方,用于存放项目源码,构建的目录等.
+    remote: hdfs:///streamx   # support hdfs:///streamx/ 、 /streamx 、hdfs://host:ip/streamx/
+```
+
 ##### 启动后端
 
 进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是**10000**,如果没啥意外则会启动成功
