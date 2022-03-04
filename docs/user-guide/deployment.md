@@ -198,7 +198,7 @@ datasource:
 ```
 
 ###### 修改workspace
-进入到 `conf` 下，修改 `conf/application.yml`,找到 datasource 这一项，找到 mysql 的配置，修改成对应的信息即可，如下
+进入到 `conf` 下，修改 `conf/application.yml`,找到 streamx 这一项，找到 workspace 的配置，修改成一个用户有权限的目录
 
 ```yaml
 streamx:
