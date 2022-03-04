@@ -202,11 +202,11 @@ datasource:
 
 ```yaml
 streamx:
-  # HADOOP_USER_NAME
+  # HADOOP_USER_NAME 如果是on yarn模式( yarn-prejob | yarn-application | yarn-session)则需要配置 hadoop-user-name
   hadoop-user-name: hdfs
   # 本地的工作空间,用于存放项目源码,构建的目录等.
   workspace:
-    local: /opt/streamx_workspace # 替换一个有权限的目录,否则项目无法启动
+    local: /opt/streamx_workspace # 本地的一个工作空间目录(很重要),用户可自行更改目录,建议单独放到其他地方,用于存放项目源码,构建的目录等.
     remote: hdfs:///streamx   # support hdfs:///streamx/ 、 /streamx 、hdfs://host:ip/streamx/
 ```
 
