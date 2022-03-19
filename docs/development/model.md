@@ -528,7 +528,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 :::
 
 ## 目录结构
-推荐的项目目录结构如下,具体可以参考[Streamx-flink-quickstart](https://github.com/streamxhub/streamx/streamx-flink/streamx-flink-quickstart) 里的目录结构和配置
+推荐的项目目录结构如下,具体可以参考[Streamx-flink-quickstart](https://github.com/streamxhub/streamx-quickstart) 里的目录结构和配置
 
 ``` tree
 .
