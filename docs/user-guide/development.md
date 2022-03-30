@@ -115,7 +115,7 @@ streamx-console-service-${version}
 ├── logs
 ├── temp
 ```
-将解包后的整个工程文件 copy 到 target 之外的其他任意位置即可完成此步骤，该步主要是防止下次执行 mvn clean 被清理，如放到 `/opt/streamx/`,则此时该文件的完整路径是 `/opt/streamx/streamx-console-service-${version}`,记住这个路径，后面会用到
+将解包后的整个工程文件 copy 到 target 之外的其他任意位置即可完成此步骤，该步主要是防止下次执行 mvn clean 被清理，如放到 `/opt/streamx/`,则此时该文件的完整路径是 `/opt/streamx/streamx-console-service-${version}`,记住这个路径，后面会用到,注意该路径不要中间不要存在空格
 
 #### 配置
 
