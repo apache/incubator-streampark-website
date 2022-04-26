@@ -239,7 +239,7 @@ npm install -g pm2
 ##### 发布
 
 ###### 1. 将dist copy到部署服务器
-将streamx-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streamx`
+将streamx-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streamx`,拷贝后的目录层级是/home/www/streamx/dist
 
 ###### 2. 将streamx.js文件copy到项目部署目录
 将streamx/streamx-console/streamx-console-webapp/streamx.js copy 至 `/home/www/streamx`
