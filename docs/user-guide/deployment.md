@@ -17,7 +17,8 @@ streamx-console 提供了开箱即用的安装包，安装之前对环境有些�
 <ClientEnvs></ClientEnvs>
 
 :::tip 注意
-当前StreamX 1.2.1之前(包含)的版本,只支持`scala 2.11`,切忌使用`flink`时要检查对应的`scala`版本
+StreamX 1.2.2之前(包含)的版本,只支持`scala 2.11`,切忌使用`flink`时要检查对应的`scala`版本
+1.2.3之后(包含)的版本,支持 `scala 2.11` 和 `scala 2.12` 两个版本
 :::
 
 
@@ -54,37 +55,31 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### 编译打包
 
-streamx的编译在1.2.1前后发生了一些变化,我们分别看看具体变化和编译步骤:
 
-#### 1.2.1之前版本
+#### 自动打包
 
-streamx 1.2.1(不含1.2.1)之前的版本默认将**前后端混合打包**,最终生成一个dist包,开箱即用,以减少用户的学习和使用成本:
+从 StreamX 1.2.3+ 版本开始,提供了自动编译的脚本 `build.sh`, 执行运行该脚本按照要求进行下一步选择即可完成编译,  StreamX 1.2.3 之前的版本直接看手动打包部分文档即可
 
+```shell
 
-```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
-mvn clean install -DskipTests -Denv=prod
+./build.sh
+
 ```
-:::danger 特别注意
-注意参数 <span style={{color:'red'}}>**-Denv=prod**</span>
-:::
 
-#### 1.2.1之后版本
+#### 手动打包
 
-在streamx 1.2.1(包含)及之后的版本除了**混合打包**之外我们还提供了**独立打包**模式,供用户选择,这种方式打出来的包,更适合前后端分离项目的线上部署.
+在 StreamX 从 1.2.1 及之后的版本支持**混合打包** 和 **独立打包** 两种模式,供用户选择, 手动打包部署的话,需要注意每种打包方式的具体操作:
 
 ##### 混合打包
 
-
 ```bash
 git clone https://github.com/streamxhub/streamx.git
 cd streamx
-mvn clean install -DskipTests -Pwebapp
+mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests -Pwebapp
 ```
 
 :::danger 特别注意
-注意参数 <span style={{color:'red'}}>**-Pwebapp**</span>
+前后端混合打包模式下<span style={{color:'red'}}>**-Pwebapp**</span> 该参数必带
 :::
 
 ##### 独立打包
@@ -94,7 +89,7 @@ mvn clean install -DskipTests -Pwebapp
 ```bash
 git clone https://github.com/streamxhub/streamx.git
 cd streamx
-mvn clean install -DskipTests
+mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests
 ```
 
 ###### 2. 前端打包
@@ -118,7 +113,17 @@ npm run build
 
 :::danger 特别注意
 
-注意每个不同版本编译的时候携带的参数
+注意每个不同版本编译的时候携带的参数,
+在 StreamX 1.2.3(包含)之后的版本里, 其中 `-Dscala.version` 和 `-Dscala.binary.version` 参数 必带
+
+Scala 2.11 编译, 相关 scala 版本指定信息如下:
+```
+-Dscala.version=2.11.12 -Dscala.binary.version=2.11
+```
+Scala 2.12 编译, 相关 scala 版本指定信息如下:
+```
+-Dscala.version=2.12.7 -Dscala.binary.version=2.12
+```
 
 :::
 
