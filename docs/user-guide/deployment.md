@@ -58,7 +58,9 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 #### 自动打包
 
-从 StreamX 1.2.3+ 版本开始,提供了自动编译的脚本 `build.sh`, 执行运行该脚本按照要求进行下一步选择即可完成编译,  StreamX 1.2.3 之前的版本直接看手动打包部分文档即可
+从 StreamX 1.2.3+ 版本开始,提供了自动编译的脚本 `build.sh`, 执行运行该脚本按照要求进行下一步选择即可完成编译, 若 StreamX 1.2.3 之前的版本可以跳过,直接看手动打包部分文档即可
+
+<video src="http://assets.streamxhub.com/streamx-build.mp4" controls="controls" width="100%" height="100%"></video>
 
 ```shell
 
