@@ -124,15 +124,15 @@ export default function () {
                         <div className="col-12 col-sm-8 col-lg-6">
                             <div className="section_heading text-center wow fadeInUp" data-wow-delay="0.2s"
                                  style= {{ marginBottom: '15px'}}>
-                                <h3>{dataSource.common.scaffold}</h3>
+                                <h3>{dataSource.common.development}</h3>
                                 <div className="line"></div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="row justify-content-between" style= {{ padding:'50px 0'}}>
+                    <div className="row justify-content-between" style= {{ padding:'30px 0'}}>
                         {
-                            dataSource.scaffold.map((item, i) => (
+                            dataSource.development.map((item, i) => (
                                 <div className="col-12 col-sm-4 col-md-3" key={i} index={i}>
                                     <div className={i == 2 ? "single_work_step single_work_step_last":"single_work_step"}>
                                         <div className="step-icon shadow"><i className={item.icon}></i></div>

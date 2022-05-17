@@ -5,7 +5,7 @@
       "architecture": "系统架构",
       "learnMore": "了解更多",
       "coreFeatures": "核心特性",
-      "scaffold": "开发脚手架",
+      "development": "开发脚手架",
       "ourUsers": "Our Users",
       "readMore": "阅读更多",
       "download": "下载",
@@ -51,7 +51,7 @@
         "details": "StreamX集成了项目编译,发布,参数配置,任务监控,在线IDE等众多功能于一身,是一个一站式综合数据平台"
       }
     ],
-    "scaffold": [
+    "development": [
       {
         "icon": "lni-code",
         "title": "编写代码",
@@ -76,7 +76,7 @@
       "description": "Description",
       "learnMore": "Learn More",
       "coreFeatures": "Core Features",
-      "scaffold": "Development scaffold",
+      "development": "Rapid Development",
       "ourUsers": "Our Users",
       "readMore": "Read More",
       "download": "Download",
@@ -122,7 +122,7 @@
         "details": "StreamX integrates project compilation, release, parameter configuration, task monitoring, online IDE and many other functions in one, and it is a one-stop comprehensive data platform"
       }
     ],
-    "scaffold": [
+    "development": [
       {
         "icon": "lni-code",
         "title": "Write code",
