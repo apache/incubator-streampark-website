@@ -77,7 +77,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 ```bash
 git clone https://github.com/streamxhub/streamx.git
 cd streamx
-mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests -Pwebapp
+mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pwebapp
 ```
 
 :::danger 特别注意
