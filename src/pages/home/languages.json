@@ -6,6 +6,7 @@
       "learnMore": "了解更多",
       "coreFeatures": "核心特性",
       "development": "开发脚手架",
+      "honor": "我们的荣誉",
       "ourUsers": "Our Users",
       "readMore": "阅读更多",
       "download": "下载",
@@ -17,7 +18,7 @@
     },
     "slogan": {
       "key": "让流处理更简单!",
-      "description": "StreamX 的初衷是为了让流处理更简单.\n 打造一个一站式大数据平台,流批一体,湖仓一体的解决方案"
+      "description": "流处理极速开发框架, 流批一体 & 湖仓一体的云原生平台, 一站式流处理计算平台"
     },
     "feature": [
       {
@@ -43,7 +44,7 @@
       {
         "title": "流批一体",
         "icon": "lni-shuffle",
-        "details": "StreamX 以 Flink & Spark 为底层框架,让流批一体落地更加简单,连接互通,跨越框架间的屏障,创造更多可能性"
+        "details": "StreamX 以 Flink & Spark 为底层框架, 让流批一体落地更加简单,连接互通,跨越框架间的屏障,创造更多可能性"
       },
       {
         "title": "一站式解决方案",
@@ -67,7 +68,10 @@
         "title": "部署任务",
         "description": "使用streamx-console部署任务和管理任务"
       }
-    ]
+    ],
+    "honor" : {
+      "description": "我们获得了一些珍贵的荣誉, 这些荣誉属于所有为 StreamX 做出贡献的人, 感谢您的付出 !"
+    }
   },
   "en": {
     "common": {
@@ -76,7 +80,8 @@
       "description": "Description",
       "learnMore": "Learn More",
       "coreFeatures": "Core Features",
-      "development": "Rapid Development",
+      "development": "Development Framework",
+      "honor": "Our Honor",
       "ourUsers": "Our Users",
       "readMore": "Read More",
       "download": "Download",
@@ -88,7 +93,7 @@
     },
     "slogan": {
       "key": "make stream processing easier!",
-      "description":  "The original intention of StreamX is to make stream processing easier. Create a one-stop big data platform, a solution that integrates batch flow and integrated storage and storage"
+      "description":  "Extremely fast stream processing development framework, supported unified batch & streaming and data lake & data warehouse cloud-native bigdata platform, one-stop real-time computing cloud-native platform"
     },
     "feature": [
       {
@@ -125,19 +130,22 @@
     "development": [
       {
         "icon": "lni-code",
-        "title": "Write code",
-        "description": "Start developing code quickly using the streamx"
+        "title": "Development Application",
+        "description": "Quickly developing app using streamx-core Api"
       },
       {
         "icon": "lni-bug",
-        "title": "Debug code",
-        "description": "Pass in the job configuration,Start the job and quickly debug the code"
+        "title": "Debug Application",
+        "description": "Start the app with config and quickly debug the code"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "Deployment Job",
-        "description": "Deployment job to streamx-console to facilitate and quickly manage job"
+        "title": "Deployment Application",
+        "description": "Deployment app to streamx-console, management easier"
       }
-    ]
+    ],
+    "honor" : {
+      "description": "We have received some precious honors, which belong to everyone who contributes to StreamX, Thanks"
+    }
   }
 }
