@@ -1,15 +1,16 @@
-import React from 'react';
-import useIsBrowser from '@docusaurus/useIsBrowser';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import config from './languages.json';
-import Particles from "react-tsparticles";
-import option from "./particles.json";
+import React from 'react'
 
-import './index.less';
+import useIsBrowser from '@docusaurus/useIsBrowser'
+import useBaseUrl from '@docusaurus/useBaseUrl'
+import config from './languages.json'
+import Particles from "react-tsparticles"
+import option from "./particles.json"
+
+import './index.less'
 
 export default function () {
     const isBrowser = useIsBrowser();
-    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
+    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
     const dataSource = config?.[language];
 
     return (
@@ -66,18 +67,18 @@ export default function () {
                                     <img src="https://img.shields.io/github/forks/streamxhub/streamx.svg?sanitize=true" className="wow fadeInUp"></img>
                                     <img src="https://img.shields.io/github/languages/count/streamxhub/streamx" className="wow fadeInUp"></img>
                                 </div>
+                                <a className="video_btn popup_video"
+                                   data-wow-delay="0.5s"
+                                   target="_blank"
+                                   href="http://assets.streamxhub.com/streamx-video.mp4">
+                                    <i className="lni-play"></i>
+                                    <span className="video-sonar"></span>
+                                </a>
                             </div>
                         </div>
                         <div className="col-12 col-md-6">
                             <div className="welcome_area_thumb text-center ztop" data-wow-delay="0.2s">
-                                <a href="https://gitee.com/gvp" target="_blank">
-                                    <img src={useBaseUrl('/home/gvp2021.png')} alt="StreamX GVP"></img>
-                                </a>
-                                <a className="video_btn" style={{display: 'none'}}
-                                   href="http://assets.streamxhub.com/streamx-video.mp4" data-wow-delay="0.5s">
-                                    <i className="lni-play"></i>
-                                    <span className="video-sonar"></span>
-                                </a>
+                                <img style={{marginLeft: 30}} src={useBaseUrl('/home/streamx-banner.png')} alt="StreamX GVP"></img>
                             </div>
                         </div>
                     </div>
@@ -159,6 +160,42 @@ export default function () {
 
                 </div>
             </section>
+
+            <section className="honor_area" style={{backgroundColor: '#F6FAFE'}}>
+                <div className="container" style = {{marginTop: '90px',marginBottom: '40px' }}>
+                    <div className="row justify-content-center">
+                        <div className="col-12 col-sm-8 col-lg-6">
+                            <div className="section_heading text-center wow fadeInUp" data-wow-delay="0.2s"
+                                 style= {{ marginBottom: '15px'}}>
+                                <h3>{dataSource.common.honor}</h3>
+                                <div className="line"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row justify-content-between" style= {{ padding:'30px 0'}}>
+                        {
+                            <div className="col-12">
+                                <div className="section_heading text-center wow fadeInUp" data-wow-delay="0.2s">
+                                    <p>{dataSource.honor.description}</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div className="row h-100 justify-content-between align-items-center">
+                        <div className="col-12 col-sm-8 col-lg-6">
+                            <img className="honor_image" src={useBaseUrl('/home/gvp2021.png')}></img>
+                        </div>
+
+                        <div className="col-12 col-sm-8 col-lg-6">
+                            <img className="honor_image" src={useBaseUrl('/home/honor2021.png')}></img>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </section>
     );
 }
