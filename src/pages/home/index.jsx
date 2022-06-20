@@ -189,7 +189,7 @@ export default function () {
                         </div>
 
                         <div className="col-12 col-sm-8 col-lg-6">
-                            <img className="honor_image" src={useBaseUrl('/home/honor2021.png')}></img>
+                            <img className="honor_image" src={useBaseUrl('/home/honor2021.jpg')}></img>
                         </div>
                     </div>
 
