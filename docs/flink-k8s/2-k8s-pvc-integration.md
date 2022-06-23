@@ -40,7 +40,7 @@ spec:
         claimName: flink-savepoint
 ```
 
-由于使用了 `rockdb-backend`，该依赖可以由 3 种方式提供：
+由于使用了 `rocksdb-backend`，该依赖可以由 3 种方式提供：
 
 1. 提供的 Flink Base Docker Image 已经包含该依赖（用户自行解决依赖冲突）；
 
