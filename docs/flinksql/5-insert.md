@@ -77,7 +77,8 @@ values_row:
     : (val1 [, val2, ...])
 ```
 
-**OVERWRITE**  </br>
+**OVERWRITE**  
+
 INSERT OVERWRITE将覆盖表中任何现有数据。否则，将追加新的数据。
 
 ### 案例

@@ -6,8 +6,7 @@ sidebar_position: 11
 
 ## 介绍
 
-DROP语句用于从当前或指定的Catalog中删除已注册的表/视图/函数。  </br>
-Flink SQL目前支持以下DROP语句：
+DROP语句用于从当前或指定的Catalog中删除已注册的表/视图/函数。 Flink SQL目前支持以下DROP语句：
 
 * DROP CATALOG（从1.14.x开始支持）
 * DROP TABLE

@@ -7,8 +7,8 @@ sidebar_position: 7
 
 ## SQL提示
 
-在流批处理任务中均可使用。 
-SQL提示可以与`select`语句一起使用，以改变运行时的配置。  </br>
+在流批处理任务中均可使用。 `SQL提示`可以与`select`语句一起使用，以改变运行时的配置。
+
 **在使用`sql提示`之前，需要通过`SET`语句启用动态表选项，也就是设置`table.dynamic-table-options`为`true`。**
 
 ### 动态表操作
