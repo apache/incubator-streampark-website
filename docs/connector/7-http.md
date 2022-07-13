@@ -2,7 +2,7 @@
 id: 'Http-Connector'
 title: 'Http Connector'
 original: true
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';

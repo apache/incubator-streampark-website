@@ -1,10 +1,10 @@
 ---
 id: 'show'
 title: 'show'
-sidebar_position: 12
+sidebar_position: 14
 ---
 
-# 介绍
+## 介绍
 
 SHOW语句用于列出所有catalog，或在当前catalog，列出所有数据库中所有表/视图，字段，或列出当前catalog和当前数据库，或显示当前catalog和数据库，
 或列出当前catalog和当前的数据库的所有函数包括系统函数和用户自定义的函数。或只列出当前catalog和当前数据库中用户自定义的函数，或列出启用的模块名，或列出当前会话中为启用状态的所有已加载模块。<br>
@@ -23,7 +23,7 @@ Flink SQL目前支持以下SHOW语句：
 * SHOW FUNCTIONS
 * SHOW MODULES
 
-# SHOW CATALOGS
+## SHOW CATALOGS
 
 ```sql
 SHOW CATALOGS
@@ -31,7 +31,7 @@ SHOW CATALOGS
 
 显示所有catalog。
 
-# SHOW CURRENT CATALOG
+## SHOW CURRENT CATALOG
 
 ```sql
 SHOW CURRENT CATALOG
@@ -39,7 +39,7 @@ SHOW CURRENT CATALOG
 
 展示当前catalog。
 
-# SHOW DATABASES
+## SHOW DATABASES
 
 ```sql
 SHOW DATABASES
@@ -47,7 +47,7 @@ SHOW DATABASES
 
 展示当前catalog里的所有数据库。
 
-# SHOW CURRENT DATABASE
+## SHOW CURRENT DATABASE
 
 ```sql
 SHOW CURRENT DATABASE
@@ -55,9 +55,9 @@ SHOW CURRENT DATABASE
 
 展示当前数据库。
 
-# SHOW TABLES
+## SHOW TABLES
 
-## flink-1.13.x
+### flink-1.13.x
 
 ```sql
 SHOW TABLES
@@ -65,7 +65,7 @@ SHOW TABLES
 
 展示当前catalog和当前数据库中的所有表。
 
-## flink-1.15.x
+### flink-1.15.x
 
 ```sql
 SHOW TABLES [ ( FROM | IN ) [catalog_name.]database_name ] [ [NOT] LIKE <sql_like_pattern> ]
@@ -78,7 +78,7 @@ LIKE 关键字的语法和 MySQL 方言一样：
 * % 匹配任意个数的字符，包括零个字符，\% 匹配一个 % 符号。
 * _ 只匹配一个字符，\_ 匹配一个 _ 符号。
 
-### SHOW TABLES案例
+#### SHOW TABLES案例
 
 从1.15.x开始支持。<br>
 假设名为 catalog1 的 catalog 下的 db1 数据库并且包含以下表：
@@ -149,7 +149,7 @@ show tables;
 2 rows in set
 ```
 
-# SHOW CREATE TABLE
+## SHOW CREATE TABLE
 
 从1.14.x开始支持。
 
@@ -160,7 +160,7 @@ SHOW CREATE TABLE
 展示指定表的建表语句。<br>
 另外：当前的 SHOW CREATE TABLE 语句只支持展示通过 flink SQL DDL 创建的表。
 
-# SHOW COLUMNS
+## SHOW COLUMNS
 
 从1.15.x开始支持。
 
@@ -175,7 +175,7 @@ LIKE 关键字的语法和 MySQL 方言一样：
 * % 匹配任意个数的字符，包括零个字符，\% 匹配一个 % 符号。
 * _ 只匹配一个字符，\_ 匹配一个 _ 符号。
 
-## SHOW COLUMNS案例
+### SHOW COLUMNS案例
 
 从1.15.x开始支持。<br>
 假设名为 catalog1 的 catalog 下的 database1 数据库下的 orders 表有如下结构：
@@ -250,7 +250,7 @@ show columns from orders not like '%_r';
 4 rows in set
 ```
 
-# SHOW VIEWS
+## SHOW VIEWS
 
 ```sql
 SHOW VIEWS
@@ -258,7 +258,7 @@ SHOW VIEWS
 
 展示当前catalog和当前数据库中的所有视图。
 
-# SHOW CREATE VIEW
+## SHOW CREATE VIEW
 
 从1.15.x开始支持。
 
@@ -268,7 +268,7 @@ SHOW CREATE VIEW [catalog_name.][db_name.]view_name
 
 展示给定视图的创建语句。
 
-# SHOW FUNCTIONS
+## SHOW FUNCTIONS
 
 ```sql
 SHOW [USER] FUNCTIONS
@@ -278,7 +278,7 @@ SHOW [USER] FUNCTIONS
 **USER**<br>
 值展示当前catalog和当前数据库中的所有自定义函数。
 
-# SHOW MODULES
+## SHOW MODULES
 
 ```sql
 SHOW [FULL] MODULES

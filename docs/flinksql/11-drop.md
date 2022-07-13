@@ -1,10 +1,10 @@
 ---
 id: 'drop'
 title: 'drop'
-sidebar_position: 8
+sidebar_position: 11
 ---
 
-# 介绍
+## 介绍
 
 DROP语句用于从当前或指定的Catalog中删除已注册的表/视图/函数。<br>
 Flink SQL目前支持以下DROP语句：
@@ -15,7 +15,7 @@ Flink SQL目前支持以下DROP语句：
 * DROP VIEW
 * DROP FUNCTION
 
-## DROP CATALOG
+### DROP CATALOG
 
 **从1.14.x开始支持**。<br>
 
@@ -27,7 +27,7 @@ DROP CATALOG [IF EXISTS] catalog_name
 **IF EXISTS**<br>
 如果该 catalog 不存在，则什么也不会发生。
 
-## DROP TABLE
+### DROP TABLE
 
 ```sql
 DROP [TEMPORARY] TABLE [IF EXISTS] [catalog_name.][db_name.]table_name
@@ -39,7 +39,7 @@ DROP [TEMPORARY] TABLE [IF EXISTS] [catalog_name.][db_name.]table_name
 **IF EXISTS**<br>
 如果该表不存在，则什么也不会发生。
 
-## DROP DATABASE
+### DROP DATABASE
 
 ```sql
 DROP DATABASE [IF EXISTS] [catalog_name.]db_name [ (RESTRICT | CASCADE) ]
@@ -53,7 +53,7 @@ DROP DATABASE [IF EXISTS] [catalog_name.]db_name [ (RESTRICT | CASCADE) ]
 **CASCADE**<br>
 删除非空数据库时也会删除所有相关的表和函数。
 
-## DROP VIEW
+### DROP VIEW
 
 ```sql
 DROP [TEMPORARY] VIEW  [IF EXISTS] [catalog_name.][db_name.]view_name
@@ -66,7 +66,7 @@ DROP [TEMPORARY] VIEW  [IF EXISTS] [catalog_name.][db_name.]view_name
 如果视图不存在，则什么也不会发生。<br>
 Flink不通过CASCADE/RESTRICT关键字维护视图的依赖关系，当前的方式是当用户试图在视图的底层表被删除的情况下使用视图时抛出延迟错误消息。
 
-## DROP FUNCTION
+### DROP FUNCTION
 
 ```sql
 DROP [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF EXISTS] [catalog_name.][db_name.]function_name

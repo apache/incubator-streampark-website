@@ -1,10 +1,10 @@
 ---
 id: 'create'
 title: 'create'
-sidebar_position: 3
+sidebar_position: 4
 ---
 
-# 介绍
+## 介绍
 
 CREATE语句用于将表/视图/函数注册到当前或指定的Catalog中。已注册的表/视图/函数可以在SQL查询中使用。<br>
 Flink SQL目前支持以下CREATE语句：
@@ -14,7 +14,7 @@ Flink SQL目前支持以下CREATE语句：
 * CREATE VIEW
 * CREATE FUNCTION
 
-# CREATE TABLE
+## CREATE TABLE
 
 语法概述：
 
@@ -60,9 +60,9 @@ WATERMARK FOR rowtime_column_name AS watermark_strategy_expression
 
 上面的语句创建了一个带有给定名称的表。如果catalog中已经存在同名的表，则会引发异常。
 
-## Columns
+### Columns
 
-### Physical / Regular Columns（物理/常规列）
+#### Physical / Regular Columns（物理/常规列）
 
 物理列是数据库中已知的常规列。它们定义物理数据中字段的名称、类型和顺序。因此，物理列表示从外部系统读取和写入的有效负载。
 连接器和格式转化使用这些列(按照定义的顺序)来配置自己。其他类型的列可以在物理列之间声明，但不会影响最终的物理模式。<br>
@@ -77,7 +77,7 @@ CREATE TABLE MyTable (
 );
 ```
 
-### Metadata Columns（元数据列）
+#### Metadata Columns（元数据列）
 
 元数据列是SQL标准的扩展，允许访问连接器和/或表中每一行的特定字段。元数据列由metadata关键字表示。例如，元数据列可以用来读取和写入Kafka记录的时间戳，以进行基于时间的操作。
 [连接器](connector)和[格式](format)文档列出了每个组件的可用元数据字段。在表的模式中声明元数据列是可选的。<br>
@@ -151,7 +151,7 @@ query-to-sink schema:
 MyTable(`timestamp` BIGINT, `user_id` BIGINT, `name` STRING)
 ```
 
-### Computed Columns（计算列）
+#### Computed Columns（计算列）
 
 计算列是使用语法column_name AS computed_column_expression生成的虚拟列。<br>
 计算列可以引用同一表中声明的其他列的表达式，可以访问物理列和元数据列。列本身并不物理地存储在表中，列的数据类型通过给定的表达式自动派生，不需要手动声明。<br>
@@ -185,7 +185,7 @@ query-to-sink schema:
 MyTable(`user_id` BIGINT, `price` DOUBLE, `quantity` DOUBLE)
 ```
 
-## WATERMARK
+### WATERMARK
 
 WATERMARK子句用于定义表的事件时间属性，其形式为WATERMARK FOR rowtime_column_name AS watermark_strategy_expression。<br>
 rowtime_column_name定义一个列，该列被标记为表的事件时间属性。该列必须为TIMESTAMP(3)类型，并且是模式中的顶级列。它可以是一个计算列。<br>
@@ -212,7 +212,7 @@ CREATE TABLE Orders (
 ) WITH ( . . . );
 ```
 
-## PRIMARY KEY
+### PRIMARY KEY
 
 主键约束是Flink用于优化的一个提示。它告诉flink，指定的表或视图的一列或一组列是唯一的，它们不包含null。主列中的任何一列都不能为空。主键唯一地标识表中的一行。<br>
 主键约束可以与列定义(列约束)一起声明，也可以作为单行声明(表约束)。只能使用这两种方式之一，如果同时定义多个主键约束，则会引发异常。<br>
@@ -220,11 +220,11 @@ CREATE TABLE Orders (
 SQL标准指定约束可以是强制的，也可以是不强制的。这将控制是否对传入/传出数据执行约束检查。Flink不保存数据，因此我们希望支持的唯一模式是not forced模式。确保查询执行的主键唯一性由用户负责。<br>
 注意:在CREATE TABLE语句中，主键约束会改变列的可空性，也就是说，一个有主键约束的列是不能为NULL的。
 
-## PARTITIONED BY
+### PARTITIONED BY
 
 根据指定的列对已创建的表进行分区。如果将该表用作filesystem sink，则为每个分区创建一个目录。
 
-## WITH选项
+### WITH选项
 
 用于创建表source/sink的表属性，属性通常用于查找和创建底层连接器。<br>
 表达式`key1=val1`的键和值都应该是字符串字面值。有关不同连接器的所有受支持的表属性，请参阅[连接器](connector)中的详细信息。<br>
@@ -239,7 +239,7 @@ SQL标准指定约束可以是强制的，也可以是不强制的。这将控�
 对于`table_name`，表将注册到表执行环境的当前catalog和数据库中。<br><br>
 注意：用CREATE table语句注册的表既可以用作表source，也可以用作表sink，我们不能决定它是用作源还是用作接收器，直到它在dml语句中被引用。
 
-## LIKE
+### LIKE
 
 LIKE子句是SQL特性的变体/组合。子句可用于基于现有表的定义创建表。此外，用户可以扩展原始表或排除其中的某些部分。与SQL标准相反，子句必须在CREATE语句的顶层定义。这是因为子句适用于定义的多个部分，而不仅仅适用于模式部分。<br>
 您可以使用该子句重用或覆盖某些连接器属性或向外部定义的表添加水印。例如，在Apache Hive中定义的表中添加水印。<br>
@@ -333,7 +333,7 @@ LIKE Orders_in_file (
 source_table可以是复合标识符。因此，它可以是来自不同catalog或数据库的表：例如my_catalog.my_db.MyTable，指定来自MyCatalog和数据库my_db的表MyTable；
 my_db.MyTable指定来自当前catalog和数据库my_db的表MyTable。
 
-## 案例代码
+### 案例代码
 
 ```sql
 -- 读取kafka
@@ -357,7 +357,7 @@ CREATE TABLE kafka_bscc_bsnet_sendmsg (
 ;
 ```
 
-# CREATE CATALOG
+## CREATE CATALOG
 
 ```sql
 CREATE CATALOG catalog_name WITH (
@@ -365,7 +365,7 @@ CREATE CATALOG catalog_name WITH (
 )
 ```
 
-## 参数说明
+### 参数说明
 
 | 参数               | 必选  | 默认值     | 类型     | 描述                                                                                                                                            |
 |:-----------------|:----|:--------|:-------|:----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -380,7 +380,7 @@ CREATE CATALOG catalog_name WITH (
 用于指定与此目录相关的额外信息的目录属性。表达式key1=val1的键和值都应该是字符串字面值。<br>
 **注意，key和value都应该使用英文单引号括起来。**
 
-## 案例代码
+### 案例代码
 
 ```sql
 create catalog hive with (
@@ -406,7 +406,7 @@ catalog 名称。
     2. sql 代码中有建表语句，方便随时查看表的字段等信息。
 3. 不过在使用了 hive catalog的情况下，建表时创建了非临时表，在开发其他任务时，就可以不用编写建表语句了。
 
-# CREATE DATABASE
+## CREATE DATABASE
 
 ```sql
 CREATE DATABASE [IF NOT EXISTS] [catalog_name.]db_name
@@ -420,7 +420,7 @@ WITH (key1=val1, key2=val2, ...)
 **WITH OPTIONS**
 用于指定与此数据库相关的额外信息的数据库属性。表达式key1=val1的键和值都应该是字符串字面值。<br>
 
-# CREATE VIEW
+## CREATE VIEW
 
 ```sql
 CREATE [TEMPORARY] VIEW [IF NOT EXISTS] [catalog_name.][db_name.]view_name
@@ -434,7 +434,7 @@ AS query_expression
 **IF NOT EXISTS**<br>
 如果视图已经存在，则不会发生任何事情。
 
-# CREATE FUNCTION
+## CREATE FUNCTION
 
 ```sql
 CREATE [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF NOT EXISTS] [catalog_name.][db_name.]function_name AS identifier [LANGUAGE JAVA|SCALA|PYTHON]
@@ -453,7 +453,7 @@ CREATE [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF NOT EXISTS] [catalog_name.][db_
 **LANGUAGE JAVA|SCALA|PYTHON**<br>
 用于指导Flink运行时如何执行该函数的语言标记。目前只支持JAVA、SCALA和PYTHON，函数默认语言为JAVA。
 
-## 案例代码
+### 案例代码
 ```sql
 create temporary function fetch_millisecond as 'cn.com.streamx.function.udf.time.FetchMillisecond' language java;
 ```
