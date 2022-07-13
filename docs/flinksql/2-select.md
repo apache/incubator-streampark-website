@@ -1,3 +1,8 @@
+---
+id: 'select'
+title: 'select'
+sidebar_position: 2
+---
 
 
 # SQL提示
