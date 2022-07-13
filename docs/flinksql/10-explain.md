@@ -112,8 +112,8 @@ Union(all=[true], union=[count, word])
 
 ## Explain细节
 
-从flink-1.14.x开始支持。 \
-打印语句包含指定explain细节的 plan 信息。 \
+从flink-1.14.x开始支持。  </br>
+打印语句包含指定explain细节的 plan 信息。  </br>
 
 * ESTIMATED_COST：估计成本，生成优化器估计的物理节点的成本信息，
   比如：TableSourceScan(..., cumulative cost ={1.0E8 rows, 1.0E8 cpu, 2.4E9 io, 0.0 network, 0.0 memory})。

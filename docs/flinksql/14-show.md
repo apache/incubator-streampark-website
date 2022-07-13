@@ -7,8 +7,8 @@ sidebar_position: 14
 ## 介绍
 
 SHOW语句用于列出所有catalog，或在当前catalog，列出所有数据库中所有表/视图，字段，或列出当前catalog和当前数据库，或显示当前catalog和数据库，
-或列出当前catalog和当前的数据库的所有函数包括系统函数和用户自定义的函数。或只列出当前catalog和当前数据库中用户自定义的函数，或列出启用的模块名，或列出当前会话中为启用状态的所有已加载模块。 \
-SHOW CREATE 语句被用于打印 DDL 语句，目前， SHOW CREATE 语句值能用于打印给定表或试图的 DDL 语句。 \
+或列出当前catalog和当前的数据库的所有函数包括系统函数和用户自定义的函数。或只列出当前catalog和当前数据库中用户自定义的函数，或列出启用的模块名，或列出当前会话中为启用状态的所有已加载模块。  </br>
+SHOW CREATE 语句被用于打印 DDL 语句，目前， SHOW CREATE 语句值能用于打印给定表或试图的 DDL 语句。  </br>
 Flink SQL目前支持以下SHOW语句：
 
 * SHOW CATALOGS
@@ -71,16 +71,16 @@ SHOW TABLES
 SHOW TABLES [ ( FROM | IN ) [catalog_name.]database_name ] [ [NOT] LIKE <sql_like_pattern> ]
 ```
 
-展示可选的指定数据库中的所有表。如果没有指定数据库，则返回当前数据库的表。另外，该语句可以通过一个可选的匹配表达式对表进行过滤。 \
-LIKE：展示通过 like 关键字指定名称的表，like 语法和 <sql_like_pahhern> 类似。 \
+展示可选的指定数据库中的所有表。如果没有指定数据库，则返回当前数据库的表。另外，该语句可以通过一个可选的匹配表达式对表进行过滤。  </br>
+LIKE：展示通过 like 关键字指定名称的表，like 语法和 <sql_like_pahhern> 类似。  </br>
 LIKE 关键字的语法和 MySQL 方言一样：
 
-* % 匹配任意个数的字符，包括零个字符，\% 匹配一个 % 符号。
-* _ 只匹配一个字符，\_ 匹配一个 _ 符号。
+* % 匹配任意个数的字符，包括零个字符， </br>% 匹配一个 % 符号。
+* _ 只匹配一个字符， </br>_ 匹配一个 _ 符号。
 
 #### SHOW TABLES案例
 
-从1.15.x开始支持。 \
+从1.15.x开始支持。  </br>
 假设名为 catalog1 的 catalog 下的 db1 数据库并且包含以下表：
 
 * person
@@ -157,7 +157,7 @@ show tables;
 SHOW CREATE TABLE
 ```
 
-展示指定表的建表语句。 \
+展示指定表的建表语句。  </br>
 另外：当前的 SHOW CREATE TABLE 语句只支持展示通过 flink SQL DDL 创建的表。
 
 ## SHOW COLUMNS
@@ -168,16 +168,16 @@ SHOW CREATE TABLE
 SHOW COLUMNS ( FROM | IN ) [[catalog_name.]database.]<table_name> [ [NOT] LIKE <sql_like_pattern>]
 ```
 
-通过给定的表情和可选的 like 语句展示表的字段信息。 \
-LIKE：展示通过 like 关键字指定名称的表的字段信息，like 语法和 <sql_like_pahhern> 类似。 \
+通过给定的表情和可选的 like 语句展示表的字段信息。  </br>
+LIKE：展示通过 like 关键字指定名称的表的字段信息，like 语法和 <sql_like_pahhern> 类似。  </br>
 LIKE 关键字的语法和 MySQL 方言一样：
 
-* % 匹配任意个数的字符，包括零个字符，\% 匹配一个 % 符号。
-* _ 只匹配一个字符，\_ 匹配一个 _ 符号。
+* % 匹配任意个数的字符，包括零个字符， \% 匹配一个 % 符号。
+* _ 只匹配一个字符， \_ 匹配一个 _ 符号。
 
 ### SHOW COLUMNS案例
 
-从1.15.x开始支持。 \
+从1.15.x开始支持。  </br>
 假设名为 catalog1 的 catalog 下的 database1 数据库下的 orders 表有如下结构：
 
 ```sql
@@ -274,8 +274,8 @@ SHOW CREATE VIEW [catalog_name.][db_name.]view_name
 SHOW [USER] FUNCTIONS
 ```
 
-展示当前catalog和当前数据库中的所有系统和自定义函数。 \
-**USER** \
+展示当前catalog和当前数据库中的所有系统和自定义函数。  </br>
+**USER**  </br>
 值展示当前catalog和当前数据库中的所有自定义函数。
 
 ## SHOW MODULES
@@ -284,6 +284,6 @@ SHOW [USER] FUNCTIONS
 SHOW [FULL] MODULES
 ```
 
-按解析顺序显示所有启用的模块名称。 \  
-**FULL** \
+按解析顺序显示所有启用的模块名称。  </br>  
+**FULL**  </br>
 按照顺序显示所有启用状态的已加载模块。
