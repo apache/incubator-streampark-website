@@ -6,7 +6,8 @@ sidebar_position: 9
 
 ## 介绍
 
-ALTER语句用于修改Catalog中已注册的表/视图/函数定义。  </br>  
+ALTER语句用于修改Catalog中已注册的表/视图/函数定义。
+
 Flink SQL目前支持以下ALTER语句：
 
 * ALTER TABLE
@@ -22,8 +23,7 @@ Flink SQL目前支持以下ALTER语句：
 ALTER TABLE [catalog_name.][db_name.]table_name RENAME TO new_table_name
 ```
 
-将给定的表名重命名为另一个新表名。  </br>
-设置或更改表属性
+将给定的表名重命名为另一个新表名。 设置或更改表属性:
 
 ```sql
 ALTER TABLE [catalog_name.][db_name.]table_name SET (key1=val1, key2=val2, ...)
