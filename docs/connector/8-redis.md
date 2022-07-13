@@ -1,7 +1,7 @@
 ---
 id: 'Redis-Connector'
 title: 'Redis Connector'
-sidebar_position: 4
+sidebar_position: 8
 ---
 
 import Tabs from '@theme/Tabs';

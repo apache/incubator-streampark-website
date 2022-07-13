@@ -1,42 +1,21 @@
 ---
 id: 'select'
-title: 'SELECT'
-sidebar_position: 2
+title: 'select'
+sidebar_position: 7
 ---
 
-# 介绍
 
-`select语句`主要是从表中查询数据，然后将数据插入到其他表中。直接在页面中查看`select`的结果，目前平台还不支持。<br>
-单个反斜杠` \ `就可以作为转义字符使用，在`select`查询中可以直接使用。
-
-# 无表查询示例
-
-```sql
-SELECT supplier_id, rating, COUNT(*) AS total
-FROM
-    (VALUES
-        ('supplier1', 'product1', 4),
-        ('supplier1', 'product2', 3),
-        ('supplier2', 'product3', 3),
-        ('supplier2', 'product4', 4)
-    ) AS Products(supplier_id, product_id, rating)
-GROUP BY supplier_id, rating
-;
-```
-
-可以将该查询结果作为临时视图，也可以作为子表使用，在测试自定义函数中会非常有用。
-
-# SQL提示
+## SQL提示
 
 在流批处理任务中均可使用。<br>
 SQL提示可以与`select`语句一起使用，以改变运行时的配置。<br>
 **在使用`sql提示`之前，需要通过`SET`语句启用动态表选项，也就是设置`table.dynamic-table-options`为`true`。**
 
-## 动态表操作
+### 动态表操作
 
 动态表（可以认为是任何表，虚拟表或者是`hive`中的表都可以）允许使用`SQL提示`在`select`查询中动态指定或覆盖表的选项配置，并且这种指定只会在当前的`select`语句中起作用。<br>
 
-### 语法
+#### 语法
 
 `flink sql`采用了oracle风格的sql提示语法，如下所示：<br>
 
@@ -47,7 +26,7 @@ key:
     stringLiteral
 ```
 
-### 案例
+#### 案例
 
 ```sql
 CREATE TABLE kafka_table1 (id BIGINT, name STRING, age INT) WITH (...);
@@ -66,7 +45,7 @@ select * from kafka_table2;
 -- 通过 sql 提示指定的选项，如果和建表时通过 with 指定的选项重复的，sql 提示指定的选项会将其覆盖
 ```
 
-# WITH子句
+## WITH子句
 
 在流批处理任务中均可使用。<br>
 WITH提供了一种编写辅助语句的方法，以便在更大的查询中使用。这些语句通常称为公共表表达式(Common Table Expression, CTE)，可以认为它们定义了仅用于一个查询的临时视图。<br>
@@ -95,7 +74,7 @@ GROUP BY order_id;
 
 上面的`with`子句定义了`orders_with_total`，并且在`group by`子句中使用了它。
 
-# SELECT和WHERE
+## SELECT和WHERE
 
 在流批模式任务中均可使用。<br>
 SELECT语句的一般语法为：
@@ -134,7 +113,7 @@ SELECT price + tax FROM Orders WHERE id = 10;
 SELECT PRETTY_PRINT(order_id) FROM Orders;
 ```
 
-# SELECT DISTINCT
+## SELECT DISTINCT
 
 在流批模式任务中均可使用。<br>
 如果指定了SELECT DISTINCT，则会从结果集中删除所有重复的行(每组重复的行保留一行)：
@@ -146,7 +125,7 @@ SELECT DISTINCT id FROM Orders;
 对于流式查询，计算查询结果所需的状态可能会无限增长。状态大小取决于不同的数据行数量。可以提供具有适当状态生存时间(TTL)的[查询配置](qeury-config.md)，以防止状态存储过大。
 注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)。
 
-# 窗口表值函数TVF
+## 窗口表值函数TVF
 
 只支持流式任务。<br>
 `Windows`是处理无限流的核心，`Windows`将流分成有限大小的桶，我们可以在桶上面进行计算。<br>
@@ -161,10 +140,10 @@ Apache Flink提供了3个内置的窗口TVFs：`TUMBLE`、`HOP`和`CUMULATE`。�
 名为“window_start”，“window_end”，“window_time”来表示分配的窗口。<br>
 “window_time”字段是窗口TVF执行之后的一个时间属性，可以在后续基于时间的操作中使用。window_time的值总是等于window_end - 1ms。
 
-## TUMBLE
+### TUMBLE
 
 滚动窗口函数将每个元素分配给指定大小的窗口,滚动窗口的大小是固定的，并且不会重叠。假设指定了一个大小为5分钟的滚动窗口，在这种情况下，Flink将计算当前窗口，并每5分钟启动一个新窗口，如下图所示。<br>
-![img.png](img/tumble窗口图解.png)
+![img.png](/doc/image/flinksql/tumble-window.png)
 
 TUMBLE函数根据时间属性列为表的每一行分配一个窗口。TUMBLE的返回值是一个新的关系，它包括原来表的所有列以及另外3列“window_start”，“window_end”，“window_time”来表示分配的窗口。<br>
 原表中的原始时间字段将是窗口TVF函数之后的常规时间列。TUMBLE函数需要三个参数:<br>
@@ -177,7 +156,7 @@ TUMBLE(TABLE data, DESCRIPTOR(timecol), size)
 * timecol：列名，表示该列数据映射到滚动窗口。
 * size：指定滚动窗口的窗口大小。<br>
 
-下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段，<br>![img.png](img/Bid表信息和数据.png)
+下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段，<br>![img.png](/doc/image/flinksql/Bid-table-info-and-data.png)
 下面是使用滚动窗口的sql示例：
 
 ```sql
@@ -199,7 +178,7 @@ FROM
     );
 ```
 
-下图是上面示例sql的执行结果：<br>![img.png](img/滚动窗口简单使用.png)<br>
+下图是上面示例sql的执行结果：<br>![img.png](/doc/image/flinksql/scrolling-window-demo.png)<br>
 从上图结果可以看到，原始表的6行数据被分配到3个窗口中，每个滚动窗口是时间间隔为10分钟，窗口时间window_time为对应窗口结束时间-1ms。
 
 ```sql
@@ -212,16 +191,16 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在滚动窗口表上使用聚合函数.png)
+![img.png](/doc/image/flinksql/on-scrolling-window-use-agg-func.png)
 
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，不显示秒后面的零。如果时间类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
 00.000。
 
-## HOP
+### HOP
 
 HOP函数将元素分配给固定长度的窗口。和TUMBLE窗口功能一样，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制跳跃窗口启动的频率，类似于 stream api 中的滑动窗口。<br>
 因此，如果滑动小于窗口大小，跳跃窗口就会重叠。在本例中，元素被分配给多个窗口。跳跃窗口也被称为“滑动窗口”。<br>
-例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。<br>![img.png](img/hop窗口图解.png)<br>
+例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。<br>![img.png](/doc/image/flinksql/hop-window.png)<br>
 HOP函数窗口会覆盖指定大小区间内的数据行，并根据时间属性列移动。<br>
 HOP的返回值是一个新的关系，它包括原来关系的所有列，以及“window_start”、“window_end”、“window_time”来表示指定的窗口。原表的原始的时间属性列“timecol”将是执行TVF后的常规时间戳列。<br>  
 HOP接受四个必需的参数：
@@ -255,7 +234,7 @@ FROM TABLE(
 );
 ```
 
-下面是代码运行结果：<br>![img.png](img/滑动窗口简单使用.png)<br>
+下面是代码运行结果：<br>![img.png](/doc/image/flinksql/sliding-window-demo.png)<br>
 从上表可以看出，由于窗口有重叠，所有很多数据都属于两个窗口。<br>
 
 ```sql
@@ -268,9 +247,9 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在滑动窗口表上使用聚合函数.png)<br>
+![img.png](/doc/image/flinksql/on-sliding-window-use-agg-func.png)<br>
 
-## CUMULATE
+### CUMULATE
 
 累积窗口，或者叫做渐进式窗口，在某些情况下是非常有用的，例如在固定的窗口间隔内早期触发滚动窗口。<br>
 例如，仪表板显示当天的实时总UV数，需要从每天的00:00开始到累计每分钟的UV值，10:00的UV值表示00:00到10:00的UV总数，这就可以通过累积窗口轻松有效地实现。<br>
@@ -278,7 +257,7 @@ CUMULATE函数将元素分配给窗口，这些窗口在初始步长间隔内覆
 可以把CUMULATE函数看作是先应用具有最大窗口大小的TUMBLE窗口，然后把每个滚动窗口分成几个窗口，每个窗口的开始和结束都有相同的步长差。所以累积窗口有重叠，而且没有固定的大小。<br>
 例如有一个累积窗口，1小时的步长和1天的最大大小，将获得窗口:[00:00,01:00)，[00:00,02:00)，[00:00,03:00)，…，[00:00,24:00)，每天都如此。
 
-![img.png](img/累计窗口图解.png)<br>
+![img.png](/doc/image/flinksql/cumulative-window-diagram.png)<br>
 
 累积窗口基于时间属性列分配窗口。CUMULATE的返回值是一个新的关系，它包括原来关系的所有列，另外还有3列，分别是“window_start”、“window_end”、“window_time”，表示指定的窗口。
 原始的时间属性“timecol”将是窗口TVF之后的常规时间戳列。<br>
@@ -315,7 +294,7 @@ FROM
     );
 ```
 
-下面是代码执行结果：<br>![img.png](img/累计窗口简单使用.png)<br>
+下面是代码执行结果：<br>![img.png](/doc/image/flinksql/cumulative-window-demo.png)<br>
 
 ```sql
 -- 在窗口表上运行聚合函数
@@ -327,11 +306,11 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在累计窗口表上使用聚合函数.png)<br>
+![img.png](/doc/image/flinksql/on-cumulative-window-use-agg-func.png)<br>
 
-# 窗口聚合
+## 窗口聚合
 
-## 窗口表值函数TVF聚合
+### 窗口表值函数TVF聚合
 
 只支持流式任务。<br>
 在group by子句中定义的窗口聚合函数可以使用通过窗口表值聚合函数的结果表中的“window_start”和“window_end”列。就像使用常规GROUP BY子句的查询一样，使用GROUP
@@ -345,11 +324,11 @@ GROUP BY window_start, window_end, ...
 
 与连续流表上的其他聚合不同，窗口聚合不发出中间结果，而只发出最终结果，即窗口结束之后的总聚合。此外，当不再需要时，窗口聚合会清除所有中间状态。
 
-### 窗口表值函数TVF
+#### 窗口表值函数TVF
 
 Flink支持TUMBLE、HOP和CUMULATE类型的窗口聚合，它们可以定义在事件时间或处理时间属性上。<br>
 下面是一些TUMBLE、HOP和CUMULATE窗口聚合的例子。<br>
-表必须有时间属性列，比如下面表中的`bidtime`列。<br>![img.png](img/Bid表信息.png)<br>![img.png](img/Bid表数据.png)<br>
+表必须有时间属性列，比如下面表中的`bidtime`列。<br>![img.png](/doc/image/flinksql/Bid-table-info.png)<br>![img.png](/doc/image/flinksql/Bid-table-data.png)<br>
 
 ```sql
 -- tumbling window aggregation
@@ -361,7 +340,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/tumble函数聚合结果.png)<br>
+![img.png](/doc/image/flinksql/tumble-func-result.png)<br>
 
 ```sql
 -- cumulative window aggregation
@@ -373,12 +352,12 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/cumulate函数聚合结果.png)<br>
+![img.png](/doc/image/flinksql/cumulate-func-result.png)<br>
 
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，以不显示秒小数点后面的零，例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
 00.000。
 
-### GROUPING SETS
+#### GROUPING SETS
 
 窗口聚合也支持GROUPING SETS语法。GROUPING SETS允许进行比标准GROUP BY更复杂的分组操作。行按每个指定的分组集单独分组，并为每个分组计算聚合，就像简单的group by子句一样。<br>
 带有GROUPING SETS的窗口聚合要求window_start和window_end列必须在GROUP BY子句中，但不能在GROUPING SETS子句中。<br>
@@ -392,12 +371,12 @@ FROM
 GROUP BY window_start, window_end, GROUPING SETS ((supplier_id), ());
 ```
 
-![img.png](img/streaming任务grouping_sets聚合结果.png)<br>
+![img.png](/doc/image/flinksql/streaming-grouping-sets-result.png)<br>
 
 GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且解释方式与直接写在GROUP BY子句相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。<br>
 对于GROUPING SETS中的子集，如果没有指定任何数据列或表达式，将会使用NULL值来代替，表示对窗口时间内的全量数据进行聚合。<br>
 
-#### ROLLUP
+##### ROLLUP
 
 ROLLUP是一种用于指定通用分组集类型的简写符号。它表示给定的表达式列表，前缀列表和空列表。<br>
 前缀列表：也就是说，子列表是指定的所有字段，然后每次去掉最后面一个字段而生成的表达式列表，示例如下：<br>
@@ -421,7 +400,7 @@ FROM TABLE(
 GROUP BY window_start, window_end, ROLLUP (supplier_id);
 ```
 
-#### CUBE
+##### CUBE
 
 CUBE是一种用于指定公共分组集类型的简写符号。它表示给定的列表及其所有可能的子集，包括空列表。<br>
 使用CUBE的窗口聚合要求window_start和window_end列必须在GROUP BY子句中，而不是在CUBE子句中。<br>
@@ -449,11 +428,11 @@ GROUPING SETS (
 )
 ```
 
-### select分组窗口开始结束时间
+#### select分组窗口开始结束时间
 
 可以使用分组的window_start和window_end列来作为组窗口的开始和结束时间戳。
 
-### 层叠窗口聚合
+#### 层叠窗口聚合
 
 window_start和window_end列是常规的时间戳列，而不是时间属性。因此，它们不能在随后的基于时间的操作中用作时间属性。为了传播时间属性，需要在GROUP BY子句中添加window_time列。<br>
 window_time是窗口表值函数TVF产生的第三列，它是指定窗口的时间属性，比窗口结束时间早1毫秒。将window_time添加到GROUP BY子句中，使得window_time也成为可以选择的时间列。<br>
@@ -479,7 +458,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-# 分组聚合
+## 分组聚合
 
 只可用于批处理任务。<br>
 
@@ -503,7 +482,7 @@ GROUP BY order_id;
 详细信息请参见[查询配置](qeury-config.md)。<br>
 Apache Flink为Group Aggregation提供了一系列性能调优方法，请参阅更多的[性能调优](performance-tuning.md)。
 
-## DISTINCT聚合
+### DISTINCT聚合
 
 有些聚合需要在调用聚合函数之前删除重复值。下面的示例计算Orders表中不同order_ids的数量，而不是总行数。
 
@@ -514,7 +493,7 @@ SELECT COUNT(DISTINCT order_id) FROM Orders;
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小主要取决于不同的行数和组维护的时间，短时间的窗口组聚合不是问题。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。
 注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)。
 
-## GROUPING SETS
+### GROUPING SETS
 
 grouping sets可以执行比标准GROUP BY更复杂的分组操作。行数据按每个分组集单独分组，并为每个分组计算聚合函数，就像简单的group by子句一样。<br>
 
@@ -531,13 +510,13 @@ AS Products(supplier_id, product_id, rating)
 GROUP BY GROUPING SETS ((supplier_id, rating), (supplier_id), ());
 ```
 
-结果：<br>![img.png](img/batch任务grouping_sets聚合结果.png)<br>
+结果：<br>![img.png](/doc/image/flinksql/batch_grouping_sets_result.png)<br>
 GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且其解释方式与直接在GROUP BY子句中使用相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。<br>
 对于分组中集中未出现的列或表达式，会使用NULL进行替换，如上图所示。<br>
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小取决于组集的数量和聚合函数的类型。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)
 。<br>
 
-### ROLLUP
+#### ROLLUP
 
 ROLLUP是一种用于指定通用分组集类型的简单用法。它表示给定的表达式列表、前缀列表、空列表。<br>
 例如，下面的查询与上面的查询等价。<br>
@@ -555,7 +534,7 @@ AS Products(supplier_id, product_id, rating)
 GROUP BY ROLLUP (supplier_id, rating);
 ```
 
-### CUBE
+#### CUBE
 
 CUBE是一种用于指定公共分组集类型的简单用法。它表示给定的列表及其所有可能的子集。<br>
 例如，下面两个查询是等价的。
@@ -593,7 +572,7 @@ GROUP BY GROUPING SET (
     );
 ```
 
-## HAVING
+### HAVING
 
 HAVING消除不满足条件的组行。HAVING不同于WHERE:WHERE在GROUP BY之前过滤单独的行，而HAVING过滤GROUP BY创建的组行。HAVING条件引用的每个列必须是分组列中的列，以及聚合函数结果。<br>
 
@@ -607,7 +586,7 @@ HAVING SUM(amount) > 50;
 HAVING的存在会将查询转换为分组查询，即使没有GROUP BY子句。这与查询包含聚合函数但没有GROUP BY子句时发生的情况相同。<br>
 查询会将所有选定的行组成一个组，SELECT列表和HAVING子句只能从聚合函数中引用列。如果HAVING条件为真，这样的查询将产生一行结果，如果不为真，则产生零行结果。
 
-# OVER聚合
+## OVER聚合
 
 流批处理任务均可使用。<br>
 
@@ -640,15 +619,15 @@ FROM ...
 
 可以在SELECT子句中定义多个OVER窗口聚合。但是，对于流查询，由于当前的限制，所有聚合的OVER窗口必须是相同的。
 
-## ORDER BY
+### ORDER BY
 
 OVER窗口定义在一个有序的行序列上。由于表数据没有固定的顺序，因此order by子句是强制的。对于流式查询，Flink目前只支持以升序时间属性列顺序定义的窗口。
 
-## PARTITION BY
+### PARTITION BY
 
 可以在分区表上定义OVER窗口。如果存在PARTITION BY子句，则只在每个输入行所在分区的行上计算聚合。
 
-## Range定义
+### Range定义
 
 范围定义指定聚合中包含多少行。这个范围是用BETWEEN子句定义的，它定义了下边界和上边界。边界之间的所有行都会包含在聚合中。Flink只支持CURRENT ROW作为上边界。<br>
 有两个选项可以定义范围，ROWS间隔和range间隔。<br>
@@ -667,7 +646,7 @@ ROWS间隔是一个基于计数的间隔。它确切地定义了聚合中包含�
 ROWS BETWEEN 10 PRECEDING AND CURRENT ROW
 ```
 
-## WINDOW子句
+### WINDOW子句
 
 WINDOW子句可用于在SELECT子句之外定义OVER窗口。它可以使查询更具可读性，也允许我们的多个聚合重用同一个窗口定义。
 
@@ -683,14 +662,14 @@ FROM Orders
     )
 ```
 
-# Join
+## Join
 
 可同时用于流批处理任务。<br>
 Flink SQL支持对动态表执行复杂而灵活的连接操作。有几种不同类型的连接来支持需要的各种查询。<br>
 **默认情况下，表的连接顺序并不会优化查询效率。表是按照在FROM子句中指定的顺序连接的。通过先列出更新频率最低的表，然后列出更新频率最高的表，可以调整连接查询的性能。**
 确保以不会产生交叉连接(笛卡尔积)的顺序指定表即可，交叉连接不受支持，而且会导致查询失败。<br>
 
-## 常规Join
+### 常规Join
 
 常规连接是最通用的连接类型，其中任何新记录或对连接任意一侧的更改都会影响整个连接结果。例如，左表产生一条新记录，当产品id在右表可以找到时，它将与右表所有以前和将来的记录进行连接。
 
@@ -705,7 +684,7 @@ ON Orders.productId = Product.id;
 注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)。<br>
 对于流查询，计算查询结果所需的状态可能会无限增长，这取决于聚合的类型和不同分组键的数量。请提供具有有效保留间隔的[查询配置](qeury-config.md)，以防止状态大小过大。具体请参见[查询配置](qeury-config.md)。
 
-### INNER等值连接
+#### INNER等值连接
 
 返回受连接条件限制的简单笛卡尔积。目前只支持等值连接，即至少具有一个具有相等谓词的连接条件的连接。不支持任意交叉或theta连接。<br>
 
@@ -716,7 +695,7 @@ INNER JOIN Product
 ON Orders.product_id = Product.id;
 ```
 
-### OUTER等值连接
+#### OUTER等值连接
 
 返回限定的笛卡尔积中的所有行(即，传递其连接条件的所有合并行)，加上连接条件与另一个表的任何行不匹配的外表中每一行的一个副本。
 Flink支持左、右和全外连接。目前，只支持等值连接，即至少具有一个具有相等谓词的连接条件的连接。不支持任意交叉或theta连接。
@@ -738,7 +717,7 @@ FULL OUTER JOIN Product
 ON Orders.product_id = Product.id;
 ```
 
-## Interval Join
+### Interval Join
 
 返回受连接条件和时间约束限制的简单笛卡尔积。Interval Join需要至少一个等连接谓词和一个连接条件来限制双方的时间。
 两个适当的范围谓词就可以定义这样的条件，比如：<、<=、>=、>、BETWEEN或单个相等谓词，都可以用于比较两个输入表的相同类型的时间属性(处理时间或事件时间)。<br>  
@@ -761,9 +740,9 @@ ltime BETWEEN rtime - INTERVAL '10' SECOND AND rtime + INTERVAL '5' SECOND
 
 流式连接查询与常规连接相比，Interval Join只支持带有时间属性的仅追加表。由于时间属性是准单调递增的，Flink可以在不影响结果正确性的情况下将旧值从其状态中移除。
 
-## Temporal Join
+### Temporal Join
 
-### Event Time Temporal Join
+#### Event Time Temporal Join
 
 时态连接允许对版本化表进行连接，这意味着可以通过更改元数据来丰富表信息，并在某个时间点检索它的值。<br>
 时态连接取任意表(左输入/探查侧)，并将每一行与版本控制表(右输入/构建侧)中相应行的相关版本关联起来。Flink使用`FOR SYSTEM_TIME AS of`的SQL语法根据SQL:2011标准执行这个操作。时态连接的语法如下：
@@ -810,7 +789,7 @@ LEFT JOIN currency_rates FOR SYSTEM_TIME AS OF orders.order_time
 ON orders.currency = currency_rates.currency;
 ```
 
-![img.png](img/通过事件时间连接表查询.png)<br>
+![img.png](/doc/image/flinksql/event-time-join.png)<br>
 
 注意：事件时间时态连接是由左右两边的水印触发的，连接的两张表都必须正确地设置水印。<br>
 注意：事件时间时态连接需要有包含主键的等值连接条件，例如，product_changelog表的主键P.product_id被约束在条件O.product_id = P.product_id中。<br>
@@ -818,16 +797,16 @@ ON orders.currency = currency_rates.currency;
 间隔连接包含时间窗口，时间窗口内的左右表数据都会进行连接。探测端（左表）记录总是在time属性指定的时间与构建端对应时间的数据进行连接。
 因此，构建端的行可能是任意旧的。随着时间的推移，不再需要的记录版本(对于给定的主键)将从状态中删除。
 
-### Processing Time Temporal Join
+#### Processing Time Temporal Join
 
 处理时间时态表连接使用处理时间属性将行与外部版本表中键对应的最新版本数据进行关联。<br>
 根据定义，使用处理时间属性，连接将始终返回给定键的最新值。可以将查询表看作简单的HashMap<K, V>
 ，它存储了来自构建端的所有记录。这种连接的强大之处是，当不能在Flink中将表具体化为动态表时，它允许Flink直接针对外部系统工作。<br>
 下面的处理时间时态表连接示例显示了一个只追加的表订单，它与LatestRates表连接。LatestRates是一个维表(例如HBase表)，存储最新的比例。<br>
-在10:15,10:30,10:52,LatestRates的内容如下:<br>![img.png](img/LatestRates表数据.png)<br>
+在10:15,10:30,10:52,LatestRates的内容如下:<br>![img.png](/doc/image/flinksql/LatestRates-table-data.png)<br>
 10:15和10:30的LatestRates的内容是相等的。欧元汇率在10:52从114变到了116。<br>
-订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。<br>![img.png](img/Orders表数据.png)<br>
-根据这些表，来将所有订单转换为相同的货币。<br>![img.png](img/货币和比率计算结果.png)<br>
+订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。<br>![img.png](/doc/image/flinksql/Orders-table-data.png)<br>
+根据这些表，来将所有订单转换为相同的货币。<br>![img.png](/doc/image/flinksql/currency-ratio-result.png)<br>
 在时态表连接的帮助下，我们可以在SQL中进行这样一个查询：
 
 ```sql
@@ -842,7 +821,7 @@ ON r.currency = o.currency;
 处理时间的结果是不确定的。处理时间时态连接最常使用外部表(即维度表)作为构建端（右表）。<br>
 与常规连接相比，尽管构建端（右表）发生了更改，前面的时态表结果也不会受到影响。与间隔连接相比，时态表连接没有定义记录连接的时间窗口，也就是说，旧行不会进行状态存储。<br>
 
-## Lookup Join
+### Lookup Join
 
 Lookup Join通常使用从外部系统查询的数据来丰富表。连接要求一个表具有处理时间属性，另一个表由lookup source连接器支持。<br>
 查找连接使用上面的Processing Time Temporal join语法，并使用查找源连接器支持表。<br>
@@ -872,7 +851,7 @@ ON o.customer_id = c.id;
 Orders表的每一行都与那些匹配连接谓词的Customers行连接。它还防止在将来更新已连接的Customer行时更新连接结果。
 Lookup Join还需要一个强制相等联接谓词，如上面示例中的o.customer_id = c.id。
 
-## Array展开
+### Array展开
 
 为给定数组中的每个元素返回新行。目前还不支持WITH ORDINALITY。
 
@@ -882,11 +861,11 @@ FROM Orders
 CROSS JOIN UNNEST(tags) AS t (tag);
 ```
 
-## 表函数
+### 表函数
 
 将表与表函数的结果进行连接。左表(外部表)的每一行都与对应的table函数调用产生的所有行连接。用户自定义的表函数在使用前必须注册。
 
-### INNER JOIN
+#### INNER JOIN
 
 如果左表(外部)的表函数调用返回空结果，则删除该行。
 
@@ -895,7 +874,7 @@ SELECT order_id, res
 FROM Orders, LATERAL TABLE(table_func(order_id)) t(res);
 ```
 
-### LEFT OUTER JOIN
+#### LEFT OUTER JOIN
 
 如果表函数调用返回空结果，则保留相应的左表数据行，并在结果中填充空值。目前，针对表的左外连接需要在ON子句中使用TRUE字面值。
 
@@ -906,11 +885,11 @@ LEFT OUTER JOIN LATERAL TABLE(table_func(order_id)) t(res)
 ON TRUE;
 ```
 
-# 集合操作(union)
+## 集合操作(union)
 
 在流批任务中均可使用。
 
-## UNION
+### UNION
 
 UNION和UNION ALL会返回两张表的所有行。UNION会对结果去重，而UNION ALL不会对结果行去重。
 
@@ -944,7 +923,7 @@ Flink SQL> (SELECT s FROM t1) UNION ALL (SELECT s FROM t2);
 +---+
 ```
 
-## INTERSECT
+### INTERSECT
 
 交集<br>
 INTERSECT和INTERSECT ALL返回在两个表中都存在的行。INTERSECT会对结果行去重，而INTERSECT ALL不会去重。
@@ -967,7 +946,7 @@ Flink SQL> (SELECT s FROM t1) INTERSECT ALL (SELECT s FROM t2);
 +---+
 ```
 
-## EXCEPT
+### EXCEPT
 
 差集<br>
 EXCEPT和EXCEPT ALL返回在一个表中找到，但在另一个表中没有找到的行。EXCEPT会对结果去重，而EXCEPT ALL不会对结果去重。
@@ -988,7 +967,7 @@ Flink SQL> (SELECT s FROM t1) EXCEPT ALL (SELECT s FROM t2);
 +---+
 ```
 
-## IN
+### IN
 
 如果外表字段值存在于给定的子查询结果表数据，则返回true。子查询结果表必须由一列组成。此列必须具有与表达式相同的数据类型。
 
@@ -1006,7 +985,7 @@ WHERE product IN
 优化器将IN条件重写为join和group操作。对于流查询，计算查询结果所需的状态可能会无限增长，这取决于不同的输入行数。
 可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)。
 
-## EXISTS
+### EXISTS
 
 ```sql
 SELECT user, amount
@@ -1023,7 +1002,7 @@ WHERE product EXISTS
 优化器将EXISTS操作重写为join和group操作。对于流查询，计算查询结果所需的状态可能会无限增长，这取决于不同的输入行数。
 可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)。
 
-# ORDER BY子句
+## ORDER BY子句
 
 在流批任务中均可使用。
 ORDER BY子句会根据指定的表达式对结果行进行排序。如果根据最左边的表达式比较，两行相等，则继续根据下一个表达式对它们进行比较，以此类推。如果根据所有指定的表达式比较，它们都是相等的，则以依赖于实现的顺序返回它们。<br>
@@ -1035,7 +1014,7 @@ FROM Orders
 ORDER BY order_time, order_id;
 ```
 
-## LIMIT子句
+### LIMIT子句
 
 只能在批处理任务中使用。<br>
 LIMIT子句限制SELECT语句返回的行数。LIMIT通常与ORDER BY一起使用，以确保结果的确定性。<br>
@@ -1048,7 +1027,7 @@ ORDER BY orderTime
 LIMIT 3;
 ```
 
-# Top-N
+## Top-N
 
 在流批任务中均可使用。
 Top-N查询返回按列排序的N个最小或最大值。最小和最大的值集都被认为是Top-N查询。top-N查询在需要只显示批处理/流表中最下面的N条或最上面的N条记录的情况下非常有用。此结果集可用于进一步分析。<br>
@@ -1129,7 +1108,7 @@ WHERE row_num <= 5;
 
 注意在流模式下，为了将上述查询输出到外部存储并得到正确的结果，外部存储必须与Top-N查询具有相同的唯一键。在上面的查询示例中，如果product_id是查询的唯一键，那么外部表也应该将product_id作为唯一键。
 
-# Window Top-N
+## Window Top-N
 
 只能在流模式任务中使用。<br>
 Window Top-N是一个特殊的Top-N，它返回每个窗口以及其他分区键的N个最小或最大值。<br>
@@ -1213,7 +1192,7 @@ WHERE rownum <= 3;
 **1.14.x、1.15.x**：目前，flink只支持在tumble（滚动）、Hop（跳跃）、cumulate（累计）窗口中使用windowing TVF 后使用 window Top-N。
 在不久的将来，将会支持在session（会话）窗口中使用 windowing TVF 后使用 window Top-N 。
 
-# 去重
+## 去重
 
 去重会删除在一组列上重复的行，只保留第一行或最后一行。在某些情况下，上游ETL作业并不是端到端精确一次的；当发生故障转移时，这可能会导致接收器中出现重复记录。
 重复记录会影响下游分析作业(如SUM、COUNT)的正确性，因此需要在进一步分析之前进行重复数据删除。<br>
@@ -1263,7 +1242,7 @@ FROM
 WHERE row_num = 1;
 ```
 
-# Pattern Recognition（模式识别）
+## Pattern Recognition（模式识别）
 
 对应于 streaming api 中的CEP，复杂事件处理。<br>
 由于使用较少，暂时不做整理。如果有使用的需要，可到社区反应，后续由社区补充。

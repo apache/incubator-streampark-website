@@ -1,14 +1,14 @@
 ---
-id: 'create'
-title: 'create'
-sidebar_position: 11
+id: 'load'
+title: 'load'
+sidebar_position: 12
 ---
 
-# 介绍
+## 介绍
 
 LOAD语句用于加载内置或用户自定义的模块。
 
-# LOAD模块
+## LOAD模块
 
 语法结构：
 
@@ -19,7 +19,7 @@ LOAD MODULE module_name [WITH ('key1' = 'val1', 'key2' = 'val2', ...)]
 module_name是一个简单的标识符，区分大小写。它应该与模块工厂中定义的模块类型相同，其用于模块的发现。<br>
 properties ('key1' = 'val1'， 'key2' = 'val2'，…)是一个映射，包含一组键值对(除了key 'type')，传递给发现服务相对应的模块。
 
-# 案例代码
+## 案例代码
 
 ```sql
 -- 加载 hive 模块

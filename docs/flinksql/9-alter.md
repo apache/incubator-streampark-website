@@ -1,10 +1,10 @@
 ---
-id: 'create'
-title: 'create'
-sidebar_position: 5
+id: 'alter'
+title: 'alter'
+sidebar_position: 9
 ---
 
-# 介绍
+## 介绍
 
 ALTER语句用于修改Catalog中已注册的表/视图/函数定义。<br>  
 Flink SQL目前支持以下ALTER语句：
@@ -14,7 +14,7 @@ Flink SQL目前支持以下ALTER语句：
 * ALTER DATABASE
 * ALTER FUNCTION
 
-## ALTER TABLE
+### ALTER TABLE
 
 重命名表
 
@@ -31,7 +31,7 @@ ALTER TABLE [catalog_name.][db_name.]table_name SET (key1=val1, key2=val2, ...)
 
 给指定的表设置一个或多个属性。如果表中已经设置了特定的属性，则用新值覆盖旧值。
 
-## ALTER VIEW
+### ALTER VIEW
 
 从1.14.x开始支持。
 
@@ -47,7 +47,7 @@ ALTER VIEW [catalog_name.][db_name.]view_name AS new_query_expression
 
 改变视图之前的查询定义为新的查询。
 
-## ALTER DATABASE
+### ALTER DATABASE
 
 ```sql
 ALTER DATABASE [catalog_name.]db_name SET (key1=val1, key2=val2, ...)
@@ -55,7 +55,7 @@ ALTER DATABASE [catalog_name.]db_name SET (key1=val1, key2=val2, ...)
 
 给指定的数据库设置一个或多个属性。如果数据库中已经设置了特定的属性，则使用新值覆盖旧值。
 
-## ALTER FUNCTION
+### ALTER FUNCTION
 
 ```sql
 ALTER [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF EXISTS] [catalog_name.][db_name.]function_name AS identifier [LANGUAGE JAVA|SCALA|PYTHON]
