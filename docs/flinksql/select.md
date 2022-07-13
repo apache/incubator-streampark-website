@@ -1,30 +1,4 @@
----
-id: 'select'
-title: 'SELECT'
-sidebar_position: 2
----
 
-# 介绍
-
-`select语句`主要是从表中查询数据，然后将数据插入到其他表中。直接在页面中查看`select`的结果，目前平台还不支持。<br>
-单个反斜杠` \ `就可以作为转义字符使用，在`select`查询中可以直接使用。
-
-# 无表查询示例
-
-```sql
-SELECT supplier_id, rating, COUNT(*) AS total
-FROM
-    (VALUES
-        ('supplier1', 'product1', 4),
-        ('supplier1', 'product2', 3),
-        ('supplier2', 'product3', 3),
-        ('supplier2', 'product4', 4)
-    ) AS Products(supplier_id, product_id, rating)
-GROUP BY supplier_id, rating
-;
-```
-
-可以将该查询结果作为临时视图，也可以作为子表使用，在测试自定义函数中会非常有用。
 
 # SQL提示
 
@@ -164,7 +138,7 @@ Apache Flink提供了3个内置的窗口TVFs：`TUMBLE`、`HOP`和`CUMULATE`。�
 ## TUMBLE
 
 滚动窗口函数将每个元素分配给指定大小的窗口,滚动窗口的大小是固定的，并且不会重叠。假设指定了一个大小为5分钟的滚动窗口，在这种情况下，Flink将计算当前窗口，并每5分钟启动一个新窗口，如下图所示。<br>
-![img.png](img/tumble窗口图解.png)
+![img.png](/doc/image/flinksql/tumble-window.png)
 
 TUMBLE函数根据时间属性列为表的每一行分配一个窗口。TUMBLE的返回值是一个新的关系，它包括原来表的所有列以及另外3列“window_start”，“window_end”，“window_time”来表示分配的窗口。<br>
 原表中的原始时间字段将是窗口TVF函数之后的常规时间列。TUMBLE函数需要三个参数:<br>
@@ -177,7 +151,7 @@ TUMBLE(TABLE data, DESCRIPTOR(timecol), size)
 * timecol：列名，表示该列数据映射到滚动窗口。
 * size：指定滚动窗口的窗口大小。<br>
 
-下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段，<br>![img.png](img/Bid表信息和数据.png)
+下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段，<br>![img.png](/doc/image/flinksql/Bid-table-info-and-data.png)
 下面是使用滚动窗口的sql示例：
 
 ```sql
@@ -199,7 +173,7 @@ FROM
     );
 ```
 
-下图是上面示例sql的执行结果：<br>![img.png](img/滚动窗口简单使用.png)<br>
+下图是上面示例sql的执行结果：<br>![img.png](/doc/image/flinksql/scrolling-window-demo.png)<br>
 从上图结果可以看到，原始表的6行数据被分配到3个窗口中，每个滚动窗口是时间间隔为10分钟，窗口时间window_time为对应窗口结束时间-1ms。
 
 ```sql
@@ -212,7 +186,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在滚动窗口表上使用聚合函数.png)
+![img.png](/doc/image/flinksql/on-scrolling-window-use-agg-func.png)
 
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，不显示秒后面的零。如果时间类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
 00.000。
@@ -221,7 +195,7 @@ GROUP BY window_start, window_end;
 
 HOP函数将元素分配给固定长度的窗口。和TUMBLE窗口功能一样，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制跳跃窗口启动的频率，类似于 stream api 中的滑动窗口。<br>
 因此，如果滑动小于窗口大小，跳跃窗口就会重叠。在本例中，元素被分配给多个窗口。跳跃窗口也被称为“滑动窗口”。<br>
-例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。<br>![img.png](img/hop窗口图解.png)<br>
+例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。<br>![img.png](/doc/image/flinksql/hop-window.png)<br>
 HOP函数窗口会覆盖指定大小区间内的数据行，并根据时间属性列移动。<br>
 HOP的返回值是一个新的关系，它包括原来关系的所有列，以及“window_start”、“window_end”、“window_time”来表示指定的窗口。原表的原始的时间属性列“timecol”将是执行TVF后的常规时间戳列。<br>  
 HOP接受四个必需的参数：
@@ -255,7 +229,7 @@ FROM TABLE(
 );
 ```
 
-下面是代码运行结果：<br>![img.png](img/滑动窗口简单使用.png)<br>
+下面是代码运行结果：<br>![img.png](/doc/image/flinksql/sliding-window-demo.png)<br>
 从上表可以看出，由于窗口有重叠，所有很多数据都属于两个窗口。<br>
 
 ```sql
@@ -268,7 +242,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在滑动窗口表上使用聚合函数.png)<br>
+![img.png](/doc/image/flinksql/on-sliding-window-use-agg-func.png)<br>
 
 ## CUMULATE
 
@@ -278,7 +252,7 @@ CUMULATE函数将元素分配给窗口，这些窗口在初始步长间隔内覆
 可以把CUMULATE函数看作是先应用具有最大窗口大小的TUMBLE窗口，然后把每个滚动窗口分成几个窗口，每个窗口的开始和结束都有相同的步长差。所以累积窗口有重叠，而且没有固定的大小。<br>
 例如有一个累积窗口，1小时的步长和1天的最大大小，将获得窗口:[00:00,01:00)，[00:00,02:00)，[00:00,03:00)，…，[00:00,24:00)，每天都如此。
 
-![img.png](img/累计窗口图解.png)<br>
+![img.png](/doc/image/flinksql/cumulative-window-diagram.png)<br>
 
 累积窗口基于时间属性列分配窗口。CUMULATE的返回值是一个新的关系，它包括原来关系的所有列，另外还有3列，分别是“window_start”、“window_end”、“window_time”，表示指定的窗口。
 原始的时间属性“timecol”将是窗口TVF之后的常规时间戳列。<br>
@@ -315,7 +289,7 @@ FROM
     );
 ```
 
-下面是代码执行结果：<br>![img.png](img/累计窗口简单使用.png)<br>
+下面是代码执行结果：<br>![img.png](/doc/image/flinksql/cumulative-window-demo.png)<br>
 
 ```sql
 -- 在窗口表上运行聚合函数
@@ -327,7 +301,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/在累计窗口表上使用聚合函数.png)<br>
+![img.png](/doc/image/flinksql/on-cumulative-window-use-agg-func.png)<br>
 
 # 窗口聚合
 
@@ -349,7 +323,7 @@ GROUP BY window_start, window_end, ...
 
 Flink支持TUMBLE、HOP和CUMULATE类型的窗口聚合，它们可以定义在事件时间或处理时间属性上。<br>
 下面是一些TUMBLE、HOP和CUMULATE窗口聚合的例子。<br>
-表必须有时间属性列，比如下面表中的`bidtime`列。<br>![img.png](img/Bid表信息.png)<br>![img.png](img/Bid表数据.png)<br>
+表必须有时间属性列，比如下面表中的`bidtime`列。<br>![img.png](/doc/image/flinksql/Bid-table-info.png)<br>![img.png](/doc/image/flinksql/Bid-table-data.png)<br>
 
 ```sql
 -- tumbling window aggregation
@@ -361,7 +335,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/tumble函数聚合结果.png)<br>
+![img.png](/doc/image/flinksql/tumble-func-result.png)<br>
 
 ```sql
 -- cumulative window aggregation
@@ -373,7 +347,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](img/cumulate函数聚合结果.png)<br>
+![img.png](/doc/image/flinksql/cumulate-func-result.png)<br>
 
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，以不显示秒小数点后面的零，例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
 00.000。
@@ -392,7 +366,7 @@ FROM
 GROUP BY window_start, window_end, GROUPING SETS ((supplier_id), ());
 ```
 
-![img.png](img/streaming任务grouping_sets聚合结果.png)<br>
+![img.png](/doc/image/flinksql/streaming-grouping-sets-result.png)<br>
 
 GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且解释方式与直接写在GROUP BY子句相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。<br>
 对于GROUPING SETS中的子集，如果没有指定任何数据列或表达式，将会使用NULL值来代替，表示对窗口时间内的全量数据进行聚合。<br>
@@ -531,7 +505,7 @@ AS Products(supplier_id, product_id, rating)
 GROUP BY GROUPING SETS ((supplier_id, rating), (supplier_id), ());
 ```
 
-结果：<br>![img.png](img/batch任务grouping_sets聚合结果.png)<br>
+结果：<br>![img.png](/doc/image/flinksql/batch_grouping_sets_result.png)<br>
 GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且其解释方式与直接在GROUP BY子句中使用相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。<br>
 对于分组中集中未出现的列或表达式，会使用NULL进行替换，如上图所示。<br>
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小取决于组集的数量和聚合函数的类型。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)
@@ -810,7 +784,7 @@ LEFT JOIN currency_rates FOR SYSTEM_TIME AS OF orders.order_time
 ON orders.currency = currency_rates.currency;
 ```
 
-![img.png](img/通过事件时间连接表查询.png)<br>
+![img.png](/doc/image/flinksql/event-time-join.png)<br>
 
 注意：事件时间时态连接是由左右两边的水印触发的，连接的两张表都必须正确地设置水印。<br>
 注意：事件时间时态连接需要有包含主键的等值连接条件，例如，product_changelog表的主键P.product_id被约束在条件O.product_id = P.product_id中。<br>
@@ -824,10 +798,10 @@ ON orders.currency = currency_rates.currency;
 根据定义，使用处理时间属性，连接将始终返回给定键的最新值。可以将查询表看作简单的HashMap<K, V>
 ，它存储了来自构建端的所有记录。这种连接的强大之处是，当不能在Flink中将表具体化为动态表时，它允许Flink直接针对外部系统工作。<br>
 下面的处理时间时态表连接示例显示了一个只追加的表订单，它与LatestRates表连接。LatestRates是一个维表(例如HBase表)，存储最新的比例。<br>
-在10:15,10:30,10:52,LatestRates的内容如下:<br>![img.png](img/LatestRates表数据.png)<br>
+在10:15,10:30,10:52,LatestRates的内容如下:<br>![img.png](/doc/image/flinksql/LatestRates-table-data.png)<br>
 10:15和10:30的LatestRates的内容是相等的。欧元汇率在10:52从114变到了116。<br>
-订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。<br>![img.png](img/Orders表数据.png)<br>
-根据这些表，来将所有订单转换为相同的货币。<br>![img.png](img/货币和比率计算结果.png)<br>
+订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。<br>![img.png](/doc/image/flinksql/Orders-table-data.png)<br>
+根据这些表，来将所有订单转换为相同的货币。<br>![img.png](/doc/image/flinksql/currency-ratio-result.png)<br>
 在时态表连接的帮助下，我们可以在SQL中进行这样一个查询：
 
 ```sql
