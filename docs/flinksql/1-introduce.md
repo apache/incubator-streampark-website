@@ -1,6 +1,6 @@
 ---
 id: 'flink-sql'
-title: '简单介绍'
+title: 'Flink SQL语法'
 sidebar_position: 1
 ---
 

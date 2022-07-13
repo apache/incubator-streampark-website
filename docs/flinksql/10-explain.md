@@ -1,20 +1,20 @@
 ---
 id: 'explain'
 title: 'explain'
-sidebar_position: 7
+sidebar_position: 10
 ---
 
-# 介绍
+## 介绍
 
 EXPLAIN语句用于解释SELECT或INSERT语句的逻辑和优化的查询计划。
 
-# 语法
+## 语法
 
 ```sql
 EXPLAIN PLAN FOR <query_statement_or_insert_statement>
 ```
 
-# 案例
+## 案例
 
 ```sql
 Flink SQL> CREATE TABLE MyTable1 (`count` bigint, word VARCHAR(256)) WITH (''connector'' = ''datagen'');
@@ -33,9 +33,9 @@ Flink SQL> EXPLAIN ESTIMATED_COST, CHANGELOG_MODE, JSON_EXECUTION_PLAN SELECT `c
 > SELECT `count`, word FROM MyTable2;
 ```
 
-# 结果
+## 结果
 
-## EXPLAIN PLAN
+### EXPLAIN PLAN
 
 ```sql
 == Abstract Syntax Tree ==
@@ -59,7 +59,7 @@ Union(all=[true], union=[count, word])
 +- TableSourceScan(table=[[default_catalog, default_database, MyTable2]], fields=[count, word])
 ```
 
-## EXPLAIN PLAN WITH DETAILS
+### EXPLAIN PLAN WITH DETAILS
 
 ```sql
 == Abstract Syntax Tree ==
@@ -110,7 +110,7 @@ Union(all=[true], union=[count, word])
   } ]
 ```
 
-# Explain细节
+## Explain细节
 
 从flink-1.14.x开始支持。<br>
 打印语句包含指定explain细节的 plan 信息。<br>
