@@ -25,7 +25,7 @@ import TabItem from '@theme/TabItem';
 
 ## 编程模型
 
-`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStrema` 和 `Flink Sql` 用 StreamX 来开发编程模型是什么样的,有什么规范和要求
+`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamX 来开发编程模型是什么样的,有什么规范和要求
 
 ### DataStream
 
