@@ -61,13 +61,20 @@ ALTER DATABASE [catalog_name.]db_name SET (key1=val1, key2=val2, ...)
 ALTER [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF EXISTS] [catalog_name.][db_name.]function_name AS identifier [LANGUAGE JAVA|SCALA|PYTHON]
 ```
 
-使用新的标识符和可选的语言标记更改catalog函数。如果函数在catalog中不存在，则抛出异常。  </br>
-如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](udf)。  </br>
-**TEMPORARY**  </br>
-更改具有catalog和数据库名称空间的临时catalog函数，并重写catalog函数。  </br>
-**TEMPORARY SYSTEM**  </br>
-更改没有名称空间的临时系统函数并覆盖内置函数。  </br>
-**IF EXISTS**  </br>
-如果函数不存在，什么也不会发生。  </br>
-**LANGUAGE JAVA|SCALA|PYTHON**  </br>
+使用新的标识符和可选的语言标记更改catalog函数。如果函数在catalog中不存在，则抛出异常。如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](udf)。  
+
+**TEMPORARY** 
+
+更改具有catalog和数据库名称空间的临时catalog函数，并重写catalog函数。  
+
+**TEMPORARY SYSTEM**  
+
+更改没有名称空间的临时系统函数并覆盖内置函数。 
+
+**IF EXISTS** 
+
+如果函数不存在，什么也不会发生。  
+
+**LANGUAGE JAVA|SCALA|PYTHON**  
+
 用于指示flink运行时如何执行该函数的语言标记。目前只支持JAVA、SCALA和PYTHON，函数默认语言为JAVA。

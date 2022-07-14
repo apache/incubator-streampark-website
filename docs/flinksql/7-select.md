@@ -13,11 +13,11 @@ sidebar_position: 7
 
 ### 动态表操作
 
-动态表（可以认为是任何表，虚拟表或者是`hive`中的表都可以）允许使用`SQL提示`在`select`查询中动态指定或覆盖表的选项配置，并且这种指定只会在当前的`select`语句中起作用。  </br>
+动态表（可以认为是任何表，虚拟表或者是`hive`中的表都可以）允许使用`SQL提示`在`select`查询中动态指定或覆盖表的选项配置，并且这种指定只会在当前的`select`语句中起作用。  
 
 #### 语法
 
-`flink sql`采用了oracle风格的sql提示语法，如下所示：  </br>
+`flink sql`采用了oracle风格的sql提示语法，如下所示：  
 
 ```sql
 table_path /*+ OPTIONS(key=val [, key=val]*) */
@@ -47,10 +47,9 @@ select * from kafka_table2;
 
 ## WITH子句
 
-在流批处理任务中均可使用。  </br>
-WITH提供了一种编写辅助语句的方法，以便在更大的查询中使用。这些语句通常称为公共表表达式(Common Table Expression, CTE)，可以认为它们定义了仅用于一个查询的临时视图。  </br>
+在流批处理任务中均可使用。 WITH提供了一种编写辅助语句的方法，以便在更大的查询中使用。这些语句通常称为公共表表达式(Common Table Expression, CTE)，可以认为它们定义了仅用于一个查询的临时视图。 
 
-语法：  </br>
+语法：  
 
 ```sql
 WITH <with_item_definition> [ , ... ]
@@ -60,7 +59,7 @@ SELECT ... FROM ...;
     with_item_name (column_name[, ...n]) AS ( <select_query> )
 ```
 
-使用案例：  </br>
+使用案例： 
 
 ```sql
 WITH orders_with_total AS (
@@ -76,8 +75,7 @@ GROUP BY order_id;
 
 ## SELECT和WHERE
 
-在流批模式任务中均可使用。  </br>
-SELECT语句的一般语法为：
+在流批模式任务中均可使用。SELECT语句的一般语法为：
 
 ```sql
 SELECT select_list FROM table_expression [ WHERE boolean_expression ];
@@ -115,8 +113,7 @@ SELECT PRETTY_PRINT(order_id) FROM Orders;
 
 ## SELECT DISTINCT
 
-在流批模式任务中均可使用。  </br>
-如果指定了SELECT DISTINCT，则会从结果集中删除所有重复的行(每组重复的行保留一行)：
+在流批模式任务中均可使用。如果指定了SELECT DISTINCT，则会从结果集中删除所有重复的行(每组重复的行保留一行)：
 
 ```sql
 SELECT DISTINCT id FROM Orders;
@@ -127,26 +124,26 @@ SELECT DISTINCT id FROM Orders;
 
 ## 窗口表值函数TVF
 
-只支持流式任务。  </br>
-`Windows`是处理无限流的核心，`Windows`将流分成有限大小的桶，我们可以在桶上面进行计算。  </br>
+**只支持流式任务。**`Windows`是处理无限流的核心，`Windows`将流分成有限大小的桶，我们可以在桶上面进行计算。 
+
 Apache Flink提供了几个窗口表值函数(TVF)来将表中的元素划分为到窗口中以供用户进行处理，包括:
 
 * Tumble windows （滚动窗口）
 * Hop windows （滑动窗口）
 * Cumulate windows （累计窗口）
-* Session windows（会话窗口）(即将支持，目前1.13、1.14、1.15均未支持)  </br>
+* Session windows（会话窗口）(即将支持，目前1.13、1.14、1.15均未支持) 
 
-Apache Flink提供了3个内置的窗口TVFs：`TUMBLE`、`HOP`和`CUMULATE`。窗口TVF的返回值是一个新的关系，它包括原来关系的所有列，以及另外3列，
-名为“window_start”，“window_end”，“window_time”来表示分配的窗口。  </br>
-“window_time”字段是窗口TVF执行之后的一个时间属性，可以在后续基于时间的操作中使用。window_time的值总是等于window_end - 1ms。
+Apache Flink提供了3个内置的窗口TVFs：`TUMBLE`、`HOP`和`CUMULATE`。窗口TVF的返回值是一个新的关系，它包括原来关系的所有列，以及另外3列， 名为`window_start`，`window_end`，`window_time`来表示分配的窗口。  
+`window_time`字段是窗口TVF执行之后的一个时间属性，可以在后续基于时间的操作中使用。window_time的值总是等于window_end - 1ms。
+
 
 ### TUMBLE
 
-滚动窗口函数将每个元素分配给指定大小的窗口,滚动窗口的大小是固定的，并且不会重叠。假设指定了一个大小为5分钟的滚动窗口，在这种情况下，Flink将计算当前窗口，并每5分钟启动一个新窗口，如下图所示。  </br>
+滚动窗口函数将每个元素分配给指定大小的窗口,滚动窗口的大小是固定的，并且不会重叠。假设指定了一个大小为5分钟的滚动窗口，在这种情况下，Flink将计算当前窗口，并每5分钟启动一个新窗口，如下图所示。  
+
 ![img.png](/doc/image/flinksql/tumble-window.png)
 
-TUMBLE函数根据时间属性列为表的每一行分配一个窗口。TUMBLE的返回值是一个新的关系，它包括原来表的所有列以及另外3列“window_start”，“window_end”，“window_time”来表示分配的窗口。  </br>
-原表中的原始时间字段将是窗口TVF函数之后的常规时间列。TUMBLE函数需要三个参数:  </br>
+TUMBLE函数根据时间属性列为表的每一行分配一个窗口。TUMBLE的返回值是一个新的关系，它包括原来表的所有列以及另外3列“window_start”，“window_end”，“window_time”来表示分配的窗口。原表中的原始时间字段将是窗口TVF函数之后的常规时间列。TUMBLE函数需要三个参数: 
 
 ```sql
 TUMBLE(TABLE data, DESCRIPTOR(timecol), size)
@@ -154,9 +151,12 @@ TUMBLE(TABLE data, DESCRIPTOR(timecol), size)
 
 * data：表名，该表必须有一列类型为时间戳，也就是`TIMESTAMP`类型。
 * timecol：列名，表示该列数据映射到滚动窗口。
-* size：指定滚动窗口的窗口大小。  </br>
+* size：指定滚动窗口的窗口大小。 
 
-下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段，  </br>![img.png](/doc/image/flinksql/Bid-table-info-and-data.png)
+下面是一个对Bid表的调用示例，表必须有时间字段，比如这个表中的`bidtime`字段。
+
+![img.png](/doc/image/flinksql/Bid-table-info-and-data.png)
+
 下面是使用滚动窗口的sql示例：
 
 ```sql
@@ -178,7 +178,10 @@ FROM
     );
 ```
 
-下图是上面示例sql的执行结果：  </br>![img.png](/doc/image/flinksql/scrolling-window-demo.png)  </br>
+下图是上面示例sql的执行结果：  
+
+![img.png](/doc/image/flinksql/scrolling-window-demo.png) 
+
 从上图结果可以看到，原始表的6行数据被分配到3个窗口中，每个滚动窗口是时间间隔为10分钟，窗口时间window_time为对应窗口结束时间-1ms。
 
 ```sql
@@ -198,11 +201,15 @@ GROUP BY window_start, window_end;
 
 ### HOP
 
-HOP函数将元素分配给固定长度的窗口。和TUMBLE窗口功能一样，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制跳跃窗口启动的频率，类似于 stream api 中的滑动窗口。  </br>
-因此，如果滑动小于窗口大小，跳跃窗口就会重叠。在本例中，元素被分配给多个窗口。跳跃窗口也被称为“滑动窗口”。  </br>
-例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。  </br>![img.png](/doc/image/flinksql/hop-window.png)  </br>
+HOP函数将元素分配给固定长度的窗口。和`TUMBLE`窗口功能一样，窗口的大小由窗口大小参数来配置，另一个窗口滑动参数控制跳跃窗口启动的频率，类似于 `stream api` 中的滑动窗口。 
+
+因此，如果滑动小于窗口大小，跳跃窗口就会重叠。在本例中，元素被分配给多个窗口。跳跃窗口也被称为“滑动窗口”。 
+
+例如，10分钟大小的窗口，滑动5分钟。这样，每5分钟就会得到一个窗口，窗口包含在最近10分钟内到达的事件，如下图所示。  
+![img.png](/doc/image/flinksql/hop-window.png)  </br>
 HOP函数窗口会覆盖指定大小区间内的数据行，并根据时间属性列移动。  </br>
-HOP的返回值是一个新的关系，它包括原来关系的所有列，以及“window_start”、“window_end”、“window_time”来表示指定的窗口。原表的原始的时间属性列“timecol”将是执行TVF后的常规时间戳列。  </br>  
+HOP的返回值是一个新的关系，它包括原来关系的所有列，以及“window_start”、“window_end”、“window_time”来表示指定的窗口。原表的原始的时间属性列“timecol”将是执行TVF后的常规时间戳列。  
+
 HOP接受四个必需的参数：
 
 ```sql
