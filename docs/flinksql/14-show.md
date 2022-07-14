@@ -75,8 +75,8 @@ SHOW TABLES [ ( FROM | IN ) [catalog_name.]database_name ] [ [NOT] LIKE <sql_lik
 
 LIKE：展示通过 like 关键字指定名称的表，like 语法和 <sql_like_pahhern> 类似。LIKE 关键字的语法和 MySQL 方言一样：
 
-* % 匹配任意个数的字符，包括零个字符， </br>% 匹配一个 % 符号。
-* _ 只匹配一个字符， </br>_ 匹配一个 _ 符号。
+* % 匹配任意个数的字符，包括零个字符， % 匹配一个 % 符号。
+* _ 只匹配一个字符， _ 匹配一个 _ 符号。
 
 #### SHOW TABLES案例
 
@@ -157,6 +157,7 @@ SHOW CREATE TABLE
 ```
 
 展示指定表的建表语句。  </br>
+
 另外：当前的 SHOW CREATE TABLE 语句只支持展示通过 flink SQL DDL 创建的表。
 
 ## SHOW COLUMNS
@@ -176,7 +177,8 @@ LIKE 关键字的语法和 MySQL 方言一样：
 
 ### SHOW COLUMNS案例
 
-从1.15.x开始支持。  </br>
+**从1.15.x开始支持。**  </br>
+
 假设名为 catalog1 的 catalog 下的 database1 数据库下的 orders 表有如下结构：
 
 ```sql
@@ -274,7 +276,9 @@ SHOW [USER] FUNCTIONS
 ```
 
 展示当前catalog和当前数据库中的所有系统和自定义函数。  </br>
+
 **USER**  </br>
+
 值展示当前catalog和当前数据库中的所有自定义函数。
 
 ## SHOW MODULES
@@ -284,5 +288,7 @@ SHOW [FULL] MODULES
 ```
 
 按解析顺序显示所有启用的模块名称。  </br>  
+
 **FULL**  </br>
+
 按照顺序显示所有启用状态的已加载模块。
