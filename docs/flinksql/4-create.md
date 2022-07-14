@@ -171,7 +171,8 @@ CREATE TABLE MyTable (
 );
 ```
 
-表达式可以是列、常量或函数的任意组合。表达式不能包含子查询。</br>
+表达式可以是列、常量或函数的任意组合。表达式不能包含子查询。
+
 计算列通常在Flink中用于在CREATE TABLE语句中定义时间属性。
 
 * 可以通过proc AS PROCTIME()使用系统的PROCTIME()函数轻松定义处理时间属性。
@@ -197,11 +198,11 @@ watermark_strategy_expression定义了水印生成策略。它允许任意非查
 当使用事件时间语义时，表必须包含事件时间属性和水印策略。</br>
 Flink提供了几种常用的水印策略。
 
-* 严格递增时间戳：**WATERMARK FOR rowtime_column AS rowtime_column**</br>
+* 严格递增时间戳：**WATERMARK FOR rowtime_column AS rowtime_column** </br>
   发出到目前为止观察到的最大时间戳的水印。时间戳大于最大时间戳的行不属于延迟。
-* 升序时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '0.001' SECOND**</br>
+* 升序时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '0.001' SECOND** </br>
   发出到目前为止观察到的最大时间戳减去1的水印。时间戳大于或等于最大时间戳的行不属于延迟。
-* 时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL 'string' timeUnit**</br>
+* 时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL 'string' timeUnit** </br>
   发出到目前为止观察到的最大时间戳减去指定延迟的水印，例如：WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '5' SECOND是一个延迟5秒的水印策略。
 
 ```sql
