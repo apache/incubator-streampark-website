@@ -156,7 +156,7 @@ show tables;
 SHOW CREATE TABLE
 ```
 
-展示指定表的建表语句。  </br>
+展示指定表的建表语句。  
 
 另外：当前的 SHOW CREATE TABLE 语句只支持展示通过 flink SQL DDL 创建的表。
 
@@ -168,8 +168,10 @@ SHOW CREATE TABLE
 SHOW COLUMNS ( FROM | IN ) [[catalog_name.]database.]<table_name> [ [NOT] LIKE <sql_like_pattern>]
 ```
 
-通过给定的表情和可选的 like 语句展示表的字段信息。  </br>
-LIKE：展示通过 like 关键字指定名称的表的字段信息，like 语法和 <sql_like_pahhern> 类似。  </br>
+通过给定的表情和可选的 like 语句展示表的字段信息。 
+
+LIKE：展示通过 like 关键字指定名称的表的字段信息，like 语法和 <sql_like_pahhern> 类似。 
+
 LIKE 关键字的语法和 MySQL 方言一样：
 
 * % 匹配任意个数的字符，包括零个字符， \% 匹配一个 % 符号。

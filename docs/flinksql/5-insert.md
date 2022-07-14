@@ -22,18 +22,24 @@ column_list:
     (col_name1 [, column_name2, ...])
 ```
 
-**OVERWRITE**  </br>
-INSERT OVERWRITE将覆盖表或分区中的任何现有数据。否则（INTO），将追加新的数据。  </br>
-**PARTITION**  </br>
-PARTITION子句指定插入语句的静态分区列。  </br>
-**COLUMN LIST**  </br>
+**OVERWRITE**  
+
+INSERT OVERWRITE将覆盖表或分区中的任何现有数据。否则（INTO），将追加新的数据。  
+
+**PARTITION**  
+
+PARTITION子句指定插入语句的静态分区列。
+
+**COLUMN LIST**  
+
 现在有表T(a INT, b INT, c INT)， flink支持
 
 ```sql
 INSERT INTO T(c, b) SELECT x, y FROM S
 ```
 
-查询的数据列‘x’将被写入列‘c’，查询的数据列‘y’将被写入列‘b’，并且列‘a’被设置为NULL（需保证列‘z’是可以为空的）。  </br>
+查询的数据列‘x’将被写入列‘c’，查询的数据列‘y’将被写入列‘b’，并且列‘a’被设置为NULL（需保证列‘z’是可以为空的）。  
+
 overwrite 和 partition 关键字经常用于写入 hive 。
 
 ### 案例
