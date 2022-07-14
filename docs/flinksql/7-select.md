@@ -244,8 +244,10 @@ FROM TABLE(
 );
 ```
 
-下面是代码运行结果：  </br>![img.png](/doc/image/flinksql/sliding-window-demo.png)  </br>
-从上表可以看出，由于窗口有重叠，所有很多数据都属于两个窗口。  </br>
+下面是代码运行结果：  
+[img.png](/doc/image/flinksql/sliding-window-demo.png) 
+
+从上表可以看出，由于窗口有重叠，所有很多数据都属于两个窗口。 
 
 ```sql
 -- 在滑动窗口表上运行聚合函数
@@ -305,7 +307,9 @@ FROM
     );
 ```
 
-下面是代码执行结果：  </br>![img.png](/doc/image/flinksql/cumulative-window-demo.png)  
+下面是代码执行结果：  
+
+![img.png](/doc/image/flinksql/cumulative-window-demo.png)  
 
 ```sql
 -- 在窗口表上运行聚合函数
@@ -524,16 +528,18 @@ AS Products(supplier_id, product_id, rating)
 GROUP BY GROUPING SETS ((supplier_id, rating), (supplier_id), ());
 ```
 
-结果：  </br>![img.png](/doc/image/flinksql/batch_grouping_sets_result.png)  </br>
-GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且其解释方式与直接在GROUP BY子句中使用相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。  </br>
-对于分组中集中未出现的列或表达式，会使用NULL进行替换，如上图所示。  </br>
+结果：  
+
+![img.png](/doc/image/flinksql/batch_grouping_sets_result.png)  
+
+GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并且其解释方式与直接在GROUP BY子句中使用相同。空分组集意味着将所有行聚合为单个组，即使没有输入行，该组也会输出。  
+对于分组中集中未出现的列或表达式，会使用NULL进行替换，如上图所示。 
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小取决于组集的数量和聚合函数的类型。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](qeury-config.md)
-。  </br>
+。 
 
 #### ROLLUP
 
-ROLLUP是一种用于指定通用分组集类型的简单用法。它表示给定的表达式列表、前缀列表、空列表。  </br>
-例如，下面的查询与上面的查询等价。  </br>
+ROLLUP是一种用于指定通用分组集类型的简单用法。它表示给定的表达式列表、前缀列表、空列表。 例如，下面的查询与上面的查询等价。
 
 ```sql
 SELECT supplier_id, rating, COUNT(*)
@@ -817,10 +823,17 @@ ON orders.currency = currency_rates.currency;
 根据定义，使用处理时间属性，连接将始终返回给定键的最新值。可以将查询表看作简单的HashMap<K, V>
 ，它存储了来自构建端的所有记录。这种连接的强大之处是，当不能在Flink中将表具体化为动态表时，它允许Flink直接针对外部系统工作。  </br>
 下面的处理时间时态表连接示例显示了一个只追加的表订单，它与LatestRates表连接。LatestRates是一个维表(例如HBase表)，存储最新的比例。  </br>
-在10:15,10:30,10:52,LatestRates的内容如下:  </br>![img.png](/doc/image/flinksql/LatestRates-table-data.png)  </br>
+在10:15,10:30,10:52,LatestRates的内容如下:  
+
+![img.png](/doc/image/flinksql/LatestRates-table-data.png)  </br>
+
 10:15和10:30的LatestRates的内容是相等的。欧元汇率在10:52从114变到了116。  </br>
-订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。  </br>![img.png](/doc/image/flinksql/Orders-table-data.png)  </br>
-根据这些表，来将所有订单转换为相同的货币。  </br>![img.png](/doc/image/flinksql/currency-ratio-result.png)  </br>
+订单是一个仅追加表，表示给定金额和给定货币的支付数据。例如，在10:15有一个2欧元的订单。  
+
+![img.png](/doc/image/flinksql/Orders-table-data.png)  </br>
+根据这些表，来将所有订单转换为相同的货币。  
+
+![img.png](/doc/image/flinksql/currency-ratio-result.png)  </br>
 在时态表连接的帮助下，我们可以在SQL中进行这样一个查询：
 
 ```sql
