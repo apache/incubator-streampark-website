@@ -97,5 +97,6 @@ VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
 
 ## 运行多个insert
 
-基于平台内部的开发方式，目前支持一个 flink 任务中同时运行多个 insert 语句，即在页面的 sql 输入框中输入多个 insert 语句，只会启动一个 flink 任务。  </br>
+基于平台内部的开发方式，目前支持一个 flink 任务中同时运行多个 insert 语句，即在页面的 sql 输入框中输入多个 insert 语句，只会启动一个 flink 任务。  
+
 运行的多个 insert 任务，在 flink UI 界面中，会体现出多个运行图。当然，如果你的多个 insert 语句读取了同一张表，或者是写入了同一张表，flink 则会对其优化，最后生成一张运行图。

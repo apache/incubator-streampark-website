@@ -222,7 +222,7 @@ HOP(TABLE data, DESCRIPTOR(timecol), slide, size [, offset ])
 * data：表名，该表必须有一列类型为时间戳，也就是`TIMESTAMP`类型。
 * timecol：列名，表示该列数据映射到滑动窗口。
 * slide：滑动时间，指定连续滑动窗口之间的间隔时间。
-* size：指定滑动窗口的窗口大小。  </br>
+* size：指定滑动窗口的窗口大小。  
 
 下面是一个对Bid表的调用示例：
 
@@ -280,11 +280,12 @@ CUMULATE(TABLE data, DESCRIPTOR(timecol), step, size)
 * data：表名，该表必须有一列类型为时间戳，也就是`TIMESTAMP`类型。
 * timecol：列名，表示该列数据映射到累计窗口。
 * step：步长，指定连续累积窗口结束时间之间增加的窗口大小的时间间隔。
-* size：指定累积窗口的窗口大小。大小必须是步长的整数倍。  </br>
+* size：指定累积窗口的窗口大小。大小必须是步长的整数倍。  
 
 下面是一个对Bid表的调用示例：
 
 ```sql
+
 -- 注意：目前flink不支持单独使用表值窗口函数，表值窗口函数应该和聚合操作一起使用，这个示例只是展示语法以及通过表值函数产生数据
 SELECT * 
 FROM 
@@ -304,7 +305,7 @@ FROM
     );
 ```
 
-下面是代码执行结果：  </br>![img.png](/doc/image/flinksql/cumulative-window-demo.png)  </br>
+下面是代码执行结果：  </br>![img.png](/doc/image/flinksql/cumulative-window-demo.png)  
 
 ```sql
 -- 在窗口表上运行聚合函数
@@ -316,7 +317,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](/doc/image/flinksql/on-cumulative-window-use-agg-func.png)  </br>
+![img.png](/doc/image/flinksql/on-cumulative-window-use-agg-func.png)  
 
 ## 窗口聚合
 
@@ -336,9 +337,12 @@ GROUP BY window_start, window_end, ...
 
 #### 窗口表值函数TVF
 
-Flink支持TUMBLE、HOP和CUMULATE类型的窗口聚合，它们可以定义在事件时间或处理时间属性上。  </br>
-下面是一些TUMBLE、HOP和CUMULATE窗口聚合的例子。  </br>
-表必须有时间属性列，比如下面表中的`bidtime`列。  </br>![img.png](/doc/image/flinksql/Bid-table-info.png)  </br>![img.png](/doc/image/flinksql/Bid-table-data.png)  </br>
+Flink支持TUMBLE、HOP和CUMULATE类型的窗口聚合，它们可以定义在事件时间或处理时间属性上。 
+下面是一些TUMBLE、HOP和CUMULATE窗口聚合的例子。  
+表必须有时间属性列，比如下面表中的`bidtime`列。
+
+![img.png](/doc/image/flinksql/Bid-table-info.png)  
+![img.png](/doc/image/flinksql/Bid-table-data.png)  
 
 ```sql
 -- tumbling window aggregation
@@ -350,7 +354,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](/doc/image/flinksql/tumble-func-result.png)  </br>
+![img.png](/doc/image/flinksql/tumble-func-result.png)  
 
 ```sql
 -- cumulative window aggregation
@@ -362,7 +366,7 @@ FROM
 GROUP BY window_start, window_end;
 ```
 
-![img.png](/doc/image/flinksql/cumulate-func-result.png)  </br>
+![img.png](/doc/image/flinksql/cumulate-func-result.png) 
 
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，以不显示秒小数点后面的零，例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
 00.000。
