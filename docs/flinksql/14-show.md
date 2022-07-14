@@ -179,7 +179,7 @@ LIKE 关键字的语法和 MySQL 方言一样：
 
 ### SHOW COLUMNS案例
 
-**从1.15.x开始支持。**  </br>
+**从1.15.x开始支持。** 
 
 假设名为 catalog1 的 catalog 下的 database1 数据库下的 orders 表有如下结构：
 
@@ -277,9 +277,9 @@ SHOW CREATE VIEW [catalog_name.][db_name.]view_name
 SHOW [USER] FUNCTIONS
 ```
 
-展示当前catalog和当前数据库中的所有系统和自定义函数。  </br>
+展示当前catalog和当前数据库中的所有系统和自定义函数。  
 
-**USER**  </br>
+**USER**  
 
 值展示当前catalog和当前数据库中的所有自定义函数。
 
@@ -289,8 +289,8 @@ SHOW [USER] FUNCTIONS
 SHOW [FULL] MODULES
 ```
 
-按解析顺序显示所有启用的模块名称。  </br>  
+按解析顺序显示所有启用的模块名称。 
 
-**FULL**  </br>
+**FULL** 
 
 按照顺序显示所有启用状态的已加载模块。

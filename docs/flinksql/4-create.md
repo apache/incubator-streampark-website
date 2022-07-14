@@ -189,20 +189,26 @@ MyTable(`user_id` BIGINT, `price` DOUBLE, `quantity` DOUBLE)
 
 ### WATERMARK
 
-WATERMARK子句用于定义表的事件时间属性，其形式为WATERMARK FOR rowtime_column_name AS watermark_strategy_expression。</br>
-rowtime_column_name定义一个列，该列被标记为表的事件时间属性。该列必须为TIMESTAMP(3)类型，并且是模式中的顶级列。它可以是一个计算列。</br>
-watermark_strategy_expression定义了水印生成策略。它允许任意非查询表达式(包括计算列)来计算水印。表达式返回类型必须为TIMESTAMP(3)，表示从Epoch开始的时间戳。</br>
+WATERMARK子句用于定义表的事件时间属性，其形式为WATERMARK FOR rowtime_column_name AS watermark_strategy_expression。
+rowtime_column_name定义一个列，该列被标记为表的事件时间属性。该列必须为TIMESTAMP(3)类型，并且是模式中的顶级列。它可以是一个计算列。
+watermark_strategy_expression定义了水印生成策略。它允许任意非查询表达式(包括计算列)来计算水印。表达式返回类型必须为TIMESTAMP(3)，表示从Epoch开始的时间戳。
 返回的水印只有在非空且其值大于先前发出的本地水印时才会发出(以保持升序水印的规定)。框架会对每条记录执行水印生成表达式。框架将周期性地发出生成的最大水印。
 如果当前水印与前一个相同，或为空，或返回的水印值小于上次发出的水印值，则不会发出新的水印。水印通过`pipeline.auto-watermark-interval`配置的时间间隔发出。
-如果水印间隔为0ms，弱生成的水印不为空且大于上次发出的水印，则每条记录都发出一次水印。</br>
-当使用事件时间语义时，表必须包含事件时间属性和水印策略。</br>
+如果水印间隔为0ms，弱生成的水印不为空且大于上次发出的水印，则每条记录都发出一次水印。
+当使用事件时间语义时，表必须包含事件时间属性和水印策略。
+
 Flink提供了几种常用的水印策略。
 
-* 严格递增时间戳：**WATERMARK FOR rowtime_column AS rowtime_column** </br>
+* 严格递增时间戳：**WATERMARK FOR rowtime_column AS rowtime_column** 
+
   发出到目前为止观察到的最大时间戳的水印。时间戳大于最大时间戳的行不属于延迟。
-* 升序时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '0.001' SECOND** </br>
+
+* 升序时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '0.001' SECOND** 
+
   发出到目前为止观察到的最大时间戳减去1的水印。时间戳大于或等于最大时间戳的行不属于延迟。
-* 时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL 'string' timeUnit** </br>
+
+* 时间戳：**WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL 'string' timeUnit** 
+
   发出到目前为止观察到的最大时间戳减去指定延迟的水印，例如：WATERMARK FOR rowtime_column AS rowtime_column - INTERVAL '5' SECOND是一个延迟5秒的水印策略。
 
 ```sql
