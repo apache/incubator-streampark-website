@@ -191,3 +191,5 @@ dist
 
 
 build
+/package-lock.json
+/.docusaurus/
