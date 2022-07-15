@@ -35,7 +35,8 @@ PARTITION子句指定插入语句的静态分区列。
 INSERT INTO T(c, b) SELECT x, y FROM S
 ```
 
-查询的数据列‘x’将被写入列‘c’，查询的数据列‘y’将被写入列‘b’，并且列‘a’被设置为NULL（需保证列‘z’是可以为空的）。  
+查询的数据列‘x’将被写入列‘c’，查询的数据列‘y’将被写入列‘b’，并且列‘a’被设置为NULL（需保证列‘z’是可以为空的）。
+
 overwrite 和 partition 关键字经常用于写入 hive 。
 
 ### 案例
@@ -92,5 +93,6 @@ VALUES ('fred flintstone', 35, 1.28), ('barney rubble', 32, 2.32);
 
 ## 运行多个insert
 
-基于平台内部的开发方式，目前支持一个 flink 任务中同时运行多个 insert 语句，即在页面的 sql 输入框中输入多个 insert 语句，只会启动一个 flink 任务。  
+基于平台内部的开发方式，目前支持一个 flink 任务中同时运行多个 insert 语句，即在页面的 sql 输入框中输入多个 insert 语句，只会启动一个 flink 任务。
+
 运行的多个 insert 任务，在 flink UI 界面中，会体现出多个运行图。当然，如果你的多个 insert 语句读取了同一张表，或者是写入了同一张表，flink 则会对其优化，最后生成一张运行图。

@@ -6,7 +6,8 @@ sidebar_position: 4
 
 ## 介绍
 
-CREATE 语句用于将 `表`/`视图`/`函数` 注册到当前或指定的 Catalog 中。已注册的`表`/`视图`/`函数`可以在SQL查询中使用。  
+CREATE 语句用于将 `表`/`视图`/`函数` 注册到当前或指定的 Catalog 中。已注册的`表`/`视图`/`函数`可以在SQL查询中使用。
+
 Flink SQL目前支持以下CREATE语句：
 
 * CREATE TABLE
@@ -64,7 +65,8 @@ WATERMARK FOR rowtime_column_name AS watermark_strategy_expression
 
 #### Physical / Regular Columns（物理/常规列）
 
-物理列是数据库中已知的常规列。它们定义物理数据中字段的名称、类型和顺序。因此，物理列表示从外部系统读取和写入的有效负载。  
+物理列是数据库中已知的常规列。它们定义物理数据中字段的名称、类型和顺序。因此，物理列表示从外部系统读取和写入的有效负载。
+
 连接器和格式转化使用这些列(按照定义的顺序)来配置自己。其他类型的列可以在物理列之间声明，但不会影响最终的物理模式。
 
 下面的语句创建了一个只有常规列的表：
@@ -80,7 +82,8 @@ CREATE TABLE MyTable (
 
 #### Metadata Columns（元数据列）
 
-元数据列是SQL标准的扩展，允许访问连接器和/或表中每一行的特定字段。元数据列由metadata关键字表示。例如，元数据列可以用来读取和写入Kafka记录的时间戳，以进行基于时间的操作。  
+元数据列是SQL标准的扩展，允许访问连接器和/或表中每一行的特定字段。元数据列由metadata关键字表示。例如，元数据列可以用来读取和写入Kafka记录的时间戳，以进行基于时间的操作。
+
 [连接器](docs/flinksql/connector)和[格式](docs/flinksql/format)文档列出了每个组件的可用元数据字段。在表的模式中声明元数据列是可选的。
 
 下面的语句创建了一个表，其中包含引用元数据timestamp的附加元数据列：
@@ -96,7 +99,8 @@ CREATE TABLE MyTable (
 );
 ```
 
-每个元数据字段都由基于字符串的键标识，并具有文档化的数据类型。例如，Kafka连接器暴露了一个元数据字段，该字段由键timestamp和数据类型TIMESTAMP_LTZ(3)标识，可以用于读写记录。  
+每个元数据字段都由基于字符串的键标识，并具有文档化的数据类型。例如，Kafka连接器暴露了一个元数据字段，该字段由键timestamp和数据类型TIMESTAMP_LTZ(3)标识，可以用于读写记录。
+
 在上面的例子中，元数据列record_time成为表模式的一部分，可以像普通列一样进行转换和存储：
 
 ```sql
@@ -155,8 +159,10 @@ MyTable(`timestamp` BIGINT, `user_id` BIGINT, `name` STRING)
 
 #### Computed Columns（计算列）
 
-计算列是使用语法column_name AS computed_column_expression生成的虚拟列。  
-计算列可以引用同一表中声明的其他列的表达式，可以访问物理列和元数据列。列本身并不物理地存储在表中，列的数据类型通过给定的表达式自动派生，不需要手动声明。  
+计算列是使用语法column_name AS computed_column_expression生成的虚拟列。
+
+计算列可以引用同一表中声明的其他列的表达式，可以访问物理列和元数据列。列本身并不物理地存储在表中，列的数据类型通过给定的表达式自动派生，不需要手动声明。
+
 计划器会将计算列转换为常规投影。对于优化或水印策略下推，计算列的实际计算可能会跨算子进行，并执行多次，或者在给定查询不需要的情况下跳过。例如，计算列可以定义为：
 
 ```sql
@@ -194,9 +200,12 @@ WATERMARK子句用于定义表的事件时间属性，其形式为WATERMARK FOR 
 * rowtime_column_name定义一个列，该列被标记为表的事件时间属性。该列必须为TIMESTAMP(3)类型，并且是模式中的顶级列。它可以是一个计算列。
 * watermark_strategy_expression定义了水印生成策略。它允许任意非查询表达式(包括计算列)来计算水印。表达式返回类型必须为TIMESTAMP(3)，表示从Epoch开始的时间戳。
 
-返回的水印只有在非空且其值大于先前发出的本地水印时才会发出(以保持升序水印的规定)。框架会对每条记录执行水印生成表达式。框架将周期性地发出生成的最大水印。   
-如果当前水印与前一个相同，或为空，或返回的水印值小于上次发出的水印值，则不会发出新的水印。水印通过`pipeline.auto-watermark-interval`配置的时间间隔发出。   
-如果水印间隔为0ms，弱生成的水印不为空且大于上次发出的水印，则每条记录都发出一次水印。  
+返回的水印只有在非空且其值大于先前发出的本地水印时才会发出(以保持升序水印的规定)。框架会对每条记录执行水印生成表达式。框架将周期性地发出生成的最大水印。 
+
+如果当前水印与前一个相同，或为空，或返回的水印值小于上次发出的水印值，则不会发出新的水印。水印通过`pipeline.auto-watermark-interval`配置的时间间隔发出。 
+
+如果水印间隔为0ms，弱生成的水印不为空且大于上次发出的水印，则每条记录都发出一次水印。
+
 当使用事件时间语义时，表必须包含事件时间属性和水印策略。
 
 Flink提供了几种常用的水印策略：
@@ -219,11 +228,13 @@ CREATE TABLE Orders (
 
 ### PRIMARY KEY
 
-主键约束是Flink用于优化的一个提示。它告诉flink，指定的表或视图的一列或一组列是唯一的，它们不包含null。主列中的任何一列都不能为空。主键唯一地标识表中的一行。  
+主键约束是Flink用于优化的一个提示。它告诉flink，指定的表或视图的一列或一组列是唯一的，它们不包含null。主列中的任何一列都不能为空。主键唯一地标识表中的一行。
+
 主键约束可以与列定义(列约束)一起声明，也可以作为单行声明(表约束)。只能使用这两种方式之一，如果同时定义多个主键约束，则会引发异常。
 
 **有效性检查**  
-SQL标准指定约束可以是强制的，也可以是不强制的。这将控制是否对传入/传出数据执行约束检查。Flink不保存数据，因此我们希望支持的唯一模式是not forced模式。确保查询执行的主键唯一性由用户负责。  
+SQL标准指定约束可以是强制的，也可以是不强制的。这将控制是否对传入/传出数据执行约束检查。Flink不保存数据，因此我们希望支持的唯一模式是not forced模式。确保查询执行的主键唯一性由用户负责。
+
 注意:在CREATE TABLE语句中，主键约束会改变列的可空性，也就是说，一个有主键约束的列是不能为NULL的。
 
 ### PARTITIONED BY
@@ -232,7 +243,8 @@ SQL标准指定约束可以是强制的，也可以是不强制的。这将控�
 
 ### WITH选项
 
-用于创建表source/sink的表属性，属性通常用于查找和创建底层连接器。  
+用于创建表source/sink的表属性，属性通常用于查找和创建底层连接器。
+
 表达式`key1=val1`的键和值都应该是字符串字面值。有关不同连接器的所有受支持的表属性，请参阅[连接器](docs/flinksql/connector)中的详细信息。
 
 表名可以是三种格式:
@@ -249,7 +261,8 @@ SQL标准指定约束可以是强制的，也可以是不强制的。这将控�
 
 ### LIKE
 
-LIKE子句是SQL特性的变体/组合。子句可用于基于现有表的定义创建表。此外，用户可以扩展原始表或排除其中的某些部分。与SQL标准相反，子句必须在CREATE语句的顶层定义。这是因为子句适用于定义的多个部分，而不仅仅适用于模式部分。    
+LIKE子句是SQL特性的变体/组合。子句可用于基于现有表的定义创建表。此外，用户可以扩展原始表或排除其中的某些部分。与SQL标准相反，子句必须在CREATE语句的顶层定义。这是因为子句适用于定义的多个部分，而不仅仅适用于模式部分。
+
 您可以使用该子句重用或覆盖某些连接器属性或向外部定义的表添加水印。例如，在Apache Hive中定义的表中添加水印。
 
 下面为示例语句：
@@ -405,14 +418,17 @@ create catalog hive with (
 ;
 ```
 
-如果用户使用的是内存类型的 catalog ，也就是说没有创建 hive catalog ，则默认的 catalog 名称为`default_catalog`，默认的 database 名称为`default_database`。  
+如果用户使用的是内存类型的 catalog ，也就是说没有创建 hive catalog ，则默认的 catalog 名称为`default_catalog`，默认的 database 名称为`default_database`。
+
 在建表时，如果没有单独指定表所属的 catalog 和 database ，则使用上述默认的 catalog 和 database。
 
 建议在建表时，不要指定 catalog 和 database 名称，这样比较方便。
 
-如果用户使用的是 hive 类型的 catalog，也就是用户创建了 hive catalog ，并且使用了创建的 hive catalog（use catalog hive;），则默认的 catalog 名称为创建的 hive
-catalog 名称。  
-比如上面的案例代码，catalog 名称就是`hive`，默认的 database 名称为 default。之后新建的表（非临时表），运行时将会出现在 hive 元数据中。  
+如果用户使用的是 hive 类型的 catalog，也就是用户创建了 hive catalog ，并且使用了创建的 hive catalog（use catalog hive;），
+则默认的 catalog 名称为创建的 hive catalog 名称。
+
+比如上面的案例代码，catalog 名称就是`hive`，默认的 database 名称为 default。之后新建的表（非临时表），运行时将会出现在 hive 元数据中。
+
 之后通过 HUE 等连接 hive 的工具，就可以通过`show catete table table_name`语句查看 flink 建表的元信息。
 
 **线上最佳实践**
@@ -461,9 +477,12 @@ AS query_expression
 CREATE [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF NOT EXISTS] [catalog_name.][db_name.]function_name AS identifier [LANGUAGE JAVA|SCALA|PYTHON]
 ```
 
-创建一个函数，该函数具有带有标识符和可选语言标记的catalog和数据库名称空间。如果目录中已经存在同名的函数，则会引发异常。    
-如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](docs/flinksql/udf)。  
-如果语言标记是PYTHON，则标识符是UDF的完全限定名，例如pyflink.table.tests.test_udf.add。  
+创建一个函数，该函数具有带有标识符和可选语言标记的catalog和数据库名称空间。如果目录中已经存在同名的函数，则会引发异常。
+
+如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](docs/flinksql/udf)。
+
+如果语言标记是PYTHON，则标识符是UDF的完全限定名，例如pyflink.table.tests.test_udf.add。
+
 有关Python UDF的实现，请参阅官网，这里暂不列出。
 
 **TEMPORARY**  
