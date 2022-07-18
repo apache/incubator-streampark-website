@@ -54,7 +54,7 @@ kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit 
 
 ![docker register setting](/doc/image/docker_register_setting.png)
 
-在远程 Docker 容器服务创建一个名为 `streamx` 的 Namespace ，为 StreamX 自动构建的 Flink image 推送空间，请确保使用的 Docker Register User 具有该  Namespace 的 `pull`/`push` 权限。
+在远程 Docker 容器服务创建一个名为 `streamx` 的 Namespace(该Namespace可自定义命名，命名不为streamx请在setting页面修改确认) ，为 StreamX 自动构建的 Flink image 推送空间，请确保使用的 Docker Register User 具有该  Namespace 的 `pull`/`push` 权限。
 
 可以在 StreamX 所在节点通过 docker command 简单测试权限：
 
@@ -84,7 +84,21 @@ docker pull <your_register_addr>/streamx/busybox
   * `ClusterIP`：需要 StreamX 可直接访问 K8s 内部网络；
   * `LoadBalancer`：需要 K8s 提前创建 LoadBalancer 资源，且 Flink Namespace 具备自动绑定权限，同时 StreamX 可以访问该 LoadBalancer 网关；
   * `NodePort`：需要 StreamX 可以直接连通所有 K8s 节点；
-* **Kubernetes Pod Template**： Flink 自定义 pod-template 配置。
+* **Kubernetes Pod Template**： Flink 自定义 pod-template 配置，注意container-name必须为flink-main-container，如果k8s pod拉取docker镜像需要秘钥，请在pod template文件中补全秘钥相关信息，pod-template模板如下：
+    ```
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-template
+    spec:
+      serviceAccount: default
+      containers:
+      - name: flink-main-container
+        image: 
+      imagePullSecrets:
+      - name: regsecret
+    ```
+* **Dynamic Option**： Flink on k8s动态参数（部分参数也可在pod-template文件中定义），该参数需要以-D开头，详情见[Flink on Kubernetes相关参数](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/config/#kubernetes)
 
 任务启动后，支持在该任务的 Detail 页直接访问对应的 Flink Web UI 页面：
 
