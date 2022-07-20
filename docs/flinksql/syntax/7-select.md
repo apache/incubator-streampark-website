@@ -49,7 +49,9 @@ GROUP BY supplier_id, rating
 
 `SQL提示`可以与`select`语句一起使用，以改变运行时的配置。
 
-**在使用`sql提示`之前，需要通过`SET`语句启用动态表选项，也就是设置`table.dynamic-table-options`为`true`。**
+**在使用`sql提示`之前，需要通过`SET`语句启用动态表选项，也就是设置`table.dynamic-table-options.enabled`为`true`。**
+
+注：在1.13.x中，该配置默认为`false`，从`1.14.x`开始，该配置默认为 `true`。
 
 ### 动态表操作
 
@@ -165,8 +167,8 @@ SELECT PRETTY_PRINT(order_id) FROM Orders;
 SELECT DISTINCT id FROM Orders;
 ```
 
-对于流式查询，计算查询结果所需的状态可能会无限增长。状态大小取决于不同的数据行数量。可以提供具有适当状态生存时间(TTL)的[查询配置](../qeury-config)，以防止状态存储过大。  
-注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](docs/flinksql/qeury-config)。
+对于流式查询，计算查询结果所需的状态可能会无限增长。状态大小取决于不同的数据行数量。可以提供具有适当状态生存时间(TTL)的[查询配置](../1-1-query-config)，以防止状态存储过大。  
+注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](../1-1-query-config)。
 
 ## 窗口表值函数TVF
 
@@ -785,9 +787,9 @@ GROUP BY order_id;
 ```
 
 对于流式查询，计算查询结果所需的状态可能会无限增长。状态大小取决于组的数量以及聚合函数的数量和类型。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。但这可能会影响查询结果的正确性。  
-详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+详细信息请参见[查询配置](../1-1-query-config)。
 
-Apache Flink为Group Aggregation提供了一系列性能调优方法，请参阅更多的[性能调优](docs/flinksql/performance-tuning.md)。
+Apache Flink为Group Aggregation提供了一系列性能调优方法，请参阅更多的[性能调优](../2-2-performance-tuning)。
 
 ### DISTINCT聚合
 
@@ -798,7 +800,7 @@ SELECT COUNT(DISTINCT order_id) FROM Orders;
 ```
 
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小主要取决于不同的行数和组维护的时间，短时间的窗口组聚合不是问题。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。  
-注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](../1-1-query-config)。
 
 ### GROUPING SETS
 
@@ -833,7 +835,7 @@ GROUPING SETS的每个子列表可以指定零个或多个列或表达式，并�
 对于分组中集中未出现的列或表达式，会使用NULL进行替换，如上图所示。
 
 对于流式查询，计算查询结果所需的状态可能无限增长。状态大小取决于组集的数量和聚合函数的类型。可以配置查询的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。  
-详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+详细信息请参见[查询配置](../1-1-query-config)。
 
 #### ROLLUP
 
@@ -1005,9 +1007,9 @@ ON Orders.productId = Product.id;
 对于流查询，常规连接的语法是最灵活的，可以使用任何类型的更新(插入、更新、删除)输入表。然而，该操作具有重要的含义：它要求连接输入的两张表永远在Flink中保持state状态。
 
 因此，计算查询结果所需的状态可能会无限增长，这取决于所有输入表和中间连接结果的不同输入行数。可以适当配置查询的状态生存时间(TTL)，以防止状态大小过大。  
-注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](../1-1-query-config)。
 
-对于流查询，计算查询结果所需的状态可能会无限增长，这取决于聚合的类型和不同分组键的数量。请提供具有有效保留间隔的[查询配置](docs/flinksql/qeury-config.md)，以防止状态大小过大。
+对于流查询，计算查询结果所需的状态可能会无限增长，这取决于聚合的类型和不同分组键的数量。请提供具有有效保留间隔的[查询配置](../1-1-query-config)，以防止状态大小过大。
 
 #### INNER等值连接
 
@@ -1594,7 +1596,7 @@ WHERE product IN
 ```
 
 优化器将IN条件重写为join和group操作。对于流查询，计算查询结果所需的状态可能会无限增长，这取决于不同的输入行数。  
-可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](../1-1-query-config)。
 
 ### EXISTS
 
@@ -1612,7 +1614,7 @@ WHERE product EXISTS
 如果子查询返回至少一行，则返回true。只有当操作可以在join和group操作中重写时才支持该语法。
 
 优化器将EXISTS操作重写为join和group操作。对于流查询，计算查询结果所需的状态可能会无限增长，这取决于不同的输入行数。  
-可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](docs/flinksql/qeury-config.md)。
+可以通过配置合适的状态生存时间(TTL)，以防止状态大小过大。注意，这可能会影响查询结果的正确性。详细信息请参见[查询配置](../1-1-query-config)。
 
 ## ORDER BY子句
 
@@ -1736,13 +1738,17 @@ WHERE row_num <= 5;
 
 ## Window Top-N
 
-只能在流模式任务中使用。
+**flink-1.13.x**：只能在流模式任务中使用。  
+**flink-1.15.x**：可以在流批模式中使用。
 
 Window Top-N是一个特殊的Top-N，它返回每个窗口以及其他分区键的N个最小或最大值。
 
 对于流查询，与连续表上的常规top-N不同，窗口top-N不会发出中间结果，而只发出最终结果，即窗口末端的top-N所有记录。
 
-此外，当不再需要时，窗口Top-N会清除所有中间状态。因此，如果用户不需要对每条记录更新结果，那么窗口Top-N查询会具有更好的性能。通常，窗口top-N与窗口聚合一起使用。
+此外，当不再需要时，窗口Top-N会清除所有中间状态。因此，如果用户不需要对每条记录更新结果，那么窗口Top-N查询会具有更好的性能。
+
+**flink-1.13.x**：通常，窗口top-N与窗口聚合函数一起使用。  
+**flink-1.14.x**：通常，窗口 top-N 可以在窗口表值函数上直接使用，因此，窗口 top-N 可以基于窗口表值函数和其他函数一起使用，比如：窗口聚合、窗口 topN 和窗口 join。
 
 Window Top-N可以用与常规Top-N相同的语法定义，此外，Window Top-N要求PARTITION BY子句包含window_start和window_end列，通过Windowing TVF或窗口聚合产生。
 
@@ -1764,7 +1770,7 @@ FROM
 WHERE rownum <= N [AND conditions]
 ```
 
-**案例**
+### 在窗口聚合函数后使用窗口top-N
 
 下面的例子展示如何计算每10分钟滚动窗口中销售额最高的前3个供应商：
 
@@ -1772,12 +1778,12 @@ WHERE rownum <= N [AND conditions]
 -- 表必须有时间属性，比如下表中的bidtime列
 Flink SQL> desc Bid;
 +-------------+------------------------+------+-----+--------+---------------------------------+
-| name | type | null | key | extras | watermark |
+|        name |                   type | null | key | extras |                       watermark |
 +-------------+------------------------+------+-----+--------+---------------------------------+
-| bidtime | TIMESTAMP(3) *ROWTIME* | true | | | `bidtime` - INTERVAL '1' SECOND |
-| price | DECIMAL(10, 2) | true | | | |
-| item | STRING | true | | | |
-| supplier_id | STRING | true | | | |
+|     bidtime | TIMESTAMP(3) *ROWTIME* | true |     |        | `bidtime` - INTERVAL '1' SECOND |
+|       price |         DECIMAL(10, 2) | true |     |        |                                 |
+|        item |                 STRING | true |     |        |                                 |
+| supplier_id |                 STRING | true |     |        |                                 |
 +-------------+------------------------+------+-----+--------+---------------------------------+
 
 Flink SQL> SELECT * FROM Bid;
@@ -1794,6 +1800,7 @@ Flink SQL> SELECT * FROM Bid;
 | 2020-04-15 08:15 | 3.00 | H | supplier2 |
 | 2020-04-15 08:17 | 6.00 | F | supplier5 |
 +------------------+-------+------+-------------+
+
 Flink SQL> SELECT *
 FROM
     (
@@ -1821,15 +1828,47 @@ WHERE rownum <= 3;
 注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，不显示秒小数点后的零。
 例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:00.000。
 
-**限制**
+### 在窗口表值函数后使用窗口top-N
 
-**1.13.x**：目前，Flink只支持Window Top-N紧随Window Aggregation产生的表。在不久的将来，将支持Window TVF之后的Window Top-N。
+flink-1.14.x开始支持。
 
-**1.14.x、1.15.x**：目前，flink只支持在tumble（滚动）、Hop（跳跃）、cumulate（累计）窗口中使用windowing TVF 后使用 window Top-N。
+下面的例子展示怎么每个滚动窗口内 Top 3 的最高价格的 item。
 
-在不久的将来，将会支持在session（会话）窗口中使用 windowing TVF 后使用 window Top-N 。
+```sql
+SELECT *
+FROM
+    (
+    SELECT bidtime, price, item, supplier_id, window_start, window_end, ROW_NUMBER() OVER (PARTITION BY window_start, window_end ORDER BY price DESC) as rownum
+    FROM TABLE
+        (
+        TUMBLE(TABLE Bid, DESCRIPTOR(bidtime), INTERVAL '10' MINUTES)
+        )
+    )
+WHERE rownum <= 3;
++------------------+-------+------+-------------+------------------+------------------+--------+
+|          bidtime | price | item | supplier_id |     window_start |       window_end | rownum |
++------------------+-------+------+-------------+------------------+------------------+--------+
+| 2020-04-15 08:05 |  4.00 |    A |   supplier1 | 2020-04-15 08:00 | 2020-04-15 08:10 |      2 |
+| 2020-04-15 08:06 |  4.00 |    C |   supplier2 | 2020-04-15 08:00 | 2020-04-15 08:10 |      3 |
+| 2020-04-15 08:09 |  5.00 |    D |   supplier4 | 2020-04-15 08:00 | 2020-04-15 08:10 |      1 |
+| 2020-04-15 08:11 |  2.00 |    B |   supplier3 | 2020-04-15 08:10 | 2020-04-15 08:20 |      3 |
+| 2020-04-15 08:15 |  3.00 |    H |   supplier2 | 2020-04-15 08:10 | 2020-04-15 08:20 |      2 |
+| 2020-04-15 08:17 |  6.00 |    F |   supplier5 | 2020-04-15 08:10 | 2020-04-15 08:20 |      1 |
++------------------+-------+------+-------------+------------------+------------------+--------+
+```
+
+注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，不显示秒小数点后的零，例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:
+00.000。
+
+### 限制
+
+**flink-1.13.x**：目前，Flink只支持Window Top-N紧随Window Aggregation产生的表。在不久的将来，将支持Window TVF之后的Window Top-N。  
+**flink-1.14.x、flink-1.15.x**：目前，flink只支持在滚动窗口、滑动窗口、累加窗口这三个窗口表值函数之后直接使用 window Top-N。
+在不久的将来，将支持在会话窗口的窗口表值函数之后直接使用 window Top-N 。
 
 ## 去重
+
+在流批模式中均可使用。
 
 去重会删除在一组列上重复的行，只保留第一行或最后一行。在某些情况下，上游ETL作业并不是端到端精确一次的；当发生故障转移时，这可能会导致接收器中出现重复记录。
 
@@ -1882,6 +1921,105 @@ FROM
     )
 WHERE row_num = 1;
 ```
+
+## 窗口去重
+
+flink-1.15.x开始支持。
+
+窗口去重是一种特殊的去重，它会删除数据集中重复的行，保留每个窗口和分区中 key 对应的第一行或者是最后一行。
+
+对于流式查询，和常规的流表去重不同，窗口去重并不会马上发射结果数据，而是在窗口结束时发射最终的结果。另外，窗口去重会在不需要时删除所有的中间状态数据。
+因此，如果用户不需要实时使用结果数据更新每一条记录，窗口去重会有更好的性能。
+通常，窗口去重会在窗口表值函数上直接使用。因此，窗口去重应该基于窗口表值函数并且和其他函数一起使用，比如：窗口聚合函数、窗口 TopN、窗口 join。
+
+窗口去重定义和常规去重定义语法一样，具体可查看去重文档。除此之外，窗口去重要求 PARTITION BY 语句包含 window_start 和 window_end 字段。否则，优化器无法翻译该查询。
+
+flink 使用 ROW_NUMBER() 来去掉重复数据，和窗口 Top-N 方式一样。从理论上来说，窗口去重是窗口 Top-N 的一种特殊用例，要求 N 为1，并且按照处理时间或者事件时间排序。
+
+下例展示窗口去重语句的语法：
+
+```sql
+SELECT [column_list]
+FROM
+(
+SELECT [column_list],
+ROW_NUMBER() OVER (
+PARTITION BY window_start, window_end [, col_key1...]
+ORDER BY time_attr [asc|desc]
+) AS rownum
+FROM table_name
+) -- 该关系接收窗口表值函数
+WHERE (rownum = 1 | rownum <=1 | rownum < 2) [AND conditions]
+```
+
+参数说明：
+
+* ROW_NUMBER()：给每一行分配一个唯一、特殊的数字，从1开始。
+* PARTITION BY window_start, window_end [, col_key1...]：指定分区字段，包含：window_start、window_end 和其他分区 key。
+* ORDER BY time_attr [asc|desc]：指定排序字段，该字段必须是时间类型。目前 flink 支持处理时间和事件时间。 Ordering by ASC 表示保留第一行，ordering by DESC
+  表示保留最后一行。
+* WHERE (rownum = 1 | rownum <=1 | rownum < 2)：必须有 rownum = 1 | rownum <=1 | rownum < 2 ，这是为了让优化器取失败该查询，并且将其翻译为窗口去重。
+
+注意：sql 语句必须完全匹配上述模式，否则优化器无法将查询翻译为窗口去重。
+
+### 案例
+
+下例展示怎么去保留10分钟的滚动窗口的最后一行数据。
+
+```sql
+-- 表必须有时间字段，比如该表中的`bidtime`字段。
+Flink SQL> DESC Bid;
++-------------+------------------------+------+-----+--------+---------------------------------+
+|        name |                   type | null | key | extras |                       watermark |
++-------------+------------------------+------+-----+--------+---------------------------------+
+|     bidtime | TIMESTAMP(3) *ROWTIME* | true |     |        | `bidtime` - INTERVAL '1' SECOND |
+|       price |         DECIMAL(10, 2) | true |     |        |                                 |
+|        item |                 STRING | true |     |        |                                 |
++-------------+------------------------+------+-----+--------+---------------------------------+
+
+Flink SQL> SELECT * FROM Bid;
++------------------+-------+------+
+|          bidtime | price | item |
++------------------+-------+------+
+| 2020-04-15 08:05 |  4.00 | C    |
+| 2020-04-15 08:07 |  2.00 | A    |
+| 2020-04-15 08:09 |  5.00 | D    |
+| 2020-04-15 08:11 |  3.00 | B    |
+| 2020-04-15 08:13 |  1.00 | E    |
+| 2020-04-15 08:17 |  6.00 | F    |
++------------------+-------+------+
+
+SELECT *
+FROM (
+    SELECT bidtime, price, item, supplier_id, window_start, window_end,
+        ROW_NUMBER() OVER (
+            PARTITION BY window_start, window_end
+            ORDER BY bidtime DESC
+        ) AS rownum
+    FROM TABLE(
+        TUMBLE(TABLE Bid, DESCRIPTOR(bidtime), INTERVAL '10' MINUTES))
+    )
+WHERE rownum <= 1;
++------------------+-------+------+-------------+------------------+------------------+--------+
+|          bidtime | price | item | supplier_id |     window_start |       window_end | rownum |
++------------------+-------+------+-------------+------------------+------------------+--------+
+| 2020-04-15 08:09 |  5.00 |    D |   supplier4 | 2020-04-15 08:00 | 2020-04-15 08:10 |      1 |
+| 2020-04-15 08:17 |  6.00 |    F |   supplier5 | 2020-04-15 08:10 | 2020-04-15 08:20 |      1 |
++------------------+-------+------+-------------+------------------+------------------+--------+
+```
+
+注意:为了更好地理解窗口的行为，我们简化了时间戳值的显示，不显示秒小数点后的零，
+例如，如果类型是timestamp(3)，在Flink SQL Client中，2020-04-15 08:05应该显示为2020-04-15 08:05:00.000。
+
+### 限制
+
+#### 在窗口表值函数后直接使用窗口去重的限制
+
+目前，如果在窗口表值函数后直接使用窗口去重，窗口表值函数必须是滚动窗口、滑动窗口或者是累计窗口，而不能是会话窗口。会话窗口将在不久的将来支持。
+
+#### 时间字段排序键限制
+
+目前，窗口去重要求排序键必须是事件时间，而不能是处理时间。使用处理时间进行排序，将在不久的将来支持。
 
 ## Pattern Recognition（模式识别）
 

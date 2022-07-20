@@ -29,4 +29,6 @@ load module hive with ('hive-version' = '2.3.6');
 load module hive;
 ```
 
-给平台添加了 flink-connector-sql-hive 模块之后，就相当于已经添加了 hive 模块的实现，因此可以直接去加载 hive 模块。
+给平台添加了 flink-connector-sql-hive 依赖之后，就相当于已经添加了 hive 模块的实现，因此可以直接去加载 hive 模块。
+
+在 `flink sql` 中加载了`hive`模块，并且`use`了`hive`模块之后，查询语句中就可以直接去使用`hive`中的函数了。
