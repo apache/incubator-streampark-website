@@ -10,8 +10,16 @@ EXPLAIN语句用于解释SELECT或INSERT语句的逻辑和优化的查询计划�
 
 ## 语法
 
+flink-1.13.x：
+
 ```sql
 EXPLAIN PLAN FOR <query_statement_or_insert_statement>
+```
+
+flink-1.14.x：
+
+```sql
+EXPLAIN [([ExplainDetail[, ExplainDetail]*]) | PLAN FOR] <query_statement_or_insert_statement>
 ```
 
 ## 案例
@@ -112,9 +120,12 @@ Union(all=[true], union=[count, word])
 
 ## Explain细节
 
-从flink-1.14.x开始支持。 打印语句包含指定explain细节的 plan 信息。
+从flink-1.14.x开始支持。
 
-* ESTIMATED_COST：估计成本，生成优化器估计的物理节点的成本信息，
+打印语句包含指定explain细节的 plan 信息。
+
+* **ESTIMATED_COST**：估计成本，生成优化器估计的物理节点的成本信息，
   比如：TableSourceScan(..., cumulative cost ={1.0E8 rows, 1.0E8 cpu, 2.4E9 io, 0.0 network, 0.0 memory})。
-* CHANGELOG_MODE：为每个物理节点生成变更日志模式，比如：GroupAggregate(..., changelogMode=[I,UA,D])。
-* JSON_EXECUTION_PLAN：生成json格式的程序执行计划。
+* **CHANGELOG_MODE**：为每个物理节点生成变更日志模式，比如：GroupAggregate(..., changelogMode=[I,UA,D])。
+* **JSON_EXECUTION_PLAN**：生成json格式的程序执行计划。
+

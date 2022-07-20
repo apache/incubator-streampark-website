@@ -11,6 +11,7 @@ CREATE 语句用于将 `表`/`视图`/`函数` 注册到当前或指定的 Catal
 Flink SQL目前支持以下CREATE语句：
 
 * CREATE TABLE
+* CREATE CATALOG
 * CREATE DATABASE
 * CREATE VIEW
 * CREATE FUNCTION
@@ -463,13 +464,15 @@ CREATE [TEMPORARY] VIEW [IF NOT EXISTS] [catalog_name.][db_name.]view_name
 AS query_expression
 ```
 
-使用给定的查询表达式创建视图。如果目录中已经存在同名的视图，则会抛出异常。
+使用给定的查询表达式创建视图。如果 catalog 中已经存在同名的视图，则会抛出异常。
 
 **TEMPORARY**  
 创建具有目录和数据库名称空间并覆盖视图的临时视图。
 
 **IF NOT EXISTS**  
 如果视图已经存在，则不会发生任何事情。
+
+创建视图，可以将负责的查询 sql 进行拆分，以获取更好的阅读体验。
 
 ## CREATE FUNCTION
 
@@ -500,6 +503,6 @@ CREATE [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF NOT EXISTS] [catalog_name.][db_
 ### 案例代码
 
 ```sql
-create temporary function fetch_millisecond as 'cn.com.streamx.function.udf.time.FetchMillisecond' language java;
+create temporary function fetch_millisecond as 'cn.com.log.function.udf.time.FetchMillisecond' language java;
 ```
 
