@@ -1,5 +1,5 @@
 ---
-id: 'flink-sql'
+id: '1-introduce'
 title: '简介'
 sidebar_position: 1
 ---
@@ -13,6 +13,8 @@ sidebar_position: 1
 
 ## 其他
 
+### 技术
+
 注意，在 flink sql 中，对表名、字段名、函数名等是严格区分大小写的，为了兼容 hive 等其他仓库，建议建表时，表名和字段名都采用下划线连接单词的方式，以避免大小写问题。
 
 比如 hive ，是不区分大小写的，所有大写字母最终都会被系统转化为小写字母，此时使用 flink sql 去读写 hive ，出现大写字母时，会出现找不到表或字段的错误。
@@ -20,3 +22,7 @@ sidebar_position: 1
 关键字是不区分大小写的，比如 insert、select、create等。
 
 flink sql 中所有的字符串常量都需要使用英文单引号括起来，不要使用英文双引号以及中文符号。
+
+### 平台
+
+目前平台还不支持直接在`flink sql`中直接创建 hive 表之类的操作。如果需要读写 hive 表，建议是先在 hive 中直接创建好对应的表，然后再使用`flink sql`去读写 hive 表。

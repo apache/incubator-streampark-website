@@ -80,7 +80,9 @@ LIKE：展示通过 like 关键字指定名称的表，like 语法和 <sql_like_
 
 #### SHOW TABLES案例
 
-从1.15.x开始支持。假设名为 catalog1 的 catalog 下的 db1 数据库并且包含以下表：
+从1.15.x开始支持。
+
+假设名为 catalog1 的 catalog 下的 db1 数据库并且包含以下表：
 
 * person
 * dim
