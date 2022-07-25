@@ -21,10 +21,8 @@ sidebar_position: 1
 
 关键字是不区分大小写的，比如 insert、select、create等。
 
-flink sql 中所有的字符串常量都需要使用引文单引号括起来，不要使用英文双引号以及中文符号。
+flink sql 中所有的字符串常量都需要使用英文单引号括起来，不要使用英文双引号以及中文符号。
 
 ### 平台
-
-平台后台是严格按照页面所写的`flink sql`顺序来解析执行的，因此页面中的`flink sql`编写顺序是有要求的。具体可查看[案例](example)页面。
 
 目前平台还不支持直接在`flink sql`中直接创建 hive 表之类的操作。如果需要读写 hive 表，建议是先在 hive 中直接创建好对应的表，然后再使用`flink sql`去读写 hive 表。
