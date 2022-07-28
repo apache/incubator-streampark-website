@@ -1,5 +1,5 @@
 ---
-id: 'show'
+id: '14-show'
 title: 'show'
 sidebar_position: 14
 ---

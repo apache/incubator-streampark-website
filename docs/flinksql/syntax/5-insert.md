@@ -1,5 +1,5 @@
 ---
-id: 'insert'
+id: '5-insert'
 title: 'insert'
 sidebar_position: 5
 ---

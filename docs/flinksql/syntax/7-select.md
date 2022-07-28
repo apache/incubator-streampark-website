@@ -1,5 +1,5 @@
 ---
-id: 'select'
+id: '7-select'
 title: 'select'
 sidebar_position: 7
 ---

@@ -1,5 +1,5 @@
 ---
-id: 'reset'
+id: '3-reset'
 title: 'reset'
 sidebar_position: 3
 ---

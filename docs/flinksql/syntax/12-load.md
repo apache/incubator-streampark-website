@@ -1,5 +1,5 @@
 ---
-id: 'load'
+id: '12-load'
 title: 'load'
 sidebar_position: 12
 ---
