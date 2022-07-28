@@ -1,7 +1,7 @@
 ---
-id: 'example'
+id: '5-example'
 title: '使用案例'
-sidebar_position: 15
+sidebar_position: 5
 ---
 
 ## 介绍
@@ -10,24 +10,24 @@ sidebar_position: 15
 
 ## 编写顺序
 
-1. **set**，非必须
+1. **set**
     1. 该语句主要是设置本次提交任务环境的一些参数，因此必须写到所有语句的开头，在其他语句执行之前必须先设置参数，之后的语句执行才能使用到设置好的参数。
     2. **特殊设置**：`sql 方言`，默认情况下，flink 使用的是自己的方言，但如果想要迁移之前一些`hive sql`语句，可能想直接使用`flink sql`引擎直接执行语句，以减少迁移的成本。
        此时就可以将设置`sql方言`的`set`语句放到`insert`语句之前，而不是放到最开头。 倘若是直接将设置`sql方言`的`set`语句放到最开头，则下面的建表、创建函数之类的语句可能会出错。
-2. **crate**，非必须
+2. **crate**
     1. 如果需要用到 hive ，比如读写 hive 表，或者是将创建的虚拟表的信息放到 hive 元数据，就需要有创建 hive catalog 的语句。
     2. 创建虚拟表来连接外部系统。
     3. 其他，这些是非必须的
         1. 创建自定义函数。
         2. 创建数据库。
         3. 创建视图
-3. **load**，非必须
+3. **load**
     1. 如果想要用到 hive 模块，比如使用 hive 的一些函数，则需要加载 hive 模块，加载完 hive 模块之后，平台就自动拥有了 hive 和 core(flink) 这两个模块，默认解析顺序为`core->hive`。
 4. **use**
     1. 创建了 hive 的 catalog 之后，必须写 `use catalog` 语句来使用创建的 hive catalog，否则无法连接 hive 元数据。
     2. 加载了 hive 模块之后，可以通过 `use modules hive, core` 语句来调整模块解析顺序。
-5. **insert**，必须
-    1. 必须有`insert`语句来触发整个`flink sql`任务的提交运行。
+5. **insert**
+    1. `insert`语句是真正的 `flink sql` 任务，平台`1.2.4`版本中还要求必须有至少一个 `insert` 语句，之后的版本中，我们将计划移除该限制。
 
 ## 实际案例
 
@@ -258,7 +258,7 @@ create catalog hive with (
 
 use catalog hive;
 
-create temporary function fetch_millisecond as 'com.baishancloud.log.function.udf.time.FetchMillisecond' language java;
+create temporary function fetch_millisecond as 'cn.com.function.udf.time.FetchMillisecond' language java;
 
 load module hive;
 
@@ -270,5 +270,8 @@ select col1, collect_list(col2) as col2, collect_set(col2) as col3, cast(fetch_m
 from test.test3
 group by col1
 ;
-
 ```
+
+其他案例待补充，小伙伴们有优秀的使用案例的话，也可向社区反馈，以丰富更多的案例。
+
+---该页面将持续更新---。
