@@ -791,7 +791,7 @@ Flink SQL> INSERT OVERWRITE myparttable PARTITION (my_type='type_1') SELECT 'Tom
 
 下面的例子展示如何使用分区提交，并通过流式查询以及流式sink来从kafka读取数据并写入hive表，然后运行批查询来读取写入到hive的数据。
 
-请查看[streaming sink](https://ci.apache.org/projects/flink/flink-docs-release-1.13/docs/connectors/table/filesystem/#streaming-sink)章节来获取完整可用的配置的列表。
+请查看[FileSystem](connector/6-file-system)章节来获取完整可用的配置的列表。
 
 ```sql
 SET 'table.sql-dialect'='hive';
