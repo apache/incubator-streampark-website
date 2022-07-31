@@ -35,10 +35,7 @@ const config = {
                     editLocalizedFiles: true,
                     sidebarCollapsed: false,
                     // Please change this to your repo.
-                    editUrl: 'https://github.com/streamxhub/streamx-website/edit/dev/',
-                    remarkPlugins: [
-                        [require('@docusaurus/remark-plugin-npm2yarn'), {sync: true}],
-                    ],
+                    editUrl: 'https://github.com/streamxhub/streamx-website/edit/dev/'
                 },
 
                 blog: {
