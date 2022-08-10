@@ -70,7 +70,7 @@ Flink 支持以下的 Hive 版本。
 Apache Hive 是基于 Hadoop 之上构建的，因此需要通过设置`HADOOP_CLASSPATH`环境变量来配置`hadoop`的依赖项：
 
 ```shell
-export HADOOP_CLASSPATH='hadoop classpath'
+export HADOOP_CLASSPATH=`hadoop classpath`
 ```
 
 有两种添加 Hive 依赖项的方法。第一种是使用 Flink 提供的 Hive Jar 包。可以根据使用的 Metastore 版本来选择对应的 Hive jar。第二个方式是分别添加每个所需的 jar 包。

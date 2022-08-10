@@ -921,7 +921,7 @@ TableAggregateFunction的以下方法可以提高流作业的性能：
  * @param: [user defined inputs] 输入值（通常是新到达数据行字段）
  **/
 public void accumulate(ACC accumulator,[user defined inputs])
-  ```
+```
 
 **retract(...)：**
 
@@ -935,7 +935,7 @@ public void accumulate(ACC accumulator,[user defined inputs])
  * @param [user defined inputs] 输入值（通常是新到达数据行字段）
  */
 public void retract(ACC accumulator,[user defined inputs])
-  ```
+```
 
 **merge(...)：**
 
