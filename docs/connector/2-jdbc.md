@@ -7,13 +7,13 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器,用于从 JDBC 中读取或者向其中写入数据,可提供 **AT_LEAST_ONCE** (至少一次)的处理语义
+Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html) connector for reading from or writing to JDBC, which can provides **AT_LEAST_ONCE** (at least once) processing semantics
 
-`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
+`StreamX` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
 
-## Jdbc 信息配置
+## Jdbc Configuration
 
-在`StreamX`中`Jdbc Connector`的实现用到了[` HikariCP `](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
+The implementation of the `Jdbc Connector` in `StreamX` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
 
 ```yaml
 jdbc:
@@ -28,9 +28,9 @@ jdbc:
   jdbcUrl: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true
 ```
 
-### semantic 语义配置
+### Semantic
 
-`semantic`这个参数是在`JdbcSink`写时候的语义,仅对 **JdbcSink** 有效,`JdbcSource`会自动屏蔽该参数,有三个可选项
+The parameter `semantic` is the semantics when writing in `JdbcSink`, only effect for **JdbcSink**, `JdbcSource` will automatically mask this parameter, there are three options
 
 <div class="counter">
 
@@ -42,36 +42,37 @@ jdbc:
 
 #### EXACTLY_ONCE
 
-如果`JdbcSink`配置了 `EXACTLY_ONCE`语义,则底层采用了两阶段提交的实现方式来完成写入,此时要flink配合开启`Checkpointing`才会生效,如何开启checkpoint请参考第二章关于[checkpoint](/docs/model/conf)配置部分
+If `JdbcSink` is configured with `EXACTLY_ONCE` semantics, the underlying two-phase commit implementation is used to complete the write, at this time to flink with `Checkpointing` to take effect, how to open checkpoint please refer to Chapter 2 on [checkpoint](/docs/model/conf) configuration section
 
 #### AT_LEAST_ONCE && NONE
 
-默认不指定会采用`NONE`语义,这两种配置效果一样,都是保证 **至少一次** 语义
+The default does not specify that the `NONE` semantics will be used, both configurations have the same effect, both are guaranteed **at least once** semantics
 
-:::tip 提示
-开启`EXACTLY_ONCE`精确一次的好处是显而易见的,保证了数据的准确性,但成本也是高昂的,需要`checkpoint`的支持,底层模拟了事务的提交读,对实时性有一定的损耗,如果你的业务对数据的准确性要求不是那么高,则建议采用`AT_LEAST_ONCE`语义
+
+:::tip tip
+The benefit of turning on `EXACTLY_ONCE` exactly once is obvious, to ensure the accuracy of the data, but the cost is also high, the need for `checkpoint` support, the underlying simulation of the transaction is submitted to read, there is a certain loss of real-time, if your business requirements for data accuracy is not so high, it is recommended to use `AT_LEAST_ONCE` semantics
 :::
 
-### 其他配置
 
-除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 ** HikariCP** 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
+### Others
 
+Except for the special `semantic` configuration item, all other configurations must comply with the **HikariCP** connection pool configuration, please refer to the `Light HikariCP` [official website documentation](https://github.com/brettwooldridge/) for the specific configurable items and the role of each parameter. HikariCP#gear-configuration-knobs-baby).
 
-## Jdbc 读取数据
+## Jdbc read
 
-在`StreamX`中`JdbcSource`用来读取数据,并且根据数据的`offset`做到数据读时可回放,我们看看具体如何用`JdbcSource`读取数据,假如需求如下
+In `StreamX`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
 
 <div class="counter">
 
-* 从`t_order`表中读取数据,以`timestamp`字段为参照,起始值为`2020-12-16 12:00:00`往后抽取数据
-* 将读取到的数据构造成`Order`对象返回
+* Read data from the `t_order` table, using the `timestamp` field, starting at `2020-12-16 12:00:00` and extracting data from there.
+* Construct the read data into an `Order` object and return it
 
 </div>
 
-jdbc配置和读取代码如下
+The jdbc configuration and reading code is as follows
 
 <Tabs>
-<TabItem value="配置" default>
+<TabItem value="Setting" default>
 
 ```yaml
 jdbc:
@@ -94,7 +95,6 @@ object MySQLSourceApp extends FlinkStreaming {
   override def handle(): Unit = {
 
     JdbcSource().getDataStream[Order](lastOne => {
-      //防止抽取过于密集,间隔5秒抽取一次数据                          
       Thread.sleep(5000);
       val laseOffset = if (lastOne == null) "2020-12-16 12:00:00" else lastOne.timestamp
       s"select * from t_order where timestamp > '$laseOffset' order by timestamp asc "
@@ -133,7 +133,6 @@ public class MySQLJavaApp {
         new JdbcSource<Order>(context)
                 .getDataStream(
                         (SQLQueryFunction<Order>) lastOne -> {
-                            //防止抽取过于密集,间隔5秒抽取一次数据                          
                             Thread.sleep(5000);
                             
                             Serializable lastOffset = lastOne == null 
@@ -167,7 +166,7 @@ public class MySQLJavaApp {
 </TabItem>
 </Tabs>
 
-以`java` api为例,这里要传入两个参数
+Take the `java` api as an example, here you have to accept two parameters
 
 <div class="counter">
 
@@ -176,59 +175,43 @@ public class MySQLJavaApp {
 
 </div>
 
-### queryFunc获取一条sql
+### queryFunc to get sql
 
-`queryFunc`是要传入一个`SQLQueryFunction`类型的`function`,该`function`用于获取查询sql的,会将最后一条记录返回给开发者,然后需要开发者根据最后一条记录返回一条新的查询`sql`,`queryFunc`定义如下:
+`queryFunc` needs to pass in a `function` of type `SQLQueryFunction`, the `function` is used to get the query sql, will return the last record to the developer, and then the developer needs to return a new query `sql` according to the last record, `queryFunc` is defined as follows :
 
 ```java 
-/**
- * @author benjobs
- */
 @FunctionalInterface
 public interface SQLQueryFunction<T> extends Serializable {
     /**
-     * 获取要查询的SQL
-     *
-     * @return
-     * @throws Exception
+     * @return query sql
      */
     String query(T last) throws Exception;
 }
 ```
 
-所以上面的代码中,第一次上来`lastOne`(最后一条记录)为null,会判断一下,为null则取需求里默认的`offset`,查询的sql里根据`timestamp`字段正序排,这样在第一次查询之后,会返回最后的那条记录,下次直接可以使用这条记录作为下一次查询的根据
+So the above code, the first time `lastOne` (the last record) equals null, and will be judged, if null will take the default `offset`, query sql according to the `timestamp` field in positive order, so that after the first query, will return the last record, the next time you can directly use this record as the basis for the next query
 
-:::info 注意事项
-`JdbcSource`实现了`CheckpointedFunction`,即当程序开启 **checkpoint** 后,会将这些诸如`laseOffset`的状态数据保存到`state backend`,这样程序挂了,再次启动会自动从`checkpoint`中恢复`offset`,会接着上次的位置继续读取数据,
-一般在生产环境,更灵活的方式是将`lastOffset`写入如`redis`等存储中,每次查询完之后再将最后的记录更新到`redis`,这样即便程序意外挂了,再次启动,也可以从`redis`中获取到最后的`offset`进行数据的抽取,也可以很方便的人为的任意调整这个`offset`进行数据的回放
+:::info Cautions
+`JdbcSource` implements the `CheckpointedFunction`, that is, when the program opens **checkpoint**, it will save these state data such as `laseOffset` to the `state backend`, so that when the program hangs, it will automatically restore `offset` from `checkpoint`, and continue to read data from the last position,
+In the production environment, a more flexible way is writing `lastOffset` to storage, such as `redis`, after each query and then update the offset to `redis`, so that even if the program hangs unexpectedly, you can also get the last `offset` from `redis` for data extract, but also very convenient to adjust `offset` for data replay
 :::
 
-### resultFunc 处理查询到的数据
+### resultFunc process the query data
 
-`resultFunc`的参数类型是`SQLResultFunction<T>`,是将一个查询到的结果集放到`Iterable<Map<String, ?>>`中返回给开发者,可以看到返回了一个迭代器`Iterable`,迭代器每次迭代返回一个`Map`,该`Map`里记录了一行完整的记录,`Map`的`key`为查询字段,`value`为值,`SQLResultFunction<T>`定义如下
-
+The parameter type of `resultFunc` is `SQLResultFunction<T>`, which puts a query result set into `Iterable<Map<String, ? >>`, and then returns it to the developer, at the same time, you can see that each iteration of the iterator returns a `Map`, the `Map` records a complete line of records, the `Map` `key` is the query field, `value` is the value, `SQLResultFunction<T>` is defined as follows
 ```java 
-/**
- * @author benjobs
- */
 @FunctionalInterface
 public interface SQLResultFunction<T> extends Serializable {
-    /**
-     * 将查下结果以Iterable<Map>的方式返回,开发者去实现转成对象.
-     *
-     * @param map
-     * @return
-     */
     Iterable<T> result(Iterable<Map<String, ?>> iterable);
 }
 ```
 
-## Jdbc 读取写入
+## Jdbc Read Write
 
-`StreamX`中`JdbcSink`是用来写入数据,我们看看具体如何用`JdbcSink`写入数据,假如需求是需要从`kakfa`中读取数据,写入到`mysql`
+In `StreamX`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
 
 <Tabs>
-<TabItem value="配置" default>
+<TabItem value="Setting" default>
 
 ```yaml
 kafka.source:
@@ -245,9 +228,9 @@ jdbc:
   username: root
   password: 123456
 ```
-:::danger 注意事项
-配置里`jdbc`下的 **semantic** 是写入的语义,在上面[Jdbc信息配置](#jdbc-信息配置)有介绍,该配置只会在`JdbcSink`下生效,`StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** 语义,
-这本身需要被操作的数据库(`mysql`,`oracle`,`MariaDB`,`MS SQL Server`)等支持事务,理论上所有支持标准Jdbc事务的数据库都可以做到EXACTLY_ONCE(精确一次)的写入
+:::danger Cautions
+The configuration under `jdbc` **semantic** is the semantics of writing, as described in [Jdbc Info Configuration](#jdbc-info-config), the configuration will only take effect on `JdbcSink`, `StreamX` is based on two-phase commit to achieve **EXACTLY_ONCE** semantics,
+This requires that the database being manipulated supports transactions(`mysql`, `oracle`, `MariaDB`, `MS SQL Server`), theoretically all databases that support standard Jdbc transactions can do EXACTLY_ONCE (exactly once) write
 :::
 
 </TabItem>
@@ -343,16 +326,13 @@ class JavaUser implements Serializable {
 </TabItem>
 </Tabs>
 
-### 根据数据流生成目标SQL
+### Generate target SQL based on data flow
 
-在写入的时候,需要知道具体写入的`sql`语句,该`sql`语句需要开发者通过`function`的方式提供,在`scala` api中,直接在`sink`方法后跟上`function`即可,`java` api 则是通过`sql()`方法传入一个`SQLFromFunction`类型的`function`
+When writing, you need to know the specific `sql` statement to write, the `sql` statement needs to be provided by the developer by a way of the `function`, in the `scala` api, directly after the `sink` method followed by the `function`, while the `java` api is passed a `function` of type `SQLFromFunction` through the `sql()` method
 
-下面以`java` api为例说明,我们来看看`java`api 中提供sql的`function`方法的定义
+The following is an example of the `java` api, let's look at the definition of the `function` method that provides sql in the `java` api
 
 ```java 
-/**
- * @author benjobs
- */
 @FunctionalInterface
 public interface SQLFromFunction<T> extends Serializable {
     /**
@@ -361,15 +341,13 @@ public interface SQLFromFunction<T> extends Serializable {
      */
     String from(T bean);
 }
-
 ```
 
-`SQLFromFunction`上的泛型`<T>`即为`DataStream`里实际的数据类型,该`function`里有一个方法`form(T bean)`,这个`bean`即为当前`DataStream`中的一条具体数据,会将该数据返给开发者,开发者来决定基于这条数据,生成一条具体可以往数据库中插入的`sql`
+The generic `<T>` on the `SQLFromFunction` is the actual data type in the `DataStream`, the `function` has a method `form(T bean)`, the `bean` is a specific data in the current `DataStream`, the data will be returned to the developer, the developer will based on this data, generate a specific `sql` that can be inserted into the database
 
+### Set to write batch size
 
-### 设置写入批次大小
-
-在 非 `EXACTLY_ONCE`(精确一次的语义下)可以适当的设置`batch.size`来提高Jdbc写入的性能(前提是业务允许的情况下),具体配置如下
+In non-`EXACTLY_ONCE` (under the semantics of exactly once) you can set `batch.size` to improve the performance of JDBC writes (provided that the business allows it), configured as follows
 
 ```yaml
 jdbc:
@@ -380,13 +358,14 @@ jdbc:
   password: 123456
   batch.size: 1000
 ```
-这样一来就不是来一条数据就立即写入,而是积攒一个匹配然后执行批量插入
 
-:::danger 注意事项
-这个设置仅在非`EXACTLY_ONCE`语义下生效,带来的好处是可以提高Jdbc写入的性能,一次大批量的插入数据,缺点是数据写入势必会有延迟,请根据实际使用情况谨慎使用
+In this way, instead of writing data immediately when it comes, and then performs a bulk insert
+
+:::danger Cautions
+This setting only takes effect the non-`EXACTLY_ONCE` semantics, the benefit is to improve the performance of Jdbc writes, a large number of data insertion, the disadvantage is that data writing will inevitably have a delay, please use caution according to the actual use of the situation
 :::
 
-## 多实例Jdbc支持
+## Multi-instance Jdbc support
 
 
-## 手动指定Jdbc连接信息
+## Specify Jdbc connection information manually
