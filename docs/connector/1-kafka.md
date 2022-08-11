@@ -6,35 +6,32 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 **精确一次** 的处理语义
+The [official Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](http://kafka. apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
 
-`StreamX`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
+`KafkaSource` and `KafkaSink` in `StreamX` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
 
-## 依赖
+## Dependencies
 
-[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) 集成了通用的 Kafka 连接器，它会尽力与 Kafka client 的最新版本保持同步。该连接器使用的 Kafka client 版本可能会在 Flink 版本之间发生变化。 当前 Kafka client 向后兼容 0.10.0 或更高版本的 Kafka broker。 有关 Kafka 兼容性的更多细节，请参考 [Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) 官方文档。
+[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) integrates with the generic Kafka connector, which tries to keep up with the latest version of the Kafka client. The version of the Kafka client used by this connector may change between Flink versions. The current Kafka client is backward compatible with Kafka broker version 0.10.0 or later. For more details on Kafka compatibility, please refer to the [Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) official documentation.
+
 
 ```xml
-    <!--必须要导入的依赖-->
     <dependency>
         <groupId>com.streamxhub.streamx</groupId>
         <artifactId>Streamx-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
 
-    <!--flink-connector-->
     <dependency>
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-connector-kafka_2.11</artifactId>
         <version>1.12.0</version>
     </dependency>
-
 ```
 
-同时在开发阶段,以下的依赖也是必要的
+In the development phase, the following dependencies are also necessary
 
 ```xml 
-    <!--以下scope为provided的依赖也是必须要导入的-->
     <dependency>
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-scala_${scala.binary.version}</artifactId>
@@ -55,11 +52,11 @@ import TabItem from '@theme/TabItem';
         <version>${flink.version}</version>
         <scope>provided</scope>
     </dependency>
-
 ```
 
 ## Kafka Source (Consumer)
-先介绍基于官网的标准的kafka consumer的方式,以下代码摘自[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer)
+
+First, we introduce the standard kafka consumer approach based on the official website, the following code is taken from the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer)
 
 ```scala
 val properties = new Properties()
@@ -68,9 +65,10 @@ properties.setProperty("group.id", "test")
 val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStringSchema(), properties))
 
 ```
-可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`StreamX`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
-### 基础消费示例
+You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `StreamX` to access `kafka` data, we just define the configuration file in the rule format and then write the code
+
+### example
 
 ```yaml
 kafka.source:
@@ -81,8 +79,8 @@ kafka.source:
   enable.auto.commit: true
 ```
 
-:::info 注意事项
-`kafka.source`这个前缀是固定的,kafka properties相关的参数必须遵守[kafka官网](http://kafka.apache.org)对参数key的设置规范
+:::info Cautions
+The prefix `kafka.source` is fixed, and the parameters related to kafka properties must comply with the [kafka official website](http://kafka.apache.org) specification for setting the parameter key
 :::
 
 <Tabs>
@@ -139,10 +137,10 @@ public class KafkaSimpleJavaApp {
 </TabItem>
 </Tabs>
 
-### 高级配置参数
+### Advanced configuration parameters
 
-`KafkaSource`是基于Flink Kafka Connector封装一个更简单的kafka读取类,构造方法里需要传入`StreamingContext`,当程序启动时传入配置文件即可,框架会自动解析配置文件,在`new KafkaSource`的时候会自动的从配置文件中获取相关信息,初始化并返回一个Kafka Consumer,在这里topic下只配置了一个topic,因此在消费的时候不用指定topic直接默认获取这个topic来消费, 这只是一个最简单的例子,更多更复杂的规则和读取操作则要通过`.getDataStream()`在该方法里传入参数才能实现
-我们看看`getDataStream`这个方法的签名
+`KafkaSource` is based on the Flink Kafka Connector construct a simpler kafka reading class, the constructor needs to pass `StreamingContext`, when the program starts to pass the configuration file can be, framework will automatically parse the configuration file, when `new KafkaSource` it will automatically get the relevant information from the configuration file, initialize and return a Kafka Consumer, in this case, only configuration one topic, so in the consumption of the time without specifying the topic directly by default to get this topic to consume, this is the simple example, more complex rules and read operations through the `. getDataStream()` pass parameters in the method to achieve
+Let's look at the signature of the `getDataStream` method
 
 ```scala 
 def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
@@ -151,38 +149,38 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
     strategy: WatermarkStrategy[KafkaRecord[T]] = null
 ): DataStream[KafkaRecord[T]]
 ```
-参数具体作用如下
+The specific description of the parameters are as follows
 
-| 参数名 | 参数类型 |作用 | 默认值|
-| :-----| :---- | :---- | :---- | 
-| `topic` | Serializable | 一个topic或者一组topic |无|
-| `alias` |String | 用于区别不同的kafka实例 |无|
-| `deserializer` | DeserializationSchema | topic里数据的具体解析类 |KafkaStringDeserializationSchema| 
-| `strategy` | WatermarkStrategy |watermark生成策略 | 无 |
+| Parameter Name           | Parameter Type                 | Description                           | Default                              |
+|:---------------|:----------------------|:--------------------------------------|:-------------------------------------| 
+| `topic`        | Serializable          | a topic or group of topics            |                                      |
+| `alias`        | String                | distinguish different kafka instances |                                      |
+| `deserializer` | DeserializationSchema | deserialize class of the data in the topic      | KafkaStringDeserializationSchema     | 
+| `strategy`     | WatermarkStrategy     | watermark generation strategy                         |                                      |
 
-下面我们来看看更多的使用和配置方式
+Let's take a look at more usage and configuration methods
 
 <div class="counter">
 
-* 消费多个Kafka实例
-* 消费多个Topic
-* Topic动态发现
-* 从指定Offset消费
-* 指定KafkaDeserializationSchema
-* 指定WatermarkStrategy
+* Consume multiple Kafka instances
+* Consume multiple topics
+* Topic dynamic discovery
+* Consume from the specified offset
+* Specific KafkaDeserializationSchema
+* Specific WatermarkStrategy
 
 </div>
 
-### 消费多个Kafka实例
+### Consume multiple Kafka instances
 
-在框架开发之初就考虑到了多个不同实例的kafka的配置情况.如何来统一配置,并且规范格式呢?在streamx中是这么解决的,假如我们要同时消费两个不同实例的kafka,配置文件定义如下,
-可以看到在 `kafka.source` 下直接放kafka的实例名称(名字可以任意),在这里我们统一称为 **alias** , **alias** 必须是唯一的,来区别不同的实例,然后别的参数还是按照之前的规范,
-统统放到当前这个实例的 `namespace` 下即可.如果只有一个kafka实例,则可以不用配置 `alias`
-在写代码消费时注意指定对应的 **alias** 即可,配置和代码如下
+`StreamX` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streamx is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
+As you can see in the `kafka.source` directly under the kafka instance name, here we unified called **alias** , **alias** must be unique, to distinguish between different instances
+If there is only one kafka instance, then you can not configure `alias`
+When writing the code for consumption, pay attention to the corresponding **alias** can be specified, the configuration and code is as follows
 
 <Tabs>
 
-<TabItem value="配置" label="配置" default>
+<TabItem value="Setting" label="Setting" default>
 
 ```yaml
 kafka.source:
@@ -204,13 +202,11 @@ kafka.source:
 <TabItem value="Scala" label="Scala">
 
 ```scala
-//消费kafka1实例的数据
 KafkaSource().getDataStream[String](alias = "kafka1")
   .uid("kfkSource1")
   .name("kfkSource1")
   .print()
   
-//消费kafka2实例的数据
 KafkaSource().getDataStream[String](alias = "kafka2")
   .uid("kfkSource2")
   .name("kfkSource2")
@@ -225,13 +221,11 @@ KafkaSource().getDataStream[String](alias = "kafka2")
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
-//消费kafka1实例的数据
 DataStream<String> source1 = new KafkaSource<String>(context)
         .alias("kafka1")
         .getDataStream()
         print();  
 
-//消费kafka1实例的数据
 DataStream<String> source2 = new KafkaSource<String>(context)
         .alias("kafka2")
         .getDataStream()
@@ -239,20 +233,20 @@ DataStream<String> source2 = new KafkaSource<String>(context)
             
 context.start();            
 ```
-:::danger 特别注意
-java api在编写代码时,一定要将`alias`等这些参数的设置放到调用`.getDataStream()`之前
+:::danger Cautions
+When writing code in java api, be sure to place the settings of these parameters such as `alias` before calling `getDataStream()`
 :::
 
 </TabItem>
 </Tabs>
 
-### 消费多个Topic
+### Consume multiple topics
 
-配置消费多个topic也很简单,在配置文件`topic`下配置多个topic名称即可,用`,`或空格分隔,代码消费处理的时候指定topic参数即可,`scala` api下如果是消费一个topic,则直接传入topic名称即可,如果要消费多个,传入一个`List`即可
-`java`api通过 `topic()`方法传入要消费topic的名称,是一个String类型的可变参数,可以传入一个或多个`topic`名称,配置和代码如下
+Configure the consumption of multiple topic is also very simple, in the configuration file `topic` can be configured under multiple topic name, separated by `,` or space, in the ` scala ` api, if the consumption of a topic, then directly pass the topic name can be, if you want to consume multiple, pass a `List` can be
+`java` api through the `topic()` method to pass in the topic name, which is a variable parameter of type String, can be accepted in one or more `topic` name, configuration and code as follows
 
 <Tabs>
-<TabItem value="配置" label="配置">
+<TabItem value="Setting" label="Setting">
 
 ```yaml
 kafka.source:
@@ -267,13 +261,11 @@ kafka.source:
 <TabItem value="Scala" label="Scala" default>
 
 ```scala
-//消费指定单个topic的数据
 KafkaSource().getDataStream[String](topic = "topic1")
   .uid("kfkSource1")
   .name("kfkSource1")
   .print()
 
-//消费一批topic数据
 KafkaSource().getDataStream[String](topic = List("topic1","topic2","topic3"))
 .uid("kfkSource1")
 .name("kfkSource1")
@@ -285,13 +277,11 @@ KafkaSource().getDataStream[String](topic = List("topic1","topic2","topic3"))
 <TabItem value="Java" label="Java">
 
 ```java 
-//消费指定单个topic的数据
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1")
         .getDataStream()
         .print();
         
-//消费一组topic的数据
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1","topic2")
         .getDataStream()
@@ -303,21 +293,21 @@ DataStream<String> source1 = new KafkaSource<String>(context)
 
 </Tabs>
 
-:::tip 提示
-`topic`支持配置多个`topic`实例,每个`topic`直接用`,`分隔或者空格分隔,如果topic下配置多个实例,在消费的时必须指定具体的topic名称
+:::tip tip
+`topic` supports configuring multiple instances of `topic`, each `topic` is directly separated by `,` or separated by spaces, if multiple instances are configured under the topic, the specific topic name must be specified when consuming
 :::
 
 
-### Topic 发现
+### Topic dynamic discovery
 
-关于kafka的分区动态,默认情况下，是禁用了分区发现的。若要启用它，请在提供的属性配置中为 `flink.partition-discovery.interval-millis` 设置大于 `0`,表示发现分区的间隔是以毫秒为单位的
-更多详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
+Regarding kafka's partition dynamics, by default, partition discovery is disabled. To enable it, please set `flink.partition-discovery.interval-millis` to greater than `0` in the provided configuration, which means the interval between partition discovery is in milliseconds
+For more details, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
 
-Flink Kafka Consumer 还能够使用正则表达式基于 Topic 名称的模式匹配来发现 Topic,详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
-在`StreamX`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
+Flink Kafka Consumer is also able to discover Topics using regular expressions, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
+A simpler way is provided in `StreamX`, you need to configure the regular pattern of the matching `topic` instance name in `pattern`
 
 <Tabs>
-<TabItem value="配置" label="配置">
+<TabItem value="Setting" label="Setting">
 
 ```yaml
 kafka.source:
@@ -333,7 +323,6 @@ kafka.source:
 <TabItem value="Scala" label="Scala" default>
 
 ```scala
-//消费正则topic数据
 KafkaSource().getDataStream[String](topic = "topic-a")
 .uid("kfkSource1")
 .name("kfkSource1")
@@ -347,7 +336,6 @@ KafkaSource().getDataStream[String](topic = "topic-a")
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
-//消费通配符topic数据
 new KafkaSource<String>(context)
         .topic("topic-a")
         .getDataStream()
@@ -361,14 +349,14 @@ context.start();
 </Tabs>
 
 
-:::danger 特别注意
-`topic`和`pattern`不能同时配置,当配置了`pattern`正则匹配时,在消费的时候依然可以指定一个确定的`topic`名称,此时会检查`pattern`是否匹配当前的`topic`,如不匹配则会报错
+:::danger Cautions
+`topic` and `pattern` can not be configured at the same time, when configured with `pattern` regular match, you can still specify a definite `topic` name, at this time, will check whether `pattern` matches the current `topic`, if not, will be reported an error
 :::
 
 
-### 配置开始消费的位置
+### Consume from the specified offset
 
-Flink Kafka Consumer 允许通过配置来确定 Kafka 分区的起始位置,[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#kafka-consumers-start-position-configuration)Kafka 分区的起始位置具体操作方式如下
+Flink Kafka Consumer allows the starting position of Kafka partitions to be determined by configuration, [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#kafka-consumers-start-position-configuration) The starting position of a Kafka partition is specified as follows
 
 <Tabs>
 <TabItem value="scala" default>
@@ -376,10 +364,10 @@ Flink Kafka Consumer 允许通过配置来确定 Kafka 分区的起始位置,[�
 ```scala 
 val env = StreamExecutionEnvironment.getExecutionEnvironment()
 val myConsumer = new FlinkKafkaConsumer[String](...)
-myConsumer.setStartFromEarliest()      // 尽可能从最早的记录开始
-myConsumer.setStartFromLatest()        // 从最新的记录开始
-myConsumer.setStartFromTimestamp(...)  // 从指定的时间开始（毫秒）
-myConsumer.setStartFromGroupOffsets()  // 默认的方法
+myConsumer.setStartFromEarliest()      
+myConsumer.setStartFromLatest()        
+myConsumer.setStartFromTimestamp(...)  
+myConsumer.setStartFromGroupOffsets()  
 
 val stream = env.addSource(myConsumer)
 ...
@@ -392,10 +380,10 @@ val stream = env.addSource(myConsumer)
 final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
 FlinkKafkaConsumer<String> myConsumer = new FlinkKafkaConsumer<>(...);
-myConsumer.setStartFromEarliest();     // 尽可能从最早的记录开始
-myConsumer.setStartFromLatest();       // 从最新的记录开始
-myConsumer.setStartFromTimestamp(...); // 从指定的时间开始（毫秒）
-myConsumer.setStartFromGroupOffsets(); // 默认的方法
+myConsumer.setStartFromEarliest();
+myConsumer.setStartFromLatest(); 
+myConsumer.setStartFromTimestamp(...); 
+myConsumer.setStartFromGroupOffsets();
 
 DataStream<String> stream = env.addSource(myConsumer);
 ...
@@ -403,14 +391,14 @@ DataStream<String> stream = env.addSource(myConsumer);
 </TabItem>
 </Tabs>
 
-在`StreamX`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
+This setting is not recommended in `StreamX`, a more convenient way is provided by specifying `auto.offset.reset` in the configuration
 
-* `earliest` 从最早的记录开始
-* `latest` 从最新的记录开始
+* `earliest` consume from earliest record
+* `latest` consume from latest record
 
-### 指定分区Offset
+### Consume from the specified offset
 
-你也可以为每个分区指定 consumer 应该开始消费的具体 offset,只需要按照如下的配置文件配置`start.from`相关的信息即可
+You can also specify the offset to start consumption for each partition, simply by configuring the `start.from` related information in the following configuration file
 
 ```yaml
 kafka.source:
@@ -419,17 +407,17 @@ kafka.source:
   group.id: user_01
   auto.offset.reset: earliest # (earliest | latest)
   start.from:
-    timestamp: 1591286400000 #指定timestamp,针对所有的topic生效
-    offset: # 给topic的partition指定offset
+    timestamp: 1591286400000 # Specify timestamp to take effect for all topics
+    offset: # Specify an offset for the topic's partition
       topic: topic_abc,topic_123
-      topic_abc: 0:182,1:183,2:182 #分区0从182开始消费,分区1从183开始,分区2从182开始...
+      topic_abc: 0:182,1:183,2:182 # Partition 0 starts consumption from 182, partition 1 starts from 183, and partition 2 starts from 182...
       topic_123: 0:182,1:183,2:182
   ...
 ```
 
-### 指定deserializer
+### Specific deserializer
 
-默认不指定`deserializer`则在内部采用String的方式反序列化topic中的数据,可以手动指定`deserializer`,这样可以一步直接返回目标`DataStream`,具体完整代码如下
+If you do not specify `deserializer`, the data in the topic will be deserialized by using String by default. At the same time, you can also manually specify `deserializer`. The complete code is as follows
 
 <Tabs>
 <TabItem value="Scala" label="Scala">
@@ -525,17 +513,18 @@ class JavaUser implements Serializable {
 
 </Tabs>
 
-### 返回记录KafkaRecord
+### Return record Kafka Record
 
-返回的对象被包装在`KafkaRecord`中,`kafkaRecord`中有当前的`offset`,`partition`,`timestamp`等诸多有用的信息供开发者使用,其中`value`即返回的目标对象,如下图:
+The returned object is wrapped in a `KafkaRecord`, which has the current `offset`, `partition`, `timestamp` and many other useful information for developers to use, where `value` is the target object returned, as shown below:
+
 
 ![](/doc/image/streamx_kafkaapi.jpeg)
 
-### 指定strategy
+### Specific strategy
 
-在许多场景中,记录的时间戳是(显式或隐式)嵌入到记录本身中。此外,用户可能希望定期或以不规则的方式`Watermark`,例如基于`Kafka`流中包含当前事件时间的`watermark`的特殊记录。对于这些情况，`Flink Kafka Consumer`是允许指定`AssignerWithPeriodicWatermarks`或`AssignerWithPunctuatedWatermarks`
+In many case, the timestamp of the record is embedded (explicitly or implicitly) in the record itself. In addition, users may want to specify in a custom way, for example a special record in a `Kafka` stream containing a `watermark` of the current event time. For these cases, `Flink Kafka Consumer` is allowed to specify `AssignerWithPeriodicWatermarks` or `AssignerWithPunctuatedWatermarks`.
 
-在`StreamX`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
+In the `StreamX` run pass a `WatermarkStrategy` as a parameter to assign a `Watermark`, for example, parse the data in the `topic` as a `user` object, there is an `orderTime` in `user` which is a time type, we use this as a base to assign a `Watermark` to it
 
 <Tabs>
 
@@ -610,9 +599,6 @@ import java.util.Date;
 
 import static org.apache.flink.api.java.typeutils.TypeExtractor.getForClass;
 
-/**
- * @author benjobs
- */
 public class KafkaSourceStrategyJavaApp {
 
     public static void main(String[] args) {
@@ -659,13 +645,13 @@ class JavaUser implements Serializable {
 
 </Tabs>
 
-:::info 注意事项
-如果`watermark assigner`依赖于从`Kafka`读取的消息来上涨其`watermark`(通常就是这种情况),那么所有主题和分区都需要有连续的消息流。否则, **整个应用程序的`watermark`将无法上涨** ，所有基于时间的算子(例如时间窗口或带有计时器的函数)也无法运行。单个的`Kafka`分区也会导致这种反应。考虑设置适当的 **[`idelness timeouts`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/event_timestamps_watermarks.html#dealing-with-idle-sources)** 来缓解这个问题。
+:::info Cautions
+If the `watermark assigner` relies on messages read from `Kafka` to raise the `watermark` (which is usually the case), then all topics and partitions need to have a continuous stream of messages. Otherwise, **the application's `watermark` will not rise** and all time-based arithmetic (such as time windows or functions with timers) will not work. A single `Kafka` partition can also cause this reaction. Consider setting the appropriate **[`idelness timeouts`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/event_timestamps_watermarks.html#dealing-with-idle-sources)** to mitigate this problem.
 :::
 
 ## Kafka Sink (Producer)
 
-在`StreamX`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
+In `StreamX` the `Kafka Producer` is called `KafkaSink`, which allows messages to be written to one or more `Kafka topics`.
 
 <Tabs>
 
@@ -694,31 +680,31 @@ class JavaUser implements Serializable {
 
 </Tabs>
 
-`sink`是具体的写入数据的方法,参数列表如下
+`sink` is a specific method for writing data, and the list of parameters is as follows
 
-| 参数名 | 参数类型 |作用 | 默认值| 必须
-| :-----| :---- | :---- | :---- | :---- |
-| `stream` | DataStream[T] | 要写的数据流 |无|yes |
-| `alias` | String | `kafka`的实例别名 |无|no|
-| `serializationSchema` | SerializationSchema[T] | 写入的序列化器 |SimpleStringSchema|no|
-| `partitioner` | FlinkKafkaPartitioner[T] | kafka分区器 |KafkaEqualityPartitioner[T]|no|
+| Parameter Name | Parameter Type | Description            | Default                        | Required
+| :-----| :---- |:-----------------------|:-------------------------------| :---- |
+| `stream` | DataStream[T] | data stream to write   |                                |yes |
+| `alias` | String | `kafka` instance alias |                                |no|
+| `serializationSchema` | SerializationSchema[T] | serializer written     | SimpleStringSchema             |no|
+| `partitioner` | FlinkKafkaPartitioner[T] | kafka partitioner                | KafkaEqualityPartitioner[T]    |no|
 
 
-### 容错和语义
+### Fault Tolerance and Semantics
 
-启用 Flink 的 `checkpointing` 后，`KafkaSink` 可以提供`精确一次`的语义保证,具体开启`checkpointing`的设置请参考第二章关于[项目配置](/docs/development/conf/#checkpoints)部分
+After enabling Flink's `checkpointing`, `KafkaSink` can provide `once-exactly` semantic, please refer to Chapter 2 on [project configuration](/docs/development/conf/#checkpoints) for the specific setting of `checkpointing`.
 
-除了启用 Flink 的 checkpointing，你也可以通过将适当的 `semantic` 参数传递给 `KafkaSink` 来选择三种不同的操作模式
+In addition to enabling checkpointing for Flink, you can also choose from three different modes  by passing the appropriate `semantic` parameters to `KafkaSink`
 
 <div class="counter">
 
-* EXACTLY_ONCE  使用 Kafka 事务提供精确一次语义
-* AT_LEAST_ONCE 至少一次,可以保证不会丢失任何记录(但是记录可能会重复)
-* NONE Flink 不会有任何语义的保证，产生的记录可能会丢失或重复
+* EXACTLY_ONCE  Provide exactly-once semantics with Kafka transactions
+* AT_LEAST_ONCE At least once, it is guaranteed that no records will be lost (but records may be duplicated)
+* NONE Flink There is no guarantee of semantics, and the resulting records may be lost or duplicated
 
 </div>
 
-具体操作如下,只需要在`kafka.sink`下配置`semantic`即可
+configure `semantic` under the `kafka.sink`
 
 ```yaml
 kafka.sink:
@@ -729,38 +715,40 @@ kafka.sink:
     batch.size: 1
 ```
 
-<details>
-  
-<summary> kafka <code>EXACTLY_ONCE</code> 语义说明</summary>
+<details> 
 
-`Semantic.EXACTLY_ONCE`模式依赖于事务提交的能力。事务提交发生于触发 checkpoint 之前，以及从 checkpoint 恢复之后。如果从 Flink 应用程序崩溃到完全重启的时间超过了 Kafka 的事务超时时间，那么将会有数据丢失（Kafka 会自动丢弃超出超时时间的事务）。考虑到这一点，请根据预期的宕机时间来合理地配置事务超时时间。
+<summary> kafka <code>EXACTLY_ONCE</code> Semantic Description</summary>
 
-默认情况下，Kafka broker 将 transaction.max.timeout.ms 设置为 15 分钟。此属性不允许为大于其值的 producer 设置事务超时时间。 默认情况下，FlinkKafkaProducer 将 producer config 中的 transaction.timeout.ms 属性设置为 1 小时，因此在使用 Semantic.EXACTLY_ONCE 模式之前应该增加 transaction.max.timeout.ms 的值。
+The `Semantic.EXACTLY_ONCE` relies on the ability for transactions to be committed. Transaction commits occur before the checkpoint is triggered and after recovery from the checkpoint. If the time between a Flink application crash and a full restart exceeds Kafka's transaction timeout, then there will be caused data loss (Kafka automatically discards transactions that exceed the timeout). With this in mind, please configure the transaction timeout time based on the expected downtime.
 
-在 KafkaConsumer 的 read_committed 模式中，任何未结束（既未中止也未完成）的事务将阻塞来自给定 Kafka topic 的未结束事务之后的所有读取数据。 换句话说，在遵循如下一系列事件之后：
+By default, the Kafka broker sets transaction.max.timeout.ms to 15 minutes. This property does not allow setting the transaction timeout larger than producers value. By default, FlinkKafkaProducer sets the transaction.timeout.ms property in the producer config to 1 hour, so you should increase the transaction.max.timeout. ms before using Semantic.
+
+In the read_committed mode of KafkaConsumer, any uncompleted (neither aborted nor completed) transaction will block all reads after the uncompleted transaction from the given Kafka topic. In other words, after following the following sequence of events.
 
 <div class="counter">
 
-* 用户启动了 transaction1 并使用它写了一些记录
-* 用户启动了 transaction2 并使用它编写了一些其他记录
-* 用户提交了 transaction2
+* User started transaction1 and used it to write some records
+* User started transaction2 and used it to write some other records
+* User committed transaction2
 
 </div>
 
-即使 transaction2 中的记录已提交，在提交或中止 transaction1 之前，消费者也不会看到这些记录。这有 2 层含义：
 
-* 首先，在 Flink 应用程序的正常工作期间，用户可以预料 Kafka 主题中生成的记录的可见性会延迟，相当于已完成 checkpoint 之间的平均时间。
-* 其次，在 Flink 应用程序失败的情况下，此应用程序正在写入的供消费者读取的主题将被阻塞，直到应用程序重新启动或配置的事务超时时间过去后，才恢复正常。此标注仅适用于有多个 agent 或者应用程序写入同一 Kafka 主题的情况。
+Even if the records in transaction2 are committed, they will not be visible to the consumer until transaction1 is committed or aborted. This has 2 levels of implications.
 
-注意：`Semantic.EXACTLY_ONCE` 模式为每个 FlinkKafkaProducer 实例使用固定大小的 KafkaProducer 池。每个 checkpoint 使用其中一个 producer。如果并发 checkpoint 的数量超过池的大小，FlinkKafkaProducer 将抛出异常，并导致整个应用程序失败。请合理地配置最大池大小和最大并发 checkpoint 数量。
+* First, during normal operation of the Flink application, the user can expect a delay in the visibility of records, it equals to the average time between completed checkpoints.
+* Second, in the case of a failed Flink application, the topic written by this application will be blocked until the application is restarted or the configured transaction timeout has elapsed, and normalcy will resume. This annotation only applies multi agents or applications writing to the same Kafka topic.
 
-注意：`Semantic.EXACTLY_ONCE` 会尽一切可能不留下任何逗留的事务，否则会阻塞其他消费者从这个 Kafka topic 中读取数据。但是，如果 Flink 应用程序在第一次 checkpoint 之前就失败了，那么在重新启动此类应用程序后，系统中不会有先前池大小（pool size）相关的信息。因此，在第一次 checkpoint 完成前对 Flink 应用程序进行缩容，且并发数缩容倍数大于安全系数 FlinkKafkaProducer.SAFE_SCALE_DOWN_FACTOR 的值的话，是不安全的。
+Note: The `Semantic.EXACTLY_ONCE` mode uses a fixed size pool of KafkaProducers for each FlinkKafkaProducer instance. Each checkpoint uses one of the producers. If the number of concurrent checkpoints exceeds the pool size, FlinkKafkaProducer will throw an exception and cause the entire application to fail. Please configure the maximum pool size and the maximum number of concurrent checkpoints wisely.
+
+Note: `Semantic.EXACTLY_ONCE` will do everything possible to not leave any stay transactions that would otherwise block other consumers from reading data from this Kafka topic. However, if a Flink application fails before the first checkpoint, there will be no information about the previous pool size in the system after restarting such an application. Therefore, it is not safe to scale down a Flink application before the first checkpoint is completed and the concurrent number of scaling is greater than the value of the safety factor FlinkKafkaProducer.SAFE_SCALE_DOWN_FACTOR.
+
 
 </details>
 
-### 多实例kafka指定alias
+### Multiple instance kafka specifies alias
 
-如果写时有多个不同实例的kafka需要配置,同样采用`alias`来区别不用的kafka实例,配置如下:
+If there are multiple instances of kafka that need to be configured at the time of writing, used `alias` to distinguish between multi kafka instances, configured as follows:
 
 ```yaml
 kafka.sink:
@@ -777,7 +765,8 @@ kafka.sink:
         semantic: AT_LEAST_ONCE # EXACTLY_ONCE|AT_LEAST_ONCE|NONE
         batch.size: 1
 ```
-在写入的时候,需要手动指定`alias`,注意下`scala` api和`java` api在代码上稍有不同,`scala`直接在`sink`方法里指定参数,`java` api则是通过`alias()`方法来设置,其底层实现是完全一致的
+
+When writing data, you need to manually specify `alias`. Note that the `scala` api and `java` api are different in code. `scala` specifies parameters directly in the `sink` method, while the `java` api is It is set by the `alias()` method
 
 <Tabs>
 
@@ -807,11 +796,12 @@ kafka.sink:
 </Tabs>
 
 
-### 指定SerializationSchema
+### Specific SerializationSchema
 
-` Flink Kafka Producer` 需要知道如何将 Java/Scala 对象转化为二进制数据。 KafkaSerializationSchema 允许用户指定这样的schema, 相关操作方式和文档请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#the-serializationschema)
+`Flink Kafka Producer` needs know how to convert Java/Scala objects to binary data. KafkaSerializationSchema allows users to specify such a schema, please refer to the [official documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#the-serializationschema) for how to do this and documentation
 
-在`KafkaSink`里默认不指定序列化方式,采用的是`SimpleStringSchema`来进行序列化,这里开发者可以显示的指定一个自定义的序列化器,通过`serializationSchema`参数指定即可,例如,将`user`对象安装自定义的格式写入`kafka`
+In `KafkaSink`, the default serialization is not specified, and the `SimpleStringSchema` is used for serialization, where the developer can specify a custom serializer, specified by the `serializationSchema` parameter, for example, to write the `user` object to a custom format `kafka`
+
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -897,11 +887,12 @@ class JavaUser implements Serializable {
 </TabItem>
 </Tabs>
 
-### 指定SerializationSchema
+### Specific SerializationSchema
 
-` Flink Kafka Producer` 需要知道如何将 Java/Scala 对象转化为二进制数据。 KafkaSerializationSchema 允许用户指定这样的schema, 相关操作方式和文档请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#the-serializationschema)
+`Flink Kafka Producer` needs know how to convert Java/Scala objects to binary data. KafkaSerializationSchema allows users to specify such a schema, please refer to the [official documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#the-serializationschema) for how to do this and documentation
 
-在`KafkaSink`里默认不指定序列化方式,采用的是`SimpleStringSchema`来进行序列化,这里开发者可以显示的指定一个自定义的序列化器,通过`serializationSchema`参数指定即可,例如,将`user`对象安装自定义的格式写入`kafka`
+In `KafkaSink`, the default serialization is not specified, and the `SimpleStringSchema` is used for serialization, where the developer can specify a custom serializer, specified by the `serializationSchema` parameter, for example, to write the `user` object to a custom format `kafka`
+
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -988,12 +979,12 @@ class JavaUser implements Serializable {
 </Tabs>
 
 
-### 指定partitioner
+### specific partitioner
+`KafkaSink` allows you to specify a kafka partitioner, if you don't specify it, the default is to use `StreamX` built-in **KafkaEqualityPartitioner** partitioner, as the name, the partitioner can write data to each partition evenly, the `scala` api is set by the ` partitioner` parameter to set the partitioner,
+`java` api is set by `partitioner()` method
 
-`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`StreamX`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
-`java` api中是通过`partitioner()`方法来设置的
 
-:::tip 注意事项
-Flink Kafka Connector中默认使用的是 **FlinkFixedPartitioner** 分区器,该分区器需要特别注意`sink`的并行度和`kafka`的分区数,不然会出现往一个分区写
+:::tip Cautions
+The default partitioner used in Flink Kafka Connector is **FlinkFixedPartitioner**, which requires special attention to the parallelism of `sink` and the number of partitions of `kafka`, otherwise it will write to a partition
 :::
 
