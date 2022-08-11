@@ -31,11 +31,12 @@ Note: The Scala version of Flink and the Scala version of StreamX need to be con
 
 ### 2.Execute the Docker Compose build command
 ```
+cd deploy/docker
 docker-compose up -d
 ```
 ### 3.Login System
 
-Once the service is started, StreamX can be accessed through http://localhost:10000 and also through http://localhost:8081访问Flink. Accessing the StreamX link will redirect you to the login page, where the default user and password for StreamX are admin and streamx respectively. To learn more about the operation, please refer to the user manual for a quick start.
+Once the service is started, StreamX can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamX link will redirect you to the login page, where the default user and password for StreamX are admin and streamx respectively. To learn more about the operation, please refer to the user manual for a quick start.
 
 ### 4.Setting up Flink Home on StreamX Web Ui
 ```
