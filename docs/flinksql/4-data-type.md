@@ -1035,7 +1035,7 @@ COALESCE(TRY_CAST('non-number' AS INT), 0) --- 返回 INT NOT NULL 类型的 0
 | java.time.LocalDateTime  | TIMESTAMP(9)                |
 | java.time.OffsetDateTime | TIMESTAMP(9) WITH TIME ZONE |
 | java.time.Instant        | TIMESTAMP_LTZ(9)            |
-| java.time.Duration       | INVERVAL SECOND(9)          |
+| java.time.Duration       | INTERVAL SECOND(9)          |
 | java.time.Period         | INTERVAL YEAR(4) TO MONTH   |
 | byte[]                   | BYTES                       |
 | T[]                      | `ARRAY<T>`                  |
