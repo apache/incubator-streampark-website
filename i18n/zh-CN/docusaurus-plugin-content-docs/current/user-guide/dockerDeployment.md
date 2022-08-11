@@ -37,7 +37,7 @@ docker-compose up -d
 
 ### 4.在 StreamX Web Ui 上设置 Flink Home
 ```
-/streamx/flink/
+/streamx/flink/flink1.14.5/
 ```
 
 ### 5.启动远程会话集群
