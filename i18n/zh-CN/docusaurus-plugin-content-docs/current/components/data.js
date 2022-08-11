@@ -3,55 +3,55 @@ export default {
         {
             opt: '-t',
             longOpt: 'target',
-            desc: 'Deployment mode(only support yarn-per-job,application)',
+            desc: '部署方式(目前只支持yarn-per-job,application)',
             deprecated: false,
             value: ' yarn-per-job | application '
         },
-        {opt: '-d', longOpt: 'detached', desc: 'run as detached mode', deprecated: false, value: "true | false"},
+        {opt: '-d', longOpt: 'detached', desc: '是否以detached模式启动', deprecated: false, value: "true | false"},
         {
             opt: '-n',
             longOpt: 'allowNonRestoredState',
-            desc: 'allow to skip savepoint state that cannot be restored',
+            desc: '从savePoint恢复失败时是否允许跳过该步骤',
             deprecated: false,
             value: "true | false"
         },
         {
             opt: '-sae',
             longOpt: 'shutdownOnAttachedExit',
-            desc: 'If the job is submitted in attached, when job cancel close cluster',
+            desc: 'attached模式下任务停止时是否关闭集群',
             deprecated: false,
             value: "true | false"
         },
         {
             opt: '-m',
             longOpt: 'jobmanager',
-            desc: 'Address of the JobManager to which to connect',
+            desc: 'JobManager的连接地址',
             deprecated: false,
-            value: "yarn-cluster | address"
+            value: "yarn-cluster | 连接地址"
         },
-        {opt: '-p', longOpt: 'parallelism', desc: 'Program parallelism', deprecated: true, value: 'int'},
-        {opt: '-c', longOpt: 'class', desc: 'Class with the program entry point ("main()" method)', deprecated: true, value: 'String'},
+        {opt: '-p', longOpt: 'parallelism', desc: '程序并行度', deprecated: true, value: 'int'},
+        {opt: '-c', longOpt: 'class', desc: '程序的main方法的全名称', deprecated: true, value: 'String'},
     ],
     property: [
-        {name: '$internal.application.main', desc: 'Class with the program entry point ("main()" method)', required: true},
-        {name: 'pipeline.name', desc: 'Job name', required: true},
-        {name: 'yarn.application.queue', desc: 'YARN queue', required: false},
-        {name: 'taskmanager.numberOfTaskSlots', desc: 'Taskmanager slot number', required: false},
-        {name: 'parallelism.default', desc: 'Program parallelism', required: false}
+        {name: '$internal.application.main', desc: '程序的主类(main)的完整类名', required: true},
+        {name: 'yarn.application.name', desc: '程序的名称(YARN中显示的任务名称)', required: true},
+        {name: 'yarn.application.queue', desc: '在YARN中运行的队列名称', required: false},
+        {name: 'taskmanager.numberOfTaskSlots', desc: 'taskmanager Slot的数量', required: false},
+        {name: 'parallelism.default', desc: '程序的并行', required: false}
     ],
     memory: [
-        {group: 'JM heap Memory', name: 'jobmanager.memory.heap.size', desc: 'JobManager 的 JVM 堆内存'},
-        {group: 'JM Off-heap Memory', name: 'jobmanager.memory.off-heap.size', desc: 'JobManager 的堆外内存(直接内存或本地内存)'},
+        {group: 'JVM 堆内存', name: 'jobmanager.memory.heap.size', desc: 'JobManager 的 JVM 堆内存'},
+        {group: '堆外内存', name: 'jobmanager.memory.off-heap.size', desc: 'JobManager 的堆外内存(直接内存或本地内存)'},
         {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-metaspace.size', desc: 'Flink JVM进程的Metaspace'},
         {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-metaspace.size', desc: 'Flink JVM进程的Metaspace'},
         {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-overhead.min', desc: 'Flink JVM进程的Metaspace'},
-        {group: 'JVM Size', name: 'jobmanager.memory.jvm-metaspace.size', desc: '用于其他 JVM 开销的本地内存'},
-        {group: 'JVM Size', name: 'jobmanager.memory.jvm-overhead.max', desc: '用于其他 JVM 开销的本地内存'},
-        {group: 'JVM Size', name: 'jobmanager.memory.jvm-overhead.fraction', desc: '用于其他 JVM开销的本地内存'},
-        {group: 'Framework Heap Memory', name: 'taskmanager.memory.framework.heap.size', desc: '用于Flink 框架的JVM堆内存(进阶配置)'},
-        {group: 'Task Heap Memory', name: 'taskmanager.memory.task.heap.size', desc: '由Flink管理的用于排序,哈希表,缓存状态后端的本地内存'},
-        {group: 'Managed memory', name: 'taskmanager.memory.managed.size', desc: '用于其他 JVM 开销的本地内存'},
-        {group: 'Managed memory', name: 'taskmanager.memory.managed.fraction', desc: '用于其他 JVM 开销的本地内存'},
+        {group: 'JVM 开销', name: 'jobmanager.memory.jvm-metaspace.size', desc: '用于其他 JVM 开销的本地内存'},
+        {group: 'JVM 开销', name: 'jobmanager.memory.jvm-overhead.max', desc: '用于其他 JVM 开销的本地内存'},
+        {group: 'JVM 开销', name: 'jobmanager.memory.jvm-overhead.fraction', desc: '用于其他 JVM开销的本地内存'},
+        {group: '框架堆内存', name: 'taskmanager.memory.framework.heap.size', desc: '用于Flink 框架的JVM堆内存(进阶配置)'},
+        {group: '任务堆内存', name: 'taskmanager.memory.task.heap.size', desc: '由Flink管理的用于排序,哈希表,缓存状态后端的本地内存'},
+        {group: '托管内存', name: 'taskmanager.memory.managed.size', desc: '用于其他 JVM 开销的本地内存'},
+        {group: '托管内存', name: 'taskmanager.memory.managed.fraction', desc: '用于其他 JVM 开销的本地内存'},
         {
             group: '框架堆外内存',
             name: 'taskmanager.memory.framework.off-heap.size',

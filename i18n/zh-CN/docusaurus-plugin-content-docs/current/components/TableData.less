@@ -1,0 +1,72 @@
+.table-data {
+  font-size: 14px;
+
+  th, td {
+    padding: 0.6rem
+  }
+
+  .icon-check {
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
+    background: url(icon/check.svg) center no-repeat;
+    background-size: 20px 20px;
+  }
+
+  .icon-times {
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 5px;
+    width: 25px;
+    height: 25px;
+    background: url(icon/times.svg) center no-repeat;
+    background-size: 25px 25px;
+  }
+
+  .icon-toggle-on {
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 8px;
+    width: 30px;
+    height: 30px;
+    background: url(icon/toggle_on.svg) center no-repeat;
+    background-size: 30px 30px;
+  }
+
+  .icon-toggle-off {
+    position: absolute;
+    margin-top: -13px;
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    background: url(icon/toggle_off.svg) center no-repeat;
+    background-size: 30px 30px;
+  }
+
+  .icon-copy {
+    float: right;
+    width: 20px;
+    height: 20px;
+    background: url(icon/copy.svg) center no-repeat;
+    cursor: pointer;
+    background-size: 20px 20px;
+  }
+}
+
+.cpt-toast-wrapper {
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  top: 10%;
+}
+
+.cpt-toast {
+  padding: 3px 5px;
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, .5);
+  color: #fff;
+  font-size: 14px;
+}
