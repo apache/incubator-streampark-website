@@ -39,7 +39,7 @@ Once the service is started, StreamX can be accessed through http://localhost:10
 
 ### 4.Setting up Flink Home on StreamX Web Ui
 ```
-/streamx/flink/
+/streamx/flink/flink1.14.5/
 ```
 
 ### 5.Starting a remote session cluster
