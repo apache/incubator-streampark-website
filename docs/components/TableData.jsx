@@ -5,7 +5,7 @@ import Toast from './Toast'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 const alertCopy = () => {
-    Toast.success('复制成功 🎉')
+    Toast.success('Copy succeeded 🎉')
 }
 
 const ClientOption = () => {
@@ -14,11 +14,11 @@ const ClientOption = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td style={{width: '80px'}}>短参数</td>
-                    <td>完整参数(前缀"--")</td>
-                    <td style={{width: '60px'}}>有效</td>
-                    <td>取值范围值或类型</td>
-                    <td>作用描述</td>
+                    <td style={{width: '80px'}}>Short Param</td>
+                    <td>Full Param(prefix"--")</td>
+                    <td style={{width: '60px'}}>Effective</td>
+                    <td>Value & Type</td>
+                    <td>Description</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,7 +56,7 @@ const ClientProperty = () => {
                 <tr>
                     <td>Key</td>
                     <td>Description</td>
-                    <td>是否必须</td>
+                    <td>Required</td>
                 </tr>
                 </thead>
                 <tbody>
