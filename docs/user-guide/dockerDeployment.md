@@ -1,50 +1,53 @@
 ---
 id: 'docker-deployment'
-title: 'Docker 快速使用教程'
+title: 'Docker Quick Tutorial'
 sidebar_position: 4
 ---
 
-本教程使用docker-compose方式通过 Docker 完成StreamX的部署。
-## 前置条件
+This tutorial uses the docker-compose method to deploy StreamX via Docker.
+## Prepare
     Docker 1.13.1+
     Docker Compose 1.28.0+
-## 使用 docker-compose 启动服务
+## Using docker-compose to Start Server
 
-使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)，链接适用于 Mac，Linux，Windows。
+To start the service with docker-compose, you need to install [docker-compose](https://docs.docker.com/compose/install/)，first, the link is available for Mac, Linux, Windows.
 
-安装完成 docker-compose 后我们需要修改部分配置以便能更好体验 StreamX 服务，我们需要配置不少于 4GB 的内存：
+After installing docker-compose, we need to modify some of the configurations to better experience the StreamX service, we need to configure at least 4GB of memory.
 
-    Mac：点击 Docker Desktop -> Preferences -> Resources -> Memory 调整内存大小
+    Mac：Click Docker Desktop -> Preferences -> Resources -> Memory modified it
     Windows Docker Desktop：
-        Hyper-V 模式：点击 Docker Desktop -> Settings -> Resources -> Memory 调整内存大小
-        WSL 2 模式 模式：参考 WSL 2 utility VM 调整内存大小
+        Hyper-V mode: Click Docker Desktop -> Settings -> Resources -> Memory modified it
+        WSL 2 mode: see WSL 2 utility VM for more detail.
 
-完成配置后，我们可以从下载页面获取StreamX文件的源包，并确保您获得正确的版本。下载软件包后，您可以运行以下命令。
 
-### 1.通过 mvn 构建
+After completing the configuration, we can get the source package of StreamX files from the download page and make sure you get the correct version. 
+After downloading the package, you can run the following command.
+
+### 1.Build via mvn
 ```
 ./build.sh
 ```
-注意：Flink的Scala版本和StreamX的Scala版本需要保持一致，本次构建请选择Scala 2.12。
+Note: The Scala version of Flink and the Scala version of StreamX need to be consistent, please choose Scala 2.12 for this build.
 
-### 2.执行 Docker Compose 构建命令
+### 2.Execute the Docker Compose build command
 ```
 docker-compose up -d
 ```
-### 3.登陆系统
+### 3.Login System
 
-服务启动后，可以通过 http://localhost:10000 访问 StreamX，同时也可以通过 http://localhost:8081访问Flink。访问StreamX链接后会跳转到登陆页面，StreamX 默认的用户和密码分别为 admin 和 streamx。想要了解更多操作请参考用户手册快速上手。
+Once the service is started, StreamX can be accessed through http://localhost:10000 and also through http://localhost:8081访问Flink. Accessing the StreamX link will redirect you to the login page, where the default user and password for StreamX are admin and streamx respectively. To learn more about the operation, please refer to the user manual for a quick start.
 
-### 4.在 StreamX Web Ui 上设置 Flink Home
+### 4.Setting up Flink Home on StreamX Web Ui
 ```
 /streamx/flink/
 ```
 
-### 5.启动远程会话集群
+### 5.Starting a remote session cluster
 
-进入StreamX web ui点击Setting->Flink Cluster 创建一个remote (standalone)模式的集群。
+Go to StreamX web ui and click Setting->Flink Cluster to create a remote (standalone) mode cluster.
 
-tips：mac电脑获取flink的真实ip地址,可以通过ifconfig。
-### 6.完成以上步骤，进行Flink任务提交
+tips: mac computer to get the real ip address of flink, can be through ifconfig.
 
-在StreamX web ui点击Application->Add New 创建一个remote (standalone)模式提交。
+### 6.Complete the above steps and perform a Flink task submission
+
+In the StreamX web ui click Application->Add New to create a remote (standalone) mode submission.

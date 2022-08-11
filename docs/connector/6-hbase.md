@@ -7,20 +7,25 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[HBase](https://hbase.apache.org/book.html)是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server
-上搭建起大规模结构化存储集群。 HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase基于列的而不是基于行的模式。
+[HBase](https://hbase.apache.org/book.html) is a highly reliable, high-performance, column-oriented, and scalable distributed storage system. Using HBase technology,
+large-scale structured storage clusters can be built on cheap PC Servers. Unlike general relational databases,
+HBase is a database suitable for unstructured data storage because HBase storage is based on a column rather than a row-based schema.
 
-flink官方未提供Hbase DataStream的连接器。StreamX 基于`Hbase-client`封装了HBaseSource、HBaseSink,支持依据配置自动创建连接，简化开发。
-StreamX 读取Hbase在开启chekpoint情况下可以记录读取数据的最新状态，通过数据本身标识可以恢复source对应偏移量。实现source端AT_LEAST_ONCE(至少一次语义)。  
-HbaseSource 实现了flink Async I/O，用于提升streaming的吞吐量，sink端默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE()精确一次语义。
+Flink does not officially provide a connector for Hbase DataStream. StreamX encapsulates HBaseSource and HBaseSink based on `Hbase-client`. 
+It supports automatic connection creation based on configuration and simplifies development. StreamX reading Hbase can record the latest status of the read data when the checkpoint is enabled, 
+and the offset corresponding to the source can be restored through the data itself. Implement source-side AT_LEAST_ONCE.
 
-:::tip 提示
-StreamX 读取HBASE在开启chekpoint情况下可以记录读取数据的最新状态，作业恢复后从是否可以恢复之前状态完全取决于数据本身是否有偏移量的标识，需要在代码手动指定。
-在HBaseSource的getDataStream方法func参数指定恢复逻辑。
+HbaseSource implements Flink Async I/O to improve streaming throughput. The sink side supports AT_LEAST_ONCE by default. 
+EXACTLY_ONCE is supported when checkpointing is enabled.
+
+:::tip hint
+StreamX reading HBASE can record the latest state of the read data when checkpoint is enabled.
+Whether the previous state can be restored after the job is resumed depends entirely on whether the data itself has an offset identifier,
+which needs to be manually specified in the code. The recovery logic needs to be specified in the func parameter of the getDataStream method of HBaseSource.
 :::
 
-## HBase写入依赖
-HBase Maven依赖
+## Dependency of HBase writing
+HBase Maven Dependency
 ```xml
 <dependency>
 <groupId>org.apache.hbase</groupId>
@@ -37,12 +42,12 @@ HBase Maven依赖
 </dependency>
 ```
 
-## 常规方式写入读取Hbase
-### 1.创建库表
+## Regular way to write and read Hbase
+### 1.Create database and table
      create 'Student', {NAME => 'Stulnfo', VERSIONS => 3}, {NAME =>'Grades', BLOCKCACHE => true} 
-### 2.写入读取demo
+### 2.Write demo and Read demo
 <Tabs>
-<TabItem value="读取数据" default>
+<TabItem value="read data" default>
 
 ```java
 
@@ -122,7 +127,7 @@ class HBaseReader extends RichSourceFunction<String> {
 ```
 </TabItem>
 
-<TabItem value="写入数据" default>
+<TabItem value="data input" default>
 
 ```java
 import com.zhisheng.common.utils.ExecutionEnvUtil;
@@ -142,7 +147,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Desc: 读取流数据，然后写入到 HBase
+ * Desc: Read stream data, then write to HBase
  */
 @Slf4j
 public class HBaseStreamWriteMain {
@@ -175,10 +180,10 @@ public class HBaseStreamWriteMain {
 }
 
 /**
- * 写入HBase
- * 继承RichSinkFunction重写父类方法
- * <p>
- * 写入hbase时500条flush一次, 批量插入, 使用的是writeBufferSize
+Write to HBase
+  Inherit RichSinkFunction to override the parent class method
+  <p>
+  When writing to hbase, 500 items are flushed once, inserted in batches, using writeBufferSize
  */
 class HBaseWriter extends RichSinkFunction<String> {
     private static final Logger logger = LoggerFactory.getLogger(HBaseWriter.class);
@@ -234,11 +239,13 @@ class HBaseWriter extends RichSinkFunction<String> {
 
 </Tabs>
 
-以方式读写Hbase较繁琐，非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置Hbase连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+Reading and writing HBase in this way is cumbersome and inconvenient. `StreamX` follows the concept of convention over configuration and automatic configuration. 
+Users only need to configure Hbase connection parameters and Flink operating parameters. StreamX will automatically assemble source and sink, 
+which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## StreamX 读写 Hbase
+## write and read Hbase with StreamX
 
-### 1. 配置策略和连接信息
+### 1. Configure policies and connection information
 
 ```yaml
 # hbase
@@ -251,11 +258,12 @@ hbase:
 
 ```
 
-### 2. 读写入Hbase
-用 StreamX 写入Hbase非常简单,代码如下:
+### 2. Read and write Hbase
+
+Writing to Hbase with StreamX is very simple, the code is as follows:
 
 <Tabs>
-<TabItem value="读取HBase">
+<TabItem value="read HBase">
 
 ```scala
 
@@ -280,9 +288,9 @@ object HBaseSourceApp extends FlinkStreaming {
     val id = HBaseSource().getDataStream[String](query => {
         new HBaseQuery("person", new Scan())
     },
-      //以下方法决定从checkpoint恢复偏移量的逻辑
+      //The following methods determine the logic for restoring offsets from checkpoints
       r => new String(r.getRow), null)
-//flink Async I/O 
+     //flink Async I/O 
     HBaseRequest(id).requestOrdered(x => {
       new HBaseQuery("person", new Get(x.getBytes()))
     }, (a, r) => {
@@ -312,7 +320,7 @@ object HBaseSourceApp extends FlinkStreaming {
 ```
 </TabItem>
 
-<TabItem value="写入HBase">
+<TabItem value="write HBase">
 
 ```scala
 import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
@@ -342,23 +350,22 @@ object HBaseSinkApp extends FlinkStreaming {
     }
     //source ===> trans ===> sink
 
-    //1）插入方式1
+    //1）INSERT WAY 1
     HBaseSink().sink[TestEntity](source, "order")
     //2) 插入方式2
-    //1.指定HBase 配置文件
+    //1.Specify the HBase configuration file
     implicit val prop = ConfigUtils.getHBaseConfig(context.parameter.toMap)
-    //2.插入...
+    //2.break in...
     source.writeUsingOutputFormat(new HBaseOutputFormat[TestEntity]("order", entry2Put))
-
-
   }
-
 }
 ```
 </TabItem>
 </Tabs>
 
-StreamX 写入Hbase 需要创建HBaseQuery的方法、指定将查询结果转化为需要对象的方法、标识是否在运行、传入运行参数。具体如下：
+When StreamX writes to HBase, you need to create the method of HBaseQuery,
+specify the method to convert the query result into the required object, identify whether it is running, 
+and pass in the running parameters. details as follows
 ```scala
 /**
  * @param ctx
@@ -367,11 +374,11 @@ StreamX 写入Hbase 需要创建HBaseQuery的方法、指定将查询结果转�
 class HBaseSource(@(transient@param) val ctx: StreamingContext, property: Properties = new Properties()) {
 
   /**
-   * @param query   指定创建HBaseQuery的方法
-   * @param func    查询结果转化为期望对方方法
-   * @param running 运行标识
-   * @param prop    作业参数
-   * @tparam R  返回类型
+   * @param query   Specify the method to create H Base Query
+   * @param func    The query results are converted into the expected counterparty method
+   * @param running runID
+   * @param prop    Job parameters
+   * @tparam R  
    * @return
    */
   def getDataStream[R: TypeInformation](query: R => HBaseQuery,
@@ -384,8 +391,8 @@ class HBaseSource(@(transient@param) val ctx: StreamingContext, property: Proper
 
 }
 ```
-StreamX HbaseSource 实现了flink Async I/O 用于提升Streaming的吞吐量，先创建 DataStream 然后创建 HBaseRequest 调用 
-requestOrdered（） 或者 requestUnordered（） 创建异步流，建如下代码：
+StreamX HbaseSource implements flink Async I/O, which is used to improve the throughput of Streaming: first create a DataStream,
+then create an HBaseRequest and call requestOrdered() or requestUnordered() to create an asynchronous stream, as follows:
 ```scala
 class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: DataStream[T], property: Properties = new Properties()) {
 
@@ -423,19 +430,19 @@ class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: Da
 
 }
 ```
-Stramx支持两种方式写入数据：1.addSink() 2. writeUsingOutputFormat 样例如下：
+Stramx supports two ways to write data: 1. addSink() 2. writeUsingOutputFormat Examples are as follows:
 ```scala
-    //1）插入方式1
+    //1）Insert way 1
     HBaseSink().sink[TestEntity](source, "order")
-    //2) 插入方式2
-    //1.指定HBase 配置文件
+    //2) insert way 2
+    //1.Specify the HBase configuration file
     implicit val prop = ConfigUtils.getHBaseConfig(context.parameter.toMap)
-    //2.插入...
+    //
     source.writeUsingOutputFormat(new HBaseOutputFormat[TestEntity]("order", entry2Put))
 ```
 
 
 
-## 其他配置
+## Other configuration
 
-其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+All other configurations must comply with the StreamX configuration. For specific configurable items and the role of each parameter, please refer to the 【project configuration](/docs/development/conf)
