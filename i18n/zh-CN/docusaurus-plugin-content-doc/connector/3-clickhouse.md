@@ -8,18 +8,16 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[ClickHouse](https://clickhouse.com/) is a columnar database management system (DBMS) for online analytics (OLAP).
-Currently, Flink does not officially provide a connector for writing to ClickHouse and reading from ClickHouse.
-Based on the access form supported by [ClickHouse - HTTP client](https://clickhouse.com/docs/zh/interfaces/http/)
-and [JDBC driver](https://clickhouse.com/docs/zh/interfaces/jdbc), StreamX encapsulates ClickHouseSink for writing data to ClickHouse in real-time.
+[ClickHouse](https://clickhouse.com/)是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS)，主要面向OLAP场景。目前flink官方未提供写入
+读取clickhouse数据的连接器。StreamX 基于ClickHouse 支持的访问形式[HTTP客户端](https://clickhouse.com/docs/zh/interfaces/http/)、
+[JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)封装了ClickHouseSink用于向clickhouse实时写入数据。
 
-`ClickHouse` writes do not support transactions, using JDBC write data to it could provide (AT_LEAST_ONCE) semanteme. Using the HTTP client to write asynchronously,
-it will retry the asynchronous write multiple times. The failed data will be written to external components (Kafka, MySQL, HDFS, HBase),
-the data will be restored manually to achieve final data consistency.
+`ClickHouse`写入不支持事务，使用 JDBC 向其中写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。使用 HTTP客户端 异步写入，对异步写入重试多次
+失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据，实现最终数据一致。
 
-## JDBC synchronous write
+## JDBC 同步写入
 
-[ClickHouse](https://clickhouse.com/)provides a [JDBC driver](https://clickhouse.com/docs/zh/interfaces/jdbc/),JDBC driver package of ClickHouse need to be import first
+[ClickHouse](https://clickhouse.com/)提供了[JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/),需要先导入clickhouse的jdbc驱动包
 
 ```xml
 <dependency>
@@ -29,9 +27,9 @@ the data will be restored manually to achieve final data consistency.
 </dependency>
 ```
 
-### Write in the normal way
+### 常规方式写入
 
-The conventional way to create a clickhouse jdbc connection:
+常规方式下创建clickhouse jdbc连接的方式如下:
 
 <TabItem value="Java" label="Java">
 
@@ -63,30 +61,31 @@ public class ClickHouseUtil {
 ```
 </TabItem>
 
-The method of splicing various parameters into the request url is cumbersome and hard-coded, which is very inflexible.
+以上将各项参数拼接为请求 url 的方式较繁琐，并且是硬编码的方式写死的,非常的不灵敏.
 
-### Write with StreamX
+### StreamX 方式写入
 
-To access `ClickHouse` data with `StreamX`, you only need to define the configuration file in the specified format and then write code.
-The configuration and code are as follows. The configuration of `ClickHose JDBC` in `StreamX` is in the configuration list, and the sample running program is scala
+用`StreamX`接入 `clickhouse`的数据, 只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
-#### configuration list
+#### 配置信息
 
 ```yaml
 clickhouse:
   sink:
+    #写入节点地址
     jdbcUrl: jdbc:clickhouse://127.0.0.1:8123,192.168.1.2:8123
     socketTimeout: 3000000
     database: test
     user: $user
     password: $password
+    #写入结果表及对应的字段，全部可不指定字段
     targetTable: orders(userId,siteId)
     batch:
       size: 1000
       delaytime: 6000000
 ```
 
-#### Write to ClickHouse
+#### 写入clickhouse
 
 <Tabs>
 <TabItem value="Scala" label="Scala">
@@ -99,6 +98,7 @@ import org.apache.flink.api.scala._
 object ClickHouseSinkApp extends FlinkStreaming {
 
   override def handle(): Unit = {
+    //要写出的表结构(在clickhosue中已经存在)
     val createTable =
       """
         |create TABLE test.orders(
@@ -113,9 +113,11 @@ object ClickHouseSinkApp extends FlinkStreaming {
         |)ENGINE = TinyLog;
         |""".stripMargin
 
+    // 1) 接入数据源
     val source = context.addSource(new TestSource)
 
 
+    // 2) 写出数据
      ClickHouseSink().syncSink[TestEntity](source)(x => {
          s"(${x.userId},${x.siteId})"
      }).setParallelism(1)
@@ -128,34 +130,33 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 </TabItem>
 </Tabs>
 
-:::tip hint
-ClickHouse can support balanced writing of multiple nodes, you only need to configure writable nodes in JDBC URL  
-Since ClickHouse has a relatively high delay for single insertion, it is recommended to set the batch.
-size to insert data in batches to improve performance. At the same time, to improve real-time performance,
-it supports batch writing according to data volume or interval time.  
-In the implementation of ClickHouseSink, if the number of the last batch of data is less than BatchSize, the remaining data will be inserted when the connection is closed.
+:::tip 提示
+clickhouse 可支持多个节点均衡写入，只需在jdbcUrl配置可写入的节点即可<br></br>
+由于ClickHouse单次插入的延迟比较高，建议设置 batch.size 来批量插入数据提高性能,同时为了提高实时性，
+支持按照数据量或者间隔时间 batch.delaytime 来批次写入<br></br>
+在ClickHouseSink的实现中，若最后一批数据的数目不足BatchSize，则会在关闭连接时候插入剩余数据
 :::
 
-## HTTP async write
+## HTTP 异步写入
 
-In the case of a small amount of data, you can use JDBC to connect and write data. In actual production，is more using async HTTP to write data more efficiently and quickly.
+jdbc的方式连接写入数据,在数据量较小的情况下可以采用,而在实际生产中更多的是采用async http的方式更高效的,更快速的写入
 
-### Write in the normal way
+### 常规方式写入
 
-Clickhouse INSERT must insert data through the POST method. The general operation is as follows:
+clickhouse INSERT 必须通过POST方法来插入数据 常规操作如下：
+
 ```bash
 $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data-binary @-
 ```
 
-The operation of the above method is relatively simple. Sure java could also be used for writing. StreamX adds many functions to the http post writing method,
-including encapsulation enhancement, adding cache, asynchronous writing, failure retry, and data backup after reaching the retry threshold，
-To external components (kafka, mysql, hdfs, hbase), etc., the above functions only need to define the configuration file in the prescribed format,
-and write the code.
+上述方式操作较简陋，当然也可以使用java 代码来进行写入, StreamX 对 http post 写入方式进行封装增强，增加缓存、异步写入、失败重试、达到重试阈值后数据备份至外部组件（kafka,mysql,hdfs,hbase）
+等功能，以上功能只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
-### Write to ClickHouse
+### StreamX 方式写入
 
-The configuration of `ClickHose JDBC` in `StreamX` is in the configuration list, and the sample running program is scala, as follows:
-asynchttpclient is used as an HTTP asynchronous client for writing. first, import the jar of asynchttpclient
+在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
+
+这里采用asynchttpclient作为http异步客户端来进行写入,先导入 asynchttpclient 的jar
 
 ```xml
 <!--clickhouse async need asynchttpclient -->
@@ -166,7 +167,7 @@ asynchttpclient is used as an HTTP asynchronous client for writing. first, impor
 </dependency>
 ```
 
-#### Asynchronous write configuration and failure recovery component configuration
+#### 异步写入配置及失败恢复组件配置
 
 ```yaml
 
@@ -183,18 +184,18 @@ clickhouse:
       delaytime: 60000
     threshold:
       bufferSize: 10
-      #      Concurrent number of asynchronous writes
+      #      异步写入的并发数
       numWriters: 4
-      #      cache queue size
+      #      缓存队列大小
       queueCapacity: 100
       delayTime: 10
       requestTimeout: 600
       retries: 1
-      #      success response code
+      #      成功响应码
       successCode: 200
     failover:
       table: chfailover
-      #     After reaching the maximum number of failed writes, the components of the data backup
+      #      达到失败最大写入次数后，数据备份的组件
       storage: kafka #kafka|mysql|hbase|hdfs
       mysql:
         driverClassName: com.mysql.cj.jdbc.Driver
@@ -214,7 +215,7 @@ clickhouse:
         namenode: hdfs://localhost:8020
         user: hdfs
 ```
-#### Write to clickhouse
+#### 写入clickhouse
 
 <Tabs>
 <TabItem value="Scala" label="Scala">
@@ -247,7 +248,7 @@ object ClickHouseSinkApp extends FlinkStreaming {
     val source = context.addSource(new TestSource)
 
 
-    // asynchronous write
+    // 异步写入
     ClickHouseSink().sink[TestEntity](source)(x => {
       s"(${x.userId},${x.siteId})"
     }).setParallelism(1)
@@ -261,19 +262,12 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 </TabItem>
 </Tabs>
 
-:::info warn
-Due to the high latency of single insertion of ClickHouse, partitions will be merged too frequently by the ClickHouse server,
-because of frequent writing of small data.It is recommended to use the asynchronous submission method and set a reasonable threshold to improve performance.
-
-Since ClickHouse will re-add data to the cache queue when asynchronous writing fails, it may cause the same window of data to be written in two batches.
-It is recommended to fully test the stability of ClickHouse in scenarios with high real-time requirements.
-
-After the asynchronous write data reaches the maximum retry value, the data will be backed up to the external component,
-and the component connection will be initialized at this time. It is recommended to ensure the availability of the failover component.  
+:::info 警告
+由于ClickHouse单次插入的延迟比较高，小数据量频繁写入会造成clickhouse server 频繁排序合并分区，建议使用异步提交方式，设置合理阈值提高性能<br></br>
+由于ClickHouse 异步写入失败会重新将数据添加至缓存队列，可能造成同一窗口数据分两批次写入，实时性要求高的场景建议全面测试clickhouse的稳定性<br></br>
+异步写入数据达到重试最大值后，会将数据备份至外部组件，在此时才会初始化组件连接，建议确保 failover 组件的可用性
 :::
 
-## Other configuration
+## 其他配置
 
-All other configurations must comply with the **ClickHouseDataSource** connection pool configuration.
-For specific configurable items and the role of each parameter, please refer to the `ClickHouse-JDBC` [official website documentation](https://github.com/ClickHouse/clickhouse-jdbc).
-
+其他的所有的配置都必须遵守 **ClickHouseDataSource** 连接池的配置,具体可配置项和各个参数的作用请参考`clickhouse-jdbc`[官网文档](https://github.com/ClickHouse/clickhouse-jdbc).
