@@ -1,6 +1,6 @@
 ---
 id: 'intro'
-title: '框架介绍'
+title: 'What is StreamX'
 sidebar_position: 1
 ---
 

@@ -5,7 +5,7 @@ import Toast from './Toast'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
 const alertCopy = () => {
-    Toast.success('复制成功 🎉')
+    Toast.success('Copy succeeded 🎉')
 }
 
 const ClientOption = () => {
@@ -14,11 +14,11 @@ const ClientOption = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td style={{width: '80px'}}>短参数</td>
-                    <td>完整参数(前缀"--")</td>
-                    <td style={{width: '60px'}}>有效</td>
-                    <td>取值范围值或类型</td>
-                    <td>作用描述</td>
+                    <td style={{width: '80px'}}>Short Param</td>
+                    <td>Full Param(prefix"--")</td>
+                    <td style={{width: '60px'}}>Effective</td>
+                    <td>Value & Type</td>
+                    <td>Description</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -54,9 +54,9 @@ const ClientProperty = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>参数名称</td>
-                    <td>作用描述</td>
-                    <td>是否必须</td>
+                    <td>Key</td>
+                    <td>Description</td>
+                    <td>Required</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -96,8 +96,8 @@ const ClientMemory = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td style={{width: '380px'}}>参数名称</td>
-                    <td>作用描述</td>
+                    <td style={{width: '380px'}}>Key</td>
+                    <td>Description</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -128,9 +128,9 @@ const ClientTotalMem = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>TaskManager 配置参数</td>
-                    <td>JobManager 配置参数</td>
+                    <td>Item</td>
+                    <td>TaskManager Config</td>
+                    <td>JobManager Config</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -167,9 +167,9 @@ const ClientCheckpoints = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>作用描述</td>
-                    <td>参数值或类型</td>
+                    <td>Item</td>
+                    <td>Description</td>
+                    <td>Value | Type</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -195,10 +195,10 @@ const ClientBackend = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>作用描述</td>
-                    <td>参数值或类型</td>
-                    <td>在哪种类型下有效</td>
+                    <td>Item</td>
+                    <td>Description</td>
+                    <td>Value | Type</td>
+                    <td>Effective rules</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -231,9 +231,9 @@ const ClientFixedDelay = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>作用描述</td>
-                    <td>参数值或单位</td>
+                    <td>Item</td>
+                    <td>Description</td>
+                    <td>Value | Unit</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -265,9 +265,9 @@ const ClientFailureRate = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>作用描述</td>
-                    <td>参数值或单位</td>
+                    <td>Item</td>
+                    <td>Description</td>
+                    <td>Value | Unit</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -299,9 +299,9 @@ const ClientTables = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>配置项</td>
-                    <td>作用描述</td>
-                    <td>参数值</td>
+                    <td>Item</td>
+                    <td>Description</td>
+                    <td>Value</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -333,10 +333,10 @@ const ClientEnvs = () => {
             <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
                 <thead>
                 <tr>
-                    <td>要求</td>
-                    <td>版本</td>
-                    <td>是否必须</td>
-                    <td>其他事项</td>
+                    <td>Item</td>
+                    <td>Version</td>
+                    <td>Required</td>
+                    <td>Other</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -351,9 +351,9 @@ const ClientEnvs = () => {
                                 {
                                     item.required
                                         ?
-                                        <span className="icon-toggle-on" title="必须"></span>
+                                        <span className="icon-toggle-on" title="Required"></span>
                                         :
-                                        <span className="icon-toggle-off" title="可选"></span>
+                                        <span className="icon-toggle-off" title="Optional"></span>
                                 }
                             </td>
                             <td>{item.other}</td>
