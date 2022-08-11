@@ -7,57 +7,74 @@ sidebar_position: 1
 # StreamX
 make stream processing easier!!!
 
-> 一个神奇的框架,让流处理更简单
+> An amazing framework makes stream processing easier.
 
-## 🚀 什么是StreamX
+## 🚀 What is StreamX
 
-实时即未来,在实时处理流域 `Apache Spark` 和 `Apache Flink` 是一个伟大的进步,尤其是`Apache Flink`被普遍认为是下一代大数据流计算引擎, 我们在使用 `Flink` & `Spark` 时发现从编程模型, 启动配置到运维管理都有很多可以抽象共用的地方, 我们将一些好的经验固化下来并结合业内的最佳实践, 通过不断努力终于诞生了今天的框架 —— `StreamX`, 项目的初衷是 —— 让流处理更简单,
-使用`StreamX`开发,可以极大降低学习成本和开发门槛, 让开发者只用关心最核心的业务,`StreamX` 规范了项目的配置,鼓励函数式编程,定义了最佳的编程方式,提供了一系列开箱即用的`Connectors`,标准化了配置、开发、测试、部署、监控、运维的整个过程, 提供了`scala`和`java`两套api,
-其最终目的是打造一个一站式大数据平台,流批一体,湖仓一体的解决方案
+`StreamX` is an easy-to-use and comprehensive one-stop stream processing framework with a visual interface platform based on the web,
+it is characterized by simplicity, fast, and convenience. The entire process of stream processing tasks will be extremely convenient by using StreamX,
+which includes configuration, development, testing, deployment, monitoring, operation, and maintenance. 
+It not only simplifies the process of developing streaming tasks through a well-designed programming model but also supports complex projects and a large number of task management.
+
 
 <video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
 
-## 🎉 Features
+## Why StreamX
 
-* 开发脚手架
-* 多版本Flink支持(1.11、1.12、1.13、1.14、1.15)
-* 一系列开箱即用的connectors
-* 支持项目编译功能(maven 编译)
-* 在线参数配置
-* 支持`Application` 模式, `Yarn-Per-Job`模式启动
-* 快捷的日常操作(任务`启动`、`停止`、`savepoint`以及从`savepoint`恢复)
-* 支持火焰图
-* 支持`notebook`(在线任务开发)
-* 项目配置和依赖版本化管理
-* 支持任务备份、回滚(配置回滚)
-* 在线管理依赖(maven pom)和自定义jar
-* 自定义udf、连接器等支持
-* Flink SQL WebIDE
-* 支持catalog、hive
-* 任务运行失败发送告警邮件（支持钉钉、微信、邮件、飞书等）
-* 支持失败重启重试  
-* 从任务`开发`阶段到`部署管理`全链路支持
+StreamX standardizes the entire process of a project from configuration to development, testing, 
+deployment, monitoring, and operation and maintenance. It encourages functional programming, 
+defines the best programming method, and provides a series of out-of-the-box Connectors. Moreover, 
+StreamX provides two sets of APIs: scala and java.
+
+Based on this, StreamX makes developers only need to care about the core business part with low learning cost and low development requirements.
+
+## 🎉 Features
+*Excellent development assistance framework 
+* Supports multiple versions of Flink (1.11,x, 1.12.x, 1.13 )
+* A range of out-of-the-box connectors 
+* Support project compilation(maven)
+* Configuration parameters online 
+* Support to start in  Applicaion mode and Yarn-Per-Job mode 
+* Quick and easy routine operations (task start, stop, savepoint, resume from savepoint)
+* Support flame graphs 
+* Support Notebook (Development online )
+* Project configuration and dependencies could be managed by version 
+* Support task backup and rollback (configuration rollback)
+* Management of dependencies (maven pom) and custom jars online 
+* Support custom udf, connector, etc. 
+* Flink SQL Web IDE
+* Support catalog、hive 
+* Send an alert email when the task fails to run 
+* Support restart and retry when the task fails 
+* Full link support from task development stage to deployment management
 * ...
 
-## 🏳‍🌈 组成部分
+## 🏳‍🌈 Architecture of StreamX
 
-`StreamX`有三部分组成,分别是`streamx-core`,`streamx-pump` 和 `streamx-console`
+The overall architecture of StreamX is shown in the following figure. Streamx consists of three parts, they are streamx-core, streamx-pump, and streamx-console.
 
 ![Streamx Archite](/doc/image/streamx_archite.png)
 
 ### 1️⃣ streamx-core
 
-`streamx-core` 定位是一个开发时框架,关注编码开发,规范了配置文件,按照约定优于配置的方式进行开发,提供了一个开发时 `RunTime Content`和一系列开箱即用的`Connector`,扩展了`DataStream`相关的方法,融合了`DataStream`和`Flink sql` api,简化繁琐的操作,聚焦业务本身,提高开发效率和开发体验
+The positioning of `streamx-core` is a framework uesd while developing, it focuses on coding development, regulates configuration files, and develops in the convention over configuration guide.
+streamx-core provides a development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending `DataStream-related` methods and integrating DataStream and `Flink sql` api .
+development efficiency and development experience will be highly improved because users can focus on the business.
 
 ### 2️⃣ streamx-pump
 
-`pump` 是抽水机,水泵的意思,`streamx-pump`的定位是一个数据抽取的组件,类似于`flinkx`,基于`streamx-core`中提供的各种`connector`开发,目的是打造一个方便快捷,开箱即用的大数据实时数据抽取和迁移组件,并且集成到`streamx-console`中,解决实时数据源获取问题,目前在规划中
+`streamx-pump` is a component similar to `flinkx` which is used for data extraction. It is developed based on various connectors provided in `streamx-core` and will be integrated into `streamx-console`. 
+The purpose of developing streamx-pump is to create a convenient, fast, out-of-the-box extraction and migration component for real-time big data. We expect it could solve the real-time data source fetching problem.
+`streamx-pump` is still in planning.
 
 ### 3️⃣ streamx-console
 
-`streamx-console` 是一个综合实时数据平台,低代码(`Low Code`)平台,可以较好的管理`Flink`任务,集成了项目编译、发布、参数配置、启动、`savepoint`,火焰图(`flame graph`),`Flink SQL`,
-监控等诸多功能于一体,大大简化了`Flink`任务的日常操作和维护,融合了诸多最佳实践。旧时王谢堂前燕,飞入寻常百姓家,让大公司有能力研发使用的项目,现在人人可以使用,
-其最终目标是打造成一个实时数仓,流批一体的一站式大数据解决方案,该平台使用但不仅限以下技术:
+`streamx-console` is a comprehensive real-time `low code` data platform that can manage `Flink` tasks more convenient. 
+It integrates the experience of many best practices and integrates many functions such as project compilation, release,
+parameter configuration, startup, `savepoint`, `flame graph`, `Flink SQL`, monitoring, etc.,
+which greatly simplifies the daily operation of Flink tasks and maintenance. The ultimate goal is to create a one-stop big data platform,
+which can provide a solution that integrates flow and batch, and integrates lake and warehouse.
+This platform uses technologies including but not limited to:
 
 * [Apache Flink](http://flink.apache.org)
 * [Apache YARN](http://hadoop.apache.org)
@@ -74,20 +91,26 @@ make stream processing easier!!!
 * [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 * ...
 
-感谢以上优秀的开源项目和很多未提到的优秀开源项目,给予最大的respect,特别感谢[Apache Zeppelin](http://zeppelin.apache.org),[IntelliJ IDEA](https://www.jetbrains.com/idea/),
-感谢[fire-spark](https://github.com/GuoNingNing/fire-spark)项目,早期给予的灵感和帮助, 感谢我老婆在项目开发时给予的支持,悉心照顾我的生活和日常,给予我足够的时间开发这个项目
 
-## 👻 为什么不是...❓
+Thanks for the respect given by the above excellent open source projects and many unmentioned excellent open source projects, 
+especially appreciate the support provided by Apache [Apache Zeppelin](http://zeppelin.apache.org) and [IntelliJ IDEA](https://www.jetbrains.com/idea/) for their support,
+and  inspiration and help given by fire-spark project in early stage.
+
+## 👻 Why not ...❓
 
 ### Apache Zeppelin
 
-[Apache Zeppelin](http://zeppelin.apache.org)是一个非常优秀的开源项目👏 对`Flink`做了很好的支持,`Zeppelin`创新型的`notebook`功能,让开发者非常方便的`On-line`编程,快捷的提交任务,语言层面同时支持`java`,`scala`,`python`,国内阿里的章剑峰大佬也在积极推动该项目,向剑峰大佬致以崇高的敬意🙏🙏🙏,
-但该项目目前貌似没有解决项目的管理和运维方面的痛点,针对比较复杂的项目和大量的作业管理就有些力不从心了,一般来讲不论是`DataStream`作业还是`Flink SQL`作业,大概都会经历作业的`开发阶段`,`测试阶段`,`打包阶段`,`上传服务器阶段`,`启动任务阶段`等这些步骤,这是一个链路很长的步骤,且整个过程耗时比较长,体验不好,
-即使修改了一个符号,项目改完上线都得走上面的流程,我们期望这些步骤能够动动鼠标一键式解决,还希望至少能有一个任务列表的功能,能够方便的管理任务,可以清楚的看到哪些任务正在运行,哪些停止了,任务的资源消耗情况,可以在任务列表页面一键`启动`或`停止`任务,并且自动管理`savePoint`,这些问题也是开发者实际开发中会遇到了问题,
-`streamx-console`很好的解决了这些痛点,定位是一个一站式实时数据平台,并且开发了更多令人激动的功能(诸如`Flink SQL WebIDE`,`依赖隔离`,`任务回滚`,`火焰图`等)
+[Apache Zeppelin](http://zeppelin.apache.org) is an excellent open source project that supports `Flink` well. `Zeppelin's` innovative `notebook` function allows developers to easily program `on-line` and submit tasks quickly. At the language level, Zeppelin supports `java`, 
+`scala`, and `python` at the same time.Whether it is a DataStream task or a Flink SQL task, most tasks will go through the development stage, the testing stage, the packaging stage, the uploading server stage, and the starting task stage，
+this is a process with a long link, the whole process takes a long time, and the user experience is very unfriendly: even if a symbol is modified, the task has to go through the above process from the completion of the modification to the launch. 
+We expect these steps could be completed by One-click solution—moving the mouse and have at least one task list, which can manage tasks conveniently、could clearly see which tasks are running, which tasks are stopped、the resource consumption of each task、one-click start or stop tasks and manage savePoint automatically.
+
+These problems are also problems that developers will encounter in actual development. `streamx-console` can solve these pain points very well. It is positioned as a one-stop real-time data platform and has more exciting functions (such as `Flink SQL WebIDE`, `dependency isolation`, `task rollback`, `flame graph`, `etc.`)
 
 ### FlinkX
 
-[FlinkX](http://github.com/DTStack/flinkx) 是基于flink的分布式数据同步工具,实现了多种异构数据源之间高效的数据迁移,定位比较明确,专门用来做数据抽取和迁移,可以作为一个服务组件来使用,`StreamX`关注开发阶段和任务后期的管理,定位有所不同,`streamx-pump`模块也在规划中,
-致力于解决数据源抽取和迁移,最终会集成到`streamx-console`中
+[FlinkX](http://github.com/DTStack/flinkx)  is a distributed data synchronization tool based on Flink, 
+which realizes efficient data migration between various heterogeneous data sources, and its positioning is relatively clear - it is specially used for data extraction and migration.
+It could be used as a service component. StreamX focuses on the management of the development stage and the post-task stage, 
+the positioning is different. The streamx-pump module is also being planned. It is wished to solve data source extraction and migration problem, and will eventually be integrated into the streamx-console.
 

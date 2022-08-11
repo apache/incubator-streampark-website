@@ -1,45 +1,38 @@
 ---
-id: 'Elasticsearch-Connector'
-title: 'Elasticsearch Connector'
-sidebar_position: 5
+id: 'Elasticsearch-Connector' title: 'Elasticsearch Connector' sidebar_position: 5
 ---
 
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
-[Elasticsearch](https://www.elastic.co/cn/elasticsearch/) 是一个分布式、RESTful 风格的搜索和数据分析引擎。
-[Flink 官方](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/)提供了[Elasticsearch](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/)的连接器,用于向 elasticsearch 中写入数据,可提供 **至少一次** 的处理语义
+[Elasticsearch](https://www.elastic.co/cn/elasticsearch/) is a distributed, RESTful style search and data analysis
+engine.
+[Flink officially] (https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/) provides a connector
+for Elasticsearch, which is used to write data to Elasticsearch, which can provide ** at least once** Semantics.
 
-ElasticsearchSink 使用 TransportClient（6.x 之前）或者 RestHighLevelClient（6.x 开始）和 Elasticsearch 集群进行通信，
-`Streamx`对 flink-connector-elasticsearch6 进一步封装，屏蔽开发细节，简化Elasticsearch6及以上的写入操作。
+ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the
+Elasticsearch cluster.
+`StreamX` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
+operations for Elasticsearch6 and above.
 
-:::tip 提示
-因为Flink Connector Elasticsearch 不同版本之间存在冲突`Streamx`暂时仅支持Elasticsearch6及以上的写入操作，如需写入Elasticsearch5需要使用者排除
-flink-connector-elasticsearch6 依赖，引入 flink-connector-elasticsearch5依赖 创建
-org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink 实例写入数据。
+:::tip hint
+
+Because there are conflicts between different versions of Flink Connector Elasticsearch, Streamx temporarily only
+supports write operations of Elasticsearch6 and above. If you wants to using Elasticsearch5, you need to exclude the
+flink-connector-elasticsearch6 dependency and introduce the flink-connector-elasticsearch5 dependency to create
+org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink instance writes data.
+
 :::
 
-## elastic写入依赖
-Elasticsearch版本不同依赖 Flink Connector Elasticsearch 不通,以下信息来源[flink-docs-release-1.14文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):  
-es5.x Maven依赖
+## Dependency of elastic writing
+
+Different Elasticsearch versions rely on the Flink Connector Elasticsearch is not universal, the following information
+comes from the [flink-docs-release-1.14 document](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):
+
+es5.x Maven dependencies
+
 ```xml
-<dependency>
-    <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
-    <version>1.14.3</version>
-</dependency>
-```
-es6.x Maven依赖
-```xml
-<dependency>
-    <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
-    <version>1.14.3</version>
-</dependency>
-```
-es7.x及以上 Maven依赖
-```xml
+
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
@@ -47,12 +40,35 @@ es7.x及以上 Maven依赖
 </dependency>
 ```
 
-## 基于官网的Elasticsearch写入数据
-以下代码摘自[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)
+es6.x Maven dependencies
+
+```xml
+
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <version>1.14.3</version>
+</dependency>
+```
+
+es7.x ans above Maven dependencies
+
+```xml
+
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <version>1.14.3</version>
+</dependency>
+```
+
+## Write data to Elasticsearch based on the official
+
+The following code is taken from the official documentation[Elasticsearch based on the official](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)
 
 
 <Tabs>
-<TabItem value="java, Elasticsearch 6.x 及以上" java>
+<TabItem value="java, Elasticsearch 6.x ans above" java>
 
 ```java
 import org.apache.flink.api.common.functions.RuntimeContext;
@@ -70,48 +86,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-DataStream<String> input = ...;
+DataStream<String> input=...;
 
-List<HttpHost> httpHosts = new ArrayList<>();
-httpHosts.add(new HttpHost("127.0.0.1", 9200, "http"));
-httpHosts.add(new HttpHost("10.2.3.1", 9200, "http"));
+        List<HttpHost> httpHosts=new ArrayList<>();
+        httpHosts.add(new HttpHost("127.0.0.1",9200,"http"));
+        httpHosts.add(new HttpHost("10.2.3.1",9200,"http"));
 
 // 使用 ElasticsearchSink.Builder 创建 ElasticsearchSink
-ElasticsearchSink.Builder<String> esSinkBuilder = new ElasticsearchSink.Builder<>(
-    httpHosts,
-    new ElasticsearchSinkFunction<String>() {
-        public IndexRequest createIndexRequest(String element) {
-            Map<String, String> json = new HashMap<>();
-            json.put("data", element);
-        
-            return Requests.indexRequest()
-                    .index("my-index")
-                    .type("my-type")
-                    .source(json);
+        ElasticsearchSink.Builder<String> esSinkBuilder=new ElasticsearchSink.Builder<>(
+        httpHosts,
+        new ElasticsearchSinkFunction<String>(){
+public IndexRequest createIndexRequest(String element){
+        Map<String, String> json=new HashMap<>();
+        json.put("data",element);
+
+        return Requests.indexRequest()
+        .index("my-index")
+        .type("my-type")
+        .source(json);
         }
-        
-        @Override
-        public void process(String element, RuntimeContext ctx, RequestIndexer indexer) {
-            indexer.add(createIndexRequest(element));
+
+@Override
+public void process(String element,RuntimeContext ctx,RequestIndexer indexer){
+        indexer.add(createIndexRequest(element));
         }
-    }
-);
+        }
+        );
 
-// 批量请求的配置；下面的设置使 sink 在接收每个元素之后立即提交，否则这些元素将被缓存起来
-esSinkBuilder.setBulkFlushMaxActions(1);
+// Configuration for batch requests; the settings below cause the sink to commit immediately after receiving each element that would otherwise be cached
+        esSinkBuilder.setBulkFlushMaxActions(1);
 
-// 为内部创建的 REST 客户端提供一个自定义配置信息的 RestClientFactory
-esSinkBuilder.setRestClientFactory(
-  restClientBuilder -> {
-    restClientBuilder.setDefaultHeaders(...)
-    restClientBuilder.setMaxRetryTimeoutMillis(...)
-    restClientBuilder.setPathPrefix(...)
-    restClientBuilder.setHttpClientConfigCallback(...)
-  }
-);
+A RestClientFactory that provides custom configuration information for internally created REST clients
+        esSinkBuilder.setRestClientFactory(
+        restClientBuilder->{
+        restClientBuilder.setDefaultHeaders(...)
+        restClientBuilder.setMaxRetryTimeoutMillis(...)
+        restClientBuilder.setPathPrefix(...)
+        restClientBuilder.setHttpClientConfigCallback(...)
+        }
+        );
 
-// 最后，构建并添加 sink 到作业管道中
-input.addSink(esSinkBuilder.build());
+// Finally, build and add the sink to the job pipeline
+        input.addSink(esSinkBuilder.build());
 ```
 
 </TabItem>
@@ -133,7 +149,8 @@ import org.elasticsearch.client.Requests
 import java.util.ArrayList
 import java.util.List
 
-val input: DataStream[String] = ...
+val input: DataStream[String] =
+...
 
 val httpHosts = new java.util.ArrayList[HttpHost]
 httpHosts.add(new HttpHost("127.0.0.1", 9200, "http"))
@@ -142,34 +159,38 @@ httpHosts.add(new HttpHost("10.2.3.1", 9200, "http"))
 val esSinkBuilder = new ElasticsearchSink.Builder[String](
   httpHosts,
   new ElasticsearchSinkFunction[String] {
-     def process(element: String, ctx: RuntimeContext, indexer: RequestIndexer) {
-          val json = new java.util.HashMap[String, String]
-          json.put("data", element)
+    def process(element: String, ctx: RuntimeContext, indexer: RequestIndexer) {
+      val json = new java.util.HashMap[String, String]
+      json.put("data", element)
 
-          val rqst: IndexRequest = Requests.indexRequest
-            .index("my-index")
-            .`type`("my-type")
-            .source(json)
+      val rqst: IndexRequest = Requests.indexRequest
+        .index("my-index")
+        .`type`("my-type")
+        .source(json)
 
-          indexer.add(rqst)
-     } 
+      indexer.add(rqst)
+    }
   }
 )
 
-// 批量请求的配置；下面的设置使 sink 在接收每个元素之后立即提交，否则这些元素将被缓存起来
+// Configuration for batch requests; the settings below cause the sink to commit immediately after receiving each element that would otherwise be cached
 esSinkBuilder.setBulkFlushMaxActions(1)
 
-// 为内部创建的 REST 客户端提供一个自定义配置信息的 RestClientFactory
+// A RestClientFactory that provides custom configuration information for internally created REST clients
 esSinkBuilder.setRestClientFactory(new RestClientFactory {
   override def configureRestClientBuilder(restClientBuilder: RestClientBuilder): Unit = {
-       restClientBuilder.setDefaultHeaders(...)
-       restClientBuilder.setMaxRetryTimeoutMillis(...)
-       restClientBuilder.setPathPrefix(...)
-       restClientBuilder.setHttpClientConfigCallback(...)
+    restClientBuilder.setDefaultHeaders(
+    ...)
+    restClientBuilder.setMaxRetryTimeoutMillis(
+    ...)
+    restClientBuilder.setPathPrefix(
+    ...)
+    restClientBuilder.setHttpClientConfigCallback(
+    ...)
   }
 })
 
-// 最后，构建并添加 sink 到作业管道中
+// Finally, build and add the sink to the job pipeline
 input.addSink(esSinkBuilder.build)
 ```
 
@@ -177,20 +198,21 @@ input.addSink(esSinkBuilder.build)
 
 </Tabs>
 
-以上创建ElasticsearchSink添加参数非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置es
-连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+The ElasticsearchSink created above is very inflexible to add parameters. `StreamX` follows the concept of convention over configuration and automatic configuration.
+Users only need to configure es connection parameters and Flink operating parameters, and StreamX will automatically assemble source and sink, 
+which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## StreamX 写入 Elasticsearch
+## Using StreamX writes to Elasticsearch
 
-ESSink 在启用 Flink checkpoint 后，保证至少一次将操作请求发送到 Elasticsearch 集群。
+Please ensure that operation requests are sent to the Elasticsearch cluster at least once after enabling Flink checkpointing in ESSink.
 
 ### 1. 配置策略和连接信息
 
 ```yaml
-#redis sink 配置
-#  必填参数，多个节点使用 host1:port, host2:port,
+#redis sink configure
+#  Required parameter, used by multiple nodes host1:port, host2:port,
 host: localhost:9200
-#  选填参数
+#  optional parameters
 #  es:
 #    disableFlushOnCheckpoint: true #默认为false
 #    auth:
@@ -208,11 +230,9 @@ host: localhost:9200
 #  bulk.flush.: 
 ```
 
-
-
 ### 2. 写入Elasticsearch
 
-用 StreamX 写入Elasticsearch非常简单,代码如下:
+Using StreamX writes to Elasticsearch
 
 <Tabs>
 
@@ -247,14 +267,14 @@ object ConnectorApp extends FlinkStreaming {
 
     // es sink.........
 
-    //1)定义 Index的写入规则
+    //1)Define the writing rules for Index
     implicit def indexReq(x: OrderEntity): IndexRequest = ElasticSearchUtils.indexRequest(
       "flink_order",
       "_doc",
       s"${x.id}_${x.time.getTime}",
       Serialization.write(x)
     )
-    //3)定义esSink并下沉=数据. done
+    //3)define esSink and sink = data. done
     ESSink().sink6[OrderEntity](ds)
   }
 
@@ -263,10 +283,12 @@ object ConnectorApp extends FlinkStreaming {
 
 }
 ```
+
 </TabItem>
 </Tabs>
 
 Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,StreamX也对以上功能进行了支持，对应方法如下：
+
 ```scala
 import com.streamxhub.streamx.flink.core.scala.StreamingContext
 import org.apache.flink.streaming.api.datastream.DataStreamSink
@@ -309,22 +331,21 @@ class ESSink(@(transient@param) context: StreamingContext,
   }
 
 
-
   def update6[T](stream: DataStream[T],
-               suffix: String = "",
-               restClientFactory: RestClientFactory = null,
-               failureHandler: ActionRequestFailureHandler = new RetryRejectedExecutionFailureHandler)
-              ( f: T => UpdateRequest): DataStreamSink[T] = {
+                 suffix: String = "",
+                 restClientFactory: RestClientFactory = null,
+                 failureHandler: ActionRequestFailureHandler = new RetryRejectedExecutionFailureHandler)
+                (f: T => UpdateRequest): DataStreamSink[T] = {
 
     new ES6Sink(context, property, parallelism, name, uid).sink[T](stream, suffix, restClientFactory, failureHandler, f)
   }
 
 
   def delete6[T](stream: DataStream[T],
-               suffix: String = "",
-               restClientFactory: RestClientFactory = null,
-               failureHandler: ActionRequestFailureHandler = new RetryRejectedExecutionFailureHandler)
-              ( f: T => DeleteRequest): DataStreamSink[T] = {
+                 suffix: String = "",
+                 restClientFactory: RestClientFactory = null,
+                 failureHandler: ActionRequestFailureHandler = new RetryRejectedExecutionFailureHandler)
+                (f: T => DeleteRequest): DataStreamSink[T] = {
 
     new ES6Sink(context, property, parallelism, name, uid).sink[T](stream, suffix, restClientFactory, failureHandler, f)
   }
@@ -332,17 +353,29 @@ class ESSink(@(transient@param) context: StreamingContext,
 }
 ```
 
-
-:::info 注意事项
-启用 Flink checkpoint 后，Flink Elasticsearch Sink 保证至少一次将操作请求发送到 Elasticsearch 集群。 这是通过在进行 checkpoint 时等待 BulkProcessor 中所有挂起的操作请求来实现。 这有效地保证了在触发 checkpoint 之前所有的请求被 Elasticsearch 成功确认，然后继续处理发送到 sink 的记录。
-用户想要禁用刷新，可以配置disableFlushOnCheckpoint为true来实现，实质上意味着 sink 将不再提供任何可靠的交付保证，即使启用了作业拓扑的 checkpoint。
+:::info
+When the Flink checkpoint is enabled, the Flink Elasticsearch Sink guarantees that operation requests are sent to the Elasticsearch cluster at least once. 
+It does this by waiting for all pending operation requests in the BulkProcessor while checkpointing. 
+This effectively guarantees that all requests will be successfully acknowledged by Elasticsearch before triggering the checkpoint and proceeding to process records sent to the sink. 
+If the user wants to disable flushing, they can configure disableFlushOnCheckpoint to true to do so, 
+which essentially means that the sink will no longer provide any reliable delivery guarantees, 
+even if checkpointing of the job topology is enabled.
 :::
 
-## 其他配置
-### 处理失败的 Elasticsearch 请求 
-Elasticsearch 操作请求可能由于多种原因而失败，可以通过实现ActionRequestFailureHandler来指定失败处理逻辑，见
-[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**处理失败的 Elasticsearch 请求** 单元
-### 配置内部批量处理器 
-es内部`BulkProcessor`可以进一步配置其如何刷新缓存操作请求的行为详细查看[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**配置内部批量处理器** 单元
-### StreamX配置
-其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+## Other configuration
+
+### deal with failed Elasticsearch request
+
+An Elasticsearch operation request may fail for a variety of reasons. You can specify the failure handling logic by implementing ActionRequestFailureHandler.
+See [Official Documentation](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink) - Handling Failed Elasticsearch Requests
+
+### Configure the internal batch processor
+
+The BulkProcessor inside es can further configure its behavior of how to refresh the cache operation request, 
+see the [official documentation](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink) for details - **Configuring the Internal** Bulk Processor
+
+### StreamX configuration
+
+All other configurations must comply with the StreamX configuration.
+For [specific configurable](/docs/development/conf) items and the role of each parameter, 
+please refer to the project configuration
