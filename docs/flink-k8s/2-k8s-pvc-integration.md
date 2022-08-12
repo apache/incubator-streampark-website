@@ -1,22 +1,24 @@
+
 ---
 id: 'k8s-pvc-integration'
-title: 'K8s PVC 资源使用'
+title: 'K8s PVC Resource usage'
 sidebar_position: 2
 ---
 
-## K8s PVC 资源使用说明
+## Resource usage instructions of K8s PVC
 
-当前版本 StreamX Flink-K8s 任务对 PVC 资源（挂载 checkpoint/savepoint/logs 等文件资源）的支持基于 pod-template。
+The support for pvc resource(mount file resources such as checkpoint/savepoint/logs and so on) is based on pod-template at current version。
 
-Native-Kubernetes Session 由创建 Session Cluster 时控制，这里不再赘述。Native-Kubernetes Application 支持在 StreamX 页面上直接编写 `pod-template`，`jm-pod-template`，`tm-pod-template` 配置。
+Users do not have to concern the Native-Kubernetes Session.It will be processed when Session Cluster is constructed .Native-Kubernetes Application can be constructed by configuring on StreamX webpage using `pod-template`、`jm-pod-template`、`tm-pod-template`.
 
 <br/>
 
-以下是一个简要的示例，假设已经提前创建 `flink-checkpoint`， `flink-savepoint` 两个 PVC ：
+
+Here is a brief example. Two PVC `flink-checkpoint`， `flink-savepoint` should be constructed in advance
 
 ![k8s pvc](/doc/image/k8s_pvc.png)
 
-pod-template 配置文本如下：
+'pod-template' can be configured as below ：
 
 ```yaml
 apiVersion: v1
@@ -40,17 +42,17 @@ spec:
         claimName: flink-savepoint
 ```
 
-由于使用了 `rocksdb-backend`，该依赖可以由 3 种方式提供：
+There are three ways to provide the dependency when using `rocksdb-backend`.
 
-1. 提供的 Flink Base Docker Image 已经包含该依赖（用户自行解决依赖冲突）；
+1.  Flink Base Docker Image contains the dependency（user fix the dependency conflict by themself）;
 
-2. 在 StreamX 本地 `Workspace/jars` 目录下放置 `flink-statebackend-rocksdb_xx.jar` 依赖；
+2. Put the dependency `flink-statebackend-rocksdb_xx.jar` to  the path `Workspace/jars` in StreamX ;
 
-3. 在 StreamX Dependency 配置中加入 rockdb-backend 依赖（此时 StreamX 会自动解决依赖冲突）：
+3. Add the rockdb-backend dependency to StreamX Dependency(StreamX will fix the conflict automatically) ：
 
    ![rocksdb dependency](/doc/image/rocksdb_dependency.png)
 
 <br/>
 
-在随后版本中，我们会提供一种优雅的 pod-template 配置自动生成的方式，来简化 k8s-pvc 挂载这一过程 : )
+We will provide a graceful way to generate pod-template configuration to simplify the procedure of k8s-pvc mounting in future version.
 
