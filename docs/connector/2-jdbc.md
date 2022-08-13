@@ -1,6 +1,6 @@
 ---
 id: 'Jdbc-Connector'
-title: 'Jdbc Connector'
+title: 'JDBC Connector'
 sidebar_position: 2
 ---
 
@@ -11,7 +11,7 @@ Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-
 
 `StreamX` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
 
-## Jdbc Configuration
+## JDBC Configuration
 
 The implementation of the `Jdbc Connector` in `StreamX` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
 
@@ -58,7 +58,7 @@ The benefit of turning on `EXACTLY_ONCE` exactly once is obvious, to ensure the 
 
 Except for the special `semantic` configuration item, all other configurations must comply with the **HikariCP** connection pool configuration, please refer to the `Light HikariCP` [official website documentation](https://github.com/brettwooldridge/) for the specific configurable items and the role of each parameter. HikariCP#gear-configuration-knobs-baby).
 
-## Jdbc read
+## JDBC read
 
 In `StreamX`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
 
@@ -206,7 +206,7 @@ public interface SQLResultFunction<T> extends Serializable {
 }
 ```
 
-## Jdbc Read Write
+## JDBC Read Write
 
 In `StreamX`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
 
@@ -365,7 +365,7 @@ In this way, instead of writing data immediately when it comes, and then perform
 This setting only takes effect the non-`EXACTLY_ONCE` semantics, the benefit is to improve the performance of Jdbc writes, a large number of data insertion, the disadvantage is that data writing will inevitably have a delay, please use caution according to the actual use of the situation
 :::
 
-## Multi-instance Jdbc support
+## Multi-instance JDBC support
 
 
-## Specify Jdbc connection information manually
+## Specify JDBC connection information manually

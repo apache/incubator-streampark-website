@@ -1,6 +1,6 @@
 ---
 id: 'Hbase-Connector'
-title: 'Hbase Connector'
+title: 'Apache HBase Connector'
 sidebar_position: 6
 ---
 
@@ -258,7 +258,7 @@ hbase:
 
 ```
 
-### 2. Read and write Hbase
+### 2. Read and write HBase
 
 Writing to Hbase with StreamX is very simple, the code is as follows:
 

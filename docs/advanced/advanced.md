@@ -1,7 +1,7 @@
 ---
 id: 'advanced'
-title: '高级扩展'
+title: 'Advanced extension'
 sidebar_position: 1
 ---
 
-### ---待更新---
+### Coming soon

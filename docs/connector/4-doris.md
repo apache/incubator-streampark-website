@@ -1,6 +1,6 @@
 ---
 id: 'Doris-Connector'
-title: 'Doris Connector'
+title: 'Apache Doris Connector'
 original: true
 sidebar_position: 4
 ---
@@ -8,7 +8,7 @@ sidebar_position: 4
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-##Doris Connector
+## Apache Doris Connector
 
 [Apache Doris](https://doris.apache.org/) is a high-performance, and real-time analytical database,
 which could support high-concurrent point query scenarios.

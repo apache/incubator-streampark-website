@@ -1,6 +1,6 @@
 ---
 id: 'Clickhouse-Connector'
-title: 'Clickhouse Connector'
+title: 'ClickHouse Connector'
 original: true
 sidebar_position: 3
 ---
