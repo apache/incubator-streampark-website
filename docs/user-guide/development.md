@@ -85,7 +85,7 @@ ln -s /root/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 ```shell
 git clone https://github.com/streamxhub/streamx.git
 cd streamx
-mvn clean install -DskipTests -Denv=prod
+mvn clean install -DskipTests -Denv=prod （需要指定scala版本，如：-Dscala.version=2.12.7 -Dscala.binary.version=2.12 or -Dscala.version=2.11.12 -Dscala.binary.version=2.11）
 ```
 
 #### 解包
