@@ -1,6 +1,6 @@
 ---
 id: 'quick-start'
-title: '快速开始'
+title: 'Quick start'
 sidebar_position: 2
 ---
 
