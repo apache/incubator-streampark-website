@@ -11,43 +11,24 @@ make stream processing easier!!!
 
 ## 🚀 What is StreamX
 
-`StreamX` is an easy-to-use and comprehensive one-stop stream processing framework with a visual interface platform based on the web,
-it is characterized by simplicity, fast, and convenience. The entire process of stream processing tasks will be extremely convenient by using StreamX,
-which includes configuration, development, testing, deployment, monitoring, operation, and maintenance. 
-It not only simplifies the process of developing streaming tasks through a well-designed programming model but also supports complex projects and a large number of task management.
-
+`StreamX` is an easy-to-use stream processing application development framework and one-stop stream processing operation platform, Aimed at ease building and managing streaming applications, StreamX provides scaffolding for writing streaming process logics with Apache Flink and Apache Spark.
+StreamX also provides a professional task management including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
 <video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
 
 ## Why StreamX
 
-StreamX standardizes the entire process of a project from configuration to development, testing, 
-deployment, monitoring, and operation and maintenance. It encourages functional programming, 
-defines the best programming method, and provides a series of out-of-the-box Connectors. Moreover, 
-StreamX provides two sets of APIs: scala and java.
-
-Based on this, StreamX makes developers only need to care about the core business part with low learning cost and low development requirements.
+Apache Flink and Apache Spark are widely used as the next generation of big data streaming computing engines.  Based on a bench of excellent experiences combined with best practices, we extracted the task deployment and runtime parameters into the configuration files. In this way,  an easy-to-use RuntimeContext with out-of-the-box connectors would bring easier and more efficient task development experience. It reduces the learning cost and development barriers, hence developers can focus on the business logic.
+On the other hand, It can be challenge for enterprises to use Flink & Spark if there is no professional management platform for Flink & Spark tasks during the deployment phase. StreamX provides such a professional task management platform, including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
 ## 🎉 Features
-*Excellent development assistance framework 
-* Supports multiple versions of Flink (1.11,x, 1.12.x, 1.13 )
+* Apache Flink & Spark application development scaffolding
+* Supports multiple versions of Flink & Spark
 * A range of out-of-the-box connectors 
-* Support project compilation(maven)
-* Configuration parameters online 
-* Support to start in  Applicaion mode and Yarn-Per-Job mode 
-* Quick and easy routine operations (task start, stop, savepoint, resume from savepoint)
-* Support flame graphs 
-* Support Notebook (Development online )
-* Project configuration and dependencies could be managed by version 
-* Support task backup and rollback (configuration rollback)
-* Management of dependencies (maven pom) and custom jars online 
-* Support custom udf, connector, etc. 
-* Flink SQL Web IDE
-* Support catalog、hive 
-* Send an alert email when the task fails to run 
-* Support restart and retry when the task fails 
-* Full link support from task development stage to deployment management
+* one-stop stream processing operation platform
+* Support catalog、olap、process-warehouse etc.
 * ...
+
 
 ## 🏳‍🌈 Architecture of StreamX
 
@@ -92,9 +73,7 @@ This platform uses technologies including but not limited to:
 * ...
 
 
-Thanks for the respect given by the above excellent open source projects and many unmentioned excellent open source projects, 
-especially appreciate the support provided by Apache [Apache Zeppelin](http://zeppelin.apache.org) and [IntelliJ IDEA](https://www.jetbrains.com/idea/) for their support,
-and  inspiration and help given by fire-spark project in early stage.
+Thanks for the respect given by the above excellent open source projects and many unmentioned excellent open source projects
 
 ## 👻 Why not ...❓
 

@@ -1,6 +1,6 @@
 ---
 id: 'config'
-title: '项目配置'
+title: 'Project Configuration'
 sidebar_position: 2
 ---
 

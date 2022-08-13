@@ -1,6 +1,6 @@
 ---
 id: 'dev-model'
-title: '编程模型'
+title: 'Programming model'
 sidebar_position: 1
 ---
 
