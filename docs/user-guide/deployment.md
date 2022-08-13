@@ -1,6 +1,6 @@
 ---
 id: 'deployment'
-title: '平台部署'
+title: 'Platform deployment'
 sidebar_position: 1
 ---
 

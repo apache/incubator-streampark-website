@@ -1,6 +1,6 @@
 ---
 id: 'development'
-title: '开发环境'
+title: 'Development environment'
 sidebar_position: 3
 ---
 
