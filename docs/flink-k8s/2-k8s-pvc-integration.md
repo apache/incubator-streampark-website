@@ -1,7 +1,6 @@
-
 ---
 id: 'k8s-pvc-integration'
-title: 'K8s PVC Resource usage'
+title: 'Kubernetes PVC Resource usage'
 sidebar_position: 2
 ---
 
@@ -16,7 +15,7 @@ Users do not have to concern the Native-Kubernetes Session.It will be processed 
 
 Here is a brief example. Two PVC `flink-checkpoint`， `flink-savepoint` should be constructed in advance
 
-![k8s pvc](/doc/image/k8s_pvc.png)
+![Kubernetes PVC](/doc/image/k8s_pvc.png)
 
 'pod-template' can be configured as below ：
 

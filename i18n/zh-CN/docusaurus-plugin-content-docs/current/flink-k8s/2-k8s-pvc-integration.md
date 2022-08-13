@@ -1,6 +1,6 @@
 ---
 id: 'k8s-pvc-integration'
-title: 'K8s PVC 资源使用'
+title: 'K8S PVC 资源使用'
 sidebar_position: 2
 ---
 
@@ -14,7 +14,7 @@ Native-Kubernetes Session 由创建 Session Cluster 时控制，这里不再赘�
 
 以下是一个简要的示例，假设已经提前创建 `flink-checkpoint`， `flink-savepoint` 两个 PVC ：
 
-![k8s pvc](/doc/image/k8s_pvc.png)
+![K8S PVC](/doc/image/k8s_pvc.png)
 
 pod-template 配置文本如下：
 

@@ -1,6 +1,6 @@
 ---
 id: 'Jdbc-Connector'
-title: 'Jdbc Connector'
+title: 'JDBC Connector'
 sidebar_position: 2
 ---
 
@@ -57,7 +57,7 @@ jdbc:
 除了特殊的`semantic` 配置项之外,其他的所有的配置都必须遵守 ** HikariCP** 连接池的配置,具体可配置项和各个参数的作用请参考`光 HikariCP`[官网文档](https://github.com/brettwooldridge/HikariCP#gear-configuration-knobs-baby).
 
 
-## Jdbc 读取数据
+## JDBC 读取数据
 
 在`StreamX`中`JdbcSource`用来读取数据,并且根据数据的`offset`做到数据读时可回放,我们看看具体如何用`JdbcSource`读取数据,假如需求如下
 
@@ -223,7 +223,7 @@ public interface SQLResultFunction<T> extends Serializable {
 }
 ```
 
-## Jdbc 读取写入
+## JDBC 读取写入
 
 `StreamX`中`JdbcSink`是用来写入数据,我们看看具体如何用`JdbcSink`写入数据,假如需求是需要从`kakfa`中读取数据,写入到`mysql`
 

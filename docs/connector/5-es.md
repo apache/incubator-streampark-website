@@ -1,5 +1,7 @@
 ---
-id: 'Elasticsearch-Connector' title: 'Elasticsearch Connector' sidebar_position: 5
+id: 'Elasticsearch-Connector' 
+title: 'Elasticsearch Connector'
+sidebar_position: 5
 ---
 
 
@@ -29,7 +31,7 @@ org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink instance 
 Different Elasticsearch versions rely on the Flink Connector Elasticsearch is not universal, the following information
 comes from the [flink-docs-release-1.14 document](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):
 
-es5.x Maven dependencies
+Elasticsearch 5.x Maven dependencies
 
 ```xml
 
@@ -40,7 +42,7 @@ es5.x Maven dependencies
 </dependency>
 ```
 
-es6.x Maven dependencies
+Elasticsearch 6.x Maven dependencies
 
 ```xml
 
@@ -51,7 +53,7 @@ es6.x Maven dependencies
 </dependency>
 ```
 
-es7.x ans above Maven dependencies
+Elasticsearch 7.x ans above Maven dependencies
 
 ```xml
 

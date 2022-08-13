@@ -89,7 +89,7 @@
       "newFeatures": "New Features",
       "enhancement": "Enhancement point",
       "bugFixs": "Bug Fix",
-      "changeLog": "Change Log"
+      "changeLog": "Changelog"
     },
     "slogan": {
       "key": "make stream processing easier!",
@@ -99,49 +99,49 @@
       {
         "title": "Code controllable",
         "icon": "lni-code",
-        "details": "High-quality code, the back-end code has passed the Ali code specification inspection, and the front-end code has been strictly inspected by eslint syntax to ensure readability and robustness"
+        "details": "High-quality code. Fro readability and robustness backend code uses Ali code check style and frontend code is strictly checked with eslint"
       },
       {
         "title": "Easy to use",
         "icon": "lni-layers",
-        "details": "The original intention of StreamX is to make stream processing easier, providing a series of shortcut Api and Connector, out of the box, greatly simplifying the development work"
+        "details": "Out-of-the-box APIs and connectors"
       },
       {
         "title": "Complete docs",
         "icon": "lni-library",
-        "details": "From concept to getting started and then to advanced advanced level, each use detail is listed in detail, and a large number of code examples are assisted, so that developers can see at a glance"
+        "details": "From concept to quickstart and advanced, each step is explained in detail with code samples."
       },
       {
         "title": "Robust and stable",
         "icon": "lni-magnet",
-        "details": "Created by experienced players in the big data field, each API and design have been carefully polished, complete test cases, and verified by online projects to ensure stability and reliability"
+        "details": "Created by big data experts. Well-designed API. Complete test cases. Verified by production project."
       },
       {
         "title": "Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamX uses Flink & Spark as the underlying framework to make streaming batch integration easier, connecting and interoperating, crossing barriers, and creating more possibilities"
+        "details": "StreamX base on Apache Flink and Apache Spark and implements a layer of abstraction, make stream and batch processing in a single engine."
       },
       {
         "title": "One-stop solution",
         "icon": "lni-display-alt",
-        "details": "StreamX integrates project compilation, release, parameter configuration, task monitoring, online IDE and many other functions in one, and it is a one-stop comprehensive data platform"
+        "details": "StreamX integrates project compile, release, parameter configuration, task monitoring, online IDE and many other features."
       }
     ],
     "development": [
       {
         "icon": "lni-code",
-        "title": "Development Application",
+        "title": "Write",
         "description": "Quickly developing app using streamx-core Api"
       },
       {
         "icon": "lni-bug",
-        "title": "Debug Application",
+        "title": "Debug",
         "description": "Start the app with config and quickly debug the code"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "Deployment Application",
-        "description": "Deployment app to streamx-console, management easier"
+        "title": "Deploy",
+        "description": "Use streamx-console to deploy app"
       }
     ],
     "honor" : {
