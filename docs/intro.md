@@ -26,7 +26,7 @@ On the other hand, It can be challenge for enterprises to use Flink & Spark if t
 * Supports multiple versions of Flink & Spark
 * A range of out-of-the-box connectors 
 * one-stop stream processing operation platform
-* Support catalog、olap、process-warehouse etc.
+* Support catalog、olap、streaming-warehouse etc.
 * ...
 
 
