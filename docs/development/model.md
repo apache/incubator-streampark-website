@@ -1,6 +1,6 @@
 ---
-id: 'dev-model'
-title: '编程模型'
+id: 'Programming-paradigm'
+title: 'Programming paradigm'
 sidebar_position: 1
 ---
 
@@ -9,12 +9,12 @@ import TabItem from '@theme/TabItem';
 
 There are some rules and conventions to be followed in any framework. Only by following and mastering these rules can we use them more easily and achieve twice the result with half the effort.When we develop Flink job, we actually use the API provided by Flink to write an executable program (which must have a `main()` function) according to the development method required by Flink. We access various`Connector`in the program, and after a series of `operator`operations, we finally sink the data to the target storage through the `Connector` .
 
-We call this method of step-by-step programming according to certain agreed rules the "programming model". In this chapter, we will talk about the "programming model" of StreamX and the development considerations.
+We call this method of step-by-step programming according to certain agreed rules the "programming paradigm". In this chapter, we will talk about the "programming paradigm" of StreamX and the development considerations.
 
 Let's start from these aspects
 
 * Architecture
-* Programming Model
+* Programming paradigm
 * RunTime Context
 * Life Cycle
 * Catalog Structure
@@ -24,8 +24,8 @@ Let's start from these aspects
 
 []("/doc/image/streamx_archite.png")
 
-## Programming Model
-`streamx-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming model of `DataStream` and `Flink Sql` with StreamX looks like, and what the specifications and requirements are.
+## Programming paradigm
+`streamx-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with StreamX looks like, and what the specifications and requirements are.
 
 
 ### DataStream
