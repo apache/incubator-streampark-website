@@ -4,28 +4,28 @@ title: 'Quick start'
 sidebar_position: 2
 ---
 
-## 如何使用
+## How to use
 
-在上个章节已经详细介绍了一站式平台 `streamx-console` 的安装, 本章节看看如果用 `streamx-console` 快速部署运行一个作业, `streamx-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 `streamx-console` 之旅
+The installation of the one-stop platform `streamx-console` has been introduced in detail in the previous chapter. In this chapter, let's see how to quickly deploy and run a job with `streamx-console`. The official structure and specification) and projects developed with `streamx` are well supported. Let's use `streamx-quickstart` to quickly start the journey of `streamx-console`
 
-`streamx-quickstart` 是 StreamX 开发 Flink 的上手示例程序，具体请查阅:
+`streamx-quickstart` is a sample program for developing Flink by StreamX. For details, please refer to:
 
 - Github: [https://github.com/streamxhub/streamx-quickstart.git](https://github.com/streamxhub/streamx-quickstart.git)
 - Gitee: [https://gitee.com/streamxhub/streamx-quickstart.git](https://gitee.com/streamxhub/streamx-quickstart.git)
 
-### 部署 DataStream 任务
+### Deploy DataStream tasks
 
-下面的示例演示了如何部署一个 DataStream 应用
+The following example demonstrates how to deploy a DataStream application
 
 <video src="http://assets.streamxhub.com/datastream.mp4" controls="controls" width="100%" height="100%"></video>
 
-### 部署 FlinkSql 任务
+### Deploy the FlinkSql task
 
-下面的示例演示了如何部署一个 FlinkSql 应用
+The following example demonstrates how to deploy a FlinkSql application
 
 <video src="http://assets.streamxhub.com//flinksql.mp4" controls="controls" width="100%" height="100%"></video>
 
-- 项目演示使用到的 flink sql 如下
+- The flink sql used in the project demonstration is as follows
 
 ```sql
 CREATE TABLE user_log (
@@ -35,14 +35,14 @@ CREATE TABLE user_log (
     behavior VARCHAR,
     ts TIMESTAMP(3)
  ) WITH (
-'connector.type' = 'kafka', -- 使用 kafka connector
-'connector.version' = 'universal',  -- kafka 版本，universal 支持 0.11 以上的版本
+'connector.type' = 'kafka', -- Using the kafka connector
+'connector.version' = 'universal',  -- kafka version, universal supports versions above 0.11
 'connector.topic' = 'user_behavior',  -- kafka topic
 'connector.properties.bootstrap.servers'='kafka-1:9092,kafka-2:9092,kafka-3:9092',
-'connector.startup-mode' = 'earliest-offset', -- 从起始 offset 开始读取
+'connector.startup-mode' = 'earliest-offset', -- Read from start offset
 'update-mode' = 'append',
-'format.type' = 'json',  -- 数据源格式为 json
-'format.derive-schema' = 'true' -- 从 DDL schema 确定 json 解析规则
+'format.type' = 'json',  -- The data source format is json
+'format.derive-schema' = 'true' -- Determine json parsing rules from DDL schema
  );
 
 CREATE TABLE pvuv_sink (
@@ -50,12 +50,12 @@ CREATE TABLE pvuv_sink (
     pv BIGINT,
     uv BIGINT
  ) WITH (
-'connector.type' = 'jdbc', -- 使用 jdbc connector
+'connector.type' = 'jdbc', -- using jdbc connector
 'connector.url' = 'jdbc:mysql://test-mysql:3306/test', -- jdbc url
-'connector.table' = 'pvuv_sink', -- 表名
-'connector.username' = 'root', -- 用户名
-'connector.password' = '123456', -- 密码
-'connector.write.flush.max-rows' = '1' -- 默认 5000 条，为了演示改为 1 条
+'connector.table' = 'pvuv_sink', -- Table Name
+'connector.username' = 'root', -- username
+'connector.password' = '123456', --password
+'connector.write.flush.max-rows' = '1' -- Default 5000, changed to 1 for demonstration
  );
 
 INSERT INTO pvuv_sink
@@ -67,7 +67,7 @@ FROM user_log
 GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 ```
 
--   使用到 maven 依赖如下
+-   The maven dependencies are used as follows
 
 ```xml
 <dependency>
@@ -95,7 +95,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 </dependency>
 
 ```
--   Kafka 模拟发送的数据如下
+-   The data sent by Kafka simulation is as follows
 
 ```json
 
@@ -106,14 +106,14 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 
 ```
 
-### 任务启动流程
+### Task start process
 
-任务启动流程图如下
+The task startup flow chart is as follows
 
 <center>
 <img src="/doc/image/streamx_start.png"/><br></br>
-<strong>streamx-console 提交任务流程</strong>
+<strong>streamx-console submit task process</strong>
 </center>
 
-关于项目的概念，`Development Mode`,`savepoint`,`NoteBook`,自定义 jar 管理，任务发布，任务恢复，参数配置，参数对比，多版本管理等等更多使用教程和文档后续持续更新。..
+Regarding the concept of the project, `Development Mode`, `savepoint`, `NoteBook`, custom jar management, task release, task recovery, parameter configuration, parameter comparison, multi-version management and more tutorials and documents will be continuously updated. ..
 

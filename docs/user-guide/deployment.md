@@ -6,30 +6,30 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-StreamX 总体组件栈架构如下， 由 streamx-core 和 streamx-console 两个大的部分组成 , streamx-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+The overall component stack structure of StreamX is as follows. It consists of two major parts: streamx-core and streamx-console. streamx-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
 ![Streamx Archite](/doc/image/streamx_archite.png)
 
-streamx-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
+streamx-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
 
-## 环境要求
+## Environmental requirements
 
 <ClientEnvs></ClientEnvs>
 
-:::tip 注意
-StreamX 1.2.2之前(包含)的版本,只支持`scala 2.11`,切忌使用`flink`时要检查对应的`scala`版本
-1.2.3之后(包含)的版本,支持 `scala 2.11` 和 `scala 2.12` 两个版本
+:::tip Notice
+The versions before (including) StreamX 1.2.2 only support `scala 2.11`. Do not check the corresponding `scala` version when using `flink`
+Versions after (including) 1.2.3, support both `scala 2.11` and `scala 2.12` versions
 :::
 
 
-目前 StreamX 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
+At present, StreamX has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
 
 ### Hadoop
-使用 `Flink on YARN`，需要部署的集群安装并配置 Hadoop的相关环境变量，如你是基于 CDH 安装的 hadoop 环境，
-相关环境变量可以参考如下配置:
+To use `Flink on YARN`, you need to install and configure Hadoop-related environment variables in the deployed cluster. For example, if you installed the hadoop environment based on CDH,
+Related environment variables can refer to the following configuration:
 
 ```shell
-export HADOOP_HOME=/opt/cloudera/parcels/CDH/lib/hadoop #hadoop 安装目录
+export HADOOP_HOME=/opt/cloudera/parcels/CDH/lib/hadoop #hadoop installation manual
 export HADOOP_CONF_DIR=/etc/hadoop/conf
 export HIVE_HOME=$HADOOP_HOME/../hive
 export HBASE_HOME=$HADOOP_HOME/../hbase
@@ -40,26 +40,25 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### Kubernetes
 
-使用 `Flink on Kubernetes`，需要额外部署/或使用已经存在的 Kubernetes 集群，请参考条目： [**StreamX Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)。
+Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**StreamX Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
 
-## 编译 & 部署
+## Build & Deploy
 
-你可以直接下载编译好的[**发行包**](https://github.com/streamxhub/streamx/releases)(推荐),也可以选择手动编译安装，手动编译安装步骤如下:
+You can directly download the compiled [**release package**](https://github.com/streamxhub/streamx/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
 
 
-### 环境要求
+### Environmental requirements
 
 - Maven 3.6+
 - npm 7.11.2 ( https://nodejs.org/en/ )
 - JDK 1.8+
 
-### 编译打包
+### Compile and package
 
 
-#### 自动打包
+#### Automatic packaging
 
-从 StreamX 1.2.3+ 版本开始,提供了自动编译的脚本 `build.sh`, 执行运行该脚本按照要求进行下一步选择即可完成编译, 若 StreamX 1.2.3 之前的版本可以跳过,直接看手动打包部分文档即可
-
+Starting from StreamX 1.2.3+, an automatic compilation script `build.sh` is provided. Execute and run the script and select the next step as required to complete the compilation. If the version before StreamX 1.2.3 can be skipped, see directly Manually package some documents
 <video src="http://assets.streamxhub.com/streamx-build.mp4" controls="controls" width="100%" height="100%"></video>
 
 ```shell
@@ -68,11 +67,11 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ```
 
-#### 手动打包
+#### Manual packaging
 
-在 StreamX 从 1.2.1 及之后的版本支持**混合打包** 和 **独立打包** 两种模式,供用户选择, 手动打包部署的话,需要注意每种打包方式的具体操作:
+From 1.2.1 and later versions, StreamX supports **mixed packaging** and **independent packaging** two modes for users to choose. If you manually package and deploy, you need to pay attention to the specific operations of each packaging method:
 
-##### 混合打包
+##### mixed packaging
 
 ```bash
 git clone https://github.com/streamxhub/streamx.git
@@ -80,13 +79,13 @@ cd streamx
 mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pwebapp
 ```
 
-:::danger 特别注意
-前后端混合打包模式下<span style={{color:'red'}}>**-Pwebapp**</span> 该参数必带
+:::danger special attention
+<span style={{color:'red'}}>**-Pwebapp**</span> This parameter is required in front-end and back-end mixed packaging mode
 :::
 
-##### 独立打包
+##### Independent packaging
 
-###### 1. 后端编译
+###### 1. Backend compilation
 
 ```bash
 git clone https://github.com/streamxhub/streamx.git
@@ -94,17 +93,17 @@ cd streamx
 mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests
 ```
 
-###### 2. 前端打包
+###### 2. Front-end packaging
 
-- 2.1 修改base api
+- 2.1 Modify base api
 
-在前后端独立编译部署的项目里,前端项目需要知道后端服务的base api,才能前后端协同工作. 因此在编译之前我们需要指定下后端服务的base api,修改 streamx-console-webapp/.env.production 里的`VUE_APP_BASE_API`即可
+In a project where the front-end and back-end are independently compiled and deployed, the front-end project needs to know the base api of the back-end service so that the front-end and back-end can work together. Therefore, before compiling, we need to specify the base api of the back-end service and modify streamx-console-webapp/. `VUE_APP_BASE_API` in env.production can
 
 ```bash 
 vi streamx/streamx-console/streamx-console-webapp/.env.production
 ```
 
-- 2.2 编译
+- 2.2 Compile
 
 ```bash
 git clone https://github.com/streamxhub/streamx.git
@@ -113,16 +112,16 @@ npm install
 npm run build
 ```
 
-:::danger 特别注意
+:::danger pay attention
 
-注意每个不同版本编译的时候携带的参数,
-在 StreamX 1.2.3(包含)之后的版本里, 其中 `-Dscala.version` 和 `-Dscala.binary.version` 参数 必带
+Pay attention to the parameters carried when each different version is compiled,
+In versions after StreamX 1.2.3 (included), the `-Dscala.version` and `-Dscala.binary.version` parameters are required
 
-Scala 2.11 编译, 相关 scala 版本指定信息如下:
+Scala 2.11 is compiled, and the relevant scala version specification information is as follows:
 ```
 -Dscala.version=2.11.12 -Dscala.binary.version=2.11
 ```
-Scala 2.12 编译, 相关 scala 版本指定信息如下:
+Scala 2.12 is compiled, and the relevant scala version specification information is as follows:
 ```
 -Dscala.version=2.12.7 -Dscala.binary.version=2.12
 ```
@@ -130,61 +129,61 @@ Scala 2.12 编译, 相关 scala 版本指定信息如下:
 :::
 
 
-### 部署后端
+### Deploy backend
 
-安装完成之后就看到最终的工程文件，位于 `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`,解包后安装目录如下
+After the installation is complete, you will see the final project file, located in `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`, the installation directory after unpacking as follows
 
 ```textmate
 .
 streamx-console-service-1.2.1
 ├── bin
 │    ├── flame-graph                         
-│    ├──   └── *.py                           //火焰图相关功能脚本 ( 内部使用，用户无需关注 )
-│    ├── startup.sh                           //启动脚本
-│    ├── setclasspath.sh                      //java 环境变量相关的脚本 ( 内部使用，用户无需关注 )
-│    ├── shutdown.sh                          //停止脚本
-│    ├── yaml.sh                              //内部使用解析 yaml 参数的脚本 ( 内部使用，用户无需关注 )
+│    ├──   └── *.py                           //Flame graph related function script (internal use, users do not need to pay attention)
+│    ├── startup.sh                           //startup script
+│    ├── setclasspath.sh                      //Scripts related to java environment variables (internal use, users do not need to pay attention)
+│    ├── shutdown.sh                          //stop script
+│    ├── yaml.sh                              //Internally uses a script that parses yaml parameters (for internal use, users don't need to pay attention)
 ├── conf                                     
-│    ├── application.yaml                     //项目的配置文件 ( 注意不要改动名称 )
-│    ├── flink-application.template           //flink 配置模板 ( 内部使用，用户无需关注 )
+│    ├── application.yaml                     //Project configuration file (be careful not to change the name)
+│    ├── flink-application.template           //flink configuration template (for internal use, users don't need to pay attention)
 │    ├── logback-spring.xml                   //logback
 │    └── ...                                 
 ├── lib                                      
-│    └── *.jar                                //项目的 jar 包
+│    └── *.jar                                //Project jar package
 ├── plugins                                  
-│    ├── streamx-jvm-profiler-1.0.0.jar       //jvm-profiler,火焰图相关功能 ( 内部使用，用户无需关注 )
-│    └── streamx-flink-sqlclient-1.0.0.jar    //Flink SQl 提交相关功能 ( 内部使用，用户无需关注 )
+│    ├── streamx-jvm-profiler-1.0.0.jar       //jvm-profiler, flame graph related functions (internal use, users do not need to pay attention)
+│    └── streamx-flink-sqlclient-1.0.0.jar    //Flink SQl submit related functions (for internal use, users do not need to pay attention)
 ├── script                                   
-│     ├── final                               // 完整的ddl建表sql
-│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
-├── logs                                      //程序 log 目录
+│     ├── final                               // Complete ddl build table sql
+│     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
+├── logs                                      //program log directory
                                              
-├── temp                                      //内部使用到的临时路径，不要删除
+├── temp                                      //Temporary path used internally, do not delete
 ```
 
-##### 初始化表结构
+##### Initialize table structure
 
-在 1.2.1之前的版本安装过程中不需要手动做数据初始化，只需要设置好数据库信息即可，会自动完成建表和数据初始化等一些列操作, 1.2.1(包含)之后的版本里不在自动建表和升级,需要用户手动执行ddl进行初始化操作,ddl说明如下:
+In the installation process of versions before 1.2.1, there is no need to manually initialize data, just set the database information, and some column operations such as table creation and data initialization will be automatically completed. Versions after 1.2.1 (included) are not included. Automatic table creation and upgrade requires the user to manually execute ddl for initialization. The ddl description is as follows:
 
 ```textmate
 ├── script
-│     ├── final                 // 完整的ddl建表sql
-│     ├── upgrade               // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
+│     ├── final                 // Complete ddl build table sql
+│     ├── upgrade               // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
 ```
 
-##### 修改配置
-安装解包已完成，接下来准备数据相关的工作
+##### Modify the configuration
+The installation and unpacking have been completed, and the next step is to prepare the data-related work
 
-###### 新建数据库 `streamx`
-确保在部署机可以连接的 mysql 里新建数据库 `streamx`
+###### Create a new database `streamx`
+Make sure to create a new database `streamx` in mysql that the deployment machine can connect to
 
-###### 修改连接信息
-进入到 `conf` 下，修改 `conf/application.yml`,找到 datasource 这一项，找到 mysql 的配置，修改成对应的信息即可，如下
+###### Modify connection information
+Go to `conf`, modify `conf/application.yml`, find the datasource item, find the mysql configuration, and modify it to the corresponding information, as follows
 
 ```yaml
 datasource:
   dynamic:
-    # 是否开启 SQL 日志输出，生产环境建议关闭，有性能损耗
+    # Whether to open SQL log output, it is recommended to close the production environment, there is performance loss
     p6spy: false
     hikari:
       connection-timeout: 30000
@@ -193,10 +192,10 @@ datasource:
       min-idle: 5
       connection-test-query: select 1
       pool-name: HikariCP-DS-POOL
-    # 配置默认数据源
+    # Configure the default data source
     primary: primary
     datasource:
-      # 数据源-1，名称为 primary
+      # datasource-1, named primary
       primary:
         username: $user
         password: $password
@@ -204,85 +203,85 @@ datasource:
         url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
-###### 修改workspace
-进入到 `conf` 下，修改 `conf/application.yml`,找到 streamx 这一项，找到 workspace 的配置，修改成一个用户有权限的目录
+###### Modify workspace
+Go to `conf`, modify `conf/application.yml`, find the item streamx, find the workspace configuration, and change it to a directory that the user has permission to.
 
 ```yaml
 streamx:
-  # HADOOP_USER_NAME 如果是on yarn模式( yarn-prejob | yarn-application | yarn-session)则需要配置 hadoop-user-name
+  # HADOOP_USER_NAME If it is on yarn mode ( yarn-prejob | yarn-application | yarn-session), you need to configure hadoop-user-name
   hadoop-user-name: hdfs
-  # 本地的工作空间,用于存放项目源码,构建的目录等.
+  # Local workspace, used to store project source code, build directory, etc.
   workspace:
-    local: /opt/streamx_workspace # 本地的一个工作空间目录(很重要),用户可自行更改目录,建议单独放到其他地方,用于存放项目源码,构建的目录等.
+    local: /opt/streamx_workspace # A local workspace directory (very important), users can change the directory by themselves, it is recommended to put it in other places separately to store the project source code, the built directory, etc.
     remote: hdfs:///streamx   # support hdfs:///streamx/ 、 /streamx 、hdfs://host:ip/streamx/
 ```
 
-##### 启动后端
+##### Start the backend
 
-进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是**10000**,如果没啥意外则会启动成功
+Enter `bin` and directly execute startup.sh to start the project. The default port is **10000**, if there is no accident, it will start successfully
 
 ```bash
 cd streamx-console-service-1.0.0/bin
 bash startup.sh
 ```
-相关的日志会输出到**streamx-console-service-1.0.0/logs/streamx.out** 里
+Relevant logs will be output to **streamx-console-service-1.0.0/logs/streamx.out**
 
-:::info 提示
+:::info hint
 
-前后端混合打包模式,只启动后端服务即可完成所有的部署, 打开浏览器 输入**http://$host:10000**  即可登录
+Front-end and back-end mixed packaging mode, only start the back-end service to complete all the deployment, open the browser and enter **http://$host:10000** to log in
 
 :::
 
-### 部署前端
+### Deploy frontend
 
-##### 环境准备
+##### Environmental preparation
 
-全局安装 nodejs 和 pm2
+Install nodejs and pm2 globally
 ``` 
 yum install -y nodejs
 npm install -g pm2
 ```
 
-##### 发布
+##### Release
 
-###### 1. 将dist copy到部署服务器
-将streamx-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streamx`,拷贝后的目录层级是/home/www/streamx/dist
+###### 1. Copy the dist to the deployment server
+Copy the entire directory of streamx-console-webapp/dist to the deployment directory of the server, such as: `/home/www/streamx`, the copied directory level is /home/www/streamx/dist
 
-###### 2. 将streamx.js文件copy到项目部署目录
-将streamx/streamx-console/streamx-console-webapp/streamx.js copy 至 `/home/www/streamx`
+###### 2. Copy the streamx.js file to the project deployment directory
+Copy streamx/streamx-console/streamx-console-webapp/streamx.js to `/home/www/streamx`
 
-###### 3. 修改服务端口
-用户可以自行指定前端服务的端口地址, 修改 /home/www/streamx/streamx.js文件, 找到 `serverPort` 修改即可,默认如下:
+###### 3. Modify the service port
+Users can specify the port address of the front-end service by themselves, modify the /home/www/streamx/streamx.js file, and find `serverPort` to modify, the default is as follows:
 
 ```
   const serverPort = 1000 
 ```
 
-4. 启动服务
+4. Start the service
 
 ```shell
    pm2 start streamx.js
 ```
 
-关于 pm2的更多使用请参考[官网](https://pm2.keymetrics.io/)
+For more information about pm2, please refer to [Official Website](https://pm2.keymetrics.io/)
 
-### 登录系统
+### log in system
 
-经过以上步骤,就算部署完成,可直接登录进入系统
+After the above steps, even if the deployment is completed, you can directly log in to the system
 
 ![StreamX Login](/doc/image/streamx_login.jpeg)
 
-:::tip 提示
-默认密码: <strong> admin / streamx </strong>
+:::tip hint
+Default password: <strong> admin / streamx </strong>
 :::
 
-## 系统配置
+## System Configuration
 
-进入系统之后，第一件要做的事情就是修改系统配置，在菜单/StreamX/Setting 下，操作界面如下:
+After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamX/Setting, the operation interface is as follows:
 
 ![StreamX Settings](/doc/image/streamx_settings.png)
 
-主要配置项分为以下几类
+The main configuration items are divided into the following categories
 
 <div class="counter">
 
@@ -294,23 +293,23 @@ npm install -g pm2
 </div>
 
 ### Flink Home
-这里配置全局的 Flink Home,此处是系统唯一指定 Flink 环境的地方，会作用于所有的作业
+The global Flink Home is configured here. This is the only place in the system to specify the Flink environment, which will apply to all jobs.
 
-:::info 提示
-特别提示: 最低支持的 Flink 版本为 1.12.0, 之后的版本都支持
+:::info hint
+Special Note: The minimum supported Flink version is 1.12.0, and later versions are supported
 :::
 
 ### Maven Home
 
-指定 maven Home, 目前暂不支持，下个版本实现
+Specify maven Home, currently not supported, the next version will be implemented
 
 ### StreamX Env
 
-- StreamX Webapp address 
-  这里配置 StreamX Console 的 web url 访问地址，主要火焰图功能会用到，具体任务会将收集到的信息通过此处暴露的 url 发送 http 请求到系统，进行收集展示
-- StreamX Console Workspace 
-  配置系统的工作空间，用于存放项目源码，编译后的项目等(该配置为1.2.0之前的版本里的配置项)
+- StreamX Webapp address
+  The web url access address of the StreamX Console is configured here. The main flame graph function will be used. The specific task will send http requests to the system through the url exposed here for collection and display.
+- StreamX Console Workspace
+  The workspace of the configuration system is used to store the source code of the project, the compiled project, etc. (this configuration is the configuration item in the version before 1.2.0)
 
 ### Email
 
-Alert Email 相关的配置是配置发送者邮件的信息，具体配置请查阅相关邮箱资料和文档进行配置
+The configuration related to Alert Email is to configure the information of the sender's email. For the specific configuration, please refer to the relevant mailbox information and documents for configuration.
