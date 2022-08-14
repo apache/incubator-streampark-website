@@ -7,24 +7,21 @@ sidebar_position: 8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Redis](http://www.redis.cn/)是一个开源内存数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据
-结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps， 
-hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了事务（transactions） 和不同级别的 磁盘持久化（persistence），
-并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。
+[Redis](http://www.redis.cn/) is an open source in-memory data structure storage system that can be used as a database, cache, and messaging middleware. It supports many types of data structures such as strings, hashes, lists, sets, ordered sets and range queries, bitmaps, hyperlogloglogs and geospatial index radius queries. Redis has built-in transactions and various levels of disk persistence, and provides high availability through Redis Sentinel and Cluster.
 
-flink官方未提供写入reids数据的连接器。StreamX 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
-封装了RedisSink、配置redis连接参数，即可自动创建redis连接简化开发。目前RedisSink支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
+ Flink does not officially provide a connector for writing reids data.StreamX is based on [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
+It encapsulates RedisSink, configures redis connection parameters, and automatically creates redis connections to simplify development. Currently, RedisSink supports the following connection methods: single-node mode, sentinel mode, and cluster mode because it does not support transactions.
 
-StreamX 使用Redis的 **MULTI** 命令开启事务，**EXEC** 命令提交事务，细节见链接:  
-http://www.redis.cn/topics/transactions.html ，使用RedisSink 默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE语义。
+StreamX uses Redis' **MULTI** command to open a transaction and the **EXEC** command to commit a transaction, see the link for details:  
+http://www.redis.cn/topics/transactions.html , using RedisSink supports AT_LEAST_ONCE (at least once) processing semantics by default. EXACTLY_ONCE semantics are supported with checkpoint enabled.
 
-:::tip 提示
-redis 为key,value类型数据库，AT_LEAST_ONCE语义下flink作业出现异常重启后最新的数据会覆盖上一版本数据，达到最终数据一致。如果有外部程序在重启期间读取了数据会有和最终数据不一致的风险。  
-EXACTLY_ONCE语义下会在flink作业checkpoint整体完成情况下批量写入redis，会有一个checkpoint时间间隔的延时。请根据业务场景选择合适语义。
+:::tip tip
+redis is a key,value type database, AT_LEAST_ONCE semantics flink job with abnormal restart the latest data will overwrite the previous version of data to achieve the final data consistency. If an external program reads the data during the restart, there is a risk of inconsistency with the final data.  
+EXACTLY_ONCE semantics will write to redis in batch when the flink job checkpoint is completed as a whole, and there will be a delay of checkpoint interval. Please choose the appropriate semantics according to the business scenario.
 :::
 
-## Redis写入依赖
-Flink Connector Redis 官方提供两种，以下两种api均相同，StreamX 使用的是org.apache.bahir依赖
+## Redis Write Dependency
+Flink Connector Redis officially provides two kinds, the following two api are the same, StreamX is using org.apache.bahir dependency.
 ```xml
 <dependency>
     <groupId>org.apache.bahir</groupId>
@@ -40,11 +37,11 @@ Flink Connector Redis 官方提供两种，以下两种api均相同，StreamX �
 </dependency>
 ```
 
-## 常规方式写Redis
+## Writing Redis the Regular Way
 
-常规方式下使用Flink Connector Redis写入数据的方式如下:  
+The regular way of writing data using Flink Connector Redis is as follows:  
 
-### 1.接入source
+### 1.Access to source
 
 ```java
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
@@ -88,14 +85,14 @@ class TestEntity {
     Long timestamp;
 
     /**
-     * @param userId      : 用户Id
-     * @param orderId     : 订单ID
-     * @param siteId      : 站点ID
-     * @param cityId      : 城市Id
-     * @param orderStatus : 订单状态(1:下单,0:退单)
-     * @param price       : 单价
-     * @param quantity    : 订单数量
-     * @param timestamp   : 下单时间
+     * @param userId      : User ID
+     * @param orderId     : Order ID
+     * @param siteId      : Site ID
+     * @param cityId      : City ID
+     * @param orderStatus : Order status(1:Place order,0:Return order)
+     * @param price       : Unit price
+     * @param quantity    : Number of orders
+     * @param timestamp   : Order time
      */
     public TestEntity(Long userId, Long orderId, Long siteId, Long cityId, Integer orderStatus, Double price, Integer quantity, Long timestamp) {
         this.userId = userId;
@@ -111,7 +108,7 @@ class TestEntity {
 
 ```
 
-### 2. 写入redis
+### 2. Write to redis
 
 ```java
 import org.apache.flink.api.common.functions.MapFunction;
@@ -126,39 +123,39 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.RedisMapper;
 public class FlinkRedisSink {
 
     public static void main(String[] args) throws Exception {
-        //1.获取执行环境
+        //1.Get the execution environment
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
-        //2.读数据并转换为JavaBean
+        //2.Read data and convert to JavaBean
         DataStreamSource<TestEntity> source = env.addSource(new TestSource(), TypeInformation.of(TestEntity.class));
-        //3.将数据写入Redis
+        //3.Write Data to Redis
         FlinkJedisPoolConfig jedisPoolConfig = new FlinkJedisPoolConfig.Builder()
                 .setHost("localhost")
                 .setPort(6379)
                 .build();
         source.addSink(new RedisSink<>(jedisPoolConfig, new MyRedisMapper()));
 
-        //4.执行任务
+        //4.Perform the task
         env.execute();
     }
 
     public static class MyRedisMapper implements RedisMapper<TestEntity> {
         @Override
         public RedisCommandDescription getCommandDescription() {
-            // 返回存在Redis中的数据类型  存储的是Hash, 第二个参数是外面的key
+            // Returns the type of data that exists in Redis, stored as a hash, with the second parameter being the outside key
             return new RedisCommandDescription(RedisCommand.HSET, "");
         }
 
         @Override
         public String getKeyFromData(TestEntity data) {
-            // 从数据中获取Key: Hash的Key
+            // Get Key from data: Key of Hash
             return String.valueOf(data.userId());
         }
 
         @Override
         public String getValueFromData(TestEntity data) {
-            // 从数据中获取Value: Hash的value
+            // Get Value from data: Value of Hash
             return String.valueOf(data.price());
         }
     }
@@ -166,27 +163,27 @@ public class FlinkRedisSink {
 }
 ```
 
-以上创建FlinkJedisPoolConfig较繁琐，redis的每种操作都要构建RedisMapper,非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置redis 
-连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+The above creation of FlinkJedisPoolConfig is tedious, and each operation of redis has to build RedisMapper, which is very insensitive. `StreamX` uses a convention over configuration and automatic configuration. This only requires configuring redis 
+StreamX automatically assembles the source and sink parameters, which greatly simplifies the development logic and improves development efficiency and maintainability.
 
-## StreamX 写入 Redis
+## StreamX Writes to Redis
 
-RedisSink 默认为AT_LEAST_ONCE (至少一次)的处理语义，在开启checkpoint情况下两阶段段提交支持EXACTLY_ONCE语义，可使用的连接类型： 单节点模式、哨兵模式。
+RedisSink defaults to AT_LEAST_ONCE (at least once) processing semantics, two-stage segment submission supports EXACTLY_ONCE semantics with checkpoint enabled, available connection types: single-node mode, sentinel mode.
 
-### 1. 配置策略和连接信息
+### 1. Configure policy and connection information
 
 <Tabs>
-<TabItem value="单节点配置" default>
+<TabItem value="Single-node configuration" default>
 
 ```yaml
-#redis sink 配置
+#redis sink configuration
 redis.sink:
-  host: 127.0.0.1 #必须参数
-  #选填参数
+  host: 127.0.0.1 #Required parameters
+  #Optional parameters
   port: 6379
   database: 2
   password: 
-  connectType: jedisPool #可选参数：jedisPool（默认）|sentinel
+  connectType: jedisPool #Optional parameters: jedisPool（默认）|sentinel
   maxTotal: 
   maxIdle: 
   minIdle: 
@@ -195,15 +192,15 @@ redis.sink:
 
 </TabItem>
 
-<TabItem value="哨兵模式配置" default>
+<TabItem value="Sentinel mode configuration" default>
 
 ```yaml
-#redis sink 配置
+#redis sink configuration
 redis.sink:
-  masterName: master 哨兵模式参数
-  host: 192.168.0.1:6379, 192.168.0.3:6379 #必须参数，必须指定连接的port
+  masterName: master # Sentinel mode parameters
+  host: 192.168.0.1:6379, 192.168.0.3:6379 # Required parameter, must specify the port of the connection
   connectType: sentinel
-  #选填参数
+  #Optional parameters
   soTimeout: 6379
   database: 2
   password: 
@@ -217,9 +214,9 @@ redis.sink:
 
 </Tabs>
 
-### 2. 写入Redis
+### 2. Write to Redis
 
-用 StreamX 写入redis非常简单,代码如下:
+Writing to redis with StreamX is very simple, the code is as follows:
 
 <Tabs>
 
@@ -241,15 +238,15 @@ object FlinkRedisSinkApp extends FlinkStreaming {
   override def handle(): Unit = {
 
     /**
-     * 创造读取数据的源头
+     * Create the source of read data
      */
     val source = context.addSource(new TestSource)
 
 
     // Redis sink..................
-    //1)定义 RedisSink
+    //1)Define RedisSink
     val sink: RedisSink = RedisSink()
-    //2)写Mapper映射
+    //2)Write Mapper's mapping
     val personMapper: RedisMapper[TestEntity] = RedisMapper[TestEntity](RedisCommand.HSET, "flink_user", _.userId.toString, _.orderId.toString)
 
     sink.sink[TestEntity](source, personMapper, 60000000).setParallelism(1)
@@ -261,10 +258,10 @@ object FlinkRedisSinkApp extends FlinkStreaming {
 
 /**
  * RedisMapper
- * @param cmd redis 写入命令
- * @param additionalKey 写入额外key,适用于 hset
- * @param key  写入key
- * @param value 写入value
+ * @param cmd redis -Write command
+ * @param additionalKey -Write additional keys, applicable to hset
+ * @param key -Write key
+ * @param value -Write value
  * @tparam T
  */
 case class RedisMapper[T](cmd: RedisCommand, additionalKey: String, key: T => String, value: T => String) extends RMapper[T] {
@@ -280,8 +277,8 @@ case class RedisMapper[T](cmd: RedisCommand, additionalKey: String, key: T => St
 </TabItem>
 </Tabs>
 
-如代码所示，StreamX 会自动加载配置创建RedisSink，用户通过创建需要的RedisMapper对象即完成redis写入操作，**additionalKey为hset时为最外层key其他写入命令无效**。
-RedisSink.sink()写入相应的key对应数据是需要指定过期时间，如果未指定默认过期时间为java Integer.MAX_VALUE (67年)。如代码所示：
+As the code shows, StreamX automatically loads the configuration to create a RedisSink, and the user completes the redis write operation by creating the required RedisMapper object, **additionalKey is the outermost key when hset is invalid for other write commands**.
+RedisSink.sink() write the corresponding key corresponding to the data is required to specify the expiration time, if not specified default expiration time is java Integer.MAX_VALUE (67 years). As shown in the code.
 
 ```scala
 class RedisSink() extends Sink {
@@ -300,9 +297,9 @@ class RedisSink() extends Sink {
 
 ```
 
-### 支持的redis操作命令
+### Supported redis operating commands
 
-支持redis操作命令如下:
+The following commands are supported for redis operations:
 
 ```java
 public enum RedisCommand {
@@ -359,12 +356,12 @@ public enum RedisCommand {
 }
 ```
 
-:::info 警告
-RedisSink 目前支持单节点模式、哨兵模式连接，集群模式不支持事务，StreamX 目前为支持，如有使用场景，请调用Flink Connector Redis官方api。<br></br>
-EXACTLY_ONCE语义下必须开启checkpoint，否则程序会抛出参数异常。<br></br>
-EXACTLY_ONCE语义下checkpoint的数据sink缓存在内存里面，需要根据实际数据合理设置checkpoint时间间隔，否则有**oom**的风险。<br></br>
+:::info Warning
+RedisSink currently supports single-node mode and sentinel mode connections. And its cluster mode does not support transactions, but StreamX is currently for support. Please call the official Flink Connector Redis api if you have a usage scenario.<br></br>
+Checkpoint must be enabled under EXACTLY_ONCE semantics, otherwise the program will throw parameter exceptions.<br></br>
+EXACTLY_ONCE semantics checkpoint data sink cache inside the memory, you need to reasonably set the checkpoint interval according to the actual data, otherwise there is a risk of **oom**.<br></br>
 :::
 
-## 其他配置
+## Other Configuration
 
-其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+All other configurations must adhere to the **StreamX** configuration, please refer to [project configuration](/docs/development/conf) for specific configurable items and the role of each parameter.

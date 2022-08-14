@@ -1,35 +1,36 @@
 ---
 id: 'dev-model'
-title: 'Programming model'
+title: '编程模型'
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-任何框架都有一些要遵循的规则和约定, 我们只有遵循并掌握了这些规则, 才能更加游刃有余的使用, 使其发挥事半功倍的效果, 我们开发 Flink 作业,其实就是利用 Flink 提供的 API , 按照 Flink 要求的开发方式, 写一个可以执行的(必须有`main()`函数)的程序, 在程序里接入各种`Connector`经过一系列的`算子`操作, 最终将数据通过`Connector` sink 到目标存储,
-我们把这种按照某种约定的规则去逐步编程的方式称之为`编程模型`, 这一章节我们就来聊聊 StreamX 的`编程模型`以及开发注意事项
+There are some rules and conventions to be followed in any framework. Only by following and mastering these rules can we use them more easily and achieve twice the result with half the effort.When we develop Flink job, we actually use the API provided by Flink to write an executable program (which must have a `main()` function) according to the development method required by Flink. We access various`Connector`in the program, and after a series of `operator`operations, we finally sink the data to the target storage through the `Connector` .
 
-我们从这几个方面开始入手
+We call this method of step-by-step programming according to certain agreed rules the "programming model". In this chapter, we will talk about the "programming model" of StreamX and the development considerations.
 
-* 架构
-* 编程模型
+Let's start from these aspects
+
+* Architecture
+* Programming Model
 * RunTime Context
-* 生命周期
-* 目录结构
-* 打包部署
+* Life Cycle
+* Catalog Structure
+* Packaged Deployment
 
-## 架构
+## Architecture
 
 []("/doc/image/streamx_archite.png")
 
-## 编程模型
+## Programming Model
+`streamx-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming model of `DataStream` and `Flink Sql` with StreamX looks like, and what the specifications and requirements are.
 
-`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamX 来开发编程模型是什么样的,有什么规范和要求
 
 ### DataStream
+StreamX provides both `scala` and `Java` APIs to develop `DataStream` programs, the specific code development is as follows.
 
- StreamX 提供了`scala`和`Java`两种 API 来开发 `DataStream` 程序,具体代码开发如下
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -55,7 +56,7 @@ public class MyFlinkJavaApp {
 
     public static void main(String[] args) {
         StreamEnvConfig JavaConfig = new StreamEnvConfig(args, (environment, parameterTool) -> {
-            //用户可以给environment设置参数...
+            //The user can set parameters for the environment...
             System.out.println("environment argument set...");
         });
         
@@ -71,28 +72,25 @@ public class MyFlinkJavaApp {
 </TabItem>
 </Tabs>
 
+To develop with the `scala` API, the program must inherit from `FlinkStreaming`. After inheritance, it is mandatory for developers to implement the `handle()` method, which is the entry point for users to write code, and the `streamingContext` for developers to use.
 
-用 `scala` API 开发,程序必须要继承 `FlinkStreaming` ,继承之后,会强制让开发者实现 `handle()` 方法,该方法就是用户写代码的入口, 同时 `streamingContext` 供开发者使用
+Development with the `Java` API can not omit the `main()` method due to the limitations of the language itself, so it will be a standard `main()` function,. The user needs to create the `StreamingContext` manually. `StreamingContext` is a very important class, which will be introduced later.
 
-用 `Java` API 开发由于语言本身的限制没法省掉 `main()` 方法,所以会是一个标准的 `main()` 函数, 需要用户手动创建 `StreamingContext`,`StreamingContext` 是非常重要的一个类,稍后会介绍
-
-:::tip 提示
-
-以上几行 `scala` 和 `Java` 代码就是用 StreamX 开发 `DataStream` 必不可少的最基本的骨架代码,用 StreamX 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
-
+:::tip tip
+The above lines of `scala` and `Java` code are the basic skeleton code necessary to develop `DataStream` with StreamX. Developing a `DataStream` program with StreamX. Starting from these lines of code, Java API development requires the developer to manually start the task `start`.
 :::
 
 ### Flink Sql
 
-TableEnvironment 是用来创建 Table & SQL 程序的上下文执行环境,也是 Table & SQL 程序的入口,Table & SQL 程序的所有功能都是围绕 TableEnvironment 这个核心类展开的。TableEnvironment 的主要职能包括：对接外部系统，表及元数据的注册和检索，执行 SQL 语句，提供更详细的配置选项。
+The TableEnvironment is used to create the contextual execution environment for Table & SQL programs and is the entry point for Table & SQL programs. The main functions of the TableEnvironment include: interfacing with external systems, registering and retrieving tables and metadata, executing SQL statements, and providing more detailed configuration options.
 
-Flink 社区一直在推进 DataStream 的批处理能力,统一流批一体,在 Flink 1.12 中流批一体真正统一运行,诸多历史 API 如: DataSet API, BatchTableEnvironment API 等被废弃,退出历史舞台,官方推荐使用 **TableEnvironment** 和 **StreamTableEnvironment**
+The Flink community has been promoting the batch processing capability of DataStream and unifying the stream-batch integration, and in Flink 1.12, the stream-batch integration is truly unified, many historical APIs such as: DataSet API, BatchTableEnvironment API, etc. are deprecated and retired from the history stage. TableEnvironment** and **StreamTableEnvironment**.
 
- StreamX 针对 **TableEnvironment** 和 **StreamTableEnvironment** 这两种环境的开发,提供了对应的更方便快捷的 API
+ StreamX provides a more convenient API for the development of **TableEnvironment** and **StreamTableEnvironment** environments.
 
 #### TableEnvironment
 
-开发Table & SQL 作业, TableEnvironment 会是 Flink 推荐使用的入口类, 同时能支持 Java API 和 Scala API,下面的代码演示了在 StreamX 如何开发一个 TableEnvironment 类型的作业
+To develop Table & SQL jobs, TableEnvironment will be the recommended entry class for Flink, supporting both Java API and Scala API, the following code demonstrates how to develop a TableEnvironment type job in StreamX
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -128,17 +126,17 @@ public class JavaTableApp {
 </TabItem>
 </Tabs>
 
-:::tip 提示
+:::tip tip
 
-以上几行 Scala 和 Java 代码就是用 StreamX 开发 TableEnvironment 必不可少的最基本的骨架代码,用 StreamX 开发 TableEnvironment 程序,从这几行代码开始,
-Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContext ,需要开发者手动启动任务 `start`
+The above lines of Scala and Java code are the essential skeleton code for developing a TableEnvironment with StreamX.
+Scala API must inherit FlinkTable, Java API development needs to manually construct TableContext, and the developer needs to manually start the task `start`.
 
 :::
 
 #### StreamTableEnvironment
 
-`StreamTableEnvironment` 用于流计算场景,流计算的对象是 `DataStream`。相比 `TableEnvironment`, `StreamTableEnvironment` 提供了 `DataStream` 和 `Table` 之间相互转换的接口,如果用户的程序除了使用 `Table API` & `SQL` 编写外,还需要使用到 `DataStream API`,则需要使用 `StreamTableEnvironment`。
-下面的代码演示了在 StreamX 如何开发一个 `StreamTableEnvironment` 类型的作业
+`StreamTableEnvironment` is used in stream computing scenarios, where the object of stream computing is a `DataStream`. Compared to `TableEnvironment`, `StreamTableEnvironment` provides an interface to convert between `DataStream` and `Table`. If your application is written using the `DataStream API` in addition to the `Table API` & `SQL`, you need to use the `StreamTableEnvironment`.
+The following code demonstrates how to develop a `StreamTableEnvironment` type job in StreamX.
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -182,24 +180,24 @@ public class JavaStreamTableApp {
 </Tabs>
 
 
-:::tip 特别注意
-以上几行 scala 和 Java 代码就是用 StreamX 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 StreamX 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
+:::tip tip
+The above lines of scala and Java code are the essential skeleton code for developing `StreamTableEnvironment` with StreamX, and for developing `StreamTableEnvironment` programs with StreamX. Starting from these lines of code, Java code needs to construct `StreamTableContext` manually, and `Java API` development requires the developer to start the task `start` manually.
 :::
 
 ## RunTime Context
 
-**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamX 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
+**RunTime Context** - **StreamingContext** , **TableContext** , **StreamTableContext** are three very important objects in StreamX, next we look at the definition and role of these three **Context**.
 
 <center>
 <img src="/doc/image/streamx_coreapi.png" width="60%"/>
 </center>
 
 ### StreamingContext
-`StreamingContext` 继承自 `StreamExecutionEnvironment`, 在 `StreamExecutionEnvironment` 的基础之上增加了 `ParameterTool` ,简单可以理解为:
+`StreamingContext` inherits from `StreamExecutionEnvironment`, adding `ParameterTool` on top of `StreamExecutionEnvironment`, which can be simply understood as:
 
 **StreamingContext** = **ParameterTool** + **StreamExecutionEnvironment**
 
-具体定义如下:
+The specific definitions are as follows:
 
 ```scala 
 class StreamingContext(val parameter: ParameterTool, private val environment: StreamExecutionEnvironment) 
@@ -222,11 +220,11 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
   ...  
 }  
 ```
-:::tip 特别注意
-这个对象非常重要,在 `DataStream` 作业中会贯穿整个任务的生命周期, `StreamingContext` 本身继承自 `StreamExecutionEnvironment` ,配置文件会完全融合到 `StreamingContext` 中,这样就可以非常方便的从 `StreamingContext` 中获取各种参数
+:::tip tip
+This object is very important and will be used throughout the lifecycle of the task in the `DataStream` job. The `StreamingContext` itself inherits from the `StreamExecutionEnvironment`, and the configuration file is fully integrated into the `StreamingContext`, so that it is very easy to get various parameters from the `StreamingContext`.
 :::
 
-在 StreamX 中, `StreamingContext` 也是 Java API 编写 `DataStream` 作业的入口类, `StreamingContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+In StreamX, `StreamingContext` is also the entry class for the Java API to write `DataStream` jobs, one of the constructors of `StreamingContext` is specially built for the Java API, the constructor is defined as follows:
 
 ```scala 
 /**
@@ -236,24 +234,24 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
 def this(args: StreamEnvConfig) = this(FlinkStreamingInitializer.initJavaStream(args))
  ```
 
-由上面的构造方法可以看到创建 `StreamingContext`,需要传入一个 `StreamEnvConfig` 对象, `StreamEnvConfig` 定义如下:
+From the above constructor you can see that to create `StreamingContext`, you need to pass in a `StreamEnvConfig` object. `StreamEnvConfig` is defined as follows:
 
 ```scala
 class StreamEnvConfig(val args: Array[String], val conf: StreamEnvConfigFunction)
 ```
 
-StreamEnvConfig的构造方法中,其中
+In the constructor of StreamEnvConfig,
 
-* `args` 为启动参数,必须为 `main` 方法里的 `args`
-* `conf` 为 `StreamEnvConfigFunction` 类型的 `Function`
+* `args` is the start parameter and must be the `args` in the `main` method
+* `conf` is a `Function` of type `StreamEnvConfigFunction`
 
-`StreamEnvConfigFunction` 定义如下
+The definition of `StreamEnvConfigFunction` is as follows.
 
 ```java 
 @FunctionalInterface
 public interface StreamEnvConfigFunction {
     /**
-     * 用于初始化StreamExecutionEnvironment的时候,用于可以实现该函数,自定义要设置的参数...
+     * Used to initialize the StreamExecutionEnvironment, for the function can be implemented, customize the parameters to be set...
      *
      * @param environment
      * @param parameterTool
@@ -262,7 +260,7 @@ public interface StreamEnvConfigFunction {
 }
 ```
 
-该`Function`的作用是让开发者可以通过钩子的方式设置更多的参数,会将 `parameter` (解析配置文件里所有的参数)和初始化好的 `StreamExecutionEnvironment` 对象传给开发者去完成更多的参数设置,如:
+The purpose of the `Function` is to allow the developer to set more parameters by means of hooks, which will pass the `parameter` (parsing all parameters in the configuration file) and the initialized `StreamExecutionEnvironment` object to the developer to set more parameters, e.g.:
 
 ```java 
 StreamEnvConfig JavaConfig = new StreamEnvConfig(args, (environment, parameterTool) -> {
@@ -274,11 +272,11 @@ StreamingContext context = new StreamingContext(JavaConfig);
 ```
 
 ### TableContext
-`TableContext` 继承自` TableEnvironment` ,在 `TableEnvironment` 的基础之上增加了 `ParameterTool` ,用来创建 `Table` & `SQL` 程序的上下文执行环境,简单可以理解为:
+`TableContext` inherits from `TableEnvironment`. On top of `TableEnvironment`, it adds `ParameterTool`, which is used to create the contextual execution environment for `Table` & `SQL` programs. It can be simply understood as :
 
 **TableContext** = **ParameterTool** + **TableEnvironment**
 
-具体定义如下:
+The specific definitions are as follows:
 
 ```scala 
 class TableContext(val parameter: ParameterTool,
@@ -303,7 +301,7 @@ class TableContext(val parameter: ParameterTool,
 }  
 ```
 
-在 StreamX 中,`TableContext` 也是 Java API 编写 `TableEnvironment` 类型的 `Table Sql` 作业的入口类,`TableContext` 的构造方法中有一个是专门为 `Java API` 打造的,该构造函数定义如下:
+In StreamX, `TableContext` is also the entry class for the Java API to write `Table Sql` jobs of type `TableEnvironment`. One of the constructor methods of `TableContext` is a constructor specifically built for the `Java API`, which is defined as follows:
 
 ```scala 
 
@@ -314,24 +312,24 @@ class TableContext(val parameter: ParameterTool,
 def this(args: TableEnvConfig) = this(FlinkTableInitializer.initJavaTable(args))
  ```
 
-由上面的构造方法可以看到创建 `TableContext`,需要传入一个 `TableEnvConfig` 对象, `TableEnvConfig` 定义如下:
+From the above constructor you can see that to create a `TableContext`, you need to pass in a `TableEnvConfig` object. `TableEnvConfig` is defined as follows:
 
 ```scala
 class TableEnvConfig(val args: Array[String], val conf: TableEnvConfigFunction)
 ```
 
-TableEnvConfig的构造方法中,其中
+In the constructor method of TableEnvConfig,
 
-* `args` 为启动参数,必须为 `main` 方法里的 `args`
-* `conf` 为 `TableEnvConfigFunction` 类型的 `Function`
+* `args` is the start parameter, and is the `args` in the `main` method.
+* `conf` is a `Function` of type `TableEnvConfigFunction`
 
-`TableEnvConfigFunction` 定义如下
+The definition of `TableEnvConfigFunction` is as follows.
 
 ```java 
 @FunctionalInterface
 public interface TableEnvConfigFunction {
     /**
-     * 用于初始化TableEnvironment的时候,用于可以实现该函数,自定义要设置的参数...
+     * Used to initialize the TableEnvironment, for the function can be implemented, customize the parameters to be set...
      *
      * @param tableConfig
      * @param parameterTool
@@ -341,7 +339,7 @@ public interface TableEnvConfigFunction {
 }
 ```
 
-该 `Function` 的作用是让开发者可以通过钩子的方式设置更多的参数,会将 `parameter`(解析配置文件里所有的参数)和初始化好的 `TableEnvironment` 中的 `TableConfig` 对象传给开发者去完成更多的参数设置,如:
+The purpose of the `Function` is to allow the developer to set more parameters by hooking the `parameter` (parsing all parameters in the configuration file) and the `TableConfig` object in the initialized `TableEnvironment` to the developer to set more parameters, such as:
 
 ```java 
 TableEnvConfig config = new TableEnvConfig(args,(tableConfig,parameterTool)->{
@@ -353,12 +351,12 @@ TableContext context = new TableContext(config);
 
 ### StreamTableContext
 
-`StreamTableContext` 继承自 `StreamTableEnvironment`,用于流计算场景,流计算的对象是 `DataStream`, 相比 `TableEnvironment`, `StreamTableEnvironment` 提供了 `DataStream` 和 `Table` 之间相互转换的接口,
-`StreamTableContext` 在 `StreamTableEnvironment` 的基础之上增加了 `ParameterTool`,又直接接入了 `StreamTableEnvironment` 的API,简单可以理解为:
+`StreamTableContext` inherits from `StreamTableEnvironment` and is used in stream computing scenarios. The object of stream computation is `DataStream`. Compared to `TableEnvironment`, `StreamTableEnvironment` provides an interface for conversion between `DataStream` and `Table`.
+`StreamTableContext` adds `ParameterTool` on top of `StreamTableEnvironment` and directly accesses the `StreamTableEnvironment` API, which can be easily understood as:
 
 **StreamTableContext** = **ParameterTool** + **StreamTableEnvironment** + **StreamExecutionEnvironment**
 
-具体定义如下:
+The specific definitions are as follows:
 
 ```scala 
 
@@ -369,8 +367,8 @@ class StreamTableContext(val parameter: ParameterTool,
                          with FlinkTableTrait {
 
   /**
-   * 一旦 Table 被转化为 DataStream,
-   * 必须使用 StreamExecutionEnvironment 的 execute 方法执行该 DataStream 作业。
+   * Once the Table is converted to a DataStream,
+   * The DataStream job must be executed using the execute method of the StreamExecutionEnvironment.
    */
   private[scala] var isConvertedToDataStream: Boolean = false
 
@@ -393,7 +391,7 @@ class StreamTableContext(val parameter: ParameterTool,
 ```
 
 
-在StreamX中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+In StreamX, `StreamTableContext` is the entry class for the Java API to write `Table Sql` jobs of type `StreamTableEnvironment`. One of the constructors of `StreamTableContext` is a function built specifically for the Java API, which is defined as follows:
 
 ```scala 
 
@@ -405,7 +403,7 @@ class StreamTableContext(val parameter: ParameterTool,
 def this(args: StreamTableEnvConfig) = this(FlinkTableInitializer.initJavaStreamTable(args))
  ```
 
-由上面的构造方法可以看到创建 `StreamTableContext` ,需要传入一个 `StreamTableEnvConfig` 对象,`StreamTableEnvConfig` 定义如下:
+From the above constructor you can see that to create `StreamTableContext`, you need to pass in a `StreamTableEnvConfig` object. `StreamTableEnvConfig` is defined as follows:
 
 ```scala
 class StreamTableEnvConfig (
@@ -415,15 +413,15 @@ class StreamTableEnvConfig (
 )
 ```
 
-StreamTableEnvConfig 的构造方法中有三个参数,其中
-* `args` 为启动参数,必须为`main`方法里的`args`
-* `streamConfig` 为`StreamEnvConfigFunction`类型的`Function`
-* `tableConfig` 为`TableEnvConfigFunction`类型的`Function`
+The constructor of StreamTableEnvConfig has three parameters:
+* `args` is the start parameter, and must be `args` in the `main` method
+* `streamConfig` is a `Function` of type `StreamEnvConfigFunction`.
+* `tableConfig` is a `Function` of type `TableEnvConfigFunction`
 
 
-`StreamEnvConfigFunction`和`TableEnvConfigFunction` 定义上面已经讲过,这里不再赘述
+The definitions of `StreamEnvConfigFunction` and `TableEnvConfigFunction` have been described above and will not be repeated here.
 
-该`Function`的作用是让开发者可以通过钩子的方式设置更多的参数,和上面其他参数设置不同的是,该`Function`提供了同时设置`StreamExecutionEnvironment`和`TableEnvironment`的机会 ,会将 `parameter`和初始化好的`StreamExecutionEnvironment`和`TableEnvironment`中的`TableConfig`对象传给开发者去完成更多的参数设置,如:
+The purpose of this `Function` is to allow the developer to set more parameters by means of hooks. Unlike the other parameter settings above, this `Function` provides the opportunity to set both the `StreamExecutionEnvironment` and the `TableEnvironment`, which will pass the `parameter` and the initialized `StreamExecutionEnvironment ' and the `TableConfig` object in the `TableEnvironment` are passed to the developer for additional parameter settings, such as:
 
 ```java 
 
@@ -438,17 +436,17 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 ...
 ```
 
-:::info 特别提示
+:::info tip
 
-在 `StreamTableContext` 中可以直接使用 `StreamExecutionEnvironment` 的 `API`, **以$打头的方法** 都是 `StreamExecutionEnvironment` 的 API
+You can use the `StreamExecutionEnvironment` `API` directly in the `StreamTableContext`, **methods prefixed with $** are the `StreamExecutionEnvironment` API.
 
 ![](/doc/image/streamx_apis.jpeg)
 
 :::
 
-## 生命周期
+## Life Cycle
 
-生命周期的概念目前只针对 `scala` API,该生命周期明确的定义了整个任务运行的全过程 ,但凡继承自 `FlinkStreaming` 或 `FlinkTable` 或 `StreamingTable` 就会按这个生命周期执行,生命周期的核心方法如下
+The lifecycle concept is currently only available for the `scala` API. this lifecycle explicitly defines the entire process of running a task, which is executed according to this lifecycle as long as it is inherited from `FlinkStreaming` or `FlinkTable` or `StreamingTable`. The core methods of the lifecycle are as follows.
 
 ```scala
 
@@ -466,7 +464,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
   }
 
   /**
-   * 用户可覆盖次方法...
+   * Users can override the sub-method...
    *
    */
   def ready(): Unit = {}
@@ -479,74 +477,74 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
   
 ```
 
-生命周期如下
-* **init**          配置文件初始化阶段
-* **config**        开发者手动设置参数阶段 
-* **ready**         启动之前执行自定义动作阶段
-* **handle**        开发者代码接入阶段
-* **start**         程序启动阶段
-* **destroy**       销毁阶段
+The life cycle is as follows.
+* **init**          Stages of configuration file initialization
+* **config**        Stage of manual parameter setting by the developer 
+* **ready**         Stage for executing custom actions before starting
+* **handle**        Stages of developer code access
+* **start**         Stages of program initiation
+* **destroy**       Stages of destruction
 
 ![Life Cycle](/doc/image/streamx_scala_life_cycle.png)
 
-### 生命周期之 — init
-**init** 阶段,框架会自动解析传入的配置文件,按照里面的定义的各种参数初始化`StreamExecutionEnvironment`,这一步是框架自动执行,不需要开发者参与
+### Life Cycle - init
+In the **init** phase, the framework automatically parses the incoming configuration file and initializes the `StreamExecutionEnvironment` according to the various parameters defined inside. This step is automatically executed by the framework and does not require developer involvement.
 
-### 生命周期之 — config
-**config** 阶段的目的是让开发者可以通过钩子的方式设置更多的参数(约定的配置文件以外的其他参数),在 **config** 阶段会将 `parameter`(*init* 阶段解析的配置文件里所有的参数)和*init* 阶段初始化好的`StreamExecutionEnvironment`对象传给开发者,
-这样开发者就可以配置更多的参数
+### Life Cycle — config
+The purpose of the **config** phase is to allow the developer to set more parameters (other than the agreed configuration file), by means of hooks. The **config** phase passes `parameter` (all parameters in the configuration file parsed in the *init* phase) and the `StreamExecutionEnvironment` object initialized in the *init* phase to the developer,this allows the developer to configure more parameters.
 
-:::note 说明
-**config** 阶段是需要开发者参与的阶段,是可选的阶段
+:::note Description
+The **config** stage is an optional stage that requires developer participation.
 :::
-### 生命周期之 — ready
+### Life Cycle — ready
 
-**ready** 阶段是在参数都设置完毕了,给开发者提供的一个用于做其他动作的入口, 该阶段是在**初始化完成之后**在**程序启动之前**进行
+The **ready** stage is an entry point for the developer to do other actions after the parameters have been set, and is done after **initialization is complete **before the **program is started**.
 
-:::note 说明
-**ready** 阶段是需要开发者参与的阶段,是可选的阶段
-:::
-
-### 生命周期之 — handle
-
-**handle** 阶段是接入开发者编写的代码的阶段,是开发者编写代码的入口,也是最重要的一个阶段, 这个`handle` 方法会强制让开发者去实现
-
-:::note 说明
-**handle** 阶段是需要开发者参与的阶段,是必须的阶段
+:::note Description
+The **ready** stage is a stage that requires developer participation and is optional.
 :::
 
-### 生命周期之 — start
+### Life Cycle — handle
 
-**start** 阶段,顾名思义,这个阶段会启动任务,由框架自动执行
+The **handle** stage is the stage of accessing the code written by the developer, it is the entrance to the code written by the developer and is the most important stage, this `handle` method will force the developer to implement.
 
-### 生命周期之 — destroy
-
-**destroy** 阶段,是程序运行完毕了,在jvm退出之前的最后一个阶段,一般用于收尾的工作
-
-:::note 说明
-**destroy** 阶段是需要开发者参与的阶段,是可选的阶段
+:::note Description
+The **handle** stage is a mandatory stage that requires developer participation.
 :::
 
-## 目录结构
-推荐的项目目录结构如下,具体可以参考[Streamx-flink-quickstart](https://github.com/streamxhub/streamx-quickstart) 里的目录结构和配置
+### Life Cycle — start
+
+The **start** phase, which starts the task, is executed automatically by the framework.
+
+### Life Cycle — destroy
+
+The **destroy** phase is the last phase before jvm exits after the program has finished running, and is generally used to wrap up the work.
+
+:::note Description
+The **destroy** stage is an optional stage that requires developer participation.
+:::
+
+## Catalog Structure
+
+The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Streamx-flink-quickstart](https://github.com/streamxhub/streamx-quickstart)
 
 ``` tree
 .
 |── assembly
 │    ├── bin
-│    │    ├── startup.sh                             //启动脚本  
-│    │    ├── setclasspath.sh                        //Java环境变量相关的脚本(框架内部使用,开发者无需关注)
-│    │    ├── shutdown.sh                            //任务停止脚本(不建议使用)
-│    │    └── flink.sh                               //启动时内部使用到的脚本(框架内部使用,开发者无需关注)
+│    │    ├── startup.sh                             //Launch Script
+│    │    ├── setclasspath.sh                        //ava environment variables related to the script (internal use of the framework, developers do not need to pay attention to)
+│    │    ├── shutdown.sh                            //Task stop script (not recommended)
+│    │    └── flink.sh                               //the script that internal use to, when starting (this script is used internally in the framework, the developer does not need to pay attention to)
 │    │── conf                           
 │    │    ├── test
-│    │    │    ├── application.yaml                  //测试(test)阶段的配置文件
+│    │    │    ├── application.yaml                  //Configuration file for the test phase
 │    │    │    └── sql.yaml                          //flink sql
 │    │    │
 │    │    ├── prod                      
-│    │    │    ├── application.yaml                  //生产(prod)阶段的配置文件
+│    │    │    ├── application.yaml                  //Profiles for the production (prod) stage
 │    │    │    └── sql.yaml                          //flink sql
-│    │── logs                                        //logs目录
+│    │── logs                                        //logs Catalog
 │    └── temp
 │
 │── src
@@ -559,7 +557,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 │
 └── pom.xml
 ```    
-assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
+assembly.xml is the configuration file needed for the assembly packaging plugin, defined as follows:
 ```xml
 <assembly>
     <id>bin</id>
@@ -602,33 +600,33 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 </assembly>
 ```
 
-## 打包部署
+## Packaged Deployment
 
-推荐 [streamx-flink-quickstart](https://github.com/streamxhub/streamx/streamx-flink/streamx-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamX推荐的项目包,解包后目录结构如下
+The recommended packaging mode in [streamx-flink-quickstart](https://github.com/streamxhub/streamx/streamx-flink/streamx-flink-quickstart) is recommended. It runs `maven package` directly to generate a standard StreamX recommended project package, after unpacking the directory structure is as follows.
 
 ``` text 
 .
 Streamx-flink-quickstart-1.0.0
 ├── bin
-│   ├── startup.sh                             //启动脚本  
-│   ├── setclasspath.sh                        //Java环境变量相关的脚本(内部使用的,用户无需关注)
-│   ├── shutdown.sh                            //任务停止脚本(不建议使用)
-│   ├── flink.sh                               //启动时内部使用到的脚本(内部使用的,用户无需关注)
+│   ├── startup.sh                             //Launch Script   
+│   ├── setclasspath.sh                        //Java environment variable-related scripts (used internally, not of concern to users)
+│   ├── shutdown.sh                            //Task stop script (not recommended)
+│   ├── flink.sh                               //Scripts used internally at startup (used internally, not of concern to the user)
 ├── conf                           
-│   ├── application.yaml                       //项目的配置文件
-│   ├── sql.yaml                               // flink sql文件
+│   ├── application.yaml                       //Project's configuration file
+│   ├── sql.yaml                               // flink sql file
 ├── lib
-│   └── Streamx-flink-quickstart-1.0.0.jar     //项目的jar包
+│   └── Streamx-flink-quickstart-1.0.0.jar     //The project's jar package
 └── temp
 ```
 
-## 启动命令
+## Start command
 
-启动之前确定application.yaml和 sql.yaml 配置文件,如果要启动的任务是`DataStream`任务,直接在startup.sh后跟上配置文件即可
+The application.yaml and sql.yaml configuration files need to be defined before starting. If the task to be started is a `DataStream` task, just follow the configuration file directly after startup.sh.
 ```bash 
 bin/startup.sh --conf conf/application.yaml
 ```
-如果要启动的任务是`Flink Sql`任务,则需要跟上配置文件和sql.yaml
+If the task you want to start is the `Flink Sql` task, you need to follow the configuration file and sql.yaml.
  ```bash 
 bin/startup.sh --conf conf/application.yaml --sql conf/sql.yaml
 ```
