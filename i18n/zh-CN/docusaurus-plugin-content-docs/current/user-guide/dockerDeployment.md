@@ -25,12 +25,14 @@ sidebar_position: 4
 ```
 ./build.sh
 ```
+![](/doc/image/streamx_build.png)
 注意：Flink的Scala版本和StreamX的Scala版本需要保持一致，本次构建请选择Scala 2.12。
 
 ### 2.执行 Docker Compose 构建命令
 ```
 docker-compose up -d
 ```
+![](/doc/image/streamx_docker-compose.png)
 ### 3.登陆系统
 
 服务启动后，可以通过 http://localhost:10000 访问 StreamX，同时也可以通过 http://localhost:8081访问Flink。访问StreamX链接后会跳转到登陆页面，StreamX 默认的用户和密码分别为 admin 和 streamx。想要了解更多操作请参考用户手册快速上手。
@@ -39,12 +41,14 @@ docker-compose up -d
 ```
 /streamx/flink/flink1.14.5/
 ```
-
+![](/doc/image/streamx_flinkhome.png)
 ### 5.启动远程会话集群
 
 进入StreamX web ui点击Setting->Flink Cluster 创建一个remote (standalone)模式的集群。
-
+![](/doc/image/remote.png)
 tips：mac电脑获取flink的真实ip地址,可以通过ifconfig。
+
 ### 6.完成以上步骤，进行Flink任务提交
 
 在StreamX web ui点击Application->Add New 创建一个remote (standalone)模式提交。
+![](/doc/image/remoteSubmission.png)
