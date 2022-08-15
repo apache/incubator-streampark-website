@@ -1,13 +1,13 @@
 ---
 id: 'Hbase-Connector'
-title: 'Hbase Connector'
+title: 'Apache HBase Connector'
 sidebar_position: 6
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[HBase](https://hbase.apache.org/book.html)是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server
+[Apache HBase](https://hbase.apache.org/book.html)是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server
 上搭建起大规模结构化存储集群。 HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase基于列的而不是基于行的模式。
 
 flink官方未提供Hbase DataStream的连接器。StreamX 基于`Hbase-client`封装了HBaseSource、HBaseSink,支持依据配置自动创建连接，简化开发。

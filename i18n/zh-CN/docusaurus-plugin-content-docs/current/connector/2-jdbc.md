@@ -11,9 +11,9 @@ Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-rel
 
 `StreamX`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
 
-## Jdbc 信息配置
+## JDBC 信息配置
 
-在`StreamX`中`Jdbc Connector`的实现用到了[` HikariCP `](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
+在`StreamX`中`JDBC Connector`的实现用到了[` HikariCP `](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
 
 ```yaml
 jdbc:
@@ -29,8 +29,8 @@ jdbc:
 ```
 
 ### semantic 语义配置
-
-`semantic`这个参数是在`JdbcSink`写时候的语义,仅对 **JdbcSink** 有效,`JdbcSource`会自动屏蔽该参数,有三个可选项
+ 
+`semantic` 这个参数是在 `JdbcSink`写时候的语义,仅对 **JdbcSink** 有效,`JdbcSource` 会自动屏蔽该参数,有三个可选项
 
 <div class="counter">
 
@@ -386,7 +386,7 @@ jdbc:
 这个设置仅在非`EXACTLY_ONCE`语义下生效,带来的好处是可以提高Jdbc写入的性能,一次大批量的插入数据,缺点是数据写入势必会有延迟,请根据实际使用情况谨慎使用
 :::
 
-## 多实例Jdbc支持
+## 多实例 JDBC 支持
 
 
-## 手动指定Jdbc连接信息
+## 手动指定 JDBC 连接信息
