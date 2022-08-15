@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 [Elasticsearch](https://www.elastic.co/cn/elasticsearch/) is a distributed, RESTful style search and data analysis
 engine.
-[Flink officially] (https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/) provides a connector
+[Flink officially](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/) provides a connector
 for Elasticsearch, which is used to write data to Elasticsearch, which can provide ** at least once** Semantics.
 
 ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the
@@ -48,7 +48,7 @@ Elasticsearch 6.x Maven dependencies
 
 <dependency>
     <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <artifactId>flink-connector-elasticsearch6_2.11</artifactId>
     <version>1.14.3</version>
 </dependency>
 ```
@@ -59,7 +59,7 @@ Elasticsearch 7.x ans above Maven dependencies
 
 <dependency>
     <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <artifactId>flink-connector-elasticsearch7_2.11</artifactId>
     <version>1.14.3</version>
 </dependency>
 ```

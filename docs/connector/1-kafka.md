@@ -6,13 +6,13 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-The [official Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](http://kafka. apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
+[Flink officially](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](https://kafka.apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
 
 `KafkaSource` and `KafkaSink` in `StreamX` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
 
 ## Dependencies
 
-[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) integrates with the generic Kafka connector, which tries to keep up with the latest version of the Kafka client. The version of the Kafka client used by this connector may change between Flink versions. The current Kafka client is backward compatible with Kafka broker version 0.10.0 or later. For more details on Kafka compatibility, please refer to the [Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) official documentation.
+[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) integrates with the generic Kafka connector, which tries to keep up with the latest version of the Kafka client. The version of the Kafka client used by this connector may change between Flink versions. The current Kafka client is backward compatible with Kafka broker version 0.10.0 or later. For more details on Kafka compatibility, please refer to the [Apache Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) official documentation.
 
 
 ```xml

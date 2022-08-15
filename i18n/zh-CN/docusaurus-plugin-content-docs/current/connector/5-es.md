@@ -20,9 +20,9 @@ flink-connector-elasticsearch6 依赖，引入 flink-connector-elasticsearch5依
 org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink 实例写入数据。
 :::
 
-## elastic写入依赖
-Elasticsearch版本不同依赖 Flink Connector Elasticsearch 不通,以下信息来源[flink-docs-release-1.14文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):  
-es5.x Maven依赖
+## Elasticsearch 写入依赖
+Elasticsearch 版本不同依赖 Flink Connector Elasticsearch 不同,以下信息来源[flink-docs-release-1.14文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):  
+Elasticsearch 5.x Maven依赖
 ```xml
 <dependency>
     <groupId>org.apache.flink</groupId>
@@ -30,19 +30,19 @@ es5.x Maven依赖
     <version>1.14.3</version>
 </dependency>
 ```
-es6.x Maven依赖
+Elasticsearch 6.x Maven依赖
 ```xml
 <dependency>
     <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <artifactId>flink-connector-elasticsearch6_2.11</artifactId>
     <version>1.14.3</version>
 </dependency>
 ```
-es7.x及以上 Maven依赖
+Elasticsearch 7.x及以上 Maven依赖
 ```xml
 <dependency>
     <groupId>org.apache.flink</groupId>
-    <artifactId>flink-connector-elasticsearch5_2.11</artifactId>
+    <artifactId>flink-connector-elasticsearch7_2.11</artifactId>
     <version>1.14.3</version>
 </dependency>
 ```

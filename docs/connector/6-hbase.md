@@ -7,7 +7,7 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[HBase](https://hbase.apache.org/book.html) is a highly reliable, high-performance, column-oriented, and scalable distributed storage system. Using HBase technology,
+[Apache HBase](https://hbase.apache.org/book.html) is a highly reliable, high-performance, column-oriented, and scalable distributed storage system. Using HBase technology,
 large-scale structured storage clusters can be built on cheap PC Servers. Unlike general relational databases,
 HBase is a database suitable for unstructured data storage because HBase storage is based on a column rather than a row-based schema.
 

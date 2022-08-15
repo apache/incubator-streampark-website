@@ -59,7 +59,7 @@ import TabItem from '@theme/TabItem';
 ```
 
 ## Kafka Source (Consumer)
-先介绍基于官网的标准的kafka consumer的方式,以下代码摘自[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer)
+先介绍基于官网的标准的kafka consumer的方式,以下代码摘自 [Apache Kafka 官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer)
 
 ```scala
 val properties = new Properties()
@@ -82,7 +82,7 @@ kafka.source:
 ```
 
 :::info 注意事项
-`kafka.source`这个前缀是固定的,kafka properties相关的参数必须遵守[kafka官网](http://kafka.apache.org)对参数key的设置规范
+`kafka.source`这个前缀是固定的,kafka properties相关的参数必须遵守 [Apache Kafka 官网文档](http://kafka.apache.org) 对参数key的设置规范
 :::
 
 <Tabs>
