@@ -1,5 +1,5 @@
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-/* custom */
+/* custom  */
 const CopyRight = `
 <div class="footer-box">
 	<div class="footer-item">
