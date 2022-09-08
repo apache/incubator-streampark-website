@@ -6,7 +6,7 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-The overall component stack structure of StreamX is as follows. It consists of two major parts: streamx-core and streamx-console. streamx-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
+The overall component stack structure of StreamPark is as follows. It consists of two major parts: streamx-core and streamx-console. streamx-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
 ![Streamx Archite](/doc/image/streamx_archite.png)
 
@@ -17,12 +17,12 @@ streamx-console provides an out-of-the-box installation package. Before installa
 <ClientEnvs></ClientEnvs>
 
 :::tip Notice
-The versions before (including) StreamX 1.2.2 only support `scala 2.11`. Do not check the corresponding `scala` version when using `flink`
+The versions before (including) StreamPark 1.2.2 only support `scala 2.11`. Do not check the corresponding `scala` version when using `flink`
 Versions after (including) 1.2.3, support both `scala 2.11` and `scala 2.12` versions
 :::
 
 
-At present, StreamX has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
+At present, StreamPark has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
 
 ### Hadoop
 To use `Flink on YARN`, you need to install and configure Hadoop-related environment variables in the deployed cluster. For example, if you installed the hadoop environment based on CDH,
@@ -40,7 +40,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### Kubernetes
 
-Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**StreamX Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
+Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**StreamPark Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
 
 ## Build & Deploy
 
@@ -58,7 +58,7 @@ You can directly download the compiled [**release package**](https://github.com/
 
 #### Automatic packaging
 
-Starting from StreamX 1.2.3+, an automatic compilation script `build.sh` is provided. Execute and run the script and select the next step as required to complete the compilation. If the version before StreamX 1.2.3 can be skipped, see directly Manually package some documents
+Starting from StreamPark 1.2.3+, an automatic compilation script `build.sh` is provided. Execute and run the script and select the next step as required to complete the compilation. If the version before StreamPark 1.2.3 can be skipped, see directly Manually package some documents
 <video src="http://assets.streamxhub.com/streamx-build.mp4" controls="controls" width="100%" height="100%"></video>
 
 ```shell
@@ -69,7 +69,7 @@ Starting from StreamX 1.2.3+, an automatic compilation script `build.sh` is prov
 
 #### Manual packaging
 
-From 1.2.1 and later versions, StreamX supports **mixed packaging** and **independent packaging** two modes for users to choose. If you manually package and deploy, you need to pay attention to the specific operations of each packaging method:
+From 1.2.1 and later versions, StreamPark supports **mixed packaging** and **independent packaging** two modes for users to choose. If you manually package and deploy, you need to pay attention to the specific operations of each packaging method:
 
 ##### mixed packaging
 
@@ -99,7 +99,7 @@ mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTest
 
 In a project where the front-end and back-end are independently compiled and deployed, the front-end project needs to know the base api of the back-end service so that the front-end and back-end can work together. Therefore, before compiling, we need to specify the base api of the back-end service and modify streamx-console-webapp/. `VUE_APP_BASE_API` in env.production can
 
-```bash 
+```bash
 vi streamx/streamx-console/streamx-console-webapp/.env.production
 ```
 
@@ -115,7 +115,7 @@ npm run build
 :::danger pay attention
 
 Pay attention to the parameters carried when each different version is compiled,
-In versions after StreamX 1.2.3 (included), the `-Dscala.version` and `-Dscala.binary.version` parameters are required
+In versions after StreamPark 1.2.3 (included), the `-Dscala.version` and `-Dscala.binary.version` parameters are required
 
 Scala 2.11 is compiled, and the relevant scala version specification information is as follows:
 ```
@@ -137,27 +137,27 @@ After the installation is complete, you will see the final project file, located
 .
 streamx-console-service-1.2.1
 ├── bin
-│    ├── flame-graph                         
+│    ├── flame-graph
 │    ├──   └── *.py                           //Flame graph related function script (internal use, users do not need to pay attention)
 │    ├── startup.sh                           //startup script
 │    ├── setclasspath.sh                      //Scripts related to java environment variables (internal use, users do not need to pay attention)
 │    ├── shutdown.sh                          //stop script
 │    ├── yaml.sh                              //Internally uses a script that parses yaml parameters (for internal use, users don't need to pay attention)
-├── conf                                     
+├── conf
 │    ├── application.yaml                     //Project configuration file (be careful not to change the name)
 │    ├── flink-application.template           //flink configuration template (for internal use, users don't need to pay attention)
 │    ├── logback-spring.xml                   //logback
-│    └── ...                                 
-├── lib                                      
+│    └── ...
+├── lib
 │    └── *.jar                                //Project jar package
-├── plugins                                  
+├── plugins
 │    ├── streamx-jvm-profiler-1.0.0.jar       //jvm-profiler, flame graph related functions (internal use, users do not need to pay attention)
 │    └── streamx-flink-sqlclient-1.0.0.jar    //Flink SQl submit related functions (for internal use, users do not need to pay attention)
-├── script                                   
+├── script
 │     ├── final                               // Complete ddl build table sql
 │     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
 ├── logs                                      //program log directory
-                                             
+
 ├── temp                                      //Temporary path used internally, do not delete
 ```
 
@@ -237,7 +237,7 @@ Front-end and back-end mixed packaging mode, only start the back-end service to 
 ##### Environmental preparation
 
 Install nodejs and pm2 globally
-``` 
+```
 yum install -y nodejs
 npm install -g pm2
 ```
@@ -254,7 +254,7 @@ Copy streamx/streamx-console/streamx-console-webapp/streamx.js to `/home/www/str
 Users can specify the port address of the front-end service by themselves, modify the /home/www/streamx/streamx.js file, and find `serverPort` to modify, the default is as follows:
 
 ```
-  const serverPort = 1000 
+  const serverPort = 1000
 ```
 
 4. Start the service
@@ -269,7 +269,7 @@ For more information about pm2, please refer to [Official Website](https://pm2.k
 
 After the above steps, even if the deployment is completed, you can directly log in to the system
 
-![StreamX Login](/doc/image/streamx_login.jpeg)
+![StreamPark Login](/doc/image/streamx_login.jpeg)
 
 :::tip hint
 Default password: <strong> admin / streamx </strong>
@@ -277,9 +277,9 @@ Default password: <strong> admin / streamx </strong>
 
 ## System Configuration
 
-After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamX/Setting, the operation interface is as follows:
+After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamPark/Setting, the operation interface is as follows:
 
-![StreamX Settings](/doc/image/streamx_settings.png)
+![StreamPark Settings](/doc/image/streamx_settings.png)
 
 The main configuration items are divided into the following categories
 
@@ -287,7 +287,7 @@ The main configuration items are divided into the following categories
 
 -   Flink Home
 -   Maven Home
--   StreamX Env
+-   StreamPark Env
 -   Email
 
 </div>
@@ -303,11 +303,11 @@ Special Note: The minimum supported Flink version is 1.12.0, and later versions 
 
 Specify maven Home, currently not supported, the next version will be implemented
 
-### StreamX Env
+### StreamPark Env
 
-- StreamX Webapp address
-  The web url access address of the StreamX Console is configured here. The main flame graph function will be used. The specific task will send http requests to the system through the url exposed here for collection and display.
-- StreamX Console Workspace
+- StreamPark Webapp address
+  The web url access address of the StreamPark Console is configured here. The main flame graph function will be used. The specific task will send http requests to the system through the url exposed here for collection and display.
+- StreamPark Console Workspace
   The workspace of the configuration system is used to store the source code of the project, the compiled project, etc. (this configuration is the configuration item in the version before 1.2.0)
 
 ### Email

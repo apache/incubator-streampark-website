@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 [Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 **精确一次** 的处理语义
 
-`StreamX`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
+`StreamPark`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
 
 ## 依赖
 
@@ -33,7 +33,7 @@ import TabItem from '@theme/TabItem';
 
 同时在开发阶段,以下的依赖也是必要的
 
-```xml 
+```xml
     <!--以下scope为provided的依赖也是必须要导入的-->
     <dependency>
         <groupId>org.apache.flink</groupId>
@@ -68,7 +68,7 @@ properties.setProperty("group.id", "test")
 val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStringSchema(), properties))
 
 ```
-可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`StreamX`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
+可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`StreamPark`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
 ### 基础消费示例
 
@@ -144,7 +144,7 @@ public class KafkaSimpleJavaApp {
 `KafkaSource`是基于Flink Kafka Connector封装一个更简单的kafka读取类,构造方法里需要传入`StreamingContext`,当程序启动时传入配置文件即可,框架会自动解析配置文件,在`new KafkaSource`的时候会自动的从配置文件中获取相关信息,初始化并返回一个Kafka Consumer,在这里topic下只配置了一个topic,因此在消费的时候不用指定topic直接默认获取这个topic来消费, 这只是一个最简单的例子,更多更复杂的规则和读取操作则要通过`.getDataStream()`在该方法里传入参数才能实现
 我们看看`getDataStream`这个方法的签名
 
-```scala 
+```scala
 def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
     alias: String = "",
     deserializer: KafkaDeserializationSchema[T],
@@ -154,10 +154,10 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
 参数具体作用如下
 
 | 参数名 | 参数类型 |作用 | 默认值|
-| :-----| :---- | :---- | :---- | 
+| :-----| :---- | :---- | :---- |
 | `topic` | Serializable | 一个topic或者一组topic |无|
 | `alias` |String | 用于区别不同的kafka实例 |无|
-| `deserializer` | DeserializationSchema | topic里数据的具体解析类 |KafkaStringDeserializationSchema| 
+| `deserializer` | DeserializationSchema | topic里数据的具体解析类 |KafkaStringDeserializationSchema|
 | `strategy` | WatermarkStrategy |watermark生成策略 | 无 |
 
 下面我们来看看更多的使用和配置方式
@@ -197,7 +197,7 @@ kafka.source:
     topic: kafka2
     group.id: kafka2
     auto.offset.reset: earliest
-    enable.auto.commit: true    
+    enable.auto.commit: true
 ```
 </TabItem>
 
@@ -209,19 +209,19 @@ KafkaSource().getDataStream[String](alias = "kafka1")
   .uid("kfkSource1")
   .name("kfkSource1")
   .print()
-  
+
 //消费kafka2实例的数据
 KafkaSource().getDataStream[String](alias = "kafka2")
   .uid("kfkSource2")
   .name("kfkSource2")
-  .print()  
-  
+  .print()
+
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
@@ -229,15 +229,15 @@ StreamingContext context = new StreamingContext(envConfig);
 DataStream<String> source1 = new KafkaSource<String>(context)
         .alias("kafka1")
         .getDataStream()
-        print();  
+        print();
 
 //消费kafka1实例的数据
 DataStream<String> source2 = new KafkaSource<String>(context)
         .alias("kafka2")
         .getDataStream()
-        .print(); 
-            
-context.start();            
+        .print();
+
+context.start();
 ```
 :::danger 特别注意
 java api在编写代码时,一定要将`alias`等这些参数的设置放到调用`.getDataStream()`之前
@@ -284,20 +284,20 @@ KafkaSource().getDataStream[String](topic = List("topic1","topic2","topic3"))
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 //消费指定单个topic的数据
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1")
         .getDataStream()
         .print();
-        
+
 //消费一组topic的数据
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1","topic2")
         .getDataStream()
-        .print();     
-        
-```        
+        .print();
+
+```
 
 </TabItem>
 
@@ -314,7 +314,7 @@ DataStream<String> source1 = new KafkaSource<String>(context)
 更多详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
 
 Flink Kafka Consumer 还能够使用正则表达式基于 Topic 名称的模式匹配来发现 Topic,详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
-在`StreamX`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
+在`StreamPark`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
 
 <Tabs>
 <TabItem value="配置" label="配置">
@@ -343,7 +343,7 @@ KafkaSource().getDataStream[String](topic = "topic-a")
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
@@ -351,10 +351,10 @@ StreamingContext context = new StreamingContext(envConfig);
 new KafkaSource<String>(context)
         .topic("topic-a")
         .getDataStream()
-        .print();              
-    
-context.start();         
-```        
+        .print();
+
+context.start();
+```
 
 </TabItem>
 
@@ -373,7 +373,7 @@ Flink Kafka Consumer 允许通过配置来确定 Kafka 分区的起始位置,[�
 <Tabs>
 <TabItem value="scala" default>
 
-```scala 
+```scala
 val env = StreamExecutionEnvironment.getExecutionEnvironment()
 val myConsumer = new FlinkKafkaConsumer[String](...)
 myConsumer.setStartFromEarliest()      // 尽可能从最早的记录开始
@@ -388,7 +388,7 @@ val stream = env.addSource(myConsumer)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
 FlinkKafkaConsumer<String> myConsumer = new FlinkKafkaConsumer<>(...);
@@ -403,7 +403,7 @@ DataStream<String> stream = env.addSource(myConsumer);
 </TabItem>
 </Tabs>
 
-在`StreamX`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
+在`StreamPark`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
 
 * `earliest` 从最早的记录开始
 * `latest` 从最新的记录开始
@@ -471,7 +471,7 @@ case class User(name:String,age:Int,gender:Int,address:String)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
@@ -535,7 +535,7 @@ class JavaUser implements Serializable {
 
 在许多场景中,记录的时间戳是(显式或隐式)嵌入到记录本身中。此外,用户可能希望定期或以不规则的方式`Watermark`,例如基于`Kafka`流中包含当前事件时间的`watermark`的特殊记录。对于这些情况，`Flink Kafka Consumer`是允许指定`AssignerWithPeriodicWatermarks`或`AssignerWithPunctuatedWatermarks`
 
-在`StreamX`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
+在`StreamPark`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
 
 <Tabs>
 
@@ -590,7 +590,7 @@ case class User(name: String, age: Int, gender: Int, address: String, orderTime:
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
@@ -665,7 +665,7 @@ class JavaUser implements Serializable {
 
 ## Kafka Sink (Producer)
 
-在`StreamX`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
+在`StreamPark`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
 
 <Tabs>
 
@@ -673,21 +673,21 @@ class JavaUser implements Serializable {
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
- KafkaSink().sink(source)     
+ KafkaSink().sink(source)
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
  StreamingContext context = new StreamingContext(envConfig);
  DataStream<String> source = new KafkaSource<String>(context)
          .getDataStream()
          .map((MapFunction<KafkaRecord<String>, String>) KafkaRecord::value);
- 
+
  new KafkaSink<String>(context).sink(source);
- 
+
  context.start();
 ```
 </TabItem>
@@ -730,7 +730,7 @@ kafka.sink:
 ```
 
 <details>
-  
+
 <summary> kafka <code>EXACTLY_ONCE</code> 语义说明</summary>
 
 `Semantic.EXACTLY_ONCE`模式依赖于事务提交的能力。事务提交发生于触发 checkpoint 之前，以及从 checkpoint 恢复之后。如果从 Flink 应用程序崩溃到完全重启的时间超过了 Kafka 的事务超时时间，那么将会有数据丢失（Kafka 会自动丢弃超出超时时间的事务）。考虑到这一点，请根据预期的宕机时间来合理地配置事务超时时间。
@@ -785,21 +785,21 @@ kafka.sink:
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
- KafkaSink().sink(source,alias = "kafka_cluster1")     
+ KafkaSink().sink(source,alias = "kafka_cluster1")
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
  StreamingContext context = new StreamingContext(envConfig);
  DataStream<String> source = new KafkaSource<String>(context)
          .getDataStream()
          .map((MapFunction<KafkaRecord<String>, String>) KafkaRecord::value);
- 
+
  new KafkaSink<String>(context).alias("kafka_cluster1").sink(source);
- 
+
  context.start();
 ```
 </TabItem>
@@ -848,7 +848,7 @@ case class User(name: String, age: Int, gender: Int, address: String)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
@@ -937,7 +937,7 @@ case class User(name: String, age: Int, gender: Int, address: String)
 </TabItem>
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
@@ -990,7 +990,7 @@ class JavaUser implements Serializable {
 
 ### 指定partitioner
 
-`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`StreamX`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
+`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`StreamPark`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
 `java` api中是通过`partitioner()`方法来设置的
 
 :::tip 注意事项

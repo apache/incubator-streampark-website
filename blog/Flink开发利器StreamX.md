@@ -1,12 +1,12 @@
 ---
 slug: flink-development-framework-streamx
-title: Flink开发利器StreamX
-tags: [StreamX, DataStream, FlinkSQL]
+title: Flink开发利器StreamPark
+tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
 <br/>
 
-# 1. 背景      
+# 1. 背景
 
 Hadoop体系虽然在目前应用非常广泛，但架构繁琐、运维复杂度过高、版本升级困难，且由于部门原因，数据中台需求排期较长，我们急需探索敏捷性开发的数据平台模式。在目前云原生架构的普及和湖仓一体化的大背景下，我们已经确定了将Doris作为离线数据仓库，将TiDB(目前已经应用于生产)作为实时数据平台，同时因为Doris具有 on MySQL 的odbc能力，所以又可以对外部数据库资源进行整合，统一对外输出报表
 ![](/blog/doris.png)
@@ -25,12 +25,12 @@ Hadoop体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 1. 任务运行监控怎么处理？
 2. 使用Cluster模式还是Nodeport暴露端口访问Web UI？
 3. 提交任务能否简化打包镜像的流程?
-4. 如何减少开发压力？ 
+4. 如何减少开发压力？
 
 
 <br/><br/>
 
-# 3. 解决问题的过程      
+# 3. 解决问题的过程
 
 以上的这些其实都是需要解决的问题，如果单纯的使用命令行去提交每个任务，是不现实的，任务量大了，会变得不可维护。如何解决这些问题变成一个不得不面对的问题。
 
@@ -51,14 +51,14 @@ Flink从1.13版本开始，就支持Pod Template，我们可以在Pod Template�
 
 之前我们写Flink Sql 基本上都是使用Java包装Sql，打jar包，提交到s3平台上，通过命令行方式提交代码，但这种方式始终不友好，流程繁琐，开发和运维成本太大。我们希望能够进一步简化流程，将Flink TableEnvironment 抽象出来，有平台负责初始化、打包运行Flink任务，实现Flink应用程序的构建、测试和部署自动化。
 
-这是个开源兴起的时代，我们自然而然的将目光投向开源领域中，在一众开源项目中,经过对比各个项目综合评估发现 <span style={{color:'red'}}> Zeppelin </span> 和 <span style={{color:'red'}}> StreamX </span> 这两个项目对Flink的支持较为完善，都宣称支持 <span style={{color:'red'}}> Flink on K8s </span>，最终进入到我们的目标选择范围中，以下是两者在K8s相关支持的简单比较（目前如果有更新，麻烦批评指正）。
+这是个开源兴起的时代，我们自然而然的将目光投向开源领域中，在一众开源项目中,经过对比各个项目综合评估发现 <span style={{color:'red'}}> Zeppelin </span> 和 <span style={{color:'red'}}> StreamPark </span> 这两个项目对Flink的支持较为完善，都宣称支持 <span style={{color:'red'}}> Flink on K8s </span>，最终进入到我们的目标选择范围中，以下是两者在K8s相关支持的简单比较（目前如果有更新，麻烦批评指正）。
 
 <table>
     <thead>
         <tr>
             <td>功能</td>
             <td>Zeppelin</td>
-            <td>StreamX</td>
+            <td>StreamPark</td>
         </tr>
     </thead>
     <tbody>
@@ -118,7 +118,7 @@ Flink从1.13版本开始，就支持Pod Template，我们可以在Pod Template�
 
 <video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
 
-<center style={{"color": "gray"}}>(StreamX 官网的闪屏)</center>
+<center style={{"color": "gray"}}>(StreamPark 官网的闪屏)</center>
 
 <br/>
 
@@ -140,7 +140,7 @@ Flink从1.13版本开始，就支持Pod Template，我们可以在Pod Template�
 
 <video src="http://assets.streamxhub.com/streamx-k8s.mp4" controls="controls" width="100%" height="100%"></video>
 
-<center style={{"color": "gray"}}>(StreamX K8S部署演示视频)</center>
+<center style={{"color": "gray"}}>(StreamPark K8S部署演示视频)</center>
 
 <br/>
 
@@ -210,11 +210,11 @@ Native-session模式需要事先使用Flink命令创建一个运行在K8s中的F
 ### Custom Code模式
 
 
-另我们惊喜的是，StreamX 还支持代码编写DataStream/FlinkSql任务。对于特殊需求，我们可以自己写Java/Scala实现。可以根据StreamX推荐的脚手架方式编写任务，也可以编写一个标准普通的Flink任务，通过这种方式我们可以将代码管理交由Git实现，平台可以用来自动化编译打包与部署。当然，如果能用Sql实现的功能，我们会尽量避免自定义DataStream，减少不必要的运维麻烦。
+另我们惊喜的是，StreamPark 还支持代码编写DataStream/FlinkSql任务。对于特殊需求，我们可以自己写Java/Scala实现。可以根据StreamX推荐的脚手架方式编写任务，也可以编写一个标准普通的Flink任务，通过这种方式我们可以将代码管理交由Git实现，平台可以用来自动化编译打包与部署。当然，如果能用Sql实现的功能，我们会尽量避免自定义DataStream，减少不必要的运维麻烦。
 
 <br/><br/>
 
-# 4. 意见和规划      
+# 4. 意见和规划
 
 ## 改进意见
 

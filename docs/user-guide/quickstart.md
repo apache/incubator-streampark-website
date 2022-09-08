@@ -8,7 +8,7 @@ sidebar_position: 2
 
 The installation of the one-stop platform `streamx-console` has been introduced in detail in the previous chapter. In this chapter, let's see how to quickly deploy and run a job with `streamx-console`. The official structure and specification) and projects developed with `streamx` are well supported. Let's use `streamx-quickstart` to quickly start the journey of `streamx-console`
 
-`streamx-quickstart` is a sample program for developing Flink by StreamX. For details, please refer to:
+`streamx-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
 
 - Github: [https://github.com/streamxhub/streamx-quickstart.git](https://github.com/streamxhub/streamx-quickstart.git)
 - Gitee: [https://gitee.com/streamxhub/streamx-quickstart.git](https://gitee.com/streamxhub/streamx-quickstart.git)

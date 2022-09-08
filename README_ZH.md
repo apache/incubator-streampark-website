@@ -1,4 +1,4 @@
-# StreamX Website
+# StreamPark Website
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 [English](README.md) | [中文](README_ZH.md)
@@ -7,7 +7,7 @@
 本指南将指导您如何为StreamX的网站做出贡献。
 
 
-## 分支 
+## 分支
 dev 为默认主分支，修改请先fork到自己的仓库，然后在main分支上进行开发修改。
 ```
 dev  默认分支
@@ -19,7 +19,7 @@ dev  默认分支
 本网站是使用node编译的，使用的是Docusaurus框架组件
 
 1. 下载并安装 nodejs(version>12.5.0)
-2. 克隆代码到本地 `git clone  git@github.com:streamxhub/streamx-website.git`
+2. 克隆代码到本地 `git clone  git@github.com:streamxhub/StreamPark-website.git`
 2. 运行 `npm install` 来安装所需的依赖库。
 3. 在根目录运行`npm run start`，可以访问http://localhost:3000查看站点英文模式预览
 4. 在根目录运行`npm run start-zh`，可以访问http://localhost:3000查看站点的中文模式预览
@@ -32,7 +32,7 @@ dev  默认分支
 |-- docs     //文档  存方下一个即将发布的版本
 |-- download //下载
 |-- faq      //Q&A
-|-- i18n    
+|-- i18n
 |   -- zh-CN  //国际化中文
 |       |-- code.json
 |       |-- docusaurus-plugin-content-docs
@@ -81,13 +81,13 @@ dev  默认分支
 
 反例： `renderDom.js / UserManagement.html`
 
-### 3.3 资源路径 
+### 3.3 资源路径
 
 图片资源统一放在`static/{模块名}`下
 
 css等样式文件放在`src/css`目录下
 
-### 3.4 页面内容修改 
+### 3.4 页面内容修改
 > 除了首页、团队、用户、Docs>All Version 模块页面外，其余页面都能通过底部的'Edit this page'按钮 直接跳转至对应的github的资源修改页
 
 ### 3.5 首页页面修改
@@ -96,7 +96,7 @@ css等样式文件放在`src/css`目录下
 
 ```
 ├─home
-│      languages.json 首页中英文的配置  
+│      languages.json 首页中英文的配置
 │      index.less  首页样式
 ```
 ### 3.6 团队页面修改

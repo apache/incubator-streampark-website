@@ -1,5 +1,5 @@
 ---
-id: 'Elasticsearch-Connector' 
+id: 'Elasticsearch-Connector'
 title: 'Elasticsearch Connector'
 sidebar_position: 5
 ---
@@ -14,7 +14,7 @@ for Elasticsearch, which is used to write data to Elasticsearch, which can provi
 
 ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the
 Elasticsearch cluster.
-`StreamX` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
+`StreamPark` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
 operations for Elasticsearch6 and above.
 
 :::tip hint
@@ -200,11 +200,11 @@ input.addSink(esSinkBuilder.build)
 
 </Tabs>
 
-The ElasticsearchSink created above is very inflexible to add parameters. `StreamX` follows the concept of convention over configuration and automatic configuration.
-Users only need to configure es connection parameters and Flink operating parameters, and StreamX will automatically assemble source and sink, 
+The ElasticsearchSink created above is very inflexible to add parameters. `StreamPark` follows the concept of convention over configuration and automatic configuration.
+Users only need to configure es connection parameters and Flink operating parameters, and StreamPark will automatically assemble source and sink,
 which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## Using StreamX writes to Elasticsearch
+## Using StreamPark writes to Elasticsearch
 
 Please ensure that operation requests are sent to the Elasticsearch cluster at least once after enabling Flink checkpointing in ESSink.
 
@@ -229,12 +229,12 @@ host: localhost:9200
 #      timeout:
 #    cluster.name: elasticsearch
 #  client.transport.sniff:
-#  bulk.flush.: 
+#  bulk.flush.:
 ```
 
 ### 2. 写入Elasticsearch
 
-Using StreamX writes to Elasticsearch
+Using StreamPark writes to Elasticsearch
 
 <Tabs>
 
@@ -356,11 +356,11 @@ class ESSink(@(transient@param) context: StreamingContext,
 ```
 
 :::info
-When the Flink checkpoint is enabled, the Flink Elasticsearch Sink guarantees that operation requests are sent to the Elasticsearch cluster at least once. 
-It does this by waiting for all pending operation requests in the BulkProcessor while checkpointing. 
-This effectively guarantees that all requests will be successfully acknowledged by Elasticsearch before triggering the checkpoint and proceeding to process records sent to the sink. 
-If the user wants to disable flushing, they can configure disableFlushOnCheckpoint to true to do so, 
-which essentially means that the sink will no longer provide any reliable delivery guarantees, 
+When the Flink checkpoint is enabled, the Flink Elasticsearch Sink guarantees that operation requests are sent to the Elasticsearch cluster at least once.
+It does this by waiting for all pending operation requests in the BulkProcessor while checkpointing.
+This effectively guarantees that all requests will be successfully acknowledged by Elasticsearch before triggering the checkpoint and proceeding to process records sent to the sink.
+If the user wants to disable flushing, they can configure disableFlushOnCheckpoint to true to do so,
+which essentially means that the sink will no longer provide any reliable delivery guarantees,
 even if checkpointing of the job topology is enabled.
 :::
 
@@ -373,11 +373,11 @@ See [Official Documentation](https://nightlies.apache.org/flink/flink-docs-relea
 
 ### Configure the internal batch processor
 
-The BulkProcessor inside es can further configure its behavior of how to refresh the cache operation request, 
+The BulkProcessor inside es can further configure its behavior of how to refresh the cache operation request,
 see the [official documentation](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink) for details - **Configuring the Internal** Bulk Processor
 
-### StreamX configuration
+### StreamPark configuration
 
-All other configurations must comply with the StreamX configuration.
-For [specific configurable](/docs/development/conf) items and the role of each parameter, 
+All other configurations must comply with the StreamPark configuration.
+For [specific configurable](/docs/development/conf) items and the role of each parameter,
 please refer to the project configuration

@@ -12,7 +12,7 @@ sidebar_position: 4
 
 使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)，链接适用于 Mac，Linux，Windows。
 
-安装完成 docker-compose 后我们需要修改部分配置以便能更好体验 StreamX 服务，我们需要配置不少于 4GB 的内存：
+安装完成 docker-compose 后我们需要修改部分配置以便能更好体验 StreamPark 服务，我们需要配置不少于 4GB 的内存：
 
     Mac：点击 Docker Desktop -> Preferences -> Resources -> Memory 调整内存大小
     Windows Docker Desktop：
@@ -35,9 +35,9 @@ docker-compose up -d
 ![](/doc/image/streamx_docker-compose.png)
 ### 3.登陆系统
 
-服务启动后，可以通过 http://localhost:10000 访问 StreamX，同时也可以通过 http://localhost:8081访问Flink。访问StreamX链接后会跳转到登陆页面，StreamX 默认的用户和密码分别为 admin 和 streamx。想要了解更多操作请参考用户手册快速上手。
+服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问StreamX链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streamx。想要了解更多操作请参考用户手册快速上手。
 
-### 4.在 StreamX Web Ui 上设置 Flink Home
+### 4.在 StreamPark Web Ui 上设置 Flink Home
 ```
 /streamx/flink/flink1.14.5/
 ```

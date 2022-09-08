@@ -4,12 +4,12 @@ title: 'Develop Environment'
 sidebar_position: 3
 ---
 
-> [StreamX](https://github.com/streamxhub/streamx) follows the Apache license 2.0, it will be a long-term active project. Welcome to submit [PR](https://github.com/streamxhub/streamx/pulls) Or [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose). If you like, please give a [star](https://github.com/streamxhub/streamx/stargazers), your support is our greatest motivation. This project has been concerned and recognized by many friends since it was open source. Some friends are using it. They come from finance, data analysis, Internet of vehicles, smart advertising, real estate and other companies, and There are even some friends from the first-line big factories. 
-StreamX community is a very open, mutual assistance and respect for talents. We also welcome more developers to join us and contribute together, not only for the code, but also for the use of documents, experience reports, questions and answers.
+> [StreamPark](https://github.com/streamxhub/streamx) follows the Apache license 2.0, it will be a long-term active project. Welcome to submit [PR](https://github.com/streamxhub/streamx/pulls) Or [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose). If you like, please give a [star](https://github.com/streamxhub/streamx/stargazers), your support is our greatest motivation. This project has been concerned and recognized by many friends since it was open source. Some friends are using it. They come from finance, data analysis, Internet of vehicles, smart advertising, real estate and other companies, and There are even some friends from the first-line big factories.
+StreamPark community is a very open, mutual assistance and respect for talents. We also welcome more developers to join us and contribute together, not only for the code, but also for the use of documents, experience reports, questions and answers.
 
-More and more developers are not satisfied with the simple installation and use, and need to be further researched or expanded based on its source code, which requires further in-depth understanding of StreamX. This chapter specifically describes how to build a development environment for the `streamx-console` streaming batch integration platform locally. For convenience of explanation, the `streamx-console` mentioned in this article refers to the `streamx-console platform`.
+More and more developers are not satisfied with the simple installation and use, and need to be further researched or expanded based on its source code, which requires further in-depth understanding of StreamPark. This chapter specifically describes how to build a development environment for the `streamx-console` streaming batch integration platform locally. For convenience of explanation, the `streamx-console` mentioned in this article refers to the `streamx-console platform`.
 
-StreamX console has realized the decoupling of Flink runtime since version 1.2.0, That is, **it is not mandatory to rely on Hadoop or kubernetes environment** and can install Hadoop or kubernetes according to your actual needs.
+StreamPark console has realized the decoupling of Flink runtime since version 1.2.0, That is, **it is not mandatory to rely on Hadoop or kubernetes environment** and can install Hadoop or kubernetes according to your actual needs.
 
 ## Install Hadoop (optional，YARN Runtime)
 
@@ -70,7 +70,7 @@ MySQL is used in `console`, you can install MySQL or directly use the existing m
 
 The front-end part of `console` is developed with nodejs. You can download and install the latest nodejs.
 
-## Install and configure StreamX
+## Install and configure StreamPark
 
 If all the above preparations are ready, you can install and configure the `streamx-console`. The `streamx-console` is a frontend and backend separated project. In order to facilitate the final packaging and deployment of the project and reduce the user's use and learning costs, the front end and back end mixed packaging and deployment mode is used. However, it is recommended to use the front end and back end separated mode for development and debugging at the development stage. The specific steps are as follows:
 

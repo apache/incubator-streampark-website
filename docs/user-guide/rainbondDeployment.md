@@ -4,21 +4,21 @@ title: 'Rainbond Quick Deployment'
 sidebar_position: 5
 ---
 
-Current document description How do I install StreamX using [Rainbond](https://www.rainbond.com/docs/) cloud native application management platform, This approach is suitable for users who are not familiar with complex technologies such as Kubernetes and containerization, Lowered the threshold to deploy StreamX in Kubernetes.
+Current document description How do I install StreamPark using [Rainbond](https://www.rainbond.com/docs/) cloud native application management platform, This approach is suitable for users who are not familiar with complex technologies such as Kubernetes and containerization, Lowered the threshold to deploy StreamPark in Kubernetes.
 
 ## Prepare
 
 * Deployment Rainbond cloud native application management platform, Ref: [Rainbond Quick Install](https://www.rainbond.com/docs/quick-start/quick-install)
 
-## 1. StreamX Deployment
+## 1. StreamPark Deployment
 
-1. Select the **Application Market** tab on the left, Switch to the **Open Source App Store** TAB on the page, Search for the keyword **StreamX** to find StreamX apps.
+1. Select the **Application Market** tab on the left, Switch to the **Open Source App Store** TAB on the page, Search for the keyword **StreamPark** to find StreamPark apps.
 
 ![](https://static.goodrain.com/wechat/streamx/1.png)
 
 
 
-2. Click **Install** on the right of StreamX to go to the installation page, After filling in the basic information, Click **OK** to start the installation, The page automatically jumps to the topology view.
+2. Click **Install** on the right of StreamPark to go to the installation page, After filling in the basic information, Click **OK** to start the installation, The page automatically jumps to the topology view.
 
 ![](https://static.goodrain.com/wechat/streamx/2.png)
 
@@ -27,9 +27,9 @@ Parameter Description:
 | Options   | Description                                                 |
 | -------- | ------------------------------------------------------------ |
 | Team Name | User workspace, Isolate by namespace                           |
-| Cluster Name | Choose which Kubernetes cluster StreamX is deployed to                         |
-| Select Application | Choose which application StreamX is deployed to |
-| Application Version | Select the version of StreamX, Currently available version is 1.2.4                    |
+| Cluster Name | Choose which Kubernetes cluster StreamPark is deployed to                         |
+| Select Application | Choose which application StreamPark is deployed to |
+| Application Version | Select the version of StreamPark, Currently available version is 1.2.4                    |
 
 
 
@@ -42,13 +42,13 @@ Parameter Description:
 
 
 
-## 3. Access StreamX and Flink
+## 3. Access StreamPark and Flink
 
-After the service starts, StreamX can be accessed by clicking the Access button, Also have access to Flink. The default user and password for StreamX are `admin` and `streamx`
+After the service starts, StreamPark can be accessed by clicking the Access button, Also have access to Flink. The default user and password for StreamPark are `admin` and `streamx`
 
 ![](https://static.goodrain.com/wechat/streamx/4.png)
 
-## 4. Set Flink Home On StreamX Web Ui
+## 4. Set Flink Home On StreamPark Web Ui
 
 Setting -> Link Home -> Add New
 
@@ -58,11 +58,11 @@ Setting -> Link Home -> Add New
 
 ## 5. Start Remote Session Cluster
 
-Start by connecting StreamX to JobManager on the Rainbond topology page, Enter choreography mode -> Drag and drop to add dependencies.
+Start by connecting StreamPark to JobManager on the Rainbond topology page, Enter choreography mode -> Drag and drop to add dependencies.
 
 ![](https://static.goodrain.com/wechat/streamx/5.png)
 
-StreamX web ui click Setting -> Flink Cluster -> Add New Create a `remote (standalone)` mode cluster.
+StreamPark web ui click Setting -> Flink Cluster -> Add New Create a `remote (standalone)` mode cluster.
 
 Address fill in:
 
@@ -72,9 +72,9 @@ http://127.0.0.1:8081
 
 ## More Features
 
-### 1. Continuous Development StreamX
+### 1. Continuous Development StreamPark
 
-If you modify the source code, you need to update StreamX, StreamX Components -> build source, change the build source to `source code` 或 `image` 
+If you modify the source code, you need to update StreamPark, StreamPark Components -> build source, change the build source to `source code` 或 `image`
 
 ![](https://static.goodrain.com/wechat/streamx/6.png)
 

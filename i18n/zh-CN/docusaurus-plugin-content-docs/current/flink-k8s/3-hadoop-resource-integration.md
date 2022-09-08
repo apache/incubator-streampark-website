@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## 在 K8s 上使用 Hadoop 资源
 
-在 StreamX Flink-K8s runtime 下使用 Hadoop 资源，如 checkpoint 挂载 HDFS、读写 Hive 等，目前用户需要自行构建相关 Flink Base   Docker Image，Image 中需要包含以下内容：
+在 StreamPark Flink-K8s runtime 下使用 Hadoop 资源，如 checkpoint 挂载 HDFS、读写 Hive 等，目前用户需要自行构建相关 Flink Base   Docker Image，Image 中需要包含以下内容：
 
 * 包含 Hadoop Lib， 并设置 `HADOOP_CLASSPATH` 到该目录；
 * 包含 Hadoop Config，并设置 `HADOOP_CONF_DIR` 到该目录；

@@ -4,12 +4,12 @@ title: '开发环境'
 sidebar_position: 3
 ---
 
-> [StreamX](https://github.com/streamxhub/streamx) 遵循 Apache-2.0 开源协议，将会是个长期更新的活跃项目，欢迎大家提交 [PR](https://github.com/streamxhub/streamx/pulls) 或 [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose) 喜欢请给个 [Star](https://github.com/streamxhub/streamx/stargazers) 您的支持是我们最大的动力。 该项目自开源以来就受到不少朋友的关注和认可，表示感谢。已陆续有来自金融，数据分析，车联网，智能广告，地产等公司的朋友在使用，也不乏来自一线大厂的朋友在使用。
-同时 StreamX 社区是一个非常开放,相互协助,尊重人才的社区。我们也非常欢迎更多的开发者加入一块贡献，不只是代码的贡献，还寻求使用文档，体验报告，问答等方面的贡献。
+> [StreamPark](https://github.com/streamxhub/streamx) 遵循 Apache-2.0 开源协议，将会是个长期更新的活跃项目，欢迎大家提交 [PR](https://github.com/streamxhub/streamx/pulls) 或 [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose) 喜欢请给个 [Star](https://github.com/streamxhub/streamx/stargazers) 您的支持是我们最大的动力。 该项目自开源以来就受到不少朋友的关注和认可，表示感谢。已陆续有来自金融，数据分析，车联网，智能广告，地产等公司的朋友在使用，也不乏来自一线大厂的朋友在使用。
+同时 StreamPark 社区是一个非常开放,相互协助,尊重人才的社区。我们也非常欢迎更多的开发者加入一块贡献，不只是代码的贡献，还寻求使用文档，体验报告，问答等方面的贡献。
 
-越来越多的开发者已经不满足简单的安装使用，需要进一步研究或基于其源码二开或扩展相关功能，这就需要进一步的对 StreamX 深入了解。 本章节具体讲讲如何在本地搭建 `streamx-console` 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streamx-console` 均指 `streamx-console 平台`。 
+越来越多的开发者已经不满足简单的安装使用，需要进一步研究或基于其源码二开或扩展相关功能，这就需要进一步的对 StreamPark 深入了解。 本章节具体讲讲如何在本地搭建 `streamx-console` 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streamx-console` 均指 `streamx-console 平台`。
 
-StreamX Console 从 1.2.0 开始实现了 Flink-Runtime 的解耦，即**不强制依赖 Hadoop 或 Kubernetes 环境**，可以根据实际开发/使用需求自行安装 Hadoop 或 Kubernetes。
+StreamPark Console 从 1.2.0 开始实现了 Flink-Runtime 的解耦，即**不强制依赖 Hadoop 或 Kubernetes 环境**，可以根据实际开发/使用需求自行安装 Hadoop 或 Kubernetes。
 
 ## 安装 Hadoop（可选，YARN Runtime）
 
@@ -29,14 +29,14 @@ StreamX Console 从 1.2.0 开始实现了 Flink-Runtime 的解耦，即**不强�
 - `core-site.xml`, `hdfs-site.xml`, `yarn-site.xml` 这三个配置文件 copy 到开发机器
 - 如果开启了 kerberos 认证，需要将 `keytab` 文件和 `krb5.conf` copy 到开发机器
 
-需要注意的是，`core-site.xml`, `hdfs-site.xml`, `yarn-site.xml` 这些配置文件里的一系列主机地址 ( host ) 需要在当前的开发机器上配置出来，需要确保本机可以连接集群里的机器。  
+需要注意的是，`core-site.xml`, `hdfs-site.xml`, `yarn-site.xml` 这些配置文件里的一系列主机地址 ( host ) 需要在当前的开发机器上配置出来，需要确保本机可以连接集群里的机器。
 
 
 ## 安装 Kubernetes （可选，K8s Runtime）
 
 本地开发可以通过 MiniKube 或 KubeSphere 等项目快速安装 Kubernetes 环境，当然选择现有的 K8s Cluster 设施更加推荐。此外按时计费的腾讯云 TKE / 阿里云 ACK 也是快速开发很好的选择。
 
-额外配置需求请参考： [**StreamX Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)  
+额外配置需求请参考： [**StreamPark Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)
 
 ## 安装 Flink（可选，Standalone Runtime）
 
@@ -70,7 +70,7 @@ ln -s /root/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 
 `console` 前端部分采用 nodejs 开发，需要 nodejs 环境，下载安装最新的 nodejs 即可
 
-## 安装配置 StreamX
+## 安装配置 StreamPark
 
 如果以上准备工作都已经就绪，此时就可以安装配置 `streamx-console` 了，`streamx-console` 是前后端分离的项目，在项目最终打包部署时为了方便快捷，减少用户的使用和学习成本，使用了前后端混合打包部署模式，但在开发阶段建议使用前后端分离模式进行开发调试，具体步骤如下
 
@@ -80,7 +80,7 @@ ln -s /root/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 
 #### 编译
 
-首先将 `StreamX` 工程下载到本地并且编译
+首先将 `StreamPark` 工程下载到本地并且编译
 
 ```shell
 git clone https://github.com/streamxhub/streamx.git
@@ -119,7 +119,7 @@ streamx-console-service-${version}
 
 #### 配置
 
-用 IDE 导入刚从 git 上 clone 下来的 StreamX 源码 ( 推荐使用 `IntelliJ IDEA` ) ,进入到 `resources` 下，编辑 application.yml,找到 `datasource`,修改下 jdbc 的连接信息，具体可参考安装部署章节 [修改配置](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) 部分
+用 IDE 导入刚从 git 上 clone 下来的 StreamPark 源码 ( 推荐使用 `IntelliJ IDEA` ) ,进入到 `resources` 下，编辑 application.yml,找到 `datasource`,修改下 jdbc 的连接信息，具体可参考安装部署章节 [修改配置](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) 部分
 
 <img src="/doc/image/streamx_conf.jpg" />
 

@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html) connector for reading from or writing to JDBC, which can provides **AT_LEAST_ONCE** (at least once) processing semantics
 
-`StreamX` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
+`StreamPark` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
 
 ## JDBC Configuration
 
-The implementation of the `Jdbc Connector` in `StreamX` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
+The implementation of the `Jdbc Connector` in `StreamPark` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
 
 ```yaml
 jdbc:
@@ -60,7 +60,7 @@ Except for the special `semantic` configuration item, all other configurations m
 
 ## JDBC read
 
-In `StreamX`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
+In `StreamPark`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
 
 <div class="counter">
 
@@ -112,7 +112,7 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 </TabItem>
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.streamxhub.streamx.flink.core.java.function.SQLQueryFunction;
 import com.streamxhub.streamx.flink.core.java.function.SQLResultFunction;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
@@ -134,11 +134,11 @@ public class MySQLJavaApp {
                 .getDataStream(
                         (SQLQueryFunction<Order>) lastOne -> {
                             Thread.sleep(5000);
-                            
-                            Serializable lastOffset = lastOne == null 
-                            ? "2020-12-16 12:00:00" 
+
+                            Serializable lastOffset = lastOne == null
+                            ? "2020-12-16 12:00:00"
                             : lastOne.timestamp;
-                            
+
                             return String.format(
                                 "select * from t_order " +
                                 "where timestamp > '%s' " +
@@ -179,7 +179,7 @@ Take the `java` api as an example, here you have to accept two parameters
 
 `queryFunc` needs to pass in a `function` of type `SQLQueryFunction`, the `function` is used to get the query sql, will return the last record to the developer, and then the developer needs to return a new query `sql` according to the last record, `queryFunc` is defined as follows :
 
-```java 
+```java
 @FunctionalInterface
 public interface SQLQueryFunction<T> extends Serializable {
     /**
@@ -199,7 +199,7 @@ In the production environment, a more flexible way is writing `lastOffset` to st
 ### resultFunc process the query data
 
 The parameter type of `resultFunc` is `SQLResultFunction<T>`, which puts a query result set into `Iterable<Map<String, ? >>`, and then returns it to the developer, at the same time, you can see that each iteration of the iterator returns a `Map`, the `Map` records a complete line of records, the `Map` `key` is the query field, `value` is the value, `SQLResultFunction<T>` is defined as follows
-```java 
+```java
 @FunctionalInterface
 public interface SQLResultFunction<T> extends Serializable {
     Iterable<T> result(Iterable<Map<String, ?>> iterable);
@@ -208,7 +208,7 @@ public interface SQLResultFunction<T> extends Serializable {
 
 ## JDBC Read Write
 
-In `StreamX`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
+In `StreamPark`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
 
 <Tabs>
 <TabItem value="Setting" default>
@@ -220,7 +220,7 @@ kafka.source:
   group.id: user_02
   auto.offset.reset: earliest # (earliest | latest)
   ...
-  
+
 jdbc:
   semantic: EXACTLY_ONCE # EXACTLY_ONCE|AT_LEAST_ONCE|NONE
   driverClassName: com.mysql.jdbc.Driver
@@ -229,7 +229,7 @@ jdbc:
   password: 123456
 ```
 :::danger Cautions
-The configuration under `jdbc` **semantic** is the semantics of writing, as described in [Jdbc Info Configuration](#jdbc-info-config), the configuration will only take effect on `JdbcSink`, `StreamX` is based on two-phase commit to achieve **EXACTLY_ONCE** semantics,
+The configuration under `jdbc` **semantic** is the semantics of writing, as described in [Jdbc Info Configuration](#jdbc-info-config), the configuration will only take effect on `JdbcSink`, `StreamPark` is based on two-phase commit to achieve **EXACTLY_ONCE** semantics,
 This requires that the database being manipulated supports transactions(`mysql`, `oracle`, `MariaDB`, `MS SQL Server`), theoretically all databases that support standard Jdbc transactions can do EXACTLY_ONCE (exactly once) write
 :::
 
@@ -252,13 +252,13 @@ object JdbcSinkApp extends FlinkStreaming {
         val source = KafkaSource()
           .getDataStream[String]()
           .map(x => JsonUtils.read[User](x.value))
-          
+
         JdbcSink().sink[User](source)(user =>
           s"""
           |insert into t_user(`name`,`age`,`gender`,`address`)
           |value('${user.name}',${user.age},${user.gender},'${user.address}')
           |""".stripMargin
-        )  
+        )
   }
 
 }
@@ -270,7 +270,7 @@ case class User(name:String,age:Int,gender:Int,address:String)
 </TabItem>
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
@@ -301,7 +301,7 @@ public class JdbcSinkJavaApp {
         new JdbcSink<JavaUser>(context)
                 .sql((SQLFromFunction<JavaUser>) JavaUser::toSql)
                 .sink(source);
-                
+
         context.start();
     }
 
@@ -332,7 +332,7 @@ When writing, you need to know the specific `sql` statement to write, the `sql` 
 
 The following is an example of the `java` api, let's look at the definition of the `function` method that provides sql in the `java` api
 
-```java 
+```java
 @FunctionalInterface
 public interface SQLFromFunction<T> extends Serializable {
     /**

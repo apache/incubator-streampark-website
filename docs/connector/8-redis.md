@@ -9,19 +9,19 @@ import TabItem from '@theme/TabItem';
 
 [Redis](http://www.redis.cn/) is an open source in-memory data structure storage system that can be used as a database, cache, and messaging middleware. It supports many types of data structures such as strings, hashes, lists, sets, ordered sets and range queries, bitmaps, hyperlogloglogs and geospatial index radius queries. Redis has built-in transactions and various levels of disk persistence, and provides high availability through Redis Sentinel and Cluster.
 
- Flink does not officially provide a connector for writing reids data.StreamX is based on [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
+ Flink does not officially provide a connector for writing reids data.StreamPark is based on [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
 It encapsulates RedisSink, configures redis connection parameters, and automatically creates redis connections to simplify development. Currently, RedisSink supports the following connection methods: single-node mode, sentinel mode, and cluster mode because it does not support transactions.
 
-StreamX uses Redis' **MULTI** command to open a transaction and the **EXEC** command to commit a transaction, see the link for details:  
+StreamPark uses Redis' **MULTI** command to open a transaction and the **EXEC** command to commit a transaction, see the link for details:
 http://www.redis.cn/topics/transactions.html , using RedisSink supports AT_LEAST_ONCE (at least once) processing semantics by default. EXACTLY_ONCE semantics are supported with checkpoint enabled.
 
 :::tip tip
-redis is a key,value type database, AT_LEAST_ONCE semantics flink job with abnormal restart the latest data will overwrite the previous version of data to achieve the final data consistency. If an external program reads the data during the restart, there is a risk of inconsistency with the final data.  
+redis is a key,value type database, AT_LEAST_ONCE semantics flink job with abnormal restart the latest data will overwrite the previous version of data to achieve the final data consistency. If an external program reads the data during the restart, there is a risk of inconsistency with the final data.
 EXACTLY_ONCE semantics will write to redis in batch when the flink job checkpoint is completed as a whole, and there will be a delay of checkpoint interval. Please choose the appropriate semantics according to the business scenario.
 :::
 
 ## Redis Write Dependency
-Flink Connector Redis officially provides two kinds, the following two api are the same, StreamX is using org.apache.bahir dependency.
+Flink Connector Redis officially provides two kinds, the following two api are the same, StreamPark is using org.apache.bahir dependency.
 ```xml
 <dependency>
     <groupId>org.apache.bahir</groupId>
@@ -39,7 +39,7 @@ Flink Connector Redis officially provides two kinds, the following two api are t
 
 ## Writing Redis the Regular Way
 
-The regular way of writing data using Flink Connector Redis is as follows:  
+The regular way of writing data using Flink Connector Redis is as follows:
 
 ### 1.Access to source
 
@@ -163,10 +163,10 @@ public class FlinkRedisSink {
 }
 ```
 
-The above creation of FlinkJedisPoolConfig is tedious, and each operation of redis has to build RedisMapper, which is very insensitive. `StreamX` uses a convention over configuration and automatic configuration. This only requires configuring redis 
-StreamX automatically assembles the source and sink parameters, which greatly simplifies the development logic and improves development efficiency and maintainability.
+The above creation of FlinkJedisPoolConfig is tedious, and each operation of redis has to build RedisMapper, which is very insensitive. `StreamPark` uses a convention over configuration and automatic configuration. This only requires configuring redis
+StreamPark automatically assembles the source and sink parameters, which greatly simplifies the development logic and improves development efficiency and maintainability.
 
-## StreamX Writes to Redis
+## StreamPark Writes to Redis
 
 RedisSink defaults to AT_LEAST_ONCE (at least once) processing semantics, two-stage segment submission supports EXACTLY_ONCE semantics with checkpoint enabled, available connection types: single-node mode, sentinel mode.
 
@@ -182,12 +182,12 @@ redis.sink:
   #Optional parameters
   port: 6379
   database: 2
-  password: 
+  password:
   connectType: jedisPool #Optional parameters: jedisPool（默认）|sentinel
-  maxTotal: 
-  maxIdle: 
-  minIdle: 
-  connectionTimeout: 
+  maxTotal:
+  maxIdle:
+  minIdle:
+  connectionTimeout:
 ```
 
 </TabItem>
@@ -203,11 +203,11 @@ redis.sink:
   #Optional parameters
   soTimeout: 6379
   database: 2
-  password: 
-  maxTotal: 
-  maxIdle: 
-  minIdle: 
-  connectionTimeout: 
+  password:
+  maxTotal:
+  maxIdle:
+  minIdle:
+  connectionTimeout:
 ```
 
 </TabItem>
@@ -216,7 +216,7 @@ redis.sink:
 
 ### 2. Write to Redis
 
-Writing to redis with StreamX is very simple, the code is as follows:
+Writing to redis with StreamPark is very simple, the code is as follows:
 
 <Tabs>
 
@@ -277,7 +277,7 @@ case class RedisMapper[T](cmd: RedisCommand, additionalKey: String, key: T => St
 </TabItem>
 </Tabs>
 
-As the code shows, StreamX automatically loads the configuration to create a RedisSink, and the user completes the redis write operation by creating the required RedisMapper object, **additionalKey is the outermost key when hset is invalid for other write commands**.
+As the code shows, StreamPark automatically loads the configuration to create a RedisSink, and the user completes the redis write operation by creating the required RedisMapper object, **additionalKey is the outermost key when hset is invalid for other write commands**.
 RedisSink.sink() write the corresponding key corresponding to the data is required to specify the expiration time, if not specified default expiration time is java Integer.MAX_VALUE (67 years). As shown in the code.
 
 ```scala
@@ -357,11 +357,11 @@ public enum RedisCommand {
 ```
 
 :::info Warning
-RedisSink currently supports single-node mode and sentinel mode connections. And its cluster mode does not support transactions, but StreamX is currently for support. Please call the official Flink Connector Redis api if you have a usage scenario.<br></br>
-Checkpoint must be enabled under EXACTLY_ONCE semantics, otherwise the program will throw parameter exceptions.<br></br>
-EXACTLY_ONCE semantics checkpoint data sink cache inside the memory, you need to reasonably set the checkpoint interval according to the actual data, otherwise there is a risk of **oom**.<br></br>
+RedisSink currently supports single-node mode and sentinel mode connections. And its cluster mode does not support transactions, but StreamPark is currently for support. Please call the official Flink Connector Redis api if you have a usage scenario.<br />
+Checkpoint must be enabled under EXACTLY_ONCE semantics, otherwise the program will throw parameter exceptions.<br />
+EXACTLY_ONCE semantics checkpoint data sink cache inside the memory, you need to reasonably set the checkpoint interval according to the actual data, otherwise there is a risk of **oom**.<br />
 :::
 
 ## Other Configuration
 
-All other configurations must adhere to the **StreamX** configuration, please refer to [project configuration](/docs/development/conf) for specific configurable items and the role of each parameter.
+All other configurations must adhere to the **StreamPark** configuration, please refer to [project configuration](/docs/development/conf) for specific configurable items and the role of each parameter.
