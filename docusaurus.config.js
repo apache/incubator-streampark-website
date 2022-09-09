@@ -146,6 +146,36 @@ const config = {
 					label: 'FAQ'
 				},
 				{
+					label: 'ASF',
+					position: 'right',
+					items: [
+						{
+							label: "Foundation",
+							to: "https://www.apache.org/",
+						},
+						{
+							label: "License",
+							to: "https://www.apache.org/licenses/",
+						},
+						{
+							label: "Events",
+							to: "https://www.apache.org/events/current-event",
+						},
+						{
+							label: "Security",
+							to: "https://www.apache.org/security/",
+						},
+						{
+							label: "Sponsorship",
+							to: "https://www.apache.org/foundation/sponsorship.html",
+						},
+						{
+							label: "Thanks",
+							to: "https://www.apache.org/foundation/thanks.html",
+						},
+					],
+				},
+				{
 					href: 'https://github.com/streamxhub/streamx',
 					label: 'GitHub',
 					position: 'right',
