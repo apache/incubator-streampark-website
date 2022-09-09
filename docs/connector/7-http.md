@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 Some background services receive data through HTTP requests. In this scenario, Flink can write result data through HTTP
-requests. Currently, Flink officially does not provide a connector for writing data through HTTP requests. StreamX
+requests. Currently, Flink officially does not provide a connector for writing data through HTTP requests. StreamPark
 encapsulates HttpSink to write data asynchronously in real-time based on asynchttpclient.
 
 `HttpSink` writes do not support transactions, writing data to the target service provides AT_LEAST_ONCE semantics. Data
@@ -29,7 +29,7 @@ Asynchronous writing uses asynchttpclient as the client, you need to import the 
 </dependency>
 ```
 
-## Write with StreamX
+## Write with StreamPark
 
 ### http asynchronous write support type
 
@@ -136,10 +136,10 @@ object HttpSinkApp extends FlinkStreaming {
 Since http can only write one piece of data at a time, the latency is relatively high, and it is not suitable for
 writing large amounts of data.   It is necessary to set a reasonable threshold to improve performance.
 Since httpSink asynchronous writing fails, data will be added to the cache queue again, which may cause data in the same
-window to be written in two batches.   It is recommended to fully test in scenarios with high real-time requirements.  
+window to be written in two batches.   It is recommended to fully test in scenarios with high real-time requirements.
 After the asynchronous write data reaches the maximum retry value, the data will be backed up to the external component, and the component connection will be initialized at this time. It is recommended to ensure the availability of the failover component.
 :::
 
 ## Other configuration
-All other configurations must comply with the **StreamX** configuration.
+All other configurations must comply with the **StreamPark** configuration.
 For specific configurable items and the role of each parameter, please refer [Project configuration](/docs/development/conf)

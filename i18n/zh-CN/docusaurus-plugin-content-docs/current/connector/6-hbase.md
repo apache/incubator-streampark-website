@@ -10,12 +10,12 @@ import TabItem from '@theme/TabItem';
 [Apache HBase](https://hbase.apache.org/book.html)是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server
 上搭建起大规模结构化存储集群。 HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase基于列的而不是基于行的模式。
 
-flink官方未提供Hbase DataStream的连接器。StreamX 基于`Hbase-client`封装了HBaseSource、HBaseSink,支持依据配置自动创建连接，简化开发。
-StreamX 读取Hbase在开启chekpoint情况下可以记录读取数据的最新状态，通过数据本身标识可以恢复source对应偏移量。实现source端AT_LEAST_ONCE(至少一次语义)。  
+flink官方未提供Hbase DataStream的连接器。StreamPark 基于`Hbase-client`封装了HBaseSource、HBaseSink,支持依据配置自动创建连接，简化开发。
+StreamPark 读取Hbase在开启chekpoint情况下可以记录读取数据的最新状态，通过数据本身标识可以恢复source对应偏移量。实现source端AT_LEAST_ONCE(至少一次语义)。
 HbaseSource 实现了flink Async I/O，用于提升streaming的吞吐量，sink端默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE()精确一次语义。
 
 :::tip 提示
-StreamX 读取HBASE在开启chekpoint情况下可以记录读取数据的最新状态，作业恢复后从是否可以恢复之前状态完全取决于数据本身是否有偏移量的标识，需要在代码手动指定。
+StreamPark 读取HBASE在开启chekpoint情况下可以记录读取数据的最新状态，作业恢复后从是否可以恢复之前状态完全取决于数据本身是否有偏移量的标识，需要在代码手动指定。
 在HBaseSource的getDataStream方法func参数指定恢复逻辑。
 :::
 
@@ -39,7 +39,7 @@ HBase Maven依赖
 
 ## 常规方式写入读取Hbase
 ### 1.创建库表
-     create 'Student', {NAME => 'Stulnfo', VERSIONS => 3}, {NAME =>'Grades', BLOCKCACHE => true} 
+     create 'Student', {NAME => 'Stulnfo', VERSIONS => 3}, {NAME =>'Grades', BLOCKCACHE => true}
 ### 2.写入读取demo
 <Tabs>
 <TabItem value="读取数据" default>
@@ -234,9 +234,9 @@ class HBaseWriter extends RichSinkFunction<String> {
 
 </Tabs>
 
-以方式读写Hbase较繁琐，非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置Hbase连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+以方式读写Hbase较繁琐，非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置Hbase连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## StreamX 读写 Hbase
+## StreamPark 读写 Hbase
 
 ### 1. 配置策略和连接信息
 
@@ -252,7 +252,7 @@ hbase:
 ```
 
 ### 2. 读写入Hbase
-用 StreamX 写入Hbase非常简单,代码如下:
+用 StreamPark 写入Hbase非常简单,代码如下:
 
 <Tabs>
 <TabItem value="读取HBase">
@@ -282,7 +282,7 @@ object HBaseSourceApp extends FlinkStreaming {
     },
       //以下方法决定从checkpoint恢复偏移量的逻辑
       r => new String(r.getRow), null)
-//flink Async I/O 
+//flink Async I/O
     HBaseRequest(id).requestOrdered(x => {
       new HBaseQuery("person", new Get(x.getBytes()))
     }, (a, r) => {
@@ -358,7 +358,7 @@ object HBaseSinkApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-StreamX 写入Hbase 需要创建HBaseQuery的方法、指定将查询结果转化为需要对象的方法、标识是否在运行、传入运行参数。具体如下：
+StreamPark 写入Hbase 需要创建HBaseQuery的方法、指定将查询结果转化为需要对象的方法、标识是否在运行、传入运行参数。具体如下：
 ```scala
 /**
  * @param ctx
@@ -384,7 +384,7 @@ class HBaseSource(@(transient@param) val ctx: StreamingContext, property: Proper
 
 }
 ```
-StreamX HbaseSource 实现了flink Async I/O 用于提升Streaming的吞吐量，先创建 DataStream 然后创建 HBaseRequest 调用 
+StreamPark HbaseSource 实现了flink Async I/O 用于提升Streaming的吞吐量，先创建 DataStream 然后创建 HBaseRequest 调用
 requestOrdered（） 或者 requestUnordered（） 创建异步流，建如下代码：
 ```scala
 class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: DataStream[T], property: Properties = new Properties()) {
@@ -438,4 +438,4 @@ Stramx支持两种方式写入数据：1.addSink() 2. writeUsingOutputFormat 样
 
 ## 其他配置
 
-其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)

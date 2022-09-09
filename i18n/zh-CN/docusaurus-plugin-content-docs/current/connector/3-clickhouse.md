@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [ClickHouse](https://clickhouse.com/)是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS)，主要面向OLAP场景。目前flink官方未提供写入
-读取clickhouse数据的连接器。StreamX 基于ClickHouse 支持的访问形式[HTTP客户端](https://clickhouse.com/docs/zh/interfaces/http/)、
+读取clickhouse数据的连接器。StreamPark 基于ClickHouse 支持的访问形式[HTTP客户端](https://clickhouse.com/docs/zh/interfaces/http/)、
 [JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)封装了ClickHouseSink用于向clickhouse实时写入数据。
 
 `ClickHouse`写入不支持事务，使用 JDBC 向其中写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。使用 HTTP客户端 异步写入，对异步写入重试多次
@@ -63,9 +63,9 @@ public class ClickHouseUtil {
 
 以上将各项参数拼接为请求 url 的方式较繁琐，并且是硬编码的方式写死的,非常的不灵敏.
 
-### StreamX 方式写入
+### StreamPark 方式写入
 
-用`StreamX`接入 `clickhouse`的数据, 只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
+用`StreamPark`接入 `clickhouse`的数据, 只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下在`StreamPark`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
 #### 配置信息
 
@@ -149,12 +149,12 @@ clickhouse INSERT 必须通过POST方法来插入数据 常规操作如下：
 $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data-binary @-
 ```
 
-上述方式操作较简陋，当然也可以使用java 代码来进行写入, StreamX 对 http post 写入方式进行封装增强，增加缓存、异步写入、失败重试、达到重试阈值后数据备份至外部组件（kafka,mysql,hdfs,hbase）
+上述方式操作较简陋，当然也可以使用java 代码来进行写入, StreamPark 对 http post 写入方式进行封装增强，增加缓存、异步写入、失败重试、达到重试阈值后数据备份至外部组件（kafka,mysql,hdfs,hbase）
 等功能，以上功能只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
-### StreamX 方式写入
+### StreamPark 方式写入
 
-在`StreamX`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
+在`StreamPark`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
 这里采用asynchttpclient作为http异步客户端来进行写入,先导入 asynchttpclient 的jar
 
@@ -209,7 +209,7 @@ clickhouse:
         auto.offset.reset: latest
       hbase:
         zookeeper.quorum: localhost
-        zookeeper.property.clientPort: 2181 
+        zookeeper.property.clientPort: 2181
       hdfs:
         path: /data/chfailover
         namenode: hdfs://localhost:8020

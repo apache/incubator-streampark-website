@@ -8,7 +8,7 @@ sidebar_position: 2
 
 在上个章节已经详细介绍了一站式平台 `streamx-console` 的安装, 本章节看看如果用 `streamx-console` 快速部署运行一个作业, `streamx-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 `streamx-console` 之旅
 
-`streamx-quickstart` 是 StreamX 开发 Flink 的上手示例程序，具体请查阅:
+`streamx-quickstart` 是 StreamPark 开发 Flink 的上手示例程序，具体请查阅:
 
 - Github: [https://github.com/streamxhub/streamx-quickstart.git](https://github.com/streamxhub/streamx-quickstart.git)
 - Gitee: [https://gitee.com/streamxhub/streamx-quickstart.git](https://gitee.com/streamxhub/streamx-quickstart.git)

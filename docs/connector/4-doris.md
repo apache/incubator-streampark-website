@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 
 [Apache Doris](https://doris.apache.org/) is a high-performance, and real-time analytical database,
 which could support high-concurrent point query scenarios.
-StreamX encapsulates DoirsSink for writing data to Doris in real-time, based on  [Doris' stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)
+StreamPark encapsulates DoirsSink for writing data to Doris in real-time, based on  [Doris' stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)
 
-### Write with StreamX
+### Write with StreamPark
 
-Use `StreamX` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
+Use `StreamPark` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
 such as: {"id":1,"name":"streamx"} The example of the running program is java, as follows:
 
 #### configuration list
@@ -26,7 +26,7 @@ doris.sink:
   fenodes:  127.0.0.1:8030    //doris fe http url
   database: test            //doris database
   table: test_tbl           //doris table
-  user: root                
+  user: root
   password: 123456
   batchSize: 100         //doris sink batch size per streamload
   intervalMs: 3000      //doris sink the time interval of each streamload
@@ -75,7 +75,7 @@ public class DorisJavaApp {
 
 :::tip hint
 
-It is recommended to set batchSize to insert data in batches to improve performance.  
+It is recommended to set batchSize to insert data in batches to improve performance.
 At the same time, to improve real-time performance, intervalMs is supported for batch writing.
 The number of streamload retries can be increased by setting maxRetries.
 

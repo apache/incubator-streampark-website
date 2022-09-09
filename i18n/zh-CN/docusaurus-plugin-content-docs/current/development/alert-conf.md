@@ -7,7 +7,7 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-目前 `StreamX` 中支持配置多种报警方式，主要有一下几种：
+目前 `StreamPark` 中支持配置多种报警方式，主要有一下几种：
 
 *   **E-mail**：邮件通知
 *   **DingTalk**：钉钉自定义群机器人
@@ -22,7 +22,7 @@ import TabItem from '@theme/TabItem';
 :::
 
 ## 新增报警配置
-点击左侧 `StreamX -> Setting`，然后选择`Alert Setting` 进入报警信息配置。
+点击左侧 `StreamPark -> Setting`，然后选择`Alert Setting` 进入报警信息配置。
 ![alert_add_setting.png](/doc/image/alert/alert_add_setting.png)
 
 点击 `Add New` 进行报警新增配置：

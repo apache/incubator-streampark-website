@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 任何框架都有一些要遵循的规则和约定, 我们只有遵循并掌握了这些规则, 才能更加游刃有余的使用, 使其发挥事半功倍的效果, 我们开发 Flink 作业,其实就是利用 Flink 提供的 API , 按照 Flink 要求的开发方式, 写一个可以执行的(必须有`main()`函数)的程序, 在程序里接入各种`Connector`经过一系列的`算子`操作, 最终将数据通过`Connector` sink 到目标存储,
-我们把这种按照某种约定的规则去逐步编程的方式称之为`编程模型`, 这一章节我们就来聊聊 StreamX 的`编程模型`以及开发注意事项
+我们把这种按照某种约定的规则去逐步编程的方式称之为`编程模型`, 这一章节我们就来聊聊 StreamPark 的`编程模型`以及开发注意事项
 
 我们从这几个方面开始入手
 
@@ -25,16 +25,16 @@ import TabItem from '@theme/TabItem';
 
 ## 编程模型
 
-`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamX 来开发编程模型是什么样的,有什么规范和要求
+`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamPark 来开发编程模型是什么样的,有什么规范和要求
 
 ### DataStream
 
- StreamX 提供了`scala`和`Java`两种 API 来开发 `DataStream` 程序,具体代码开发如下
+ StreamPark 提供了`scala`和`Java`两种 API 来开发 `DataStream` 程序,具体代码开发如下
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
 
-```scala 
+```scala
 import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
 import org.apache.flink.api.scala._
 
@@ -50,7 +50,7 @@ object MyFlinkApp extends FlinkStreaming {
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 public class MyFlinkJavaApp {
 
     public static void main(String[] args) {
@@ -58,10 +58,10 @@ public class MyFlinkJavaApp {
             //用户可以给environment设置参数...
             System.out.println("environment argument set...");
         });
-        
+
         StreamingContext context = new StreamingContext(JavaConfig);
-            
-        ....    
+
+        ....
 
         context.start();
     }
@@ -78,7 +78,7 @@ public class MyFlinkJavaApp {
 
 :::tip 提示
 
-以上几行 `scala` 和 `Java` 代码就是用 StreamX 开发 `DataStream` 必不可少的最基本的骨架代码,用 StreamX 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
+以上几行 `scala` 和 `Java` 代码就是用 StreamPark 开发 `DataStream` 必不可少的最基本的骨架代码,用 StreamPark 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
 
 :::
 
@@ -88,11 +88,11 @@ TableEnvironment 是用来创建 Table & SQL 程序的上下文执行环境,也�
 
 Flink 社区一直在推进 DataStream 的批处理能力,统一流批一体,在 Flink 1.12 中流批一体真正统一运行,诸多历史 API 如: DataSet API, BatchTableEnvironment API 等被废弃,退出历史舞台,官方推荐使用 **TableEnvironment** 和 **StreamTableEnvironment**
 
- StreamX 针对 **TableEnvironment** 和 **StreamTableEnvironment** 这两种环境的开发,提供了对应的更方便快捷的 API
+ StreamPark 针对 **TableEnvironment** 和 **StreamTableEnvironment** 这两种环境的开发,提供了对应的更方便快捷的 API
 
 #### TableEnvironment
 
-开发Table & SQL 作业, TableEnvironment 会是 Flink 推荐使用的入口类, 同时能支持 Java API 和 Scala API,下面的代码演示了在 StreamX 如何开发一个 TableEnvironment 类型的作业
+开发Table & SQL 作业, TableEnvironment 会是 Flink 推荐使用的入口类, 同时能支持 Java API 和 Scala API,下面的代码演示了在 StreamPark 如何开发一个 TableEnvironment 类型的作业
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -130,7 +130,7 @@ public class JavaTableApp {
 
 :::tip 提示
 
-以上几行 Scala 和 Java 代码就是用 StreamX 开发 TableEnvironment 必不可少的最基本的骨架代码,用 StreamX 开发 TableEnvironment 程序,从这几行代码开始,
+以上几行 Scala 和 Java 代码就是用 StreamPark 开发 TableEnvironment 必不可少的最基本的骨架代码,用 StreamPark 开发 TableEnvironment 程序,从这几行代码开始,
 Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContext ,需要开发者手动启动任务 `start`
 
 :::
@@ -138,12 +138,12 @@ Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContex
 #### StreamTableEnvironment
 
 `StreamTableEnvironment` 用于流计算场景,流计算的对象是 `DataStream`。相比 `TableEnvironment`, `StreamTableEnvironment` 提供了 `DataStream` 和 `Table` 之间相互转换的接口,如果用户的程序除了使用 `Table API` & `SQL` 编写外,还需要使用到 `DataStream API`,则需要使用 `StreamTableEnvironment`。
-下面的代码演示了在 StreamX 如何开发一个 `StreamTableEnvironment` 类型的作业
+下面的代码演示了在 StreamPark 如何开发一个 `StreamTableEnvironment` 类型的作业
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
 
-```scala 
+```scala
 package com.streamxhub.streamx.test.tablesql
 
 import com.streamxhub.streamx.flink.core.scala.FlinkStreamTable
@@ -153,14 +153,14 @@ object StreamTableApp extends FlinkStreamTable {
   override def handle(): Unit = {
     ...
   }
-  
+
 }
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 
 import com.streamxhub.streamx.flink.core.scala.StreamTableContext;
 import com.streamxhub.streamx.flink.core.scala.util.StreamTableEnvConfig;
@@ -183,12 +183,12 @@ public class JavaStreamTableApp {
 
 
 :::tip 特别注意
-以上几行 scala 和 Java 代码就是用 StreamX 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 StreamX 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
+以上几行 scala 和 Java 代码就是用 StreamPark 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 StreamPark 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
 :::
 
 ## RunTime Context
 
-**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamX 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
+**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamPark 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
 
 <center>
 <img src="/doc/image/streamx_coreapi.png" width="60%"/>
@@ -201,8 +201,8 @@ public class JavaStreamTableApp {
 
 具体定义如下:
 
-```scala 
-class StreamingContext(val parameter: ParameterTool, private val environment: StreamExecutionEnvironment) 
+```scala
+class StreamingContext(val parameter: ParameterTool, private val environment: StreamExecutionEnvironment)
     extends StreamExecutionEnvironment(environment.getJavaEnv) {
 
   /**
@@ -218,17 +218,17 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
    * @param args
    */
   def this(args: StreamEnvConfig) = this(FlinkStreamingInitializer.initJavaStream(args))
-  
-  ...  
-}  
+
+  ...
+}
 ```
 :::tip 特别注意
 这个对象非常重要,在 `DataStream` 作业中会贯穿整个任务的生命周期, `StreamingContext` 本身继承自 `StreamExecutionEnvironment` ,配置文件会完全融合到 `StreamingContext` 中,这样就可以非常方便的从 `StreamingContext` 中获取各种参数
 :::
 
-在 StreamX 中, `StreamingContext` 也是 Java API 编写 `DataStream` 作业的入口类, `StreamingContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+在 StreamPark 中, `StreamingContext` 也是 Java API 编写 `DataStream` 作业的入口类, `StreamingContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
 
-```scala 
+```scala
 /**
  * for Java
  * @param args
@@ -249,7 +249,7 @@ StreamEnvConfig的构造方法中,其中
 
 `StreamEnvConfigFunction` 定义如下
 
-```java 
+```java
 @FunctionalInterface
 public interface StreamEnvConfigFunction {
     /**
@@ -264,7 +264,7 @@ public interface StreamEnvConfigFunction {
 
 该`Function`的作用是让开发者可以通过钩子的方式设置更多的参数,会将 `parameter` (解析配置文件里所有的参数)和初始化好的 `StreamExecutionEnvironment` 对象传给开发者去完成更多的参数设置,如:
 
-```java 
+```java
 StreamEnvConfig JavaConfig = new StreamEnvConfig(args, (environment, parameterTool) -> {
     System.out.println("environment argument set...");
     environment.getConfig().enableForceAvro();
@@ -280,10 +280,10 @@ StreamingContext context = new StreamingContext(JavaConfig);
 
 具体定义如下:
 
-```scala 
+```scala
 class TableContext(val parameter: ParameterTool,
-                   private val tableEnv: TableEnvironment) 
-                   extends TableEnvironment 
+                   private val tableEnv: TableEnvironment)
+                   extends TableEnvironment
                    with FlinkTableTrait {
 
   /**
@@ -298,14 +298,14 @@ class TableContext(val parameter: ParameterTool,
    * @param args
    */
   def this(args: TableEnvConfig) = this(FlinkTableInitializer.initJavaTable(args))
-  
+
   ...
-}  
+}
 ```
 
-在 StreamX 中,`TableContext` 也是 Java API 编写 `TableEnvironment` 类型的 `Table Sql` 作业的入口类,`TableContext` 的构造方法中有一个是专门为 `Java API` 打造的,该构造函数定义如下:
+在 StreamPark 中,`TableContext` 也是 Java API 编写 `TableEnvironment` 类型的 `Table Sql` 作业的入口类,`TableContext` 的构造方法中有一个是专门为 `Java API` 打造的,该构造函数定义如下:
 
-```scala 
+```scala
 
 /**
 * for Java
@@ -327,7 +327,7 @@ TableEnvConfig的构造方法中,其中
 
 `TableEnvConfigFunction` 定义如下
 
-```java 
+```java
 @FunctionalInterface
 public interface TableEnvConfigFunction {
     /**
@@ -343,7 +343,7 @@ public interface TableEnvConfigFunction {
 
 该 `Function` 的作用是让开发者可以通过钩子的方式设置更多的参数,会将 `parameter`(解析配置文件里所有的参数)和初始化好的 `TableEnvironment` 中的 `TableConfig` 对象传给开发者去完成更多的参数设置,如:
 
-```java 
+```java
 TableEnvConfig config = new TableEnvConfig(args,(tableConfig,parameterTool)->{
     tableConfig.setLocalTimeZone(ZoneId.of("Asia/Shanghai"));
 });
@@ -360,12 +360,12 @@ TableContext context = new TableContext(config);
 
 具体定义如下:
 
-```scala 
+```scala
 
 class StreamTableContext(val parameter: ParameterTool,
                          private val streamEnv: StreamExecutionEnvironment,
-                         private val tableEnv: StreamTableEnvironment) 
-                         extends StreamTableEnvironment 
+                         private val tableEnv: StreamTableEnvironment)
+                         extends StreamTableEnvironment
                          with FlinkTableTrait {
 
   /**
@@ -379,7 +379,7 @@ class StreamTableContext(val parameter: ParameterTool,
    *
    * @param args
    */
-  def this(args: (ParameterTool, StreamExecutionEnvironment, StreamTableEnvironment)) = 
+  def this(args: (ParameterTool, StreamExecutionEnvironment, StreamTableEnvironment)) =
   this(args._1, args._2, args._3)
 
   /**
@@ -388,14 +388,14 @@ class StreamTableContext(val parameter: ParameterTool,
    * @param args
    */
   def this(args: StreamTableEnvConfig) = this(FlinkTableInitializer.initJavaStreamTable(args))
-  ...  
+  ...
 }
 ```
 
 
 在StreamX中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
 
-```scala 
+```scala
 
   /**
    * for Java
@@ -410,7 +410,7 @@ def this(args: StreamTableEnvConfig) = this(FlinkTableInitializer.initJavaStream
 ```scala
 class StreamTableEnvConfig (
     val args: Array[String],
-    val streamConfig: StreamEnvConfigFunction, 
+    val streamConfig: StreamEnvConfigFunction,
     val tableConfig: TableEnvConfigFunction
 )
 ```
@@ -425,7 +425,7 @@ StreamTableEnvConfig 的构造方法中有三个参数,其中
 
 该`Function`的作用是让开发者可以通过钩子的方式设置更多的参数,和上面其他参数设置不同的是,该`Function`提供了同时设置`StreamExecutionEnvironment`和`TableEnvironment`的机会 ,会将 `parameter`和初始化好的`StreamExecutionEnvironment`和`TableEnvironment`中的`TableConfig`对象传给开发者去完成更多的参数设置,如:
 
-```java 
+```java
 
 StreamTableEnvConfig JavaConfig = new StreamTableEnvConfig(args, (environment, parameterTool) -> {
     environment.getConfig().enableForceAvro();
@@ -476,12 +476,12 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
   def handle(): Unit
 
   def destroy(): Unit = {}
-  
+
 ```
 
 生命周期如下
 * **init**          配置文件初始化阶段
-* **config**        开发者手动设置参数阶段 
+* **config**        开发者手动设置参数阶段
 * **ready**         启动之前执行自定义动作阶段
 * **handle**        开发者代码接入阶段
 * **start**         程序启动阶段
@@ -534,16 +534,16 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 .
 |── assembly
 │    ├── bin
-│    │    ├── startup.sh                             //启动脚本  
+│    │    ├── startup.sh                             //启动脚本
 │    │    ├── setclasspath.sh                        //Java环境变量相关的脚本(框架内部使用,开发者无需关注)
 │    │    ├── shutdown.sh                            //任务停止脚本(不建议使用)
 │    │    └── flink.sh                               //启动时内部使用到的脚本(框架内部使用,开发者无需关注)
-│    │── conf                           
+│    │── conf
 │    │    ├── test
 │    │    │    ├── application.yaml                  //测试(test)阶段的配置文件
 │    │    │    └── sql.yaml                          //flink sql
 │    │    │
-│    │    ├── prod                      
+│    │    ├── prod
 │    │    │    ├── application.yaml                  //生产(prod)阶段的配置文件
 │    │    │    └── sql.yaml                          //flink sql
 │    │── logs                                        //logs目录
@@ -551,14 +551,14 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 │
 │── src
 │    └── main
-│         ├── Java 
+│         ├── Java
 │         ├── resources
-│         └── scala 
+│         └── scala
 │
 │── assembly.xml
 │
 └── pom.xml
-```    
+```
 assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 ```xml
 <assembly>
@@ -606,15 +606,15 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 
 推荐 [streamx-flink-quickstart](https://github.com/streamxhub/streamx/streamx-flink/streamx-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamX推荐的项目包,解包后目录结构如下
 
-``` text 
+``` text
 .
 Streamx-flink-quickstart-1.0.0
 ├── bin
-│   ├── startup.sh                             //启动脚本  
+│   ├── startup.sh                             //启动脚本
 │   ├── setclasspath.sh                        //Java环境变量相关的脚本(内部使用的,用户无需关注)
 │   ├── shutdown.sh                            //任务停止脚本(不建议使用)
 │   ├── flink.sh                               //启动时内部使用到的脚本(内部使用的,用户无需关注)
-├── conf                           
+├── conf
 │   ├── application.yaml                       //项目的配置文件
 │   ├── sql.yaml                               // flink sql文件
 ├── lib
@@ -625,10 +625,10 @@ Streamx-flink-quickstart-1.0.0
 ## 启动命令
 
 启动之前确定application.yaml和 sql.yaml 配置文件,如果要启动的任务是`DataStream`任务,直接在startup.sh后跟上配置文件即可
-```bash 
+```bash
 bin/startup.sh --conf conf/application.yaml
 ```
 如果要启动的任务是`Flink Sql`任务,则需要跟上配置文件和sql.yaml
- ```bash 
+ ```bash
 bin/startup.sh --conf conf/application.yaml --sql conf/sql.yaml
 ```

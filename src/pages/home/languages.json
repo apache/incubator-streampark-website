@@ -29,7 +29,7 @@
       {
         "title": "简单易用",
         "icon": "lni-layers",
-        "details": "StreamX 的初衷是为了让流处理更简单,提供了一系列快捷Api和Connector,开箱即用,简化开发"
+        "details": "StreamPark 的初衷是为了让流处理更简单,提供了一系列快捷Api和Connector,开箱即用,简化开发"
       },
       {
         "title": "文档详尽",
@@ -44,7 +44,7 @@
       {
         "title": "流批一体",
         "icon": "lni-shuffle",
-        "details": "StreamX 以 Flink & Spark 为底层框架, 让流批一体落地更加简单,连接互通,跨越框架间的屏障,创造更多可能性"
+        "details": "StreamPark 以 Flink & Spark 为底层框架, 让流批一体落地更加简单,连接互通,跨越框架间的屏障,创造更多可能性"
       },
       {
         "title": "一站式解决方案",
@@ -70,7 +70,7 @@
       }
     ],
     "honor" : {
-      "description": "我们获得了一些珍贵的荣誉, 这些荣誉属于所有为 StreamX 做出贡献的人, 感谢您的付出 !"
+      "description": "我们获得了一些珍贵的荣誉, 这些荣誉属于所有为 StreamPark 做出贡献的人, 感谢您的付出 !"
     }
   },
   "en": {
@@ -119,12 +119,12 @@
       {
         "title": "Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamX base on Apache Flink and Apache Spark and implements a layer of abstraction, make stream and batch processing in a single engine."
+        "details": "StreamPark base on Apache Flink and Apache Spark and implements a layer of abstraction, make stream and batch processing in a single engine."
       },
       {
         "title": "One-stop solution",
         "icon": "lni-display-alt",
-        "details": "StreamX integrates project compile, release, parameter configuration, task monitoring, online IDE and many other features."
+        "details": "StreamPark integrates project compile, release, parameter configuration, task monitoring, online IDE and many other features."
       }
     ],
     "development": [
@@ -145,7 +145,7 @@
       }
     ],
     "honor" : {
-      "description": "We have received some precious honors, which belong to everyone who contributes to StreamX, Thanks"
+      "description": "We have received some precious honors, which belong to everyone who contributes to StreamPark, Thanks"
     }
   }
 }

@@ -5,11 +5,11 @@ sidebar_position: 1
 
 # Documentation Notice
 
-Good documentation is critical for any type of software. Any contribution that can improve the StreamX documentation is welcome.
+Good documentation is critical for any type of software. Any contribution that can improve the StreamPark documentation is welcome.
 
 ##  Get the document project
 
-Documentation for the StreamX project is maintained in a separate [git repository](https://github.com/streamxhub/streamx-website).
+Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/streamxhub/streamx-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
@@ -30,11 +30,11 @@ This website is compiled using node, using Docusaurus framework components
 
 ## Directory structure
 ```html
-|-- community 
+|-- community
 |-- docs     // The next version of the document that will be released soon
-|-- download 
+|-- download
 |-- faq      // Q&A
-|-- i18n    
+|-- i18n
 |   `-- zh-CN  //Internationalized Chinese
 |       |-- code.json
 |       |-- docusaurus-plugin-content-docs

@@ -1,10 +1,10 @@
-# StreamX Website
+# StreamPark Website
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 [English](README.md) | [中文](README_ZH.md)
 
 This is the repository containing all the source code of `http://streamxhub.com`.
-This guide will guide you how to contribute to the StreamX website.
+This guide will guide you how to contribute to the StreamPark website.
 
 
 ## Branch
@@ -20,7 +20,7 @@ dev #default branch
 This website is compiled using node, using Docusaurus framework components
 
 1. Download and install nodejs (version>12.5.0)
-2. Clone the code to the local `git clone git@github.com:streamxhub/streamx-website.git`
+2. Clone the code to the local `git clone git@github.com:streamxhub/StreamPark-website.git`
 2. Run `npm install` to install the required dependent libraries.
 3. Run `npm run start` in the root directory, you can visit http://localhost:3000 to view the English mode preview of the site
 4. Run `npm run start-zh` in the root directory, you can visit http://localhost:3000 to view the Chinese mode preview of the site
@@ -28,11 +28,11 @@ This website is compiled using node, using Docusaurus framework components
 
 ## 2. Directory structure
 ```html
-|-- community 
+|-- community
 |-- docs     // The next version of the document that will be released soon
-|-- download 
+|-- download
 |-- faq      // Q&A
-|-- i18n    
+|-- i18n
 |   -- zh-CN  //Internationalized Chinese
 |       |-- code.json
 |       |-- docusaurus-plugin-content-docs

@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 [ClickHouse](https://clickhouse.com/) is a columnar database management system (DBMS) for online analytics (OLAP).
 Currently, Flink does not officially provide a connector for writing to ClickHouse and reading from ClickHouse.
 Based on the access form supported by [ClickHouse - HTTP client](https://clickhouse.com/docs/zh/interfaces/http/)
-and [JDBC driver](https://clickhouse.com/docs/zh/interfaces/jdbc), StreamX encapsulates ClickHouseSink for writing data to ClickHouse in real-time.
+and [JDBC driver](https://clickhouse.com/docs/zh/interfaces/jdbc), StreamPark encapsulates ClickHouseSink for writing data to ClickHouse in real-time.
 
 `ClickHouse` writes do not support transactions, using JDBC write data to it could provide (AT_LEAST_ONCE) semanteme. Using the HTTP client to write asynchronously,
 it will retry the asynchronous write multiple times. The failed data will be written to external components (Kafka, MySQL, HDFS, HBase),
@@ -65,10 +65,10 @@ public class ClickHouseUtil {
 
 The method of splicing various parameters into the request url is cumbersome and hard-coded, which is very inflexible.
 
-### Write with StreamX
+### Write with StreamPark
 
-To access `ClickHouse` data with `StreamX`, you only need to define the configuration file in the specified format and then write code.
-The configuration and code are as follows. The configuration of `ClickHose JDBC` in `StreamX` is in the configuration list, and the sample running program is scala
+To access `ClickHouse` data with `StreamPark`, you only need to define the configuration file in the specified format and then write code.
+The configuration and code are as follows. The configuration of `ClickHose JDBC` in `StreamPark` is in the configuration list, and the sample running program is scala
 
 #### configuration list
 
@@ -129,10 +129,10 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 </Tabs>
 
 :::tip hint
-ClickHouse can support balanced writing of multiple nodes, you only need to configure writable nodes in JDBC URL  
+ClickHouse can support balanced writing of multiple nodes, you only need to configure writable nodes in JDBC URL
 Since ClickHouse has a relatively high delay for single insertion, it is recommended to set the batch.
 size to insert data in batches to improve performance. At the same time, to improve real-time performance,
-it supports batch writing according to data volume or interval time.  
+it supports batch writing according to data volume or interval time.
 In the implementation of ClickHouseSink, if the number of the last batch of data is less than BatchSize, the remaining data will be inserted when the connection is closed.
 :::
 
@@ -147,14 +147,14 @@ Clickhouse INSERT must insert data through the POST method. The general operatio
 $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data-binary @-
 ```
 
-The operation of the above method is relatively simple. Sure java could also be used for writing. StreamX adds many functions to the http post writing method,
+The operation of the above method is relatively simple. Sure java could also be used for writing. StreamPark adds many functions to the http post writing method,
 including encapsulation enhancement, adding cache, asynchronous writing, failure retry, and data backup after reaching the retry threshold，
 To external components (kafka, mysql, hdfs, hbase), etc., the above functions only need to define the configuration file in the prescribed format,
 and write the code.
 
 ### Write to ClickHouse
 
-The configuration of `ClickHose JDBC` in `StreamX` is in the configuration list, and the sample running program is scala, as follows:
+The configuration of `ClickHose JDBC` in `StreamPark` is in the configuration list, and the sample running program is scala, as follows:
 asynchttpclient is used as an HTTP asynchronous client for writing. first, import the jar of asynchttpclient
 
 ```xml
@@ -208,7 +208,7 @@ clickhouse:
         auto.offset.reset: latest
       hbase:
         zookeeper.quorum: localhost
-        zookeeper.property.clientPort: 2181 
+        zookeeper.property.clientPort: 2181
       hdfs:
         path: /data/chfailover
         namenode: hdfs://localhost:8020
@@ -269,7 +269,7 @@ Since ClickHouse will re-add data to the cache queue when asynchronous writing f
 It is recommended to fully test the stability of ClickHouse in scenarios with high real-time requirements.
 
 After the asynchronous write data reaches the maximum retry value, the data will be backed up to the external component,
-and the component connection will be initialized at this time. It is recommended to ensure the availability of the failover component.  
+and the component connection will be initialized at this time. It is recommended to ensure the availability of the failover component.
 :::
 
 ## Other configuration

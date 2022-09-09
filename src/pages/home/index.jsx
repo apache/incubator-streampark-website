@@ -39,7 +39,7 @@ export default function () {
                         <div className="col-12 col-md-6">
                             <div className="welcome_text_area">
                                 <h2 className="wow fadeInUp ztop" data-wow-delay="0.2s">
-                                    <span>StreamX ──</span><br/>
+                                    <span>StreamPark ──</span><br/>
                                     <span>{dataSource.slogan.key}</span>
                                 </h2>
                                 <hr style={{marginBottom: '30px'}}/>
@@ -78,7 +78,7 @@ export default function () {
                         </div>
                         <div className="col-12 col-md-6">
                             <div className="welcome_area_thumb text-center ztop" data-wow-delay="0.2s">
-                                <img style={{marginLeft: 30}} src={useBaseUrl('/home/streamx-banner.png')} alt="StreamX GVP"></img>
+                                <img style={{marginLeft: 30}} src={useBaseUrl('/home/streamx-banner.png')} alt="StreamPark GVP"></img>
                             </div>
                         </div>
                     </div>

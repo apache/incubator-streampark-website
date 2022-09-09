@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 [Flink officially](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](https://kafka.apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
 
-`KafkaSource` and `KafkaSink` in `StreamX` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
+`KafkaSource` and `KafkaSink` in `StreamPark` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
 
 ## Dependencies
 
@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
 
 In the development phase, the following dependencies are also necessary
 
-```xml 
+```xml
     <dependency>
         <groupId>org.apache.flink</groupId>
         <artifactId>flink-scala_${scala.binary.version}</artifactId>
@@ -66,7 +66,7 @@ val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStr
 
 ```
 
-You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `StreamX` to access `kafka` data, we just define the configuration file in the rule format and then write the code
+You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `StreamPark` to access `kafka` data, we just define the configuration file in the rule format and then write the code
 
 ### example
 
@@ -142,7 +142,7 @@ public class KafkaSimpleJavaApp {
 `KafkaSource` is based on the Flink Kafka Connector construct a simpler kafka reading class, the constructor needs to pass `StreamingContext`, when the program starts to pass the configuration file can be, framework will automatically parse the configuration file, when `new KafkaSource` it will automatically get the relevant information from the configuration file, initialize and return a Kafka Consumer, in this case, only configuration one topic, so in the consumption of the time without specifying the topic directly by default to get this topic to consume, this is the simple example, more complex rules and read operations through the `. getDataStream()` pass parameters in the method to achieve
 Let's look at the signature of the `getDataStream` method
 
-```scala 
+```scala
 def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
     alias: String = "",
     deserializer: KafkaDeserializationSchema[T],
@@ -152,10 +152,10 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
 The specific description of the parameters are as follows
 
 | Parameter Name           | Parameter Type                 | Description                           | Default                              |
-|:---------------|:----------------------|:--------------------------------------|:-------------------------------------| 
+|:---------------|:----------------------|:--------------------------------------|:-------------------------------------|
 | `topic`        | Serializable          | a topic or group of topics            |                                      |
 | `alias`        | String                | distinguish different kafka instances |                                      |
-| `deserializer` | DeserializationSchema | deserialize class of the data in the topic      | KafkaStringDeserializationSchema     | 
+| `deserializer` | DeserializationSchema | deserialize class of the data in the topic      | KafkaStringDeserializationSchema     |
 | `strategy`     | WatermarkStrategy     | watermark generation strategy                         |                                      |
 
 Let's take a look at more usage and configuration methods
@@ -173,7 +173,7 @@ Let's take a look at more usage and configuration methods
 
 ### Consume multiple Kafka instances
 
-`StreamX` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streamx is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
+`StreamPark` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streamx is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
 As you can see in the `kafka.source` directly under the kafka instance name, here we unified called **alias** , **alias** must be unique, to distinguish between different instances
 If there is only one kafka instance, then you can not configure `alias`
 When writing the code for consumption, pay attention to the corresponding **alias** can be specified, the configuration and code is as follows
@@ -195,7 +195,7 @@ kafka.source:
     topic: kafka2
     group.id: kafka2
     auto.offset.reset: earliest
-    enable.auto.commit: true    
+    enable.auto.commit: true
 ```
 </TabItem>
 
@@ -206,32 +206,32 @@ KafkaSource().getDataStream[String](alias = "kafka1")
   .uid("kfkSource1")
   .name("kfkSource1")
   .print()
-  
+
 KafkaSource().getDataStream[String](alias = "kafka2")
   .uid("kfkSource2")
   .name("kfkSource2")
-  .print()  
-  
+  .print()
+
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
 DataStream<String> source1 = new KafkaSource<String>(context)
         .alias("kafka1")
         .getDataStream()
-        print();  
+        print();
 
 DataStream<String> source2 = new KafkaSource<String>(context)
         .alias("kafka2")
         .getDataStream()
-        .print(); 
-            
-context.start();            
+        .print();
+
+context.start();
 ```
 :::danger Cautions
 When writing code in java api, be sure to place the settings of these parameters such as `alias` before calling `getDataStream()`
@@ -276,18 +276,18 @@ KafkaSource().getDataStream[String](topic = List("topic1","topic2","topic3"))
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1")
         .getDataStream()
         .print();
-        
+
 DataStream<String> source1 = new KafkaSource<String>(context)
         .topic("topic1","topic2")
         .getDataStream()
-        .print();     
-        
-```        
+        .print();
+
+```
 
 </TabItem>
 
@@ -304,7 +304,7 @@ Regarding kafka's partition dynamics, by default, partition discovery is disable
 For more details, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
 
 Flink Kafka Consumer is also able to discover Topics using regular expressions, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
-A simpler way is provided in `StreamX`, you need to configure the regular pattern of the matching `topic` instance name in `pattern`
+A simpler way is provided in `StreamPark`, you need to configure the regular pattern of the matching `topic` instance name in `pattern`
 
 <Tabs>
 <TabItem value="Setting" label="Setting">
@@ -332,17 +332,17 @@ KafkaSource().getDataStream[String](topic = "topic-a")
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
 StreamingContext context = new StreamingContext(envConfig);
 
 new KafkaSource<String>(context)
         .topic("topic-a")
         .getDataStream()
-        .print();              
-    
-context.start();         
-```        
+        .print();
+
+context.start();
+```
 
 </TabItem>
 
@@ -361,13 +361,13 @@ Flink Kafka Consumer allows the starting position of Kafka partitions to be dete
 <Tabs>
 <TabItem value="scala" default>
 
-```scala 
+```scala
 val env = StreamExecutionEnvironment.getExecutionEnvironment()
 val myConsumer = new FlinkKafkaConsumer[String](...)
-myConsumer.setStartFromEarliest()      
-myConsumer.setStartFromLatest()        
-myConsumer.setStartFromTimestamp(...)  
-myConsumer.setStartFromGroupOffsets()  
+myConsumer.setStartFromEarliest()
+myConsumer.setStartFromLatest()
+myConsumer.setStartFromTimestamp(...)
+myConsumer.setStartFromGroupOffsets()
 
 val stream = env.addSource(myConsumer)
 ...
@@ -376,13 +376,13 @@ val stream = env.addSource(myConsumer)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 final StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
 FlinkKafkaConsumer<String> myConsumer = new FlinkKafkaConsumer<>(...);
 myConsumer.setStartFromEarliest();
-myConsumer.setStartFromLatest(); 
-myConsumer.setStartFromTimestamp(...); 
+myConsumer.setStartFromLatest();
+myConsumer.setStartFromTimestamp(...);
 myConsumer.setStartFromGroupOffsets();
 
 DataStream<String> stream = env.addSource(myConsumer);
@@ -391,7 +391,7 @@ DataStream<String> stream = env.addSource(myConsumer);
 </TabItem>
 </Tabs>
 
-This setting is not recommended in `StreamX`, a more convenient way is provided by specifying `auto.offset.reset` in the configuration
+This setting is not recommended in `StreamPark`, a more convenient way is provided by specifying `auto.offset.reset` in the configuration
 
 * `earliest` consume from earliest record
 * `latest` consume from latest record
@@ -459,7 +459,7 @@ case class User(name:String,age:Int,gender:Int,address:String)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
@@ -524,7 +524,7 @@ The returned object is wrapped in a `KafkaRecord`, which has the current `offset
 
 In many case, the timestamp of the record is embedded (explicitly or implicitly) in the record itself. In addition, users may want to specify in a custom way, for example a special record in a `Kafka` stream containing a `watermark` of the current event time. For these cases, `Flink Kafka Consumer` is allowed to specify `AssignerWithPeriodicWatermarks` or `AssignerWithPunctuatedWatermarks`.
 
-In the `StreamX` run pass a `WatermarkStrategy` as a parameter to assign a `Watermark`, for example, parse the data in the `topic` as a `user` object, there is an `orderTime` in `user` which is a time type, we use this as a base to assign a `Watermark` to it
+In the `StreamPark` run pass a `WatermarkStrategy` as a parameter to assign a `Watermark`, for example, parse the data in the `topic` as a `user` object, there is an `orderTime` in `user` which is a time type, we use this as a base to assign a `Watermark` to it
 
 <Tabs>
 
@@ -579,7 +579,7 @@ case class User(name: String, age: Int, gender: Int, address: String, orderTime:
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
@@ -651,7 +651,7 @@ If the `watermark assigner` relies on messages read from `Kafka` to raise the `w
 
 ## Kafka Sink (Producer)
 
-In `StreamX` the `Kafka Producer` is called `KafkaSink`, which allows messages to be written to one or more `Kafka topics`.
+In `StreamPark` the `Kafka Producer` is called `KafkaSink`, which allows messages to be written to one or more `Kafka topics`.
 
 <Tabs>
 
@@ -659,21 +659,21 @@ In `StreamX` the `Kafka Producer` is called `KafkaSink`, which allows messages t
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
- KafkaSink().sink(source)     
+ KafkaSink().sink(source)
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
  StreamingContext context = new StreamingContext(envConfig);
  DataStream<String> source = new KafkaSource<String>(context)
          .getDataStream()
          .map((MapFunction<KafkaRecord<String>, String>) KafkaRecord::value);
- 
+
  new KafkaSink<String>(context).sink(source);
- 
+
  context.start();
 ```
 </TabItem>
@@ -715,7 +715,7 @@ kafka.sink:
     batch.size: 1
 ```
 
-<details> 
+<details>
 
 <summary> kafka <code>EXACTLY_ONCE</code> Semantic Description</summary>
 
@@ -774,21 +774,21 @@ When writing data, you need to manually specify `alias`. Note that the `scala` a
 
 ```scala
  val source = KafkaSource().getDataStream[String]().map(_.value)
- KafkaSink().sink(source,alias = "kafka_cluster1")     
+ KafkaSink().sink(source,alias = "kafka_cluster1")
 ```
 </TabItem>
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
  StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
  StreamingContext context = new StreamingContext(envConfig);
  DataStream<String> source = new KafkaSource<String>(context)
          .getDataStream()
          .map((MapFunction<KafkaRecord<String>, String>) KafkaRecord::value);
- 
+
  new KafkaSink<String>(context).alias("kafka_cluster1").sink(source);
- 
+
  context.start();
 ```
 </TabItem>
@@ -838,7 +838,7 @@ case class User(name: String, age: Int, gender: Int, address: String)
 
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
@@ -928,7 +928,7 @@ case class User(name: String, age: Int, gender: Int, address: String)
 </TabItem>
 <TabItem value="Java" label="Java">
 
-```java 
+```java
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
 import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
@@ -980,7 +980,7 @@ class JavaUser implements Serializable {
 
 
 ### specific partitioner
-`KafkaSink` allows you to specify a kafka partitioner, if you don't specify it, the default is to use `StreamX` built-in **KafkaEqualityPartitioner** partitioner, as the name, the partitioner can write data to each partition evenly, the `scala` api is set by the ` partitioner` parameter to set the partitioner,
+`KafkaSink` allows you to specify a kafka partitioner, if you don't specify it, the default is to use `StreamPark` built-in **KafkaEqualityPartitioner** partitioner, as the name, the partitioner can write data to each partition evenly, the `scala` api is set by the ` partitioner` parameter to set the partitioner,
 `java` api is set by `partitioner()` method
 
 

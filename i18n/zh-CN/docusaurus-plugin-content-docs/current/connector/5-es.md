@@ -21,7 +21,7 @@ org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink 实例写
 :::
 
 ## Elasticsearch 写入依赖
-Elasticsearch 版本不同依赖 Flink Connector Elasticsearch 不同,以下信息来源[flink-docs-release-1.14文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):  
+Elasticsearch 版本不同依赖 Flink Connector Elasticsearch 不同,以下信息来源[flink-docs-release-1.14文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/docs/connectors/datastream/elasticsearch/):
 Elasticsearch 5.x Maven依赖
 ```xml
 <dependency>
@@ -83,13 +83,13 @@ ElasticsearchSink.Builder<String> esSinkBuilder = new ElasticsearchSink.Builder<
         public IndexRequest createIndexRequest(String element) {
             Map<String, String> json = new HashMap<>();
             json.put("data", element);
-        
+
             return Requests.indexRequest()
                     .index("my-index")
                     .type("my-type")
                     .source(json);
         }
-        
+
         @Override
         public void process(String element, RuntimeContext ctx, RequestIndexer indexer) {
             indexer.add(createIndexRequest(element));
@@ -152,7 +152,7 @@ val esSinkBuilder = new ElasticsearchSink.Builder[String](
             .source(json)
 
           indexer.add(rqst)
-     } 
+     }
   }
 )
 
@@ -177,10 +177,10 @@ input.addSink(esSinkBuilder.build)
 
 </Tabs>
 
-以上创建ElasticsearchSink添加参数非常的不灵敏。`StreamX`使用约定大于配置、自动配置的方式只需要配置es
-连接参数、flink运行参数，StreamX 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+以上创建ElasticsearchSink添加参数非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置es
+连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## StreamX 写入 Elasticsearch
+## StreamPark 写入 Elasticsearch
 
 ESSink 在启用 Flink checkpoint 后，保证至少一次将操作请求发送到 Elasticsearch 集群。
 
@@ -205,14 +205,14 @@ host: localhost:9200
 #      timeout:
 #    cluster.name: elasticsearch
 #  client.transport.sniff:
-#  bulk.flush.: 
+#  bulk.flush.:
 ```
 
 
 
 ### 2. 写入Elasticsearch
 
-用 StreamX 写入Elasticsearch非常简单,代码如下:
+用 StreamPark 写入Elasticsearch非常简单,代码如下:
 
 <Tabs>
 
@@ -339,10 +339,10 @@ class ESSink(@(transient@param) context: StreamingContext,
 :::
 
 ## 其他配置
-### 处理失败的 Elasticsearch 请求 
+### 处理失败的 Elasticsearch 请求
 Elasticsearch 操作请求可能由于多种原因而失败，可以通过实现ActionRequestFailureHandler来指定失败处理逻辑，见
 [官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**处理失败的 Elasticsearch 请求** 单元
-### 配置内部批量处理器 
+### 配置内部批量处理器
 es内部`BulkProcessor`可以进一步配置其如何刷新缓存操作请求的行为详细查看[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**配置内部批量处理器** 单元
 ### StreamX配置
-其他的所有的配置都必须遵守 **StreamX** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
