@@ -10,8 +10,6 @@ const config = {
 	onBrokenLinks: 'ignore',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'image/favicon.ico',
-	organizationName: 'Apache',
-	projectName: 'Apache StreamPark',
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "zh-CN"],
