@@ -39,34 +39,30 @@ export default function () {
                         <div className="col-12 col-md-6">
                             <div className="welcome_text_area">
                                 <h2 className="wow fadeInUp ztop" data-wow-delay="0.2s">
-                                    <span>StreamPark ──</span><br/>
-                                    <span>{dataSource.slogan.key}</span>
+                                    <span className="main_title">Apache StreamPark</span>
+                                    <span className="apache_incubating">Incubating</span>
                                 </h2>
-                                <hr style={{marginBottom: '30px'}}/>
+                                <hr style={{marginBottom: '40px'}}/>
                                 <h5 className="wow fadeInUp ztop" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
                                     {dataSource.slogan.description}
                                 </h5>
-                                <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/streamxhub/streamx"
+                                <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
                                    target="_blank">
                                     <i className="lni-github-original"></i>&nbsp;GitHub
                                 </a>
-                                <a className="btn streamx-btn btn-purple mt-30 ml-2 ztop"
-                                   href="https://gitee.com/streamxhub/streamx" target="_blank"
-                                   style={{marginLeft: '15px'}}>
-                                    <img src={useBaseUrl('/home/gitee.png')} className="icon-gitee"></img>&nbsp;Gitee
-                                </a>
-                                <a className="btn streamx-btn btn-green mt-30 ml-2 ztop" href="/docs/user-guide/quick-start"
-                                   style={{marginLeft: '15px'}}>
-                                    <i className="lni-play"></i>&nbsp;Start
+                                <a className="btn streamx-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
+                                   style={{marginLeft: '10px'}}>
+                                    <i className="lni-play"></i>&nbsp;Get started
                                 </a>
                                 <div style={{marginTop: '20px'}} className="shields ztop">
                                     <a href="https://www.apache.org/licenses/LICENSE-2.0.html">
                                         <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" className="wow fadeInUp"></img>
                                     </a>
-                                    <img src="https://img.shields.io/github/stars/streamxhub/streamx.svg?sanitize=true" className="wow fadeInUp"></img>
-                                    <img src="https://img.shields.io/github/forks/streamxhub/streamx.svg?sanitize=true" className="wow fadeInUp"></img>
-                                    <img src="https://img.shields.io/github/languages/count/streamxhub/streamx" className="wow fadeInUp"></img>
+                                    <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?sanitize=true" className="wow fadeInUp"></img>
+                                    <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?sanitize=true" className="wow fadeInUp"></img>
+                                    <img src="https://img.shields.io/github/languages/count/apache/incubator-streampark" className="wow fadeInUp"></img>
                                 </div>
+                                {/*
                                 <a className="video_btn popup_video"
                                    data-wow-delay="0.5s"
                                    target="_blank"
@@ -74,11 +70,12 @@ export default function () {
                                     <i className="lni-play"></i>
                                     <span className="video-sonar"></span>
                                 </a>
+                                */}
                             </div>
                         </div>
                         <div className="col-12 col-md-6">
                             <div className="welcome_area_thumb text-center ztop" data-wow-delay="0.2s">
-                                <img style={{marginLeft: 30}} src={useBaseUrl('/home/streamx-banner.png')} alt="StreamPark GVP"></img>
+                                <img style={{marginLeft: 30}} src={useBaseUrl('/home/streampark-banner.png')} alt="StreamPark GVP"></img>
                             </div>
                         </div>
                     </div>
@@ -155,41 +152,6 @@ export default function () {
                             <div className="welcome_area_thumb text-center" data-wow-delay="0.2s">
                                 <img src={useBaseUrl('/home/code.svg')}  alt=""></img>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section className="honor_area" style={{backgroundColor: '#F6FAFE'}}>
-                <div className="container" style = {{marginTop: '90px',marginBottom: '40px' }}>
-                    <div className="row justify-content-center">
-                        <div className="col-12 col-sm-8 col-lg-6">
-                            <div className="section_heading text-center wow fadeInUp" data-wow-delay="0.2s"
-                                 style= {{ marginBottom: '15px'}}>
-                                <h3>{dataSource.common.honor}</h3>
-                                <div className="line"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row justify-content-between" style= {{ padding:'30px 0'}}>
-                        {
-                            <div className="col-12">
-                                <div className="section_heading text-center wow fadeInUp" data-wow-delay="0.2s">
-                                    <p>{dataSource.honor.description}</p>
-                                </div>
-                            </div>
-                        }
-                    </div>
-
-                    <div className="row h-100 justify-content-between align-items-center">
-                        <div className="col-12 col-sm-8 col-lg-6">
-                            <img className="honor_image" src={useBaseUrl('/home/gvp2021.png')}></img>
-                        </div>
-
-                        <div className="col-12 col-sm-8 col-lg-6">
-                            <img className="honor_image" src={useBaseUrl('/home/honor2021.jpg')}></img>
                         </div>
                     </div>
 

@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## 如何使用
 
-在上个章节已经详细介绍了一站式平台 `streamx-console` 的安装, 本章节看看如果用 `streamx-console` 快速部署运行一个作业, `streamx-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 `streamx-console` 之旅
+在上个章节已经详细介绍了一站式平台 `streampark-console` 的安装, 本章节看看如果用 `streampark-console` 快速部署运行一个作业, `streampark-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streamx` 开发的项目都做了很好的支持，下面我们使用 `streamx-quickstart` 来快速开启 `streampark-console` 之旅
 
 `streamx-quickstart` 是 StreamPark 开发 Flink 的上手示例程序，具体请查阅:
 
@@ -112,7 +112,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 
 <center>
 <img src="/doc/image/streamx_start.png"/><br></br>
-<strong>streamx-console 提交任务流程</strong>
+<strong>streampark-console 提交任务流程</strong>
 </center>
 
 关于项目的概念，`Development Mode`,`savepoint`,`NoteBook`,自定义 jar 管理，任务发布，任务恢复，参数配置，参数对比，多版本管理等等更多使用教程和文档后续持续更新。..

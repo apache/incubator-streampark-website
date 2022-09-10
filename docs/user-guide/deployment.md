@@ -6,11 +6,11 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-The overall component stack structure of StreamPark is as follows. It consists of two major parts: streamx-core and streamx-console. streamx-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
+The overall component stack structure of StreamPark is as follows. It consists of two major parts: streamx-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
 ![Streamx Archite](/doc/image/streamx_archite.png)
 
-streamx-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
+streampark-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
 
 ## Environmental requirements
 
@@ -97,17 +97,17 @@ mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTest
 
 - 2.1 Modify base api
 
-In a project where the front-end and back-end are independently compiled and deployed, the front-end project needs to know the base api of the back-end service so that the front-end and back-end can work together. Therefore, before compiling, we need to specify the base api of the back-end service and modify streamx-console-webapp/. `VUE_APP_BASE_API` in env.production can
+In a project where the front-end and back-end are independently compiled and deployed, the front-end project needs to know the base api of the back-end service so that the front-end and back-end can work together. Therefore, before compiling, we need to specify the base api of the back-end service and modify streampark-console-webapp/. `VUE_APP_BASE_API` in env.production can
 
 ```bash
-vi streamx/streamx-console/streamx-console-webapp/.env.production
+vi streampark/streampark-console/streampark-console-webapp/.env.production
 ```
 
 - 2.2 Compile
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx/streamx-console/streamx-console-webapp
+git clone https://github.com/apache/incubator-streampark.git streampark
+cd streampark/streampark-console/streampark-console-webapp
 npm install
 npm run build
 ```
@@ -131,11 +131,11 @@ Scala 2.12 is compiled, and the relevant scala version specification information
 
 ### Deploy backend
 
-After the installation is complete, you will see the final project file, located in `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`, the installation directory after unpacking as follows
+After the installation is complete, you will see the final project file, located in `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, the installation directory after unpacking as follows
 
 ```textmate
 .
-streamx-console-service-1.2.1
+streampark-console-service-1.2.1
 ├── bin
 │    ├── flame-graph
 │    ├──   └── *.py                           //Flame graph related function script (internal use, users do not need to pay attention)
@@ -221,10 +221,10 @@ streamx:
 Enter `bin` and directly execute startup.sh to start the project. The default port is **10000**, if there is no accident, it will start successfully
 
 ```bash
-cd streamx-console-service-1.0.0/bin
+cd streampark-console-service-1.0.0/bin
 bash startup.sh
 ```
-Relevant logs will be output to **streamx-console-service-1.0.0/logs/streamx.out**
+Relevant logs will be output to **streampark-console-service-1.0.0/logs/streamx.out**
 
 :::info hint
 
@@ -245,10 +245,10 @@ npm install -g pm2
 ##### Release
 
 ###### 1. Copy the dist to the deployment server
-Copy the entire directory of streamx-console-webapp/dist to the deployment directory of the server, such as: `/home/www/streamx`, the copied directory level is /home/www/streamx/dist
+Copy the entire directory of streampark-console-webapp/dist to the deployment directory of the server, such as: `/home/www/streamx`, the copied directory level is /home/www/streamx/dist
 
 ###### 2. Copy the streamx.js file to the project deployment directory
-Copy streamx/streamx-console/streamx-console-webapp/streamx.js to `/home/www/streamx`
+Copy streamx/streampark-console/streampark-console-webapp/streamx.js to `/home/www/streamx`
 
 ###### 3. Modify the service port
 Users can specify the port address of the front-end service by themselves, modify the /home/www/streamx/streamx.js file, and find `serverPort` to modify, the default is as follows:
