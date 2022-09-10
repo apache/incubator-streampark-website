@@ -1,58 +1,15 @@
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /* custom */
-const CopyRight = `
-<div class="footer-box">
-	<div class="footer-item">
-		<a href="https://www.apachecon.com/acna2022/">
-			<img title="ApacheCon North America" alt="ApacheCon North America" src="https://www.apachecon.com/event-images/acna2022-wide-dark.png" class="footer-pc-img" style="max-width: 310px;">
-		</a>
-		<a href="https://www.apachecon.com/acna2022/">
-			<img title="ApacheCon North America" alt="ApacheCon North America" src="https://www.apachecon.com/event-images/acna2022-wide-dark.png" class="footer-mobile-img" style="max-width: 114px;">
-		</a>
-		<p>
-			The Official Global Conference Series of The Apache Software Foundation,
-			connecting open source technology enthusiasts from around the world to
-			share the latest technology developments and practices.
-		</p>
-	</div>
-	<div class="footer-item">
-		<img class="footer-img" src="/image/incubator_feather_egg_gray_logo.png">
-		<p>
-			<span class="footer-sep">
-				Apache StreamPark is an effort undergoing Incubation at The Apache Software
-				Foundation (ASF), sponsored by the Incubator. Incubation is required of
-				all newly accepted projects until a further review indicates that the infrastructure,
-				communications, and decision making process have stabilized in a manner
-				consistent with other successful ASF projects. While incubation status
-				is not necessarily a reflection of the completeness or stability of the
-				code, it does indicate that the project has yet to be fully endorsed by
-				the ASF.
-			</span>
-		</p>
-	</div>
-	<div class="footer-copyright">
-		<div class="footer-block"></div>
-		<div class="footer-copyright-content">
-			<span>
-			        Copyright © 2019-${new Date().getFullYear()} The Apache Software Foundation.
-				Apache StreamPark, StreamPark, Apache, the Apache Feather logo, and the Apache Incubator project logo
-				are trademarks of The Apache Software Foundation
-			</span>
-		</div>
-	</div>
-</div>
-`
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-	title: 'StreamPark',
-	tagline: 'StreamPark',
-	url: 'https://streamxhub.com',
+	title: 'Apache StreamPark (Incubating)',
+	tagline: 'Apache StreamPark is a Extremely fast stream processing development framework, supported unified batch & streaming and data lake & data warehouse cloud-native bigdata platform, one-stop real-time computing cloud-native platform',
+	url: 'https://streampark.apache.org/',
 	baseUrl: '/',
 	onBrokenLinks: 'ignore',
 	onBrokenMarkdownLinks: 'warn',
 	favicon: 'image/favicon.ico',
-	organizationName: 'Streamxhub',
-	projectName: 'StreamPark',
 	i18n: {
 		defaultLocale: "en",
 		locales: ["en", "zh-CN"],
@@ -77,14 +34,14 @@ const config = {
 					editLocalizedFiles: true,
 					sidebarCollapsed: false,
 					// Please change this to your repo.
-					editUrl: 'https://github.com/streamxhub/streamx-website/edit/dev/'
+					editUrl: 'https://github.com/apache/incubator-streampark-website/edit/dev/'
 				},
 
 				blog: {
 					showReadingTime: true,
 					// Please change this to your repo.
 					editUrl:
-						'https://github.com/streamxhub/streamx-website/edit/dev/',
+						'https://github.com/apache/incubator-streampark-website/edit/dev/',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),
@@ -112,7 +69,7 @@ const config = {
 					activeBaseRegex: `^/$`,
 				},
 				{
-					to: 'https://github.com/streamxhub/streamx/releases',
+					to: 'https://github.com/apache/incubator-streampark/releases',
 					position: 'right',
 					label: 'Download'
 				},
@@ -141,7 +98,7 @@ const config = {
 					activeBaseRegex: `/blog`,
 				},
 				{
-					to: 'https://github.com/streamxhub/streamx/issues/507',
+					to: 'https://github.com/apache/incubator-streampark/issues/507',
 					position: 'right',
 					label: 'FAQ'
 				},
@@ -170,13 +127,17 @@ const config = {
 							to: "https://www.apache.org/foundation/sponsorship.html",
 						},
 						{
+							label: 'Privacy',
+							to: 'https://www.apache.org/foundation/policies/privacy.html'
+						},
+						{
 							label: "Thanks",
 							to: "https://www.apache.org/foundation/thanks.html",
 						},
 					],
 				},
 				{
-					href: 'https://github.com/streamxhub/streamx',
+					href: 'https://github.com/apache/incubator-streampark',
 					label: 'GitHub',
 					position: 'right',
 				},
@@ -188,7 +149,7 @@ const config = {
 		},
 
 		footer: {
-			style: 'dark',
+			style: 'light',
 			links: [
 				{
 					title: 'StreamPark',
@@ -199,11 +160,11 @@ const config = {
 						},
 						{
 							label: 'FAQ',
-							href: 'https://github.com/streamxhub/streamx/issues/507',
+							href: 'https://github.com/apache/incubator-streampark/issues/507',
 						},
 						{
 							label: 'Releases',
-							href: 'https://github.com/streamxhub/streamx/releases',
+							href: 'https://github.com/apache/incubator-streampark/releases',
 						},
 					],
 				},
@@ -212,20 +173,35 @@ const config = {
 					items: [
 						{
 							label: 'GitHub',
-							href: 'https://github.com/streamxhub/streamx',
+							href: 'https://github.com/apache/incubator-streampark',
 						},
 						{
 							label: 'Issue Tracker',
-							href: 'https://github.com/streamxhub/streamx/issues',
+							href: 'https://github.com/apache/incubator-streampark/issues',
 						},
 						{
 							label: 'Pull Requests',
-							href: 'https://github.com/streamxhub/streamx/pulls',
+							href: 'https://github.com/apache/incubator-streampark/pulls',
 						},
 					],
 				}
 			],
-			copyright: CopyRight,
+			copyright: `
+            <div style="margin-top: 20px;background: #f4f8fa">
+                <img
+                  style="height:50px;margin-bottom: 10px"
+                  alt="Apache Software Foundation"
+                  src="/image/incubator-logo.svg"
+                />
+                <p style="color: #999999;font-weight:400;text-align:left">
+                  Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+                </p>
+                <div style="border-top: 1px solid #ccc;min-height: 60px;line-height: 20px;text-align: center;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
+                  <span>
+                    Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, Apache, the Apache Feather logo, and the Apache Incubator project logo are trademarks of The Apache Software Foundation.
+                  </span>
+                </div>
+            <div>`,
 		},
 
 		prism: {
