@@ -200,7 +200,7 @@ const config = {
                 </p>
                 <div style="border-top: 1px solid #ccc;min-height: 60px;line-height: 20px;text-align: center;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
                   <span>
-                    Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+                    Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, Apache, the Apache Feather logo, and the Apache Incubator project logo are trademarks of The Apache Software Foundation.
                   </span>
                 </div>
             <div>`,
