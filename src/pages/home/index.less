@@ -275,7 +275,7 @@ img {
   display: inline-block;
   font-size: 0.875rem;
   font-weight: 600;
-  padding: 1rem 1.6rem;
+  padding: 1rem 1.5rem;
   border-radius: 6px;
   line-height: 1;
   text-transform: uppercase;
@@ -285,7 +285,7 @@ img {
   background-color: #2872ff; //
   color: #fff;
   border: 0;
-  width: 130px;
+  max-width: 180px;
   height: 45px;
   position: relative;
 }
@@ -708,14 +708,14 @@ img {
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
   .welcome_text_area {
-    padding-top: 60px;
+    padding-top: 40px;
     margin-bottom: 0;
   }
 }
 
 @media only screen and (max-width: 575px) {
   .welcome_text_area {
-    padding-top: 40px;
+    padding-top: 30px;
     margin-bottom: 0;
   }
 }
@@ -982,11 +982,30 @@ img {
   font-family: 800;
 }
 
-.welcome_area .welcome_text_area h2 span:last-child {
+.welcome_area .welcome_text_area .main_title {
   background: linear-gradient(130deg, rgb(36, 198, 220), rgb(84, 51, 255) 41.07%, rgb(255, 0, 153) 76.05%);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-box-decoration-break: clone;
+}
+
+hr {
+  background-color: #eaeaea;
+}
+
+.welcome_area .welcome_text_area .apache_incubating {
+  background: #e4e5e9;
+  border: 1px solid #e4e5e9;
+  border-radius: 30px 30px 30px 0;
+  color: #666;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 9px;
+  text-shadow: none;
+  position: relative;
+  top: -40px;
+  left: 5px;
+  height: 35px;
 }
 
 .circle-zoom {

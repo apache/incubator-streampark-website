@@ -93,7 +93,7 @@
     },
     "slogan": {
       "key": "make stream processing easier!",
-      "description":  "Extremely fast stream processing development framework, supported unified batch & streaming and data lake & data warehouse cloud-native bigdata platform, one-stop real-time computing cloud-native platform"
+      "description":  "Make stream processing easier! easy-to-use streaming application development framework and operation platform"
     },
     "feature": [
       {
@@ -141,7 +141,7 @@
       {
         "icon": "lni-bolt-alt",
         "title": "Deploy",
-        "description": "Use streamx-console to deploy app"
+        "description": "Use streampark-console to deploy app"
       }
     ],
     "honor" : {

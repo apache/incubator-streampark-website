@@ -6,11 +6,11 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-StreamPark 总体组件栈架构如下， 由 streamx-core 和 streamx-console 两个大的部分组成 , streamx-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+StreamPark 总体组件栈架构如下， 由 streamx-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
 
 ![Streamx Archite](/doc/image/streamx_archite.png)
 
-streamx-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
+streampark-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
 
 ## 环境要求
 
@@ -98,17 +98,17 @@ mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTest
 
 - 2.1 修改base api
 
-在前后端独立编译部署的项目里,前端项目需要知道后端服务的base api,才能前后端协同工作. 因此在编译之前我们需要指定下后端服务的base api,修改 streamx-console-webapp/.env.production 里的`VUE_APP_BASE_API`即可
+在前后端独立编译部署的项目里,前端项目需要知道后端服务的base api,才能前后端协同工作. 因此在编译之前我们需要指定下后端服务的base api,修改 streampark-console-webapp/.env.production 里的`VUE_APP_BASE_API`即可
 
 ```bash
-vi streamx/streamx-console/streamx-console-webapp/.env.production
+vi streamx/streampark-console/streampark-console-webapp/.env.production
 ```
 
 - 2.2 编译
 
 ```bash
 git clone https://github.com/streamxhub/streamx.git
-cd streamx/streamx-console/streamx-console-webapp
+cd streamx/streampark-console/streampark-console-webapp
 npm install
 npm run build
 ```
@@ -132,11 +132,11 @@ Scala 2.12 编译, 相关 scala 版本指定信息如下:
 
 ### 部署后端
 
-安装完成之后就看到最终的工程文件，位于 `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`,解包后安装目录如下
+安装完成之后就看到最终的工程文件，位于 `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`,解包后安装目录如下
 
 ```textmate
 .
-streamx-console-service-1.2.1
+streampark-console-service-1.2.1
 ├── bin
 │    ├── flame-graph
 │    ├──   └── *.py                           //火焰图相关功能脚本 ( 内部使用，用户无需关注 )
@@ -222,10 +222,10 @@ streamx:
 进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是**10000**,如果没啥意外则会启动成功
 
 ```bash
-cd streamx-console-service-1.0.0/bin
+cd streampark-console-service-1.0.0/bin
 bash startup.sh
 ```
-相关的日志会输出到**streamx-console-service-1.0.0/logs/streamx.out** 里
+相关的日志会输出到**streampark-console-service-1.0.0/logs/streamx.out** 里
 
 :::info 提示
 
@@ -249,7 +249,7 @@ npm install -g pm2
 将streamx-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streamx`,拷贝后的目录层级是/home/www/streamx/dist
 
 ###### 2. 将streamx.js文件copy到项目部署目录
-将streamx/streamx-console/streamx-console-webapp/streamx.js copy 至 `/home/www/streamx`
+将streamx/streampark-console/streampark-console-webapp/streamx.js copy 至 `/home/www/streamx`
 
 ###### 3. 修改服务端口
 用户可以自行指定前端服务的端口地址, 修改 /home/www/streamx/streamx.js文件, 找到 `serverPort` 修改即可,默认如下:

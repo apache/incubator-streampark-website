@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## How to use
 
-The installation of the one-stop platform `streamx-console` has been introduced in detail in the previous chapter. In this chapter, let's see how to quickly deploy and run a job with `streamx-console`. The official structure and specification) and projects developed with `streamx` are well supported. Let's use `streamx-quickstart` to quickly start the journey of `streamx-console`
+The installation of the one-stop platform `streampark-console` has been introduced in detail in the previous chapter. In this chapter, let's see how to quickly deploy and run a job with `streampark-console`. The official structure and specification) and projects developed with `streamx` are well supported. Let's use `streamx-quickstart` to quickly start the journey of `streampark-console`
 
 `streamx-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
 
@@ -112,7 +112,7 @@ The task startup flow chart is as follows
 
 <center>
 <img src="/doc/image/streamx_start.png"/><br></br>
-<strong>streamx-console submit task process</strong>
+<strong>streampark-console submit task process</strong>
 </center>
 
 Regarding the concept of the project, `Development Mode`, `savepoint`, `NoteBook`, custom jar management, task release, task recovery, parameter configuration, parameter comparison, multi-version management and more tutorials and documents will be continuously updated. ..

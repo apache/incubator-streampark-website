@@ -7,7 +7,7 @@ sidebar_position: 3
 > [StreamPark](https://github.com/streamxhub/streamx) 遵循 Apache-2.0 开源协议，将会是个长期更新的活跃项目，欢迎大家提交 [PR](https://github.com/streamxhub/streamx/pulls) 或 [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose) 喜欢请给个 [Star](https://github.com/streamxhub/streamx/stargazers) 您的支持是我们最大的动力。 该项目自开源以来就受到不少朋友的关注和认可，表示感谢。已陆续有来自金融，数据分析，车联网，智能广告，地产等公司的朋友在使用，也不乏来自一线大厂的朋友在使用。
 同时 StreamPark 社区是一个非常开放,相互协助,尊重人才的社区。我们也非常欢迎更多的开发者加入一块贡献，不只是代码的贡献，还寻求使用文档，体验报告，问答等方面的贡献。
 
-越来越多的开发者已经不满足简单的安装使用，需要进一步研究或基于其源码二开或扩展相关功能，这就需要进一步的对 StreamPark 深入了解。 本章节具体讲讲如何在本地搭建 `streamx-console` 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streamx-console` 均指 `streamx-console 平台`。
+越来越多的开发者已经不满足简单的安装使用，需要进一步研究或基于其源码二开或扩展相关功能，这就需要进一步的对 StreamPark 深入了解。 本章节具体讲讲如何在本地搭建 `streampark-console` 流批一体平台的开发环境，为了方便讲解，本文中所说的 `streampark-console` 均指 `streampark-console 平台`。
 
 StreamPark Console 从 1.2.0 开始实现了 Flink-Runtime 的解耦，即**不强制依赖 Hadoop 或 Kubernetes 环境**，可以根据实际开发/使用需求自行安装 Hadoop 或 Kubernetes。
 
@@ -72,11 +72,11 @@ ln -s /root/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 
 ## 安装配置 StreamPark
 
-如果以上准备工作都已经就绪，此时就可以安装配置 `streamx-console` 了，`streamx-console` 是前后端分离的项目，在项目最终打包部署时为了方便快捷，减少用户的使用和学习成本，使用了前后端混合打包部署模式，但在开发阶段建议使用前后端分离模式进行开发调试，具体步骤如下
+如果以上准备工作都已经就绪，此时就可以安装配置 `streampark-console` 了，`streampark-console` 是前后端分离的项目，在项目最终打包部署时为了方便快捷，减少用户的使用和学习成本，使用了前后端混合打包部署模式，但在开发阶段建议使用前后端分离模式进行开发调试，具体步骤如下
 
 ### 后端
 
-`streamx-console` 后端采用 springBoot + Mybatis 开发， JWT 权限验证，非常常见的后端技术栈。下面来看看后端按照部署具体流程
+`streampark-console` 后端采用 springBoot + Mybatis 开发， JWT 权限验证，非常常见的后端技术栈。下面来看看后端按照部署具体流程
 
 #### 编译
 
@@ -90,11 +90,11 @@ mvn clean install -DskipTests -Denv=prod
 
 #### 解包
 
-安装完成之后就看到最终的工程文件解包，位于 `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`,解包之后的目录如下:
+安装完成之后就看到最终的工程文件解包，位于 `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`,解包之后的目录如下:
 
 ```textmate
 .
-streamx-console-service-${version}
+streampark-console-service-${version}
 ├── bin
 │    ├── flame-graph
 │    ├──   └── *.py
@@ -115,7 +115,7 @@ streamx-console-service-${version}
 ├── logs
 ├── temp
 ```
-将解包后的整个工程文件 copy 到 target 之外的其他任意位置即可完成此步骤，该步主要是防止下次执行 mvn clean 被清理，如放到 `/opt/streamx/`,则此时该文件的完整路径是 `/opt/streamx/streamx-console-service-${version}`,记住这个路径，后面会用到,注意该路径中间不要存在空格
+将解包后的整个工程文件 copy 到 target 之外的其他任意位置即可完成此步骤，该步主要是防止下次执行 mvn clean 被清理，如放到 `/opt/streamx/`,则此时该文件的完整路径是 `/opt/streampark/streampark-console-service-${version}`,记住这个路径，后面会用到,注意该路径中间不要存在空格
 
 #### 配置
 
@@ -141,13 +141,13 @@ java:
 
 #### 启动
 
-`streamx-console` 是基于 springBoot 开发的 web 应用，`com.streamxhub.streamx.console.StreamXConsole` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
+`streampark-console` 是基于 springBoot 开发的 web 应用，`com.streamxhub.streamx.console.StreamXConsole` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
 
 ##### VM options
 
-在 `VM options` 需要设置 `app.home`:值为上面解包后的 streamx-console 的完整路径:
+在 `VM options` 需要设置 `app.home`:值为上面解包后的 streampark-console 的完整路径:
 ```shell
--Dapp.home=/opt/streamx/streamx-console-service-${version}
+-Dapp.home=/opt/streampark/streampark-console-service-${version}
 ```
 <br></br>
 如果开发机使用的 jdk 版本是 jdk1.8 以上版本， 则需要加上如下参数: <br></br>
@@ -171,8 +171,8 @@ streamx web 前端部分采用 nodejs + vue 开发，因此需要在机器上按
 
 #### 修改配置
 
-由于是前后端分离项目，前端需要知道后端 ( streamx-console ) 的访问地址，才能前后配合工作，因此需要更改Base API,具体位置在:
-`streamx-console/streamx-console-webapp/.env.development`
+由于是前后端分离项目，前端需要知道后端 ( streampark-console ) 的访问地址，才能前后配合工作，因此需要更改Base API,具体位置在:
+`streampark-console/streampark-console-webapp/.env.development`
 
 ![web配置](/doc/image/streamx_websetting.png)
 
@@ -192,7 +192,7 @@ VUE_APP_BASE_API = http://localhost:10000
 接下来需要编译项目，具体步骤如下:
 
 ```shell
-cd streamx-console/streamx-console-webapp
+cd streampark-console/streampark-console-webapp
 npm install
 ```
 
@@ -201,6 +201,6 @@ npm install
 以上步骤执行完毕即可启动项目即可
 
 ```shell
-cd streamx-console/streamx-console-webapp
+cd streampark-console/streampark-console-webapp
 npm run serve
 ```

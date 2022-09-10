@@ -7,7 +7,7 @@ sidebar_position: 3
 > [StreamPark](https://github.com/streamxhub/streamx) follows the Apache license 2.0, it will be a long-term active project. Welcome to submit [PR](https://github.com/streamxhub/streamx/pulls) Or [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose). If you like, please give a [star](https://github.com/streamxhub/streamx/stargazers), your support is our greatest motivation. This project has been concerned and recognized by many friends since it was open source. Some friends are using it. They come from finance, data analysis, Internet of vehicles, smart advertising, real estate and other companies, and There are even some friends from the first-line big factories.
 StreamPark community is a very open, mutual assistance and respect for talents. We also welcome more developers to join us and contribute together, not only for the code, but also for the use of documents, experience reports, questions and answers.
 
-More and more developers are not satisfied with the simple installation and use, and need to be further researched or expanded based on its source code, which requires further in-depth understanding of StreamPark. This chapter specifically describes how to build a development environment for the `streamx-console` streaming batch integration platform locally. For convenience of explanation, the `streamx-console` mentioned in this article refers to the `streamx-console platform`.
+More and more developers are not satisfied with the simple installation and use, and need to be further researched or expanded based on its source code, which requires further in-depth understanding of StreamPark. This chapter specifically describes how to build a development environment for the `streampark-console` streaming batch integration platform locally. For convenience of explanation, the `streampark-console` mentioned in this article refers to the `streampark-console platform`.
 
 StreamPark console has realized the decoupling of Flink runtime since version 1.2.0, That is, **it is not mandatory to rely on Hadoop or kubernetes environment** and can install Hadoop or kubernetes according to your actual needs.
 
@@ -72,11 +72,11 @@ The front-end part of `console` is developed with nodejs. You can download and i
 
 ## Install and configure StreamPark
 
-If all the above preparations are ready, you can install and configure the `streamx-console`. The `streamx-console` is a frontend and backend separated project. In order to facilitate the final packaging and deployment of the project and reduce the user's use and learning costs, the front end and back end mixed packaging and deployment mode is used. However, it is recommended to use the front end and back end separated mode for development and debugging at the development stage. The specific steps are as follows:
+If all the above preparations are ready, you can install and configure the `streampark-console`. The `streampark-console` is a frontend and backend separated project. In order to facilitate the final packaging and deployment of the project and reduce the user's use and learning costs, the front end and back end mixed packaging and deployment mode is used. However, it is recommended to use the front end and back end separated mode for development and debugging at the development stage. The specific steps are as follows:
 
 ### Backend deployment and configuration
 
-The backend of `streamx-console` is developed by springboot and mybatis, and verified by JWT. Let's take a look at the specific process of backend installation and deployment.
+The backend of `streampark-console` is developed by springboot and mybatis, and verified by JWT. Let's take a look at the specific process of backend installation and deployment.
 
 #### Backend compilation
 
@@ -90,11 +90,11 @@ mvn clean install -DskipTests -Denv=prod
 
 #### Backend decompression
 
-After the compilation, the installation package location is `streamx/streamx-console/streamx-console-service/target/streamx-console-service-${version}-bin.tar.gz`, The directory structure after decompressing is as follows:
+After the compilation, the installation package location is `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, The directory structure after decompressing is as follows:
 
 ```textmate
 .
-streamx-console-service-${version}
+streampark-console-service-${version}
 ├── bin
 │    ├── flame-graph
 │    ├──   └── *.py
@@ -115,7 +115,7 @@ streamx-console-service-${version}
 ├── logs
 ├── temp
 ```
-Copy the unpacked directory to other directories to prevent it from being cleaned up the next time `mvn clean` is executed. For example, if it is placed in `/opt/streamx/`, the full path of the file is `/opt/streamx/streamx-console-service-${version}`, This path will be used later and there is no space in the path.
+Copy the unpacked directory to other directories to prevent it from being cleaned up the next time `mvn clean` is executed. For example, if it is placed in `/opt/streamx/`, the full path of the file is `/opt/streampark/streampark-console-service-${version}`, This path will be used later and there is no space in the path.
 
 #### Backend configuration
 
@@ -145,10 +145,10 @@ java:
 
 ##### VM options
 
-You need to set `apphome` in `VM options`, the value is the full path of the above unpacked streamx-console.
+You need to set `apphome` in `VM options`, the value is the full path of the above unpacked streampark-console.
 
 ```shell
--Dapp.home=/opt/streamx/streamx-console-service-${version}
+-Dapp.home=/opt/streampark/streampark-console-service-${version}
 ```
 <br></br>
 If the JDK version used by the development machine is above JDK1.8, the following parameters need to be added: <br></br>
@@ -189,13 +189,13 @@ Parameter description:
 #### Code compile
 
 ```shell
-cd streamx-console/streamx-console-webapp
+cd streampark-console/streampark-console-webapp
 npm install
 ```
 
 #### Start server
 
 ```shell
-cd streamx-console/streamx-console-webapp
+cd streampark-console/streampark-console-webapp
 npm run serve
 ```
