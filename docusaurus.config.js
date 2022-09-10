@@ -28,15 +28,15 @@ const CopyRight = `
 				code, it does indicate that the project has yet to be fully endorsed by
 				the ASF.
 			</span>
-			Apache, the Apache Feather logo, and the Apache Incubator project logo
-			are trademarks of The Apache Software Foundation.
 		</p>
 	</div>
 	<div class="footer-copyright">
 		<div class="footer-block"></div>
 		<div class="footer-copyright-content">
 			<span>
-				Copyright © 2019-${new Date().getFullYear()} StreamPark All Rights Reserved
+			        Copyright © 2019-${new Date().getFullYear()} The Apache Software Foundation.
+				Apache StreamPark, StreamPark, Apache, the Apache Feather logo, and the Apache Incubator project logo
+				are trademarks of The Apache Software Foundation
 			</span>
 		</div>
 	</div>
