@@ -39,11 +39,11 @@ export default function () {
                         <div className="col-12 col-md-6">
                             <div className="welcome_text_area">
                                 <h2 className="wow fadeInUp ztop" data-wow-delay="0.2s">
-                                    <span className="main_title">Apache StreamPark</span>
+                                    <span style={{color: '#333'}}>Apache</span> <br/> <span className="main_title">StreamPark</span>
                                     <span className="apache_incubating">Incubating</span>
                                 </h2>
-                                <hr style={{marginBottom: '40px'}}/>
-                                <h5 className="wow fadeInUp ztop" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
+                                <hr style={{marginBottom: '20px'}}/>
+                                <h5 className="wow fadeInUp ztop main_desc" data-wow-delay="0.3s" style={{color: '#6c7a87',fontWeight: 600}}>
                                     {dataSource.slogan.description}
                                 </h5>
                                 <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
