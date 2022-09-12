@@ -18,12 +18,12 @@ export default function () {
           <div className="col-12">
             <div className="mb-5">
               <h2 className="h3 fw-bold">{dataSource.common.development}</h2>
-              <hr className="divider my-4 mx-auto" />
+              <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }} />
             </div>
           </div>
         </div>
 
-        <div className="row mb-5 mb-lg-7">
+        <div className="row mb-3 ">
           <div className="col-6 ">
             <ol className="process-vertical ps-0" >
               {
@@ -51,11 +51,9 @@ export default function () {
             </div>
           </div>
 
-
-
         </div>
-
-        <div className="row mb-5 mb-lg-7">
+        <div className='border-dot'></div>
+        <div className="row mb-5 mt-5 mb-lg-7">
           <div className="col-6 align-self-center">
             <div className="px-5 px-md-7 mb-5 my-lg-0" data-aos="fade-up" data-aos-delay="100">
               <Coding className="img-fluid" />

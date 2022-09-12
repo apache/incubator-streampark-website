@@ -26,7 +26,7 @@ export default function () {
         return <Layout>
           <div className="block team_page">
             <h3 className="fs-1 mb-4 fw-bold text-center">StreamPark Team</h3>
-            <hr className="divider my-4 mx-auto"></hr>
+            <hr className="divider my-4 mx-auto" style={{maxWidth:"15rem"}}></hr>
             <p className="team_desc team_indent">{dataSource.info.desc}</p>
             <h3 className="team_title mb-5">
               Contributor
