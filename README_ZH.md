@@ -3,8 +3,8 @@
 
 [English](README.md) | [中文](README_ZH.md)
 
-这是包含 `http://streamxhub.com` 的所有源代码的存储库。
-本指南将指导您如何为StreamX的网站做出贡献。
+这是包含 `http://streampark.apache.org` 的所有源代码的存储库。
+本指南将指导您如何为 Apache StreamPark(Incubating) 的网站做出贡献。
 
 
 ## 分支
@@ -19,7 +19,7 @@ dev  默认分支
 本网站是使用node编译的，使用的是Docusaurus框架组件
 
 1. 下载并安装 nodejs(version>12.5.0)
-2. 克隆代码到本地 `git clone  git@github.com:streamxhub/StreamPark-website.git`
+2. 克隆代码到本地 `git clone  git@github.com:apache/incubator-streampark-website.git`
 2. 运行 `npm install` 来安装所需的依赖库。
 3. 在根目录运行`npm run start`，可以访问http://localhost:3000查看站点英文模式预览
 4. 在根目录运行`npm run start-zh`，可以访问http://localhost:3000查看站点的中文模式预览
@@ -91,7 +91,7 @@ css等样式文件放在`src/css`目录下
 > 除了首页、团队、用户、Docs>All Version 模块页面外，其余页面都能通过底部的'Edit this page'按钮 直接跳转至对应的github的资源修改页
 
 ### 3.5 首页页面修改
-访问页面  http://streamxhub.com/
+访问页面  http://streampark.apache.org/
 位于 `src/pages/home`
 
 ```
@@ -100,7 +100,7 @@ css等样式文件放在`src/css`目录下
 │      index.less  首页样式
 ```
 ### 3.6 团队页面修改
-访问页面  http://streamxhub.com/zh-CN/team
+访问页面  http://streampark.apache.org/zh-CN/team
 位于 `src/pages/team`
 ```
 ├─team
@@ -109,7 +109,7 @@ css等样式文件放在`src/css`目录下
 │ index.less
 ```
 ### 3.7  用户 列表页面修改
-访问页面  http://streamxhub.com/zh-CN/user/
+访问页面  http://streampark.apache.org/zh-CN/user/
 ```
 位于 `src/pages/user`
 └─versions

@@ -3,8 +3,8 @@
 
 [English](README.md) | [中文](README_ZH.md)
 
-This is the repository containing all the source code of `http://streamxhub.com`.
-This guide will guide you how to contribute to the StreamPark website.
+This is the repository containing all the source code of `http://streampark.apache.org`.
+This guide will guide you how to contribute to the Apache StreamPark(Incubating) website.
 
 
 ## Branch
@@ -20,7 +20,7 @@ dev #default branch
 This website is compiled using node, using Docusaurus framework components
 
 1. Download and install nodejs (version>12.5.0)
-2. Clone the code to the local `git clone git@github.com:streamxhub/StreamPark-website.git`
+2. Clone the code to the local `git clone git@github.com:apache/incubator-streampark-website.git`
 2. Run `npm install` to install the required dependent libraries.
 3. Run `npm run start` in the root directory, you can visit http://localhost:3000 to view the English mode preview of the site
 4. Run `npm run start-zh` in the root directory, you can visit http://localhost:3000 to view the Chinese mode preview of the site
@@ -92,7 +92,7 @@ css and other style files are placed in the `src/css` directory
 > Except for the homepage, team, user, Docs>All Version module page, all other pages can be directly jumped to the corresponding github resource modification page through the'Edit this page' button at the bottom
 
 ### 3.5 Home page modification
-Visit the page http://streamxhub.com
+Visit the page http://streampark.apache.org
 Located in `src/pages/home`
 
 ```
@@ -101,7 +101,7 @@ Located in `src/pages/home`
 │ index.less     // homepage style
 ```
 ### 3.6 Team page modification
-Visit the page http://streamxhub.com/team
+Visit the page http://streampark.apache.org/team
 Located in `src/pages/team`
 ```
 ├─team
@@ -110,7 +110,7 @@ Located in `src/pages/team`
 │ index.less
 ```
 ### 3.7 User list page modification
-Visit the page http://streamxhub.com/user
+Visit the page http://streampark.apache.org/user
 ```
 Located in `src/pages/user`
 └─versions
