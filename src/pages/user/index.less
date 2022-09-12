@@ -47,6 +47,16 @@
       align-items: center;
       justify-content: center;
 
+      &.case_hover {
+        transition: all 0.3s;
+
+        &:hover {
+          transform:translateY(-10px);
+          box-shadow: 0 1.0rem 2rem rgba(0, 0, 0, .05);
+        }
+
+      }
+
       >img {
         max-width: 90%;
         max-height: 90%;
