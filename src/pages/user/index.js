@@ -1,36 +1,61 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import config from './languages';
 import './index.less';
 import img from './images';
 import Layout from '@theme/Layout';
 
 export default function () {
-    const isBrowser = useIsBrowser();
-    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
-    const dataSource = config?.[language];
+  const isBrowser = useIsBrowser();
+  const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
+  const dataSource = config?.[language];
 
-    return (
-        <Layout>
-            <div>
-                <div className="user-main" style={{padding: "10px 0 30px"}}>
-                    <div className="block">
-                        <h1 className="main_title text_center">{dataSource.common.ourUsers}</h1>
-                        <div className="desc" dangerouslySetInnerHTML={{__html: dataSource.common.tip}}>
-                        </div>
-                        <div className="user_case home_block">
-                            {
-                                img.map((item, i) => (
-                                    <div key={i} index={i} className="case_item">
-                                        <img src={useBaseUrl('/user/' + item.url)} alt="name"/>
-                                    </div>
-                                ))
-                            }
-                        </div>
-                    </div>
+  const carousel = useRef(null)
+
+  return <BrowserOnly  fallback={<div id="preloader"></div>}>
+    {
+      () => {
+        const Carousel = require("react-tiny-slider").default
+        return <Layout>
+          <div>
+            <div className="user-main" style={{ padding: "10px 0 30px" }}>
+              <h1 className="main_title text_center">{dataSource.common.ourUsers}</h1>
+              <div className="desc" dangerouslySetInnerHTML={{ __html: dataSource.common.tip }}>
+              </div>
+              <section className="md my-6 pt-0">
+                <div className="container">
+                  <Carousel
+                    autoplay
+                    swipeAngle={false}
+                    items={5}
+                    center
+                    mouseDrag
+                    ref={carousel}
+                    controls={false}
+                    autoplayHoverPause
+                    autoplayTimeout={4500}
+                    autoplayButtonOutput={false}
+                    gutter={50}
+                    nav={false}
+                  >
+                    {img.map((item, i) => {
+                      return <div className="slide-item text-center" key={i}>
+                        <img src={`/user/${item.url}`} alt="user" />
+                      </div>
+                    })}
+                  </Carousel>
+
                 </div>
+              </section>
             </div>
+          </div>
         </Layout>
-    );
+      }
+    }
+  </BrowserOnly>
+
+
+
 }
