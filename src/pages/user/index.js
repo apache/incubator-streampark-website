@@ -19,9 +19,9 @@ export default function () {
       () => {
         const Carousel = require("react-tiny-slider").default
         return <Layout>
-          <div>
+          <div className='block user_page'>
             <div className="user-main" style={{ padding: "10px 0 30px" }}>
-              <h1 className="main_title text_center">{dataSource.common.ourUsers}</h1>
+              <h3 className="fs-1 mb-4 fw-bold text-center">{dataSource.common.ourUsers}</h3>
               <div className="desc" dangerouslySetInnerHTML={{ __html: dataSource.common.tip }}>
               </div>
               <section className="md my-6 pt-0">
