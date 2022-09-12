@@ -6,7 +6,7 @@
     text-decoration: none;
   }
 
-  margin-top: 50px;
+  margin-top: 50px!important;
 
   .team_title {
     font-size: 25px;
@@ -17,6 +17,17 @@
 
   .team_desc {
     margin-bottom: 40px;
+  }
+
+  .team_indent {
+    text-indent: 2em;
+    line-height: 40px;
+  }
+
+  .desc {
+    font-size: 1rem;
+    color: #4a4a4a;
+    margin-left: 1.2rem;
   }
 
   .character_list {
@@ -41,7 +52,7 @@
         background: #D8D8D8;
         display: inline-block;
         border-radius: 50%;
-        border: 5px solid rgba(255,255,255,.08);
+        border: 5px solid rgba(255, 255, 255, .08);
         margin: -4rem auto -.5rem;
       }
 
@@ -72,6 +83,7 @@
         text-overflow: ellipsis;
         border: 1px solid rgba(205, 221, 250, 0.6);
         box-shadow: 0 3px 5px rgb(47 85 212 / 5%);
+
         .githubId {
           color: #666;
           margin-right: 2px;
@@ -87,4 +99,88 @@
       }
     }
   }
+}
+
+
+/*****************************
+  team
+*****************************/
+.team_user{
+  width: 20%!important;
+}
+.team {
+  background: #fff;
+  padding: 10px 0;
+  text-align: center;
+  position: relative;
+  &:hover{
+    transform:translateY(-10px)
+  }
+  .team-img {
+
+    img {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid #f5f5ff ;
+    }
+
+  }
+
+  .team-info {
+    text-align: center;
+    margin-top: 20px;
+
+    ul {
+      margin-bottom: 0px;
+
+      li {
+        display: inline-block;
+        margin: 0px 10px;
+      }
+
+    }
+
+    .team-name {
+      display: inline-block;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .team-leader {
+      font-size: 12px;
+      font-weight: 300;
+      margin-bottom: 7px;
+      .github-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+    }
+
+  }
+
+}
+
+.team.team-hover {
+  // background-color: #f5f9ff;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #fff;
+    box-shadow: 0 1.0rem 2rem rgba(0, 0, 0, .05);
+  }
+
+}
+
+@media (max-width:991px) {
+  .team {
+    padding: 20px;
+  }
+
+}
+.bg-gray{
+  background-color: #f5f9ff;
 }
