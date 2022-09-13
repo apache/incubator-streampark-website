@@ -77,7 +77,7 @@ export default function () {
                   <div className="animated-gradient-text_background animated-gradient-text_background-1" style={{ '--content': '"Apache"', '--start-color': '#00DFD8', '--end-color': '#FFF' }}>
                     <span className="animated-gradient-text_foreground animated-gradient-text_foreground-1">Apache</span>
                   </div>
-                  <div className="d-flex  align-items-start">
+                  <div className="d-flex justify-content-between align-items-start">
                     <div className="animated-gradient-text_background animated-gradient-text_background-2" style={{ '--content': '"StreamPark"', '--start-color': '#FFF', '--end-color': '#00DFD8' }}>
                       <span className="animated-gradient-text_foreground animated-gradient-text_foreground-2">StreamPark</span>
                     </div>
@@ -105,9 +105,9 @@ export default function () {
             </div>
           </div>
           {/* hero image */}
-          <div className="col-6 align-self-center" >
-            <div className="mt-5 mt-2 text-right" data-aos="fade-up" data-aos-delay="100">
-              <StartUp className="img-fluid" style={{transform: 'translateY(3.3rem)'}} />
+          <div className="col-md-6 col-4 align-self-center">
+            <div className="px-3 px-sm-7 px-md-2 mt-5 mt-0 mb-n9 text-right" data-aos="fade-up" data-aos-delay="100">
+              <StartUp className="img-fluid" />
             </div>
           </div>
         </div>
