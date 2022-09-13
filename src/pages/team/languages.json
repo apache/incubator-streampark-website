@@ -4,150 +4,93 @@
       "desc": "StreamPark 社区由贡献者组成。 贡献者可以直接访问 StreamPark 项目的源代码并参与贡献当中(包括但不限于代码的贡献)。 贡献者通过提交补丁和建议来改善项目。 该项目的贡献者数量是无限的。 无论是琐碎的清理工作，重要的新功能还是其他重大的奖励，对 StreamPark 所做的所有贡献都将受到极大的赞赏。",
       "tip": "(排名不分先后)"
     },
-    "contributor": [
+    "mentor" : [
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821",
-        "email": "yulin.ying@outlook.com",
-        "gitUrl": "https://github.com/Al-assad",
-        "githubId": "Al-assad",
-        "name": "Al-assad"
+        "apacheId": "tison",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196",
+        "email": "wander4096@gmail.com",
+        "gitUrl": "https://github.com/tisonkun",
+        "name": "tison"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/95013770",
-        "email": "eo65535@163.com",
-        "gitUrl": "https://github.com/zhangjun0x01",
-        "githubId": "leo65535",
-        "name": "leo65535"
+        "apacheId": "ningjiang",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/219644?v=4",
+        "email": "ningjiang@apache.org",
+        "gitUrl": "https://github.com/WillemJiang",
+        "githubId": "WillemJiang",
+        "name": "Willem Ning Jiang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241",
-        "email": "xinzhuxiansheng@126.com",
-        "gitUrl": "https://github.com/xinzhuxiansheng",
-        "githubId": "xinzhuxiansheng",
-        "name": "xinzhuxiansheng"
+        "apacheId": "zhangduo",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/4958168?v=4",
+        "email": "zhangduo@apache.org",
+        "gitUrl": "https://github.com/Apache9",
+        "name": "Duo Zhang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/26395958",
-        "email": "xiejiajun02@163.com",
-        "gitUrl": "https://github.com/xiejiajun",
-        "githubId": "xiejiajun",
-        "name": "xiejiajun"
+        "apacheId": "sewen",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/1727146?v=4",
+        "email": "sewen@apache.org",
+        "gitUrl": "https://github.com/StephanEwen",
+        "name": "Stephan Ewen"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/29206593",
-        "email": "",
-        "gitUrl": "https://github.com/wuchunfu",
-        "githubId": "wuchunfu",
-        "name": "wuchunfu"
-      },
+        "apacheId": "thw",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/263695?v=4",
+        "email": "thw@apache.org",
+        "gitUrl": "https://github.com/tweise",
+        "name": "Thomas Weise"
+      }
+    ],
+    "PPMC": [
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744",
-        "email": "benjobs@qq.com",
+        "apacheId": "benjobs",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744?v=4",
+        "email": "benjobs@apache.org",
         "gitUrl": "https://github.com/wolfboys",
-        "githubId": "wolfboys",
-        "name": "benjobs"
+        "name": "Huajie Wang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491",
-        "email": "",
+        "apacheId": "al_assad",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821?v=4",
+        "email": "al_assad@apache.org",
+        "gitUrl": "https://github.com/Al-assad",
+        "name": "Linying Yu"
+      },
+      {
+        "apacheId": "monster",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/60029759?v=4",
+        "email": "monster@apache.org",
+        "gitUrl": "https://github.com/MonsterChenzhuo",
+        "name": "Zhuoyu Chen"
+      },
+      {
+        "apacheId":"tamer",
+        "avatarUrl":"https://avatars.githubusercontent.com/u/5511181?v=4",
+        "email":"tamer@apache.org",
+        "gitUrl":"https://github.com/GuoNingNing",
+        "name":"Ning Guo"
+      },
+      {
+        "apacheId": "yangzhou",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241?v=4",
+        "email": "yangzhou@apache.org",
+        "gitUrl": "https://github.com/xinzhuxiansheng",
+        "name": "Yang Zhou"
+      },
+      {
+        "apacheId": "lvshaokang",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491?v=4",
+        "email": "lvshaokang@apache.org",
         "gitUrl": "https://github.com/lvshaokang",
-        "githubId": "lvshaokang",
-        "name": "lvshaokang"
+        "name": "Shaokang Lv"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/10227558",
-        "email": "soberchina0@gmail.com",
-        "gitUrl": "https://github.com/SoberChina",
-        "githubId": "SoberChina",
-        "name": "SoberChina"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7892927",
-        "email": "1179320652@qq.com",
-        "gitUrl": "https://github.com/yiwei00000",
-        "githubId": "yiwei00000",
-        "name": "yiwei"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/31752986",
-        "email": "",
-        "gitUrl": "https://github.com/Zclhlmgqzc",
-        "githubId": "Zclhlmgqzc",
-        "name": "Zclhlmgqzc"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
-        "email": "",
-        "gitUrl": "https://github.com/WilsonWangCS",
-        "githubId": "Wilson-BT",
-        "name": "Wilson-BT"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129",
-        "email": "",
+        "apacheId": "monreid",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129?v=4",
+        "email": "monreid@apache.org",
         "gitUrl": "https://github.com/monrg",
-        "githubId": "monrg",
-        "name": "monrg"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/25563794",
-        "email": "zhangjunemail@126.com",
-        "gitUrl": "https://github.com/zhangjun0x01",
-        "githubId": "zhangjun0x01",
-        "name": "zhangjun"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/30107417",
-        "email": "",
-        "gitUrl": "https://github.com/Whojohn",
-        "githubId": "Whojohn",
-        "name": "Whojohn"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/1220443",
-        "email": "whistler@member.fsf.org",
-        "gitUrl": "https://github.com/weimzh",
-        "githubId": "weimzh",
-        "name": "weimzh"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
-        "email": "msn734506700@live.com",
-        "gitUrl": "https://github.com/phillip2019",
-        "githubId": "phillip2019",
-        "name": "phillip2019"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/18678070",
-        "email": "tang2472854207@outlook.com",
-        "gitUrl": "https://github.com/Hermesfuxi",
-        "githubId": "Hermesfuxi",
-        "name": "Hermesfuxi"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7589426",
-        "email": "",
-        "gitUrl": "https://github.com/haoziaigemao",
-        "githubId": "haoziaigemao",
-        "name": "haoziaigemao"
+        "name": "Qingrong Wang"
       }
     ]
   },
@@ -156,150 +99,93 @@
       "desc": "The StreamPark team is comprised of Members and Contributors. Members have direct access to the source of StreamPark project and actively evolve the code-base. Contributors improve the project through submission of patches and suggestions to the Members. The number of Contributors to the project is unbounded. All contributions to StreamPark are greatly appreciated, whether for trivial cleanups, big new features or other material rewards.",
       "tip": "(In no particular order)"
     },
-    "contributor": [
+    "mentor" : [
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821",
-        "email": "yulin.ying@outlook.com",
-        "gitUrl": "https://github.com/Al-assad",
-        "githubId": "Al-assad",
-        "name": "Al-assad"
+        "apacheId": "tison",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196",
+        "email": "wander4096@gmail.com",
+        "gitUrl": "https://github.com/tisonkun",
+        "name": "tison"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/95013770",
-        "email": "eo65535@163.com",
-        "gitUrl": "https://github.com/zhangjun0x01",
-        "githubId": "leo65535",
-        "name": "leo65535"
+        "apacheId": "ningjiang",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/219644?v=4",
+        "email": "ningjiang@apache.org",
+        "gitUrl": "https://github.com/WillemJiang",
+        "githubId": "WillemJiang",
+        "name": "Willem Ning Jiang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241",
-        "email": "xinzhuxiansheng@126.com",
-        "gitUrl": "https://github.com/xinzhuxiansheng",
-        "githubId": "xinzhuxiansheng",
-        "name": "xinzhuxiansheng"
+        "apacheId": "zhangduo",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/4958168?v=4",
+        "email": "zhangduo@apache.org",
+        "gitUrl": "https://github.com/Apache9",
+        "name": "Duo Zhang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/26395958",
-        "email": "xiejiajun02@163.com",
-        "gitUrl": "https://github.com/xiejiajun",
-        "githubId": "xiejiajun",
-        "name": "xiejiajun"
+        "apacheId": "sewen",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/1727146?v=4",
+        "email": "sewen@apache.org",
+        "gitUrl": "https://github.com/StephanEwen",
+        "name": "Stephan Ewen"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/29206593",
-        "email": "",
-        "gitUrl": "https://github.com/wuchunfu",
-        "githubId": "wuchunfu",
-        "name": "wuchunfu"
-      },
+        "apacheId": "thw",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/263695?v=4",
+        "email": "thw@apache.org",
+        "gitUrl": "https://github.com/tweise",
+        "name": "Thomas Weise"
+      }
+    ],
+    "PPMC": [
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744",
-        "email": "benjobs@qq.com",
+        "apacheId": "benjobs",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/13284744?v=4",
+        "email": "benjobs@apache.org",
         "gitUrl": "https://github.com/wolfboys",
-        "githubId": "wolfboys",
-        "name": "benjobs"
+        "name": "Huajie Wang"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491",
-        "email": "",
+        "apacheId": "al_assad",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/22493821?v=4",
+        "email": "al_assad@apache.org",
+        "gitUrl": "https://github.com/Al-assad",
+        "name": "Linying Yu"
+      },
+      {
+        "apacheId": "monster",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/60029759?v=4",
+        "email": "monster@apache.org",
+        "gitUrl": "https://github.com/MonsterChenzhuo",
+        "name": "Zhuoyu Chen"
+      },
+      {
+        "apacheId":"tamer",
+        "avatarUrl":"https://avatars.githubusercontent.com/u/5511181?v=4",
+        "email":"tamer@apache.org",
+        "gitUrl":"https://github.com/GuoNingNing",
+        "name":"Ning Guo"
+      },
+      {
+        "apacheId": "yangzhou",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/7881241?v=4",
+        "email": "yangzhou@apache.org",
+        "gitUrl": "https://github.com/xinzhuxiansheng",
+        "name": "Yang Zhou"
+      },
+      {
+        "apacheId": "lvshaokang",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/29084491?v=4",
+        "email": "lvshaokang@apache.org",
         "gitUrl": "https://github.com/lvshaokang",
-        "githubId": "lvshaokang",
-        "name": "lvshaokang"
+        "name": "Shaokang Lv"
       },
       {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/10227558",
-        "email": "soberchina0@gmail.com",
-        "gitUrl": "https://github.com/SoberChina",
-        "githubId": "SoberChina",
-        "name": "SoberChina"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7892927",
-        "email": "1179320652@qq.com",
-        "gitUrl": "https://github.com/yiwei00000",
-        "githubId": "yiwei00000",
-        "name": "yiwei"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/31752986",
-        "email": "",
-        "gitUrl": "https://github.com/Zclhlmgqzc",
-        "githubId": "Zclhlmgqzc",
-        "name": "Zclhlmgqzc"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/40427110",
-        "email": "",
-        "gitUrl": "https://github.com/WilsonWangCS",
-        "githubId": "Wilson-BT",
-        "name": "Wilson-BT"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129",
-        "email": "",
+        "apacheId": "monreid",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/45427129?v=4",
+        "email": "monreid@apache.org",
         "gitUrl": "https://github.com/monrg",
-        "githubId": "monrg",
-        "name": "monrg"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/25563794",
-        "email": "zhangjunemail@126.com",
-        "gitUrl": "https://github.com/zhangjun0x01",
-        "githubId": "zhangjun0x01",
-        "name": "zhangjun"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/30107417",
-        "email": "",
-        "gitUrl": "https://github.com/Whojohn",
-        "githubId": "Whojohn",
-        "name": "Whojohn"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/1220443",
-        "email": "whistler@member.fsf.org",
-        "gitUrl": "https://github.com/weimzh",
-        "githubId": "weimzh",
-        "name": "weimzh"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/5674071",
-        "email": "msn734506700@live.com",
-        "gitUrl": "https://github.com/phillip2019",
-        "githubId": "phillip2019",
-        "name": "phillip2019"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/18678070",
-        "email": "tang2472854207@outlook.com",
-        "gitUrl": "https://github.com/Hermesfuxi",
-        "githubId": "Hermesfuxi",
-        "name": "Hermesfuxi"
-      },
-      {
-        "apacheId": "",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/7589426",
-        "email": "",
-        "gitUrl": "https://github.com/haoziaigemao",
-        "githubId": "haoziaigemao",
-        "name": "haoziaigemao"
+        "name": "Qingrong Wang"
       }
     ]
   }

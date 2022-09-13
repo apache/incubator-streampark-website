@@ -65,7 +65,6 @@ export default function () {
               <img src={useBaseUrl('/home/code.png')} alt=""></img>
             </div>
           </div>
-
         </div>
       </div>
 

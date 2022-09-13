@@ -4,7 +4,7 @@ import useIsBrowser from '@docusaurus/useIsBrowser'
 import config from './languages.json'
 import RocketIcon from "../../../static/home/rocket.svg"
 import BlockIcon from "../../../static/home/block.svg"
-import StartUp from "../../../static/home/startup.svg"
+import StartUp from "../../../static/home/dashboard.svg"
 import Wave from "../../../static/home/wave.svg"
 export default function () {
   const isBrowser = useIsBrowser();
@@ -73,17 +73,17 @@ export default function () {
           <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
             <div className="text-start mt-0">
               <div className="mb-5 system_info pt-0">
-                <h2 className="fw-bold text-white mb-3">
-                  <div className="animated-gradient-text_background animated-gradient-text_background-1" style={{ '--content': '"Apache"', '--start-color': '#007CF0', '--end-color': '#00DFD8' }}>
+                <div className="project_title fw-bold text-white mb-3">
+                  <div className="animated-gradient-text_background animated-gradient-text_background-1" style={{ '--content': '"Apache"', '--start-color': '#00DFD8', '--end-color': '#FFF' }}>
                     <span className="animated-gradient-text_foreground animated-gradient-text_foreground-1">Apache</span>
                   </div>
                   <div className="d-flex justify-content-between align-items-start">
-                    <div className="animated-gradient-text_background animated-gradient-text_background-2" style={{ '--content': '"StreamPark"', '--start-color': '#FF4D4D', '--end-color': '#F9CB28' }}>
+                    <div className="animated-gradient-text_background animated-gradient-text_background-2" style={{ '--content': '"StreamPark"', '--start-color': '#FFF', '--end-color': '#00DFD8' }}>
                       <span className="animated-gradient-text_foreground animated-gradient-text_foreground-2">StreamPark</span>
                     </div>
                     <span className="badge bg-secondary-home fs-6 tag">Incubating</span>
                   </div>
-                </h2>
+                </div>
                 <p className="lead text-light">{dataSource.slogan.description}</p>
               </div>
               <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
@@ -107,7 +107,7 @@ export default function () {
           {/* hero image */}
           <div className="col-md-6 col-4 align-self-center">
             <div className="px-3 px-sm-7 px-md-2 mt-5 mt-0 mb-n9 text-right" data-aos="fade-up" data-aos-delay="100">
-              <StartUp className="img-fluid animated-up-down" />
+              <StartUp className="img-fluid" />
             </div>
           </div>
         </div>
