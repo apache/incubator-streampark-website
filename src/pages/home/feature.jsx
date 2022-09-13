@@ -7,7 +7,7 @@ export default function () {
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
   const dataSource = config?.[language];
   return (
-    <div className="section pt-6 pt-md-7 pb-4 pb-md-5 bg-light">
+    <div className="section bg-light">
       <div className="container">
         <div className="row text-center">
           <div className="col-12">

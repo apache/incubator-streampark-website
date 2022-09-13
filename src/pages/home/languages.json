@@ -50,14 +50,14 @@
       {
         "title": "一站式解决方案",
         "icon": "lni-display-alt",
-        "details": "StreamX集成了项目编译,发布,参数配置,任务监控,在线IDE等众多功能于一身,是一个一站式综合数据平台"
+        "details": "StreamPark 集成了项目编译,发布,参数配置,任务监控,在线IDE等众多功能于一身,是一个一站式综合数据平台"
       }
     ],
     "development": [
       {
         "icon": "lni-code",
         "title": "编写代码",
-        "description": "使用 streamx 快速开始开发代码"
+        "description": "使用 StreamPark 快速开始开发代码"
       },
       {
         "icon": "lni-bug",
@@ -67,7 +67,7 @@
       {
         "icon": "lni-bolt-alt",
         "title": "部署任务",
-        "description": "使用streamx-console部署任务和管理任务"
+        "description": "使用 streampark-console 部署任务和管理任务"
       }
     ],
     "honor" : {
@@ -133,7 +133,7 @@
       {
         "icon": "lni-code",
         "title": "Write",
-        "description": "Quickly developing app using streamx-core Api"
+        "description": "Quickly developing app using streampark-core Api"
       },
       {
         "icon": "lni-bug",

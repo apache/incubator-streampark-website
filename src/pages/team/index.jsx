@@ -24,19 +24,19 @@ export default function () {
         });
         window.addEventListener('load', AOS.refresh);
         return <Layout>
-          <div className="block team_page">
-            <h3 className="fs-1 mb-4 fw-bold text-center">StreamPark Team</h3>
-            <hr className="divider my-4 mx-auto" style={{maxWidth:"15rem"}}></hr>
+          <div className="block team_page" style={{ padding: "10px 0 30px" }}>
+            <h3 className="fs-2 mb-4 fw-bold text-center">StreamPark Team</h3>
+            <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>
             <p className="team_desc team_indent">{dataSource.info.desc}</p>
             <h3 className="team_title mb-5">
-              Contributor
+              Mentor
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
             <div className="row bg-gray py-4">
               {
-                dataSource.contributor.map((item, i) => (
+                dataSource.mentor.map((item, i) => (
                   <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
-                    <a href={'https://github.com/' + item.githubId} target="_blank">
+                    <a href={item.gitUrl} target="_blank">
                       <div className="team team-hover rounded">
                         <div className="team-img">
                           <img src={item.avatarUrl} alt={item.name} />
@@ -45,12 +45,39 @@ export default function () {
                           <span className="team-name text-dark">{item.name}</span>
                           <p className="team-leader d-flex align-items-center justify-content-center">
                             <Github className="github-icon" />
-                            {item.githubId}
+                            {item.name}
                           </p>
                         </div>
                       </div>
                     </a>
                   </div>
+                ))
+              }
+            </div>
+
+            <h3 className="team_title mb-5">
+              PPMC
+              <span className="desc">{dataSource.info.tip}</span>
+            </h3>
+            <div className="row bg-gray py-4">
+              {
+                dataSource.PPMC.map((item, i) => (
+                    <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                      <a href={item.gitUrl} target="_blank">
+                        <div className="team team-hover rounded">
+                          <div className="team-img">
+                            <img src={item.avatarUrl} alt={item.name} />
+                          </div>
+                          <div className="team-info">
+                            <span className="team-name text-dark">{item.name}</span>
+                            <p className="team-leader d-flex align-items-center justify-content-center">
+                              <Github className="github-icon" />
+                              {item.name}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
                 ))
               }
             </div>

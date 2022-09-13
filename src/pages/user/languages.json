@@ -7,7 +7,7 @@
   },
   "en": {
       "common": {
-          "ourUsers": "Who’s using StreamPark?",
+          "ourUsers": "Our Users",
           "tip":"Various companies and organizations use StreamPark for research, production and commercial products.<br/> Are you using this project ? <a href=\"https://github.com/streamxhub/streamx/issues/163\" target=\"_blank\" rel=\"noopener\"><u>you can add your company</u></a>"
       }
   }

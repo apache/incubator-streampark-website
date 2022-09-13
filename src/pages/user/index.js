@@ -27,8 +27,8 @@ export default function () {
       return <Layout>
         <div className='block user_page'>
           <div className="user-main" style={{ padding: "10px 0 30px" }}>
-            <h3 className="fs-1 mb-4 fw-bold text-center">{dataSource.common.ourUsers}</h3>
-            <hr className="divider my-4 mx-auto" style={{ maxWidth: "20rem" }}></hr>
+            <h3 className="fs-2 mb-4 fw-bold text-center">{dataSource.common.ourUsers}</h3>
+            <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>
             <div className="desc" dangerouslySetInnerHTML={{ __html: dataSource.common.tip }}>
             </div>
             <div className="user_case home_block">
