@@ -6,89 +6,64 @@
     },
     "mentor" : [
       {
-        "apacheId": "tison",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196",
-        "email": "wander4096@gmail.com",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196?v=4",
         "gitUrl": "https://github.com/tisonkun",
         "name": "tison"
       },
       {
-        "apacheId": "ningjiang",
         "avatarUrl": "https://avatars.githubusercontent.com/u/219644?v=4",
-        "email": "ningjiang@apache.org",
         "gitUrl": "https://github.com/WillemJiang",
-        "githubId": "WillemJiang",
         "name": "Willem Ning Jiang"
       },
       {
-        "apacheId": "zhangduo",
         "avatarUrl": "https://avatars.githubusercontent.com/u/4958168?v=4",
-        "email": "zhangduo@apache.org",
         "gitUrl": "https://github.com/Apache9",
         "name": "Duo Zhang"
       },
       {
-        "apacheId": "sewen",
         "avatarUrl": "https://avatars.githubusercontent.com/u/1727146?v=4",
-        "email": "sewen@apache.org",
         "gitUrl": "https://github.com/StephanEwen",
         "name": "Stephan Ewen"
       },
       {
-        "apacheId": "thw",
         "avatarUrl": "https://avatars.githubusercontent.com/u/263695?v=4",
-        "email": "thw@apache.org",
         "gitUrl": "https://github.com/tweise",
         "name": "Thomas Weise"
       }
     ],
     "PPMC": [
       {
-        "apacheId": "benjobs",
         "avatarUrl": "https://avatars.githubusercontent.com/u/13284744?v=4",
-        "email": "benjobs@apache.org",
         "gitUrl": "https://github.com/wolfboys",
         "name": "Huajie Wang"
       },
       {
-        "apacheId": "al_assad",
         "avatarUrl": "https://avatars.githubusercontent.com/u/22493821?v=4",
-        "email": "al_assad@apache.org",
         "gitUrl": "https://github.com/Al-assad",
         "name": "Linying Yu"
       },
       {
-        "apacheId": "monster",
         "avatarUrl": "https://avatars.githubusercontent.com/u/60029759?v=4",
-        "email": "monster@apache.org",
         "gitUrl": "https://github.com/MonsterChenzhuo",
         "name": "Zhuoyu Chen"
       },
       {
-        "apacheId":"tamer",
         "avatarUrl":"https://avatars.githubusercontent.com/u/5511181?v=4",
-        "email":"tamer@apache.org",
         "gitUrl":"https://github.com/GuoNingNing",
         "name":"Ning Guo"
       },
       {
-        "apacheId": "yangzhou",
         "avatarUrl": "https://avatars.githubusercontent.com/u/7881241?v=4",
-        "email": "yangzhou@apache.org",
         "gitUrl": "https://github.com/xinzhuxiansheng",
         "name": "Yang Zhou"
       },
       {
-        "apacheId": "lvshaokang",
         "avatarUrl": "https://avatars.githubusercontent.com/u/29084491?v=4",
-        "email": "lvshaokang@apache.org",
         "gitUrl": "https://github.com/lvshaokang",
         "name": "Shaokang Lv"
       },
       {
-        "apacheId": "monreid",
         "avatarUrl": "https://avatars.githubusercontent.com/u/45427129?v=4",
-        "email": "monreid@apache.org",
         "gitUrl": "https://github.com/monrg",
         "name": "Qingrong Wang"
       }
@@ -101,89 +76,64 @@
     },
     "mentor" : [
       {
-        "apacheId": "tison",
-        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196",
-        "email": "wander4096@gmail.com",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/18818196?v=4",
         "gitUrl": "https://github.com/tisonkun",
         "name": "tison"
       },
       {
-        "apacheId": "ningjiang",
         "avatarUrl": "https://avatars.githubusercontent.com/u/219644?v=4",
-        "email": "ningjiang@apache.org",
         "gitUrl": "https://github.com/WillemJiang",
-        "githubId": "WillemJiang",
         "name": "Willem Ning Jiang"
       },
       {
-        "apacheId": "zhangduo",
         "avatarUrl": "https://avatars.githubusercontent.com/u/4958168?v=4",
-        "email": "zhangduo@apache.org",
         "gitUrl": "https://github.com/Apache9",
         "name": "Duo Zhang"
       },
       {
-        "apacheId": "sewen",
         "avatarUrl": "https://avatars.githubusercontent.com/u/1727146?v=4",
-        "email": "sewen@apache.org",
         "gitUrl": "https://github.com/StephanEwen",
         "name": "Stephan Ewen"
       },
       {
-        "apacheId": "thw",
         "avatarUrl": "https://avatars.githubusercontent.com/u/263695?v=4",
-        "email": "thw@apache.org",
         "gitUrl": "https://github.com/tweise",
         "name": "Thomas Weise"
       }
     ],
     "PPMC": [
       {
-        "apacheId": "benjobs",
         "avatarUrl": "https://avatars.githubusercontent.com/u/13284744?v=4",
-        "email": "benjobs@apache.org",
         "gitUrl": "https://github.com/wolfboys",
         "name": "Huajie Wang"
       },
       {
-        "apacheId": "al_assad",
         "avatarUrl": "https://avatars.githubusercontent.com/u/22493821?v=4",
-        "email": "al_assad@apache.org",
         "gitUrl": "https://github.com/Al-assad",
         "name": "Linying Yu"
       },
       {
-        "apacheId": "monster",
         "avatarUrl": "https://avatars.githubusercontent.com/u/60029759?v=4",
-        "email": "monster@apache.org",
         "gitUrl": "https://github.com/MonsterChenzhuo",
         "name": "Zhuoyu Chen"
       },
       {
-        "apacheId":"tamer",
         "avatarUrl":"https://avatars.githubusercontent.com/u/5511181?v=4",
-        "email":"tamer@apache.org",
         "gitUrl":"https://github.com/GuoNingNing",
         "name":"Ning Guo"
       },
       {
-        "apacheId": "yangzhou",
         "avatarUrl": "https://avatars.githubusercontent.com/u/7881241?v=4",
-        "email": "yangzhou@apache.org",
         "gitUrl": "https://github.com/xinzhuxiansheng",
         "name": "Yang Zhou"
       },
       {
-        "apacheId": "lvshaokang",
         "avatarUrl": "https://avatars.githubusercontent.com/u/29084491?v=4",
-        "email": "lvshaokang@apache.org",
         "gitUrl": "https://github.com/lvshaokang",
         "name": "Shaokang Lv"
       },
       {
-        "apacheId": "monreid",
         "avatarUrl": "https://avatars.githubusercontent.com/u/45427129?v=4",
-        "email": "monreid@apache.org",
         "gitUrl": "https://github.com/monrg",
         "name": "Qingrong Wang"
       }
