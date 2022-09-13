@@ -12,7 +12,7 @@ export default function () {
   const dataSource = config?.[language];
 
   return (
-    <div className="section bg-gradient-primary pb-9 pt-5 overflow-hidden">
+    <div className="section bg-gradient-primary pb-9 pt-7 overflow-hidden">
 
       {/* background overlay */}
       <div className="overlay bg-gradient-primary opacity-90 z-index-n1"></div>
@@ -68,7 +68,7 @@ export default function () {
         <BlockIcon className="text-secondary" />
       </figure>
 
-      <div className="container">
+      <div className="container-fluid px-7 pb-2">
         <div className="row justify-content-center">
           <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
             <div className="text-start mt-0">
