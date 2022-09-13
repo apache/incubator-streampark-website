@@ -12,7 +12,7 @@ export default function () {
   const dataSource = config?.[language];
 
   return (
-    <div className="section bg-gradient-primary pb-9 pt-5 overflow-hidden">
+    <div className="section bg-gradient-primary pb-9 pt-6 overflow-hidden">
 
       {/* background overlay */}
       <div className="overlay bg-gradient-primary opacity-90 z-index-n1"></div>
@@ -68,7 +68,7 @@ export default function () {
         <BlockIcon className="text-secondary" />
       </figure>
 
-      <div className="container">
+      <div className="container-fluid px-7 pb-6">
         <div className="row justify-content-center">
           <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
             <div className="text-start mt-0">
@@ -77,7 +77,7 @@ export default function () {
                   <div className="animated-gradient-text_background animated-gradient-text_background-1" style={{ '--content': '"Apache"', '--start-color': '#00DFD8', '--end-color': '#FFF' }}>
                     <span className="animated-gradient-text_foreground animated-gradient-text_foreground-1">Apache</span>
                   </div>
-                  <div className="d-flex justify-content-between align-items-start">
+                  <div className="d-flex  align-items-start">
                     <div className="animated-gradient-text_background animated-gradient-text_background-2" style={{ '--content': '"StreamPark"', '--start-color': '#FFF', '--end-color': '#00DFD8' }}>
                       <span className="animated-gradient-text_foreground animated-gradient-text_foreground-2">StreamPark</span>
                     </div>
@@ -105,9 +105,9 @@ export default function () {
             </div>
           </div>
           {/* hero image */}
-          <div className="col-md-6 col-4 align-self-center">
-            <div className="px-3 px-sm-7 px-md-2 mt-5 mt-0 mb-n9 text-right" data-aos="fade-up" data-aos-delay="100">
-              <StartUp className="img-fluid" />
+          <div className="col-6 align-self-center">
+            <div className="px-3 px-sm-7 px-md-2 mt-5 mt-0 text-right" data-aos="fade-up" data-aos-delay="100">
+              <StartUp className="img-fluid mt-7" />
             </div>
           </div>
         </div>
