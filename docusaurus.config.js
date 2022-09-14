@@ -9,7 +9,6 @@ const config = {
     onBrokenLinks: 'ignore',
     onBrokenMarkdownLinks: 'warn',
     favicon: 'image/favicon.ico',
-    stylesheets:["https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"],
     i18n: {
         defaultLocale: "en",
         locales: ["en", "zh-CN"],
