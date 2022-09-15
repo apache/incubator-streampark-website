@@ -108,6 +108,9 @@ html {
   font-weight: 400;
   padding: 15px;
 }
+.navbar__link--active {
+  color: var(--ifm-navbar-link-hover-color)!important;
+}
 
 .navbar__items {
   margin-left: 20px;
