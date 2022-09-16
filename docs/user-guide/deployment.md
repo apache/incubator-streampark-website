@@ -272,7 +272,7 @@ After the above steps, even if the deployment is completed, you can directly log
 ![StreamPark Login](/doc/image/streamx_login.jpeg)
 
 :::tip hint
-Default password: <strong> admin / streamx </strong>
+Default password: <strong> admin / streampark </strong>
 :::
 
 ## System Configuration
