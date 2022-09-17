@@ -1,20 +1,36 @@
 ---
-title: Documentation Notice
+id: 'document'
+title: 'Documentation Notice'
 sidebar_position: 1
 ---
 
-# Documentation Notice
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
 
 Good documentation is critical for any type of software. Any contribution that can improve the StreamPark documentation is welcome.
 
-##  Get the document project
+## Get the document project
 
-Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/streamxhub/streamx-website).
+Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/apache/incubator-streampark-websitehttps://github.com/apache/incubator-streampark-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
 ```shell
-git clone https://github.com/<your-github-user-name>/streamx-website
+git clone https://github.com/<your-github-user-name>/incubator-streampark-website
 ```
 
 ## Preview and generate static files
@@ -22,13 +38,14 @@ git clone https://github.com/<your-github-user-name>/streamx-website
 This website is compiled using node, using Docusaurus framework components
 
 1. Download and install nodejs (version>12.5.0)
-2. Clone the code to the local `git clone git@github.com:apache/streamxhub/streamx-website.git`
+2. Clone the code to the local `git clone git@github.com:apache/incubator-streampark-website.git`
 2. Run `npm install` to install the required dependent libraries.
 3. Run `npm run start` in the root directory, you can visit http://localhost:3000 to view the English mode preview of the site
 4. Run `npm run start-zh` in the root directory, you can visit http://localhost:3000 to view the Chinese mode preview of the site
 5. To generate static website resource files, run `npm run build`. The static resources of the build are in the build directory.
 
 ## Directory structure
+
 ```html
 |-- community
 |-- docs     // The next version of the document that will be released soon
@@ -60,7 +77,6 @@ This website is compiled using node, using Docusaurus framework components
 |   |-- home // homepage picture
 |   |-- img  // common picture
 |-- docusaurus.config.js
-
 ```
 
 ## Specification
@@ -88,10 +104,12 @@ Image resources are unified under `static/{module name}`
 css and other style files are placed in the `src/css` directory
 
 ### Page content modification
+
 > Except for the homepage, team, user, Docs>All Version module page, all other pages can be directly jumped to the corresponding github resource modification page through the'Edit this page' button at the bottom
 
 ### Home page modification
-Visit the page https://streamxhub.com
+
+Visit the page https://streampark.apache.org/
 Located in `src/pages/home`
 
 ```
@@ -99,17 +117,23 @@ Located in `src/pages/home`
 │ languages.json // Home page Chinese and English configuration
 │ index.less     // homepage style
 ```
+
 ### Team page modification
-Visit the page https://streamxhub.com/team
+
+Visit the page https://streampark.apache.org/team
 Located in `src/pages/team`
+
 ```
 ├─team
 │ languages.json
 │ index.js
 │ index.less
 ```
+
 ### User list page modification
-Visit the page https://streamxhub.com/user
+
+Visit the page https://streampark.apache.org/user
+
 ```
 Located in `src/pages/user`
 └─versions
@@ -119,4 +143,3 @@ Located in `src/pages/user`
         index.less
         languages.json
 ```
-
