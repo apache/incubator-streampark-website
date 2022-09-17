@@ -273,7 +273,7 @@ npm install -g pm2
 ![StreamPark Login](/doc/image/streamx_login.jpeg)
 
 :::tip 提示
-默认密码: <strong> admin / streamx </strong>
+默认密码: <strong> admin / streampark </strong>
 :::
 
 ## 系统配置
