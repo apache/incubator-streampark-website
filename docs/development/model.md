@@ -36,7 +36,7 @@ StreamPark provides both `scala` and `Java` APIs to develop `DataStream` program
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.FlinkStreaming
 import org.apache.flink.api.scala._
 
 object MyFlinkApp extends FlinkStreaming {
@@ -96,7 +96,7 @@ To develop Table & SQL jobs, TableEnvironment will be the recommended entry clas
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkTable
+import org.apache.streampark.flink.core.scala.FlinkTable
 
 object TableApp extends FlinkTable {
 
@@ -110,8 +110,8 @@ object TableApp extends FlinkTable {
 <TabItem value="Java" label="Java">
 
 ```java
-import com.streamxhub.streamx.flink.core.scala.TableContext;
-import com.streamxhub.streamx.flink.core.scala.util.TableEnvConfig;
+import org.apache.streampark.flink.core.scala.TableContext;
+import org.apache.streampark.flink.core.scala.util.TableEnvConfig;
 
 public class JavaTableApp {
 
@@ -142,9 +142,9 @@ The following code demonstrates how to develop a `StreamTableEnvironment` type j
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-package com.streamxhub.streamx.test.tablesql
+package org.apache.streampark.test.tablesql
 
-import com.streamxhub.streamx.flink.core.scala.FlinkStreamTable
+import org.apache.streampark.flink.core.scala.FlinkStreamTable
 
 object StreamTableApp extends FlinkStreamTable {
 
@@ -160,8 +160,8 @@ object StreamTableApp extends FlinkStreamTable {
 
 ```java
 
-import com.streamxhub.streamx.flink.core.scala.StreamTableContext;
-import com.streamxhub.streamx.flink.core.scala.util.StreamTableEnvConfig;
+import org.apache.streampark.flink.core.scala.StreamTableContext;
+import org.apache.streampark.flink.core.scala.util.StreamTableEnvConfig;
 
 public class JavaStreamTableApp {
 
@@ -526,7 +526,7 @@ The **destroy** stage is an optional stage that requires developer participation
 
 ## Catalog Structure
 
-The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Streamx-flink-quickstart](https://github.com/streamxhub/streamx-quickstart)
+The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Streamx-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart)
 
 ``` tree
 .

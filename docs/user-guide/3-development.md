@@ -4,7 +4,7 @@ title: 'Develop Environment'
 sidebar_position: 3
 ---
 
-> [StreamPark](https://github.com/streamxhub/streamx) follows the Apache license 2.0, it will be a long-term active project. Welcome to submit [PR](https://github.com/streamxhub/streamx/pulls) Or [ISSUE](https://github.com/streamxhub/streamx/issues/new/choose). If you like, please give a [star](https://github.com/streamxhub/streamx/stargazers), your support is our greatest motivation. This project has been concerned and recognized by many friends since it was open source. Some friends are using it. They come from finance, data analysis, Internet of vehicles, smart advertising, real estate and other companies, and There are even some friends from the first-line big factories.
+> [StreamPark](https://github.com/apache/incubator-streampark. follows the Apache license 2.0, it will be a long-term active project. Welcome to submit [PR](https://github.org.apache.streampark.pulls) Or [ISSUE](https://github.org.apache.streampark.issues/new/choose). If you like, please give a [star](https://github.org.apache.streampark.stargazers), your support is our greatest motivation. This project has been concerned and recognized by many friends since it was open source. Some friends are using it. They come from finance, data analysis, Internet of vehicles, smart advertising, real estate and other companies, and There are even some friends from the first-line big factories.
 StreamPark community is a very open, mutual assistance and respect for talents. We also welcome more developers to join us and contribute together, not only for the code, but also for the use of documents, experience reports, questions and answers.
 
 More and more developers are not satisfied with the simple installation and use, and need to be further researched or expanded based on its source code, which requires further in-depth understanding of StreamPark. This chapter specifically describes how to build a development environment for the `streampark-console` streaming batch integration platform locally. For convenience of explanation, the `streampark-console` mentioned in this article refers to the `streampark-console platform`.
@@ -80,12 +80,12 @@ The backend of `streampark-console` is developed by springboot and mybatis, and 
 
 #### Backend compilation
 
-Firstly, download the `streamx` project and compile it.
+Firstly, download the `streampark` project and compile it.
 
 ```shell
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
-mvn clean install -DskipTests -Denv=prod
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
+mvn clean install -Dscala.version=2.12.8 -Dscala.binary.version=2.12 -DskipTests -Pwebapp
 ```
 
 #### Backend decompression
@@ -141,7 +141,7 @@ java:
 
 #### Backend startup
 
-`Streamx console` is a web application developed based on springboot, `com.streamxhub.streamx.console Streamxconsole` is the main class. Before startup, you need to set `VM options` and `environment variables`
+`Streamx console` is a web application developed based on springboot, `org.apache.streampark.console Streamxconsole` is the main class. Before startup, you need to set `VM options` and `environment variables`
 
 ##### VM options
 
@@ -163,7 +163,7 @@ If you use a non locally installed Hadoop cluster (test Hadoop), you need to con
 
 <img src="/doc/image/streamx_ideaopt.jpg" />
 
-If everything is ready, you can start the `StreamXConsole` main class. If it is started successfully, you will see the printing information of successful startup.
+If everything is ready, you can start the `StreamParkConsole` main class. If it is started successfully, you will see the printing information of successful startup.
 
 ### Frontend deployment and configuration
 

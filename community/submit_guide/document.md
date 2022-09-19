@@ -30,7 +30,7 @@ Documentation for the StreamPark project is maintained in a separate [git reposi
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
 ```shell
-git clone https://github.com/<your-github-user-name>/incubator-streampark-website
+git clone httgit@github.com:<your-github-user-name>/incubator-streampark-website
 ```
 
 ## Preview and generate static files

@@ -35,7 +35,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.FlinkStreaming
 import org.apache.flink.api.scala._
 
 object MyFlinkApp extends FlinkStreaming {
@@ -98,7 +98,7 @@ Flink 社区一直在推进 DataStream 的批处理能力,统一流批一体,在
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkTable
+import org.apache.streampark.flink.core.scala.FlinkTable
 
 object TableApp extends FlinkTable {
 
@@ -112,8 +112,8 @@ object TableApp extends FlinkTable {
 <TabItem value="Java" label="Java">
 
 ```java
-import com.streamxhub.streamx.flink.core.scala.TableContext;
-import com.streamxhub.streamx.flink.core.scala.util.TableEnvConfig;
+import org.apache.streampark.flink.core.scala.TableContext;
+import org.apache.streampark.flink.core.scala.util.TableEnvConfig;
 
 public class JavaTableApp {
 
@@ -144,9 +144,9 @@ Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContex
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-package com.streamxhub.streamx.test.tablesql
+package org.apache.streampark.test.tablesql
 
-import com.streamxhub.streamx.flink.core.scala.FlinkStreamTable
+import org.apache.streampark.flink.core.scala.FlinkStreamTable
 
 object StreamTableApp extends FlinkStreamTable {
 
@@ -162,8 +162,8 @@ object StreamTableApp extends FlinkStreamTable {
 
 ```java
 
-import com.streamxhub.streamx.flink.core.scala.StreamTableContext;
-import com.streamxhub.streamx.flink.core.scala.util.StreamTableEnvConfig;
+import org.apache.streampark.flink.core.scala.StreamTableContext;
+import org.apache.streampark.flink.core.scala.util.StreamTableEnvConfig;
 
 public class JavaStreamTableApp {
 
@@ -393,7 +393,7 @@ class StreamTableContext(val parameter: ParameterTool,
 ```
 
 
-在StreamX中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+在StreamPark中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
 
 ```scala
 
@@ -604,7 +604,7 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 
 ## 打包部署
 
-推荐 [streamx-flink-quickstart](https://github.com/streamxhub/streampark/streampark-flink/streamx-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamX推荐的项目包,解包后目录结构如下
+推荐 [streamx-flink-quickstart](https://github.com/streamxhub/streampark/streampark-flink/streamx-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
 
 ``` text
 .

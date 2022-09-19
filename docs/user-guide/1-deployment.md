@@ -44,7 +44,7 @@ Using `Flink on Kubernetes` requires additional deployment/or use of an existing
 
 ## Build & Deploy
 
-You can directly download the compiled [**release package**](https://github.com/streamxhub/streamx/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
+You can directly download the compiled [**release package**](https://github.com/apache/streampark/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
 
 
 ### Environmental requirements
@@ -74,8 +74,8 @@ From 1.2.1 and later versions, StreamPark supports **mixed packaging** and **ind
 ##### mixed packaging
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
 mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pwebapp
 ```
 
@@ -88,9 +88,9 @@ mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.1
 ###### 1. Backend compilation
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
-mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
+mvn clean install -Dscala.version=2.12.8 -Dscala.binary.version=2.12
 ```
 
 ###### 2. Front-end packaging
@@ -106,7 +106,7 @@ vi streampark/streampark-console/streampark-console-webapp/.env.production
 - 2.2 Compile
 
 ```bash
-git clone https://github.com/apache/incubator-streampark.git streampark
+git clone git@github.com:apache/incubator-streampark.git streampark
 cd streampark/streampark-console/streampark-console-webapp
 npm install
 npm run build

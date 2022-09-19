@@ -241,9 +241,9 @@ Using StreamPark writes to Elasticsearch
 <TabItem value="scala">
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.ESSink
-import com.streamxhub.streamx.flink.core.scala.util.ElasticSearchUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.ESSink
+import org.apache.streampark.flink.core.scala.util.ElasticSearchUtils
 import org.apache.flink.api.scala._
 import org.elasticsearch.action.index.IndexRequest
 import org.json4s.DefaultFormats
@@ -289,10 +289,10 @@ object ConnectorApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,StreamX也对以上功能进行了支持，对应方法如下：
+Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,StreamPark也对以上功能进行了支持，对应方法如下：
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.StreamingContext
+import org.apache.streampark.flink.core.scala.StreamingContext
 import org.apache.flink.streaming.api.datastream.DataStreamSink
 import org.apache.flink.streaming.api.scala.DataStream
 import org.apache.flink.streaming.connectors.elasticsearch.ActionRequestFailureHandler

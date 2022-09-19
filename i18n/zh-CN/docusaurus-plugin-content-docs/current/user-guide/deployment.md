@@ -75,8 +75,8 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 ##### 混合打包
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
 mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pwebapp
 ```
 
@@ -89,8 +89,8 @@ mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.1
 ###### 1. 后端编译
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
 mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests
 ```
 
@@ -107,8 +107,8 @@ vi streamx/streampark-console/streampark-console-webapp/.env.production
 - 2.2 编译
 
 ```bash
-git clone https://github.com/streamxhub/streamx.git
-cd streamx/streampark-console/streampark-console-webapp
+git clone https://github.com/apache/incubator-streampark.git streampark
+cd streampark/streampark-console/streampark-console-webapp
 npm install
 npm run build
 ```

@@ -86,8 +86,8 @@ jdbc:
 <TabItem value="Scala" label="Scala">
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.source.JdbcSource
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.source.JdbcSource
 import org.apache.flink.api.scala._
 
 object MySQLSourceApp extends FlinkStreaming {
@@ -113,12 +113,12 @@ class Order(val marketId: String, val timestamp: String) extends Serializable
 <TabItem value="Java" label="Java">
 
 ```java
-import com.streamxhub.streamx.flink.core.java.function.SQLQueryFunction;
-import com.streamxhub.streamx.flink.core.java.function.SQLResultFunction;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.source.JdbcSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.SQLQueryFunction;
+import org.apache.streampark.flink.core.java.function.SQLResultFunction;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.source.JdbcSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 
 import java.io.Serializable;
@@ -237,10 +237,10 @@ This requires that the database being manipulated supports transactions(`mysql`,
 <TabItem value="Scala" label="Scala">
 
 ```scala
-import com.streamxhub.streamx.common.util.JsonUtils
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.JdbcSink
-import com.streamxhub.streamx.flink.core.scala.source.KafkaSource
+import org.apache.streampark.common.util.JsonUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.JdbcSink
+import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.java.typeutils.TypeExtractor.getForClass
 import org.apache.flink.api.scala._
@@ -272,11 +272,11 @@ case class User(name:String,age:Int,gender:Int,address:String)
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.streaming.connectors.kafka.KafkaDeserializationSchema;

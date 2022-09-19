@@ -43,13 +43,13 @@ doris.sink:
 <TabItem value="Java" label="Java">
 
 ```java
-package com.streamxhub.streamx.test.flink.java.datastream;
+package org.apache.streampark.test.flink.java.datastream;
 
-import com.streamxhub.streamx.flink.core.StreamEnvConfig;
-import com.streamxhub.streamx.flink.core.java.sink.doris.DorisSink;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.sink.doris.DorisSink;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 
