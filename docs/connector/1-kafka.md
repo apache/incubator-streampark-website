@@ -17,8 +17,8 @@ import TabItem from '@theme/TabItem';
 
 ```xml
     <dependency>
-        <groupId>org.apache.streampark./groupId>
-        <artifactId>Streamx-flink-core</artifactId>
+        <groupId>org.apache.streampark/groupId>
+        <artifactId>streampark-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
 

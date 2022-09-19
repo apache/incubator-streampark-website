@@ -18,7 +18,7 @@ import TabItem from '@theme/TabItem';
     <!--必须要导入的依赖-->
     <dependency>
         <groupId>com.streamxhub.streamx</groupId>
-        <artifactId>Streamx-flink-core</artifactId>
+        <artifactId>streampark-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
 
