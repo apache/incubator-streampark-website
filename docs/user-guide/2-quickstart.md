@@ -95,6 +95,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 </dependency>
 
 ```
+
 -   The data sent by Kafka simulation is as follows
 
 ```json
