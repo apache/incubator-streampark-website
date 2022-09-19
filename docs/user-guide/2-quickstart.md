@@ -70,6 +70,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 -   The maven dependencies are used as follows
 
 ```xml
+
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
@@ -95,6 +96,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 </dependency>
 
 ```
+
 -   The data sent by Kafka simulation is as follows
 
 ```json
