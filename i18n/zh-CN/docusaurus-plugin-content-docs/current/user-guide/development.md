@@ -83,8 +83,8 @@ ln -s /root/apache-maven-3.8.1/bin/mvn /usr/bin/mvn
 首先将 `StreamPark` 工程下载到本地并且编译
 
 ```shell
-git clone https://github.com/streamxhub/streamx.git
-cd streamx
+git clone git@github.com:apache/incubator-streampark.git streampark
+cd streampark
 mvn clean install -DskipTests -Denv=prod
 ```
 
@@ -141,7 +141,7 @@ java:
 
 #### 启动
 
-`streampark-console` 是基于 springBoot 开发的 web 应用，`com.streamxhub.streamx.console.StreamXConsole` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
+`streampark-console` 是基于 springBoot 开发的 web 应用，`com.streamxhub.streamx.console.StreamParkConsole` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
 
 ##### VM options
 
@@ -163,7 +163,7 @@ java:
 
 <img src="/doc/image/streamx_ideaopt.jpg" />
 
-如果一切准假就绪，就可以直接启动 `StreamXConsole` 主类启动项目，后端就启动成功了。会看到有相关的启动信息打印输出
+如果一切准假就绪，就可以直接启动 `StreamParkConsole` 主类启动项目，后端就启动成功了。会看到有相关的启动信息打印输出
 
 ### 前端
 

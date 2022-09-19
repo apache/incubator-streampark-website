@@ -9,7 +9,7 @@ StreamPark Flink Kubernetes is based on [Flink Native Kubernetes](https://ci.apa
 
 * Native-Kubernetes Application
 * Native-Kubernetes Session
-At now, one StreamPark only supports one Kubernetes cluster.You can submit [Fearure Request Issue](https://github.com/streamxhub/streamx/issues) , when multiple Kubernetes clusters are needed.
+At now, one StreamPark only supports one Kubernetes cluster.You can submit [Fearure Request Issue](https://github.com/apache/incubator-streampark/issues) , when multiple Kubernetes clusters are needed.
 <br></br>
 
 ## Environments requirement

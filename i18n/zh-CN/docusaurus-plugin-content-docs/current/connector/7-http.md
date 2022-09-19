@@ -104,8 +104,8 @@ http.sink:
 
 ```scala
 
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.HttpSink
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.HttpSink
 import org.apache.flink.api.scala._
 import org.apache.flink.streaming.api.scala.DataStream
 

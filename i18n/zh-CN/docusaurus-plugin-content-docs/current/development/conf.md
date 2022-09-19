@@ -115,7 +115,7 @@ Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用
 
 ## 配置文件
 
-在StreamX中,`DataStream`作业和`Flink Sql`作业配置文件是通用的,换言之,这个配置文件既能定义`DataStream`的各项配置,也能定义`Flink Sql`的各项配置(Flink Sql作业中配置文件是可选的), 配置文件的格式必须是`yaml`格式, 必须得符合yaml的格式规范
+在StreamPark中,`DataStream`作业和`Flink Sql`作业配置文件是通用的,换言之,这个配置文件既能定义`DataStream`的各项配置,也能定义`Flink Sql`的各项配置(Flink Sql作业中配置文件是可选的), 配置文件的格式必须是`yaml`格式, 必须得符合yaml的格式规范
 
 下面我们来详细看看这个配置文件的各项配置都是如何进行配置的,有哪些注意事项
 
@@ -409,7 +409,7 @@ sql: |
 
 :::danger 特别注意
 
-上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, StreamX封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
+上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, StreamPark封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
 :::
 
 ## 总结

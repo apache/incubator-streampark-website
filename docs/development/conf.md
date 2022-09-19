@@ -126,7 +126,7 @@ flink:
       shutdownOnAttachedExit:
       jobmanager:
     property: #@see: https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html
-      $internal.application.main: com.streamxhub.streamx.flink.quickstart.QuickStartApp
+      $internal.application.main: org.apache.streampark.flink.quickstart.QuickStartApp
       yarn.application.name: Streamx QuickStart App
       yarn.application.queue:
       taskmanager.numberOfTaskSlots: 1

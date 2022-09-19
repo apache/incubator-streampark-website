@@ -17,8 +17,8 @@ import TabItem from '@theme/TabItem';
 
 ```xml
     <dependency>
-        <groupId>com.streamxhub.streamx</groupId>
-        <artifactId>Streamx-flink-core</artifactId>
+        <groupId>org.apache.streampark/groupId>
+        <artifactId>streampark-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
 
@@ -87,11 +87,11 @@ The prefix `kafka.source` is fixed, and the parameters related to kafka properti
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-package com.streamxhub.streamx.flink.quickstart
+package org.apache.streampark.flink.quickstart
 
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.JdbcSink
-import com.streamxhub.streamx.flink.core.scala.source.KafkaSource
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.JdbcSink
+import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.scala._
 
 object kafkaSourceApp extends FlinkStreaming {
@@ -110,11 +110,11 @@ object kafkaSourceApp extends FlinkStreaming {
 <TabItem value="Java" label="Java">
 
 ```java
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 
@@ -423,10 +423,10 @@ If you do not specify `deserializer`, the data in the topic will be deserialized
 <TabItem value="Scala" label="Scala">
 
 ```scala
-import com.streamxhub.streamx.common.util.JsonUtils
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.JdbcSink
-import com.streamxhub.streamx.flink.core.scala.source.KafkaSource
+import org.apache.streampark.common.util.JsonUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.JdbcSink
+import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.java.typeutils.TypeExtractor.getForClass
 import org.apache.flink.api.scala._
@@ -461,11 +461,11 @@ case class User(name:String,age:Int,gender:Int,address:String)
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.streaming.connectors.kafka.KafkaDeserializationSchema;
@@ -531,9 +531,9 @@ In the `StreamPark` run pass a `WatermarkStrategy` as a parameter to assign a `W
 <TabItem value="Scala" label="Scala">
 
 ```scala
-import com.streamxhub.streamx.common.util.JsonUtils
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.source.{KafkaRecord, KafkaSource}
+import org.apache.streampark.common.util.JsonUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.source.{KafkaRecord, KafkaSource}
 import org.apache.flink.api.common.eventtime.{SerializableTimestampAssigner, WatermarkStrategy}
 import org.apache.flink.api.common.typeinfo.TypeInformation
 import org.apache.flink.api.java.typeutils.TypeExtractor.getForClass
@@ -581,11 +581,11 @@ case class User(name: String, age: Int, gender: Int, address: String, orderTime:
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.MapFunction;
@@ -807,11 +807,11 @@ In `KafkaSink`, the default serialization is not specified, and the `SimpleStrin
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.common.util.JsonUtils
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
+import org.apache.streampark.common.util.JsonUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
 import org.apache.flink.api.common.serialization.SerializationSchema
-import com.streamxhub.streamx.flink.core.scala.sink.JdbcSink
-import com.streamxhub.streamx.flink.core.scala.source.KafkaSource
+import org.apache.streampark.flink.core.scala.sink.JdbcSink
+import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.scala._
 
 object KafkaSinkApp extends FlinkStreaming {
@@ -840,12 +840,12 @@ case class User(name: String, age: Int, gender: Int, address: String)
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.sink.KafkaSink;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SerializationSchema;
@@ -898,11 +898,11 @@ In `KafkaSink`, the default serialization is not specified, and the `SimpleStrin
 <TabItem value="scala" label="Scala" default>
 
 ```scala
-import com.streamxhub.streamx.common.util.JsonUtils
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
+import org.apache.streampark.common.util.JsonUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
 import org.apache.flink.api.common.serialization.SerializationSchema
-import com.streamxhub.streamx.flink.core.scala.sink.JdbcSink
-import com.streamxhub.streamx.flink.core.scala.source.KafkaSource
+import org.apache.streampark.flink.core.scala.sink.JdbcSink
+import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.scala._
 
 object KafkaSinkApp extends FlinkStreaming {
@@ -930,12 +930,12 @@ case class User(name: String, age: Int, gender: Int, address: String)
 
 ```java
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.streamxhub.streamx.flink.core.java.function.StreamEnvConfigFunction;
-import com.streamxhub.streamx.flink.core.java.sink.KafkaSink;
-import com.streamxhub.streamx.flink.core.java.source.KafkaSource;
-import com.streamxhub.streamx.flink.core.scala.StreamingContext;
-import com.streamxhub.streamx.flink.core.scala.source.KafkaRecord;
-import com.streamxhub.streamx.flink.core.scala.util.StreamEnvConfig;
+import org.apache.streampark.flink.core.java.function.StreamEnvConfigFunction;
+import org.apache.streampark.flink.core.java.sink.KafkaSink;
+import org.apache.streampark.flink.core.java.source.KafkaSource;
+import org.apache.streampark.flink.core.scala.StreamingContext;
+import org.apache.streampark.flink.core.scala.source.KafkaRecord;
+import org.apache.streampark.flink.core.scala.util.StreamEnvConfig;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SerializationSchema;

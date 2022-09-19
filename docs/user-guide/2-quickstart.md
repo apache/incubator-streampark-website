@@ -10,8 +10,8 @@ The installation of the one-stop platform `streampark-console` has been introduc
 
 `streamx-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
 
-- Github: [https://github.com/streamxhub/streamx-quickstart.git](https://github.com/streamxhub/streamx-quickstart.git)
-- Gitee: [https://gitee.com/streamxhub/streamx-quickstart.git](https://gitee.com/streamxhub/streamx-quickstart.git)
+- Github: [https://github.com/apache/incubator-streampark-quickstart.git](https://github.com/apache/streampark-quickstart.git)
+- Gitee: [https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git](https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git)
 
 ### Deploy DataStream tasks
 

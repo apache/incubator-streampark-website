@@ -219,9 +219,9 @@ host: localhost:9200
 <TabItem value="scala">
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.ESSink
-import com.streamxhub.streamx.flink.core.scala.util.ElasticSearchUtils
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.ESSink
+import org.apache.streampark.flink.core.scala.util.ElasticSearchUtils
 import org.apache.flink.api.scala._
 import org.elasticsearch.action.index.IndexRequest
 import org.json4s.DefaultFormats
@@ -266,9 +266,9 @@ object ConnectorApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,StreamX也对以上功能进行了支持，对应方法如下：
+Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,StreamPark也对以上功能进行了支持，对应方法如下：
 ```scala
-import com.streamxhub.streamx.flink.core.scala.StreamingContext
+import org.apache.streampark.flink.core.scala.StreamingContext
 import org.apache.flink.streaming.api.datastream.DataStreamSink
 import org.apache.flink.streaming.api.scala.DataStream
 import org.apache.flink.streaming.connectors.elasticsearch.ActionRequestFailureHandler
@@ -344,5 +344,5 @@ Elasticsearch 操作请求可能由于多种原因而失败，可以通过实现
 [官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**处理失败的 Elasticsearch 请求** 单元
 ### 配置内部批量处理器
 es内部`BulkProcessor`可以进一步配置其如何刷新缓存操作请求的行为详细查看[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**配置内部批量处理器** 单元
-### StreamX配置
+### StreamPark配置
 其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)

@@ -62,7 +62,7 @@ Setting -> Link Home -> Add New
 
 ![](https://static.goodrain.com/wechat/streamx/5.png)
 
-进入StreamX web ui 点击 Setting -> Flink Cluster -> Add New 创建一个 `remote (standalone)` 模式的集群。
+进入StreamPark web ui 点击 Setting -> Flink Cluster -> Add New 创建一个 `remote (standalone)` 模式的集群。
 
 Address 填写：
 

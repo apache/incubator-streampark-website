@@ -91,8 +91,8 @@ clickhouse:
 <TabItem value="Scala" label="Scala">
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.ClickHouseSink
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.ClickHouseSink
 import org.apache.flink.api.scala._
 
 object ClickHouseSinkApp extends FlinkStreaming {
@@ -222,8 +222,8 @@ clickhouse:
 
 ```scala
 
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.ClickHouseSink
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.ClickHouseSink
 import org.apache.flink.api.scala._
 
 object ClickHouseSinkApp extends FlinkStreaming {

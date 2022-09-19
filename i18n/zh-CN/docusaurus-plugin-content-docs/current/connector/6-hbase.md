@@ -259,11 +259,11 @@ hbase:
 
 ```scala
 
-import com.streamxhub.streamx.common.util.ConfigUtils
-import com.streamxhub.streamx.flink.core.java.wrapper.HBaseQuery
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.request.HBaseRequest
-import com.streamxhub.streamx.flink.core.scala.source.HBaseSource
+import org.apache.streampark.common.util.ConfigUtils
+import org.apache.streampark.flink.core.java.wrapper.HBaseQuery
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.request.HBaseRequest
+import org.apache.streampark.flink.core.scala.source.HBaseSource
 import org.apache.flink.api.scala.createTypeInformation
 import org.apache.hadoop.hbase.CellUtil
 import org.apache.hadoop.hbase.client.{Get, Scan}
@@ -315,10 +315,10 @@ object HBaseSourceApp extends FlinkStreaming {
 <TabItem value="写入HBase">
 
 ```scala
-import com.streamxhub.streamx.flink.core.scala.FlinkStreaming
-import com.streamxhub.streamx.flink.core.scala.sink.{HBaseOutputFormat, HBaseSink}
+import org.apache.streampark.flink.core.scala.FlinkStreaming
+import org.apache.streampark.flink.core.scala.sink.{HBaseOutputFormat, HBaseSink}
 import org.apache.flink.api.scala._
-import com.streamxhub.streamx.common.util.ConfigUtils
+import org.apache.streampark.common.util.ConfigUtils
 import org.apache.hadoop.hbase.client.{Mutation, Put}
 import org.apache.hadoop.hbase.util.Bytes
 
