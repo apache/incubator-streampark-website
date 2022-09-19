@@ -79,6 +79,44 @@ const config = {
                     activeBaseRegex: `/docs`,
                 },
                 {
+                    label: 'Community',
+                    position: 'right',
+                    items: [
+                        {
+                            label: "Code of conduct",
+                            to: "https://www.apache.org/foundation/policies/conduct",
+                        },
+                        {
+                            label: "Join the mailing lists",
+                            to: "/community/contribution_guide/mailing_lists",
+                        },
+                        {
+                            label: "Become A Committer",
+                            to: "/community/contribution_guide/become_committer",
+                        },
+                        {
+                            label: "Become A PMC member",
+                            to: "/community/contribution_guide/become_pmc_member",
+                        },
+                        {
+                            label: "New Committer Process",
+                            to: "/community/contribution_guide/new_committer_process",
+                        },
+                        {
+                            label: "New PMC Member Process",
+                            to: "/community/contribution_guide/new_pmc_ember_process",
+                        },
+                        {
+                            label: "Documentation Notice",
+                            to: "/community/submit_guide/document",
+                        },
+                        {
+                            label: "Submit Code",
+                            to: "/community/submit_guide/submit_code",
+                        },
+                    ],
+                },
+                {
                     to: '/team',
                     label: 'Team',
                     position: 'right',
