@@ -197,7 +197,7 @@ const config = {
                                 <img src="/image/logo.png" alt="" class="f_logo">
                                 <span class='system-title'>Apache StreamPark</span>
                               </div>
-                              <p>Make stream processing easier! easy-to-use streaming application development framework and operation platform.</p>
+                              <p>We make registering, hosting, and managing domains for yourself or others easy. Because the internet needs people. Bring to the table win-win survival strategies.</p>
                             </div>
                           `,
                         }
@@ -238,11 +238,22 @@ const config = {
                     ],
                 },
                 {
-                  title:"Join us",
+                  title:"Join Our Newsletters",
                   items: [
                       {
                           html: `
-                          <img src="/home/weixin.png" />
+                            <div class="newspaper-site">
+                                <input type="email" name="email" placeholder="Email Address">
+                                <div class="btn-send">
+                                    <a href="#" one-link-mark="yes">send</a>
+                                </div>
+                                <ul class="icon-bottom">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
                           `,
                       }
                   ],

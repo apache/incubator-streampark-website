@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Home from './home'
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import "../css/font.css"
+import "../css/font-awesome.min.css"
 export default function() {
     const isBrowser = useIsBrowser();
     const {siteConfig} = useDocusaurusContext();
