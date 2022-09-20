@@ -269,7 +269,7 @@ const config = {
                 <div class="d-flex align-items-center">
                     <div>
                       <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
-                        <img src="/image/apache-incubator.svg" style="width:380px;margin-right:20px;max-width:inherit;margin-top:0" alt="Apache Incubator logo" class="footer__logo">
+                        <img src="/image/apache-incubator.svg" alt="Apache Incubator logo" class="footer__logo">
                       </a>
                     </div>
                     <div>
@@ -280,7 +280,7 @@ const config = {
                 </div>
       
       
-                  <div style="border-top: 1px solid #999;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
+                  <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
                     <span>
                         Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
                     </span>

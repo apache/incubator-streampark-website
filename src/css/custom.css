@@ -83,7 +83,7 @@
   --ifm-pre-color: inherit;
   --ifm-pre-line-height: 1.45;
   --ifm-pre-padding: 1rem;
-  --ifm-container-width-xl: 1350px;
+  --ifm-container-width-xl: 1200px;
 }
 
 html {
@@ -284,4 +284,12 @@ footer .footerLogoLink{
 
 footer .footerLogoLink:hover{
   opacity: 1;
+}
+
+footer .footer__logo{
+  width:380px;
+  margin-right:40px;
+  max-width:inherit;
+  margin-top:0;
+  padding: 10px;
 }
