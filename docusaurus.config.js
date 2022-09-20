@@ -265,24 +265,27 @@ const config = {
       //   href: 'https://incubator.apache.org/'
       // },
       copyright: `
-            <div class="row" style="text-align: left;margin-top:30px">
-                <div class="col-4">
-                    <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
-                        <img src="/image/apache-incubator.svg" alt="Apache Incubator logo" class="themedImage_ToTc themedImage--light_HNdA footer__logo">
-                    </a>
-                </div>
-                <div class="col-8">
-                  <div>
-                    <p style="font-family: Avenir-Medium;font-size: 14px;color: #999;line-height: 25px;">
+            <div  style="text-align: left;margin-top:30px">
+                <div class="d-flex align-content-center">
+                    <div>
+                      <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+                        <img src="/image/apache-incubator.svg" style="width:380px;margin-right:20px;max-width:inherit;" alt="Apache Incubator logo" class="themedImage_ToTc themedImage--light_HNdA footer__logo">
+                      </a>
+                    </div>
+                    <div>
+                      <p style="font-family: Avenir-Medium;font-size: 14px;color: #999;line-height: 25px;">
                       Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
                       </p>
                   </div>
+                </div>
+      
+      
                   <div style="border-top: 1px solid #999;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
                     <span>
                         Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
                     </span>
                   </div>
-                </div>
+           
             </div>`,
     },
 
