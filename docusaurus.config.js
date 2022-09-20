@@ -238,7 +238,7 @@ const config = {
           ],
         },
         {
-          title: "Join Our Newsletters",
+          title: "Join us",
           items: [
             {
               html: `
