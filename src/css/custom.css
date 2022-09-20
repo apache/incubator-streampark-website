@@ -200,21 +200,32 @@ footer .footer__col:nth-child(2) .footer__title,
 footer .footer__col:nth-child(2) .footer__item .footer__link-item {
   padding-left: 120px;
 }
+@media only screen and (max-width: 575px) {
+  .footer__title,
+  .footer__link-item {
+    padding-left: 0 !important;
+  }
+}
 .footer__title {
-  color: #00dfd8;
+  color: #ffc107;
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 35px;
+  font-family: "Poppins", sans-serif!important;
 }
 .footer__link-item:hover {
-  color: #00dfd8;
+  color: #ffc107;
 }
 
 footer .newspaper-site input {
   padding: 12px 20px;
   background: none;
-  border: 1px solid #3ee8e0;
+  border: 1px solid #ffc107;
   color: #ffffff;
+  border-radius: 4px;
+}
+footer .newspaper-site input:focus {
+  border: 1px solid #ffc107;
 }
 
 footer .newspaper-site input::placeholder {
@@ -232,7 +243,7 @@ footer .newspaper-site .btn-send a {
   transition: all 0.3s ease-in-out;
 }
 footer .newspaper-site .btn-send a:hover {
-  background: #3ee8e0;
+  background: #ffc107;
   color: #ffffff;
 }
 footer .newspaper-site ul {
@@ -260,8 +271,17 @@ footer .newspaper-site ul li a {
 }
 footer .newspaper-site ul li a:hover {
   background: #ffffff;
-  color: #3ee8e0;
+  color: #ffc107;
 }
 .footer__col:last-child .footer__title {
   padding-left: 0;
+}
+
+footer .footerLogoLink{
+  opacity: .5;
+  transition: opacity var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+footer .footerLogoLink:hover{
+  opacity: 1;
 }
