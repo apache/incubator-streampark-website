@@ -189,6 +189,21 @@ const config = {
             style: 'dark',
             links: [
                 {
+                    items: [
+                        {
+                            html: `
+                            <div class="footer-left-box">
+                              <div class="flex align-center footer-system">
+                                <img src="/image/logo.png" alt="" class="f_logo">
+                                <span class='system-title'>Apache StreamPark</span>
+                              </div>
+                              <p>Make stream processing easier! easy-to-use streaming application development framework and operation platform.</p>
+                            </div>
+                          `,
+                        }
+                    ],
+                },
+                {
                     title: 'StreamPark',
                     items: [
                         {
@@ -223,14 +238,15 @@ const config = {
                     ],
                 },
                 {
-                    title: 'More',
-                    items: [
-                        {
-                            label: 'GitHub',
-                            href: 'https://github.com/apache/incubator-streampark',
-                        },
-                    ],
-                },
+                  title:"Join us",
+                  items: [
+                      {
+                          html: `
+                          <img src="/home/weixin.png" />
+                          `,
+                      }
+                  ],
+                }
             ],
             logo: {
                 alt: 'Apache Incubator logo',

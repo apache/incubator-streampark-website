@@ -160,3 +160,19 @@ pre {
   font-weight: 500;
 }
 
+.footer__item .footer-left-box{
+  margin-top: -18px;
+}
+.footer__item .footer-system img{
+  width: 50px;
+}
+
+.footer__item .footer-system{
+  font-size: 20px;
+  margin-bottom: 13px;
+}
+.footer__title,
+.footer__link-item {
+  padding-left:50px
+}
+.footer__col:last-child .footer__title{padding-left:0;}
