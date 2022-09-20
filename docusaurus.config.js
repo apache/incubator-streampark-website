@@ -266,10 +266,10 @@ const config = {
       // },
       copyright: `
             <div  style="text-align: left;margin-top:30px">
-                <div class="d-flex align-content-center">
+                <div class="d-flex align-items-center">
                     <div>
                       <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
-                        <img src="/image/apache-incubator.svg" style="width:380px;margin-right:20px;max-width:inherit;" alt="Apache Incubator logo" class="themedImage_ToTc themedImage--light_HNdA footer__logo">
+                        <img src="/image/apache-incubator.svg" style="width:380px;margin-right:20px;max-width:inherit;margin-top:0" alt="Apache Incubator logo" class="footer__logo">
                       </a>
                     </div>
                     <div>
