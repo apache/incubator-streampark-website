@@ -194,30 +194,29 @@ const config = {
               html: `
                   <div class="footer-left-box">
                     <div class="flex align-center footer-system">
-                      <img src="/image/logo.png" alt="" class="f_logo">
-                      <span class='system-title'>Apache StreamPark</span>
+                      <span class='system-title'>About StreamPark</span>
                     </div>
-                    <p>We make registering, hosting, and managing domains for yourself or others easy. Because the internet needs people. Bring to the table win-win survival strategies.</p>
+                    <p>Make stream processing easier! easy-to-use streaming application development framework and operation platform</p>
                   </div>
                 `,
             }
           ],
         },
         {
-          title: 'StreamPark',
+          title: 'Resource',
           items: [
             {
               label: 'Document',
               href: '/docs/intro',
             },
             {
-              label: 'FAQ',
-              href: 'https://github.com/apache/incubator-streampark/issues/507',
-            },
-            {
               label: 'Releases',
               href: 'https://github.com/apache/incubator-streampark/releases',
             },
+            {
+              label: 'FAQ',
+              href: 'https://github.com/apache/incubator-streampark/issues/507',
+            }
           ],
         },
         {
@@ -238,7 +237,7 @@ const config = {
           ],
         },
         {
-          title: "Join us",
+          title: "Follow",
           items: [
             {
               html: `
@@ -248,16 +247,16 @@ const config = {
                         <input class="form-control" id="email_address" maxLength="60" type="text" name="email_address" placeholder="Subscribe with us">
                       </div>
                       <div class="subscribe-submit-inner">
-                        <button class="btn btn-white m-0" type="submit">
+                        <a class="btn btn-white m-0" type="submit" href="mailto:dev-subscribe@streampark.apache.org">
                           <span><i class="fa fa-paper-plane text-white"></i></span>
-                        </button>
+                        </a>
                       </div>
                     </div>
                     <ul class="icon-bottom">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-wechat"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-slack"></i></a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
                     </ul>
                 </div>
               `,
@@ -265,11 +264,6 @@ const config = {
           ],
         }
       ],
-      // logo: {
-      //   alt: 'Apache Incubator logo',
-      //   src: 'image/apache-incubator.svg',
-      //   href: 'https://incubator.apache.org/'
-      // },
       copyright: `
             <div  style="text-align: left;margin-top:30px">
                 <div class="d-flex align-items-center">
@@ -284,14 +278,12 @@ const config = {
                       </p>
                   </div>
                 </div>
-
-
-                  <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
-                    <span>
-                        Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
-                    </span>
-                  </div>
-
+                
+                <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
+                  <span>
+                      Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+                  </span>
+                </div>
             </div>`,
     },
 

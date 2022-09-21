@@ -165,8 +165,9 @@ pre {
 }
 
 .footer .container {
-  padding-top: 100px !important;
+  padding-top: 80px !important;
   padding-bottom: 20px !important;
+  font-weight: 500;
 }
 
 
@@ -274,8 +275,8 @@ footer .subscribe-box ul li a {
   color: #d5d8dd;
 }
 footer .subscribe-box ul li a:hover {
-  background: #ffffff;
-  color: #ffcc43;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .subscribe-input input{
@@ -284,7 +285,7 @@ footer .subscribe-box ul li a:hover {
 }
 
 .subscribe-submit-inner{
-  background: #fb9a27;
+  background: #0088FF;
   height: calc(1.5em + .75rem + 2px);
   -webkit-border-top-right-radius: 0.25em;
   -webkit-border-bottom-right-radius: 0.25em;
@@ -292,4 +293,8 @@ footer .subscribe-box ul li a:hover {
   -moz-border-radius-bottomright: 0.25em;
   border-top-right-radius: 0.25em;
   border-bottom-right-radius: 0.25em;
+}
+
+.subscribe-submit-inner:hover {
+  background: #0099FF;
 }
