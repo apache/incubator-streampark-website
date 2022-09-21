@@ -273,10 +273,14 @@ footer .subscribe-box ul li a {
   border: 1px solid #8d95a6;
   transition: all 0.3s ease-in-out;
   color: #d5d8dd;
+  position: relative;
 }
 footer .subscribe-box ul li a:hover {
   border-color: #ffffff;
   color: #ffffff;
+}
+footer .subscribe-box ul li a:hover .wechat-dropdown {
+  opacity: 1;
 }
 
 .subscribe-input input{
@@ -297,4 +301,28 @@ footer .subscribe-box ul li a:hover {
 
 .subscribe-submit-inner:hover {
   background: #0099FF;
+}
+
+.wechat-dropdown{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px #ffffff1a;
+  opacity: 0;
+  height: 8.75rem;
+  padding: 0.625rem;
+  position: absolute;
+  right: -3rem;
+  top: 3.5rem;
+  width: 8.75rem;
+  z-index: 2;
+  transition: all 0.25s ease-in-out;
+}
+.wechat-dropdown::before{
+  border: .5rem solid #0000;
+  border-bottom: .5rem solid #fff;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 3.625rem;
+  top: -1rem
 }
