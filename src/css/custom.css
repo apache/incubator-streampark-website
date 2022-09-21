@@ -280,7 +280,7 @@ footer .subscribe-box ul li a:hover {
   color: #ffffff;
 }
 footer .subscribe-box ul li a:hover .wechat-dropdown {
-  opacity: 1;
+  display:block;
 }
 
 .subscribe-input input{
@@ -307,7 +307,7 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 16px #ffffff1a;
-  opacity: 0;
+  display:none;
   height: 8.75rem;
   padding: 0.625rem;
   position: absolute;
