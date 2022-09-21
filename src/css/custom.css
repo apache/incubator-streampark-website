@@ -168,6 +168,9 @@ pre {
   padding-top: 100px !important;
   padding-bottom: 20px !important;
 }
+
+
+/* new footer */
 .footer__item:not(:first-child) {
   margin-top: 10px;
 }
@@ -178,6 +181,10 @@ pre {
 .footer__item .footer-left-box p {
   font-size: 16px;
   line-height: 30px;
+  color: #d5d8dd;
+}
+.footer__item .footer-left-box p:hover {
+  color: #fff;
 }
 
 .footer__item .footer-system img {
@@ -207,71 +214,17 @@ footer .footer__col:nth-child(2) .footer__item .footer__link-item {
   }
 }
 .footer__title {
-  color: #ffc107;
+  color: #fff;
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 35px;
   font-family: "Poppins", sans-serif!important;
 }
+.footer__link-item{
+  color: #d5d8dd;
+}
 .footer__link-item:hover {
-  color: #ffc107;
-}
-
-footer .newspaper-site input {
-  padding: 12px 20px;
-  background: none;
-  border: 1px solid #ffc107;
-  color: #ffffff;
-  border-radius: 4px;
-}
-footer .newspaper-site input:focus {
-  border: 1px solid #ffc107;
-}
-
-footer .newspaper-site input::placeholder {
-  color: #e7e7e7;
-}
-
-footer .newspaper-site .btn-send a {
-  padding: 8px 26px;
-  background: #ffffff;
-  color: black;
-  font-size: 16px;
-  font-weight: 500;
-  display: inline-block;
-  margin: 20px 0px 40px;
-  transition: all 0.3s ease-in-out;
-}
-footer .newspaper-site .btn-send a:hover {
-  background: #ffc107;
-  color: #ffffff;
-}
-footer .newspaper-site ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-footer .newspaper-site ul li {
-  margin-right: 15px;
-  display: inline-flex;
-  padding-bottom: 15px;
-  color: #ffffff;
-  transition: all 0.3s ease-in-out;
-}
-footer .newspaper-site ul li a {
-  font-size: 14px;
-  height: 30px;
-  width: 30px;
-  text-align: center;
-  line-height: 30px;
-  border-radius: 50%;
-  border: 1px solid #8d95a6;
-  transition: all 0.3s ease-in-out;
-  color: white;
-}
-footer .newspaper-site ul li a:hover {
-  background: #ffffff;
-  color: #ffc107;
+  color: #fff;
 }
 .footer__col:last-child .footer__title {
   padding-left: 0;
@@ -292,4 +245,51 @@ footer .footer__logo{
   max-width:inherit;
   margin-top:0;
   padding: 10px;
+}
+
+footer .subscribe-box{
+  position:relative;
+}
+footer .subscribe-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+footer .subscribe-box ul li {
+  margin-right: 15px;
+  display: inline-flex;
+  padding-bottom: 15px;
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+footer .subscribe-box ul li a {
+  font-size: 16px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  border: 1px solid #8d95a6;
+  transition: all 0.3s ease-in-out;
+  color: #d5d8dd;
+}
+footer .subscribe-box ul li a:hover {
+  background: #ffffff;
+  color: #ffcc43;
+}
+
+.subscribe-input input{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.subscribe-submit-inner{
+  background: #fb9a27;
+  height: calc(1.5em + .75rem + 2px);
+  -webkit-border-top-right-radius: 0.25em;
+  -webkit-border-bottom-right-radius: 0.25em;
+  -moz-border-radius-topright: 0.25em;
+  -moz-border-radius-bottomright: 0.25em;
+  border-top-right-radius: 0.25em;
+  border-bottom-right-radius: 0.25em;
 }

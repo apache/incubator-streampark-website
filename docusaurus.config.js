@@ -192,14 +192,14 @@ const config = {
           items: [
             {
               html: `
-                            <div class="footer-left-box">
-                              <div class="flex align-center footer-system">
-                                <img src="/image/logo.png" alt="" class="f_logo">
-                                <span class='system-title'>Apache StreamPark</span>
-                              </div>
-                              <p>We make registering, hosting, and managing domains for yourself or others easy. Because the internet needs people. Bring to the table win-win survival strategies.</p>
-                            </div>
-                          `,
+                  <div class="footer-left-box">
+                    <div class="flex align-center footer-system">
+                      <img src="/image/logo.png" alt="" class="f_logo">
+                      <span class='system-title'>Apache StreamPark</span>
+                    </div>
+                    <p>We make registering, hosting, and managing domains for yourself or others easy. Because the internet needs people. Bring to the table win-win survival strategies.</p>
+                  </div>
+                `,
             }
           ],
         },
@@ -242,10 +242,16 @@ const config = {
           items: [
             {
               html: `
-                <div class="newspaper-site">
-                    <input type="email" name="email" placeholder="Email Address">
-                    <div class="btn-send">
-                        <a href="#" one-link-mark="yes">send</a>
+                <div class="subscribe-box">
+                    <div class="d-flex align-items-center" style="margin-bottom: 30px;padding-top: 11px">
+                      <div class="subscribe-input flex-fill">
+                        <input class="form-control" id="email_address" maxLength="60" type="text" name="email_address" placeholder="Subscribe with us">
+                      </div>
+                      <div class="subscribe-submit-inner">
+                        <button class="btn btn-white m-0" type="submit">
+                          <span><i class="fa fa-paper-plane text-white"></i></span>
+                        </button>
+                      </div>
                     </div>
                     <ul class="icon-bottom">
                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -278,14 +284,14 @@ const config = {
                       </p>
                   </div>
                 </div>
-      
-      
+
+
                   <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
                     <span>
                         Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
                     </span>
                   </div>
-           
+
             </div>`,
     },
 
