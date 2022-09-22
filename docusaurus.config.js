@@ -253,7 +253,12 @@ const config = {
                       </div>
                     </div>
                     <ul class="icon-bottom">
-                        <li><a href="javascript:void(0)"><i class="fa fa-wechat"></i></a></li>
+                        <li>
+                          <a href="javascript:void(0)">
+                            <i class="fa fa-wechat"></i>
+                            <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                          </a>
+                        </li>
                         <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
                         <li><a href="javascript:void(0)"><i class="fa fa-slack"></i></a></li>
                         <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
