@@ -58,7 +58,7 @@ and fair.
 Committer candidates should have a decent amount of continuous
 engagements and contributions (fixing bugs, adding new features,
 writing documentation, maintaining issues boards, code review, or answering
-community questions) to StreamParkStreamPark either by contributing to the codebase
+community questions) to StreamPark either by contributing to the codebase
 of the main website or StreamPark's GitHub repositories.
 
 - +3 months with light activity and engagement.
