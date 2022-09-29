@@ -30,6 +30,7 @@ sidebar_position: 4
 
 ### 2.执行 Docker Compose 构建命令
 ```
+cd deploy/docker
 docker-compose up -d
 ```
 ![](/doc/image/streamx_docker-compose.png)
