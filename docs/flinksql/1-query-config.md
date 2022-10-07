@@ -1,6 +1,6 @@
 ---
 id: '1-query-config'
-title: '查询配置'
+title: 'Query Configuration'
 sidebar_position: 1
 ---
 

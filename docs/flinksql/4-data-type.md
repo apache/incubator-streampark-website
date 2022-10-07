@@ -1,6 +1,6 @@
 ---
 id: '4-data-type'
-title: '数据类型'
+title: 'Data Types'
 sidebar_position: 4
 ---
 

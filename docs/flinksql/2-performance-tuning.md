@@ -1,6 +1,6 @@
 ---
 id: '2-performance-tuning'
-title: '性能调整'
+title: 'Performance Tuning'
 sidebar_position: 2
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: '2-udf'
-title: '自定义函数'
+title: 'User-defined Functions'
 sidebar_position: 2
 ---
 

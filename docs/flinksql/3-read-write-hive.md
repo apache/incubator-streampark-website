@@ -1,6 +1,6 @@
 ---
 id: '3-read-write-hive'
-title: '读写hive'
+title: 'Read Write Hive'
 sidebar_position: 3
 ---
 
