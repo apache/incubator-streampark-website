@@ -1,6 +1,6 @@
 ---
 id: '1-introduce'
-title: '简介'
+title: 'Introduction'
 sidebar_position: 1
 ---
 

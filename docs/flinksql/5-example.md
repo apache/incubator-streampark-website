@@ -1,6 +1,6 @@
 ---
 id: '5-example'
-title: '使用案例'
+title: 'Use Cases'
 sidebar_position: 5
 ---
 
