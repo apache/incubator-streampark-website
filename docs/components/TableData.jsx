@@ -31,9 +31,9 @@ const ClientOption = () => {
                                 {
                                     item.deprecated
                                         ?
-                                        <span className="icon-check"></span>
-                                        :
                                         <span className="icon-times"></span>
+                                        :
+                                        <span className="icon-check"></span>
                                 }
                             </td>
                             <td>{item.value}</td>

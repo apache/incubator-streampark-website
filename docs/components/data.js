@@ -43,9 +43,7 @@ export default {
         {group: 'JM heap Memory', name: 'jobmanager.memory.heap.size', desc: 'JVM Heap Memory size for JobManager. The minimum recommended JVM Heap size is 128.000mb (134217728 bytes).'},
         {group: 'JM Off-heap Memory', name: 'jobmanager.memory.off-heap.size', desc: 'Off-heap Memory size for JobManager. This option covers all off-heap memory usage including direct and native memory allocation. The JVM direct memory limit of the JobManager process (-XX:MaxDirectMemorySize) will be set to this value if the limit is enabled by jobmanager.memory.enable-jvm-direct-memory-limit'},
         {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-metaspace.size', desc: 'JVM Metaspace Size for the JobManager.'},
-        {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-metaspace.size', desc: 'JVM Metaspace Size for the JobManager.'},
-        {group: 'JVM Metaspace', name: 'jobmanager.memory.jvm-overhead.min', desc: 'Min JVM Overhead size for the JobManager. This is off-heap memory reserved for JVM overhead, such as thread stack space, compile cache, etc. This includes native memory but not direct memory, and will not be counted when Flink calculates JVM max direct memory size parameter. The size of JVM Overhead is derived to make up the configured fraction of the Total Process Memory. If the derived size is less or greater than the configured min or max size, the min or max size will be used. The exact size of JVM Overhead can be explicitly specified by setting the min and max size to the same value.'},
-        {group: 'JVM Size', name: 'jobmanager.memory.jvm-metaspace.size', desc: 'JVM Metaspace Size for the JobManager.'},
+        {group: 'JVM Size', name: 'jobmanager.memory.jvm-overhead.min', desc: 'Min JVM Overhead size for the JobManager. This is off-heap memory reserved for JVM overhead, such as thread stack space, compile cache, etc. This includes native memory but not direct memory, and will not be counted when Flink calculates JVM max direct memory size parameter. The size of JVM Overhead is derived to make up the configured fraction of the Total Process Memory. If the derived size is less or greater than the configured min or max size, the min or max size will be used. The exact size of JVM Overhead can be explicitly specified by setting the min and max size to the same value.'},
         {group: 'JVM Size', name: 'jobmanager.memory.jvm-overhead.max', desc: 'Max JVM Overhead size for the JobManager. This is off-heap memory reserved for JVM overhead, such as thread stack space, compile cache, etc. This includes native memory but not direct memory, and will not be counted when Flink calculates JVM max direct memory size parameter. The size of JVM Overhead is derived to make up the configured fraction of the Total Process Memory. If the derived size is less or greater than the configured min or max size, the min or max size will be used. The exact size of JVM Overhead can be explicitly specified by setting the min and max size to the same value.'},
         {group: 'JVM Size', name: 'jobmanager.memory.jvm-overhead.fraction', desc: 'Fraction of Total Process Memory to be reserved for JVM Overhead. This is off-heap memory reserved for JVM overhead, such as thread stack space, compile cache, etc. This includes native memory but not direct memory, and will not be counted when Flink calculates JVM max direct memory size parameter. The size of JVM Overhead is derived to make up the configured fraction of the Total Process Memory. If the derived size is less or greater than the configured min or max size, the min or max size will be used. The exact size of JVM Overhead can be explicitly specified by setting the min and max size to the same value.'},
         {group: 'Framework Heap Memory', name: 'taskmanager.memory.framework.heap.size', desc: 'Framework Heap Memory size for TaskExecutors. This is the size of JVM heap memory reserved for TaskExecutor framework, which will not be allocated to task slots.'},
@@ -69,17 +67,15 @@ export default {
         {group: 'Flink process total memory', tm: 'taskmanager.memory.process.size', jm: 'jobmanager.memory.process.size'}
     ],
     checkpoints: [
-        {name: 'enable', desc: 'Whether to open checkpoint', value: 'true | false'},
-        {name: 'interval', desc: 'Interval period of checkpoint', value: 'millisecond'},
-        {name: 'mode', desc: 'semantics', value: ' EXACTLY_ONCE | AT_LEAST_ONCE '},
-        {name: 'timeout', desc: 'timeout', value: 'millisecond'},
-        {name: 'unaligned', desc: 'unaligned', value: 'true | false'},
+        {name: 'execution.checkpointing.interval', desc: 'Interval period of checkpoint', value: 'Duration'},
+        {name: 'execution.checkpointing.timeout', desc: 'timeout', value: 'Duration'},
+        {name: 'execution.checkpointing.mode', desc: 'semantics', value: ' EXACTLY_ONCE | AT_LEAST_ONCE '},
+        {name: 'execution.checkpointing.unaligned', desc: 'unaligned', value: 'true | false'}
     ],
     backend: [
-        {name: 'value', desc: 'Type of backend storage', value: 'jobmanager | filesystem | rocksdb', mode: ''},
-        {name: 'memory', desc: 'Maximum memory, only valid when the vlue is jobmanager', value: 'kb(5242880)', mode: 'jobmanager'},
-        {name: 'async', desc: 'Whether to enable asynchrony', value: ' true | false', mode: 'jobmanager | filesystem'},
-        {name: 'incremental', desc: 'Whether to enable increment', value: ' true | false', mode: 'rocksdb'},
+        {name: 'state.backend', desc: 'Type of backend storage', value: 'hashmap | rocksdb', mode: ''},
+        {name: 'state.checkpoint-storage', desc: 'The checkpoint storage implementation to be used to checkpoint state.', value: 'jobmanager | filesystem ', mode: ''},
+        {name: 'state.backend.incremental', desc: 'Whether to enable increment', value: ' true | false', mode: 'rocksdb'}
     ],
     fixedDelay: [
         {name: 'attempts', desc: 'Number of Flink attempts to restart', value: '3'},
