@@ -127,7 +127,7 @@ flink:
       jobmanager:
     property: #@see: https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html
       $internal.application.main: org.apache.streampark.flink.quickstart.QuickStartApp
-      yarn.application.name: Streamx QuickStart App
+      pipeline.name:  Streamx QuickStart App
       yarn.application.queue:
       taskmanager.numberOfTaskSlots: 1
       parallelism.default: 2
@@ -150,49 +150,47 @@ flink:
         jvm-overhead.max:
         jvm-overhead.min:
         managed.fraction: 0.4
-  checkpoints:
-    enable: true
-    interval: 30000
-    mode: EXACTLY_ONCE
-    timeout: 300000
-    unaligned: true
-  watermark:
-    interval: 10000
-  # State backend
-  state:
-    backend: # see https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html
-      value: filesystem # 'jobmanager', 'filesystem', 'rocksdb'
-      memory: 5242880 # Maximum memory, only valid when the vlue is jobmanager
-      async: false    # Whether to enable asynchrony is only valid when value is jobmanager and filesystem
-      incremental: true # Whether to enable increment is only valid when value is rocksdb
-      #Configuration reference of rocksdb https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend
-      #Rocksdb configures the prefix of the key and removes state.backend
-    checkpoints.dir: file:///tmp/chkdir
-    savepoints.dir: file:///tmp/chkdir
-  # Restart policy
-  restart-strategy:
-    value: fixed-delay  # (fixed-delay|failure-rate|none)
-    fixed-delay:
-      attempts: 3
-      delay: 5000
-    failure-rate:
-      max-failures-per-interval:
-      failure-rate-interval:
-      delay:
+      pipeline:
+        auto-watermark-interval: 200ms
+      # checkpoint
+      execution:
+        checkpointing:
+          mode: EXACTLY_ONCE
+          interval: 30s
+          timeout: 10min
+          unaligned: false
+          externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+      # state backend
+      state:
+        backend: hashmap # Special note: flink1.12 optional configuration ('jobmanager', 'filesystem', 'rocksdb'), flink1.12+ optional configuration ('hashmap', 'rocksdb'),
+        backend.incremental: true
+        checkpoint-storage: filesystem
+        savepoints.dir: file:///tmp/chkdir
+        checkpoints.dir: file:///tmp/chkdir
+      # restart strategy
+      restart-strategy: fixed-delay  # Restart strategy [(fixed-delay|failure-rate|none) a total of 3 configurable strategies]
+      restart-strategy.fixed-delay:
+        attempts: 3
+        delay: 5000
+      restart-strategy.failure-rate:
+        max-failures-per-interval:
+        failure-rate-interval:
+        delay:
+  # table
   table:
     planner: blink # (blink|old|any)
     mode: streaming #(batch|streaming)
 
 ```
 The above is the complete configuration related to the environment that needs to be paid attention to. These configurations are carried out under the namespace of `Flink`, mainly including two categories.
-* The configuration under deployment is the configuration related to the project `deployment` (`that is, the configuration parameters related to a series of resources when the project is started`).
+* The configuration under deployment is the configuration related to the project `deployment` (`that is, the configuration parameters related to a series of resources when the application is started`).
 * Others are the configuration of the environment that needs attention during development.
 
-There are five configurations related to the environment that need to be paid attention to during development.
+There are some configurations related to the environment that need to be paid attention to during development.
 
-* `checkpoints`
+* `checkpoint`
 * `watermark`
-* `state`
+* `state backend`
 * `restart-strategy`
 * `table`
 
@@ -226,10 +224,10 @@ There are many basic parameters. The five most basic parameters are as follows.
 <ClientProperty></ClientProperty>
 
 :::info Attention
-`$internal.application.main` and `yarn.application.name` must be set.
+`$internal.application.main` and `pipeline.name` must be set.
 :::
 
-If you need to set more parameters, please refer to [`here`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html), These parameters must be placed under the property and the parameter names must be correct. Streamx will automatically resolve these parameters and take effect.
+If you need to set more parameters, please refer to [`here`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html), These parameters must be placed under the property and the parameter names must be correct. StreamPark will automatically resolve these parameters and take effect.
 
 ##### Memory parameters
 
@@ -255,30 +253,25 @@ The simplest way to set up memory in Flink is to configure either of the two fol
 Explicitly configuring both total process memory and total Flink memory is not recommended. It may lead to deployment failures due to potential memory configuration conflicts. Configuring other memory components also requires caution as it can produce further configuration conflicts.
 :::
 
-### Checkpoints
+### Checkpoint
 
-The configuration of checkpoints is simple. You can configure them as follows:
+The configuration of checkpoint is simple. You can configure them as follows:
 
 <ClientCheckpoints></ClientCheckpoints>
 
 ### Watermark
 
-For `watermark` configuration, you only need to set the generation cycle `interval` of the watermark.
+For `watermark` configuration, you only need to set the generation cycle `pipeline.auto-watermark-interval` of the watermark.
 
 ### State
 
 ```yaml
 state:
-  backend: # see https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html
-    value: filesystem # jobmanager, filesystem, rocksdb
-    memory: 5242880 # Maximum memory, only valid when the vlue is jobmanager
-    async: false    # Whether to enable asynchrony is only valid when value is jobmanager and filesystem
-    incremental: true # Whether to enable increment is only valid when value is rocksdb
-    #Configuration reference of rocksdb https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend
-    #Rocksdb configures the prefix of the key and removes state.backend
-  checkpoints.dir: file:///tmp/chkdir
+  backend: hashmap # Special note: flink1.12 optional configuration ('jobmanager', 'filesystem', 'rocksdb'), flink1.12+ optional configuration ('hashmap', 'rocksdb'),
+  backend.incremental: true
+  checkpoint-storage: filesystem
   savepoints.dir: file:///tmp/chkdir
-  checkpoints.num-retained: 1
+  checkpoints.dir: file:///tmp/chkdir
 ```
 There are roughly two types:
 * backend
@@ -301,18 +294,17 @@ The value item is a non-standard configuration. This item is used to set the sta
 
 There are three restart strategies in Flink, corresponding to the three configurations here, as follows:
 ```yaml
-  restart-strategy:
-    value: fixed-delay  #Restart strategy[(fixed-delay|failure-rate|none)]
-    fixed-delay:
-      attempts: 3
-      delay: 5000
-    failure-rate:
-      max-failures-per-interval:
-      failure-rate-interval:
-      delay:
+restart-strategy: fixed-delay  # Restart strategy [(fixed-delay|failure-rate|none) a total of 3 configurable strategies]
+restart-strategy.fixed-delay:
+  attempts: 3
+  delay: 5000
+restart-strategy.failure-rate:
+  max-failures-per-interval:
+  failure-rate-interval:
+  delay:
 ```
 
-Configure the specific restart strategy under `value`
+Configure the specific restart strategy under `restart-strategy`
 
 * fixed-delay
 * failure-rate
