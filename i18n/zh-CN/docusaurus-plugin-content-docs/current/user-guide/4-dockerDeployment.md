@@ -4,52 +4,53 @@ title: 'Docker 快速使用教程'
 sidebar_position: 4
 ---
 
-本教程使用docker-compose方式通过 Docker 完成StreamPark的部署。
+本教程使用 Docker 完成StreamPark的部署。
 ## 前置条件
+
     Docker 1.13.1+
     Docker Compose 1.28.0+
-## 使用 docker-compose 启动服务
 
-使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)，链接适用于 Mac，Linux，Windows。
+### 安装docker
+使用 docker 启动服务，需要先安装 [docker](https://www.docker.com/)
 
-安装完成 docker-compose 后我们需要修改部分配置以便能更好体验 StreamPark 服务，我们需要配置不少于 4GB 的内存：
+### 安装docker-compose
+使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)
 
-    Mac：点击 Docker Desktop -> Preferences -> Resources -> Memory 调整内存大小
-    Windows Docker Desktop：
-        Hyper-V 模式：点击 Docker Desktop -> Settings -> Resources -> Memory 调整内存大小
-        WSL 2 模式 模式：参考 WSL 2 utility VM 调整内存大小
+## 快速StreamPark部署
 
-完成配置后，我们可以从下载页面获取StreamPark文件的源包，并确保您获得正确的版本。下载软件包后，您可以运行以下命令。
-
-### 1.通过 mvn 构建
+### 基于h2和docker-compose进行StreamPark部署
+该方式适用于入门学习、熟悉功能特性
 ```
-./build.sh
-```
-![](/doc/image/streamx_build.png)
-注意：Flink的Scala版本和StreamPark的Scala版本需要保持一致，本次构建请选择Scala 2.12。
-
-### 2.执行 Docker Compose 构建命令
-```
-cd deploy/docker
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
 docker-compose up -d
 ```
-![](/doc/image/streamx_docker-compose.png)
-### 3.登陆系统
-
 服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问StreamPark链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streamx。想要了解更多操作请参考用户手册快速上手。
+![](/doc/image/streamx_docker-compose.png)
+该部署方式会自动给你启动一个flink-session集群供你去进行flink任务使用，同时也会挂载本地docker服务以及~/.kube来用于k8s模式的任务提交
 
-### 4.在 StreamPark Web Ui 上设置 Flink Home
+### 沿用已有的 Mysql 服务
+该方式适用于企业生产，你可以基于docker快速部署strempark并将其和线上数据库进行关联
 ```
-/streamx/flink/flink1.14.5/
+docker run -d --name streampark \
+    -e DATABASE="mysql" \
+    -e SPRING_DATASOURCE_URL="jdbc:mysql://localhost:3306/<DATABASE>" \
+    -e SPRING_DATASOURCE_USERNAME="<USER>" \
+    -e SPRING_DATASOURCE_PASSWORD="<PASSWORD>" \
+    -p 10000:10000 \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /etc/hosts:/etc/hosts \
+    -v ~/.kube:/root/.kube \
+    --net host \
+    -d apache/incubator-streampark:"${STREAMPARK_VERSION}" /bin/sh -c "wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.30.tar.gz && tar -zxvf mysql-connector-java-8.0.30.tar.gz && cp mysql-connector-java-8.0.30/mysql-connector-java-8.0.30.jar lib && bash bin/startup.sh"
+```
+
+## 登陆系统
+
+服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink
+访问StreamPark链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streampark。想要了解更多操作请参考用户手册快速上手
+
+## 在 StreamPark Web Ui 上设置 Flink Home
+```
+streampark/flink/flink1.14.5/
 ```
 ![](/doc/image/streamx_flinkhome.png)
-### 5.启动远程会话集群
-
-进入StreamPark web ui点击Setting->Flink Cluster 创建一个remote (standalone)模式的集群。
-![](/doc/image/remote.png)
-tips：mac电脑获取flink的真实ip地址,可以通过ifconfig。
-
-### 6.完成以上步骤，进行Flink任务提交
-
-在StreamPark web ui点击Application->Add New 创建一个remote (standalone)模式提交。
-![](/doc/image/remoteSubmission.png)
