@@ -61,7 +61,7 @@ ALTER DATABASE [catalog_name.]db_name SET (key1=val1, key2=val2, ...)
 ALTER [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF EXISTS] [catalog_name.][db_name.]function_name AS identifier [LANGUAGE JAVA|SCALA|PYTHON]
 ```
 
-使用新的标识符和可选的语言标记更改catalog函数。如果函数在catalog中不存在，则抛出异常。如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](docs/flinksql/udf)。  
+使用新的标识符和可选的语言标记更改catalog函数。如果函数在catalog中不存在，则抛出异常。如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](../udf/1-introduce)。  
 
 **TEMPORARY** 
 

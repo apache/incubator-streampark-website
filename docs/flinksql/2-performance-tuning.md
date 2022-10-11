@@ -35,7 +35,7 @@ SQL是数据分析中使用最广泛的语言。Flink的Table API和SQL使用户
 
 默认情况下，分组聚合会禁用`MiniBatch`优化。
 为了启用此优化，需要设置**table.exec.mini-batch.enabled**、**table.exec.mini-batch.allow-latency**、**table.exec.mini-batch.size**。
-详情请参阅[查询配置](1-1-query-config)页面。
+详情请参阅[查询配置](1-query-config)页面。
 
 无论上述配置如何，窗口TVF聚合始终启用MiniBatch优化。窗口TVF聚合缓冲区记录在托管内存中，而不是JVM堆中，因此没有过载GC或OOM问题的风险。
 
