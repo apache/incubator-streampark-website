@@ -85,7 +85,7 @@ CREATE TABLE MyTable (
 
 元数据列是SQL标准的扩展，允许访问连接器和/或表中每一行的特定字段。元数据列由metadata关键字表示。例如，元数据列可以用来读取和写入Kafka记录的时间戳，以进行基于时间的操作。
 
-[连接器](docs/flinksql/connector)和[格式](docs/flinksql/format)文档列出了每个组件的可用元数据字段。在表的模式中声明元数据列是可选的。
+[连接器](docs/flinksql/connector/1-introduce)和[格式](docs/flinksql/format/1-introduce)文档列出了每个组件的可用元数据字段。在表的模式中声明元数据列是可选的。
 
 下面的语句创建了一个表，其中包含引用元数据timestamp的附加元数据列：
 
@@ -246,7 +246,7 @@ SQL标准指定约束可以是强制的，也可以是不强制的。这将控�
 
 用于创建表source/sink的表属性，属性通常用于查找和创建底层连接器。
 
-表达式`key1=val1`的键和值都应该是字符串字面值。有关不同连接器的所有受支持的表属性，请参阅[连接器](docs/flinksql/connector)中的详细信息。
+表达式`key1=val1`的键和值都应该是字符串字面值。有关不同连接器的所有受支持的表属性，请参阅[连接器](docs/flinksql/connector/1-introduce)中的详细信息。
 
 表名可以是三种格式:
 
@@ -482,7 +482,7 @@ CREATE [TEMPORARY|TEMPORARY SYSTEM] FUNCTION [IF NOT EXISTS] [catalog_name.][db_
 
 创建一个函数，该函数具有带有标识符和可选语言标记的catalog和数据库名称空间。如果目录中已经存在同名的函数，则会引发异常。
 
-如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](docs/flinksql/udf)。
+如果语言标记是JAVA/SCALA，则标识符是UDF的完整类路径。关于Java/Scala UDF的实现，请参考用户[自定义函数](../udf/1-introduce)。
 
 如果语言标记是PYTHON，则标识符是UDF的完全限定名，例如pyflink.table.tests.test_udf.add。
 
