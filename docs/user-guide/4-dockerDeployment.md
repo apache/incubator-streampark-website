@@ -18,37 +18,83 @@ To start the service with docker-compose, you need to install [docker-compose](h
 ## Rapid StreamPark Deployment
 
 ### StreamPark deployment based on h2 and docker-compose
-```
+
+#### Deployment
+
+```html
 wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/.env
 docker-compose up -d
 ```
 
-Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamPark link will redirect you to the login page, where the default user and password for StreamPark are admin and streamx respectively. To learn more about the operation, please refer to the user manual for a quick start.
+Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamPark link will redirect you to the login page, where the default user and password for StreamPark are admin and streampark respectively. To learn more about the operation, please refer to the user manual for a quick start.
+
+#### Configure flink home
+
+![](/doc/image/streampark_flinkhome.png)
+
+#### Configure flink-session cluster
+
+![](/doc/image/remote.png)
+
+Note:When configuring the flink-sessin cluster address, the ip address is not localhost, but the host network ip, which can be obtained through ifconfig
+
+#### Submit a task
+
+![](/doc/image/remoteSubmission.png)
 
 ### Use existing Mysql services
 This approach is suitable for enterprise production, where you can quickly deploy strempark based on docker and associate it with an online database
+Note: The diversity of deployment support is maintained through the .env configuration file, make sure there is one and only one .env file in the directory
+
+```html
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/mysql/.env
+vim .env
+```
+Modify the corresponding connection information
+```html
+SPRING_PROFILES_ACTIVE=mysql
+SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+SPRING_DATASOURCE_USERNAME=root
+SPRING_DATASOURCE_PASSWORD=streampark
+```
 
 ```
-docker run -d --name streampark \
-    -e DATABASE="mysql" \
-    -e SPRING_DATASOURCE_URL="jdbc:mysql://localhost:3306/<DATABASE>" \
-    -e SPRING_DATASOURCE_USERNAME="<USER>" \
-    -e SPRING_DATASOURCE_PASSWORD="<PASSWORD>" \
-    -p 10000:10000 \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /etc/hosts:/etc/hosts \
-    -v ~/.kube:/root/.kube \
-    --net host \
-    -d apache/incubator-streampark:"${STREAMPARK_VERSION}" /bin/sh -c "wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.30.tar.gz && tar -zxvf mysql-connector-java-8.0.30.tar.gz && cp mysql-connector-java-8.0.30/mysql-connector-java-8.0.30.jar lib && bash bin/startup.sh"
+docker-compose up -d
+```
+### Use existing Pgsql services
+```html
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/pgsql/.env
+vim .env
+```
+Modify the corresponding connection information
+```html
+SPRING_PROFILES_ACTIVE=pgsql
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/streampark?stringtype=unspecified
+SPRING_DATASOURCE_USERNAME=postgres
+SPRING_DATASOURCE_PASSWORD=streampark
+```
+```
+docker-compose up -d
 ```
 
-## Login System
-
-Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081访问Flink
-After accessing the StreamPark link you will be redirected to the login page, the default user and password for StreamPark are admin and streampark respectively. To learn more about the operation please refer to the user manual for a quick start
-
-## Setting up Flink Home on StreamPark Web Ui
+## Build images based on source code for StreamPark deployment
 ```
-streampark/flink/flink1.14.5/
+git clone https://github.com/apache/incubator-streampark.git
+cd incubator-streampark/deploy/docker
+vim docker-compose
 ```
-![](/doc/image/streamx_flinkhome.png)
+
+```html
+    build:
+      context: ../..
+      dockerfile: deploy/docker/console/Dockerfile
+#    image: ${HUB}:${TAG}
+```
+![img.png](img.png)
+
+```
+docker-compose up -d
+```
