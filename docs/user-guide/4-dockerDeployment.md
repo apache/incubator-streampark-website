@@ -93,7 +93,6 @@ vim docker-compose
       dockerfile: deploy/docker/console/Dockerfile
 #    image: ${HUB}:${TAG}
 ```
-![img.png](img.png)
 
 ```
 docker-compose up -d
