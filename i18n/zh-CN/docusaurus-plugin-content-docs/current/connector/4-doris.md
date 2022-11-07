@@ -13,7 +13,7 @@ StreamPark 基于Doris的[stream load](https://doris.apache.org/administrator-gu
 
 ### StreamPark 方式写入
 
-用`StreamPark`写入 `doris`的数据, 目前 DorisSink 只支持 JSON 格式(单层)写入，如：{"id":1,"name":"streamx"}
+用`StreamPark`写入 `doris`的数据, 目前 DorisSink 只支持 JSON 格式(单层)写入，如：{"id":1,"name":"streampark"}
 运行程序样例为java，如下:
 
 #### 配置信息

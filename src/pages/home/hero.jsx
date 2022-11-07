@@ -86,11 +86,11 @@ export default function () {
                 </div>
                 <p className="lead text-light">{dataSource.slogan.description}</p>
               </div>
-              <a className="btn streamx-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
+              <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
                 target="_blank">
                 <i className="lni-github-original"></i>&nbsp;GitHub
               </a>
-              <a className="btn streamx-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
+              <a className="btn streampark-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
                 style={{ marginLeft: '10px' }}>
                 <i className="lni-play"></i>&nbsp;Get started
               </a>

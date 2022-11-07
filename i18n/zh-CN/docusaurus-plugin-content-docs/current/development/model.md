@@ -21,11 +21,11 @@ import TabItem from '@theme/TabItem';
 
 ## 架构
 
-[]("/doc/image/streamx_archite.png")
+[]("/doc/image/streampark_archite.png")
 
 ## 编程模型
 
-`streamx-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamPark 来开发编程模型是什么样的,有什么规范和要求
+`streampark-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamPark 来开发编程模型是什么样的,有什么规范和要求
 
 ### DataStream
 
@@ -191,7 +191,7 @@ public class JavaStreamTableApp {
 **RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamPark 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
 
 <center>
-<img src="/doc/image/streamx_coreapi.png" width="60%"/>
+<img src="/doc/image/streampark_coreapi.png" width="60%"/>
 </center>
 
 ### StreamingContext
@@ -442,7 +442,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 
 在 `StreamTableContext` 中可以直接使用 `StreamExecutionEnvironment` 的 `API`, **以$打头的方法** 都是 `StreamExecutionEnvironment` 的 API
 
-![](/doc/image/streamx_apis.jpeg)
+![](/doc/image/streampark_apis.jpeg)
 
 :::
 
@@ -487,7 +487,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 * **start**         程序启动阶段
 * **destroy**       销毁阶段
 
-![Life Cycle](/doc/image/streamx_scala_life_cycle.png)
+![Life Cycle](/doc/image/streampark_scala_life_cycle.png)
 
 ### 生命周期之 — init
 **init** 阶段,框架会自动解析传入的配置文件,按照里面的定义的各种参数初始化`StreamExecutionEnvironment`,这一步是框架自动执行,不需要开发者参与
@@ -528,7 +528,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 :::
 
 ## 目录结构
-推荐的项目目录结构如下,具体可以参考[Streamx-flink-quickstart](https://github.com/streamxhub/streamx-quickstart) 里的目录结构和配置
+推荐的项目目录结构如下,具体可以参考[Streampark-flink-quickstart](https://github.com/apache/streampark-quickstart) 里的目录结构和配置
 
 ``` tree
 .
@@ -604,11 +604,11 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 
 ## 打包部署
 
-推荐 [streamx-flink-quickstart](https://github.com/streamxhub/streampark/streampark-flink/streamx-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
+推荐 [streampark-flink-quickstart](https://github.com/apache/streampark/streampark-flink/streampark-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
 
 ``` text
 .
-Streamx-flink-quickstart-1.0.0
+Streampark-flink-quickstart-1.0.0
 ├── bin
 │   ├── startup.sh                             //启动脚本
 │   ├── setclasspath.sh                        //Java环境变量相关的脚本(内部使用的,用户无需关注)
@@ -618,7 +618,7 @@ Streamx-flink-quickstart-1.0.0
 │   ├── application.yaml                       //项目的配置文件
 │   ├── sql.yaml                               // flink sql文件
 ├── lib
-│   └── Streamx-flink-quickstart-1.0.0.jar     //项目的jar包
+│   └── Streampark-flink-quickstart-1.0.0.jar     //项目的jar包
 └── temp
 ```
 

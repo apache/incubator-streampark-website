@@ -17,7 +17,7 @@ StreamPark encapsulates DoirsSink for writing data to Doris in real-time, based 
 ### Write with StreamPark
 
 Use `StreamPark` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
-such as: {"id":1,"name":"streamx"} The example of the running program is java, as follows:
+such as: {"id":1,"name":"streampark"} The example of the running program is java, as follows:
 
 #### configuration list
 

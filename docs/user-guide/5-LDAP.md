@@ -22,11 +22,11 @@ LDAP unified authentication service is used to solve the above problems.
 
 ### 1.Official website to download the binary installation package
 
-https://github.com/streamxhub/streampark/releases
+https://github.com/apache/incubator-streampark/releases
 
 ### 2.Add LDAP configuration
 ```
-cd streamxpark
+cd streampark
 cd conf
 vim application
 ```
@@ -35,11 +35,11 @@ vim application
 ldap:
   ## This value is the domain name required for company LDAP user login
   urls: ldap://99.99.99.99:389
-  username: cn=Manager,dc=streamx,dc=com
-  password: streamx
+  username: cn=Manager,dc=streampark,dc=com
+  password: streampark
   ## DN distinguished name
   embedded:
-    base-dn: dc=streamx,dc=com
+    base-dn: dc=streampark,dc=com
   user:
     ## Key values for search filtering
     identity:

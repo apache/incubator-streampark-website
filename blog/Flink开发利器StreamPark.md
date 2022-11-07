@@ -243,7 +243,7 @@ Native-session模式需要事先使用Flink命令创建一个运行在K8s中的F
 
 附:
 
-Streamx Github: https://github.com/streamxhub/streamx <br/>
+StreamPark Github: https://github.com/apache/incubator-streampark <br/>
 Doris Github: https://github.com/apache/incubator-doris
 
 ![](/blog/author.png)

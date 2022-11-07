@@ -56,7 +56,7 @@ On Setting page of StreamPark, user can configure the connection information for
 ![docker register setting](/doc/image/docker_register_setting.png)
 
 
-Building a Namespace named `streamx`(other name should be set at Setting page of StreamPark) at remote Docker.The namespace is push/pull space of StreamPark Flink image and Docker Register User should own `pull`/`push`  permission of this namespace.
+Building a Namespace named `streampark`(other name should be set at Setting page of StreamPark) at remote Docker.The namespace is push/pull space of StreamPark Flink image and Docker Register User should own `pull`/`push`  permission of this namespace.
 
 
 ```shell
@@ -64,10 +64,10 @@ Building a Namespace named `streamx`(other name should be set at Setting page of
 docker login --username=<your_username> <your_register_addr>
 # verify push permission
 docker pull busybox
-docker tag busybox <your_register_addr>/streamx/busybox
-docker push <your_register_addr>/streamx/busybox
+docker tag busybox <your_register_addr>/streampark/busybox
+docker push <your_register_addr>/streampark/busybox
 # verify pull permission
-docker pull <your_register_addr>/streamx/busybox
+docker pull <your_register_addr>/streampark/busybox
 ```
 <br></br>
 ## Job submit
@@ -116,12 +116,12 @@ The additional configuration of Flink-Native-Kubernetes Session Job will be deci
 
 StreamPark parameter related to Flink-K8s in `applicaton.yml` are as below.And in most condition, it is no need to change it.
 
-| Configuration item                                                 | Description                                                                                                          | Default value |
-|--------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|
-| streamx.docker.register.image-namespace                            | namespace of Remote docker service repository， flink-job image will be pushed here                                   | streamx       |
-| streamx.flink-k8s.tracking.polling-task-timeout-sec.job-status     | timeout in seconds of flink state tracking task                                                                      | 120           |
-| streamx.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric | timeout in seconds of flink metrics tracking task                                                                    | 120           |
-| streamx.flink-k8s.tracking.polling-interval-sec.job-status         | interval in seconds of flink state tracking task.To maintain accuracy, please set below 5s, the best setting is 2-3s | 5             |
-| streamx.flink-k8s.tracking.polling-interval-sec.cluster-metric     | interval in seconds of flink metrics tracking task                                                                   | 10            |
-| streamx.flink-k8s.tracking.silent-state-keep-sec                   | fault tolerance time in seconds of  silent  metrics                                                                  | 60            |
+| Configuration item                                                    | Description                                                                                                          | Default value |
+|-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|
+| streampark.docker.register.image-namespace                            | namespace of Remote docker service repository， flink-job image will be pushed here                                   | streampark    |
+| streampark.flink-k8s.tracking.polling-task-timeout-sec.job-status     | timeout in seconds of flink state tracking task                                                                      | 120           |
+| streampark.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric | timeout in seconds of flink metrics tracking task                                                                    | 120           |
+| streampark.flink-k8s.tracking.polling-interval-sec.job-status         | interval in seconds of flink state tracking task.To maintain accuracy, please set below 5s, the best setting is 2-3s | 5             |
+| streampark.flink-k8s.tracking.polling-interval-sec.cluster-metric     | interval in seconds of flink metrics tracking task                                                                   | 10            |
+| streampark.flink-k8s.tracking.silent-state-keep-sec                   | fault tolerance time in seconds of  silent  metrics                                                                  | 60            |
 

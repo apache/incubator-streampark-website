@@ -101,7 +101,7 @@ vim docker-compose.yaml
 cd ../..
 ./build.sh
 ```
-![](/doc/image/streamx_build.png)
+![](/doc/image/streampark_build.png)
 
 ```html
 cd deploy/docker
