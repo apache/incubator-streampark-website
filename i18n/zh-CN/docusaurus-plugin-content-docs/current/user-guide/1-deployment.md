@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-StreamPark 总体组件栈架构如下， 由 streamx-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+StreamPark 总体组件栈架构如下， 由 streampark-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
 
-![Streamx Archite](/doc/image/streamx_archite.png)
+![StreamPark Archite](/doc/image/streampark_archite.png)
 
 streampark-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
 
@@ -44,7 +44,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ## 编译 & 部署
 
-你可以直接下载编译好的[**发行包**](https://github.com/streamxhub/streamx/releases)(推荐),也可以选择手动编译安装，手动编译安装步骤如下:
+你可以直接下载编译好的[**发行包**](https://github.com/apache/incubator-streampark/releases)(推荐),也可以选择手动编译安装，手动编译安装步骤如下:
 
 
 ### 环境要求
@@ -101,7 +101,7 @@ mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTest
 在前后端独立编译部署的项目里,前端项目需要知道后端服务的base api,才能前后端协同工作. 因此在编译之前我们需要指定下后端服务的base api,修改 streampark-console-webapp/.env.production 里的`VUE_APP_BASE_API`即可
 
 ```bash
-vi streamx/streampark-console/streampark-console-webapp/.env.production
+vi streampark/streampark-console/streampark-console-webapp/.env.production
 ```
 
 - 2.2 编译
@@ -132,7 +132,7 @@ Scala 2.12 编译, 相关 scala 版本指定信息如下:
 
 ### 部署后端
 
-安装完成之后就看到最终的工程文件，位于 `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`,解包后安装目录如下
+安装完成之后就看到最终的工程文件，位于 `streampark/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`,解包后安装目录如下
 
 ```textmate
 .
@@ -152,8 +152,8 @@ streampark-console-service-1.2.1
 ├── lib
 │    └── *.jar                                //项目的 jar 包
 ├── plugins
-│    ├── streamx-jvm-profiler-1.0.0.jar       //jvm-profiler,火焰图相关功能 ( 内部使用，用户无需关注 )
-│    └── streamx-flink-sqlclient-1.0.0.jar    //Flink SQl 提交相关功能 ( 内部使用，用户无需关注 )
+│    ├── streampark-jvm-profiler-1.0.0.jar       //jvm-profiler,火焰图相关功能 ( 内部使用，用户无需关注 )
+│    └── streampark-flink-sqlclient-1.0.0.jar    //Flink SQl 提交相关功能 ( 内部使用，用户无需关注 )
 ├── script
 │     ├── final                               // 完整的ddl建表sql
 │     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
@@ -175,8 +175,8 @@ streampark-console-service-1.2.1
 ##### 修改配置
 安装解包已完成，接下来准备数据相关的工作
 
-###### 新建数据库 `streamx`
-确保在部署机可以连接的 mysql 里新建数据库 `streamx`
+###### 新建数据库 `streampark`
+确保在部署机可以连接的 mysql 里新建数据库 `streampark`
 
 ###### 修改连接信息
 进入到 `conf` 下，修改 `conf/application.yml`,找到 datasource 这一项，找到 mysql 的配置，修改成对应的信息即可，如下
@@ -201,20 +201,20 @@ datasource:
         username: $user
         password: $password
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+        url: jdbc: mysql://$host:$port/streampark?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
 ###### 修改workspace
-进入到 `conf` 下，修改 `conf/application.yml`,找到 streamx 这一项，找到 workspace 的配置，修改成一个用户有权限的目录
+进入到 `conf` 下，修改 `conf/application.yml`,找到 streampark 这一项，找到 workspace 的配置，修改成一个用户有权限的目录
 
 ```yaml
-streamx:
+streampark:
   # HADOOP_USER_NAME 如果是on yarn模式( yarn-prejob | yarn-application | yarn-session)则需要配置 hadoop-user-name
   hadoop-user-name: hdfs
   # 本地的工作空间,用于存放项目源码,构建的目录等.
   workspace:
-    local: /opt/streamx_workspace # 本地的一个工作空间目录(很重要),用户可自行更改目录,建议单独放到其他地方,用于存放项目源码,构建的目录等.
-    remote: hdfs:///streamx   # support hdfs:///streamx/ 、 /streamx 、hdfs://host:ip/streamx/
+    local: /opt/streampark_workspace # 本地的一个工作空间目录(很重要),用户可自行更改目录,建议单独放到其他地方,用于存放项目源码,构建的目录等.
+    remote: hdfs:///streampark   # support hdfs:///streampark/ 、 /streampark 、hdfs://host:ip/streampark/
 ```
 
 ##### 启动后端
@@ -225,7 +225,7 @@ streamx:
 cd streampark-console-service-1.0.0/bin
 bash startup.sh
 ```
-相关的日志会输出到**streampark-console-service-1.0.0/logs/streamx.out** 里
+相关的日志会输出到**streampark-console-service-1.0.0/logs/streampark.out** 里
 
 :::info 提示
 
@@ -246,13 +246,13 @@ npm install -g pm2
 ##### 发布
 
 ###### 1. 将dist copy到部署服务器
-将streamx-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streamx`,拷贝后的目录层级是/home/www/streamx/dist
+将streampark-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streampark`,拷贝后的目录层级是/home/www/streampark/dist
 
-###### 2. 将streamx.js文件copy到项目部署目录
-将streamx/streampark-console/streampark-console-webapp/streamx.js copy 至 `/home/www/streamx`
+###### 2. 将streampark.js文件copy到项目部署目录
+将streampark/streampark-console/streampark-console-webapp/streampark.js copy 至 `/home/www/streampark`
 
 ###### 3. 修改服务端口
-用户可以自行指定前端服务的端口地址, 修改 /home/www/streamx/streamx.js文件, 找到 `serverPort` 修改即可,默认如下:
+用户可以自行指定前端服务的端口地址, 修改 /home/www/streampark/streampark.js文件, 找到 `serverPort` 修改即可,默认如下:
 
 ```
   const serverPort = 1000
@@ -261,7 +261,7 @@ npm install -g pm2
 4. 启动服务
 
 ```shell
-   pm2 start streamx.js
+   pm2 start streampark.js
 ```
 
 关于 pm2的更多使用请参考[官网](https://pm2.keymetrics.io/)
@@ -270,7 +270,7 @@ npm install -g pm2
 
 经过以上步骤,就算部署完成,可直接登录进入系统
 
-![StreamPark Login](/doc/image/streamx_login.jpeg)
+![StreamPark Login](/doc/image/streampark_login.jpeg)
 
 :::tip 提示
 默认密码: <strong> admin / streampark </strong>
@@ -280,7 +280,7 @@ npm install -g pm2
 
 进入系统之后，第一件要做的事情就是修改系统配置，在菜单/StreamPark/Setting 下，操作界面如下:
 
-![StreamPark Settings](/doc/image/streamx_settings.png)
+![StreamPark Settings](/doc/image/streampark_settings.png)
 
 主要配置项分为以下几类
 

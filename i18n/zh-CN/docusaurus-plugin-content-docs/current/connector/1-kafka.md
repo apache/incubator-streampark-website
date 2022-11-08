@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 ```xml
     <!--必须要导入的依赖-->
     <dependency>
-        <groupId>com.streamxhub.streamx</groupId>
+        <groupId>org.apache.streampark</groupId>
         <artifactId>streampark-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
@@ -175,7 +175,7 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
 
 ### 消费多个Kafka实例
 
-在框架开发之初就考虑到了多个不同实例的kafka的配置情况.如何来统一配置,并且规范格式呢?在streamx中是这么解决的,假如我们要同时消费两个不同实例的kafka,配置文件定义如下,
+在框架开发之初就考虑到了多个不同实例的kafka的配置情况.如何来统一配置,并且规范格式呢?在streampark中是这么解决的,假如我们要同时消费两个不同实例的kafka,配置文件定义如下,
 可以看到在 `kafka.source` 下直接放kafka的实例名称(名字可以任意),在这里我们统一称为 **alias** , **alias** 必须是唯一的,来区别不同的实例,然后别的参数还是按照之前的规范,
 统统放到当前这个实例的 `namespace` 下即可.如果只有一个kafka实例,则可以不用配置 `alias`
 在写代码消费时注意指定对应的 **alias** 即可,配置和代码如下
@@ -529,7 +529,7 @@ class JavaUser implements Serializable {
 
 返回的对象被包装在`KafkaRecord`中,`kafkaRecord`中有当前的`offset`,`partition`,`timestamp`等诸多有用的信息供开发者使用,其中`value`即返回的目标对象,如下图:
 
-![](/doc/image/streamx_kafkaapi.jpeg)
+![](/doc/image/streampark_kafkaapi.jpeg)
 
 ### 指定strategy
 

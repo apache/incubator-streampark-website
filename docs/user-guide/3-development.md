@@ -36,7 +36,7 @@ To ensure that the local machine can connect to the cluster, you need to set the
 
 If you are developing locally, you can use minikube or kubesphere to quickly install kubernetes environment, Of course, it is more recommended to choose the existing k8s cluster facilities. In addition, Tencent cloud tke and Alibaba cloud ack with time billing is also a good choice for qulckly develop.
 
-For additional configuration requirements, please refer to: [**streamx flink-k8s integration support**](../flink-k8s/1-deployment.md)
+For additional configuration requirements, please refer to: [**streampark flink-k8s integration support**](../flink-k8s/1-deployment.md)
 
 ## Install Flink (optional, Standalone Runtime)
 
@@ -90,7 +90,7 @@ mvn clean install -Dscala.version=2.12.8 -Dscala.binary.version=2.12 -DskipTests
 
 #### Backend decompression
 
-After the compilation, the installation package location is `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, The directory structure after decompressing is as follows:
+After the compilation, the installation package location is `streampark/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, The directory structure after decompressing is as follows:
 
 ```textmate
 .
@@ -110,18 +110,18 @@ streampark-console-service-${version}
 ├── lib
 │    └── *.jar
 ├── plugins
-│    ├── streamx-jvm-profiler-1.0.0.jar
-│    └── streamx-flink-sqlclient-1.0.0.jar
+│    ├── streampark-jvm-profiler-1.0.0.jar
+│    └── streampark-flink-sqlclient-1.0.0.jar
 ├── logs
 ├── temp
 ```
-Copy the unpacked directory to other directories to prevent it from being cleaned up the next time `mvn clean` is executed. For example, if it is placed in `/opt/streamx/`, the full path of the file is `/opt/streampark/streampark-console-service-${version}`, This path will be used later and there is no space in the path.
+Copy the unpacked directory to other directories to prevent it from being cleaned up the next time `mvn clean` is executed. For example, if it is placed in `/opt/streampark/`, the full path of the file is `/opt/streampark/streampark-console-service-${version}`, This path will be used later and there is no space in the path.
 
 #### Backend configuration
 
-Git clone streamx source code, then open it with IntelliJ idea, and modify JDBC connection information of `datasource` in the `resources/application.yml`, Please refer to [modify configuration](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) in the installation and deployment chapter.
+Git clone streampark source code, then open it with IntelliJ idea, and modify JDBC connection information of `datasource` in the `resources/application.yml`, Please refer to [modify configuration](http://www.streamxhub.com/zh/doc/console/deploy/#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE) in the installation and deployment chapter.
 
-<img src="/doc/image/streamx_conf.jpg" />
+<img src="/doc/image/streampark_conf.jpg" />
 
 If the target cluster you want to connect to has Kerberos authentication enabled, you need to find the relative information under `resources/kerberos.xml`and configure it. Kerberos is off by default. To enable it, set `enable` to true, as follows:
 
@@ -141,7 +141,7 @@ java:
 
 #### Backend startup
 
-`Streamx console` is a web application developed based on springboot, `org.apache.streampark.console Streamxconsole` is the main class. Before startup, you need to set `VM options` and `environment variables`
+`StreamPark console` is a web application developed based on springboot, `org.apache.streampark.console StreamPark console` is the main class. Before startup, you need to set `VM options` and `environment variables`
 
 ##### VM options
 
@@ -161,7 +161,7 @@ If the JDK version used by the development machine is above JDK1.8, the followin
 
 If you use a non locally installed Hadoop cluster (test Hadoop), you need to configure `HADOOP_USER_NAME` and `HADOOP_CONF_DIR` in `Environment variables`. The value of `HADOOP_USER_NAME` is the Hadoop user name with read and write permission to HDFS. `HADOOP_CONF_DIR` is the storage location of the configuration file on the development machine. If Hadoop is installed locally, the variable does not need to be configured.
 
-<img src="/doc/image/streamx_ideaopt.jpg" />
+<img src="/doc/image/streampark_ideaopt.jpg" />
 
 If everything is ready, you can start the `StreamParkConsole` main class. If it is started successfully, you will see the printing information of successful startup.
 
@@ -171,9 +171,9 @@ The frontend is developed based on nodejs and Vue, so the node environment needs
 
 #### Frontend configuration
 
-Since it is a frontend and backend separated project, the frontend needs to know the access address of the backend (streamx console) in order to work together. Therefore, the Vue needs to be changed_ APP_ BASE_ The value of API variable is located in:
+Since it is a frontend and backend separated project, the frontend needs to know the access address of the backend (streampark console) in order to work together. Therefore, the Vue needs to be changed_ APP_ BASE_ The value of API variable is located in:
 
-![web config](/doc/image/streamx_websetting.png)
+![web config](/doc/image/streampark_websetting.png)
 
 Default configuration:
 

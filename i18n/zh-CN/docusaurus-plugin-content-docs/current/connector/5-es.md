@@ -12,10 +12,10 @@ import TabItem from '@theme/TabItem';
 [Flink 官方](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/)提供了[Elasticsearch](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/)的连接器,用于向 elasticsearch 中写入数据,可提供 **至少一次** 的处理语义
 
 ElasticsearchSink 使用 TransportClient（6.x 之前）或者 RestHighLevelClient（6.x 开始）和 Elasticsearch 集群进行通信，
-`Streamx`对 flink-connector-elasticsearch6 进一步封装，屏蔽开发细节，简化Elasticsearch6及以上的写入操作。
+`StreamPark`对 flink-connector-elasticsearch6 进一步封装，屏蔽开发细节，简化Elasticsearch6及以上的写入操作。
 
 :::tip 提示
-因为Flink Connector Elasticsearch 不同版本之间存在冲突`Streamx`暂时仅支持Elasticsearch6及以上的写入操作，如需写入Elasticsearch5需要使用者排除
+因为Flink Connector Elasticsearch 不同版本之间存在冲突`StreamPark`暂时仅支持Elasticsearch6及以上的写入操作，如需写入Elasticsearch5需要使用者排除
 flink-connector-elasticsearch6 依赖，引入 flink-connector-elasticsearch5依赖 创建
 org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink 实例写入数据。
 :::

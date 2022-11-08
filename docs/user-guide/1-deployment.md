@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import { ClientEnvs } from '../components/TableData.jsx';
 
-The overall component stack structure of StreamPark is as follows. It consists of two major parts: streamx-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
+The overall component stack structure of StreamPark is as follows. It consists of two major parts: streampark-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
-![Streamx Archite](/doc/image/streamx_archite.png)
+![StreamPark Archite](/doc/image/streampark_archite.png)
 
 streampark-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
 
@@ -131,7 +131,7 @@ Scala 2.12 is compiled, and the relevant scala version specification information
 
 ### Deploy backend
 
-After the installation is complete, you will see the final project file, located in `streamx/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, the installation directory after unpacking as follows
+After the installation is complete, you will see the final project file, located in `streampark/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`, the installation directory after unpacking as follows
 
 ```textmate
 .
@@ -151,8 +151,8 @@ streampark-console-service-1.2.1
 ├── lib
 │    └── *.jar                                //Project jar package
 ├── plugins
-│    ├── streamx-jvm-profiler-1.0.0.jar       //jvm-profiler, flame graph related functions (internal use, users do not need to pay attention)
-│    └── streamx-flink-sqlclient-1.0.0.jar    //Flink SQl submit related functions (for internal use, users do not need to pay attention)
+│    ├── streampark-jvm-profiler-1.0.0.jar       //jvm-profiler, flame graph related functions (internal use, users do not need to pay attention)
+│    └── streampark-flink-sqlclient-1.0.0.jar    //Flink SQl submit related functions (for internal use, users do not need to pay attention)
 ├── script
 │     ├── final                               // Complete ddl build table sql
 │     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
@@ -174,8 +174,8 @@ In the installation process of versions before 1.2.1, there is no need to manual
 ##### Modify the configuration
 The installation and unpacking have been completed, and the next step is to prepare the data-related work
 
-###### Create a new database `streamx`
-Make sure to create a new database `streamx` in mysql that the deployment machine can connect to
+###### Create a new database `streampark`
+Make sure to create a new database `streampark` in mysql that the deployment machine can connect to
 
 ###### Modify connection information
 Go to `conf`, modify `conf/application.yml`, find the datasource item, find the mysql configuration, and modify it to the corresponding information, as follows
@@ -200,20 +200,20 @@ datasource:
         username: $user
         password: $password
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc: mysql://$host:$port/streamx?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+        url: jdbc: mysql://$host:$port/streampark?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
 ###### Modify workspace
-Go to `conf`, modify `conf/application.yml`, find the item streamx, find the workspace configuration, and change it to a directory that the user has permission to.
+Go to `conf`, modify `conf/application.yml`, find the item streampark, find the workspace configuration, and change it to a directory that the user has permission to.
 
 ```yaml
-streamx:
+streampark:
   # HADOOP_USER_NAME If it is on yarn mode ( yarn-prejob | yarn-application | yarn-session), you need to configure hadoop-user-name
   hadoop-user-name: hdfs
   # Local workspace, used to store project source code, build directory, etc.
   workspace:
-    local: /opt/streamx_workspace # A local workspace directory (very important), users can change the directory by themselves, it is recommended to put it in other places separately to store the project source code, the built directory, etc.
-    remote: hdfs:///streamx   # support hdfs:///streamx/ 、 /streamx 、hdfs://host:ip/streamx/
+    local: /opt/streampark_workspace # A local workspace directory (very important), users can change the directory by themselves, it is recommended to put it in other places separately to store the project source code, the built directory, etc.
+    remote: hdfs:///streampark   # support hdfs:///streampark/ 、 /streampark 、hdfs://host:ip/streampark/
 ```
 
 ##### Start the backend
@@ -224,7 +224,7 @@ Enter `bin` and directly execute startup.sh to start the project. The default po
 cd streampark-console-service-1.0.0/bin
 bash startup.sh
 ```
-Relevant logs will be output to **streampark-console-service-1.0.0/logs/streamx.out**
+Relevant logs will be output to **streampark-console-service-1.0.0/logs/streampark.out**
 
 :::info hint
 
@@ -245,13 +245,13 @@ npm install -g pm2
 ##### Release
 
 ###### 1. Copy the dist to the deployment server
-Copy the entire directory of streampark-console-webapp/dist to the deployment directory of the server, such as: `/home/www/streamx`, the copied directory level is /home/www/streamx/dist
+Copy the entire directory of streampark-console-webapp/dist to the deployment directory of the server, such as: `/home/www/streampark`, the copied directory level is /home/www/streampark/dist
 
-###### 2. Copy the streamx.js file to the project deployment directory
-Copy streamx/streampark-console/streampark-console-webapp/streamx.js to `/home/www/streamx`
+###### 2. Copy the streampark.js file to the project deployment directory
+Copy streampark/streampark-console/streampark-console-webapp/streampark.js to `/home/www/streampark`
 
 ###### 3. Modify the service port
-Users can specify the port address of the front-end service by themselves, modify the /home/www/streamx/streamx.js file, and find `serverPort` to modify, the default is as follows:
+Users can specify the port address of the front-end service by themselves, modify the /home/www/streampark/streampark.js file, and find `serverPort` to modify, the default is as follows:
 
 ```
   const serverPort = 1000
@@ -260,7 +260,7 @@ Users can specify the port address of the front-end service by themselves, modif
 4. Start the service
 
 ```shell
-   pm2 start streamx.js
+   pm2 start streampark.js
 ```
 
 For more information about pm2, please refer to [Official Website](https://pm2.keymetrics.io/)
@@ -269,7 +269,7 @@ For more information about pm2, please refer to [Official Website](https://pm2.k
 
 After the above steps, even if the deployment is completed, you can directly log in to the system
 
-![StreamPark Login](/doc/image/streamx_login.jpeg)
+![StreamPark Login](/doc/image/streampark_login.jpeg)
 
 :::tip hint
 Default password: <strong> admin / streampark </strong>
@@ -279,7 +279,7 @@ Default password: <strong> admin / streampark </strong>
 
 After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamPark/Setting, the operation interface is as follows:
 
-![StreamPark Settings](/doc/image/streamx_settings.png)
+![StreamPark Settings](/doc/image/streampark_settings.png)
 
 The main configuration items are divided into the following categories
 

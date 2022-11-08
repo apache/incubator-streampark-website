@@ -22,10 +22,10 @@ Let's start from these aspects
 
 ## Architecture
 
-[]("/doc/image/streamx_archite.png")
+[]("/doc/image/streampark_archite.png")
 
 ## Programming paradigm
-`streamx-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with StreamPark looks like, and what the specifications and requirements are.
+`streampark-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with StreamPark looks like, and what the specifications and requirements are.
 
 
 ### DataStream
@@ -189,7 +189,7 @@ The above lines of scala and Java code are the essential skeleton code for devel
 **RunTime Context** - **StreamingContext** , **TableContext** , **StreamTableContext** are three very important objects in StreamPark, next we look at the definition and role of these three **Context**.
 
 <center>
-<img src="/doc/image/streamx_coreapi.png" width="60%"/>
+<img src="/doc/image/streampark_coreapi.png" width="60%"/>
 </center>
 
 ### StreamingContext
@@ -440,7 +440,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 
 You can use the `StreamExecutionEnvironment` `API` directly in the `StreamTableContext`, **methods prefixed with $** are the `StreamExecutionEnvironment` API.
 
-![](/doc/image/streamx_apis.jpeg)
+![](/doc/image/streampark_apis.jpeg)
 
 :::
 
@@ -485,7 +485,7 @@ The life cycle is as follows.
 * **start**         Stages of program initiation
 * **destroy**       Stages of destruction
 
-![Life Cycle](/doc/image/streamx_scala_life_cycle.png)
+![Life Cycle](/doc/image/streampark_scala_life_cycle.png)
 
 ### Life Cycle - init
 In the **init** phase, the framework automatically parses the incoming configuration file and initializes the `StreamExecutionEnvironment` according to the various parameters defined inside. This step is automatically executed by the framework and does not require developer involvement.
@@ -526,7 +526,7 @@ The **destroy** stage is an optional stage that requires developer participation
 
 ## Catalog Structure
 
-The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Streamx-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart)
+The recommended project directory structure is as follows, please refer to the directory structure and configuration in [StreamPark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart)
 
 ``` tree
 .
@@ -602,11 +602,11 @@ assembly.xml is the configuration file needed for the assembly packaging plugin,
 
 ## Packaged Deployment
 
-The recommended packaging mode in [streamx-flink-quickstart](https://github.com/streamxhub/streampark/streampark-flink/streamx-flink-quickstart) is recommended. It runs `maven package` directly to generate a standard StreamPark recommended project package, after unpacking the directory structure is as follows.
+The recommended packaging mode in [streampark-flink-quickstart](https://github.com/apache/streampark/streampark-flink/streampark-flink-quickstart) is recommended. It runs `maven package` directly to generate a standard StreamPark recommended project package, after unpacking the directory structure is as follows.
 
 ``` text
 .
-Streamx-flink-quickstart-1.0.0
+StreamPark-flink-quickstart-1.0.0
 ├── bin
 │   ├── startup.sh                             //Launch Script
 │   ├── setclasspath.sh                        //Java environment variable-related scripts (used internally, not of concern to users)
@@ -616,7 +616,7 @@ Streamx-flink-quickstart-1.0.0
 │   ├── application.yaml                       //Project's configuration file
 │   ├── sql.yaml                               // flink sql file
 ├── lib
-│   └── Streamx-flink-quickstart-1.0.0.jar     //The project's jar package
+│   └── StreamPark-flink-quickstart-1.0.0.jar     //The project's jar package
 └── temp
 ```
 

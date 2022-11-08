@@ -22,11 +22,11 @@ LDAP统一认证服务用来解决以上的问题。
 
 ### 1.官网下载二进制安装包
 
-https://github.com/streamxhub/streampark/releases
+https://github.com/apache/incubator-streampark/releases
 
 ### 2.增加LDAP配置
 ```
-cd streamxpark
+cd streampark
 cd conf
 vim application
 ```
@@ -36,12 +36,12 @@ ldap:
   ## 该值为公司LDAP用户登录需要的域名
   urls: ldap://99.99.99.99:389
   ## 用户名
-  username: cn=Manager,dc=streamx,dc=com
+  username: cn=Manager,dc=streampark,dc=com
   ## 密码
-  password: streamx
+  password: streampark
   ## DN 分辨名
   embedded:
-    base-dn: dc=streamx,dc=com
+    base-dn: dc=streampark,dc=com
   user:
     ## 用于搜索过滤的Key值
     identity:

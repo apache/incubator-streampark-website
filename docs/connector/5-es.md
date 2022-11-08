@@ -19,7 +19,7 @@ operations for Elasticsearch6 and above.
 
 :::tip hint
 
-Because there are conflicts between different versions of Flink Connector Elasticsearch, Streamx temporarily only
+Because there are conflicts between different versions of Flink Connector Elasticsearch, StreamPark temporarily only
 supports write operations of Elasticsearch6 and above. If you wants to using Elasticsearch5, you need to exclude the
 flink-connector-elasticsearch6 dependency and introduce the flink-connector-elasticsearch5 dependency to create
 org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink instance writes data.

@@ -9,7 +9,7 @@ StreamPark Flink Kubernetes 基于 [Flink Native Kubernetes](https://ci.apache.o
 * Native-Kubernetes Application
 * Native-Kubernetes Session
 
-单个 StreamPark 实例当前只支持单个 Kubernetes 集群，如果您有多 Kubernetes 支持的诉求，欢迎提交相关的 [Fearure Request Issue](https://github.com/streamxhub/streamx/issues) : )
+单个 StreamPark 实例当前只支持单个 Kubernetes 集群，如果您有多 Kubernetes 支持的诉求，欢迎提交相关的 [Fearure Request Issue](https://github.com/apache/incubator-streampark/issues) : )
 
 <br></br>
 
@@ -54,7 +54,7 @@ kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit 
 
 ![docker register setting](/doc/image/docker_register_setting.png)
 
-在远程 Docker 容器服务创建一个名为 `streamx` 的 Namespace(该Namespace可自定义命名，命名不为streamx请在setting页面修改确认) ，为 StreamPark 自动构建的 Flink image 推送空间，请确保使用的 Docker Register User 具有该  Namespace 的 `pull`/`push` 权限。
+在远程 Docker 容器服务创建一个名为 `streampark` 的 Namespace(该Namespace可自定义命名，命名不为 streampark 请在setting页面修改确认) ，为 StreamPark 自动构建的 Flink image 推送空间，请确保使用的 Docker Register User 具有该  Namespace 的 `pull`/`push` 权限。
 
 可以在 StreamPark 所在节点通过 docker command 简单测试权限：
 
@@ -63,10 +63,10 @@ kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit 
 docker login --username=<your_username> <your_register_addr>
 # verify push permission
 docker pull busybox
-docker tag busybox <your_register_addr>/streamx/busybox
-docker push <your_register_addr>/streamx/busybox
+docker tag busybox <your_register_addr>/streampark/busybox
+docker push <your_register_addr>/streampark/busybox
 # verify pull permission
-docker pull <your_register_addr>/streamx/busybox
+docker pull <your_register_addr>/streampark/busybox
 ```
 
 <br></br>
@@ -114,12 +114,12 @@ Flink-Native-Kubernetes Session 任务 K8s 额外的配置（pod-template 等）
 
 StreamPark 在 `applicaton.yml`  Flink-K8s 相关参数如下，默认情况下不需要额外调整默认值。
 
-| 配置项                                                       | 描述                                                         | 默认值  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| streamx.docker.register.image-namespace                      | 远程 docker 容器服务仓库命名空间，构建的 flink-job 镜像会推送到该命名空间。 | steramx |
-| streamx.flink-k8s.tracking.polling-task-timeout-sec.job-status | 每组 flink 状态追踪任务的运行超时秒数                        | 120     |
-| streamx.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric | 每组 flink 指标追踪任务的运行超时秒数                        | 120     |
-| streamx.flink-k8s.tracking.polling-interval-sec.job-status   | flink 状态追踪任务运行间隔秒数，为了维持准确性，请设置在 5s 以下，最佳设置在 2-3s | 5       |
-| streamx.flink-k8s.tracking.polling-interval-sec.cluster-metric | flink 指标追踪任务运行间隔秒数                               | 10      |
-| streamx.flink-k8s.tracking.silent-state-keep-sec             | silent 追踪容错时间秒数                                      | 60      |
+| 配置项                                                                    | 描述                                                        | 默认值  |
+|:-----------------------------------------------------------------------|-----------------------------------------------------------| ------- |
+| streampark.docker.register.image-namespace                             | 远程 docker 容器服务仓库命名空间，构建的 flink-job 镜像会推送到该命名空间。           | steramx |
+| streampark.flink-k8s.tracking.polling-task-timeout-sec.job-status      | 每组 flink 状态追踪任务的运行超时秒数                                    | 120     |
+| streampark.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric  | 每组 flink 指标追踪任务的运行超时秒数                                    | 120     |
+| streampark.flink-k8s.tracking.polling-interval-sec.job-status          | flink 状态追踪任务运行间隔秒数，为了维持准确性，请设置在 5s 以下，最佳设置在 2-3s          | 5       |
+| streampark.flink-k8s.tracking.polling-interval-sec.cluster-metric      | flink 指标追踪任务运行间隔秒数                                        | 10      |
+| streampark.flink-k8s.tracking.silent-state-keep-sec                    | silent 追踪容错时间秒数                                           | 60      |
 

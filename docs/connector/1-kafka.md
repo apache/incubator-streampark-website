@@ -173,7 +173,7 @@ Let's take a look at more usage and configuration methods
 
 ### Consume multiple Kafka instances
 
-`StreamPark` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streamx is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
+`StreamPark` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streampark is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
 As you can see in the `kafka.source` directly under the kafka instance name, here we unified called **alias** , **alias** must be unique, to distinguish between different instances
 If there is only one kafka instance, then you can not configure `alias`
 When writing the code for consumption, pay attention to the corresponding **alias** can be specified, the configuration and code is as follows
@@ -518,7 +518,7 @@ class JavaUser implements Serializable {
 The returned object is wrapped in a `KafkaRecord`, which has the current `offset`, `partition`, `timestamp` and many other useful information for developers to use, where `value` is the target object returned, as shown below:
 
 
-![](/doc/image/streamx_kafkaapi.jpeg)
+![](/doc/image/streampark_kafkaapi.jpeg)
 
 ### Specific strategy
 
