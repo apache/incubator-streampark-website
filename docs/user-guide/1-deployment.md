@@ -51,6 +51,7 @@ You can directly download the compiled [**release package**](https://github.com/
 
 - Maven 3.6+
 - npm 7.11.2 ( https://nodejs.org/en/ )
+- pnpm (npm install -g pnpm)
 - JDK 1.8+
 
 ### Compile and package
@@ -154,7 +155,8 @@ streampark-console-service-1.2.1
 │    ├── streampark-jvm-profiler-1.0.0.jar       //jvm-profiler, flame graph related functions (internal use, users do not need to pay attention)
 │    └── streampark-flink-sqlclient-1.0.0.jar    //Flink SQl submit related functions (for internal use, users do not need to pay attention)
 ├── script
-│     ├── final                               // Complete ddl build table sql
+│     ├── schema                               // Complete ddl build table sql
+│     ├── data                               // The data sql of tables
 │     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
 ├── logs                                      //program log directory
 
@@ -167,9 +169,25 @@ In the installation process of versions before 1.2.1, there is no need to manual
 
 ```textmate
 ├── script
-│     ├── final                 // Complete ddl build table sql
-│     ├── upgrade               // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
+│     ├── schema                               // Complete ddl build table sql
+│     ├── data                               // The data sql of tables
+│     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
 ```
+
+Execute the sql files that in `schema` folder to initialize the table structure
+
+##### Initialize table data
+
+In the installation process of versions before 1.2.1, there is no need to manually initialize data, just set the database information, and some column operations such as table creation and data initialization will be automatically completed. Versions after 1.2.1 (included) are not included. Automatic table creation and upgrade requires the user to manually execute ddl for initialization. The ddl description is as follows:
+
+```textmate
+├── script
+│     ├── schema                               // Complete ddl build table sql
+│     ├── data                               // The data sql of tables
+│     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
+```
+
+Execute the sql files that in `data` folder to initialize the table data
 
 ##### Modify the configuration
 The installation and unpacking have been completed, and the next step is to prepare the data-related work
@@ -178,29 +196,40 @@ The installation and unpacking have been completed, and the next step is to prep
 Make sure to create a new database `streampark` in mysql that the deployment machine can connect to
 
 ###### Modify connection information
-Go to `conf`, modify `conf/application.yml`, find the datasource item, find the mysql configuration, and modify it to the corresponding information, as follows
+Go to `conf`, modify `conf/application.yml`, find the spring item, find the profiles.active configuration, and modify it to the corresponding information, as follows
 
 ```yaml
-datasource:
-  dynamic:
-    # Whether to open SQL log output, it is recommended to close the production environment, there is performance loss
-    p6spy: false
-    hikari:
-      connection-timeout: 30000
-      max-lifetime: 1800000
-      max-pool-size: 15
-      min-idle: 5
-      connection-test-query: select 1
-      pool-name: HikariCP-DS-POOL
-    # Configure the default data source
-    primary: primary
-    datasource:
-      # datasource-1, named primary
-      primary:
-        username: $user
-        password: $password
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc: mysql://$host:$port/streampark?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+spring:
+  profiles.active: mysql #[h2,pgsql,mysql]
+  application.name: StreamPark
+  devtools.restart.enabled: false
+  mvc.pathmatch.matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  aop.proxy-target-class: true
+  messages.encoding: utf-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-circular-references: true
+    banner-mode: off
+```
+
+After modify `conf/application.yml`, then modify the `config/application-mysql.yml` to change the config information of database as follows:
+
+**Tips: Because of license incompatibility between Apache project and mysql jdbc driver, so you should download mysql jdbc driver by yourself and put it in $STREAMPARK_HOME/lib**
+
+```yaml
+spring:
+  datasource:
+    username: root
+    password: xxxx
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
 ###### Modify workspace

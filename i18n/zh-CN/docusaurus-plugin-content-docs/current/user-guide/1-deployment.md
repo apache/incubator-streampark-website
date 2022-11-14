@@ -51,6 +51,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 - Maven 3.6+
 - npm 7.11.2 ( https://nodejs.org/en/ )
+- pnpm (npm install -g pnpm)
 - JDK 1.8+
 
 ### 编译打包
@@ -155,7 +156,8 @@ streampark-console-service-1.2.1
 │    ├── streampark-jvm-profiler-1.0.0.jar       //jvm-profiler,火焰图相关功能 ( 内部使用，用户无需关注 )
 │    └── streampark-flink-sqlclient-1.0.0.jar    //Flink SQl 提交相关功能 ( 内部使用，用户无需关注 )
 ├── script
-│     ├── final                               // 完整的ddl建表sql
+│     ├── schema                               // 完整的ddl建表sql
+│     ├── data                               // 完整的dml插入数据sql
 │     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
 ├── logs                                      //程序 log 目录
 
@@ -168,9 +170,25 @@ streampark-console-service-1.2.1
 
 ```textmate
 ├── script
-│     ├── final                 // 完整的ddl建表sql
-│     ├── upgrade               // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
+│     ├── schema                               // 完整的ddl建表sql
+│     ├── data                               // 完整的dml插入数据sql
+│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
 ```
+
+执行schema文件夹中的sql来初始化表结构
+
+##### 初始化表数据
+
+在 1.2.1之前的版本安装过程中不需要手动做数据初始化，只需要设置好数据库信息即可，会自动完成建表和数据初始化等一些列操作, 1.2.1(包含)之后的版本里不在自动建表和升级,需要用户手动执行ddl进行初始化操作,ddl说明如下:
+
+```textmate
+├── script
+│     ├── schema                               // 完整的ddl建表sql
+│     ├── data                               // 完整的dml插入数据sql
+│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
+```
+
+执行data文件夹中的sql来初始化表数据
 
 ##### 修改配置
 安装解包已完成，接下来准备数据相关的工作
@@ -179,29 +197,40 @@ streampark-console-service-1.2.1
 确保在部署机可以连接的 mysql 里新建数据库 `streampark`
 
 ###### 修改连接信息
-进入到 `conf` 下，修改 `conf/application.yml`,找到 datasource 这一项，找到 mysql 的配置，修改成对应的信息即可，如下
+进入到 `conf` 下，修改 `conf/application.yml`,找到 spring 这一项，找到 profiles.active 的配置，修改成对应的信息即可，如下
 
 ```yaml
-datasource:
-  dynamic:
-    # 是否开启 SQL 日志输出，生产环境建议关闭，有性能损耗
-    p6spy: false
-    hikari:
-      connection-timeout: 30000
-      max-lifetime: 1800000
-      max-pool-size: 15
-      min-idle: 5
-      connection-test-query: select 1
-      pool-name: HikariCP-DS-POOL
-    # 配置默认数据源
-    primary: primary
-    datasource:
-      # 数据源-1，名称为 primary
-      primary:
-        username: $user
-        password: $password
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc: mysql://$host:$port/streampark?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
+spring:
+  profiles.active: mysql #[h2,pgsql,mysql]
+  application.name: StreamPark
+  devtools.restart.enabled: false
+  mvc.pathmatch.matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 500MB
+      max-request-size: 500MB
+  aop.proxy-target-class: true
+  messages.encoding: utf-8
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-circular-references: true
+    banner-mode: off
+```
+ 
+在修改完 `conf/application.yml` 后, 还需要修改 `config/application-mysql.yml` 中的数据库连接信息:
+
+**Tips: 由于Apache 2.0许可与Mysql Jdbc驱动许可的不兼容，用户需要自行下载驱动jar包并放在 $STREAMPARK_HOME/lib 中**
+
+```yaml
+spring:
+  datasource:
+    username: root
+    password: xxxx
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
 ###### 修改workspace
