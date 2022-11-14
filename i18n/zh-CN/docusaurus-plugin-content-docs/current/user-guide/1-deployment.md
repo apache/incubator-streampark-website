@@ -222,6 +222,8 @@ spring:
  
 在修改完 `conf/application.yml` 后, 还需要修改 `config/application-mysql.yml` 中的数据库连接信息:
 
+**Tips: 由于Apache 2.0许可与Mysql Jdbc驱动许可的不兼容，用户需要自行下载驱动jar包并放在 $STREAMPARK_HOME/lib 中**
+
 ```yaml
 spring:
   datasource:

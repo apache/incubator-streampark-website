@@ -221,6 +221,8 @@ spring:
 
 After modify `conf/application.yml`, then modify the `config/application-mysql.yml` to change the config information of database as follows:
 
+**Tips: Because of license incompatibility between Apache project and mysql jdbc driver, so you should download mysql jdbc driver by yourself and put it in $STREAMPARK_HOME/lib**
+
 ```yaml
 spring:
   datasource:
