@@ -7,7 +7,7 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-目前 `StreamPark` 中支持配置多种报警方式，主要有一下几种：
+目前 `StreamPark` 中支持配置多种报警方式，主要有以下几种：
 
 *   **E-mail**：邮件通知
 *   **DingTalk**：钉钉自定义群机器人
