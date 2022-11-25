@@ -141,7 +141,7 @@ java:
 
 #### Backend startup
 
-`StreamPark console` is a web application developed based on springboot, `org.apache.streampark.console StreamPark console` is the main class. Before startup, you need to set `VM options` and `environment variables`
+`StreamPark console` is a web application developed based on springboot, `org.apache.streampark.console.StreamParkConsole` is the main class. Before startup, you need to set `VM options` and `environment variables`
 
 ##### VM options
 
