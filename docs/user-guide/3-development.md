@@ -27,7 +27,7 @@ As for how to install the Hadoop environment locally, you can refer to the relev
 
 It is recommended to use the existing Hadoop cluster (test environment). If you use the existing Hadoop cluster, you need to copy the following configuration to the development machine
 
-- Copy the `core-site.xml`, `hdfs-site.xml` and `yard-site.xml` files to the development machine.
+- Copy the `core-site.xml`, `hdfs-site.xml` and `yarn-site.xml` files to the development machine.
 - If Kerberos authentication is enabled, you need to copy the `keytab` file and `krb5.conf` to the development machine.
 
 To ensure that the local machine can connect to the cluster, you need to set the host addresses of the `core-site.xml`、`hdfs-site.xml` and `yarn-site.xml` to the development machine
