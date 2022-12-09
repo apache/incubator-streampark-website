@@ -187,7 +187,16 @@ In the installation process of versions before 1.2.1, there is no need to manual
 │     ├── upgrade                             // The sql of the upgrade part of each version (only the sql changes from the previous version to this version are recorded)
 ```
 
-Execute the sql files that in `data` folder to initialize the table data
+Use the `root` user of the mysql service to perform the following sql statements.
+
+```sql
+create database if not exists `streampark` character set utf8mb4 collate utf8mb4_general_ci;
+create user 'streampark'@'%' IDENTIFIED WITH mysql_native_password by 'streampark';
+grant ALL PRIVILEGES ON streampark.* to 'streampark'@'%';
+flush privileges;
+```
+
+The `streampark` user can then execute sql file's content in the `schema` and `data` folders in turn to create the table and initialize the table data.
 
 ##### Modify the configuration
 The installation and unpacking have been completed, and the next step is to prepare the data-related work
