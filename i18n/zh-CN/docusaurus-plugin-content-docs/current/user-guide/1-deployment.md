@@ -188,13 +188,19 @@ streampark-console-service-1.2.1
 │     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
 ```
 
-执行data文件夹中的sql来初始化表数据
+以下 sql 语句请使用 mysql 服务的 root 用户进行操作。
+
+```sql
+create database if not exists `streampark` character set utf8mb4 collate utf8mb4_general_ci;
+create user 'streampark'@'%' IDENTIFIED WITH mysql_native_password by 'streampark';
+grant ALL PRIVILEGES ON streampark.* to 'streampark'@'%';
+flush privileges;
+```
+
+之后可使用 streampark 用户依次执行 schema 和 data 文件夹中的 sql 文件内容来建表以及初始化表数据。
 
 ##### 修改配置
 安装解包已完成，接下来准备数据相关的工作
-
-###### 新建数据库 `streampark`
-确保在部署机可以连接的 mysql 里新建数据库 `streampark`
 
 ###### 修改连接信息
 进入到 `conf` 下，修改 `conf/application.yml`,找到 spring 这一项，找到 profiles.active 的配置，修改成对应的信息即可，如下
@@ -229,7 +235,7 @@ spring:
   datasource:
     username: root
     password: xxxx
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 如果你使用的是 mysql-5.x，则此处的驱动名称应该是：com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
