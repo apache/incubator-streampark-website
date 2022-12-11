@@ -22,11 +22,11 @@ In the actual production environment, Flink jobs are generally complex, and usua
 ## Create Variable
 
 Variables are isolated between teams, there are independent variables under different teams, so you need to choose which Team to create variables before creating, 
-Here we choose the default team, and then click the "Add New" button to start creating variables.
+Here we choose the default team, and then click the `Add New` button to start creating variables.
 
 <img src="/doc/image/variable/create_variable.png"/><br></br>
 
-If the value of the variable is sensitive, such as a database password, you can turn on the "Desensitization" option when creating the variable, then the value of the variable will be displayed with "********" instead.
+If the value of the variable is sensitive, such as a database password, you can turn on the `Desensitization` option when creating the variable, then the value of the variable will be displayed with `********` instead.
 
 <img src="/doc/image/variable/create_variable_desensitization.png"/><br></br><br></br>
 
@@ -34,13 +34,13 @@ If the value of the variable is sensitive, such as a database password, you can 
 
 ## Reference variables in Flink SQL
 
-The variables that have been created can be referenced in Flink SQL as ${kafka.cluster}, and support follow-up searches.
+The variables that have been created can be referenced in Flink SQL as `${kafka.cluster}`, and support follow-up searches.
 
 <img src="/doc/image/variable/variable_flinksql_search.png"/><br></br><br></br>
 
 <img src="/doc/image/variable/variable_flinksql_quote.png"/><br></br><br></br>
 
-You can click the "Preview" button to view the value of the real variable. If this variable is set as desensitized, the value of the variable will be displayed as "********".
+You can click the `Preview` button to view the value of the real variable. If this variable is set as desensitized, the value of the variable will be displayed as `********`.
 
 <img src="/doc/image/variable/variable_flinksql_preview.png"/><br></br>
 
