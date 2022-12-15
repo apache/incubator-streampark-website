@@ -68,9 +68,11 @@ const config = {
           activeBaseRegex: `^/$`,
         },
         {
-          to: 'https://github.com/apache/incubator-streampark/releases',
+          // to: 'https://github.com/apache/incubator-streampark/releases',
+          to: '/download',
           position: 'right',
-          label: 'Download'
+          label: 'Download',
+          activeBaseRegex: '/download',
         },
         {
           to: '/docs/intro',
@@ -283,7 +285,7 @@ const config = {
                       </p>
                   </div>
                 </div>
-                
+
                 <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
                   <span>
                       Copyright © ${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
