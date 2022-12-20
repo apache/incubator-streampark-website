@@ -19,7 +19,7 @@
     "@docusaurus/core": "^2.1.0",
     "@docusaurus/plugin-content-docs": "^2.1.0",
     "@docusaurus/preset-classic": "^2.1.0",
-    "@docusaurus/theme-search-algolia": "^2.1.0",
+    "@easyops-cn/docusaurus-search-local": "^0.33.5",
     "@mdx-js/react": "^1.6.22",
     "@svgr/webpack": "^6.2.1",
     "aos": "^2.3.4",
