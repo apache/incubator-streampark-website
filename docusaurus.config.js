@@ -105,17 +105,16 @@ const config = {
           activeBaseRegex: `^/$`,
         },
         {
-          // to: 'https://github.com/apache/incubator-streampark/releases',
-          to: '/download',
-          position: 'right',
-          label: 'Download',
-          activeBaseRegex: '/download',
-        },
-        {
           to: '/docs/intro',
           label: 'Document',
           position: 'right',
           activeBaseRegex: `/docs`,
+        },
+        {
+          to: '/download',
+          position: 'right',
+          label: 'Download',
+          activeBaseRegex: '/download',
         },
         {
           label: 'Community',
