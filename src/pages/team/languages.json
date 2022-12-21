@@ -67,6 +67,23 @@
         "gitUrl": "https://github.com/monrg",
         "name": "Qingrong Wang"
       }
+    ],
+    "committer" : [
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/39726513?v=4",
+        "gitUrl": "https://github.com/wangsizhu0504",
+        "name": "Sizhu Wang"
+      },
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/38427477?v=4",
+        "gitUrl": "https://github.com/1996fanrui",
+        "name": "Rui Fan"
+      },
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/19602424?v=4",
+        "gitUrl": "https://github.com/macksonmu",
+        "name": "Chunjin Mu"
+      }
     ]
   },
   "en": {
@@ -136,6 +153,23 @@
         "avatarUrl": "https://avatars.githubusercontent.com/u/45427129?v=4",
         "gitUrl": "https://github.com/monrg",
         "name": "Qingrong Wang"
+      }
+    ],
+    "committer" : [
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/39726513?v=4",
+        "gitUrl": "https://github.com/wangsizhu0504",
+        "name": "Sizhu Wang"
+      },
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/38427477?v=4",
+        "gitUrl": "https://github.com/1996fanrui",
+        "name": "Rui Fan"
+      },
+      {
+        "avatarUrl": "https://avatars.githubusercontent.com/u/19602424?v=4",
+        "gitUrl": "https://github.com/macksonmu",
+        "name": "Chunjin Mu"
       }
     ]
   }
