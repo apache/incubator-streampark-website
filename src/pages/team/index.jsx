@@ -82,6 +82,33 @@ export default function () {
               }
             </div>
 
+            <h3 className="team_title mb-5">
+              Committer
+              <span className="desc">{dataSource.info.tip}</span>
+            </h3>
+            <div className="row bg-gray py-4">
+              {
+                dataSource.committer.map((item, i) => (
+                    <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                      <a href={item.gitUrl} target="_blank">
+                        <div className="team team-hover rounded">
+                          <div className="team-img">
+                            <img src={item.avatarUrl} alt={item.name} />
+                          </div>
+                          <div className="team-info">
+                            <span className="team-name text-dark">{item.name}</span>
+                            <p className="team-leader d-flex align-items-center justify-content-center">
+                              <Github className="github-icon" />
+                              {item.name}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                ))
+              }
+            </div>
+
           </div>
         </Layout>;
       }}

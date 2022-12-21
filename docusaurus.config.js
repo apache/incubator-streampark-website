@@ -99,26 +99,20 @@ const config = {
       },
       items: [
         {
-          to: '/',
-          position: 'right',
-          label: 'Home',
-          activeBaseRegex: `^/$`,
-        },
-        {
           to: '/docs/intro',
           label: 'Document',
-          position: 'right',
+          position: 'left',
           activeBaseRegex: `/docs`,
         },
         {
           to: '/download',
-          position: 'right',
+          position: 'left',
           label: 'Download',
           activeBaseRegex: '/download',
         },
         {
           label: 'Community',
-          position: 'right',
+          position: 'left',
           items: [
             {
               label: "Code of conduct",
@@ -157,29 +151,29 @@ const config = {
         {
           to: '/team',
           label: 'Team',
-          position: 'right',
+          position: 'left',
           activeBaseRegex: `/team`,
         },
         {
           to: '/user',
           label: 'Users',
-          position: 'right',
+          position: 'left',
           activeBaseRegex: `/user`,
         },
         {
           to: '/blog',
           label: 'Blog',
-          position: 'right',
+          position: 'left',
           activeBaseRegex: `/blog`,
         },
         {
           to: 'https://github.com/apache/incubator-streampark/issues/507',
-          position: 'right',
+          position: 'left',
           label: 'FAQ'
         },
         {
           label: 'ASF',
-          position: 'right',
+          position: 'left',
           items: [
             {
               label: "Foundation",
@@ -214,7 +208,7 @@ const config = {
         {
           href: 'https://github.com/apache/incubator-streampark',
           label: 'GitHub',
-          position: 'right',
+          position: 'left',
         },
         {
           type: "localeDropdown",
