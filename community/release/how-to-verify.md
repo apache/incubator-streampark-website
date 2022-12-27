@@ -9,24 +9,28 @@ For detailed check list, please refer to the official [check list](https://cwiki
 
 ## 1. Download the candidate version
 
-> Download the candidate version to be released to the local environment
-> Need to rely on gpg tool, if not, it is recommended to install gpg2
+Download the candidate version to be released to the local environment Need to rely on gpg tool, if not, it is recommended to install `gpg2`.
 
-:::caution Note
+:::caution
+
 If the network is poor, downloading may be time-consuming. The download is completed normally in about 20 minutes, please wait patiently.
+
 :::
+
 ```shell
 #If there is svn locally, you can clone to the local
 $ svn co https://dist.apache.org/repos/dist/dev/incubator/streampark/${release_version}-${rc_version}/
 #or download the material file directly
 $ wget https://dist.apache.org/repos/dist/dev/incubator/streampark/${release_version}-${rc_version}/xxx.xxx
-
 ```
+
 ## 2. Verify that the uploaded version is compliant
-> Start the verification process, which includes but is not limited to the following content and forms
+
+Start the verification process, which includes but is not limited to the following content and forms.
 
 ### 2.1 Check whether the release package is complete
-> The package uploaded to dist must include the source code package, and the binary package is optional
+
+The package uploaded to dist must include the source code package, and the binary package is optional.
 
 1. Whether to include the source code package
 2. Whether to include the signature of the source code package
@@ -35,15 +39,18 @@ $ wget https://dist.apache.org/repos/dist/dev/incubator/streampark/${release_ver
 
 
 ### 2.2 Check gpg signature
+
 First import the publisher's public key. Import KEYS from the svn repository to the local environment. (The person who releases the version does not need to import it again, the person who helps to do the verification needs to import it, and the user name is enough for the person who issued the version)
 
 #### 2.2.1 Import public key
+
 ```shell
 $ curl  https://downloads.apache.org/incubator/streampark/KEYS > KEYS # Download KEYS
 $ gpg --import KEYS # Import KEYS to local
 ```
 #### 2.2.2 Trust the public key
-> Trust the KEY used in this version
+
+Trust the KEY used in this version:
 
 ```shell
 $ gpg --edit-key xxxxxxxxxx #KEY user used in this version
@@ -69,11 +76,13 @@ Do you really want to set this key to ultimate trust? (y/N) y  #choose y
 gpg>
          
 ```
+
 #### 2.2.3 Check the gpg signature
 
 ```shell
 $ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i; done
 ```
+
 check result
 
 > If something like the following appears, it means the signature is correct. Keyword: **`Good signature`**
@@ -91,9 +100,7 @@ gpg: Good signature from "xxx @apache.org>"
 $ for i in *.tar.gz; do echo $i; sha512sum --check  $i.sha512; done
 ```
 
-
-
-#### 2.4.4 Check the binary package
+### 2.4 Check the binary package
 
 unzip  `apache-streampark_${scala.version}-${release.version}-incubating-bin.tar.gz`
 
@@ -120,7 +127,8 @@ check as follows:
 
 
 
-### 2.5 Check the binary package
+### 2.5 Check the source package
+
 > If the binary/web-binary package is uploaded, check the binary package.
 
 Unzip `apache-streampark-${release_version}-incubating-src.tar.gz`
@@ -131,7 +139,6 @@ cd apache-streampark-${release_version}-incubating-src
 # execute build.sh
 ./build.sh
 ```
-
 
 ***package mode, just select mixed mode ***
 
@@ -176,7 +183,8 @@ When PPMC votes in the dev@streampark.apache.org streampark community, Please br
 When IPMC votes in the general@incubator.apache.org incubator community. Please bring the binding suffix to indicate that the voting in the incubator community has a binding vote, which is convenient for counting the voting results.
 </font>
 
-:::caution note
+:::caution
+
 If you have already voted on dev@streampark.apache.org, you can take it directly to the incubator community when you reply to the vote, such as:
 
 ```html
@@ -184,11 +192,13 @@ If you have already voted on dev@streampark.apache.org, you can take it directly
 Forward my +1 from dev@listreamparknkis (non-binding)
 Copy my +1 from streampark DEV ML (non-binding)
 ````
+
 :::
 
 
-Non-PPMC/Non-IPMC member
-```html
+Non-PPMC/Non-IPMC member:
+
+```text
 +1 (non-binding)
 I checked:
      1. All download links are valid
@@ -198,8 +208,9 @@ I checked:
      5. 
 ````
 
-PPMC/IPMC member
-```html
+PPMC/IPMC member:
+
+```text
 //Incubator community voting, only IPMC members have binding binding
 +1 (binding)
 I checked:
@@ -212,10 +223,9 @@ I checked:
 
 
 ## 4. Precautions
+
 <font color="red">
 If you have maven tools installed, you can replace ./mvnw or mvnw.cmd with your own mvn command
 
 mvnw is short for Maven Wrapper. It can support running Maven projects without installing Maven and configuring environment variables. If it can't find it, it will download the corresponding Maven version according to the configuration file
-
-
 </font>
