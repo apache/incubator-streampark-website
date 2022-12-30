@@ -228,14 +228,14 @@ spring:
  
 在修改完 `conf/application.yml` 后, 还需要修改 `config/application-mysql.yml` 中的数据库连接信息:
 
-**Tips: 由于Apache 2.0许可与Mysql Jdbc驱动许可的不兼容，用户需要自行下载驱动jar包并放在 $STREAMPARK_HOME/lib 中**
+**Tips: 由于Apache 2.0许可与Mysql Jdbc驱动许可的不兼容，用户需要自行下载驱动jar包并放在 $STREAMPARK_HOME/lib 中,推荐使用8.x版本,下载地址[apache maven repository](https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/)**
 
 ```yaml
 spring:
   datasource:
     username: root
     password: xxxx
-    driver-class-name: com.mysql.cj.jdbc.Driver   # 如果你使用的是 mysql-5.x，则此处的驱动名称应该是：com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver   # 请根据mysql-connector-java版本确定具体的路径,例如:使用5.x则此处的驱动名称应该是：com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 ```
 
