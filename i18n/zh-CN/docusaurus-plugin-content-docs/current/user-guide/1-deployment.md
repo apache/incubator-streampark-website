@@ -315,37 +315,44 @@ npm install -g pm2
 
 进入系统之后，第一件要做的事情就是修改系统配置，在菜单/StreamPark/Setting 下，操作界面如下:
 
-![StreamPark Settings](/doc/image/streampark_settings.png)
+![StreamPark Settings](/doc/image/streampark_settings_2.0.0.png)
 
 主要配置项分为以下几类
 
 <div class="counter">
 
+-   System Setting
+-   Alert Setting
 -   Flink Home
--   Maven Home
--   StreamPark Env
--   Email
+-   Flink Cluster
 
 </div>
 
+### System Setting
+当前系统配置包括：
+
+-   Maven配置
+-   Docker环境配置
+-   警告邮箱配置
+-   k8s Ingress 配置
+
+### Alert Setting
+
+Alert Email 相关的配置是配置发送者邮件的信息，具体配置请查阅相关邮箱资料和文档进行配置
+
 ### Flink Home
+
 这里配置全局的 Flink Home,此处是系统唯一指定 Flink 环境的地方，会作用于所有的作业
 
 :::info 提示
 特别提示: 最低支持的 Flink 版本为 1.12.0, 之后的版本都支持
 :::
 
-### Maven Home
+### Flink Cluster
+Flink 当前支持的集群模式包括：
 
-指定 maven Home, 目前暂不支持，下个版本实现
+-   Standalone 集群
+-   Yarn 集群
+-   Kubernetes 集群
 
-### StreamPark Env
 
-- StreamPark Webapp address
-  这里配置 StreamPark Console 的 web url 访问地址，主要火焰图功能会用到，具体任务会将收集到的信息通过此处暴露的 url 发送 http 请求到系统，进行收集展示
-- StreamPark Console Workspace
-  配置系统的工作空间，用于存放项目源码，编译后的项目等(该配置为1.2.0之前的版本里的配置项)
-
-### Email
-
-Alert Email 相关的配置是配置发送者邮件的信息，具体配置请查阅相关邮箱资料和文档进行配置
