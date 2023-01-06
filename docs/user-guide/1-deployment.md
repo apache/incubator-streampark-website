@@ -317,18 +317,30 @@ Default password: <strong> admin / streampark </strong>
 
 After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamPark/Setting, the operation interface is as follows:
 
-![StreamPark Settings](/doc/image/streampark_settings.png)
+![StreamPark Settings](/doc/image/streampark_settings_2.0.0.png)
 
 The main configuration items are divided into the following categories
 
 <div class="counter">
 
+-   System Setting
+-   Alert Setting
 -   Flink Home
--   Maven Home
--   StreamPark Env
--   Email
+-   Flink Cluster
 
 </div>
+
+### System Setting
+The current system configuration includes:
+
+-   Maven Setting
+-   Docker Setting
+-   Sender Email Setting
+-   Ingress Setting
+
+### Alert Setting
+
+The configuration related to Alert Email is to configure the information of the sender's email. For the specific configuration, please refer to the relevant mailbox information and documents for configuration.
 
 ### Flink Home
 The global Flink Home is configured here. This is the only place in the system to specify the Flink environment, which will apply to all jobs.
@@ -337,17 +349,10 @@ The global Flink Home is configured here. This is the only place in the system t
 Special Note: The minimum supported Flink version is 1.12.0, and later versions are supported
 :::
 
-### Maven Home
+### Flink Cluster
+The cluster modes currently supported by Flink include:
 
-Specify maven Home, currently not supported, the next version will be implemented
+-   Standalone
+-   Yarn Session
+-   Kubernetes Session
 
-### StreamPark Env
-
-- StreamPark Webapp address
-  The web url access address of the StreamPark Console is configured here. The main flame graph function will be used. The specific task will send http requests to the system through the url exposed here for collection and display.
-- StreamPark Console Workspace
-  The workspace of the configuration system is used to store the source code of the project, the compiled project, etc. (this configuration is the configuration item in the version before 1.2.0)
-
-### Email
-
-The configuration related to Alert Email is to configure the information of the sender's email. For the specific configuration, please refer to the relevant mailbox information and documents for configuration.
