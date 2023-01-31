@@ -92,7 +92,7 @@ vim docker-compose.yaml
 ```sh
     build:
       context: ../..
-      dockerfile: deploy/docker/console/Dockerfile
+      dockerfile: deploy/docker/Dockerfile
 #   image: ${HUB}:${TAG}
 ```
 ![](/doc/image/streampark_source_generation_image.png)
