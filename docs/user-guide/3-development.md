@@ -141,7 +141,7 @@ java:
 
 #### Backend startup
 
-`StreamPark console` is a web application developed based on springboot, `org.apache.streampark.console.StreamParkConsole` is the main class. Before startup, you need to set `VM options` and `environment variables`
+`StreamPark console` is a web application developed based on springboot, `org.apache.streampark.console.StreamParkConsoleBootstrap` is the main class. Before startup, you need to set `VM options` and `environment variables`
 
 ##### VM options
 
@@ -163,7 +163,7 @@ If you use a non locally installed Hadoop cluster (test Hadoop), you need to con
 
 <img src="/doc/image/streampark_ideaopt.jpg" />
 
-If everything is ready, you can start the `StreamParkConsole` main class. If it is started successfully, you will see the printing information of successful startup.
+If everything is ready, you can start the `StreamParkConsoleBootstrap` main class. If it is started successfully, you will see the printing information of successful startup.
 
 ### Frontend deployment and configuration
 
