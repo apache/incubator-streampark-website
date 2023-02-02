@@ -140,7 +140,7 @@ java:
 
 #### 启动
 
-`streampark-console` 是基于 springBoot 开发的 web 应用，`org.apache.streampark.console.StreamParkConsole` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
+`streampark-console` 是基于 springBoot 开发的 web 应用，`org.apache.streampark.console.StreamParkConsoleBootstrap` 为主类， 在启动主类之前，需要设置下 `VM options` 和 `Environment variables`
 
 ##### VM options
 
@@ -162,7 +162,7 @@ java:
 
 <img src="/doc/image/streampark_ideaopt.jpg" />
 
-如果一切准假就绪，就可以用 `StreamParkConsole` 主类启动项目，如果启动成功，就会看到有启动成功的信息输出
+如果一切准假就绪，就可以用 `StreamParkConsoleBootstrap` 主类启动项目，如果启动成功，就会看到有启动成功的信息输出
 
 ### 前端
 
