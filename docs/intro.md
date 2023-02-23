@@ -74,22 +74,3 @@ This platform uses technologies including but not limited to:
 
 
 Thanks for the respect given by the above excellent open source projects and many unmentioned excellent open source projects
-
-## 👻 Why not ...❓
-
-### Apache Zeppelin
-
-[Apache Zeppelin](http://zeppelin.apache.org) is an excellent open source project that supports `Flink` well. `Zeppelin's` innovative `notebook` function allows developers to easily program `on-line` and submit tasks quickly. At the language level, Zeppelin supports `java`,
-`scala`, and `python` at the same time.Whether it is a DataStream task or a Flink SQL task, most tasks will go through the development stage, the testing stage, the packaging stage, the uploading server stage, and the starting task stage，
-this is a process with a long link, the whole process takes a long time, and the user experience is very unfriendly: even if a symbol is modified, the task has to go through the above process from the completion of the modification to the launch.
-We expect these steps could be completed by One-click solution—moving the mouse and have at least one task list, which can manage tasks conveniently、could clearly see which tasks are running, which tasks are stopped、the resource consumption of each task、one-click start or stop tasks and manage savePoint automatically.
-
-These problems are also problems that developers will encounter in actual development. `StreamPark-console` can solve these pain points very well. It is positioned as a one-stop real-time data platform and has more exciting functions (such as `Flink SQL WebIDE`, `dependency isolation`, `task rollback`, `flame graph`, `etc.`)
-
-### FlinkX
-
-[FlinkX](http://github.com/DTStack/flinkx)  is a distributed data synchronization tool based on Flink,
-which realizes efficient data migration between various heterogeneous data sources, and its positioning is relatively clear - it is specially used for data extraction and migration.
-It could be used as a service component. StreamPark focuses on the management of the development stage and the post-task stage,
-the positioning is different. The StreamPark-pump module is also being planned. It is wished to solve data source extraction and migration problem, and will eventually be integrated into the StreamPark-console.
-

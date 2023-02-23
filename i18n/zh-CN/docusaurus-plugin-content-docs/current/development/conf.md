@@ -102,111 +102,126 @@ public class JavaTableApp {
 **答案是肯定的**
 
 针对参数设置的问题,在`StreamPark`中提出统一程序配置的概念,把程序的一系列参数从开发到部署阶段按照特定的格式配置到`application.yml`里,抽象出
-一个通用的配置模板,按照这种规定的格式将上述配置的各项参数在配置文件里定义出来,在程序启动的时候将这个项目配置传入到程序中即可完成环境的初始化工作,在任务启动的时候也会自动识别启动时的参数,于是就有了`配置文件`这一概念
+一个通用的配置模板,按照这种规定的格式将上述配置的各项参数在配置文件里定义出来,在程序启动的时候将这个项目配置传入到程序中即可完成环境的初始化工作,在任务启动的时候也会自动识别启动时的参数.
 
-针对Flink Sql作业在代码里写sql的问题,`StreamPark`针对`Flink Sql`作业做了更高层级封装和抽象,开发者只需要将sql按照一定的规范要求定义到`sql.yaml`文件中,在程序启动时将该sql文件传入到主程序中,
-就会自动按照要求加载执行sql,于是就有了`sql文件`的概念
-
-## 相关术语
-
-为了方便开发者理解和相互交流,我们把上面引出的,把程序的一系列参数从开发到部署阶段按照特定的格式配置到文件里,这个有特定作用的文件就是项目的 <strong> **`配置文件`** </strong>
-
-Flink Sql任务中将提取出来的sql放到`sql.yaml`中,这个有特定作用的文件就是项目的 <strong> `sql文件` </strong>
-
-## 配置文件
-
-在StreamPark中,`DataStream`作业和`Flink Sql`作业配置文件是通用的,换言之,这个配置文件既能定义`DataStream`的各项配置,也能定义`Flink Sql`的各项配置(Flink Sql作业中配置文件是可选的), 配置文件的格式必须是`yaml`格式, 必须得符合yaml的格式规范
+针对Flink Sql作业在代码里写sql的问题,`StreamPark`针对`Flink Sql`作业做了更高层级封装和抽象,开发者只需要将sql按照一定的规范要求定义到`application.yaml`中,在程序启动时传入该文件到主程序中, 就会自动按照要求加载执行sql
 
 下面我们来详细看看这个配置文件的各项配置都是如何进行配置的,有哪些注意事项
 
 ```yaml
-
 flink:
-  deployment:
-    option:
-      target: application
-      detached:
-      shutdownOnAttachedExit:
-      jobmanager:
-    property: #@see: https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html
-      $internal.application.main: org.apache.streampark.flink.quickstart.QuickStartApp
-      yarn.application.name: StreamPark QuickStart App
-      yarn.application.queue:
-      taskmanager.numberOfTaskSlots: 1
-      parallelism.default: 2
-      jobmanager.memory:
-        flink.size:
-        heap.size:
-        jvm-metaspace.size:
-        jvm-overhead.max:
-        off-heap.size:
-        process.size:
-      taskmanager.memory:
-        flink.size:
-        framework.heap.size:
-        framework.off-heap.size:
-        managed.size:
-        process.size:
-        task.heap.size:
-        task.off-heap.size:
-        jvm-metaspace.size:
-        jvm-overhead.max:
-        jvm-overhead.min:
-        managed.fraction: 0.4
-  checkpoints:
-    enable: true
-    interval: 30000
-    mode: EXACTLY_ONCE
-    timeout: 300000
-    unaligned: true
-  watermark:
-    interval: 10000
-  # 状态后端
-  state:
-    backend: # see https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html
-      value: filesystem # 保存类型('jobmanager', 'filesystem', 'rocksdb')
-      memory: 5242880 # 针对jobmanager有效,最大内存
-      async: false    # 针对(jobmanager,filesystem)有效,是否开启异步
-      incremental: true #针对rocksdb有效,是否开启增量
-      #rocksdb 的配置参考 https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend
-      #rocksdb配置key的前缀去掉:state.backend
-      #rocksdb.block.blocksize:
-    checkpoints.dir: file:///tmp/chkdir
-    savepoints.dir: file:///tmp/chkdir
-  # 重启策略
-  restart-strategy:
-    value: fixed-delay  #重启策略[(fixed-delay|failure-rate|none)共3个可配置的策略]
-    fixed-delay:
+  option:
+    target: yarn-per-job
+    detached:
+    shutdownOnAttachedExit:
+    zookeeperNamespace:
+    jobmanager:
+  property: #@see: https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/deployment/config/
+    $internal.application.main: org.apache.streampark.flink.quickstart.QuickStartApp
+    pipeline.name: streampark-quickstartApp
+    yarn.application.queue:
+    taskmanager.numberOfTaskSlots: 1
+    parallelism.default: 2
+    jobmanager.memory:
+      flink.size:
+      heap.size:
+      jvm-metaspace.size:
+      jvm-overhead.max:
+      off-heap.size:
+      process.size:
+    taskmanager.memory:
+      flink.size:
+      framework.heap.size:
+      framework.off-heap.size:
+      managed.size:
+      process.size:
+      task.heap.size:
+      task.off-heap.size:
+      jvm-metaspace.size:
+      jvm-overhead.max:
+      jvm-overhead.min:
+      managed.fraction: 0.4
+    pipeline:
+      auto-watermark-interval: 200ms
+    # checkpoint
+    execution:
+      checkpointing:
+        mode: EXACTLY_ONCE
+        interval: 30s
+        timeout: 10min
+        unaligned: false
+        externalized-checkpoint-retention: RETAIN_ON_CANCELLATION
+    # state backend
+    state:
+      backend: hashmap # Special note: flink1.12 optional configuration ('jobmanager', 'filesystem', 'rocksdb'), flink1.12+ optional configuration ('hashmap', 'rocksdb'),
+      backend.incremental: true
+      checkpoint-storage: filesystem
+      savepoints.dir: file:///tmp/chkdir
+      checkpoints.dir: file:///tmp/chkdir
+    # restart strategy
+    restart-strategy: fixed-delay  # Restart strategy [(fixed-delay|failure-rate|none) a total of 3 configurable strategies]
+    restart-strategy.fixed-delay:
       attempts: 3
       delay: 5000
-    failure-rate:
+    restart-strategy.failure-rate:
       max-failures-per-interval:
       failure-rate-interval:
       delay:
   # table
   table:
-    planner: blink # (blink|old|any)
-    mode: streaming #(batch|streaming)
+    table.local-time-zone: default # @see https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/dev/table/config/
+
+# kafka source
+app:
+  kafka.source:
+    bootstrap.servers: kfk1:9092,kfk2:9092,kfk3:9092
+    topic: test_user
+    group.id: user_01
+    auto.offset.reset: earliest
+
+  # mysql
+  jdbc:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://localhost:3306/test?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+
+sql:
+  flinksql: |
+    CREATE TABLE datagen (
+      f_sequence INT,
+      f_random INT,
+      f_random_str STRING,
+      ts AS localtimestamp,
+      WATERMARK FOR ts AS ts
+    ) WITH (
+      'connector' = 'datagen',
+      -- optional options --
+      'rows-per-second'='5',
+      'fields.f_sequence.kind'='sequence',
+      'fields.f_sequence.start'='1',
+      'fields.f_sequence.end'='1000',
+      'fields.f_random.min'='1',
+      'fields.f_random.max'='1000000',
+      'fields.f_random_str.length'='10'
+    );
+    CREATE TABLE print_table (
+      f_sequence INT,
+      f_random INT,
+      f_random_str STRING
+      ) WITH (
+      'connector' = 'print'
+    );
+    INSERT INTO print_table select f_sequence,f_random,f_random_str from datagen;
 
 ```
-上面是关于`开发时`和`项目部署`时需要关注的环境相关的完整的配置,这些配置是在`flink`的namespace下进行配置的,主要分为2大类
-* `deployment`下的配置是项目部署相关的配置(`即项目启动时的一系列资源相关的配置参数`)
-* 其他是开发时需要关注的环境相关的配置
 
-开发时需要关注的环境相关的配置有5项
+从全局看参数分为三大类: `flink`, `app`, `sql`, 各自作用如下:
 
-* `checkpoints`
-* `watermark`
-* `state`
-* `restart-strategy`
-* `table`
+### flink
+flink下放的是作业的基础参数, 包括 `option` 和 `property`, `table` 三大类:
 
-### Deployment
-deployment下放的是部署相关的参数和配置项,具体又分为两类
-* `option`
-* `property`
 #### option
-
 `option`下放的参数是flink run 下支持的参数,目前支持的参数如下
 
 <ClientOption></ClientOption>
@@ -220,12 +235,10 @@ option下的参数必须是 `完整参数名`
 
 #### property
 
-`property`下放的参数是标准参数-D下的参数,可以分为两类
-- 基础参数
-- Memory参数
+`property`下放的参数是标准的flink参数(-D下的参数),flink所有的参数数据都可以在这里进行配置, 大致如下:
+
 ##### 基础参数
 基础参数可以配置的选项非常之多,这里举例5个最基础的设置
-
 <ClientProperty></ClientProperty>
 
 :::info 注意事项
@@ -233,6 +246,7 @@ option下的参数必须是 `完整参数名`
 :::
 如您需要设置更多的参数,可参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html)
 一定要将这些参数放到`property`下,并且参数名称要正确,`StreamPark`会自动解析这些参数并生效
+
 ##### Memory参数
 Memory相关的参数设置也非常之多,一般常见的配置如下
 
@@ -257,109 +271,6 @@ Flink JVM 进程的进程总内存（Total Process Memory）包含了由 Flink �
 不建议同时设置进程总内存和 Flink 总内存。 这可能会造成内存配置冲突，从而导致部署失败。 额外配置其他内存部分时，同样需要注意可能产生的配置冲突。
 :::
 
-### Checkpoints
-
-Checkpoints 的配置比较简单,按照下面的方式进行配置即可
-
-<ClientCheckpoints></ClientCheckpoints>
-
-### Watermark
-
-`watermark` 配置只需要设置下Watermark的生成周期`interval`即可
-
-### State
-
-`state`是设置状态相关的配置
-```yaml
-state:
-  backend: # see https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html
-    value: filesystem # 保存类型('jobmanager', 'filesystem', 'rocksdb')
-    memory: 5242880 # 针对jobmanager有效,最大内存
-    async: false    # 针对(jobmanager,filesystem)有效,是否开启异步
-    incremental: true #针对rocksdb有效,是否开启增量
-    #rocksdb 的配置参考 https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend
-    #rocksdb配置key的前缀去掉:state.backend
-    #rocksdb.block.blocksize:
-  checkpoints.dir: file:///tmp/chkdir
-  savepoints.dir: file:///tmp/chkdir
-  checkpoints.num-retained: 1
-```
-我们可以看到大体可以分为两类
-* backend 相关的配置
-* checkpoints 相关的配置
-
-#### backend
-很直观的,`backend`下是设置状态后端相关的配置,状态后台的配置遵照[`官网文档`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/ops/state/state_backends.html)的配置规则,在这里支持以下配置
-
-<ClientBackend></ClientBackend>
-
-如果`backend`的保存类型为`rocksdb`,则可能要进一步设置`rocksdb`相关的配置,可以参考[`官网`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html#rocksdb-state-backend)来进行相关配置,
-需要注意的是官网关于`rocksdb`的配置都是以`state.backend`为前缀,而当前的命名空间就是在`state.backend`下,注意要保证参数名正确
-
-:::info 注意事项
-`value`项非标准配置,该项用来设置状态的保存类型(`jobmanager` | `filesystem` | `rocksdb`),其他项均为标准配置,遵守官网的规范
-:::
-
-
-### Restart Strategy
-重启策略的配置非常直观,在flink中有三种重启策略,对应了这里的三种配置,如下:
-
-```yaml
-  restart-strategy:
-    value: fixed-delay  #重启策略[(fixed-delay|failure-rate|none)共3个可配置的策略]
-    fixed-delay:
-      attempts: 3
-      delay: 5000
-    failure-rate:
-      max-failures-per-interval:
-      failure-rate-interval:
-      delay:
-```
-`value`下配置具体的选择哪种重启策略
-
-* fixed-delay
-* failure-rate
-* none
-
-#### fixed-delay(固定间隔)
-<ClientFixedDelay></ClientFixedDelay>
-
-:::tip 示例
-
-```yaml
-attempts: 5
-delay: 3 s
-```
-即:任务最大的失败重试次数是`5次`,每次任务重启的时间间隔是`3秒`,如果失败次数到达5次,则任务失败退出
-:::
-
-#### failure-rate(失败率)
-<ClientFailureRate></ClientFailureRate>
-
-:::tip 示例
-
-```yaml
- max-failures-per-interval: 10
- failure-rate-interval: 5 min
- delay: 2 s
-```
-
-即:每次异常重启的时间间隔是`2秒`,如果在`5分钟内`,失败总次数到达`10次` 则任务失败.
-:::
-
-#### None (无重启)
-
-无重启无需配置任务参数
-
-#### 单位后缀
-
-时间间隔和频率设置需注意,可以不带单位后缀,如果不带单位后缀则默认会当成`毫秒`来处理,可选的单位有
-
-* s    秒
-* m    分钟
-* min  分钟
-* h    小时
-* d    日
 
 ### Table
 在`table`下是Flink Sql相关的配置,目前支持的配置项和作用如下
@@ -371,9 +282,14 @@ delay: 3 s
 
 <ClientTables></ClientTables>
 
-## Sql 文件
+## app
 
-Sql 文件必须是yaml格式的文件,得遵循yaml文件的定义规则,具体内部sql格式的定义非常简单,如下:
+我们将作业中需要的一些用户自定义的参数放到app下, 这里可以放用户需要的任意参数. 如,用户的需求是从kafka读取数据写入mysql, 则肯定会用到kafka和mysql的相关信息.
+就可以定义到这里.
+
+## sql
+
+sql是在flink sql作业中需要指定的, 我们提倡将sql语句本身抽取到配置文件里,使开发更简单, 该sql得遵循yaml文件的定义规则,具体内部sql格式的定义非常简单,如下:
 
 ```sql
 sql: |
