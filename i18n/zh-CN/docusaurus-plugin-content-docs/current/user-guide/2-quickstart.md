@@ -6,7 +6,7 @@ sidebar_position: 2
 
 ## 如何使用
 
-在上个章节已经详细介绍了一站式平台 `streampark-console` 的安装, 本章节看看如果用 `streampark-console` 快速部署运行一个作业, `streampark-console` 对标准的 Flink 程序 ( 安装 Flink 官方要去的结构和规范 ) 和用 `streampark` 开发的项目都做了很好的支持，下面我们使用 `streampark-quickstart` 来快速开启 `streampark-console` 之旅
+在上个章节已经详细介绍了一站式平台 `streampark-console` 的安装, 本章节看看如果用 `streampark-console` 快速部署运行一个作业, `streampark-console` 对标准的 Flink 程序 ( 按照 Flink 官方要求的结构和规范 ) 和用 `streampark` 开发的项目都做了很好的支持，下面我们使用 `streampark-quickstart` 来快速开启 `streampark-console` 之旅
 
 `streampark-quickstart` 是 StreamPark 开发 Flink 的上手示例程序，具体请查阅:
 
