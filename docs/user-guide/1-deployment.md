@@ -56,7 +56,7 @@ You can directly download the compiled [**release package**](https://github.com/
 
 ### install streampark
 
-(download)[https://streampark.apache.org/zh-CN/download] streampark release package, unpacking as follows
+[download](https://streampark.apache.org/download) streampark release package, unpacking as follows
 
 ```textmate
 .
