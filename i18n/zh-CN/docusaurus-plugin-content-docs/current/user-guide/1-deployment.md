@@ -44,7 +44,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ## 安装
 
-[**下载**](https://github.com/apache/incubator-streampark/releases) streampark 安装包,解包后安装目录如下
+[**下载**](https://streampark.apache.org/zh-CN/download/) streampark 安装包,解包后安装目录如下
 
 ```textmate
 .
