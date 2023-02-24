@@ -1,6 +1,6 @@
 ---
 id: 'deployment'
-title: '平台部署'
+title: '安装部署'
 sidebar_position: 1
 ---
 
@@ -42,105 +42,14 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 使用 `Flink on Kubernetes`，需要额外部署/或使用已经存在的 Kubernetes 集群，请参考条目： [**StreamPark Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)。
 
-## 编译 & 部署
+## 安装
 
-你可以直接下载编译好的[**发行包**](https://github.com/apache/incubator-streampark/releases)(推荐),也可以选择手动编译安装，手动编译安装步骤如下:
-
-
-### 环境要求
-
-- Maven 3.6+
-- npm 7.11.2 ( https://nodejs.org/en/ )
-- pnpm (npm install -g pnpm)
-- JDK 1.8+
-
-### 编译打包
-
-
-#### 自动打包
-
-从 StreamPark 1.2.3+ 版本开始,提供了自动编译的脚本 `build.sh`, 执行运行该脚本按照要求进行下一步选择即可完成编译, 若 StreamPark 1.2.3 之前的版本可以跳过,直接看手动打包部分文档即可
-
-<video src="http://assets.streamxhub.com/streamx-build.mp4" controls="controls" width="100%" height="100%"></video>
-
-```shell
-
-./build.sh
-
-```
-
-#### 手动打包
-
-在 StreamPark 从 1.2.1 及之后的版本支持**混合打包** 和 **独立打包** 两种模式,供用户选择, 手动打包部署的话,需要注意每种打包方式的具体操作:
-
-##### 混合打包
-
-```bash
-git clone git@github.com:apache/incubator-streampark.git streampark
-cd streampark
-mvn clean install -DskipTests -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pwebapp
-```
-
-:::danger 特别注意
-前后端混合打包模式下<span style={{color:'red'}}>**-Pwebapp**</span> 该参数必带
-:::
-
-##### 独立打包
-
-###### 1. 后端编译
-
-```bash
-git clone git@github.com:apache/incubator-streampark.git streampark
-cd streampark
-mvn clean install -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -DskipTests
-```
-
-###### 2. 前端打包
-
-- 2.1 修改base api
-
-在前后端独立编译部署的项目里,前端项目需要知道后端服务的base api,才能前后端协同工作. 因此在编译之前我们需要指定下后端服务的base api,修改 streampark-console-webapp/.env.production 里的`VUE_APP_BASE_API`即可
-
-```bash
-vi streampark/streampark-console/streampark-console-webapp/.env.production
-```
-
-- 2.2 编译
-
-```bash
-git clone https://github.com/apache/incubator-streampark.git streampark
-cd streampark/streampark-console/streampark-console-webapp
-npm install
-npm run build
-```
-
-:::danger 特别注意
-
-注意每个不同版本编译的时候携带的参数,
-在 StreamPark 1.2.3(包含)之后的版本里, 其中 `-Dscala.version` 和 `-Dscala.binary.version` 参数 必带
-
-Scala 2.11 编译, 相关 scala 版本指定信息如下:
-```
--Dscala.version=2.11.12 -Dscala.binary.version=2.11
-```
-Scala 2.12 编译, 相关 scala 版本指定信息如下:
-```
--Dscala.version=2.12.7 -Dscala.binary.version=2.12
-```
-
-:::
-
-
-### 部署后端
-
-安装完成之后就看到最终的工程文件，位于 `streampark/streampark-console/streampark-console-service/target/streampark-console-service-${version}-bin.tar.gz`,解包后安装目录如下
+[**下载**](https://streampark.apache.org/zh-CN/download/) streampark 安装包,解包后安装目录如下
 
 ```textmate
 .
 streampark-console-service-1.2.1
 ├── bin
-│    ├── flame-graph
-│    ├──   └── *.py                           //火焰图相关功能脚本 ( 内部使用，用户无需关注 )
 │    ├── startup.sh                           //启动脚本
 │    ├── setclasspath.sh                      //java 环境变量相关的脚本 ( 内部使用，用户无需关注 )
 │    ├── shutdown.sh                          //停止脚本
@@ -152,54 +61,43 @@ streampark-console-service-1.2.1
 │    └── ...
 ├── lib
 │    └── *.jar                                //项目的 jar 包
-├── plugins
-│    ├── streampark-jvm-profiler-1.0.0.jar       //jvm-profiler,火焰图相关功能 ( 内部使用，用户无需关注 )
+├── client
 │    └── streampark-flink-sqlclient-1.0.0.jar    //Flink SQl 提交相关功能 ( 内部使用，用户无需关注 )
 ├── script
-│     ├── schema                               // 完整的ddl建表sql
-│     ├── data                               // 完整的dml插入数据sql
-│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
-├── logs                                      //程序 log 目录
-
-├── temp                                      //内部使用到的临时路径，不要删除
+│     ├── schema                             
+│     │      ├── mysql-schema.sql            // mysql的ddl建表sql
+│     │      └── pgsql-schema.sql            // pgsql的ddl建表sql
+│     ├── data                             
+│     │      ├── mysql-data.sql              // mysql的完整初始化数据
+│     │      └── pgsql-data.sql              // pgsql的完整初始化数据
+│     ├── upgrade                            
+│     │      ├── 1.2.3.sql                   //升级到 1.2.3版本需要执行的升级sql      
+│     │      └── 2.0.0.sql                   //升级到 2.0.0版本需要执行的升级sql   
+│     │      ... 
+├── logs                                     //程序 log 目录
+├── temp                                     //内部使用到的临时路径，不要删除
 ```
 
 ##### 初始化表结构
 
-在 1.2.1之前的版本安装过程中不需要手动做数据初始化，只需要设置好数据库信息即可，会自动完成建表和数据初始化等一些列操作, 1.2.1(包含)之后的版本里不在自动建表和升级,需要用户手动执行ddl进行初始化操作,ddl说明如下:
+目前支持mysql,pgsql, h2(默认,不需要执行任何操作),sql脚本目录如下:
 
 ```textmate
 ├── script
-│     ├── schema                               // 完整的ddl建表sql
-│     ├── data                               // 完整的dml插入数据sql
-│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
+│     ├── schema                             
+│     │      ├── mysql-schema.sql            // mysql的ddl建表sql
+│     │      └── pgsql-schema.sql            // pgsql的ddl建表sql
+│     ├── data                             
+│     │      ├── mysql-data.sql              // mysql的完整初始化数据
+│     │      └── pgsql-data.sql              // pgsql的完整初始化数据
+│     ├── upgrade                            
+│     │      ├── 1.2.3.sql                   //升级到 1.2.3版本需要执行的升级sql      
+│     │      └── 2.0.0.sql                   //升级到 2.0.0版本需要执行的升级sql   
 ```
-
-执行schema文件夹中的sql来初始化表结构
-
-##### 初始化表数据
-
-在 1.2.1之前的版本安装过程中不需要手动做数据初始化，只需要设置好数据库信息即可，会自动完成建表和数据初始化等一些列操作, 1.2.1(包含)之后的版本里不在自动建表和升级,需要用户手动执行ddl进行初始化操作,ddl说明如下:
-
-```textmate
-├── script
-│     ├── schema                               // 完整的ddl建表sql
-│     ├── data                               // 完整的dml插入数据sql
-│     ├── upgrade                             // 每个版本升级部分的sql(只记录从上个版本到本次版本的sql变化)
-```
-
-以下 sql 语句请使用 mysql 服务的 root 用户进行操作。
-
-```sql
-create database if not exists `streampark` character set utf8mb4 collate utf8mb4_general_ci;
-create user 'streampark'@'%' IDENTIFIED WITH mysql_native_password by 'streampark';
-grant ALL PRIVILEGES ON streampark.* to 'streampark'@'%';
-flush privileges;
-```
-
-之后可使用 streampark 用户依次执行 schema 和 data 文件夹中的 sql 文件内容来建表以及初始化表数据。
+如果是初次安装, 依次执行 `schema` 和 `data` 目录下对应数据库的脚本文件即可, 如果是升级, 则执行对应的版本号的sql即可.
 
 ##### 修改配置
+
 安装解包已完成，接下来准备数据相关的工作
 
 ###### 修改连接信息
@@ -252,60 +150,15 @@ streampark:
     remote: hdfs:///streampark   # support hdfs:///streampark/ 、 /streampark 、hdfs://host:ip/streampark/
 ```
 
-##### 启动后端
+##### 启动
 
-进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是**10000**,如果没啥意外则会启动成功
+进入到 `bin` 下直接执行 startup.sh 即可启动项目，默认端口是**10000**,如果没啥意外则会启动成功,打开浏览器 输入**http://$host:10000**  即可登录
 
 ```bash
 cd streampark-console-service-1.0.0/bin
 bash startup.sh
 ```
 相关的日志会输出到**streampark-console-service-1.0.0/logs/streampark.out** 里
-
-:::info 提示
-
-前后端混合打包模式,只启动后端服务即可完成所有的部署, 打开浏览器 输入**http://$host:10000**  即可登录
-
-:::
-
-### 部署前端
-
-##### 环境准备
-
-全局安装 nodejs 和 pm2
-```
-yum install -y nodejs
-npm install -g pm2
-```
-
-##### 发布
-
-###### 1. 将dist copy到部署服务器
-将streampark-console-webapp/dist 整个目录 copy至服务器的部署目录,如: `/home/www/streampark`,拷贝后的目录层级是/home/www/streampark/dist
-
-###### 2. 将streampark.js文件copy到项目部署目录
-将streampark/streampark-console/streampark-console-webapp/streampark.js copy 至 `/home/www/streampark`
-
-###### 3. 修改服务端口
-用户可以自行指定前端服务的端口地址, 修改 /home/www/streampark/streampark.js文件, 找到 `serverPort` 修改即可,默认如下:
-
-```
-  const serverPort = 1000
-```
-
-4. 启动服务
-
-```shell
-   pm2 start streampark.js
-```
-
-关于 pm2的更多使用请参考[官网](https://pm2.keymetrics.io/)
-
-### 登录系统
-
-经过以上步骤,就算部署完成,可直接登录进入系统
-
-![StreamPark Login](/doc/image/streampark_login.jpeg)
 
 :::tip 提示
 默认密码: <strong> admin / streampark </strong>

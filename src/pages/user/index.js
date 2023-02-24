@@ -18,8 +18,8 @@ export default function () {
     {() => {
       // AOS JS
       AOS.init({
-        offset: 100,
-        duration: 700,
+        offset: 80,
+        duration: 500,
         easing: "ease-out-quad",
         once: !0
       });
@@ -34,10 +34,12 @@ export default function () {
             <div className="user_case home_block">
               {
                 img.map((item, i) => (
-                  <div key={i} index={i} data-aos="fade-up" data-aos-delay={i * 100}>
-                    <div className="case_item case_hover" >
-                      <img src={useBaseUrl('/user/' + item.url)} alt="name" />
-                    </div>
+                  <div key={i} index={i} data-aos="fade-up" data-aos-delay={i * 50}>
+                    <a href={item.url} target="_blank">
+                      <div className="case_item case_hover" >
+                        <img src={useBaseUrl('/user/' + item.imgUrl)} alt="name" />
+                      </div>
+                    </a>
                   </div>
                 ))
               }
