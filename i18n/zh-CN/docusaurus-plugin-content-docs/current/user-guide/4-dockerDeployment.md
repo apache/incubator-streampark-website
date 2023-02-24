@@ -23,8 +23,8 @@ sidebar_position: 4
 #### 部署
 
 ```sh
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/.env
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
+wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/.env
 docker-compose up -d
 ```
 服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问StreamPark链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streampark。想要了解更多操作请参考用户手册快速上手。
