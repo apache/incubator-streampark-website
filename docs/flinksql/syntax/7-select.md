@@ -103,7 +103,7 @@ SELECT ... FROM ...;
     with_item_name (column_name[, ...n]) AS ( <select_query> )
 ```
 
-使用案例：
+使用案例1：
 
 ```sql
 WITH orders_with_total AS (
@@ -115,7 +115,25 @@ FROM orders_with_total
 GROUP BY order_id;
 ```
 
+使用案例2：
+
+```sql
+WITH orders_with_total1 AS (
+    SELECT order_id, price + tax AS total
+    FROM Orders
+),
+orders_with_total1 AS (
+    SELECT concateorder_id, price + tax AS total
+    FROM Orders
+)
+SELECT order_id, SUM(total)
+FROM orders_with_total
+GROUP BY order_id;
+```
+
 上面的`with`子句定义了`orders_with_total`，并且在`group by`子句中使用了它。
+
+> `with` 子句只能在一个 `select` 语句上面使用，不可单独编写，并且添加英文分号，将其作为一个单独的公共表达式，然后在多个 `select` 语句中使用。如果想实现在多个 `select` 语句中使用同一个公共表达式，可以通过创建临时视图来解决。
 
 ## SELECT和WHERE
 
