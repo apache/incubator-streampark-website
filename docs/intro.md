@@ -34,7 +34,7 @@ On the other hand, It can be challenge for enterprises to use Flink & Spark if t
 
 The overall architecture of StreamPark is shown in the following figure. StreamPark consists of three parts, they are StreamPark-core, StreamPark-pump, and StreamPark-console.
 
-![StreamPark Archite](/doc/image/streampark_archite.png)
+![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
 ### 1️⃣ StreamPark-core
 

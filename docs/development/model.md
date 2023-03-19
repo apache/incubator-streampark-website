@@ -22,7 +22,7 @@ Let's start from these aspects
 
 ## Architecture
 
-[]("/doc/image/streampark_archite.png")
+[]("/doc/image_en/streampark_archite.png")
 
 ## Programming paradigm
 `streampark-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with StreamPark looks like, and what the specifications and requirements are.
