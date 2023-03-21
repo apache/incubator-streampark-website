@@ -23,7 +23,7 @@ sidebar_position: 3
 
 There are some rules need to note for reviewers and contributors when developing or reviewing PRs.  
 
-### About Exception processing for `streampark-console-service` module
+### About Exception Processing for `streampark-console-service` Module
 
 This `streampark-console-service` module is the core module for processing user requests.It's very necessary to strive to provide the best user experience.   
 So, we introduced the [AbstractApiException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java)
