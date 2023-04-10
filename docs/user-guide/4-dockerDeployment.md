@@ -22,8 +22,8 @@ To start the service with docker-compose, you need to install [docker-compose](h
 #### Deployment
 
 ```html
-wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
-wget https://github.com/apache/incubator-streampark/blob/dev/deploy/docker/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/.env
 docker-compose up -d
 ```
 
