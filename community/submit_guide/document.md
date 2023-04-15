@@ -25,7 +25,7 @@ Good documentation is critical for any type of software. Any contribution that c
 
 ## Get the document project
 
-Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/apache/incubator-streampark-websitehttps://github.com/apache/incubator-streampark-website).
+Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/apache/incubator-streampark-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 
