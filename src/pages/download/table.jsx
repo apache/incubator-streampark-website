@@ -9,7 +9,7 @@ export default function (props) {
   const dataSource = config?.[language];
 
   function getSourceLink(version, suffix) {
-    return 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
+    return 'https://downloads.apache.org/incubator/streampark/'
     .concat(version)
     .concat('/apache-streampark-')
     .concat(version)
@@ -18,7 +18,7 @@ export default function (props) {
   }
 
   function getBinaryLink(scala, version, suffix) {
-    return 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
+    return 'https://downloads.apache.org/incubator/streampark/'
     .concat(version)
     .concat('/apache-streampark_')
     .concat(scala)
