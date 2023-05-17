@@ -14,7 +14,7 @@ make stream processing easier!!!
 `StreamPark` is an easy-to-use stream processing application development framework and one-stop stream processing operation platform, Aimed at ease building and managing streaming applications, StreamPark provides scaffolding for writing streaming process logics with Apache Flink and Apache Spark.
 StreamPark also provides a professional task management including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
-<video src="http://assets.streamxhub.com/StreamPark-video.mp4" controls="controls" width="100%" height="100%"></video>
+<video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
 
 ## Why StreamPark
 
