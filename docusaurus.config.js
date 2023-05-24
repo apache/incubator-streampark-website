@@ -146,6 +146,10 @@ const config = {
               label: "Submit Code",
               to: "/community/submit_guide/submit_code",
             },
+            {
+              label: "How to release",
+              to: "/community/release/how_to_release",
+            },
           ],
         },
         {
