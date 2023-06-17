@@ -48,8 +48,8 @@ This approach is suitable for enterprise production, where you can quickly deplo
 Note: The diversity of deployment support is maintained through the .env configuration file, make sure there is one and only one .env file in the directory
 
 ```html
-wget https://raw.github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
-wget https://raw.github.com/apache/incubator-streampark/blob/dev/deploy/docker/mysql/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/mysql/.env
 vim .env
 ```
 Modify the corresponding connection information
@@ -65,8 +65,8 @@ docker-compose up -d
 ```
 ### Use existing Pgsql services
 ```html
-wget https://raw.github.com/apache/incubator-streampark/blob/dev/deploy/docker/docker-compose.yaml
-wget https://raw.github.com/apache/incubator-streampark/blob/dev/deploy/docker/pgsql/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/pgsql/.env
 vim .env
 ```
 Modify the corresponding connection information
