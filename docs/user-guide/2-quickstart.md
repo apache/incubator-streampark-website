@@ -88,11 +88,6 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
     <version>1.14.6</version>
 </dependency>
 
-<dependency>
-    <groupId>org.apache.flink</groupId>
-    <artifactId>flink-json</artifactId>
-    <version>1.14.6</version>
-</dependency>
 
 ```
 
