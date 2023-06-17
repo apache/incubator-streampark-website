@@ -35,27 +35,26 @@ CREATE TABLE user_log (
     behavior VARCHAR,
     ts TIMESTAMP(3)
  ) WITH (
-'connector.type' = 'kafka', -- Using the kafka connector
-'connector.version' = 'universal',  -- kafka version, universal supports versions above 0.11
-'connector.topic' = 'user_behavior',  -- kafka topic
-'connector.properties.bootstrap.servers'='kafka-1:9092,kafka-2:9092,kafka-3:9092',
-'connector.startup-mode' = 'earliest-offset', -- Read from start offset
-'update-mode' = 'append',
-'format.type' = 'json',  -- The data source format is json
-'format.derive-schema' = 'true' -- Determine json parsing rules from DDL schema
+'connector' = 'kafka', -- Using the kafka connector
+'properties.group.id' = 'group01' ,
+'topic' = 'user_behavior',  -- kafka topic
+'properties.bootstrap.servers'='kafka-1:9092,kafka-2:9092,kafka-3:9092',
+'scan.startup.mode' = 'earliest-offset', -- Read from start offset
+'format' = 'json'  -- The data source format is json
  );
 
 CREATE TABLE pvuv_sink (
     dt VARCHAR,
     pv BIGINT,
-    uv BIGINT
+    uv BIGINT,
+    PRIMARY KEY (dt,pv,uv) NOT ENFORCED
  ) WITH (
-'connector.type' = 'jdbc', -- using jdbc connector
-'connector.url' = 'jdbc:mysql://test-mysql:3306/test', -- jdbc url
-'connector.table' = 'pvuv_sink', -- Table Name
-'connector.username' = 'root', -- username
-'connector.password' = '123456', --password
-'connector.write.flush.max-rows' = '1' -- Default 5000, changed to 1 for demonstration
+'connector' = 'jdbc', -- using jdbc connector
+'url' = 'jdbc:mysql://test-mysql:3306/test', -- jdbc url
+'table-name' = 'pvuv_sink', -- Table Name
+'username' = 'root', -- username
+'password' = '123456', --password
+'sink.buffer-flush.max-rows' = '1' -- Default 5000, changed to 1 for demonstration
  );
 
 INSERT INTO pvuv_sink
@@ -80,19 +79,19 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-sql-connector-kafka_2.11</artifactId>
-    <version>1.12.0</version>
+    <version>1.14.6</version>
 </dependency>
 
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-connector-jdbc_2.11</artifactId>
-    <version>1.12.0</version>
+    <version>1.14.6</version>
 </dependency>
 
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-json</artifactId>
-    <version>1.12.0</version>
+    <version>1.14.6</version>
 </dependency>
 
 ```
@@ -101,10 +100,10 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 
 ```json
 
-{"user_id": "543462", "item_id":"1715", "category_id": "1464116", "behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
-{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
-{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01T01:00:00Z"}
-{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "learning flink", "ts":"2021-02-01T01:00:00Z"}
+{"user_id": "543462", "item_id":"1715", "category_id": "1464116", "behavior": "pv", "ts":"2021-02-01 01:00:00"}
+{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01 01:00:00"}
+{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01 01:00:00"}
+{"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "learning flink", "ts":"2021-02-01 01:00:00"}
 
 ```
 
