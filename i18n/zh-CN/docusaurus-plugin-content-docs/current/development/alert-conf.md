@@ -104,7 +104,7 @@ import TabItem from '@theme/TabItem';
 :::
 
 ## 测试报警配置
-为保证配置的报警配置信息生效，需要对其进行消息通知测试，即点击相对应的配置信息的右侧 `铃铛` 图标，即为报警测试。
+为保证配置的报警配置信息生效，需要对其进行消息通知测试，即点击相对应的配置信息的下侧 `闪电` 图标，即为报警测试。
 ![alert_send_test.png](/doc/image/alert/alert_send_test.png)
 
 测试发送成功后返回如下：
@@ -134,7 +134,7 @@ import TabItem from '@theme/TabItem';
 </Tabs>
 
 ## 修改报警配置
-点击相应报警配置信息的右侧 `编辑` 图标，即为修改相对应的配置信息。同样修改后，点击 `Submit` 进行保存。
+点击相应报警配置信息的下侧 `编辑` 图标，即为修改相对应的配置信息。同样修改后，点击 `Submit` 进行保存。
 ![alert_edit.png](/doc/image/alert/alert_edit.png)
 
 ## 使用报警配置
@@ -143,7 +143,7 @@ import TabItem from '@theme/TabItem';
 ![alert_application_example.png](/doc/image/alert/alert_application_example.png)
 
 ## 删除报警配置
-点击相应报警配置信息的右侧 `垃圾桶` 图标，即为删除相对应的配置信息。
+点击相应报警配置信息的下侧 `垃圾桶` 图标，即为删除相对应的配置信息。
 ![alert_conf_delete.png](/doc/image/alert/alert_conf_delete.png)
 
 删除成功后，显示信息：

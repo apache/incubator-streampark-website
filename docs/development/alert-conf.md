@@ -115,7 +115,7 @@ Please refer to the [official Lark official](https://open.feishu.cn/document/uAj
 
 ## Alert Test
 
-To ensure that the alert configuration information takes effect, we encourage to perform a message notification test——click the `bell button` on the right side of the corresponding configuration information
+To ensure that the alert configuration information takes effect, we encourage to perform a message notification test——click the `Lightning button` below the corresponding configuration information
 ![alert_send_test.png](/doc/image/alert/alert_send_test.png)
 
 If the test is sent successfully, the return is as follows:
@@ -145,7 +145,7 @@ If the test is sent successfully, the return is as follows:
 
 ## Modify alert configuration:
 
-Click the `edit button` to the right of the corresponding alarm configuration information to modify the corresponding configuration information. click `Submit` to save.
+Click the `edit button` below the corresponding alarm configuration information to modify the corresponding configuration information. click `Submit` to save.
 ![alert_edit.png](/doc/image/alert/alert_edit.png)
 
 ## Use alert configuration
@@ -156,7 +156,7 @@ When the `application` task is created and modified, configured alert could be s
 
 ## Delete alert configuration:
 
-Click the `trash can button` on the right side of the corresponding alarm configuration information to delete the corresponding configuration information。
+Click the `trash can button` below the corresponding alarm configuration information to delete the corresponding configuration information。
 ![alert_conf_delete.png](/doc/image/alert/alert_conf_delete.png)
 
 This information will be shown after the deletion is successful:
