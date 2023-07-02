@@ -234,7 +234,7 @@ $ mvn --encrypt-password <apache passphrase>
 
 ## 3. Prepare material package & release Apache Nexus
 
-#### 3.1 Based on the dev branch, create a release-${release_version}-rcx branch, such as release-2.1.0-rc1
+#### 3.1 Based on the dev branch, create a release-${release_version}-rcx branch, such as release-2.1.0-rc1, And create a tag named v2.1.0-rc1 based on the release-2.1.0-rc1 branch, and set this tag as pre-release.
 
 ![图片](https://user-images.githubusercontent.com/19602424/236656362-1d346faa-6582-44eb-9722-8bb2de0eaa92.png)
 
@@ -722,8 +722,7 @@ Open the official website address https://streampark.apache.org/download/ to see
 
 #### 4.4 Generate a release on github
 
-Find the tag to create a release
-![图片](https://github.com/apache/incubator-streampark/assets/19602424/f71a3853-1ee7-48ed-b66e-1597f0d5b49d)
+Create a tag named v2.1.0 based on the release-2.1.0-rc1 branch, and set this tag to latest release.
 
 Then enter Release Title and Describe
 - Release Title: 
@@ -739,6 +738,8 @@ release note: https://streampark.apache.org/download/release-note/2.1.0
 ![图片](https://github.com/apache/incubator-streampark/assets/19602424/84723ff5-a295-471d-8265-1b8ef867c3d1)
 
 Then click the `Publish release` button.
+
+The rename the release-2.1.0-rc1 branch to release-2.1.0.
 
 #### 4.5 Send new version announcement email
 
