@@ -175,3 +175,4 @@ build
 /.docusaurus/
 /package-lock.json
 /.docusaurus/
+yarn.lock
