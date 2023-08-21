@@ -19,6 +19,8 @@ To start the service with docker-compose, you need to install [docker-compose](h
 
 ### StreamPark deployment based on h2 and docker-compose
 
+This method is suitable for beginners to learn and become familiar with the features. The configuration will reset after the container is restarted. Below, you can configure Mysql or Pgsql for persistence.
+
 #### Deployment
 
 ```html
@@ -52,7 +54,11 @@ wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/do
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/mysql/.env
 vim .env
 ```
-Modify the corresponding connection information
+
+First, you need to create the "streampark" database in MySQL, and then manually execute the corresponding SQL found in the schema and data for the relevant data source.
+
+After that, modify the corresponding connection information.
+
 ```html
 SPRING_PROFILES_ACTIVE=mysql
 SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
@@ -97,3 +103,102 @@ vim docker-compose
 ```
 docker-compose up -d
 ```
+
+## Docker-Compse Configuration
+
+The docker-compose.yaml file will reference the configuration from the env file, and the modified configuration is as follows:
+
+```yaml
+version: '3.8'
+services:
+  ## streampark-console container
+  streampark-console:
+    ## streampark image
+    image: apache/streampark:latest
+    ## streampark image startup command
+    command: ${
+   RUN_COMMAND}
+    ports:
+      - 10000:10000
+    ## Environment configuration file
+    env_file: .env
+    environment:
+      ## Declare environment variable
+      HADOOP_HOME: ${
+   HADOOP_HOME}
+    volumes:
+      - flink:/streampark/flink/${
+   FLINK}
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/hosts:/etc/hosts:ro
+      - ~/.kube:/root/.kube:ro
+    privileged: true
+    restart: unless-stopped
+    networks:
+      - streampark
+
+  ## flink-jobmanager container
+  flink-jobmanager:
+    image: ${
+   FLINK_IMAGE}
+    ports:
+      - "8081:8081"
+    command: jobmanager
+    volumes:
+      - flink:/opt/flink
+    env_file: .env
+    restart: unless-stopped
+    privileged: true
+    networks:
+      - streampark
+
+  ## streampark-taskmanager container
+  flink-taskmanager:
+    image: ${
+   FLINK_IMAGE}
+    depends_on:
+      - flink-jobmanager
+    command: taskmanager
+    deploy:
+      replicas: 1
+    env_file: .env
+    restart: unless-stopped
+    privileged: true
+    networks:
+      - streampark
+
+networks:
+  streampark:
+    driver: bridge
+
+volumes:
+  flink:
+```
+
+Finally, execute the start command:
+
+```sh
+cd deploy/docker
+docker-compose up -d
+```
+
+You can use `docker ps` to check if the installation was successful. If the following information is displayed, it indicates a successful installation:
+
+![](/doc/image/streampark_docker_ps.png)
+
+## Uploading Configuration to the Container
+
+In the previous `env` file, `HADOOP_HOME` was declared, with the corresponding directory being "/streampark/hadoop". Therefore, you need to upload the `/etc/hadoop` from the Hadoop installation package to the `/streampark/hadoop` directory. The commands are as follows:
+
+```sh
+## Upload Hadoop resources
+docker cp entire etc directory streampark-docker_streampark-console_1:/streampark/hadoop
+## Enter the container
+docker exec -it streampark-docker_streampark-console_1 bash
+## Check
+ls
+```
+
+![](/doc/image/streampark_docker_ls_hadoop.png)
+
+In addition, other configuration files, such as Maven's `settings.xml` file, are uploaded in the same manner.
