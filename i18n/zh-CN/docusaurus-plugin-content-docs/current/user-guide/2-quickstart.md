@@ -11,7 +11,6 @@ sidebar_position: 2
 `streampark-quickstart` 是 StreamPark 开发 Flink 的上手示例程序，具体请查阅:
 
 - Github: [https://github.com/apache/incubator-streampark-quickstart.git](https://github.com/apache/incubator-streampark-quickstart)
-- Gitee: [https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git](https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git)
 
 ### 部署 DataStream 任务
 

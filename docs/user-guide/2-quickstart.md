@@ -11,7 +11,6 @@ The installation of the one-stop platform `streampark-console` has been introduc
 `streampark-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
 
 - Github: [https://github.com/apache/incubator-streampark-quickstart.git](https://github.com/apache/incubator-streampark-quickstart)
-- Gitee: [https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git](https://gitee.com/mirrors_apache/incubator-streampark-quickstart.git)
 
 ### Deploy DataStream tasks
 
