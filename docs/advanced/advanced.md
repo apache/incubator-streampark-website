@@ -1,6 +1,6 @@
 ---
 id: 'advanced'
-title: 'Advanced extension'
+title: 'Advanced Extension'
 sidebar_position: 1
 ---
 

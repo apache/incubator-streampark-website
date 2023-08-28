@@ -1,6 +1,6 @@
 ---
 id: 'hadoop-resource-integration'
-title: 'Hadoop resource integration'
+title: 'Hadoop Resource Integration'
 sidebar_position: 3
 ---
 

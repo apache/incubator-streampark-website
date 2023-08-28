@@ -1,6 +1,6 @@
 ---
 id: 'deployment'
-title: 'Platform deployment'
+title: 'Platform Deployment'
 sidebar_position: 1
 ---
 

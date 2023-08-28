@@ -1,6 +1,6 @@
 ---
 id: 'Variable'
-title: 'Variable management'
+title: 'Variable Management'
 sidebar_position: 7
 ---
 
