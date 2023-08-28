@@ -1,0 +1,420 @@
+---
+id: 'pr-and-code-quality.md'
+title: 'Pr and code quality'
+sidebar_position: 3
+---
+
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+
+       https://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+
+## 1 Pull Requests & Changes Rule
+
+ISSUE/PR(pull request) driving and naming
+
+Ensure that PR corresponds to ISSUE.
+
+Note: Hotfix issue does not need to follow this rule, such as fixing spelling errors in JavaDoc or document files.
+
+Naming format
+When naming PR, you can refer to the [ISSUE-XXXX][Feature/Improve/Character/Cleanup] Title of the pull request, where ISSUE-XXXX should be replaced with the actual ISSUE number.
+
+These components should be the same as those used in original ISSUEs.
+The second part describes the type of PR, such as new features, optimization, refactoring, etc. If all changes to PR are within a certain module or component, they can be indicated in the commit message.
+Description
+
+Please fill in the Pull Request template to describe the contribution. So that the reviewer can understand the problem and solution from the description, rather than just from the code.
+Ensure that the description is sufficient to illustrate the problem addressed by the PR.
+Small changes do not require too much description.
+In an ideal scenario, the problem is described in ISSUE, and most of the description is copied from there.
+Try to break down changes into pure types of changes
+
+It's recommended that Pull requests should be arranged changes such as Cleanup, Refactor, Improve, and Feature into separate PRs/Commits.
+In this way, the Reviewers can independently view cleaning and refactoring, and ensure that these changes do not change behavior.
+Then, the Reviewer can independently review the core changes and ensure that they are a clean and robust change.
+In extreme cases, if a rollback commit is required, it can provide the optimal granularity for version rollback selection.
+In addition, significant contributions should be split into a set of independent changes that can be reviewed independently.
+Commit message naming
+The commit of messages should follow a pattern similar to the PR: [ISSUE-XXXX][Feature/Improve/Refactor/Cleanup] Title of the pull request
+
+[Hotfix][module_name] Fix xxx comments
+[ISSUE-xxxx1][Improvement] Improve
+[ISSUE-xxxx2][Refactor] Refactor
+[ISSUE-xxxx2][Feature] Support
+[ISSUE-xxxx3][Feature][subtask] Support
+Note: Try to use git history instead of annotated code (not mandatory)
+
+## 2 Code Checkstyle
+
+- Backend code formatting Maven plugin: spotless
+Just run `mvn spotless:apply` in the project repo root directory after installing the plugin.
+
+- Backend code specification Maven plugin: checkstyle
+Just run mvn `checkstyle:checkstyle` after installing the plugin.
+
+- Frontend code formatting plugin eslint
+
+  The original command is `npx eslint --cache --max-warnings 0 "{src,mock}/**/*.{vue,ts,tsx}" --fix`
+
+  Encapsulated as `npm run lint:eslint`
+
+## 3 Programming Specification
+
+### 3.1 Naming Style
+
+1. Prioritize selecting nouns for variable naming
+   It's easier to distinguish between variables or methods
+   - Example of variables:
+     - `Cache<String> publicKeyCache;`
+
+2. Pinyin abbreviations are prohibited for variables (excluding nouns such as place names)Such as chengdu.
+
+3. It is recommended to end variable names with a type
+   For variables of type Collection/List, take xxxx (plural representing multiple elements) or end with xxxList (specific type)
+   For variables of type map, describe the key and value clearly:
+   Example:
+
+   - `Map<Long, User> idUserMap`
+   - `Map<Long, String> userIdNameMap`
+
+4. That can intuitively know the type and meaning of the variable through its name
+   Method names should start with a verb first as follows:
+
+   `void computeVcores(Object parameter1);`
+
+5. The methods name of basic CRUD of the database layer (non-service layer) should be uniformly standardized according to name com.baomidou.mybatisplus.core.mapper.BaseMapper:
+
+   If perform a database select operation, the name of the method should be started with select
+
+   For example, `selectById`, `selectByXxx`, `selectPageByXxx`
+
+   - If perform a database <mark> update </mark> statement operation, the name of the method should be started with `update`
+   - If perform a database <mark> insert </mark> statement operation, the name of the method should be started with `insert`
+   - If perform a database <mark> delete </mark> statement operation, the name of the method should be started with `delete`
+
+6. The methods name of basic CRUD of the service layer should be named as com.baomidou.mybatisplus.extension.service.IService:
+
+   - If perform a database <mark> select </mark> operation to query multiple records, the name of the method should be started with a `list`, such as `listByIds`, `listByXxx`
+   - If perform a database <mark> select </mark> operation to query a single record, the name of the method should be started with get, such as `getByName` and `getOne`
+   - If perform a database <mark> update </mark> operation, the name of the method should be started with `update`
+   - If perform a database <mark> insert </mark> operation, the name of the method should be started with `save`
+   - If perform a database <mark> delete </mark> operation, the name of the method should be started with `remove`
+
+### 3.2 Constant Definition
+
+Set the serialVersionUID of all classes to 1L, following Flink's serialVersionUID
+Redundant strings should be modified to constants, here are a positive demo and a negative demo:
+
+```java
+// Positive demo: Strings are extracted as constant references.
+public static final String STATUS_SUCCESS = "success";
+public static final String STATUS_FAIL = "error";
+
+private static final long serialVersionUID = -8713837118340960775L;
+
+public static RestResponse success(Object data) {
+    RestResponse resp = new RestResponse();
+    // Negative demo：Strings not be extracted
+    resp.put("status", STATUS_SUCCESS);
+    resp.put("code", ResponseCode.CODE_SUCCESS);
+    resp.put("data", data);
+    return resp;
+}
+```
+Variables that have not been reassigned must also be declared as <mark> final </mark> types
+
+### 3.3 Methods Rule
+
+1. Sort the methods in the class in the order of public, protected, and private
+
+2. When there are restrictions on the method, the parameters and returned values of the method need to be annotated with NonNull or Nullable annotations and constraints.
+
+   For example, if the parameter cannot be null, it is best to add a @NonNull annotation. If the returned value can be null, the @Nullable annotation should be added first.
+
+   <mark> Note: that the package name is <code>javax.validation.requirements </code> </mark>
+
+3. If there are too many lines of code in the method, please have a try on using multiple sub methods at appropriate points to segment the method body
+
+   Generally speaking, it needs to adhere to the following principles:
+   - Convenient testing
+   - Good semantics
+   - Easy to read
+
+   In addition, it is also necessary to consider whether the splitting is reasonable in terms of components, logic, abstraction, and other aspects in the scenario
+
+   However, there is currently no clear definition of demo. During the evolution process, we will provide additional examples for developers to have a clearer reference and understanding.
+
+### 3.4 Collection Rule
+
+1. For collection returned values, unless there are special concurrent (such as thread safety), always return the interface, such as:
+
+   - returns <mark> List </mark> if use `ArrayList`
+   - returns <mark> Map </mark> if use `HashMap`
+   - returns <mark> Set </mark> if use `HashSet`
+
+2. If there are multiple threads, the following declaration or returned types can be used:
+
+   - `private CurrentHashMap map;`
+   - `public CurrentHashMap funName();`
+
+### 3.5 Concurrent Processing
+
+1. The thread pool needs to be managed, using a unified entry point to obtain the thread pool
+
+   <mark> Note: During the evolution process, we will provide additional examples for developers to have a clearer reference and understanding. </mark>
+
+2. Thread pools need to be resource constrained to prevent resource leakage caused by improper handling
+
+### 3.6 Control/Condition Statements
+
+1. Avoid unreasonable condition/control branches order leads to
+
+   - multiple code line depths of n+1
+
+   - redundant lines
+
+   Generally speaking, if a method's code line depth exceeds 2+ Tabs due to continuous nested if... else.., it should be considered to try merging branches, inverting branch conditions, or extracting private methods to reduce code line depth and improve readability.
+
+   Using sonarlint and better highlights to check code depth looks like good in the future.
+
+   Demo:
+
+   ```java
+   if (isInsert) {
+      save(platform);
+   } else {
+      updateById(platform);
+   }
+   ```
+   <mark> Union or merge the logic into the next level calling </mark> The lines could be optimized as:
+   ```java
+   saveOrUpdate(platform);
+   ```
+
+   <hr/>
+
+   ```java
+    if (expression1) {
+        if(expression2) {
+            ......
+        }
+    }
+   ```
+
+   <mark> Merge the condition </mark> The lines could be optimized as:
+   
+   ```java
+   if (expression1 && expression2) {
+       ......
+   }
+   ```
+   
+   <hr/>
+
+   ```java
+   public void doSomething() {
+      // Ignored more deeper block lines
+      // .....
+      if (condition1) {
+         ...
+      } else {
+         ...
+      }
+   }
+   ```
+
+   <mark> Reverse the condition </mark> The lines could be optimized as:
+
+   ```java
+   public void doSomething() {
+      // Ignored more deeper block lines
+      // .....
+      if (!condition1) {
+         ...
+         return;
+      }
+      // ...
+   }
+   ```
+   
+2. Complex conditional expressions should be named using a single variable or method as much as possible.
+
+   For example:
+
+   ```java
+   if (dbType.indexOf("sqlserver") >= 0 || dbType.indexOf("sql server") >= 0) {
+      ...
+   }
+   ```
+
+   <mark> Extract it as a new condition getter </mark> The lines could be refactored as:
+
+   ```java
+   if (containsSqlServer(dbType)) {
+      definetion of the containsSqlServer ....
+   }
+   ```
+
+### 3.7 Code Comments Rule
+
+1. Method lacks comments:
+
+   - When: When can the method be called
+   - How: How to use this method and how to pass parameters, etc.
+   - What: What functions does this method achieve
+   - Note: What should developers pay attention to when calling this method
+
+2. Missing necessary class header description comments.
+
+   Add What, Note like mentioned in the 1.
+
+3. The method declaration in the interface must be annotated.
+
+   If the semantics of the implementation and the annotation content at the interface declaration are inconsistent, the specific implementation method also needs to be rewritten with annotations
+
+   If the semantics of the method implementation are consistent with the annotation content at the interface declaration, it is not recommended to write annotations to avoid duplicate annotations
+
+### 3.8 Java Lambdas
+
+1. Prefer non-capturing lambdas (lambdas that do not contain references to the outer scope). Capturing lambdas need to create a new object instance for every call. Non-capturing lambdas can use the same instance for each invocation.
+
+   - Negative demo:
+   
+      ```java
+      map.computeIfAbsent(key, x -> key.toLowerCase())
+      ```
+   
+   - Positive demo:
+   
+      ```java
+       map.computeIfAbsent(key, k -> k.toLowerCase());
+      ```
+
+2. Consider method references instead of inline lambdas
+
+   - Negative demo:
+   
+      ```java
+      map.computeIfAbsent(key, k-> Loader.load(k));
+      ```
+
+   - Positive demo:
+
+      ```java
+      map.computeIfAbsent(key, Loader::load);
+      ```
+
+### 3.9 Java Streams
+
+1. Avoid Java Streams in any performance critical code.
+
+   The main motivation to use Java Streams would be to improve code readability. As such, they can be a good match in parts of the code that are not data-intensive, but deal with coordination.
+
+   Even in the latter case, try to limit the scope to a method, or a few private methods within an internal class.
+
+### 3.10 Pre-Conditions Checking
+
+1. Use a unified Utils.requireXXX to complete the validation of the prerequisite, and if possible, replace the AlertXXException.throwIfXXX by new pre-conditions checking.
+
+## 4 Exception Processing
+
+1. This `streampark-console-service` module is the core module for processing user requests.It's very necessary to strive to provide the best user experience.   
+So, we introduced the [AbstractApiException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java)
+and its subclasses to get more friendly interaction effect. Non-`AbstractApiException` is treated as internal server errors correspondingly, which needn't notify the interaction details to users.   
+Based on the above premise, we need to pay attention to the handling of `AbstractApiException`.    
+For example, we should throw an exception by one of followed subclasses of `AbstractApiException` when processing logic with the user operation errors or missing data errors:
+
+- [ApiDetailException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiDetailException.java)
+> An exception message that needs to be notified to front-end, is a detailed exception message, such as the stackTrace info, often accompanied by a large number of exception logs, e.g: Failed to start job, need to display the exception(stackTrace info) to front-end.
+- [ApiAlertException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiAlertException.java)
+> An exception message that needs to be notified to front-end, usually a simple, clear message, e.g:
+> 1. Username already exists
+> 2. No permission, please contact the administrator
+> 3. ...
+
+- [AlertException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AlertException.java)
+> An exception message that needs to be notified to front-end when processing alert logic.
+- Or others exceptions used to get fine users interaction.
+
+In addition to handling the classification of exceptions, we'd better make the precise and concise exception message and try to ensure the follows in the exception:
+
+- Display the current status of the abnormal case.
+- Display the solutions to the abnormal case.
+- Or others informations fit the pretty interaction.
+
+Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/2325) for more details about the items if needed.
+
+## 5 Log
+
+1. Use placeholders for log output:
+
+   The negative example: log.info("Deploy cluster request " + deployRequest);
+   The positive example: log.info("load plugin:{} to {}", file.getName(), appPlugins);
+
+2. Pay attention to the selection of log level when printing logs
+
+   When printing the log content, if the actual parameters of the log placeholder are passed, it is necessary to avoid premature evaluation to avoid unnecessary evaluation caused by the log level.
+
+   The negative example: Assuming the current log level is INFO:
+
+   ```java
+    // ingnored declaration lines.
+    List<User> userList = getUsersByBatch(1000);
+    LOG.debug("All users: {}", getAllUserIds(userList));
+   ```
+   
+   In this case, we should determine the log level in advance before making actual log calls as follows:
+
+   ```java
+    // ingnored declaration lines.
+    List<User> userList = getUsersByBatch(1000);
+    if (LOG.isDebugEnabled()) {
+        LOG.debug("All ids of users: {}", getAllIDsOfUsers(userList));	
+    }
+    ```
+   
+## 6 Testing
+
+1. For some of the code / variables used for testing, you can use `@VisableForTesting` annotation to indicate that
+
+2. It's recommended to use JUnit5 to develop test case preparation
+
+3. Using AssertJ to develop assertions statements.
+
+4. About the implementation of tests.
+
+5. If the test case only tests an independent class or method that does not require external components such as hadoop,
+   remote flink session cluster, etc., it can be written directly using JUnit5 & Mockito.
+
+6. If the test case needs a real database, environment or backend environment,
+   but doesn't need to interact with external components, it's recommended to inherit directly from SpringUnitTestBase.
+
+7. If the test case requires a real database, environment or backend environment,
+but needs to interact with external components (Remote Flink session cluster, Hadoop cluster),
+it's recommended to write the test case by directly inheriting SpringIntegrationTestBase.
+
+8. It's only recommended to use integration tests on critical test links to avoid making the CI overhead time too long and the resource load too heavy.
+
+
+## References
+https://site.mockito.org/
+https://flink.apache.org/zh/how-to-contribute/code-style-and-quality-preamble/
+https://alibaba.github.io/p3c/
+https://rules.sonarsource.com/java/
+https://streampark.apache.org/community/submit_guide/items-need-to-note.md
+https://joel-costigliola.github.io/assertj/index.html
+https://junit.org/junit5/
