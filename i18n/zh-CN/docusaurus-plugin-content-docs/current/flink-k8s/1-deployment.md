@@ -116,7 +116,7 @@ StreamPark 在 `applicaton.yml`  Flink-K8s 相关参数如下，默认情况下�
 
 | 配置项                                                                    | 描述                                                        | 默认值  |
 |:-----------------------------------------------------------------------|-----------------------------------------------------------| ------- |
-| streampark.docker.register.image-namespace                             | 远程 docker 容器服务仓库命名空间，构建的 flink-job 镜像会推送到该命名空间。           | steramx |
+| streampark.docker.register.image-namespace                             | 远程 docker 容器服务仓库命名空间，构建的 flink-job 镜像会推送到该命名空间。           | null  |
 | streampark.flink-k8s.tracking.polling-task-timeout-sec.job-status      | 每组 flink 状态追踪任务的运行超时秒数                                    | 120     |
 | streampark.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric  | 每组 flink 指标追踪任务的运行超时秒数                                    | 120     |
 | streampark.flink-k8s.tracking.polling-interval-sec.job-status          | flink 状态追踪任务运行间隔秒数，为了维持准确性，请设置在 5s 以下，最佳设置在 2-3s          | 5       |
