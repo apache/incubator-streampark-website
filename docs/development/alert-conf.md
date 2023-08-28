@@ -1,6 +1,6 @@
 ---
 id: 'alert-conf'
-title: 'Alert configuration'
+title: 'Alert Configuration'
 sidebar_position: 3
 ---
 

@@ -1,6 +1,6 @@
 ---
 id: 'Programming-paradigm'
-title: 'Programming paradigm'
+title: 'Programming Paradigm'
 sidebar_position: 1
 ---
 
