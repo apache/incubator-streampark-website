@@ -35,7 +35,7 @@ export default function () {
               {
                 img.map((item, i) => (
                   <div key={i} index={i} data-aos="fade-up" data-aos-delay={i * 50}>
-                    <a href={item.url} target="_blank">
+                    <a href={'https://github.com/apache/incubator-streampark/issues/163#issuecomment-'.concat(item.linkid)} target="_blank">
                       <div className="case_item case_hover" >
                         <img src={useBaseUrl('/user/' + item.imgUrl)} alt="name" />
                       </div>
