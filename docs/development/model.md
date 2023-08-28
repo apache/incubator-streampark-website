@@ -602,7 +602,7 @@ assembly.xml is the configuration file needed for the assembly packaging plugin,
 
 ## Packaged Deployment
 
-The recommended packaging mode in [streampark-flink-quickstart](https://github.com/apache/streampark/streampark-flink/streampark-flink-quickstart) is recommended. It runs `maven package` directly to generate a standard StreamPark recommended project package, after unpacking the directory structure is as follows.
+The recommended packaging mode in [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) is recommended. It runs `maven package` directly to generate a standard StreamPark recommended project package, after unpacking the directory structure is as follows.
 
 ``` text
 .

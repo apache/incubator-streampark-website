@@ -604,7 +604,7 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 
 ## 打包部署
 
-推荐 [streampark-flink-quickstart](https://github.com/apache/streampark/streampark-flink/streampark-flink-quickstart) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
+推荐 [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
 
 ``` text
 .
