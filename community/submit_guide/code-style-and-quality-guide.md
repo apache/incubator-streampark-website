@@ -1,6 +1,6 @@
 ---
-id: 'pr-and-code-quality.md'
-title: 'Pr and code quality'
+id: 'code-style-and-quality-guide.md'
+title: 'Code style and quality guide'
 sidebar_position: 3
 ---
 
@@ -116,26 +116,71 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 
 ### 3.2 Constant Definition
 
-Set the serialVersionUID of all classes to 1L, following Flink's serialVersionUID
-Redundant strings should be modified to constants, here are a positive demo and a negative demo:
+1. Set the serialVersionUID of all classes to 1L, following Flink's serialVersionUID
 
-```java
-// Positive demo: Strings are extracted as constant references.
-public static final String STATUS_SUCCESS = "success";
-public static final String STATUS_FAIL = "error";
+   - Negative demo:
+     
+     ```java
+     private static final long serialVersionUID = -8713837118340960775L;
+     ```
+     
+     - Positive demo:
+     
+     ```java
+     private static final long serialVersionUID = 1L;
+     ```
 
-private static final long serialVersionUID = -8713837118340960775L;
+2. Redundant strings should be modified to constants
 
-public static RestResponse success(Object data) {
-    RestResponse resp = new RestResponse();
-    // Negative demo：Strings not be extracted
-    resp.put("status", STATUS_SUCCESS);
-    resp.put("code", ResponseCode.CODE_SUCCESS);
-    resp.put("data", data);
-    return resp;
-}
-```
-Variables that have not been reassigned must also be declared as <mark> final </mark> types
+   - Negative demo:
+
+     ```java
+     public static RestResponse success(Object data) {
+         RestResponse resp = new RestResponse();
+         resp.put("status", "success");
+         resp.put("code", ResponseCode.CODE_SUCCESS);
+         resp.put("data", data);
+         return resp;
+     }
+     
+     public static RestResponse error() {
+         RestResponse resp = new RestResponse();
+         resp.put("status", "error");
+         resp.put("code", ResponseCode.CODE_FAIL);
+         resp.put("data", null);
+         return resp;
+     }
+     ```
+
+   - Positive demo:
+
+     > Strings are extracted as constant references.
+
+     ```java
+     public static final String STATUS_SUCCESS = "success";
+     public static final String STATUS_FAIL = "error";
+     public static final String STATUS = "status";
+     public static final String CODE = "code";
+     public static final String DATA = "data";
+
+     public static RestResponse success(Object data) {
+         RestResponse resp = new RestResponse();
+         resp.put(STATUS, STATUS_SUCCESS);
+         resp.put(CODE, ResponseCode.CODE_SUCCESS);
+         resp.put(DATA, data);
+         return resp;
+     }
+     
+     public static RestResponse error() {
+         RestResponse resp = new RestResponse();
+         resp.put(STATUS, STATUS_FAIL);
+         resp.put(CODE, ResponseCode.CODE_FAIL);
+         resp.put(DATA, null);
+         return resp;
+     }
+     ```
+
+   Variables that have not been reassigned must also be declared as <mark> final </mark> types
 
 ### 3.3 Methods Rule
 
@@ -191,83 +236,97 @@ Variables that have not been reassigned must also be declared as <mark> final </
 
    Using sonarlint and better highlights to check code depth looks like good in the future.
 
-   Demo:
+   - Negative demo:
 
-   ```java
-   if (isInsert) {
-      save(platform);
-   } else {
-      updateById(platform);
-   }
-   ```
-   <mark> Union or merge the logic into the next level calling </mark> The lines could be optimized as:
-   ```java
-   saveOrUpdate(platform);
-   ```
+     ```java
+     if (isInsert) {
+        save(platform);
+     } else {
+        updateById(platform);
+     }
+     ```
+   
+   - Positive demo:
+
+     <mark> Union or merge the logic into the next level calling </mark> The lines could be optimized as:
+
+     ```java
+     saveOrUpdate(platform);
+     ```
 
    <hr/>
 
-   ```java
-    if (expression1) {
-        if(expression2) {
-            ......
+   - Negative demo:
+
+     ```java
+      if (expression1) {
+          if(expression2) {
+              ......
+          }
+      }
+     ```
+
+   - Positive demo:
+
+     <mark> Merge the condition </mark> The lines could be optimized as:
+   
+     ```java
+     if (expression1 && expression2) {
+         ......
+     }
+     ```
+   
+   <hr/>
+
+   - Negative demo:
+
+     ```java
+     public void doSomething() {
+        // Ignored more deeper block lines
+        // .....
+        if (condition1) {
+           ...
+        } else {
+           ...
         }
-    }
-   ```
+     }
+     ```
 
-   <mark> Merge the condition </mark> The lines could be optimized as:
-   
-   ```java
-   if (expression1 && expression2) {
-       ......
-   }
-   ```
-   
-   <hr/>
+   - Positive demo:   
 
-   ```java
-   public void doSomething() {
-      // Ignored more deeper block lines
-      // .....
-      if (condition1) {
-         ...
-      } else {
-         ...
-      }
-   }
-   ```
+     <mark> Reverse the condition </mark> The lines could be optimized as:
 
-   <mark> Reverse the condition </mark> The lines could be optimized as:
-
-   ```java
-   public void doSomething() {
-      // Ignored more deeper block lines
-      // .....
-      if (!condition1) {
-         ...
-         return;
-      }
-      // ...
-   }
-   ```
+     ```java
+     public void doSomething() {
+        // Ignored more deeper block lines
+        // .....
+        if (!condition1) {
+           ...
+           return;
+        }
+        // ...
+     }
+     ```
    
 2. Complex conditional expressions should be named using a single variable or method as much as possible.
 
-   For example:
+   - Negative demo:
 
-   ```java
-   if (dbType.indexOf("sqlserver") >= 0 || dbType.indexOf("sql server") >= 0) {
-      ...
-   }
-   ```
+     ```java
+     if (dbType.indexOf("sqlserver") >= 0 || dbType.indexOf("sql server") >= 0) {
+        ...
+     }
+     ```
 
-   <mark> Extract it as a new condition getter </mark> The lines could be refactored as:
+   - Positive demo:
 
-   ```java
-   if (containsSqlServer(dbType)) {
-      definetion of the containsSqlServer ....
-   }
-   ```
+     <mark> Extract it as a new condition getter </mark> The lines could be refactored as:
+
+     ```java
+     if (containsSqlServer(dbType)) {
+        definetion of the containsSqlServer ....
+     }
+     ```
 
 ### 3.7 Code Comments Rule
 
@@ -294,29 +353,29 @@ Variables that have not been reassigned must also be declared as <mark> final </
 
    - Negative demo:
    
-      ```java
-      map.computeIfAbsent(key, x -> key.toLowerCase())
-      ```
+     ```java
+     map.computeIfAbsent(key, x -> key.toLowerCase())
+     ```
    
    - Positive demo:
    
-      ```java
-       map.computeIfAbsent(key, k -> k.toLowerCase());
-      ```
+     ```java
+      map.computeIfAbsent(key, k -> k.toLowerCase());
+     ```
 
 2. Consider method references instead of inline lambdas
 
    - Negative demo:
    
-      ```java
-      map.computeIfAbsent(key, k-> Loader.load(k));
-      ```
+     ```java
+     map.computeIfAbsent(key, k-> Loader.load(k));
+     ```
 
    - Positive demo:
 
-      ```java
-      map.computeIfAbsent(key, Loader::load);
-      ```
+     ```java
+     map.computeIfAbsent(key, Loader::load);
+     ```
 
 ### 3.9 Java Streams
 
@@ -369,23 +428,27 @@ Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/
 
    When printing the log content, if the actual parameters of the log placeholder are passed, it is necessary to avoid premature evaluation to avoid unnecessary evaluation caused by the log level.
 
-   The negative example: Assuming the current log level is INFO:
+   - Negative demo:
 
-   ```java
-    // ingnored declaration lines.
-    List<User> userList = getUsersByBatch(1000);
-    LOG.debug("All users: {}", getAllUserIds(userList));
-   ```
+     Assuming the current log level is INFO:
+  
+     ```java
+      // ingnored declaration lines.
+      List<User> userList = getUsersByBatch(1000);
+      LOG.debug("All users: {}", getAllUserIds(userList));
+     ```
+
+   - Positive demo:
    
-   In this case, we should determine the log level in advance before making actual log calls as follows:
-
-   ```java
-    // ingnored declaration lines.
-    List<User> userList = getUsersByBatch(1000);
-    if (LOG.isDebugEnabled()) {
-        LOG.debug("All ids of users: {}", getAllIDsOfUsers(userList));	
-    }
-    ```
+     In this case, we should determine the log level in advance before making actual log calls as follows:
+  
+     ```java
+      // ingnored declaration lines.
+      List<User> userList = getUsersByBatch(1000);
+      if (LOG.isDebugEnabled()) {
+          LOG.debug("All ids of users: {}", getAllIDsOfUsers(userList));	
+      }
+      ```
    
 ## 6 Testing
 
