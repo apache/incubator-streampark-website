@@ -61,10 +61,10 @@ Note: Try to use git history instead of annotated code (not mandatory)
 ## 2 Code Checkstyle
 
 - Backend code formatting Maven plugin: spotless
-Just run `mvn spotless:apply` in the project repo root directory after installing the plugin.
+  Just run `mvn spotless:apply` in the project repo root directory after installing the plugin.
 
 - Backend code specification Maven plugin: checkstyle
-Just run mvn `checkstyle:checkstyle` after installing the plugin.
+  Just run mvn `checkstyle:checkstyle` after installing the plugin.
 
 - Frontend code formatting plugin eslint
 
@@ -79,7 +79,7 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 1. Prioritize selecting nouns for variable naming
    It's easier to distinguish between variables or methods
    - Example of variables:
-     - `Cache<String> publicKeyCache;`
+      - `Cache<String> publicKeyCache;`
 
 2. Pinyin abbreviations are prohibited for variables (excluding nouns such as place names)Such as chengdu.
 
@@ -119,13 +119,13 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 1. Set the serialVersionUID of all classes to 1L, following Flink's serialVersionUID
 
    - Negative demo:
-     
+
      ```java
      private static final long serialVersionUID = -8713837118340960775L;
      ```
-     
-     - Positive demo:
-     
+
+      - Positive demo:
+
      ```java
      private static final long serialVersionUID = 1L;
      ```
@@ -245,7 +245,7 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
         updateById(platform);
      }
      ```
-   
+
    - Positive demo:
 
      <mark> Union or merge the logic into the next level calling </mark> The lines could be optimized as:
@@ -269,13 +269,13 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
    - Positive demo:
 
      <mark> Merge the condition </mark> The lines could be optimized as:
-   
+
      ```java
      if (expression1 && expression2) {
          ......
      }
      ```
-   
+
    <hr/>
 
    - Negative demo:
@@ -292,7 +292,7 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
      }
      ```
 
-   - Positive demo:   
+   - Positive demo:
 
      <mark> Reverse the condition </mark> The lines could be optimized as:
 
@@ -307,7 +307,7 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
         // ...
      }
      ```
-   
+
 2. Complex conditional expressions should be named using a single variable or method as much as possible.
 
    - Negative demo:
@@ -352,13 +352,13 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 1. Prefer non-capturing lambdas (lambdas that do not contain references to the outer scope). Capturing lambdas need to create a new object instance for every call. Non-capturing lambdas can use the same instance for each invocation.
 
    - Negative demo:
-   
+
      ```java
      map.computeIfAbsent(key, x -> key.toLowerCase())
      ```
-   
+
    - Positive demo:
-   
+
      ```java
       map.computeIfAbsent(key, k -> k.toLowerCase());
      ```
@@ -366,7 +366,7 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 2. Consider method references instead of inline lambdas
 
    - Negative demo:
-   
+
      ```java
      map.computeIfAbsent(key, k-> Loader.load(k));
      ```
@@ -392,10 +392,10 @@ Just run mvn `checkstyle:checkstyle` after installing the plugin.
 ## 4 Exception Processing
 
 1. This `streampark-console-service` module is the core module for processing user requests.It's very necessary to strive to provide the best user experience.   
-So, we introduced the [AbstractApiException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java)
-and its subclasses to get more friendly interaction effect. Non-`AbstractApiException` is treated as internal server errors correspondingly, which needn't notify the interaction details to users.   
-Based on the above premise, we need to pay attention to the handling of `AbstractApiException`.    
-For example, we should throw an exception by one of followed subclasses of `AbstractApiException` when processing logic with the user operation errors or missing data errors:
+   So, we introduced the [AbstractApiException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java)
+   and its subclasses to get more friendly interaction effect. Non-`AbstractApiException` is treated as internal server errors correspondingly, which needn't notify the interaction details to users.   
+   Based on the above premise, we need to pay attention to the handling of `AbstractApiException`.    
+   For example, we should throw an exception by one of followed subclasses of `AbstractApiException` when processing logic with the user operation errors or missing data errors:
 
 - [ApiDetailException](https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiDetailException.java)
 > An exception message that needs to be notified to front-end, is a detailed exception message, such as the stackTrace info, often accompanied by a large number of exception logs, e.g: Failed to start job, need to display the exception(stackTrace info) to front-end.
@@ -431,7 +431,7 @@ Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/
    - Negative demo:
 
      Assuming the current log level is INFO:
-  
+
      ```java
       // ingnored declaration lines.
       List<User> userList = getUsersByBatch(1000);
@@ -439,9 +439,9 @@ Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/
      ```
 
    - Positive demo:
-   
+
      In this case, we should determine the log level in advance before making actual log calls as follows:
-  
+
      ```java
       // ingnored declaration lines.
       List<User> userList = getUsersByBatch(1000);
@@ -449,7 +449,7 @@ Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/
           LOG.debug("All ids of users: {}", getAllIDsOfUsers(userList));	
       }
       ```
-   
+
 ## 6 Testing
 
 1. For some of the code / variables used for testing, you can use `@VisableForTesting` annotation to indicate that
@@ -467,8 +467,8 @@ Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/
    but doesn't need to interact with external components, it's recommended to inherit directly from SpringUnitTestBase.
 
 7. If the test case requires a real database, environment or backend environment,
-but needs to interact with external components (Remote Flink session cluster, Hadoop cluster),
-it's recommended to write the test case by directly inheriting SpringIntegrationTestBase.
+   but needs to interact with external components (Remote Flink session cluster, Hadoop cluster),
+   it's recommended to write the test case by directly inheriting SpringIntegrationTestBase.
 
 8. It's only recommended to use integration tests on critical test links to avoid making the CI overhead time too long and the resource load too heavy.
 
