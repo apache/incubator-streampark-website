@@ -1,6 +1,6 @@
 ---
 id: 'pr-and-code-quality.md'
-title: 'Pr and code quality'
+title: 'Code Style and Quality Guide'
 sidebar_position: 3
 ---
 
