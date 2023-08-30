@@ -118,7 +118,7 @@ StreamPark parameter related to Flink-K8s in `applicaton.yml` are as below.And i
 
 | Configuration item                                                    | Description                                                                                                          | Default value |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|
-| streampark.docker.register.image-namespace                            | namespace of Remote docker service repository， flink-job image will be pushed here                                   | streampark    |
+| streampark.docker.register.image-namespace                            | namespace of Remote docker service repository， flink-job image will be pushed here                                   | null          |
 | streampark.flink-k8s.tracking.polling-task-timeout-sec.job-status     | timeout in seconds of flink state tracking task                                                                      | 120           |
 | streampark.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric | timeout in seconds of flink metrics tracking task                                                                    | 120           |
 | streampark.flink-k8s.tracking.polling-interval-sec.job-status         | interval in seconds of flink state tracking task.To maintain accuracy, please set below 5s, the best setting is 2-3s | 5             |
