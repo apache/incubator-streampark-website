@@ -14,7 +14,7 @@ sidebar_position: 4
 ```shell
 #如果本地有svn，可以clone到本地 
 svn co https://dist.apache.org/repos/dist/dev/incubator/streampark/${release_version}-${rc_version}/
-#或则 直接下载物料文件
+#或者 直接下载物料文件
 wget https://dist.apache.org/repos/dist/dev/incubator/streampark/${release_version}-${rc_version}/xxx.xxx
 
 ```
@@ -226,6 +226,6 @@ I  checked:
 
 ## 4. 注意事项
 <font color="red">
-如果你有安装maven工具，你可以使用自己的mvn命令替换 ./mvnw或则mvnw.cmd
+如果你有安装maven工具，你可以使用自己的mvn命令替换 ./mvnw或者mvnw.cmd
 mvnw是Maven Wrapper的缩写。它可以支持运行 Maven 项目，而无需安装 Maven 并配置环境变量。如果找不到它，它会根据配置文件，下载对应的 Maven 版本
 </font>
