@@ -1,4 +1,5 @@
 ---
+id: how_to_verify_release
 title: How to Verify Release
 sidebar_position: 4
 ---
