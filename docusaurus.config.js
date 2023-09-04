@@ -147,8 +147,16 @@ const config = {
               to: "/community/submit_guide/submit_code",
             },
             {
+              label: "Code style and quality guide",
+              to: "/community/submit_guide/code_style_and_quality_guide",
+            },
+            {
               label: "How to release",
               to: "/community/release/how_to_release",
+            },
+            {
+              label: "How to Verify Release",
+              to: "/community/release/how_to_verify_release",
             },
           ],
         },

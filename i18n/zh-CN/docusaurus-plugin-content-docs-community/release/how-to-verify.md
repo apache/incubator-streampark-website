@@ -1,4 +1,5 @@
 ---
+id: how_to_verify_release
 title: 版本物料的验证
 sidebar_position: 4
 ---

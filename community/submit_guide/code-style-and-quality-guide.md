@@ -1,5 +1,5 @@
 ---
-id: 'code-style-and-quality-guide.md'
+id: 'code_style_and_quality_guide'
 title: 'Code style and quality guide'
 sidebar_position: 3
 ---
