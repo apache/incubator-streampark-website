@@ -193,9 +193,19 @@ sidebar_position: 3
 
 4. Variables that have not been reassigned must also be declared as <mark> final </mark> types.
 
+5. About the arrangement order of `constant/variable` lines  
+
+   Sort the variable lines in the class in the order of
+   1. `public static final V`, `static final V`,`protected static final V`, `private static final V`
+   2. `public static v`, `static v`,`protected static v`, `private static v`
+   3. `public v`, `v`, `protected v`, `private v`
+
+
 ### 3.3 Methods Rule
 
-1. Sort the methods in the class in the order of `public`, `protected`, and `private`
+1. Sort the methods in the class in the order of `public`, `protected`, `private`
+
+   Static methods of a class can be placed after non-static methods and sorted according to consistent method visibility.
 
 2. When there are restrictions on the method, the parameters and returned values of the method need to be annotated with `@Nonnull` or `@Nullable` annotations and constraints.
 
