@@ -66,5 +66,49 @@
   "item.label.Thanks": {
     "message": "致谢",
     "description": "Navbar item with label Thanks"
+  },
+  "item.label.Code of conduct": {
+    "message": "行为守则",
+    "description": "Navbar item with label Code of conduct"
+  },
+  "item.label.Join the mailing lists": {
+    "message": "加入邮件列表",
+    "description": "Navbar item with label Join the mailing lists"
+  },
+  "item.label.Become A Committer": {
+    "message": "成为 Committer",
+    "description": "Navbar item with label Become A Committer"
+  },
+  "item.label.Become A PMC member": {
+    "message": "成为 PMC 成员",
+    "description": "Navbar item with label Become A PMC member"
+  },
+  "item.label.New Committer Process": {
+    "message": "新的 Committer 流程",
+    "description": "Navbar item with label New Committer Process"
+  },
+  "item.label.New PMC Member Process": {
+    "message": "新的 PMC 成员流程",
+    "description": "Navbar item with label New PMC Member Process"
+  },
+  "item.label.Documentation Notice": {
+    "message": "文档",
+    "description": "Navbar item with label Documentation Notice"
+  },
+  "item.label.Submit Code": {
+    "message": "提交代码",
+    "description": "Navbar item with label Submit Code"
+  },
+  "item.label.Code style and quality guide": {
+    "message": "代码风格和质量指南",
+    "description": "Navbar item with label Code style and quality guide"
+  },
+  "item.label.How to release": {
+    "message": "如何发版",
+    "description": "Navbar item with label How to release"
+  },
+  "item.label.How to Verify Release": {
+    "message": "如何验证发版",
+    "description": "Navbar item with label How to Verify Release"
   }
 }
