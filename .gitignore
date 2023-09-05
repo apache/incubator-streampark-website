@@ -176,3 +176,5 @@ build
 /package-lock.json
 /.docusaurus/
 yarn.lock
+
+.DS_Store
