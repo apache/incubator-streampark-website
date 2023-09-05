@@ -117,6 +117,10 @@ sidebar_position: 3
     - If perform a database <mark> insert </mark> operation, the name of the method should be started with `save`
     - If perform a database <mark> delete </mark> operation, the name of the method should be started with `remove`
 
+7. Naming of parameters
+
+    - It's best to maintain consistent parameter naming for parameters of the same type in the same interface.
+
 ### 3.2 Constant Variables Definition
 
 1. Set the `serialVersionUID` of all classes to `1L`, following `Flink`'s `serialVersionUID`.
@@ -181,7 +185,13 @@ sidebar_position: 3
         }
       ```
 
-3. Variables that have not been reassigned must also be declared as <mark> final </mark> types.
+3. Ensure code readability and intuitiveness
+
+  - The string in the `annotation` symbol doesn't need to be extracted as constant.
+
+  - The referenced `package` or `resource` name doesn't need to be extracted as constant.
+
+4. Variables that have not been reassigned must also be declared as <mark> final </mark> types.
 
 ### 3.3 Methods Rule
 
@@ -334,6 +344,9 @@ to reduce code line depth and improve readability like follows:
 
     - If the semantics of the method implementation are consistent with the annotation content at the interface declaration, it is not recommended to write annotations to avoid duplicate annotations.
 
+4. The first word in the comment lines need to be capitalized, like `param` lines, `return` lines. 
+   If a special reference as a subject does not need to be capitalized, special symbols such as quotation marks need to be noted.
+
 ### 3.8 Java Lambdas
 
 1. Prefer `non-capturing` lambdas (lambdas that do not contain references to the outer scope).
@@ -403,7 +416,7 @@ In addition to handling the classification of exceptions, we'd better make the p
 
 - Display the current status of the abnormal case.
 - Display the solutions to the abnormal case.
-- Or others informations fit the pretty interaction.
+- Or others information fit the pretty interaction.
 
 Please click [Issue-2325](https://github.com/apache/incubator-streampark/issues/2325) for more details about the items if needed.
 
