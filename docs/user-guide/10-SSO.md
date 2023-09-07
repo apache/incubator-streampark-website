@@ -1,0 +1,90 @@
+---
+id: 'SSO'
+title: 'SSO Integration'
+sidebar_position: 10
+---
+
+## Background
+As an enterpise practice, it's common to apply Single sign-on (SSO) across all applications, so that user credential can be managed in a centralised and secure manner.
+
+Based on the fact that Streampark use Apache Shiro for authetication and authorization purpose, and we are going to use Pac4j framework to achive the Single Sign-On (SSO) support feature. Pac4j is recommented by Shiro community as SSO integration solution, and it's also applied by other Apache project, like Knox, Durid, Zeppelin, etc.
+
+## SSO login workflow
+We come up three main use cases with the workflow shown below:
+
+a) New user login when SSO is enabled
+<img src="/doc/image/sso/new-user-login-process.png"/><br></br>
+
+b) Existing user login when SSO is enabled
+<img src="/doc/image/sso/existing-user-login-process.png"/><br></br>
+
+c) User login when when SSO is not enabled
+<img src="/doc/image/sso/user-login-sso-not-enabled.png"/><br></br>
+
+## How to enable SSO login
+- Enable the SSO from the `application.yml`:
+```
+...
+spring:
+  profiles:
+    active: mysql #[h2,pgsql,mysql]
+    include: sso
+...
+sso:
+    # If turn to true, please provide the sso properties the application-sso.yml
+    enable: true
+```
+
+- Select preferred 3rd party login approch, such as Github or Google auth, and fill in the `application-sso.yml` config as below: 
+```
+pac4j:
+  callbackUrl: http://localhost:10000/callback
+  # Put all parameters under `properties`
+  # Check supported sso config parameters for different authentication clients from the below link
+  # https://github.com/pac4j/pac4j/blob/master/documentation/docs/config-module.md
+  properties:
+    # principalNameAttribute:
+    # Optional, change by authentication client
+    # Please replace and fill in your client config below when enabled SSO
+    principalNameAttribute: email
+    oidc:
+      type: google
+      id: xxx
+      secret: xxx
+      useNonce: true
+    # github:
+      # id: xxx
+      # secret: xxx
+```
+
+- Start the Streampark, and see whether it will redirect to external login page correctly and comple the authentication process:
+
+<img src="/doc/image/sso/github-login.png"/><br></br>
+<img src="/doc/image/sso/google-login.png"/><br></br>
+<img src="/doc/image/sso/login-success-redirect.png"/><br></br>
+
+## Note
+Currently we only support `OAuth` and `OpenID Connect (OIDC)` as normal supported login approch, if you need to support `Saml`, or `CAS`, please go to the `streampark-console/streampark-console-service/pom.xml`, change to include them in the below dependency:
+```
+        <!-- Include pac4j-config/core/oauth/oidc-->
+        <dependency>
+            <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-springboot</artifactId>
+            <version>${pac4jVersion}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-collections</groupId>
+                    <artifactId>commons-collections</artifactId>
+                </exclusion>
+                <!-- cas & opensaml is not supported-->
+                <exclusion>
+                    <groupId>org.pac4j</groupId>
+                    <artifactId>pac4j-cas</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.pac4j</groupId>
+                    <artifactId>pac4j-saml-opensamlv3</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+```
