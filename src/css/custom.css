@@ -96,9 +96,9 @@ html {
   font-feature-settings: "tnum";
 }
 
-/* .navbar {
-  height: 80px;
-} */
+.navbar {
+  height: 60px;
+}
 
 .navbar__title {
   font-size: 18px;
@@ -121,7 +121,7 @@ html {
 }
 
 .navbar__logo {
-  height: 60px;
+  height: 50px;
 }
 
 .footer__link-item svg,

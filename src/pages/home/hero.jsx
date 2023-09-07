@@ -13,12 +13,11 @@ export default function () {
   return (
     <>
       <div className='overflow-hidden'>
-        <Top1 />
+        <Top1 className="top1"/>
       </div>
-      <div className="section pb-9 overflow-hidden">
+      <div className="section pb-9 overflow-hidden main-page" >
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
-
         <div className="container-fluid px-7 pb-2">
           <div className="row justify-content-center">
             <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
@@ -61,9 +60,8 @@ export default function () {
           </div>
         </div >
         <div className='pt-6'>
-          <Top2 />
+          <Top2 className="top2"/>
         </div>
-
       </div >
     </>
   );
