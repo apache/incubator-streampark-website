@@ -12,12 +12,12 @@ export default function () {
   const dataSource = config?.[language];
 
   return (
-    <div className="section py-6 py-md-7 bg-white">
+    <div className="section py-6 py-md-7">
       <div className="container">
         <div className="row text-center">
           <div className="col-12">
             <div className="mb-5">
-              <h2 className="h3 fw-bold">{dataSource.common.development}</h2>
+              <h2 className="article-title h3 fw-bold">{dataSource.common.development}</h2>
               <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }} />
             </div>
           </div>

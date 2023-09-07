@@ -86,7 +86,7 @@
   --ifm-container-width-xl: 1200px;
   --ifm-menu-link-padding-vertical: 0.5rem;
   --ifm-menu-link-padding-horizontal: 1.25rem;
-  --ifm-navbar-height: 5rem;
+  /* --ifm-navbar-height: 5rem; */
 }
 
 html {
@@ -96,29 +96,25 @@ html {
   font-feature-settings: "tnum";
 }
 
-.navbar {
-  height: 60px;
-}
-
 .navbar__title {
   font-size: 18px;
   font-weight: 500;
 }
 
-.navbar__link {
+/* .navbar__link {
   color: #444950;
   font-size: 15px;
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
   font-weight: 400;
   padding: 15px;
-}
+} */
 .navbar__link--active {
   color: var(--ifm-navbar-link-hover-color) !important;
 }
 
-.navbar__items {
+/* .navbar__items {
   margin-left: 20px;
-}
+} */
 
 .navbar__logo {
   height: 50px;
@@ -134,7 +130,7 @@ code {
   margin: 0px 1px 0px 3px;
 }
 
-pre {
+[data-theme="light"] pre {
   background-color: #ecf4fa !important;
 }
 
@@ -399,7 +395,7 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
 
 .theme-doc-sidebar-item-link-level-1 .menu__link,
 .theme-doc-sidebar-item-category:not(#\#):not(#\#) .menu__link--sublist {
-  color: #03060b;
+  color: var(--ifm-menu-color);
   font-weight: 600;
 }
 
@@ -480,4 +476,8 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
 }
 .theme-doc-sidebar-container .menu::-webkit-scrollbar-thumb:hover {
   background-color: #b6b7b9;
+}
+
+p{
+  color: var(--ifm-color-secondary-contrast-foreground);
 }

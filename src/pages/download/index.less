@@ -1,5 +1,7 @@
 @import url('/src/styles/variable.less');
-
+[data-theme="dark"] .download_page .custom-info-block {
+  background-color: #e2e7eb !important;
+}
 .download_page {
 
   a {
@@ -7,6 +9,7 @@
   }
 
   margin-top: 50px !important;
+
 
   .custom-info-block {
     margin: 28px 0;
@@ -43,13 +46,14 @@
     display: table;
     max-width: 100%;
     width: 100%;
-    background: #fff;
-    border: 1px solid rgba(34, 36, 38, .15);
+    // background: #fff;
+    background-color: var(--ifm-table-background);
+    border: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: 0.28571429rem;
     text-align: left;
-    color: rgba(0, 0, 0, .87);
+    color: var(--ifm-table-head-color);
     border-collapse: separate;
     border-spacing: 0;
     font-size: 1em;
@@ -65,15 +69,15 @@
 
       th {
         cursor: auto;
-        background: #f9fafb;
+        // background: #f9fafb;
         text-align: inherit;
-        color: rgba(0, 0, 0, .87);
+        color: var(--ifm-table-head-color);
         padding: 0.92857143em 0.78571429em;
         vertical-align: inherit;
         font-weight: 700;
         text-transform: none;
         border: none;
-        border-right: 1px solid rgba(34, 36, 38, .15);
+        border-right:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
 
         &:last-child {
           border-right: none;
@@ -83,20 +87,22 @@
 
     tbody {
       &>tr:nth-of-type(odd) {
-        background-color: #f9f9f9;
+        // background-color: #f9f9f9;
+        background-color: var(--ifm-table-stripe-background)
       }
 
       tr {
         &:hover {
-          background: rgba(0, 0, 0, .05) !important;
-          color: rgba(0, 0, 0, .95) !important;
+          // background: rgba(0, 0, 0, .05) !important;
+          color: var(--ifm-table-head-color) !important;
           cursor: pointer;
         }
 
         td {
           border: none;
-          border-top: 1px solid rgba(34, 36, 38, .15);
-          border-right: 1px solid rgba(34, 36, 38, .15);
+          color: var(--ifm-table-cell-color);
+          border-top:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+          border-right:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
 
           &:last-child {
             border-right: none;

@@ -18,6 +18,7 @@
  */
 
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -89,7 +90,8 @@ const config = {
   themeConfig: ({
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     navbar: {
       logo: {
@@ -336,7 +338,7 @@ const config = {
     },
 
     prism: {
-      theme: require('prism-react-renderer/themes/vsLight'),
+      theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
       additionalLanguages: ['powershell', 'java', 'scala', 'yaml'],
     }

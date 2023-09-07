@@ -26,12 +26,12 @@ export default function () {
                   <div className=" fw-bold mb-3">
                     <div className="d-flex flex-column align-items-start">
                       <div className='text-right' style={{ width: '100%' }}>
-                        <span className="badge bg-secondary-home fs-6 tag">Incubating</span>
+                        <span className="badge incubating fs-6 tag">Incubating</span>
                       </div>
                       <span className='project_title'>Apache StreamPark</span>
                     </div>
                   </div>
-                  <p className="lead" style={{ lineHeight: '40px' }}>{dataSource.slogan.description}</p>
+                  <p className="desc lead" style={{ lineHeight: '40px' }}>{dataSource.slogan.description}</p>
                 </div>
                 <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
                   target="_blank">
