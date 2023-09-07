@@ -92,7 +92,6 @@ const config = {
       disableSwitch: true
     },
     navbar: {
-      title: 'Apache StreamPark',
       logo: {
         alt: 'StreamPark Logo',
         src: 'image/logo.png',
