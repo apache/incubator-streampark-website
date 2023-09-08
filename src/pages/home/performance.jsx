@@ -46,8 +46,7 @@ export default function () {
           </div>
           <div className="col-6  mb-5 align-self-center">
             <div className="mb-5 my-lg-0" data-aos="fade-left" data-aos-delay="100">
-
-              <img src={useBaseUrl('/home/code.svg')} width="90%"></img>
+              <img className="coder" width="60%"></img>
             </div>
           </div>
 
@@ -62,7 +61,7 @@ export default function () {
 
           <div className="col-6 ">
             <div className="mb-5 my-lg-0" data-aos="fade-up" data-aos-delay="200">
-              <img src={useBaseUrl('/home/code.png')} alt=""></img>
+              <img className="code" alt="QuickStart DataStream"></img>
             </div>
           </div>
         </div>
