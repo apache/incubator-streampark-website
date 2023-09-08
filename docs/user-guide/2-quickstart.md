@@ -10,21 +10,25 @@ The installation of the one-stop platform `streampark-console` has been introduc
 
 `streampark-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
 
-- Github: [https://github.com/apache/incubator-streampark-quickstart.git](https://github.com/apache/incubator-streampark-quickstart)
+- GitHub: [apache/incubator-streampark-quickstart](https://github.com/apache/incubator-streampark-quickstart)
 
 ### Deploy DataStream tasks
 
-The following example demonstrates how to deploy a DataStream application
+The following example demonstrates how to deploy a DataStream application:
 
-<video src="http://assets.streamxhub.com/datastream.mp4" controls="controls" width="100%" height="100%"></video>
+<video width="100%" height="100%" controls>
+<source src="http://assets.streamxhub.com/datastream.mp4" type="video/mp4"/>
+</video>
 
-### Deploy the FlinkSql task
+### Deploy the FlinkSQL task
 
-The following example demonstrates how to deploy a FlinkSql application
+The following example demonstrates how to deploy a FlinkSql application:
 
-<video src="http://assets.streamxhub.com//flinksql.mp4" controls="controls" width="100%" height="100%"></video>
+<video width="100%" height="100%" controls>
+<source src="http://assets.streamxhub.com//flinksql.mp4" type="video/mp4"/>
+</video>
 
-- The flink sql used in the project demonstration is as follows
+- The Flink SQL used in the project demonstration is as follows
 
 ```sql
 CREATE TABLE user_log (
@@ -65,40 +69,33 @@ FROM user_log
 GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 ```
 
--   The maven dependencies are used as follows
+- The Maven dependencies are used as follows:
 
 ```xml
-
 <dependency>
     <groupId>mysql</groupId>
     <artifactId>mysql-connector-java</artifactId>
     <version>5.1.48</version>
 </dependency>
-
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-sql-connector-kafka_2.11</artifactId>
     <version>1.14.6</version>
 </dependency>
-
 <dependency>
     <groupId>org.apache.flink</groupId>
     <artifactId>flink-connector-jdbc_2.11</artifactId>
     <version>1.14.6</version>
 </dependency>
-
-
 ```
 
--   The data sent by Kafka simulation is as follows
+- The data sent by Kafka simulation is as follows
 
 ```json
-
 {"user_id": "543462", "item_id":"1715", "category_id": "1464116", "behavior": "pv", "ts":"2021-02-01 01:00:00"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01 01:00:00"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "pv", "ts":"2021-02-01 01:00:00"}
 {"user_id": "662867", "item_id":"2244074","category_id":"1575622","behavior": "learning flink", "ts":"2021-02-01 01:00:00"}
-
 ```
 
 ### Task start process
@@ -106,7 +103,7 @@ GROUP BY DATE_FORMAT(ts, 'yyyy-MM-dd HH:00');
 The task startup flow chart is as follows
 
 <center>
-<img src="/doc/image/streampark_start.png"/><br></br>
+<img src="/doc/image/streampark_start.png"/><br/>
 <strong>streampark-console submit task process</strong>
 </center>
 
