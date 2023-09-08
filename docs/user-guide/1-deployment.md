@@ -110,7 +110,7 @@ In the installation process of versions before 1.2.1, there is no need to manual
 ├── logs                                     // log dir
 ├── temp                                     // temp dir, don't remove
 ```
-If streampark first installation, execute the script under the `schema` and `data` directories in sequence, and if it is an upgrade, execute under `upgrade` sql file of the corresponding version number.
+If streampark first installation, need to connect to the corresponding database client to execute the script under the `schema` and `data` directories in sequence, and if it is an upgrade, execute under `upgrade` sql file of the corresponding version number.
 
 ##### Modify the configuration
 The installation and unpacking have been completed, and the next step is to prepare the data-related work
