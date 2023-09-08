@@ -2,13 +2,10 @@
      viewBox="0 0 509.23 364.6">
     <style>
         .coding_theme {
-            fill:none;
-            stroke:#2f80ec;
-            stroke-width:5;
-            stroke-miterlimit:10;
+            fill:#fff;
         }
         [data-theme='dark'] .coding_theme {
-            stroke:#4f46e4;
+            fill:#4f46e4;
         }
     </style>
     <defs>
