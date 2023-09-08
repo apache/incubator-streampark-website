@@ -15,16 +15,16 @@ export default function () {
       <div className='overflow-hidden'>
         <Top1 className="top1"/>
       </div>
-      <div className="section pb-9 overflow-hidden main-page" >
+      <div className="section pb-6 overflow-hidden main-page" >
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
-        <div className="container-fluid px-7 pb-2">
+        <div className="container-fluid px-7 pb-2 cover-container">
           <div className="row justify-content-center">
             <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
               <div className="text-start mt-0">
                 <div className="mb-5 system_info pt-0">
                   <div className=" fw-bold mb-3">
-                    <div className="d-flex flex-column align-items-start">
+                    <div className="d-flex flex-column align-items-start" style={{maxWidth: '700px'}}>
                       <div className='text-right' style={{ width: '100%' }}>
                         <span className="badge incubating fs-6 tag">Incubating</span>
                       </div>
@@ -42,12 +42,9 @@ export default function () {
                   <i className="lni-play"></i>&nbsp;Get started
                 </a>
                 <div style={{ marginTop: '20px' }} className="shields ztop">
-                  <a href="https://www.apache.org/licenses/LICENSE-2.0.html">
-                    <img src="https://img.shields.io/badge/license-Apache%202-4EB1BA.svg" className="wow fadeInUp"></img>
-                  </a>
                   <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?sanitize=true" className="wow fadeInUp"></img>
                   <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?sanitize=true" className="wow fadeInUp"></img>
-                  <img src="https://img.shields.io/github/languages/count/apache/incubator-streampark" className="wow fadeInUp"></img>
+                  <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg" className="wow fadeInUp"></img>
                 </div>
               </div>
             </div>
@@ -59,7 +56,7 @@ export default function () {
             </div>
           </div>
         </div >
-        <div className='pt-6'>
+        <div className='pt-6 cover-top'>
           <Top2 className="top2"/>
         </div>
       </div >

@@ -12,6 +12,9 @@ export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
+  function getGitName(url) {
+    return '@' + url.replace('https://github.com/', '');
+  }
   return (
     <BrowserOnly>
       {() => {
@@ -32,24 +35,24 @@ export default function () {
               Mentor
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row bg-gray py-4">
+            <div className="row py-4">
               {
                 dataSource.mentor.map((item, i) => (
-                  <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
-                    <a href={item.gitUrl} target="_blank">
-                      <div className="team team-hover rounded">
-                        <div className="team-img">
-                          <img src={item.avatarUrl} alt={item.name} />
-                        </div>
-                        <div className="team-info">
-                          <span className="team-name text-dark">{item.name}</span>
-                          <p className="team-leader d-flex align-items-center justify-content-center">
+                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                    <div className="hover-top-in text-center" >
+                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                      </div>
+                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                        <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
+                        <small>{getGitName(item.gitUrl)}</small>
+                        <div className="pt-2">
+                          <a className="icon-sm team-link" href={item.gitUrl}>
                             <Github className="github-icon" />
-                            {item.name}
-                          </p>
+                          </a>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   </div>
                 ))
               }
@@ -59,25 +62,25 @@ export default function () {
               PPMC
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row bg-gray py-4">
+            <div className="row py-4">
               {
                 dataSource.PPMC.map((item, i) => (
-                    <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
-                      <a href={item.gitUrl} target="_blank">
-                        <div className="team team-hover rounded">
-                          <div className="team-img">
-                            <img src={item.avatarUrl} alt={item.name} />
-                          </div>
-                          <div className="team-info">
-                            <span className="team-name text-dark">{item.name}</span>
-                            <p className="team-leader d-flex align-items-center justify-content-center">
-                              <Github className="github-icon" />
-                              {item.name}
-                            </p>
-                          </div>
+                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                    <div className="hover-top-in text-center" >
+                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                      </div>
+                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                        <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
+                        <small>{getGitName(item.gitUrl)}</small>
+                        <div className="pt-2">
+                          <a className="icon-sm team-link" href={item.gitUrl}>
+                            <Github className="github-icon" />
+                          </a>
                         </div>
-                      </a>
+                      </div>
                     </div>
+                  </div>
                 ))
               }
             </div>
@@ -86,25 +89,25 @@ export default function () {
               Committer
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row bg-gray py-4">
+            <div className="row py-4">
               {
                 dataSource.committer.map((item, i) => (
-                    <div className="team_user mb-5 px-4" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
-                      <a href={item.gitUrl} target="_blank">
-                        <div className="team team-hover rounded">
-                          <div className="team-img">
-                            <img src={item.avatarUrl} alt={item.name} />
-                          </div>
-                          <div className="team-info">
-                            <span className="team-name text-dark">{item.name}</span>
-                            <p className="team-leader d-flex align-items-center justify-content-center">
-                              <Github className="github-icon" />
-                              {item.name}
-                            </p>
-                          </div>
+                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                    <div className="hover-top-in text-center" >
+                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                      </div>
+                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                        <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
+                        <small>{getGitName(item.gitUrl)}</small>
+                        <div className="pt-2">
+                          <a className="icon-sm team-link" href={item.gitUrl}>
+                            <Github className="github-icon" />
+                          </a>
                         </div>
-                      </a>
+                      </div>
                     </div>
+                  </div>
                 ))
               }
             </div>
