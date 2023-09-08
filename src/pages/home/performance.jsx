@@ -46,7 +46,7 @@ export default function () {
           </div>
           <div className="col-6  mb-5 align-self-center">
             <div className="mb-5 my-lg-0 coder-bg" data-aos="fade-left" data-aos-delay="100">
-              <img className="coder" width="60%"></img>
+              <img className="coder" width="70%"></img>
             </div>
           </div>
 
