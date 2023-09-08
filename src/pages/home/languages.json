@@ -61,8 +61,8 @@
       },
       {
         "icon": "lni-bug",
-        "title": "调式代码",
-        "description": "传入约定的任务配置，开始本地代码调式"
+        "title": "调试代码",
+        "description": "传入约定的任务配置，开始本地代码调试"
       },
       {
         "icon": "lni-bolt-alt",
