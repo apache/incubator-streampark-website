@@ -101,7 +101,7 @@ const config = {
       items: [
         {
           to: '/docs/intro',
-          label: 'Document',
+          label: 'Documentation',
           position: 'left',
           activeBaseRegex: `/docs`,
         },
@@ -174,17 +174,6 @@ const config = {
           activeBaseRegex: `/user`,
         },
         {
-          to: '/blog',
-          label: 'Blog',
-          position: 'left',
-          activeBaseRegex: `/blog`,
-        },
-        {
-          to: 'https://github.com/apache/incubator-streampark/issues/507',
-          position: 'left',
-          label: 'FAQ'
-        },
-        {
           label: 'ASF',
           position: 'left',
           items: [
@@ -219,6 +208,17 @@ const config = {
           ],
         },
         {
+          to: '/blog',
+          label: 'Blog',
+          position: 'left',
+          activeBaseRegex: `/blog`,
+        },
+        {
+          to: 'https://github.com/apache/incubator-streampark/issues/507',
+          position: 'left',
+          label: 'FAQ'
+        },
+        {
           href: 'https://github.com/apache/incubator-streampark',
           label: 'GitHub',
           position: 'left',
@@ -251,7 +251,7 @@ const config = {
           title: 'Resource',
           items: [
             {
-              label: 'Document',
+              label: 'Documentation',
               href: '/docs/intro',
             },
             {
