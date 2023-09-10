@@ -12,9 +12,15 @@ export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
+
   function getGitName(url) {
     return '@' + url.replace('https://github.com/', '');
   }
+
+  function avatarUrl(id) {
+    return 'https://avatars.githubusercontent.com/u/'+ id + '?v=4'
+  }
+
   return (
     <BrowserOnly>
       {() => {
@@ -38,12 +44,12 @@ export default function () {
             <div className="row py-4">
               {
                 dataSource.mentor.map((item, i) => (
-                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                  <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
                       <div className="overflow-hidden z-index-1 position-relative px-5">
-                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                        <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
-                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                      <div className="position-relative bg-team text-center hover-top--in">
                         <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
                         <small>{getGitName(item.gitUrl)}</small>
                         <div className="pt-2">
@@ -65,12 +71,12 @@ export default function () {
             <div className="row py-4">
               {
                 dataSource.PPMC.map((item, i) => (
-                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                  <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
                       <div className="overflow-hidden z-index-1 position-relative px-5">
-                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                        <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
-                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                      <div className="position-relative bg-team text-center hover-top--in">
                         <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
                         <small>{getGitName(item.gitUrl)}</small>
                         <div className="pt-2">
@@ -92,12 +98,12 @@ export default function () {
             <div className="row py-4">
               {
                 dataSource.committer.map((item, i) => (
-                  <div className='col-lg-3 col-sm-6 my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                  <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
                       <div className="overflow-hidden z-index-1 position-relative px-5">
-                        <img className="team-user-img" src={item.avatarUrl} title="" alt="" />
+                        <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
-                      <div className="mx-2 mx-xl-3 position-relative bg-team text-center hover-top--in">
+                      <div className="position-relative bg-team text-center hover-top--in">
                         <h6 className="font-weight-bold team-name mb-1">{item.name}</h6>
                         <small>{getGitName(item.gitUrl)}</small>
                         <div className="pt-2">

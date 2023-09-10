@@ -32,7 +32,7 @@ On the other hand, It can be challenge for enterprises to use Flink & Spark if t
 
 ## 🏳‍🌈 Architecture of StreamPark
 
-The overall architecture of StreamPark is shown in the following figure. StreamPark consists of three parts, they are StreamPark-core, StreamPark-pump, and StreamPark-console.
+The overall architecture of StreamPark is shown in the following figure. StreamPark consists of three parts, they are StreamPark-core and StreamPark-console.
 
 ![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
@@ -42,13 +42,7 @@ The positioning of `StreamPark-core` is a framework uesd while developing, it fo
 StreamPark-core provides a development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending `DataStream-related` methods and integrating DataStream and `Flink sql` api .
 development efficiency and development experience will be highly improved because users can focus on the business.
 
-### 2️⃣ StreamPark-pump
-
-`StreamPark-pump` is a component similar to `flinkx` which is used for data extraction. It is developed based on various connectors provided in `StreamPark-core` and will be integrated into `StreamPark-console`.
-The purpose of developing StreamPark-pump is to create a convenient, fast, out-of-the-box extraction and migration component for real-time big data. We expect it could solve the real-time data source fetching problem.
-`StreamPark-pump` is still in planning.
-
-### 3️⃣ StreamPark-console
+### 2️⃣ StreamPark-console
 
 `StreamPark-console` is a comprehensive real-time `low code` data platform that can manage `Flink` tasks more convenient.
 It integrates the experience of many best practices and integrates many functions such as project compilation, release,
@@ -71,6 +65,5 @@ This platform uses technologies including but not limited to:
 * [xterm.js](https://xtermjs.org/)
 * [Monaco Editor](https://microsoft.github.io/monaco-editor/)
 * ...
-
 
 Thanks for the respect given by the above excellent open source projects and many unmentioned excellent open source projects

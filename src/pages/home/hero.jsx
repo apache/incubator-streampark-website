@@ -5,6 +5,8 @@ import config from './languages.json'
 import Dashboard from "../../../static/home/dashboard.svg"
 import Top1 from "../../../static/home/top1.svg"
 import Top2 from "../../../static/home/top2.svg"
+import Screenshot from './screenshot';
+
 export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
@@ -52,6 +54,9 @@ export default function () {
             <div className="col-6 align-self-center" >
               <div className="mt-5 mt-2 text-right" data-aos="fade-up" data-aos-delay="100">
                 <Dashboard className="img-fluid" style={{ transform: 'translateY(4rem)' }} />
+                {/* <div className="img-fluid" style={{ transform: 'translateY(4rem)' }} >
+                  <Screenshot />
+                </div> */}
               </div>
             </div>
           </div>
