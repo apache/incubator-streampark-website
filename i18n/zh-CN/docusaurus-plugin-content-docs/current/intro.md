@@ -21,7 +21,7 @@ make stream processing easier!!!
 
 * Apache Flink & Spark 应用程序开发脚手架
 * 支持多个版本的 Flink & Spark
-* 一系列开箱即用的连接器
+* 一系列开箱即用的connectors
 * 一站式流处理运营平台
 * 支持catalog、olap、streaming-warehouse等
 * ...
