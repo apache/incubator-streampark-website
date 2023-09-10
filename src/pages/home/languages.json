@@ -57,17 +57,17 @@
       {
         "icon": "lni-code",
         "title": "编写代码",
-        "description": "使用 StreamPark 快速开始开发代码"
+        "description": "使用 StreamPark API 快速进行作业开发"
       },
       {
         "icon": "lni-bug",
         "title": "调试代码",
-        "description": "传入约定的任务配置，开始本地代码调试"
+        "description": "传入 StreamPark 约定的配置，进行本地作业调试"
       },
       {
         "icon": "lni-bolt-alt",
         "title": "部署任务",
-        "description": "使用 streampark-console 部署任务和管理任务"
+        "description": "使用 StreamPark 来部署和管理您的作业"
       }
     ],
     "honor" : {
@@ -80,8 +80,8 @@
       "architecture": "System Architecture",
       "description": "Description",
       "learnMore": "Learn More",
-      "coreFeatures": "Core Features",
-      "coreFeaturesDesc": "Modern features that will make your project easier.",
+      "coreFeatures": "Key Features",
+      "coreFeaturesDesc": "The key features to make your project easier.",
       "development": "Development Framework",
       "honor": "Our Honor",
       "ourUsers": "Our Users",
@@ -133,17 +133,17 @@
       {
         "icon": "lni-code",
         "title": "Write",
-        "description": "Quickly developing app using streampark-core Api"
+        "description": "Develop your code quickly using the StreamPark API"
       },
       {
         "icon": "lni-bug",
         "title": "Debug",
-        "description": "Start the app with config and quickly debug the code"
+        "description": "Debug your code with the standardized configuration"
       },
       {
         "icon": "lni-bolt-alt",
         "title": "Deploy",
-        "description": "Use streampark-console to deploy app"
+        "description": "Deploy and manage your jobs using StreamPark"
       }
     ],
     "honor" : {

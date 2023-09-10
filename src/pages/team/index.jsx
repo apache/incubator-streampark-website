@@ -12,7 +12,7 @@ export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
-  
+
   function getGitName(url) {
     return '@' + url.replace('https://github.com/', '');
   }
