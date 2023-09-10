@@ -19,24 +19,11 @@ make stream processing easier!!!
 
 ## 🎉 Features
 
-* 开发脚手架
-* 多版本Flink支持(1.11、1.12、1.13、1.14、1.15)
+* Apache Flink & Spark 应用程序开发脚手架
+* 支持多个版本的 Flink & Spark
 * 一系列开箱即用的connectors
-* 支持项目编译功能(maven 编译)
-* 在线参数配置
-* 支持`Application` 模式, `Yarn-Per-Job`模式启动
-* 快捷的日常操作(任务`启动`、`停止`、`savepoint`以及从`savepoint`恢复)
-* 支持火焰图
-* 支持`notebook`(在线任务开发)
-* 项目配置和依赖版本化管理
-* 支持任务备份、回滚(配置回滚)
-* 在线管理依赖(maven pom)和自定义jar
-* 自定义udf、连接器等支持
-* Flink SQL WebIDE
-* 支持catalog、hive
-* 任务运行失败发送告警邮件（支持钉钉、微信、邮件、飞书等）
-* 支持失败重启重试
-* 从任务`开发`阶段到`部署管理`全链路支持
+* 一站式流处理运营平台
+* 支持catalog、olap、streaming-warehouse等
 * ...
 
 ## 🏳‍🌈 组成部分
