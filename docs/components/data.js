@@ -95,10 +95,10 @@ export default {
     envs: [
         {name: 'Operating System', version: 'Linux', required: true, other: 'UnSupport Windows'},
         {name: 'JAVA', version: '1.8+', required: true, other: null},
-        {name: 'Maven', version: '3+', required: false, other: 'optionally install Maven'},
+        {name: 'Maven', version: '3+', required: false, other: 'Optionally install Maven'},
         {name: 'Node.js', version: '', required: true, other: 'Node environment'},
         {name: 'Flink', version: '1.12.0+', required: true, other: 'The version must be 1.12+'},
-        {name: 'Hadoop', version: '2+', required: false, other: 'Optional,If on yarn, you need hadoop environment.'},
-        {name: 'MySQL', version: '5.6+', required: false, other: 'optionally install MySQL'}
+        {name: 'Hadoop', version: '2+', required: false, other: 'Optional, If on yarn, hadoop environment is required.'},
+        {name: 'MySQL', version: '5.6+', required: false, other: 'Optionally install MySQL'}
     ]
 }
