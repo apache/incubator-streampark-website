@@ -52,12 +52,11 @@ which can provide a solution that integrates flow and batch, and integrates lake
 This platform uses technologies including but not limited to:
 
 * [Apache Flink](http://flink.apache.org)
+* [Apache Spark](http://spark.apache.org)
 * [Apache YARN](http://hadoop.apache.org)
 * [Spring Boot](https://spring.io/projects/spring-boot/)
 * [Mybatis](http://www.mybatis.org)
 * [Mybatis-Plus](http://mp.baomidou.com)
-* [Flame Graph](http://www.brendangregg.com/FlameGraphs)
-* [JVM-Profiler](https://github.com/uber-common/jvm-profiler)
 * [Vue](https://cn.vuejs.org/)
 * [VuePress](https://vuepress.vuejs.org/)
 * [Ant Design of Vue](https://antdv.com/)
