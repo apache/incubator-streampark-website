@@ -44,7 +44,7 @@ Using `Flink on Kubernetes` requires additional deployment/or use of an existing
 
 ## Build & Deploy
 
-You can directly download the compiled [**release package**](https://github.com/apache/streampark/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
+You can directly download the compiled [**release package**](https://github.com/apache/incubator-streampark/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
 
 
 ### Environmental requirements
