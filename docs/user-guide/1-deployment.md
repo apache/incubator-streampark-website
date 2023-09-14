@@ -232,3 +232,89 @@ The cluster modes currently supported by Flink include:
 -   Yarn Session
 -   Kubernetes Session
 
+## Building from Source
+
+```bash
+git clone https://github.com/apache/incubator-streampark.git
+```
+
+### Backend
+
+After fetching, run `build.sh` in the root directory.
+
+![Build Success](/doc/image/streampark_build_success.png)
+
+After successful execution, add parameters and then start the project. Here, we'll use IDEA to add parameters.
+
+![Build Success](/doc/image/streampark_run_config.png)
+
+```bash
+-Dapp.home=streampark-console/streampark-console-service/target/apache-streampark-2.2.0-SNAPSHOT-incubating-bin/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin
+```
+
+Note that you need to set the path correctly.
+
+<img src={require('/doc/image/streampark_app_home_path.png').default} alt="App Home Path" style={{ width: 300, display: 'block', margin: 'auto' }} />
+
+### Frontend
+
+Navigate to the streampark-console/streampark-console-webapp directory and run the commands:
+
+```bash
+# Install dependencies
+pnpm install
+# Run
+pnpm serve
+```
+
+### Common Build Issues
+
+> Due to different devices and compilation environments, various issues might arise during the compilation. Here, we've listed some common problems and their solutions.
+
+- When cloning the project on `windows`, you get the `filename-too-long` error.
+
+Solution: Add the parameter `-c core.longpaths=true`
+
+```bash
+git clone -c core.longpaths=true https://github.com/apache/incubator-streampark.git
+```
+
+- Errors occur when downloading incomplete dependencies during installation.
+
+![Mvn_Dep_Error](/doc/image/streampark_mvn_dep_error.png)
+
+Solution:
+
+Clear the corresponding module's package from the local `maven` `repository` and re-download. For instance, if there's an error with the `scala` dependency, delete `org.scala-lang`.
+
+- Error messages indicate that a class existing within the project cannot be found.
+
+![Streampark Shaded Compile Not Found](/doc/image/streampark_shaded_not_found_compile.png)
+
+![Streampark Shaded Not Runtime Found](/doc/image/streampark_shaded_not_found_runtime.png)
+
+Solution:
+
+Close the project, delete the `.idea` folder in the root directory of the project, and re-open the project for compilation.
+
+- Issues with the `install-node-and-pnpm` plugin when compiling the source code for deployment.
+
+Error messages like `Connection timed out:connect` or downloading a `32-bit` `node` on a `windows64` system.
+
+![Streampark Install Node And Pnpm Plugin Timeout](/doc/image/streampark_install_node_and_pnpm_plugin_timeout.png)
+
+Solution:
+
+Comment out the configuration for automatic download of `pnpm` and `node`, and download them manually.
+
+![Streampark Install Node And Pnpm Plugin Win32](/doc/image/streampark_install_node_and_pnpm_plugin_win32.png)
+
+After downloading, copy to the project directory `streampark-console\streampark-console-webapp\node`.
+
+![Streampark Node Dir](/doc/image/streampark_node_dir.png)
+
+Then, execute in that directory:
+
+```bash
+npm i pnpm
+```

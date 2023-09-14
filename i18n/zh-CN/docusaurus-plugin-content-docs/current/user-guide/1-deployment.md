@@ -208,4 +208,91 @@ Flink 当前支持的集群模式包括：
 -   Yarn 集群
 -   Kubernetes 集群
 
+## 基于源码编译
+
+```bash
+git clone https://github.com/apache/incubator-streampark.git
+```
+
+### 后端部分
+
+拉取完成后执行根目录下`build.sh`
+
+![Build Success](/doc/image/streampark_build_success.png)
+
+顺利执行完毕后添加参数，再启动项目即可，此处使用idea配置添加参数的方式
+
+![Build Success](/doc/image/streampark_run_config.png)
+
+```bash
+-Dapp.home=streampark-console/streampark-console-service/target/apache-streampark-2.2.0-SNAPSHOT-incubating-bin/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin
+```
+
+注意这里的路径需要配置正确
+
+<img src={require('/doc/image/streampark_app_home_path.png').default} alt="App Home Path"style={{ width: 300, display: 'block', margin: 'auto' }} />
+
+### 前端部分
+
+进入 streampark-console/streampark-console-webapp 目录执行命令
+
+```bash
+# 安装依赖
+pnpm install
+# 运行
+pnpm serve
+```
+
+### 编译常见问题
+
+> 因设备、编译环境而异，编译过程中可能会遇到各种问题，这里列举一些常见问题及解决方案
+
+- `windows`下`clone`项目，提示`filename-too-long`
+
+解决方式：添加参数-c core.longpaths=true
+
+```bash
+git clone -c core.longpaths=true https://github.com/apache/incubator-streampark.git
+```
+
+- 安装依赖时由于依赖下载不完全报错
+
+![Mvn_Dep_Error](/doc/image/streampark_mvn_dep_error.png)
+
+解决方式：
+
+清除`maven`本地`repository`对应模块的包重新下载，例如此处`scala`依赖报错，就删除`org.scala-lang`
+
+- 项目报错提示引用项目里存在的类找不到
+
+![Streampark Shaded Compile Not Found](/doc/image/streampark_shaded_not_found_compile.png)
+
+![Streampark Shaded Not Runtime Found](/doc/image/streampark_shaded_not_found_runtime.png)
+
+解决方式：
+
+关闭项目，删除项目根目录的`.idea`文件夹，重新打开项目进行编译
+
+- 将源码编译成产物部署时，`install-node-and-pnpm`插件问题
+
+提示`Connection timed out:connect`或者在`windows64`位系统但下载的`32`位的`node`等
+
+![Streampark Install Node And Pnpm Plugin Timeout](/doc/image/streampark_install_node_and_pnpm_plugin_timeout.png)
+
+解决方式：
+
+注释掉自动下载`pnpm`和`node`的配置，手动下载
+
+![Streampark Install Node And Pnpm Plugin Win32](/doc/image/streampark_install_node_and_pnpm_plugin_win32.png)
+
+下载完毕后复制到项目`streampark-console\streampark-console-webapp\node`目录下
+
+![Streampark Node Dir](/doc/image/streampark_node_dir.png)
+
+并在该目录下执行
+
+```bash
+npm i pnpm
+```
+
 
