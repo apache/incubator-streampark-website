@@ -136,6 +136,8 @@ sidebar_position: 3
       ```
 
 2. Redundant strings should be extracted as constants
+If a constant has been hardcoded twice or more times, please directly extract it as a constant and change the corresponding reference.
+In generally, constants in `log` can be ignored to extract.
 
     - Negative demo:
 
@@ -162,15 +164,13 @@ sidebar_position: 3
       > Strings are extracted as constant references.
 
       ```java
-        public static final String STATUS_SUCCESS = "success";
-        public static final String STATUS_FAIL = "error";
         public static final String STATUS = "status";
         public static final String CODE = "code";
         public static final String DATA = "data";
         
         public static RestResponse success(Object data) {
             RestResponse resp = new RestResponse();
-            resp.put(STATUS, STATUS_SUCCESS);
+            resp.put(STATUS, "success");
             resp.put(CODE, ResponseCode.CODE_SUCCESS);
             resp.put(DATA, data);
             return resp;
@@ -178,7 +178,7 @@ sidebar_position: 3
         
         public static RestResponse error() {
             RestResponse resp = new RestResponse();
-            resp.put(STATUS, STATUS_FAIL);
+            resp.put(STATUS, "error");
             resp.put(CODE, ResponseCode.CODE_FAIL);
             resp.put(DATA, null);
             return resp;
