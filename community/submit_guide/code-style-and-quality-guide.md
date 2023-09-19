@@ -135,55 +135,55 @@ sidebar_position: 3
        private static final long serialVersionUID = 1L;
       ```
 
-2. Redundant strings should be extracted as constants
-If a constant has been hardcoded twice or more times, please directly extract it as a constant and change the corresponding reference.
-In generally, constants in `log` can be ignored to extract.
+2. Redundant strings should be extracted as constants  
+   >If a constant has been hardcoded twice or more times, please directly extract it as a constant and change the corresponding reference.
+   In generally, constants in `log` can be ignored to extract.
 
-- Negative demo:
+    - Negative demo:
 
-```java
-public static RestResponse success(Object data) {
-    RestResponse resp = new RestResponse();
-    resp.put("status", "success");
-    resp.put("code", ResponseCode.CODE_SUCCESS);
-    resp.put("data", data);
-    return resp;
-}
+      ```java
+      public static RestResponse success(Object data) {
+          RestResponse resp = new RestResponse();
+          resp.put("status", "success");
+          resp.put("code", ResponseCode.CODE_SUCCESS);
+          resp.put("data", data);
+          return resp;
+      }
+      
+      public static RestResponse error() {
+          RestResponse resp = new RestResponse();
+          resp.put("status", "error");
+          resp.put("code", ResponseCode.CODE_FAIL);
+          resp.put("data", null);
+          return resp;
+      }
+      ```
 
-public static RestResponse error() {
-    RestResponse resp = new RestResponse();
-    resp.put("status", "error");
-    resp.put("code", ResponseCode.CODE_FAIL);
-    resp.put("data", null);
-    return resp;
-}
-```
+    - Positive demo:
 
-- Positive demo:
+      > Strings are extracted as constant references.
 
-> Strings are extracted as constant references.
-
-```java
-  public static final String STATUS = "status";
-  public static final String CODE = "code";
-  public static final String DATA = "data";
-  
-  public static RestResponse success(Object data) {
-      RestResponse resp = new RestResponse();
-      resp.put(STATUS, "success");
-      resp.put(CODE, ResponseCode.CODE_SUCCESS);
-      resp.put(DATA, data);
-      return resp;
-  }
-  
-  public static RestResponse error() {
-      RestResponse resp = new RestResponse();
-      resp.put(STATUS, "error");
-      resp.put(CODE, ResponseCode.CODE_FAIL);
-      resp.put(DATA, null);
-      return resp;
-  }
-```
+      ```java
+        public static final String STATUS = "status";
+        public static final String CODE = "code";
+        public static final String DATA = "data";
+        
+        public static RestResponse success(Object data) {
+            RestResponse resp = new RestResponse();
+            resp.put(STATUS, "success");
+            resp.put(CODE, ResponseCode.CODE_SUCCESS);
+            resp.put(DATA, data);
+            return resp;
+        }
+        
+        public static RestResponse error() {
+            RestResponse resp = new RestResponse();
+            resp.put(STATUS, "error");
+            resp.put(CODE, ResponseCode.CODE_FAIL);
+            resp.put(DATA, null);
+            return resp;
+        }
+      ```
 
 3. Ensure code readability and intuitiveness
 
@@ -402,129 +402,129 @@ to reduce code line depth and improve readability like follows:
 
 ### 3.11 StringUtils
 
-#### 3.11.1 Use `StringUtils.isBlank` instead of `StringUtils.isEmpty`
+1. Use `StringUtils.isBlank` instead of `StringUtils.isEmpty`
 
-- Negative demo:
+   - Negative demo:
+   
+      ```java
+      if (StringUtils.isEmpty(name)) {
+     return;
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     if (StringUtils.isBlank(name)) {
+     return;
+     }
+     ```
 
-```java
-if (StringUtils.isEmpty(name)) {
-  return;
-}
-```
+2. Use `StringUtils.isNotBlank` instead of `StringUtils.isNotEmpty`
 
-- Positive demo:
+   - Negative demo:
+   
+      ```java
+      if (StringUtils.isNotEmpty(name)) {
+        return;
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     if (StringUtils.isNotBlank(name)) {
+       return;
+     }
+     ```
 
-```java
-if (StringUtils.isBlank(name)) {
-  return;
-}
-```
+3. Use `StringUtils.isAllBlank` instead of `StringUtils.isAllEmpty`
 
-#### 3.11.2 Use `StringUtils.isNotBlank` instead of `StringUtils.isNotEmpty`
+   - Negative demo:
+   
+      ```java
+      if (StringUtils.isAllEmpty(name, age)) {
+        return;
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     if (StringUtils.isAllBlank(name, age)) {
+       return;
+     }
+     ```
 
-- Negative demo:
+### 3.12 `Enum` Class
 
-```java
-if (StringUtils.isNotEmpty(name)) {
-  return;
-}
-```
+1. Enumeration value comparison
 
-- Positive demo:
+   - Negative demo:
+   
+      ```java
+      if (status.equals(JobStatus.RUNNING)) {
+        return;
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     if (status == JobStatus.RUNNING) {
+       return;
+     }
+     ```
 
-```java
-if (StringUtils.isNotBlank(name)) {
-  return;
-}
-```
+2. Enumeration classes do not need to implement Serializable
 
-#### 3.11.3 Use `StringUtils.isAllBlank` instead of `StringUtils.isAllEmpty`
+   - Negative demo:
+   
+      ```java
+      public enum JobStatus implements Serializable {
+        ...
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     public enum JobStatus {
+       ...
+     }
+     ```
 
-- Negative demo:
+3. Use `Enum.name()` instead of `Enum.toString()`
 
-```java
-if (StringUtils.isAllEmpty(name, age)) {
-  return;
-}
-```
+   - Negative demo:
+   
+      ```java
+      System.out.println(JobStatus.RUNNING.toString());
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     System.out.println(JobStatus.RUNNING.name());
+     ```
 
-- Positive demo:
+4. Enumeration class names uniformly use the Enum suffix
 
-```java
-if (StringUtils.isAllBlank(name, age)) {
-  return;
-}
-```
-
-### 3.12 enum class
-
-#### 3.12.1 Enumeration value comparison
-
-- Negative demo:
-
-```java
-if (status.equals(JobStatus.RUNNING)) {
-  return;
-}
-```
-
-- Positive demo:
-
-```java
-if (status == JobStatus.RUNNING) {
-  return;
-}
-```
-
-#### 3.12.2 Enumeration classes do not need to implement Serializable
-
-- Negative demo:
-
-```java
-public enum JobStatus implements Serializable {
-  ...
-}
-```
-
-- Positive demo:
-
-```java
-public enum JobStatus {
-  ...
-}
-```
-
-#### 3.12.3 Use `Enum.name()` instead of `Enum.toString()`
-
-- Negative demo:
-
-```java
-System.out.println(JobStatus.RUNNING.toString());
-```
-
-- Positive demo:
-
-```java
-System.out.println(JobStatus.RUNNING.name());
-```
-
-#### 3.12.4 Enumeration class names uniformly use the Enum suffix
-
-- Negative demo:
-
-```java
-public enum JobStatus {
-  ...
-}
-```
-
-- Positive demo:
-
-```java
-public enum JobStatusEnum {
-  ...
-}
-```
+   - Negative demo:
+   
+      ```java
+      public enum JobStatus {
+        ...
+      }
+      ```
+   
+   - Positive demo:
+   
+     ```java
+     public enum JobStatusEnum {
+       ...
+     }
+     ```
 
 ## 4 Exception Processing
 
