@@ -21,7 +21,7 @@ import TabItem from '@theme/TabItem';
 
 ## 架构
 
-[]("/doc/image/streampark_archite.png")
+![](/doc/image/streampark_archite.png)
 
 ## 编程模型
 
