@@ -83,8 +83,8 @@ export default {
     ],
     failureRate: [
         {name: 'max-failures-per-interval', desc: 'Maximum number of restarts in given time interval before failing a job', value: '3'},
-        {name: 'failure-rate-interval', desc: 'Time interval for measuring failure', value: '无 | s | m | min | h | d'},
-        {name: 'delay', desc: 'Delay between two consecutive restart attempts', value: '无 | s | m | min | h | d'}
+        {name: 'failure-rate-interval', desc: 'Time interval for measuring failure', value: 'None | s | m | min | h | d'},
+        {name: 'delay', desc: 'Delay between two consecutive restart attempts', value: 'None | s | m | min | h | d'}
     ],
     tables: [
         {name: 'planner', desc: 'Table Planner', value: 'blink | old | any'},
@@ -93,14 +93,12 @@ export default {
         {name: 'database', desc: 'Database,Specifies that the will be used during initialization', value: ''},
     ],
     envs: [
-        {name: '操作系统', version: 'Linux', required: true, other: '不支持Window系统'},
+        {name: 'Operating System', version: 'Linux', required: true, other: 'UnSupport Windows'},
         {name: 'JAVA', version: '1.8+', required: true, other: null},
-        {name: 'Maven', version: '3+', required: false, other: '部署机器可选安装Maven(项目编译会用到)'},
-        {name: 'Node.js', version: '', required: true, other: 'NodeJs相关环境'},
-        {name: 'Flink', version: '1.12.0+', required: true, other: '版本必须是1.12.x或以上版本,scala版本必须是2.11'},
-        {name: 'Hadoop', version: '2+', required: false, other: '可选,如果on yarn则需要hadoop环境,并且配置好相关环境变量'},
-        {name: 'MySQL', version: '5.6+', required: false, other: '部署机器或者其他机器安装MySQL'},
-        {name: 'Python', version: '2+', required: false, other: '可选,火焰图功能会用到Python'},
-        {name: 'Perl', version: '5.16.3+', required: false, other: '可选,火焰图功能会用到Perl'}
+        {name: 'Maven', version: '3+', required: false, other: 'Optionally install Maven'},
+        {name: 'Node.js', version: '', required: true, other: 'Node environment'},
+        {name: 'Flink', version: '1.12.0+', required: true, other: 'The version must be 1.12+'},
+        {name: 'Hadoop', version: '2+', required: false, other: 'Optional, If on yarn, hadoop environment is required.'},
+        {name: 'MySQL', version: '5.6+', required: false, other: 'Optionally install MySQL'}
     ]
 }

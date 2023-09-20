@@ -423,7 +423,7 @@ class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: Da
 
 }
 ```
-Stramx支持两种方式写入数据：1.addSink() 2. writeUsingOutputFormat 样例如下：
+StreamPark 支持两种方式写入数据：1.addSink() 2. writeUsingOutputFormat 样例如下：
 ```scala
     //1）插入方式1
     HBaseSink().sink[TestEntity](source, "order")

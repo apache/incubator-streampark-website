@@ -74,9 +74,9 @@ const ClientProperty = () => {
                                 {
                                     item.required
                                         ?
-                                        <span className="icon-toggle-on" title="必须"></span>
+                                        <span className="icon-toggle-on" title="Required"></span>
                                         :
-                                        <span className="icon-toggle-off" title="可选"></span>
+                                        <span className="icon-toggle-off" title="Optional"></span>
                                 }
                             </td>
                         </tr>

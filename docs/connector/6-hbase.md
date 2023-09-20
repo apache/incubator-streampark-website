@@ -430,7 +430,7 @@ class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: Da
 
 }
 ```
-Stramx supports two ways to write data: 1. addSink() 2. writeUsingOutputFormat Examples are as follows:
+StreamPark supports two ways to write data: 1. addSink() 2. writeUsingOutputFormat Examples are as follows:
 ```scala
     //1）Insert way 1
     HBaseSink().sink[TestEntity](source, "order")

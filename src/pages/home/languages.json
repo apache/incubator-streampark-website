@@ -5,7 +5,7 @@
       "architecture": "系统架构",
       "learnMore": "了解更多",
       "coreFeatures": "核心特性",
-      "coreFeaturesDesc": "让您的项目更轻松的核心特性",
+      "coreFeaturesDesc": "StreamPark 让您的流处理作业更简单的核心特性",
       "development": "开发脚手架",
       "honor": "我们的荣誉",
       "ourUsers": "Our Users",
@@ -23,34 +23,19 @@
     },
     "feature": [
       {
-        "title": "源码可控",
-        "icon": "lni-code",
-        "details": "高质量的代码，后端代码通过阿里代码规范检查，前端代码全部经过 ESlint 语法的严格检验，保证可读性和健壮性"
-      },
-      {
         "title": "简单易用",
         "icon": "lni-layers",
-        "details": "StreamPark 的初衷是为了让流处理更简单，提供了一系列快捷 API 和 Connector，开箱即用，简化开发"
-      },
-      {
-        "title": "文档详尽",
-        "icon": "lni-library",
-        "details": "从概念到上手再到进阶高级，每个使用细节和注意事项都详细罗列，并辅助大量代码示例，让开发者一目了然"
-      },
-      {
-        "title": "健壮稳定",
-        "icon": "lni-magnet",
-        "details": "大数据领域资深玩家打造，每个API、每处设计都经过精心打磨。测试用例齐全，经历线上项目验证，保证稳定可靠"
+        "details": "提供了一系列快捷 API 和 Connector，开箱即用，作业状态自动追踪, 分钟内即可完成作业的开发和管理"
       },
       {
         "title": "流批一体",
         "icon": "lni-shuffle",
-        "details": "StreamPark 以 Flink & Spark 为底层框架，让流批一体落地更加简单，连接互通，跨越框架间的屏障，创造更多可能性"
+        "details": "StreamPark 同时支持 Apache Flink & Spark，无缝支持流式处理和批处理，连接互通，创造更多可能"
       },
       {
         "title": "一站式解决方案",
         "icon": "lni-display-alt",
-        "details": "StreamPark 集成了项目编译、发布、参数配置、任务监控、在线 IDE 等众多功能于一身，是一个一站式综合数据平台"
+        "details": "StreamPark 为流处理作业提供全生命周期支持，从开发到部署，集等众多功能于一身，是一站式流处理平台"
       }
     ],
     "development": [
@@ -81,7 +66,7 @@
       "description": "Description",
       "learnMore": "Learn More",
       "coreFeatures": "Key Features",
-      "coreFeaturesDesc": "The key features to make your project easier.",
+      "coreFeaturesDesc": "The key features of StreamPark is to make your stream processing easier.",
       "development": "Development Framework",
       "honor": "Our Honor",
       "ourUsers": "Our Users",
@@ -99,34 +84,19 @@
     },
     "feature": [
       {
-        "title": "Code controllable",
-        "icon": "lni-code",
-        "details": "High-quality code. Fro readability and robustness backend code uses Ali code check style and frontend code is strictly checked with eslint"
-      },
-      {
         "title": "Easy to use",
         "icon": "lni-layers",
-        "details": "Out-of-the-box APIs and connectors"
+        "details": "Only one service, easy deployment. Automatic job status tracking, enabling development and management of jobs within minutes."
       },
       {
-        "title": "Complete docs",
-        "icon": "lni-library",
-        "details": "From concept to quickstart and advanced, each step is explained in detail with code samples."
-      },
-      {
-        "title": "Robust and stable",
-        "icon": "lni-magnet",
-        "details": "Created by big data experts. Well-designed API. Complete test cases. Verified by production project."
-      },
-      {
-        "title": "Batch & Streaming",
+        "title": "Unified Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamPark base on Apache Flink and Apache Spark and implements a layer of abstraction, make stream and batch processing in a single engine."
+        "details": "StreamPark supports both Apache Flink and Spark, making it easier to seamlessly support streaming and batch processing"
       },
       {
-        "title": "One-stop solution",
+        "title": "One-stop Solution",
         "icon": "lni-display-alt",
-        "details": "StreamPark integrates project compile, release, parameter configuration, task monitoring, online IDE and many other features."
+        "details": "StreamPark provides full lifecycle support for stream processing jobs.from development to deployment, It is an one-stop streaming platform"
       }
     ],
     "development": [
