@@ -1,6 +1,6 @@
 ---
 id: 'local development and debugging'
-title: 'Local development and debugging'
+title: '本地开发调试'
 sidebar_position: 3
 ---
 
@@ -52,13 +52,15 @@ tar -zxvf apache-streampark-2.2.0-SNAPSHOT-incubating-bin.tar.gz
 
 修改启动配置
 
-![Streampark Run Config](/doc/image/streampark_run_config.png)
+![Streampark Modify Run Configuration](/doc/image/streampark_modify_run_configuration.jpg)
 
 勾选`Add VM options`，填写参数`-Dapp.home=$path`，`$path`是我们刚刚复制的路径
 
 ```bash
 -Dapp.home=/Users/user/IdeaProjects/incubator-streampark/dist/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin
 ```
+
+![Streampark Run Config](/doc/image/streampark_run_config.jpeg)
 
 然后启动后台服务即可
 
@@ -73,7 +75,7 @@ pnpm serve
 
 访问 `http://localhost:10001/` ，输入用户名`admin`密码`streampark`，选择一个`team`进入
 
-![Streampark Select Team](/doc/image/streampark_select_team.png)
+![Streampark Select Team](/doc/image/streampark_select_team.jpg)
 
 ### 演示调试代码
 
