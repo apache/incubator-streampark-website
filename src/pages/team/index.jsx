@@ -118,6 +118,14 @@ export default function () {
               }
             </div>
 
+            <h3 className="team_title mb-5">
+              Contributors
+            </h3>
+            <span className="desc">{dataSource.info.contributors}</span>
+            <div className="row py-4">
+              <img src="https://contrib.rocks/image?repo=apache/streampark"/>
+            </div>
+
           </div>
         </Layout>;
       }}
