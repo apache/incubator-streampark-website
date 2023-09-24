@@ -11,6 +11,7 @@ sidebar_position: 3
 - npm 7.11.2 ( https://nodejs.org/en/ )
 - pnpm (npm install -g pnpm)
 - JDK 1.8+
+- Scala 2.12.x
 
 ### clone源码
 
