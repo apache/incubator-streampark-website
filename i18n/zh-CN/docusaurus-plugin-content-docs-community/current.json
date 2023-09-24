@@ -6,5 +6,17 @@
   "sidebar.tutorialSidebar.category.Development Specification": {
     "message": "开发规范",
     "description": "The label for category Development Specification in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Contribution Guide": {
+    "message": "贡献指引",
+    "description": "The label for category Contribution Guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Submit Guide": {
+    "message": "代码提交",
+    "description": "The label for category Submit Guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Release": {
+    "message": "版本发布",
+    "description": "The label for category Release in sidebar tutorialSidebar"
   }
 }
