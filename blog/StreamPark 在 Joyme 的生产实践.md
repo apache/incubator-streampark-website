@@ -1,4 +1,4 @@
-# StreamPark 在 Joyme 的生产实践，从遇见到相爱一气呵成！
+# StreamPark 在 Joyme 的生产实践！
 
 **摘要：**本文带来 StreamPark 在 Joyme 中的生产实践, 作者是 Joyme 的大数据工程师秦基勇, 主要内容为:
 
