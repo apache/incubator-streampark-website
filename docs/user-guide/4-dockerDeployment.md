@@ -5,25 +5,28 @@ sidebar_position: 4
 ---
 
 This tutorial uses the docker method to deploy StreamPark via Docker.
+
 ## Prepare
     Docker 1.13.1+
     Docker Compose 1.28.0+
-### Installing docker
+
+### 1. Install docker
 
 To start the service with docker, you need to install [docker](https://www.docker.com/) first
 
-### Installing docker-compose
+### 2. Install docker-compose
 
 To start the service with docker-compose, you need to install [docker-compose](https://docs.docker.com/compose/install/) first
-## Rapid StreamPark Deployment
 
-### StreamPark deployment based on h2 and docker-compose
+## StreamPark Deployment
+
+### 1. StreamPark deployment based on h2 and docker-compose
 
 This method is suitable for beginners to learn and become familiar with the features. The configuration will reset after the container is restarted. Below, you can configure Mysql or Pgsql for persistence.
 
-#### Deployment
+#### 2. Deployment
 
-```html
+```shell
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/.env
 docker-compose up -d
@@ -31,25 +34,25 @@ docker-compose up -d
 
 Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamPark link will redirect you to the login page, where the default user and password for StreamPark are admin and streampark respectively. To learn more about the operation, please refer to the user manual for a quick start.
 
-#### Configure flink home
+#### 3. Configure flink home
 
 ![](/doc/image/streampark_flinkhome.png)
 
-#### Configure flink-session cluster
+#### 4. Configure flink-session cluster
 
 ![](/doc/image/remote.png)
 
 Note:When configuring the flink-sessin cluster address, the ip address is not localhost, but the host network ip, which can be obtained through ifconfig
 
-#### Submit a task
+#### 5. Submit flink job
 
 ![](/doc/image/remoteSubmission.png)
 
-### Use existing Mysql services
-This approach is suitable for enterprise production, where you can quickly deploy strempark based on docker and associate it with an online database
+##### Use existing Mysql services
+This approach is suitable for enterprise production, where you can quickly deploy StreamPark based on docker and associate it with an online database
 Note: The diversity of deployment support is maintained through the .env configuration file, make sure there is one and only one .env file in the directory
 
-```html
+```shell
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/mysql/.env
 vim .env
@@ -59,7 +62,7 @@ First, you need to create the "streampark" database in MySQL, and then manually 
 
 After that, modify the corresponding connection information.
 
-```html
+```shell
 SPRING_PROFILES_ACTIVE=mysql
 SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/streampark?useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8
 SPRING_DATASOURCE_USERNAME=root
@@ -69,20 +72,23 @@ SPRING_DATASOURCE_PASSWORD=streampark
 ```
 docker-compose up -d
 ```
-### Use existing Pgsql services
-```html
+##### Use existing Pgsql services
+
+```shell
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/pgsql/.env
 vim .env
 ```
 Modify the corresponding connection information
-```html
+
+```shell
 SPRING_PROFILES_ACTIVE=pgsql
 SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/streampark?stringtype=unspecified
 SPRING_DATASOURCE_USERNAME=postgres
 SPRING_DATASOURCE_PASSWORD=streampark
 ```
-```
+
+```shell
 docker-compose up -d
 ```
 
@@ -93,14 +99,14 @@ cd incubator-streampark/deploy/docker
 vim docker-compose
 ```
 
-```html
+```shell
     build:
       context: ../..
       dockerfile: deploy/docker/console/Dockerfile
 #    image: ${HUB}:${TAG}
 ```
 
-```
+```shell
 docker-compose up -d
 ```
 
@@ -177,7 +183,7 @@ volumes:
 
 Finally, execute the start command:
 
-```sh
+```shell
 cd deploy/docker
 docker-compose up -d
 ```
@@ -190,7 +196,7 @@ You can use `docker ps` to check if the installation was successful. If the foll
 
 In the previous `env` file, `HADOOP_HOME` was declared, with the corresponding directory being "/streampark/hadoop". Therefore, you need to upload the `/etc/hadoop` from the Hadoop installation package to the `/streampark/hadoop` directory. The commands are as follows:
 
-```sh
+```shell
 ## Upload Hadoop resources
 docker cp entire etc directory streampark-docker_streampark-console_1:/streampark/hadoop
 ## Enter the container
