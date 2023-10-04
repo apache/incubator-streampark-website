@@ -105,7 +105,7 @@ export default {
         {name: 'OS', version: 'Linux', required: false, other: 'Supports Windows, recommended to use Mac/Linux.'},
         {name: 'IDE', version: 'Intellij IDEA', required: false, other: 'Recommended to use Intellij IDEA'},
         {name: 'JAVA', version: '1.8 +', required: true, other: null},
-        {name: 'Scala', version: '2.12.x', required: true, other: null},
+        {name: 'Scala', version: '2.12.x', required: true, other: 'install scala-plugin in Intellij IDEA'},
         {name: 'Nodejs', version: '5.6 +', required: true, other: 'Node >=16.15.1 <= 18, https://nodejs.org'},
         {name: 'pnpm', version: '7.11.2', required: true, other: 'npm install -g pnpm'},
         {name: 'Flink', version: '1.12.0 +', required: true, other: 'Flink >= 1.12, just download and unpack it.'},

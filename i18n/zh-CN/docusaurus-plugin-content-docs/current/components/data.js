@@ -109,7 +109,7 @@ export default {
         {name: '操作系统', version: 'Linux', required: false, other: '支持 Windows, 推荐使用 Mac/Linux.'},
         {name: 'IDE', version: 'Intellij IDEA', required: false, other: '推荐使用 Intellij IDEA'},
         {name: 'JAVA', version: '1.8 +', required: true, other: null},
-        {name: 'Scala', version: '2.12.x', required: true, other: null},
+        {name: 'Scala', version: '2.12.x', required: true, other: '如果 IDE 是 Intellij IDEA 直接安装Scala插件即可'},
         {name: 'Nodejs', version: '5.6 +', required: true, other: 'Node >=16.15.1 <= 18, https://nodejs.org'},
         {name: 'pnpm', version: '7.11.2', required: true, other: 'npm install -g pnpm'},
         {name: 'Flink', version: '1.12.0 +', required: true, other: 'Flink >= 1.12, 只需要从Flink官网下载解绑即可'},
