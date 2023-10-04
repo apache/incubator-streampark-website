@@ -92,13 +92,24 @@ export default {
         {name: 'catalog', desc: 'Catalog,Specifies that the will be used during initialization', value: ''},
         {name: 'database', desc: 'Database,Specifies that the will be used during initialization', value: ''},
     ],
-    envs: [
-        {name: 'Operating System', version: 'Linux', required: true, other: 'UnSupport Windows'},
+
+    deploymentEnvs: [
+        {name: 'OS', version: 'Linux', required: true, other: 'UnSupport Windows'},
         {name: 'JAVA', version: '1.8+', required: true, other: null},
-        {name: 'Maven', version: '3+', required: false, other: 'Optionally install Maven'},
-        {name: 'Node.js', version: '', required: true, other: 'Node environment'},
-        {name: 'Flink', version: '1.12.0+', required: true, other: 'The version must be 1.12+'},
-        {name: 'Hadoop', version: '2+', required: false, other: 'Optional, If on yarn, hadoop environment is required.'},
-        {name: 'MySQL', version: '5.6+', required: false, other: 'Optionally install MySQL'}
-    ]
+        {name: 'MySQL', version: '5.6+', required: true, other: null},
+        {name: 'Flink', version: '1.12.0+', required: true, other: 'Flink version >= 1.12'},
+        {name: 'Hadoop', version: '2+', required: false, other: 'Optional, If on yarn, hadoop envs is required.'},
+    ],
+
+    developmentEnvs:  [
+        {name: 'OS', version: 'Linux', required: false, other: 'Supports Windows, recommended to use Mac/Linux.'},
+        {name: 'IDE', version: 'Intellij IDEA', required: false, other: 'Recommended to use Intellij IDEA'},
+        {name: 'JAVA', version: '1.8 +', required: true, other: null},
+        {name: 'Scala', version: '2.12.x', required: true, other: null},
+        {name: 'Nodejs', version: '5.6 +', required: true, other: 'Node >=16.15.1 <= 18, https://nodejs.org'},
+        {name: 'pnpm', version: '7.11.2', required: true, other: 'npm install -g pnpm'},
+        {name: 'Flink', version: '1.12.0 +', required: true, other: 'Flink >= 1.12, just download and unpack it.'},
+        {name: 'MySQL', version: '5.6 +', required: false, other: null},
+        {name: 'Hadoop', version: '2 +', required: false, other: 'Optional, If on yarn, hadoop envs is required.'},
+    ],
 }

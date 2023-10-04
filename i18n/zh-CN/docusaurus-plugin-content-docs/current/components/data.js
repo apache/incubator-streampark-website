@@ -96,13 +96,25 @@ export default {
         {name: 'catalog', desc: '指定catalog,如指定初始化时会使用到', value: ''},
         {name: 'database', desc: '指定database,如指定初始化时会使用到', value: ''},
     ],
-    envs: [
+
+    deploymentEnvs: [
         {name: '操作系统', version: 'Linux', required: true, other: '不支持Window系统'},
         {name: 'JAVA', version: '1.8+', required: true, other: null},
-        {name: 'Maven', version: '3+', required: false, other: '部署机器可选安装Maven(项目编译会用到)'},
-        {name: 'Node.js', version: '', required: true, other: 'NodeJs相关环境'},
-        {name: 'Flink', version: '1.12.0+', required: true, other: '版本必须是1.12.x或以上版本,scala版本必须是2.11'},
-        {name: 'Hadoop', version: '2+', required: false, other: '可选,如果on yarn则需要hadoop环境,并且配置好相关环境变量'},
-        {name: 'MySQL', version: '5.6+', required: false, other: '部署机器或者其他机器安装MySQL'}
-    ]
+        {name: 'MySQL', version: '5.6+', required: true, other: '默认使用H2数据库,推荐使用 MySQL'},
+        {name: 'Flink', version: '1.12.0+', required: true, other: 'Flink version >= 1.12'},
+        {name: 'Hadoop', version: '2+', required: false, other: '可选,如果部署flink on yarn 则需要hadoop环境.'},
+    ],
+
+    developmentEnvs:  [
+        {name: '操作系统', version: 'Linux', required: false, other: '支持 Windows, 推荐使用 Mac/Linux.'},
+        {name: 'IDE', version: 'Intellij IDEA', required: false, other: '推荐使用 Intellij IDEA'},
+        {name: 'JAVA', version: '1.8 +', required: true, other: null},
+        {name: 'Scala', version: '2.12.x', required: true, other: null},
+        {name: 'Nodejs', version: '5.6 +', required: true, other: 'Node >=16.15.1 <= 18, https://nodejs.org'},
+        {name: 'pnpm', version: '7.11.2', required: true, other: 'npm install -g pnpm'},
+        {name: 'Flink', version: '1.12.0 +', required: true, other: 'Flink >= 1.12, 只需要从Flink官网下载解绑即可'},
+        {name: 'MySQL', version: '5.6 +', required: false, other: null},
+        {name: 'Hadoop', version: '2 +', required: false, other: '可选,如果部署flink on yarn 需要配置hadoop环境变量.'},
+    ],
+
 }

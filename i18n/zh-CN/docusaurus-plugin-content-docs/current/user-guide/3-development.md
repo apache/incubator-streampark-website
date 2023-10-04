@@ -1,17 +1,14 @@
 ---
-id: 'local development and debugging'
-title: '本地开发调试'
+id: 'development'
+title: '开发指南'
 sidebar_position: 3
 ---
 
 ### 环境要求
 
-- Maven 3.6+
-- nodejs (version >= 16.14)
-- npm 7.11.2 ( https://nodejs.org/en/ )
-- pnpm (npm install -g pnpm)
-- JDK 1.8+
-- Scala 2.12.x
+import { DevelopmentEnvs } from '../components/TableData.jsx';
+
+<DevelopmentEnvs></DevelopmentEnvs>
 
 ### clone源码
 
@@ -26,8 +23,6 @@ cd incubator-streampark/
 ./build.sh
 ```
 
-![Build Success](/doc/image/streampark_build_success.png)
-
 ### 打开项目
 
 此处使用`idea`打开项目
@@ -40,16 +35,16 @@ open -a /Applications/IntelliJ\ IDEA\ CE.app/ ./
 
 ```bash
 cd ./dist
-tar -zxvf apache-streampark-2.2.0-SNAPSHOT-incubating-bin.tar.gz
+tar -zxvf apache-streampark-2.2.0-incubating-bin.tar.gz
 ```
 
 ### 复制路径
 
-复制解压后的目录路径，例：`/Users/user/IdeaProjects/incubator-streampark/dist/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin`
+复制解压后的目录路径，例：`${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin`
 
 ### 启动后台服务
 
-找到`streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/StreamParkConsoleBootstrap.java`
+找到 `streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/StreamParkConsoleBootstrap.java`
 
 修改启动配置
 
@@ -58,7 +53,7 @@ tar -zxvf apache-streampark-2.2.0-SNAPSHOT-incubating-bin.tar.gz
 勾选`Add VM options`，填写参数`-Dapp.home=$path`，`$path`是我们刚刚复制的路径
 
 ```bash
--Dapp.home=/Users/user/IdeaProjects/incubator-streampark/dist/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin
+-Dapp.home=${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin
 ```
 
 ![Streampark Run Config](/doc/image/streampark_run_config.jpeg)

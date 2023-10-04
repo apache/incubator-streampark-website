@@ -4,7 +4,7 @@ title: 'Platform Deployment'
 sidebar_position: 1
 ---
 
-import { ClientEnvs } from '../components/TableData.jsx';
+import { DeploymentEnvs } from '../components/TableData.jsx';
 
 The overall component stack structure of StreamPark is as follows. It consists of two major parts: streampark-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
@@ -14,13 +14,7 @@ streampark-console provides an out-of-the-box installation package. Before insta
 
 ## Environmental requirements
 
-<ClientEnvs></ClientEnvs>
-
-:::tip Notice
-The versions before (including) StreamPark 1.2.2 only support `scala 2.11`. Do not check the corresponding `scala` version when using `flink`
-Versions after (including) 1.2.3, support both `scala 2.11` and `scala 2.12` versions
-:::
-
+<DeploymentEnvs></DeploymentEnvs>
 
 At present, StreamPark has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
 

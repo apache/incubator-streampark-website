@@ -4,7 +4,7 @@ title: '安装部署'
 sidebar_position: 1
 ---
 
-import { ClientEnvs } from '../components/TableData.jsx';
+import { DeploymentEnvs } from '../components/TableData.jsx';
 
 StreamPark 总体组件栈架构如下， 由 streampark-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
 
@@ -14,13 +14,7 @@ streampark-console 提供了开箱即用的安装包，安装之前对环境有�
 
 ## 环境要求
 
-<ClientEnvs></ClientEnvs>
-
-:::tip 注意
-StreamPark 1.2.2之前(包含)的版本,只支持`scala 2.11`,切忌使用`flink`时要检查对应的`scala`版本
-1.2.3之后(包含)的版本,支持 `scala 2.11` 和 `scala 2.12` 两个版本
-:::
-
+<DeploymentEnvs></DeploymentEnvs>
 
 目前 StreamPark 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
 
