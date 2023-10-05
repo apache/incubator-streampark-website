@@ -202,7 +202,7 @@ StreamPark 给顺网科技带来的最大的收益就是降低了 Flink 的使�
 
 ![图片](/blog/SF/achievements2.png)
 
-##  **未 来** 规 划 
+##  未 来 规 划 
 
 顺网科技作为 StreamPark 早期的用户之一，在 1 年期间内一直和社区同学保持交流，参与 StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 StreamPark 上管理 Flink 表的元数据信息，基于 Flink 引擎通过多 Catalog 实现跨数据源查询分析功能。目前 StreamPark 正在对接 Flink-SQL-Gateway 能力，这一块在未来对于表元数据的管理和跨数据源查询功能会提供了很大的帮助。
 
