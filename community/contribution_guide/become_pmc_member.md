@@ -13,7 +13,7 @@ sidebar_position: 3
     the License.  You may obtain a copy of the License at
 
        https://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,13 +28,13 @@ CoPDoC areas can become an Apache StreamPark PMC member. The CoPDoC is an
 acronym from ASF to describe how we recognize your contributions not
 only by code.
 
-- **Co**mmunity - You can join us via our mailing list, issue
+- **Community** - You can join us via our mailing list, issue
   trackers, discussions page to interact with community members, and
   share vision and knowledge
-- **P**roject - a clear vision and consensus are needed
-- **Do**cumentation - without it, the stuff remains only in the minds
+- **Project** - a clear vision and consensus are needed
+- **Documentation** - without it, the stuff remains only in the minds
   of the authors
-- **C**ode - discussion goes nowhere without code
+- **Code** - discussion goes nowhere without code
 
 Apache StreamPark community strives to be meritocratic. Thus, once someone
 has contributed sufficiently to any area of CoPDoC they can be a
