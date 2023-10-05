@@ -32,21 +32,21 @@ sidebar_position: 2
 
 * Clone your repository to your local
 
-    ```shell
+```shell
     git clone git@github.com:apache/incubator-streampark.git
-    ```
+```
 
 * Add remote repository address, named upstream
 
-    ```shell
-    git remote add upstream git@github.com:apache/incubator-streampark.git
-    ```
+```shell
+  git remote add upstream git@github.com:apache/incubator-streampark.git
+```
 
 * View repository
 
-    ```shell
-    git remote -v
-    ```
+```shell
+  git remote -v
+```
 
   > At this time, there will be two repositories: origin (your own repository) and upstream (remote repository)
 

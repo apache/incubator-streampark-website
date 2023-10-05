@@ -1,3 +1,9 @@
+---
+slug: streampark-usercase-chinaunion
+title: 联通 Flink 实时计算平台化运维实践
+tags: [StreamPark, 生产实践, FlinkSQL]
+---
+
 # 联通 Flink 实时计算平台化运维实践
 
 **摘要：**本文整理自联通数科实时计算团队负责人、Apache StreamPark Committer 穆纯进在 Flink Forward Asia 2022 平台建设专场的分享，本篇内容主要分为四个部分：

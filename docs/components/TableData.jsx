@@ -326,7 +326,8 @@ const ClientTables = () => {
 };
 
 
-const ClientEnvs = () => {
+
+const DeploymentEnvs = () => {
     return (
 
         <div>
@@ -341,7 +342,48 @@ const ClientEnvs = () => {
                 </thead>
                 <tbody>
                 {
-                    dataSource.envs.map((item, i) => (
+                    dataSource.deploymentEnvs.map((item, i) => (
+                        <tr key={i}>
+                            <td>
+                                <span className="label-info">{item.name}</span>
+                            </td>
+                            <td>{item.version}</td>
+                            <td>
+                                {
+                                    item.required
+                                        ?
+                                        <span className="icon-toggle-on" title="Required"></span>
+                                        :
+                                        <span className="icon-toggle-off" title="Optional"></span>
+                                }
+                            </td>
+                            <td>{item.other}</td>
+                        </tr>
+                    ))
+                }
+                </tbody>
+            </table>
+        </div>
+
+    );
+};
+
+const DevelopmentEnvs = () => {
+    return (
+
+        <div>
+            <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
+                <thead>
+                <tr>
+                    <td>Item</td>
+                    <td>Version</td>
+                    <td>Required</td>
+                    <td>Other</td>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    dataSource.developmentEnvs.map((item, i) => (
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
@@ -378,5 +420,6 @@ export {
     ClientFixedDelay,
     ClientFailureRate,
     ClientTables,
-    ClientEnvs
+    DevelopmentEnvs,
+    DeploymentEnvs
 };
