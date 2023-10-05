@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-bondex-with-paimon
-title: 联通 Flink 实时计算平台化运维实践
+title: 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
 tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 ---
 
