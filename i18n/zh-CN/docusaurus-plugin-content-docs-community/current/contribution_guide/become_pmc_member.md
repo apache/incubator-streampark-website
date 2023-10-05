@@ -13,7 +13,7 @@ sidebar_position: 3
     the License.  You may obtain a copy of the License at
 
        https://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,10 +25,10 @@ sidebar_position: 3
 
 任何支持社区并在 CoPDoC 领域中工作的人都可以成为 Apache StreamPark 的PMC 成员。CoPDoC 是 ASF 的缩写，用来描述我们如何不仅仅通过代码来认识到您的贡献。
 
-- **Co**mmunity（社区） - 您可以通过我们的邮件列表、问题追踪器、讨论页面与社区成员互动，并分享愿景和知识。
-- **P**roject（项目） - 需要明确的愿景和共识。
-- **Do**cumentation（文档） - 没有它，内容只会停留在作者的头脑中。
-- **C**ode（代码） - 没有代码，讨论就毫无意义。
+- **Community** - 您可以通过我们的邮件列表、问题追踪器、讨论页面与社区成员互动，并分享愿景和知识。
+- **Project** - 需要明确的愿景和共识。
+- **Documentation** - 没有它，内容只会停留在作者的头脑中。
+- **Code** - 没有代码，讨论就毫无意义。
 
 Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有人在 CoPDoC 的任何领域有了足够的贡献，他们就可以成为 PMC 成员资格的候选人，最终被投票选为 StreamPark 的 PMC 成员。成为 Apache StreamPark 的 PMC 成员并不一定意味着您必须使用您的提交权限向代码库提交代码；它意味着您致力于 StreamPark 项目并为我们社区的成功做出了积极的贡献。
 
