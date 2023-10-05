@@ -1,6 +1,6 @@
 ---
 id: 'docker-deployment'
-title: 'Docker 快速使用教程'
+title: 'Docker 部署'
 sidebar_position: 4
 ---
 

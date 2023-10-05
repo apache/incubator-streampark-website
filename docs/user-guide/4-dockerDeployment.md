@@ -1,6 +1,6 @@
 ---
 id: 'docker-deployment'
-title: 'Docker Quick Tutorial'
+title: 'Docker Tutorial'
 sidebar_position: 4
 ---
 

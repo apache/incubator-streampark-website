@@ -86,14 +86,21 @@
   --ifm-container-width-xl: 1200px;
   --ifm-menu-link-padding-vertical: 0.5rem;
   --ifm-menu-link-padding-horizontal: 1.25rem;
+  --default-font: 0.90rem;
+  --default-line-height: 21px;
   /* --ifm-navbar-height: 5rem; */
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
-    "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-variant: tabular-nums;
   font-feature-settings: "tnum";
+}
+
+body {
+  margin: 0;
+  font-size: var(--default-font) !important;
+  line-height: var(--default-line-height);
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
 
 .navbar__title {
@@ -101,20 +108,9 @@ html {
   font-weight: 500;
 }
 
-/* .navbar__link {
-  color: #444950;
-  font-size: 15px;
-  font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  padding: 15px;
-} */
 .navbar__link--active {
   color: var(--ifm-navbar-link-hover-color) !important;
 }
-
-/* .navbar__items {
-  margin-left: 20px;
-} */
 
 .navbar__logo {
   height: 50px;
@@ -339,7 +335,6 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
 .menu__list .menu__list {
   flex: 0 0 100%;
   margin-top: 0.25rem;
-  padding-left: var(--ifm-menu-link-padding-horizontal);
 }
 
 .menu__list-item--collapsed .menu__list {
@@ -379,7 +374,7 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
 }
 
 .theme-doc-sidebar-menu:not(#\#):not(#\#) {
-  font-size: 0.95rem;
+  font-size: 0.90rem;
 }
 
 .theme-doc-sidebar-item-link-level-1:not(:first-child):not(#\#):not(#\#),
@@ -478,6 +473,7 @@ footer .subscribe-box ul li a:hover .wechat-dropdown {
   background-color: #b6b7b9;
 }
 
-p{
+p {
   color: var(--ifm-color-secondary-contrast-foreground);
+  font-weight: 500;
 }

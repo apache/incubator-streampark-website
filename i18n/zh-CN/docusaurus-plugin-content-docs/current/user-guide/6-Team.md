@@ -1,6 +1,6 @@
 ---
 id: 'Team'
-title: '用户、团队、角色以及成员管理'
+title: '团队成员管理'
 sidebar_position: 6
 ---
 
