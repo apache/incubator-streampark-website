@@ -1,3 +1,9 @@
+---
+slug: streampark-usercase-haibo
+title: StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设
+tags: [StreamPark, 生产实践, FlinkSQL]
+---
+
 # StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设
 
 **摘要：**本文「 StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设 」作者是海博科技大数据架构师王庆焕，主要内容为：
