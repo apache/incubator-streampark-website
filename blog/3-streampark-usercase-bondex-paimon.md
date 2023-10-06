@@ -6,7 +6,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 # 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
 
-![](/blog/Bondex/Bondex.png)
+![](/blog/bondex/Bondex.png)
 
 **导读：**本文主要介绍作为供应链物流服务商海程邦达在数字化转型过程中采用 Paimon + StreamPark 平台实现流式数仓的落地方案。我们以 Apache StreamPark 流批一体平台提供了一个易于上手的生产操作手册，以帮助用户提交 Flink 任务并迅速掌握 Paimon 的使用方法。
 
@@ -28,7 +28,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 **实时数仓架构：**
 
-![](/blog/Bondex/realtime_warehouse.png)
+![](/blog/bondex/realtime_warehouse.png)
 
 当前系统要求直接从生产系统收集实时数据，但存在多个数据源需要进行关联查询，而帆软报表在处理多个数据源时展示不够友好，且无法再次聚合多个数据源。定时查询生产系统会给生产系统数据库带来压力，影响生产系统的稳定运行。因此，我们需要引入一个可以通过 [Flink CDC](https://github.com/ververica/flink-cdc-connectors) 技术实现流式处理的数仓，以解决实时数据处理的问题。这个数仓需要能够从多个数据源收集实时数据并在此基础上实现复杂的关联 SQL 查询、机器学习等操作，并且可以避免不定时查询生产系统，从而减轻生产系统的压力，保障生产系统的稳定运行。
 
@@ -56,7 +56,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 Lambda 架构是由 Storm 的作者 Nathan Marz 提出的一个实时大数据处理框架。Marz 在 Twitter 工作期间开发了著名的实时大数据处理框架 [Apache Storm](https://github.com/apache/storm) ，Lambda 架构是其根据多年进行分布式大数据系统的经验总结提炼而成。
 
-![](/blog/Bondex/lambda.png)
+![](/blog/bondex/lambda.png)
 
 数据流处理分为 ServingLayer、SpeedLayer、BatchLayer 三层：
 
@@ -76,7 +76,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 它通常使用流处理引擎实现，例如Apache Flink、Apache Storm、Apache Kinesis、 Apache Kafka，旨在处理大量数据流并提供快速可靠的查询访问结果。
 
-![](/blog/Bondex/kappa.png)
+![](/blog/bondex/kappa.png)
 
 **优点是：**单数据流处理框架
 
@@ -96,7 +96,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 **流式数仓架构如下：**
 
-![](/blog/Bondex/streaming_warehouse.png)
+![](/blog/bondex/streaming_warehouse.png)
 
 延续了 kappa 架构的特点，一套流处理架构，好处在与，底层 Paimon 的技术支撑使得数据在全链路可查，数仓分层架构得以复用，同时兼顾了离线和实时的处理能力，减少存储和计算的浪费
 
@@ -116,7 +116,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 通过在 StreamPark 平台上提交 Paimon 任务，我们可以建立一个全链路实时流动、可查询和分层可复用的 Pipline。
 
-![](/blog/Bondex/pipline.png)
+![](/blog/bondex/pipline.png)
 
 主要采用组件版本如下：
 
@@ -184,7 +184,7 @@ source /etc/profile
 
 在 StreamPark 添加 Flink conf:
 
-![](/blog/Bondex/flink_conf.jpg)
+![](/blog/bondex/flink_conf.jpg)
 
 构建 Flink 1.16.0 基础镜像从 dockerhub拉取对应版本的镜像
 
@@ -274,11 +274,11 @@ kubectl create secret docker-registry streamparksecret
 
 创建命名空间 StreamPark (安全设置需要设置为私有)
 
-![](/blog/Bondex/aliyun.png)
+![](/blog/bondex/aliyun.png)
 
 在 StreamPark 配置镜像仓库，任务构建镜像会推送到镜像仓库
 
-![](/blog/Bondex/dockersystem_setting.png)
+![](/blog/bondex/dockersystem_setting.png)
 
 创建 k8s secret 密钥用来拉取 ACR 中的镜像 streamparksecret 为密钥名称 自定义
 
@@ -332,7 +332,7 @@ kubectl -f checkpoints_pvc.yaml kubectl -f savepoints_pvc.yaml
 
 任务提交：初始化 Paimon catalog 配置
 
-![](/blog/Bondex/paimon_catalog_setting.png)
+![](/blog/bondex/paimon_catalog_setting.png)
 
 ```sql
 SET 'execution.runtime-mode' = 'streaming';
@@ -348,11 +348,11 @@ USE CATALOG `table_store`;
 
 一个任务同时抽取 postgres、mysql、sqlserver 三种数据库的表数据写入到 Paimon
 
-![](/blog/Bondex/application_setting.png)
+![](/blog/bondex/application_setting.png)
 
-![](/blog/Bondex/pom.jpg)
+![](/blog/bondex/pom.jpg)
 
-![](/blog/Bondex/pod_template.png)
+![](/blog/bondex/pod_template.png)
 
 **信息如下:**
 
@@ -578,7 +578,7 @@ FROM `OrderHAWB` where CreateOPDate > '2023-01-01';
 
 业务表数据实时写入 Paimon ods 表效果如下：
 
-![](/blog/Bondex/ods.png)
+![](/blog/bondex/ods.png)
 
 2. 将ods层表的数据打宽写入 dwd 层中，这里其实就是将 ods 层相关业务表合并写入dwd 中，这里主要是处理 count_order 字段的值，因为源表中的数据存在逻辑删除和物理删除所以通过 count 函数统计会有问题，所以我们这里采用 sum 聚合来计算单量，每个reference_no对应的count_order是1，如果逻辑作废通过sql将它处理成0，物理删除 Paimon 会自动处理。
 
@@ -651,7 +651,7 @@ FROM
 
 flink ui 可以看到 ods 数据经过 paimon 实时 join 清洗到表 dwd_business_order
 
-![](/blog/Bondex/dwd_business_order.png)
+![](/blog/bondex/dwd_business_order.png)
 
 2.将dwd层数据轻度聚合到dwm层中，将相关数据写入dwm.`dwm_business_order_count` 表中，该表数据会根据主键对聚合字段做 sum，sum_orderCount 字段就是聚合结果，物理删除的数据 sum 时 paimon 会自动处理。
 
@@ -714,7 +714,7 @@ dwd.`dwd_business_order` o
 
 Flink UI 效果如下 dwd_business_orders 数据聚合写到 dwm_business_order_count：
 
-![](/blog/Bondex/dwm_business_order_count.png)
+![](/blog/bondex/dwm_business_order_count.png)
 
 4.将 dwm 层数据聚合到 dws 层中，dws 层是做了更小维度的汇总
 
@@ -757,31 +757,31 @@ FROM
 
 Flink UI 效果如下 dws_business_order_count_op 数据写到 dws_business_order_count_op：
 
-![](/blog/Bondex/dws_business_order_count_op.png)
+![](/blog/bondex/dws_business_order_count_op.png)
 
 总体数据流转示例
 
-![](/blog/Bondex/all_datastream.jpg)
+![](/blog/bondex/all_datastream.jpg)
 
 源表：
 
-![](/blog/Bondex/source.png)
+![](/blog/bondex/source.png)
 
 paimon-ods:
 
-![](/blog/Bondex/paimon-ods.png)
+![](/blog/bondex/paimon-ods.png)
 
 paimon-dwd:
 
-![](/blog/Bondex/paimon-dwd.png)
+![](/blog/bondex/paimon-dwd.png)
 
 paimon-dwm:
 
-![](/blog/Bondex/paimon-dwm.png)
+![](/blog/bondex/paimon-dwm.png)
 
 paimon-dws:
 
-![](/blog/Bondex/paimon-dws.png)
+![](/blog/bondex/paimon-dws.png)
 
 特别提醒 sqlserver 数据库抽取时如果源表数据量过大全量抽取会锁表，建议在业务允许的情况下采用增量抽取。对于全量抽取 sqlserver 可以采用中转的方式 sqlserver 全量数据导入到 mysql，从 mysql 再到 paimon-ods ,后面再通过 sqlserever 做增量抽取。
 
@@ -833,11 +833,11 @@ set 'table.exec.sink.upsert-materialize' = 'none'
 
 在 MySQL 源端执行 update 数据修改成功后，dwd_orders 表数据能同步成功
 
-![](/blog/Bondex/dwd_orders.png)
+![](/blog/bondex/dwd_orders.png)
 
 但是查看 dwd_enriched_orders 表数据无法同步，启动流模式查看数据，发现没有数据流向
 
-![](/blog/Bondex/log.png)
+![](/blog/bondex/log.png)
 
 **解决：**
 
@@ -870,7 +870,7 @@ WITH (
 
 任务异常中断 导致pod挂掉，查看loki日志显示akka.pattern.AskTimeoutException: Ask timed out on
 
-![](/blog/Bondex/loki.png)
+![](/blog/bondex/loki.png)
 
 java.util.concurrent.TimeoutException: Invocation of [RemoteRpcInvocation(JobMasterGateway.updateTaskExecutionState(TaskExecutionState))] at recipient [akka.tcp://flink@fts-business-order-count.streamx:6123/user/rpc/jobmanager_2] timed out. This is usually caused by: 1) Akka failed sending the message silently, due to problems like oversized payload or serialization failures. In that case, you should find detailed error information in the logs. 2) The recipient needs more time for responding, due to problems like slow machines or network jitters. In that case, you can try to increase akka.ask.timeout.\n"
 
@@ -899,11 +899,11 @@ java.util.concurrent.TimeoutException: Invocation of [RemoteRpcInvocation(JobMas
 
 发现 cp 出现失败情况
 
-![](/blog/Bondex/cp_fail.jpg)
+![](/blog/bondex/cp_fail.jpg)
 
 对应时间点日志显示 Snapshot 丢失，任务显示为 running 状态，但是源表 mysql 数据无法写入 paimon ods 表
 
-![](/blog/Bondex/status_log.png)
+![](/blog/bondex/status_log.png)
 
 定位cp失败原因为：计算量大，CPU密集性，导致TM内线程一直在processElement，而没有时间做CP
 
@@ -923,9 +923,9 @@ https://github.com/apache/incubator-paimon/pull/1308
 -D jobmanager.adaptive-batch-scheduler.default-source-parallelism=2
 ```
 
-![](/blog/Bondex/dynamic_properties.jpg)
+![](/blog/bondex/dynamic_properties.jpg)
 
-![](/blog/Bondex/flink_dashboard.png)
+![](/blog/bondex/flink_dashboard.png)
 
 在复杂的实时任务中，可以通过修改动态参数的方式，增加资源。
 

@@ -6,10 +6,9 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 # StreamPark 在顺网科技的大规模生产实践
 
-![](/blog/SF/autor.png)
+![](/blog/shunwang/autor.png)
 
 **导读：**本文主要介绍顺网科技在使用 Flink 计算引擎中遇到的一些挑战，基于 StreamPark 作为实时数据平台如何来解决这些问题，从而大规模支持公司的业务。
-
 
 
 - 公司业务介绍
@@ -40,13 +39,13 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 Flink 作为当下实时计算领域中最流行的技术框架之一，拥有高吞吐、低延迟、有状态计算等强大的特性。在探索中我们发现 Flink 虽然拥有强大的计算能力，但是对于作业开发管理和运维问题，社区并没有提供有效的解决方案。我们对 Flink 作业开发管理上遇到的一些痛点大概总结为 4 个方面，如下：
 
-![图片](/blog/SF/pain.png)
+![图片](/blog/shunwang/pain.png)
 
 在面对 Flink 作业管理和运维上的的一系列痛点后，我们一直在寻找合适的解决方案来降低开发同学使用 Flink 门槛，提高工作效率。
 
 在没有遇到 StreamPark 之前，我们调研了部分公司的 Flink 管理解决方案，发现都是通过自研实时作业平台的方式来开发和管理 Flink 作业。于是，我们也决定自研一套实时计算管理平台，来满足了开发同学对于 Flink 作业管理和运维的基础需求，我们这套平台叫 Streaming-Launcher，大体功能如下：
 
-![图片](/blog/SF/launcher.png)
+![图片](/blog/shunwang/launcher.png)
 
 但是后续开发同学在使用过程中，发现 Streaming-Launcher 存在比较多的缺陷：Flink 开发成本依然过高、工作效率低下、问题排查困难。我们总结了 Streaming-Launcher 存在的缺陷，大致如下：
 
@@ -54,13 +53,13 @@ Flink 作为当下实时计算领域中最流行的技术框架之一，拥有�
 
 作业务开发需要多个工具完成一个 SQL 作业开发，提高了开发同学的使用门槛。
 
-![cc0b1414ed43942e0ef5e9129c2bf817](/blog/SF/sql_develop.png)
+![cc0b1414ed43942e0ef5e9129c2bf817](/blog/shunwang/sql_develop.png)
 
 ### **SQL-Client 存在弊端**
 
 Flink 提供的 SQL-Client 目前对作业运行模式支持上，存在一定的弊端。
 
-![图片](/blog/SF/sql_client.png)
+![图片](/blog/shunwang/sql_client.png)
 
 ### **作业缺少统一管理**
 
@@ -70,7 +69,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 一个作业查看日志需要通过多个步骤，一定程度上降低了开发同学工作效率。
 
-![图片](/blog/SF/step.png)
+![图片](/blog/shunwang/step.png)
 
 ## **为什么用** **StreamPark**
 
@@ -88,7 +87,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 
 
-![图片](/blog/SF/permission.png)
+![图片](/blog/shunwang/permission.png)
 
 
 
@@ -96,7 +95,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 **我们在对 StreamPark 做调研的时候，最关注的是 StreamPark 对于作业的管理的能力。**StreamPark 是否有能力管理作业一个完整的生命周期：作业开发、作业部署、作业管理、问题诊断等。**很幸运，StreamPark 在这一方面非常优秀，对于开发同学来说只需要关注业务本身，不再需要特别关心 Flink 作业管理和运维上遇到的一系列痛点。**在 StreamPark 作业开发管理管理中，大致分为三个模块：作业管理基础功能，Jar 作业管理，FlinkSQL 作业管理。如下：
 
-![图片](/blog/SF/homework_manager.png)
+![图片](/blog/shunwang/homework_manager.png)
 
 **开发脚手架**
 
@@ -104,7 +103,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 
 
-![图片](/blog/SF/connectors.png)
+![图片](/blog/shunwang/connectors.png)
 
 
 
@@ -116,7 +115,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 
 
-![图片](/blog/SF/function.png)
+![图片](/blog/shunwang/function.png)
 
 
 
@@ -124,7 +123,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 StreamPark 为了降低 Flink 作业开发门槛，提高开发同学工作效率，**提供了 FlinkSQL IDE、参数管理、任务管理、代码管理、一键编译、一键作业上下线等使用的功能**。在调研中，我们发现 StreamPark 集成的这些功能可以进一步提升开发同学的工作效率。在某种程度上来说，开发同学不需要去关心 Flink 作业管理和运维的难题，只要专注于业务的开发。同时，这些功能也解决了 Streaming-Launcher 中 SQL 开发流程繁琐的痛点。
 
-![图片](/blog/SF/application.png)
+![图片](/blog/shunwang/application.png)
 
 **支持多种部署模式**
 
@@ -134,11 +133,11 @@ StreamPark 为了降低 Flink 作业开发门槛，提高开发同学工作效�
 
 对于开发同学来说，作业运行状态是他们最关心的内容之一。在 Streaming-Launcher 中由于缺乏作业统一管理界面，开发同学只能通过告警信息和 Yarn 中Application 的状态信息来判断任务状态，这对开发同学来说非常不友好。StreamPark 针对这一点，提供了作业统一管理界面，可以一目了然查看到每个任务的运行情况。
 
-![图片](/blog/SF/management.png)
+![图片](/blog/shunwang/management.png)
 
 在 Streaming-Launcher 中，开发同学在作业问题诊断的时候，需要通过多个步骤才能定位作业运行日志。StreamPark 提供了一键跳转功能，能快速定位到作业运行日志。
 
-![图片](/blog/SF/logs.png)
+![图片](/blog/shunwang/logs.png)
 
 
 
@@ -152,7 +151,7 @@ StreamPark 为了降低 Flink 作业开发门槛，提高开发同学工作效�
 
 开发同学如果想在 ODPS 上查询实时数据，我们需要提供一个 Flink SQL 的运行环境。我们使用 StreamPark 运行了一个 Yarn Session 的 Flink 环境提供给 ODPS 做实时查询。
 
-![图片](/blog/SF/homework.png)
+![图片](/blog/shunwang/homework.png)
 
 目前 StreamPark 社区为了进一步降低实时作业开发门槛，正在对接 Flink-SQL-Gateway。
 
@@ -166,7 +165,7 @@ https://github.com/apache/streampark/issues/2274
 
 在实践中我们发现业务开发同学很难直观的知道在每个 Yarn Session 中运行了多少个作业，其中包括作业总数和正在运行中的作业数量。基于这个原因，我们为了方便开发同学可以直观地观察到 Yarn Session 中的作业数量，在 Flink Cluster 界面增加了 All Jobs 和 Running Jobs 来表示在一个 Yarn Session 中总的作业数和正在运行的作业数。
 
-![图片](/blog/SF/cluster.png)
+![图片](/blog/shunwang/cluster.png)
 
 
 
@@ -174,7 +173,7 @@ https://github.com/apache/streampark/issues/2274
 
 因为每个公司的短信告警平台实现都各不相同，所以 StreamPark 社区并没有抽象出统一的短信告警功能。在此，我们通过 Webhook 的方式，自己实现了短信告警功能。
 
-![图片](/blog/SF/alarm.png)
+![图片](/blog/shunwang/alarm.png)
 
 
 
@@ -182,7 +181,7 @@ https://github.com/apache/streampark/issues/2274
 
 在生产实践中，我们发现在大批量任务同时失败的时候，比如 Yarn Session 集群挂了，飞书 / 微信等平台在多线程同时调用告警接口时会存在限流的问题，那么大量的告警信息因为飞书 / 微信等平台限流问题，StreamPark 只会发送一部分的告警信息，这样非常容易误导开发同学排查问题。在顺网科技，我们增加了一个阻塞队列和一个告警线程，来解决限流问题。
 
-![图片](/blog/SF/queue.png)
+![图片](/blog/shunwang/queue.png)
 
 当作业监控调度器检测到作业异常时，会产生一条作业异常的消息发送的阻塞队列中，在告警线程中会一直消费阻塞队列中的消息，在得到作业异常消息后则会根据用户配置的告警信息单线程发送到不同的平台中。虽然这样做可能会让用户延迟收到告警，但是我们在实践中发现同时有 100+ 个 Flink 作业失败，用户接受到告警的延迟时间小于 3s。对于这种延迟时间，我们业务开发同学完全是可以接受的。该改进目前已经记录 ISSUE，正在考虑贡献到社区中。
 
@@ -198,9 +197,9 @@ StreamPark 给顺网科技带来的最大的收益就是降低了 Flink 的使�
 
 **目前 StreamPark 在顺网科技已经大规模在生产环境投入使用，StreamPark 从最开始管理的 500+ 个 FlinkSQL 作业增加到了近 700 个 FlinkSQL作业，同时管理了 10+ 个 Yarn Sesssion Cluster。**
 
-![图片](/blog/SF/achievements1.png)
+![图片](/blog/shunwang/achievements1.png)
 
-![图片](/blog/SF/achievements2.png)
+![图片](/blog/shunwang/achievements2.png)
 
 ##  未 来 规 划 
 
