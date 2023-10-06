@@ -1,3 +1,9 @@
+---
+slug: streampark-usercase-bondex-with-paimon
+title: 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
+tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
+---
+
 # 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
 
 ![](/blog/Bondex/Bondex.png)
@@ -926,27 +932,18 @@ https://github.com/apache/incubator-paimon/pull/1308
 ## 05  未 来 规 划
 
 - 自建的数据平台 bondata 正在集成 paimon 的元数据信息、数据指标体系、血缘、一键 pipline 等功能，形成海程邦达的数据资产，并将在此基础上展开一站式数据治理
-- 后面将基于trino Catalog接入Doris，实现真正的离线数据和实时数据的one service
+- 后面将基于 trino Catalog接入Doris，实现真正的离线数据和实时数据的one service
 - 采用 doris + paimon 的架构方案继续推进集团内部流批一体数仓建设的步伐
 
 在这里要感谢之信老师和 StreamPark 社区在使用 StreamPark + Paimon 过程中的大力支持，在学习使用过程中遇到的问题，都能在第一时间给到解惑并得到解决，我们后面也会积极参与社区的交流和建设，让 paimon 能为更多开发者和企业提供流批一体的数据湖解决方案。
 
-
-
 **参考资料**
 
 [1] https://github.com/ververica/flink-cdc-connectors
-
 [2] https://github.com/apache/doris
-
 [3] https://github.com/apache/storm
-
 [4] https://github.com/apache/Iceberg
-
 [5] https://github.com/apache/incubator-streampark
-
 [6] https://github.com/apache/incubator-paimon
-
 [7] https://github.com/apache/flink
-
 [8] https://repository.apache.org/content/groups/snapshots/org/apache/paimon
