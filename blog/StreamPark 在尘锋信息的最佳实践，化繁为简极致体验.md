@@ -12,7 +12,7 @@
 
 目前，尘锋已在全国拥有13个城市中心，覆盖华北、华中、华东、华南、西南五大区域，为超30个行业的10,000+家企业提供数字营销服务。
 
-## 01 技术选型 
+## **01 技术选型** 
 
 尘锋信息在2021年进入了快速发展时期，随着服务行业和企业客户的增加，实时需求越来越多，落地实时计算平台迫在眉睫。
 
@@ -31,7 +31,7 @@
 
 在平台层面，我们综合对比了 StreamPark 、 Apache Zeppelin 和 flink-streaming-platform-web，也深入阅读了源码和并做了优缺点分析，关于后两个项目本文就不展开赘述，感兴趣的朋友可以去 GitHub 搜索，我们最终选择 StreamPark，理由如下：
 
-### 完成度高
+### **完成度高**
 
 #### **1. 支持Flink 多版本**
 
@@ -130,7 +130,7 @@ StreamPark 也**支持Apache Flink 原生任务**，参数配置可以由 Java �
 
 ![](/blog/dustess/alarm_email.png)
 
-### 源码优秀
+### **源码优秀**
 
 遵循技术选型原则，一个新的技术必须足够了解底层原理和架构思想后，才会考虑应用生产。在选择 StreamPark 之前，对其架构和源码进入过深入研究和阅读。发现 StreamPark 所选用的底层技术是国人非常熟悉的：MySQL、Spring Boot、Mybatis Plus、Vue 等，代码风格统一，实现优雅，注释完善，各模块独立抽象合理，使用了较多的设计模式，且代码质量很高，非常适合后期的排错及二次开发。
 
@@ -140,11 +140,11 @@ StreamPark 于 2021年11月成功被开源中国评选为GVP - Gitee「最有价
 
 ![](/blog/dustess/certificate.png)
 
-### 03 社区活跃
+### **03 社区活跃**
 
 目前社区非常活跃，从2021年11月底落地 StreamPark (基于1.2.0-release），当时StreamPark 刚刚才被大家认识，还有一些体验上的小 Bug（不影响核心功能）。当时为了快速上线，屏蔽掉了一些功能和修复了一些小 Bug，正当准备贡献给社区时发现早已修复，这也可以看出目前社区的迭代周期非常快。以后我们公司团队也会努力和社区保持一致，将新特性快速落地，提升数据开发效率和降低维护成本。
 
-## 02 落地实践
+## **02 落地实践**
 
 StreamPark 的环境搭建非常简单，跟随官网的搭建教程可以在小时内完成搭建。目前已经支持了前后端分离打包部署的模式，可以满足更多公司的需求，而且已经有 Docker Build 相关的 PR，相信以后 StreamPark 的编译部署会更加方便快捷。相关文档如下:
 
@@ -162,7 +162,7 @@ StreamPark 整合 Hadoop 生态可以说是0成本的（前提是按照 Flink �
 
 目前我们也正在进行 K8S 的测试及方案设计，在未来一段时间会整体迁移至 K8S
 
-### 01 落地 FlinkSQL 任务
+### **01 落地 FlinkSQL 任务**
 
 目前我们公司基于 Flink SQL 的任务主要为业务比较简单的实时 ETL 和计算场景，数量在10个左右，上线至今都十分稳定。
 
@@ -172,7 +172,7 @@ StreamPark 非常贴心的准备了 Demo SQL 任务，可以直接在刚搭建�
 
 目前我们正在进行元数据层面、权限、UDF等相关的方案调研、设计等
 
-### 02 落地 Jar 任务
+### **02 落地 Jar 任务**
 
 由于目前团队的数据开发同学大多有 Java 和 Scala 语言基础，为了更加灵活的开发、更加透明的调优 Flink 任务及覆盖更多场景，我们也快速的落地了基于 Jar 包的构建方式。我们落地分为了两个阶段
 
@@ -197,19 +197,19 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 - StreamExecutionEnvironment 为 Apache Flink 原生任务上下文
 
-## 03 业务支撑 & 能力开放
+## **03 业务支撑 & 能力开放**
 
 目前尘锋基于 StreamPark 的实时计算平台从去年11月底上线至今，已经上线 50+ Flink 任务，其中 10+为 Flink SQL 任务，40+ 为 Jar 任务。目前主要还是数据团队内部使用，近期会将实时计算平台开放全公司业务团队使用，任务量会大量增加。
 
 ![](/blog/dustess/online_jar.png)
 
-### 01 实时数仓
+### **01 实时数仓**
 
 时数仓主要是用 Jar 任务，因为模式比较通用，使用 Jar 任务可以通用化的处理大量的数据表同步和计算，甚至做到配置化同步等，我们的实时数仓主要基 Apache Doris 来存储，使用 Flink 来进行清洗计算（目标是存算分离）
 
 使用 StreamPark 整合其他组件也是非常简单，同时我们也将 Apache Doris 和 Kafka 相关的配置也抽象到了配置文件中，大大提升了我们的开发效率和灵活度。
 
-### 02 能力开放
+### **02 能力开放**
 
 数据团队外的其他业务团队也有很多的流处理场景，于是我们将基于 StreamPark 的实时计算平台二次开发后，将以下能力开放全公司业务团队
 
@@ -223,9 +223,9 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 ![](/blog/dustess/task_retrieval.png)
 
-## 04 未来规划   
+## **04 未来规划**   
 
-### 01 Flink on K8S
+### **01 Flink on K8S**
 
 目前我司 Flink 任务都运行在 Yarn 上，满足当下需求，但 Flink on kubernetes 有以下优点:
 
@@ -236,7 +236,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 目前本人也在整理和落地相关的技术架构及方案，并已在实验环境使用 StreamPark 完成了 Flink on kubernetes 的技术验证，生产落地这一目标由于有 StreamPark 的平台支持，以及社区同学的热心帮心，相信在未来不久就能达成。
 
-### 02 流批一体建设
+### **02 流批一体建设**
 
 个人认为批/流最大的区别在于算子 Task 的调度策略 和 数据在算子间的流转策略：
 
@@ -251,7 +251,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 关于批流统一这一块，目前也正在调研、整理、感兴趣的小伙伴欢迎一块探讨项目学习。
 
-## 05 结束语
+## **05 结束语**
 
 以上就是 StreamPark 在尘锋信息生产实践的全部分享内容，感谢大家看到这里。写这篇文章的初心是为大家带来一点 StreamPark 的生产实践的经验和参考，并且和 StreamPark 社区的小伙伴们一道，共同建设 StreamPark ，未来也准备会有更多的参与和建设。非常感谢 StreamPark 的开发者们，能够提供这样优秀的产品，足够多的细节都感受到了大家的用心。虽然目前公司生产使用的（1.2.0-release）版本，在任务分组检索，编辑返回跳页等交互体验上还有些许不足，但瑕不掩瑜，相信 StreamPark 会越来越好，**也相信 StreamPark 会推动 Apache Flink 的普及**。最后用 Apache Flink 社区的一句话来作为结束吧：实时即未来！
 
