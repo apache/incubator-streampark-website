@@ -30,7 +30,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 ![](/blog/Bondex/realtime_warehouse.png)
 
-当前系统要求直接从生产系统收集实时数据，但存在多个数据源需要进行关联查询，而帆软报表在处理多个数据源时展示不够友好，且无法再次聚合多个数据源。定时查询生产系统会给生产系统数据库带来压力，影响生产系统的稳定运行。因此，我们需要引入一个可以通过 Flink CDC [1] 技术实现流式处理的数仓，以解决实时数据处理的问题。这个数仓需要能够从多个数据源收集实时数据并在此基础上实现复杂的关联 SQL 查询、机器学习等操作，并且可以避免不定时查询生产系统，从而减轻生产系统的压力，保障生产系统的稳定运行。
+当前系统要求直接从生产系统收集实时数据，但存在多个数据源需要进行关联查询，而帆软报表在处理多个数据源时展示不够友好，且无法再次聚合多个数据源。定时查询生产系统会给生产系统数据库带来压力，影响生产系统的稳定运行。因此，我们需要引入一个可以通过 [Flink CDC](https://github.com/ververica/flink-cdc-connectors) 技术实现流式处理的数仓，以解决实时数据处理的问题。这个数仓需要能够从多个数据源收集实时数据并在此基础上实现复杂的关联 SQL 查询、机器学习等操作，并且可以避免不定时查询生产系统，从而减轻生产系统的压力，保障生产系统的稳定运行。
 
 ## 02 大数据技术痛点以及选型
 
@@ -38,7 +38,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 在离线批数处理已能够支持集团基础驾驶舱和管理报表的情况下，集团运管部门提出了业务要实时统计订单数量，操作单量的需求，财务部门有现金流实时展示的需求，在这样的背景下，基于大数据的流批一体方案势在必行。
 
-虽然大数据部门已经使用了 Apache Doris [2] 来实现湖仓一体的存储和计算，此前已在 Doris 社区发表湖仓一体建设的文章，但是有些问题有待解决，流式数据存储无法复用、中间层数据不可查、做不到实时聚合计算问题。
+虽然大数据部门已经使用了 [Apache Doris](https://github.com/apache/doris) 来实现湖仓一体的存储和计算，此前已在 Doris 社区发表湖仓一体建设的文章，但是有些问题有待解决，流式数据存储无法复用、中间层数据不可查、做不到实时聚合计算问题。
 
 按照架构演进时间排序，近几年通用的架构解决方案如下：
 
@@ -54,7 +54,7 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 
 ### **lambda架构**
 
-Lambda 架构是由 Storm 的作者 Nathan Marz 提出的一个实时大数据处理框架。Marz 在 Twitter 工作期间开发了著名的实时大数据处理框架 Storm [3] ，Lambda 架构是其根据多年进行分布式大数据系统的经验总结提炼而成。
+Lambda 架构是由 Storm 的作者 Nathan Marz 提出的一个实时大数据处理框架。Marz 在 Twitter 工作期间开发了著名的实时大数据处理框架 [Apache Storm](https://github.com/apache/storm) ，Lambda 架构是其根据多年进行分布式大数据系统的经验总结提炼而成。
 
 ![](/blog/Bondex/lambda.png)
 
@@ -86,7 +86,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 ### **Iceberg**
 
-为此我们也调研了 Iceberg [4] ，它的快照功能一定程度上能够实现流批一体，但是它的问题是基于 kafka 做的实时表中间层不可查或者无法复用已经存在的表，对 kafka 有强依赖，需要利用 kafka 将中间结果写到 iceberg 表，增加了系统的复杂度和可维护性。
+为此我们也调研了 [Apache Iceberg](https://github.com/apache/Iceberg) ，它的快照功能一定程度上能够实现流批一体，但是它的问题是基于 kafka 做的实时表中间层不可查或者无法复用已经存在的表，对 kafka 有强依赖，需要利用 kafka 将中间结果写到 iceberg 表，增加了系统的复杂度和可维护性。
 
 选型依据：无 kafka 实时架构已落地，中间数据无法实现可查可复用
 
@@ -104,13 +104,13 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 本方案采用 Flink Application On K8s 集群，Flink CDC 实时摄取业务系统关系型数据库数据，通过 StreamPark 任务平台提交 Flink + Paimon Streaming Data Warehouse 任务， 最后采用 Trino 引擎接入 Finereport 提供服务和开发人员的查询。Paimon 底层存储支持 S3 协议，因为公司大数据服务依赖于阿里云所以使用对象存储OSS作为数据文件系统。
 
-StreamPark[5] 是一个实时计算平台，与 Paimon [6] 结合使用其强大功能来处理实时数据流。此平台提供以下主要功能：
+[StreamPark](https://github.com/apache/incubator-streampark) 是一个实时计算平台，与 [Paimon](https://github.com/apache/incubator-paimon) 结合使用其强大功能来处理实时数据流。此平台提供以下主要功能：
 
 **实时数据处理：**StreamPark 支持提交实时数据流任务，能够实时获取、转换、过滤和分析数据。这对于需要快速响应实时数据的应用非常重要，例如实时监控、实时推荐和实时风控等领域。
 
 **可扩展性：**可以高效处理大规模实时数据，具备良好的可扩展性。可以在分布式计算环境中运行，并能够自动处理并行化、故障恢复和负载均衡等问题，以确保高效且可靠地处理数据。
 
-**Flink 集成：**基于 Apache Flink [7] 构建，利用 Flink 的强大流处理引擎来实现高性能和鲁棒性。用户可以充分利用 Flink 的特性和生态系统，如广泛的连接器、状态管理和事件时间处理等。
+**Flink 集成：**基于 [Apache Flink](https://github.com/apache/flink) 构建，利用 Flink 的强大流处理引擎来实现高性能和鲁棒性。用户可以充分利用 Flink 的特性和生态系统，如广泛的连接器、状态管理和事件时间处理等。
 
 **易用性：**提供了直观的图形界面和简化的 API，可以轻松地构建和部署数据处理任务，而无需深入了解底层技术细节。
 
@@ -234,7 +234,7 @@ docker tag flink-table-store:v1.16.0 registry-vpc.cn-zhangjiakou.aliyuncs.com/xx
 docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.16.0
 ```
 
-接下来准备 Paimon jar 包，可以在 Apache Repository [8] 下载对应版本，需要注意的是要和 flink 大版本保持一致
+接下来准备 Paimon jar 包，可以在 Apache [Repository](https://repository.apache.org/content/groups/snapshots/org/apache/paimon) 下载对应版本，需要注意的是要和 flink 大版本保持一致
 
 ### **使用 StreamPark 管理作业**
 
@@ -936,14 +936,3 @@ https://github.com/apache/incubator-paimon/pull/1308
 - 采用 doris + paimon 的架构方案继续推进集团内部流批一体数仓建设的步伐
 
 在这里要感谢之信老师和 StreamPark 社区在使用 StreamPark + Paimon 过程中的大力支持，在学习使用过程中遇到的问题，都能在第一时间给到解惑并得到解决，我们后面也会积极参与社区的交流和建设，让 paimon 能为更多开发者和企业提供流批一体的数据湖解决方案。
-
-**参考资料**
-
-[1] https://github.com/ververica/flink-cdc-connectors
-[2] https://github.com/apache/doris
-[3] https://github.com/apache/storm
-[4] https://github.com/apache/Iceberg
-[5] https://github.com/apache/incubator-streampark
-[6] https://github.com/apache/incubator-paimon
-[7] https://github.com/apache/flink
-[8] https://repository.apache.org/content/groups/snapshots/org/apache/paimon
