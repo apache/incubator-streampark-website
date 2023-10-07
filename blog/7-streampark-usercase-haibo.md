@@ -34,15 +34,15 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 - 编辑 SQL
 
-![](/blog/HaiBo/flink_sql.png)
+![](/blog/haibo/flink_sql.png)
 
 - 上传依赖包
 
-![](/blog/HaiBo/dependency.png)
+![](/blog/haibo/dependency.png)
 
 - 部署运行
 
-![](/blog/HaiBo/deploy.png)
+![](/blog/haibo/deploy.png)
 
 仅需上述三步，即可完成 Mysql 到 Elasticsearch 的汇聚任务，大大提升数据接入效率。
 
@@ -54,7 +54,7 @@ StreamPark 在海博主要用于运行实时 Flink SQL任务: 读取 Kafka 上�
 
 截至目前，StreamPark 已在多个政府、公安生产环境进行部署，汇聚处理城市实时物联数据、人车抓拍数据。以下是在某市专网部署的 StreamPark 平台截图 : 
 
-![](/blog/HaiBo/application.png)
+![](/blog/haibo/application.png)
 
 ## **03. 应用场景**
 
@@ -64,13 +64,13 @@ StreamPark 在海博主要用于运行实时 Flink SQL任务: 读取 Kafka 上�
 
 “SQL+UDF” 的方式，能够满足我们绝大部分的数据汇聚场景，如果后期业务变动，也只需要在 StreamPark 中修改 SQL 语句，即可完成业务变更与上线。
 
-![](/blog/HaiBo/data_aggregation.png)
+![](/blog/haibo/data_aggregation.png)
 
 #### **2. Flink CDC数据库同步**
 
 为了实现各类数据库与数据仓库之前的同步，我们使用 StreamPark 开发 Flink CDC SQL 任务。借助于 Flink CDC 的能力，实现了 Oracle 与 Oracle 之间的数据同步， Mysql/Postgresql 与 Clickhouse 之间的数据同步。
 
-![](/blog/HaiBo/flink_cdc.png)
+![](/blog/haibo/flink_cdc.png)
 
 **3. 数据分析模型管理**
 
@@ -78,7 +78,7 @@ StreamPark 在海博主要用于运行实时 Flink SQL任务: 读取 Kafka 上�
 
 目前，我们已经将人员，车辆等 20 余类分析模型上传至 StreamPark，交由 StreamPark 管理运行。
 
-![](/blog/HaiBo/data_aggregation.png)
+![](/blog/haibo/data_aggregation.png)
 
 **综上:** 无论是 Flink SQL 任务还是 Custome code 任务，StreamPark 均提供了很好的支持，满足各种不同的业务场景。 但是 StreamPark 缺少任务调度的能力，如果你需要定期调度任务， StreamPark 目前无法满足。社区成员正在努力开发调度相关的模块，在即将发布的 1.2.3 中 会支持任务调度功能，敬请期待。
 
@@ -98,4 +98,4 @@ Workbench 将使用全新的工作台式的 SQL 开发风格，选择数据源�
 
 下图是 StreamPark 开发者设计的原型图,敬请期待。
 
-![](/blog/HaiBo/data_source.png)
+![](/blog/haibo/data_source.png)

@@ -78,7 +78,7 @@ SELECT  Data.uid  FROM source_table;
 
 关于依赖这块是 StreamPark 里特有的，在 StreamPark 中创新型的将一个完整的 Flink Sql 任务拆分成两部分组成: Sql 和 依赖, Sql 很好理解不多啰嗦, 依赖是 Sql 里需要用到的一些 Connector 的 Jar, 如 Sql 里用到了 Kafka 和 MySQL 的 Connector, 那就需要引入这两个 Connector 的依赖, 在 StreamPark 中添加依赖两种方式，一种是基于标准的 Maven pom 坐标方式，另一种是从本地上传需要的 Jar 。这两种也可以混着用，按需添加，点击应用即可， 在提交作业的时候就会自动加载这些依赖。
 
-![](/blog/Joyme/add_dependency.png)
+![](/blog/joyme/add_dependency.png)
 
 ### **3. 参数配置**
 
@@ -86,7 +86,7 @@ SELECT  Data.uid  FROM source_table;
 
 剩下的一些参数设置就要根据作业的具体情况去对症下药的配置了，处理的数据量大了，逻辑复杂了，可能就需要更多的内存，并行度给多一些。有时候需要根据作业的运行情况进行多次调整。
 
-![](/blog/Joyme/checkpoint_configuration.png)
+![](/blog/joyme/checkpoint_configuration.png)
 
 ### **4. 动态参数设置**
 
@@ -98,39 +98,39 @@ SELECT  Data.uid  FROM source_table;
 
 完成配置以后提交，然后在 application 界面进行部署。
 
-![](/blog/Joyme/application_job.png)
+![](/blog/joyme/application_job.png)
 
 ## 3 Custom Code 作业开发
 
 Streaming 作业我们是使用 Flink java 进行开发，将之前 Spark scala，Flink scala，Flink java 的作业进行了重构，然后工程整合到了一起，目的就是为了维护起来方便。Custom code 作业需要提交代码到 Git，然后配置项目:
 
-![](/blog/Joyme/project_configuration.png)
+![](/blog/joyme/project_configuration.png)
 
 配置完成以后，根据对应的项目进行编译，也就完成项目的打包环节。这样后面的 Constom code 作业也可以引用。每次需要上线都需要进行编译才可以，否则只能是上次编译的代码。这里有个问题，为了安全，我司的 gitlab 账号密码都是定期更新的。这样就会导致，StreamPark 已经配置好的项目还是之前的密码，结果导致编译时从 git 里拉取项目失败，导致整个编译环节失败，针对这个问题，我们联系到社区，了解到这部分已经在后续的 1.2.1 版本中支持了项目的修改操作。
 
-![](/blog/Joyme/flink_system.png)
+![](/blog/joyme/flink_system.png)
 
 新建任务，选择 Custom code ，选择 Flink 版本，选择项目以及模块 Jar 包，选择开发的应用模式为 Apache Flink (标准的 Flink 程序)，程序主函数入口类，任务的名称。
 
-![](/blog/Joyme/add_projectconfiguration.png)
+![](/blog/joyme/add_projectconfiguration.png)
 
 以及任务的并行度，监控的方式等，内存大小根据任务需要进行配置。Program Args 程序的参数则根据程序需要自行定义入口参数,比如：我们统一启动类是 StartJobApp，那么启动作业就需要传入作业的 Full name 告诉启动类要去找哪个类来启动此次任务，也就是一个反射机制，作业配置完成以后同样也是 Submit 提交，然后在 application 界面部署任务。
 
-![](/blog/Joyme/application_interface.png)
+![](/blog/joyme/application_interface.png)
 
 ## 4 监控告警
 
 StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息。
 
-![](/blog/Joyme/system_setting.png)
+![](/blog/joyme/system_setting.png)
 
 然后在任务里配置重启策略：监控在多久内几次异常，然后是报警还是重启的策略，同时发送报警要发到哪个邮箱。目前我司使用版本是 1.2.1 只支持邮件发送。
 
-![](/blog/Joyme/email_setting.png)
+![](/blog/joyme/email_setting.png)
 
 当我们的作业出现失败的情况下，就可以接收到报警邮箱。这报警还是很好看的有木有，可以清楚看到我们的哪个作业，什么状态。也可以点击下面的具体地址进行查看。
 
-![](/blog/Joyme/alarm_eamil.png)
+![](/blog/joyme/alarm_eamil.png)
 
 关于报警这一块目前我们基于 StreamPark 的 t_flink_app 表进行了一个定时任务的开发。为什么要这么做？因为发送邮件这种通知，大部分人可能不会去及时去看。所以我们选择监控每个任务的状态去把对应的监控信息发送我们的飞书报警群，这样可以及时发现问题去解决任务。一个简单的 python 脚本，然后配置了 crontab 去定时执行。
 
@@ -142,13 +142,13 @@ StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息
 
 作业启动失败的问题，就是点击启动运行部署。发现起不来，这时候需要看界面的详情信息的日志。在我们的任务列表中有一个眼睛的按钮，点进去。在start logs 中会找到提交的作业日志信息，点进去查看，如果有明显的提示信息，直接解决就可以了。如果没有，就需要去查看后台部署任务的目录 logs/下面的 streamx.out，打开以后会找到启动失败的日志信息。
 
-![](/blog/Joyme/start_log.png)
+![](/blog/joyme/start_log.png)
 
 ### **2. 作业运行失败**
 
 如果是任务已经起来了，但是在运行阶段失败了。这种情况表面看上去和上面的情况一样，实则完全不同，这种情况是已经将任务提交给集群了，但是任务运行不起来，那就是我们的任务自身有问题了。同样可以用上面第一种情况的排查方式打开作业的具体日志，找到任务在 yarn 上运行的信息，根据日志里记录的 yarn 的 tackurl 去 yarn 的日志里查看具体的原因，是 Sql 的 Connector 不存在，还是代码的哪行代码空指针了，都可以看到具体的堆栈信息。有了具体信息，就可以对症下药了。
 
-![](/blog/Joyme/yarn_log.png)
+![](/blog/joyme/yarn_log.png)
 
 ## 6 社区印象
 

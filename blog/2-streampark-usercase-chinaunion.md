@@ -15,7 +15,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 ## **实时计算平台背景介绍**
 
-![](/blog/LTYW/overall_architecture.png)
+![](/blog/chinaunion/overall_architecture.png)
 
 
 
@@ -23,7 +23,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 
 
-![](/blog/LTYW/data_processing_processes.png)
+![](/blog/chinaunion/data_processing_processes.png)
 
 上图是数据处理的详细的流程。
 
@@ -31,11 +31,11 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 第二部分是实时计算， 这个环节处理的数据量很大，数据量在万亿级别，支撑了 10000+的数据实时订阅，有 200 多个 Flink 任务，我们将某一种同类型的业务封装成一种场景，同一个 Flink 作业可以支持相同场景的多个订阅，目前 Flink 作业数还在不停的增长，后续可能会增加到 500 多个；其中面临的一个很大挑战是每天万亿级的数据实时关联电子围栏、用户特征等信息，电子围栏有几万个，用户特征涉及数亿用户，最初我们将电子围栏信息和用户特征放到 HBase, 但这样会导致 HBase 压力很大，经常遇到性能问题造成数据延迟，而且一旦产生数据积压，需要很长的时间去消化，得益于 Flink State 的强大，我们将电子围栏信息和用户特征放到状态里，目前已经很好的支撑了大并发的场景，同时我们也增加了数据处理的性能监控；最后是实时产品和营销触达前端的一些应用。
 
-![](/blog/LTYW/platform_evolution.png)
+![](/blog/chinaunion/platform_evolution.png)
 
 2018 年采用了三方黑盒的计算引擎，不能支持灵活定制个性化功能，且依赖过多外部系统，导致外部系统负载高，运维复杂；2019 年使用了 Spark Streaming 的微批处理，2020 年开始使用 Flink 的流式计算，从 2021 年开始，几乎所有 Spark Streaming 的微批处理都被 Flink 替代了，同时上线了 Apache StreamPark 对我们的 Flink 作业进行管理。
 
-![](/blog/LTYW/platform_background.png)
+![](/blog/chinaunion/platform_background.png)
 
 总结一下平台背景，主要包含以下几部分：
 
@@ -44,7 +44,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 - 订阅多：支撑了 10000+的数据服务订阅。
 - 用户多：支撑了 30 多个内部和外部用户使用。
 
-![](/blog/LTYW/operational_background.png)
+![](/blog/chinaunion/operational_background.png)
 
 运维背景也可以分为以下几部分：
 
@@ -57,7 +57,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 ## **Flink 实时作业运维挑战**
 
-![](/blog/LTYW/difficulties.png)
+![](/blog/chinaunion/difficulties.png)
 
 基于平台和运维背景，尤其是 Flink 作业越来越多的情况下，遇到了很大的挑战，主要有两方面，分别是作业运维困境和业务支撑困境。
 
@@ -71,7 +71,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 ## **基于 StreamPark 一体化管理**
 
-![](/blog/LTYW/job_management.png)
+![](/blog/chinaunion/job_management.png)
 
 对于以上的两种困境，我们基于 StreamPark 一体化管理解决了很多问题，首先来看一下 StreamPark 的双线演进，分别是 Flink 作业管理和 Flink 作业 DevOps 平台；在作业管理上，StreamPark 支持将 Flink 实时作业部署到不同的集群里去，比如 Flink 原生自带的 Standalone 模式，Flink on Yarn 的 Session、Application、PerJob 模式，在最新的版本中将支持 Kubernetes Native Session 模式；中间层是项目管理、作业管理、集群管理、团队管理、变量管理、告警管理。
 
@@ -88,7 +88,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 StreamPark 支持 Flink SQL、Flink Jar 的提交，支持资源配置，支持状态跟踪，如状态是运行状态，失败状态等，同时支持指标大屏和各种日志查看。
 
-![](/blog/LTYW/devops_platform.png)
+![](/blog/chinaunion/devops_platform.png)
 
 Flink 作业 DevOps 平台，主要包括以下几部分：
 - 团队：StreamPark 支持多个团队，每个团队都有团队的管理员，他拥有所有权限，同时还有团队的开发者，他只有少量的一部分权限。
@@ -97,11 +97,11 @@ Flink 作业 DevOps 平台，主要包括以下几部分：
 - 状态监测：Flink 作业启动完成之后，就是状态的实时跟踪，包括 Flink 的运行状态、运行时长、Checkpoint 信息等，并支持一键跳转到 Flink 的 Web UI。
 - 日志、告警：包含构建的一些日志和启动日志，同时支持钉钉、微信、邮件、短信等告警方式。
 
-![](/blog/LTYW/multi_team_support.png)
+![](/blog/chinaunion/multi_team_support.png)
 
 企业一般有多个团队同时开发实时作业，在我们公司包含实时采集团队、数据处理团队和实时的营销团队，StreamPark 支持多个团队的资源隔离。
 
-![](/blog/LTYW/platformized_management.png)
+![](/blog/chinaunion/platformized_management.png)
 
 Flink 作业平台化管理面临如下挑战：
 - 脚本数量多：平台有几百个脚本，分散在多个服务器上。
@@ -118,15 +118,15 @@ Flink 作业平台化管理面临如下挑战：
 
 可以看一下上图中下面的图，通过项目管理进行打包，通过作业管理进行配置，然后发布，可以进行一键启停，通过 API 提交作业。
 
-![图片](/blog/LTYW/development_efficiency.png)
+![图片](/blog/chinaunion/development_efficiency.png)
 
 早期我们需要通过 7 步进行部署，包括连接 VPN、登录 4A、执行编译脚本、执行启动脚本、打开 Yarn、搜索作业名、进入 Flink UI 等 7 个步骤，StreamPark 可以支持 4 个一键进行部署，包括一键打包、一键发布、一键启动、一键到 Flink UI。
 
-![图片](/blog/LTYW/submission_process.png)
+![图片](/blog/chinaunion/submission_process.png)
 
 上图是我们 StreamPark 的作业提交流程，首先 StreamPark 会将作业进行发布，发布的时候会上传一些资源，然后会进行作业的提交，提交的时候会带上配置的一些参数，以 Flink Submit 的方式调用接口发布到集群上；这里会有多个 Flink Submit 对应着不同的执行模式，比如 Yarn Session、Yarn Application、Kubernetes Session、Kubernetes Application 等都是在这里控制的，提交作业之后，如果是 Flink on Yarn 作业，会得到这个 Flink 作业的 Application ID 或者 Job ID，这个 ID 会保存在我们的数据库中，如果是基于 Kubernetes 执行的话，也会得到 Job ID，后面我们在跟踪作业状态的时候，主要就是通过保存的这些 ID 去跟踪作业的状态。
 
-![图片](/blog/LTYW/status_acquisition_bottleneck.png)
+![图片](/blog/chinaunion/status_acquisition_bottleneck.png)
 
 如上所述，如果是 Flink on Yarn 作业，在提交作业的时候会获取两个 ID，Application ID 或者 Job ID，基于这两个 ID 可以获取我们的状态，但当 Flink 作业非常多的时候会遇到一些问题，StreamPark 它是有一个状态获取器，它会通过我们保存的数据库里的 Application ID 或者 Job ID，去向 ResourceManager 做一个请求，会做每五秒钟周期性的轮询，如果作业特别多，每次轮询 ResourceManager 会负责再去调用 Job Manager 的地址访问它的状态，这就会导致 ResourceManager 的连接数压力较大和连接数过高。
 
@@ -134,29 +134,29 @@ Flink 作业平台化管理面临如下挑战：
 
 上图中 ResourceManager 的连接数阶段性、周期性的持续走高，可以看到 ResourceManager 处于比较红的状态，从主机上去监控的时候，它的连接数确实比较高。
 
-![图片](/blog/LTYW/state_optimization.png)
+![图片](/blog/chinaunion/state_optimization.png)
 
 针对上面的问题，我们做了一些优化，首先 StreamPark 保存了提交作业之后的 Application ID 或者 Job ID，同时也会获取 Job Manager 直接访问的地址，并保存在数据库中，每次轮询时不再通过 ResourceManager 获取作业的状态，它可以直接调用各个 Job Manager 的地址实时获取状态，极大的降低了 ResourceManager 的连接数；从上图最后的部分可以看到，基本不会产生太大的连接数，大大减轻了 ResourceManager 的压力，且后续当 Flink 作业越来越多时获取状态也不会遇到瓶颈的问题。
 
-![图片](/blog/LTYW/state_recovery.png)
+![图片](/blog/chinaunion/state_recovery.png)
 
 StreamPark 解决的另一个问题是 Flink 从状态恢复的保障，以前我们用脚本做运维的时候，在启动 Flink 的时候，尤其是在业务升级的时候，要从上一个最新的 Checkpoint 来恢复，但经常有开发人员忘记从上一个检查点进行恢复，导致数据质量产生很大的问题，遭到投诉，StreamPark 的流程是在首次启动的时候，每五秒钟轮询一次获取 Checkpoint 的记录，同时保存在数据库之中，在 StreamPark 上手动停止 Flink 作业的时候，可以选择做不做 Savepoint，如果选择了做 Savepoint，会将 Savepoint 的路径保存在数据库中，同时每次的 Checkpoint 记录也保存在数据库中，当下次启动 Flink 作业的时候，默认会选择最新的 Checkpoint 或者 Savepoint 记录，有效避免了无法从上一个检查点去恢复的问题，也避免了导致问题后要进行 offset 回拨重跑作业造成的资源浪费，同时也保证了数据处理的一致性。
 
-![图片](/blog/LTYW/multiple_environments_and_components.png)
+![图片](/blog/chinaunion/multiple_environments_and_components.png)
 
 StreamPark 还解决了在多环境下多个组件的引用挑战，比如在企业中通常会有多套环境，如开发环境、测试环境、生产环境等，一般来说每套环境下都会有多个组件，比如 Kafka，HBase、Redis 等，而且在同一套环境里还可能会存在多个相同的组件，比如在联通的实时计算平台，从上游的 Kafka 消费数据的时候，将符合要求的数据再写到下游的 Kafka，这个时候同一套环境会涉及到两套 Kafka，单纯从 IP 很难判断是哪个环境哪个组件，所以我们将所有组件的 IP 地址都定义成一个变量，比如 Kafka 集群，开发环境、测试环境、生产环境都有 Kafka.cluster 这个变量，但它们指向的 Broker 的地址是不一样的，这样不管是在哪个环境下配置 Flink 作业，只要引用这个变量就可以了，大大降低了生产上的故障率。
 
-![图片](/blog/LTYW/multiple_execution_modes.png)
+![图片](/blog/chinaunion/multiple_execution_modes.png)
 
 StreamPark 支持 Flink 多执行的模式，包括基于 on Yarn 的 Application/ Perjob / Session 三种部署模式，还支持 Kubernetes 的 Application 和 Session 两种部署模式，还有一些 Remote 的模式。
 
-![图片](/blog/LTYW/versioning.png)
+![图片](/blog/chinaunion/versioning.png)
 
 StreamPark 也支持 Flink 的多版本，比如联通现在用的是 1.14.x，现在 1.16.x 出来后我们也想体验一下，但不可能把所有的作业都升级到 1.16.x，我们可以把新上线的升级到 1.16.x，这样可以很好的满足使用新版本的要求，同时也兼容老版本。
 
 ## **未来规划与演进**
 
-![图片](/blog/LTYW/contribution_and_enhancement.png)
+![图片](/blog/chinaunion/contribution_and_enhancement.png)
 
 未来我们将加大力度参与 StreamPark 建设，以下我们计划要增强的方向。
 - 高可用：StreamPark 目前不支持高可用，这方面还需要做一些加强。
@@ -164,7 +164,7 @@ StreamPark 也支持 Flink 的多版本，比如联通现在用的是 1.14.x，�
 - 更细致的监控：目前支持 Flink 作业失败之后，StreamPark 发出告警。我们希望 Task 失败之后也可以发出告警，我们需要知道失败的原因；还有作业反压监控告警、Checkpoint 超时、失败告警性能指标采集，也有待加强。
 - 流批一体：结合 Flink 流批一体引擎和数据湖流批一体存储探索流批一体平台。
 
-![](/blog/LTYW/road_map.png)
+![](/blog/chinaunion/road_map.png)
 
 上图是 StreamPark 的 Roadmap。
 - 数据源：StreamPark 会支持更多数据源的快速接入，达到数据一键入户。
