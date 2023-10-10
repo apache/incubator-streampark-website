@@ -98,7 +98,7 @@ sidebar_position: 3
    ```java
      void computeVcores(Object parameter1);
    ```
-   > 注意：如果在 `Builder` 工具类中不必严格遵循这个规则。
+   > 注意：在 `Builder` 工具类中不必严格遵循这项规则。
 
 5. 数据库层（非服务层）的基本 `CRUD` 的方法名称应根据 `com.baomidou.mybatisplus.core.mapper.BaseMapper` 的名称统一标准化：
 
