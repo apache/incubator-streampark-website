@@ -94,9 +94,10 @@ import TabItem from '@theme/TabItem';
 
 **配置项说明：**
 
-1.   `Lark Token`：<font color='red'>`必填项`</font>。为群机器人默认地址，截取 `/hook/` 后面内容。
-2.   `At All User`：选填项 。开启后，报警消息会@群内所有人。
-3.   `Secret Enable`：选填项 。如果开启机器人请求 `加密验签`，则需要配置，并且需要配置 `Lark Secret Token` 验签密钥信息。
+1.    `streampark.proxy.lark-url`：添加 `streampark.proxy.lark-url` 属性到配置文件中。 例子: 在yaml文件中加入 streampark.proxy.lark-url: https://open.feishu.cn 。
+2.    `Lark Token`：<font color='red'>`必填项`</font>。为群机器人默认地址，截取 `/hook/` 后面内容。
+3.   `At All User`：选填项 。开启后，报警消息会@群内所有人。
+4.   `Secret Enable`：选填项 。如果开启机器人请求 `加密验签`，则需要配置，并且需要配置 `Lark Secret Token` 验签密钥信息。
 
 :::info 飞书群机器人申请
 请参考 `飞书官方文档` https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bot-v3/bot-overview 进行机器人申请和配置
