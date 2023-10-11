@@ -104,9 +104,10 @@ Then, Enter robot `Lark Tokens` and other configurations, click `Submit`.
 
 **Configuration description：**
 
-1. `Lark Token`：<font color='red'>`Required`</font>.1. It is the default address of the group robot, intercept the content behind `/hook/`.
-2. `At All User`：`optional` .2.After it is turned on, the alarm message will be @ everyone in the group.
-3. `Secret Enable`：`optional` .3.If `encryption signature verification` is enabled, the `Secret Token` signature verification key information needs to be configured.
+1. `streampark.proxy.lark-url`：We need to add the `streampark.proxy.lark-url` property to the configuration file. Example: yaml file adds streampark.proxy.lark-url: https://open.feishu.cn .
+2. `Lark Token`：<font color='red'>`Required`</font>.1. It is the default address of the group robot, intercept the content behind `/hook/`.
+3. `At All User`：`optional` .2.After it is turned on, the alarm message will be @ everyone in the group.
+4. `Secret Enable`：`optional` .3.If `encryption signature verification` is enabled, the `Secret Token` signature verification key information needs to be configured.
 
 :::info Lark robot application
 Please refer to the [official Lark official](https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/bot-v3/bot-overview ) for robot application and configuration
