@@ -98,6 +98,7 @@ sidebar_position: 3
    ```java
      void computeVcores(Object parameter1);
    ```
+   > Note: It is not necessary to strictly follow this rule in the `Builder` tool class.
 
 5. The methods name of basic `CRUD` of the database layer (non-service layer) should be uniformly standardized according to name `com.baomidou.mybatisplus.core.mapper.BaseMapper`:
 
