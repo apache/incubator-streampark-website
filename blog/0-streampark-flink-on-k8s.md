@@ -1,8 +1,10 @@
-slug: streampark-on-k8s
-title: Flink on Kubernetes 篇
-tags: [StreamPark, 生产实践, FlinkSQL]
+---
+slug: streampark-flink-on-k8s
+title: StreamPark Flink on Kubernetes 实践
+tags: [StreamPark, 生产实践, FlinkSQL, Kubernetes]
+---
 
-# StreamPark 最佳实践 - Flink on Kubernetes 篇
+# StreamPark Flink on Kubernetes 实践
 
 雾芯科技创立于2018年1月。目前主营业务包括 RELX 悦刻品牌产品的研发、设计、制造及销售。凭借覆盖全产业链的核心技术与能力，RELX 悦刻致力于为用户提供兼具高品质和安全性的产品。
 
@@ -16,7 +18,7 @@ Native Kubernetes 具有以下优势：
 
 Native Kubernetes 和 Standalone Kubernetes 主要区别在于 Flink 与 Kubernetes 交互的方式不同以及由此产生的一系列优势。Standalone Kubernetes 需要用户自定义 JobManager  和 TaskManager 的 Kubernetes 资源描述文件，提交作业时需要用 kubectl 结合资源描述文件启动 Flink 集群。而 Native Kubernetes 模式 Flink Client 里面集成了一个 Kubernetes Client，它可以直接和 Kubernetes API Server 进行通讯，完成 JobManager Deployment 以及 ConfigMap 的创建。JobManager Development 创建完成之后，它里面的 Resource Manager 模块可以直接和 Kubernetes API Server 进行通讯，完成 TaskManager pod 的创建和销毁工作以及 Taskmanager 的弹性伸缩。因此生产环境中推荐使用 Flink on Native Kubernetes 模式部署 Flink 任务。
 
-![](/blog/wuxin/nativekubernetes_architecture.png)
+![](/blog/relx/nativekubernetes_architecture.png)
 
 ## **当 Flink On Kubernetes 遇见 StreamPark**
 
@@ -88,31 +90,31 @@ kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit 
 
 Docker 账户信息直接在 Docker Setting 界面配置即可：
 
-![](/blog/wuxin/docker_setting.png)
+![](/blog/relx/docker_setting.png)
 
 StreamPark 可适配多版本 Flink 作业开发，Flink 客户端直接在 StreamPark Setting 界面配置即可：
 
-![](/blog/wuxin/flinkversion_setting.png)
+![](/blog/relx/flinkversion_setting.png)
 
 ### **作业开发**
 
 StreamPark 做好基础环境配置之后只需要三步即可开发部署一个 Flink 作业:
 
-![](/blog/wuxin/development_process.png)
+![](/blog/relx/development_process.png)
 
 StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink SQL 作业只需要输入SQL 和 依赖项即可, 该方式大大提升了开发体验,** **并且规避了依赖冲突等问题，**对此部分本文不重点介绍。
 
 这里需要选择部署模式为 kubernetes application, 并且需要在作业开发页面进行以下参数的配置：红框中参数为 Flink on Kubernetes 基础参数。
 
-![](/blog/wuxin/kubernetes_base_parameters.png)
+![](/blog/relx/kubernetes_base_parameters.png)
 
 下面参数为 Flink 作业和资源相关的参数，Resolve Order 的选择与代码加载模式有关，对于 DataStream API 开发的 Upload Jar上传的作业选择使用 Child-first，Flink SQL 作业选择使用 Parent-first 加载。
 
-![](/blog/wuxin/flink_parameters.png)
+![](/blog/relx/flink_parameters.png)
 
 最后就是下面这两个重量级参数了，对于 Native Kubernetes 而言，k8s-pod-template 一般只需要进行 pod-template 配置即可，Dynamic Option 是 pod-template 参数的补充，对于一些个性化配置可以在 Dynamic Option 中配置。更多 Dynamic Option 直接参考 Flink 官网即可。
 
-![](/blog/wuxin/pod_template.png)
+![](/blog/relx/pod_template.png)
 
 ### **作业上线**
 
@@ -126,17 +128,17 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 **对于用户来说: 只需要点击任务列表中的云状的上线按钮即可。**
 
-![](/blog/wuxin/operation.png)
+![](/blog/relx/operation.png)
 
 在镜像构建和推送的时候我们可以看到 StreamPark 做的一系列工作: **读取配置、构建镜像、推送镜像到远程仓库...** 这里要给StreamPark 一个大大的赞！
 
-![](/blog/wuxin/step_details.png)
+![](/blog/relx/step_details.png)
 
 ### **作业提交**
 
 最后只需要点击 Operation 里 start Application 按钮便可启动一个 Flink on Kubernetes 作业，作业启动成功之后点击作业名便可跳转到 Jobmanager WebUI 页面、整个过程非常简单丝滑。
 
-![](/blog/wuxin/homework_submit.png)
+![](/blog/relx/homework_submit.png)
 
 整个过程仅需上述三步，即可完成在 StreamPark 上开发和部署一个Flink on Kubernetes 作业。而 StreamPark 对于 Flink on Kubernetes 的支持远远不止提交个任务这么简单。
 
@@ -154,9 +156,9 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 默认 savepoint 的根路径只需要在 Flink Home flink-conf.yaml 文件中配置即可自动识别，除了默认地址，在停止时也可以自定义指定 savepoint 的根路径。
 
-![](/blog/wuxin/savepoint.png)
+![](/blog/relx/savepoint.png)
 
-![](/blog/wuxin/checkpoint.png)
+![](/blog/relx/checkpoint.png)
 
 - **实时跟踪运行状态**
 
@@ -164,7 +166,7 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 对于生产环境的挑战，很重要的一点就是监控是否到位，Flink on Kubernetes 更是如此。这点很重要, 也是最基本需要具备的能力，StreamPark 可实时监控 Flink on Kubernetes 作业的运行状态并在平台上展示给用户，在页面上可以很方便的根据各种运行状态来检索任务。
 
-![](/blog/wuxin/run_status.png)
+![](/blog/relx/run_status.png)
 
 - **完善的告警机制**
 
@@ -172,7 +174,7 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 除此之外 StreamPark 还具备完善的报警功能: 支持邮件、钉钉、微信和短信 等。这也是当初公司调研之后选择 StreamPark 作为 Flink on Kubernetes 一站式平台的重要原因。
 
-![](/blog/wuxin/alarm.png)
+![](/blog/relx/alarm.png)
 
 通过以上我们看到 StreamPark 在支持 Flink on Kubernetes 开发部署过程中具备的能力, 包括：**作业的开发能力、部署能力、监控能力、运维能力、异常处理能力等，StreamPark 提供的是一套相对完整的解决方案。 且已经具备了一些 CICD/DevOps 的能力，整体的完成度还在持续提升。是在整个开源领域中对于 Flink on Kubernetes 一站式开发部署运维工作全链路都支持的产品，StreamPark 是值得被称赞的。**
 
@@ -180,7 +182,7 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作业和实时指标计算作业的开发部署，有 Jar 任务也有 Flink SQL 任务，全部使用 Native Kubernetes 部署；数据源有CDC、Kafka 等，Sink 端有 Maxcompute、kafka、Hive 等，以下是公司开发环境StreamPark 平台截图： 
 
-![](/blog/wuxin/screenshot.png)
+![](/blog/relx/screenshot.png)
 
 ## 遇到的问题  
 
