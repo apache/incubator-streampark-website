@@ -1,4 +1,4 @@
-slug: streampark-usercase-wuxin
+slug: streampark-on-k8s
 title: Flink on Kubernetes 篇
 tags: [StreamPark, 生产实践, FlinkSQL]
 
