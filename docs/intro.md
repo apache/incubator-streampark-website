@@ -22,10 +22,10 @@ Apache Flink and Apache Spark are widely used as the next generation of big data
 On the other hand, It can be challenge for enterprises to use Flink & Spark if there is no professional management platform for Flink & Spark tasks during the deployment phase. StreamPark provides such a professional task management platform, including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
 ## 🎉 Features
-* Apache Flink & Spark application development scaffolding
-* Supports multiple versions of Flink & Spark
-* A range of out-of-the-box connectors
-* one-stop stream processing operation platform
+* Apache Flink & Spark application development scaffold
+* Support multiple versions of Flink & Spark
+* Wide range of out-of-the-box connectors
+* One-stop stream processing operation platform
 * Support catalog、olap、streaming-warehouse etc.
 * ...
 
