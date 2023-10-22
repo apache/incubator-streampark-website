@@ -527,6 +527,26 @@ sidebar_position: 3
       }
       ```
 
+### 3.13 `Deprecated` 注解
+
+  - 负面示例:
+
+    ```java
+    @deprecated
+    public void process(String input) {
+      ...
+    }
+    ```
+
+  - 正面示例:
+
+    ```java
+    @Deprecated
+    public void process(String input) {
+      ...
+    }
+    ```
+
 ## 4 异常处理
 
 `streampark-console-service` 模块是处理用户请求的核心模块。
