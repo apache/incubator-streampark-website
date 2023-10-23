@@ -527,6 +527,26 @@ to reduce code line depth and improve readability like follows:
      }
      ```
 
+### 3.13 `Deprecated` Annotation
+
+  - Negative demo:
+
+    ```java
+    @deprecated
+    public void process(String input) {
+      ...
+    }
+    ```
+
+  - Positive demo:
+
+    ```java
+    @Deprecated
+    public void process(String input) {
+      ...
+    }
+    ```
+
 ## 4 Exception Processing
 
 This `streampark-console-service` module is the core module for processing user requests.
