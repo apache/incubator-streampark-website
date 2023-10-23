@@ -102,9 +102,18 @@ sidebar_position: 3
 
 5. The methods name of basic `CRUD` of the database layer (non-service layer) should be uniformly standardized according to name `com.baomidou.mybatisplus.core.mapper.BaseMapper`:
 
-   If perform a database select operation, the name of the method should be started with `select`.
+    - If performing a database query operation, the method name should start with `select`.
 
-   For example, `selectById`, `selectByXxx`, `selectPageByXxx`
+      When querying a single record, you can use `selectXxx`, such as `selectApp`.
+
+      When querying multiple records, you can use `selectXxxs` to indicate a collection result, such as `selectApps`. If the entity ends with `s`, you can use `List`, such as `selectStatusList`.
+
+      If the result is paginated, you can use `selectPage`. If the result is a `Map`, it is recommended to follow the `Map` naming conventions, such as `selectIdUserMap`.
+
+      When the query includes specific conditions, you can use `selectXxxByXxx` naming, such as `listById` or `selectAppsByProjectId`.
+
+      > In cases of excessively long entity names, consider abbreviating judiciously. The principle is to be “clear and concise.” For example, `selectApplications` can be abbreviated to `selectApps`. However, if there is no suitable abbreviation, abbreviation is not recommended.
+      > For `Mapper` queries like `selectRecentK8sClusterIds`, you can also adopt the `selectList` naming convention.
 
     - If perform a database <mark> update </mark> statement operation, the name of the method should be started with `update`
     - If perform a database <mark> insert </mark> statement operation, the name of the method should be started with `insert`
