@@ -102,9 +102,18 @@ sidebar_position: 3
 
 5. 数据库层（非服务层）的基本 `CRUD` 的方法名称应根据 `com.baomidou.mybatisplus.core.mapper.BaseMapper` 的名称统一标准化：
 
-   如果执行数据库选择操作，方法的名称应以 `select` 开头。
+   - 如果执行数据库查询操作，方法的名称应以 `select` 开头。
 
-   例如，`selectById`、`selectByXxx`、`selectPageByXxx`
+     当查询单条记录时可以使用`selectXxx`，例如`selectApp`
+   
+     当查询多条记录时可以使用`selectXxxs`表示集合结果，例如`selectApps`，如果实体以`s`结尾，可以使用`List`如`selectStatusList`；
+
+     如果是分页结果，则可以使用`selectPage`；如果是`Map`结果，建议参考`Map`命名规则如`selectIdUserMap`
+   
+     当查询包含具体条件时可以使用`selectXxxByXxx`命名，例如`listById`、`selectAppsByProjectId`
+     
+     > 如遇到太长的实体可以酌情缩写，原则是“见名知意”且做到不啰嗦，例如`selectApplications`缩写为`selectApps`，但如果没有合适的缩写，不建议缩写
+     > 如果是`Mapper`查询`selectRecentK8sClusterIds`，则也可以采取`selectList`命名
 
     - 如果执行数据库的 <mark> 更新 </mark> 语句操作，方法的名称应以 `update` 开头。
     - 如果执行数据库的 <mark> 插入 </mark> 语句操作，方法的名称应以 `insert` 开头。
@@ -113,7 +122,7 @@ sidebar_position: 3
 6. 服务层的基本 `CRUD` 方法命名应参考 `com.baomidou.mybatisplus.extension.service.IService`：
 
     - 如果执行数据库的 <mark> 选择 </mark> 操作来查询多个记录，方法的名称应以 `list` 开头，例如 `listByIds`、`listByXxx`。
-    - 如果执行数据库的 <mark> 选择 </mark> 操作查询单个记录，方法的名称应以 get 开头，例如 `getByName` 和 `getOne`。
+    - 如果执行数据库的 <mark> 选择 </mark> 操作查询单个记录，方法的名称应以 `get` 开头，例如 `getByName` 和 `getOne`。
     - 如果执行数据库的 <mark> 更新 </mark> 操作，方法的名称应以 `update` 开头。
     - 如果执行数据库的 <mark> 插入 </mark> 操作，方法的名称应以 `save` 开头。
     - 如果执行数据库的 <mark> 删除 </mark> 操作，方法的名称应以 `remove` 开头。
