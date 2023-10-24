@@ -1,35 +1,34 @@
 ---
 slug: streampark-flink-on-k8s
-title: StreamPark Flink on Kubernetes 实践
+title: StreamPark Flink on Kubernetes practice
 tags: [StreamPark, 生产实践, FlinkSQL, Kubernetes]
 ---
 
-# StreamPark Flink on Kubernetes 实践
+# StreamPark Flink on Kubernetes practice
 
-雾芯科技创立于2018年1月。目前主营业务包括 RELX 悦刻品牌产品的研发、设计、制造及销售。凭借覆盖全产业链的核心技术与能力，RELX 悦刻致力于为用户提供兼具高品质和安全性的产品。
+  Wuxin Technology was founded in January 2018. The current main business includes the research and development, design, manufacturing and sales of RELX brand products. With core technologies and capabilities covering the entire industry chain, RELX is committed to providing users with products that are both high quality and safe.
 
-## **为什么选择 Native Kubernetes**
+## **Why Choose Native Kubernetes**
 
-Native Kubernetes 具有以下优势：
+Native Kubernetes offers the following advantages:
 
-- 更短的 Failover 时间
-- 可以实现资源托管，不需要手动创建 TaskManager 的 Pod，可以自动完成销毁
-- 具有更加便捷的 HA，Flink 1.12版本之后在 Native Kubernetes 模式下，可以依赖于原生 Kubernetes 的 Leader选举机制来完成 JobManager 的 HA
+- Shorter Failover time
+- Resource hosting can be implemented without the need to manually create TaskManager Pods, which can be automatically destroyed
+- With more convenient HA, in Native Kubernetes mode after Flink version 1.12, you can rely on the Leader election mechanism of native Kubernetes to complete JobManager's HA
 
-Native Kubernetes 和 Standalone Kubernetes 主要区别在于 Flink 与 Kubernetes 交互的方式不同以及由此产生的一系列优势。Standalone Kubernetes 需要用户自定义 JobManager  和 TaskManager 的 Kubernetes 资源描述文件，提交作业时需要用 kubectl 结合资源描述文件启动 Flink 集群。而 Native Kubernetes 模式 Flink Client 里面集成了一个 Kubernetes Client，它可以直接和 Kubernetes API Server 进行通讯，完成 JobManager Deployment 以及 ConfigMap 的创建。JobManager Development 创建完成之后，它里面的 Resource Manager 模块可以直接和 Kubernetes API Server 进行通讯，完成 TaskManager pod 的创建和销毁工作以及 Taskmanager 的弹性伸缩。因此生产环境中推荐使用 Flink on Native Kubernetes 模式部署 Flink 任务。
+  The main difference between Native Kubernetes and Standalone Kubernetes lies in the way Flink interacts with Kubernetes and the resulting series of advantages. Standalone Kubernetes requires users to customize the Kubernetes resource description files of JobManager and TaskManager. When submitting a job, you need to use kubectl combined with the resource description file to start the Flink cluster. The Native Kubernetes mode Flink Client integrates a Kubernetes Client, which can directly communicate with the Kubernetes API Server to complete the creation of JobManager Deployment and ConfigMap. After JobManager Development is created, the Resource Manager module in it can directly communicate with the Kubernetes API Server to complete the creation and destruction of TaskManager pods and the elastic scaling of Taskmanager. Therefore, it is recommended to use Flink on Native Kubernetes mode to deploy Flink tasks in production environments.
 
 ![](/blog/relx/nativekubernetes_architecture.png)
 
-## **当 Flink On Kubernetes 遇见 StreamPark**
+When Flink On Kubernetes meets StreamPark
 
-Flink on Native Kubernetes 目前支持 Application 模式和 Session 模式，两者对比 Application 模式部署规避了 Session 模式的资源隔离问题、以及客户端资源消耗问题，因此**生产环境更推荐采用 Application Mode 部署 Flink 任务。**下面我们分别看看使用原始脚本的方式和使用 StreamPark 开发部署一个 Flink on Native Kubernetes 作业的流程。
+  Flink on Native Kubernetes currently supports Application mode and Session mode. Compared with the two, Application mode deployment avoids the resource isolation problem and client resource consumption problem of Session mode. Therefore, it is recommended to use Application Mode to deploy Flink tasks in ** production environments. **Let’s take a look at the method of using the original script and the process of using StreamPark to develop and deploy a Flink on Native Kubernetes job.
+Deploy Kubernetes using scripts
 
-### ***使用脚本方式部署Kubernetes***
+In the absence of a platform that supports Flink on Kubernetes task development and deployment, you need to use scripts to submit and stop tasks. This is also the default method provided by Flink. The specific steps are as follows:
 
-在没有一个支持 Flink on Kubernetes 任务开发部署的平台的情况下，需要使用脚本的方式进行任务的提交和停止，这也是 Flink 提供的默认的方式，具体步骤如下:
-
-1. 在 Flink 客户端节点准备 kubectl 和 Docker 命令运行环境，创建部署 Flink 作业使用的 Kubernetes Namespace 和 Service Account 以及进行 RBAC
-2. 编写 Dockerfile 文件，将 Flink 基础镜像和用户的作业 Jar 打包到一起
+1. Prepare the kubectl and Docker command running environment on the Flink client node, create the Kubernetes Namespace and Service Account used to deploy the Flink job, and perform RBAC
+2. Write a Dockerfile file to package the Flink base image and the user’s job Jar together
 
 ```dockerfile
 
@@ -38,7 +37,7 @@ RUN mkdir -p $FLINK_HOME/usrlib
 COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
 ```
 
-4. 使用 Flink 客户端脚本启动 Flink 任务
+4. Use Flink client script to start Flink tasks
 
 ```shell
 
@@ -52,159 +51,154 @@ COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
     local:///opt/flink/usrlib/my-flink-job.jar
 ```
 
-5. 使用 Kubectl 命令获取到 Flink 作业的 WebUI 访问地址和 JobId
+5. Use the Kubectl command to obtain the WebUI access address and JobId of the Flink job.
 
 ```shell
-kubectl -n flink-cluster get svc 
+kubectl -n flink-cluster get svc
 ```
 
-6. 使用Flink命令停止作业
+6. Stop the job using Flink command
 
 ```shell
-./bin/flink cancel 
-    --target kubernetes-application 
-    -Dkubernetes.cluster-id=my-first-application-cluster 
+./bin/flink cancel
+    --target kubernetes-application
+    -Dkubernetes.cluster-id=my-first-application-cluster
     -Dkubernetes.namespace=flink-cluster <jobId>
 ```
 
-以上就是使用 Flink 提供的最原始的脚本方式把一个 Flink 任务部署到 Kubernetes 上的过程，只做到了最基本的任务提交，如果要达到生产使用级别，还有一系列的问题需要解决，如：方式过于原始无法适配大批量任务、无法记录任务checkpoint 和实时状态跟踪、任务运维和监控困难、无告警机制、 无法集中化管理等等。
+  The above is the process of deploying a Flink task to Kubernetes using the most original script method provided by Flink. Only the most basic task submission is achieved. If it is to reach the production use level, there are still a series of problems that need to be solved, such as: the method is too Originally, it was unable to adapt to large batches of tasks, unable to record task checkpoints and real-time status tracking, difficult to operate and monitor tasks, had no alarm mechanism, and could not be managed in a centralized manner, etc.
 
-## **使用 StreamPark 部署 Flink on Kubernetes**
+## **Deploy Flink on Kubernetes using StreamPark**
 
-------
+  There will be higher requirements for using Flink on Kubernetes in enterprise-level production environments. Generally, you will choose to build your own platform or purchase related commercial products. No matter which solution meets the product capabilities: large-scale task development and deployment, status tracking, operation and maintenance monitoring , failure alarms, unified task management, high availability, etc. are common demands.
 
-对于企业级生产环境使用 Flink on Kubernetes 会有着更高的要求, 一般会选择自建平台或者购买相关商业产品, 不论哪种方案在产品能力上满足: **大批量任务开发部署、状态跟踪、运维监控、失败告警、任务统一管理、高可用性** 等这些是普遍的诉求。
+  In response to the above issues, we investigated open source projects in the open source field that support the development and deployment of Flink on Kubernetes tasks. During the investigation, we also encountered other excellent open source projects. After comprehensively comparing multiple open source projects, we came to the conclusion: ** Whether StreamPark is completed The overall performance such as speed, user experience, and stability are all very good, so we finally chose StreamPark as our one-stop real-time computing platform. **
 
-针对以上问题我们调研了开源领域支持开发部署 Flink on Kubernetes 任务的开源项目，调研的过程中也不乏遇到了其他优秀的开源项目，在综合对比了多个开源项目后得出结论: **StreamPark 不论是完成度还是使用体验、稳定性等整体表现都非常出色，因此最终选择了 StreamPark 作为我们的一站式实时计算平台。**下面我们看看 StreamPark 是如何支持 Flink on Kubernetes :
+  Let’s take a look at how StreamPark supports Flink on Kubernetes:
 
-### **基础环境配置**
+### **Basic environment configuration**
 
-基础环境配置包括 Kubernetes 和 Docker 仓库信息以及 Flink 客户端的信息配置。对于 Kubernetes 基础环境最为简单的方式是直接拷贝 Kubernetes 节点的 .kube/config 到 StreamPark 节点用户目录，之后使用 kubectl 命令创建 Flink 专用的 Kubernetes Namespace 以及进行 RBAC 配置。
+  Basic environment configuration includes Kubernetes and Docker warehouse information as well as Flink client information configuration. The simplest way for the Kubernetes basic environment is to directly copy the .kube/config of the Kubernetes node to the StreamPark node user directory, and then use the kubectl command to create a Flink-specific Kubernetes Namespace and perform RBAC configuration.
 
 ```shell
-# 创建Flink作业使用的k8s namespace
+# Create k8s namespace used by Flink jobs
 kubectl create ns flink-cluster
-# 对default用户进行RBAC资源绑定
+# Bind RBAC resources to the default user
 kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit --serviceaccount=flink-cluster:default
+
 ```
 
-Docker 账户信息直接在 Docker Setting 界面配置即可：
+Docker account information can be configured directly in the Docker Setting interface:
 
 ![](/blog/relx/docker_setting.png)
 
-StreamPark 可适配多版本 Flink 作业开发，Flink 客户端直接在 StreamPark Setting 界面配置即可：
+StreamPark can adapt to multi-version Flink job development. The Flink client can be configured directly on the StreamPark Setting interface:
 
 ![](/blog/relx/flinkversion_setting.png)
 
-### **作业开发**
+### **Job development**
 
-StreamPark 做好基础环境配置之后只需要三步即可开发部署一个 Flink 作业:
+After StreamPark has configured the basic environment, it only takes three steps to develop and deploy a Flink job:
 
 ![](/blog/relx/development_process.png)
 
-StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink SQL 作业只需要输入SQL 和 依赖项即可, 该方式大大提升了开发体验,** **并且规避了依赖冲突等问题，**对此部分本文不重点介绍。
+  StreamPark supports both Upload Jar and direct writing of Flink SQL jobs. **Flink SQL jobs only need to enter SQL and dependencies. This method greatly improves the development experience and avoids problems such as dependency conflicts.** This article does not focus on this part。
 
-这里需要选择部署模式为 kubernetes application, 并且需要在作业开发页面进行以下参数的配置：红框中参数为 Flink on Kubernetes 基础参数。
+  Here you need to select the deployment mode as kubernetes application, and configure the following parameters on the job development page: The parameters in the red box are the basic parameters of Flink on Kubernetes.
 
 ![](/blog/relx/kubernetes_base_parameters.png)
 
-下面参数为 Flink 作业和资源相关的参数，Resolve Order 的选择与代码加载模式有关，对于 DataStream API 开发的 Upload Jar上传的作业选择使用 Child-first，Flink SQL 作业选择使用 Parent-first 加载。
+  The following parameters are parameters related to Flink jobs and resources. The choice of Resolve Order is related to the code loading mode. For jobs uploaded by the Upload Jar developed by the DataStream API, choose to use Child-first, and for Flink SQL jobs, choose to use Parent-first loading.
 
 ![](/blog/relx/flink_parameters.png)
 
-最后就是下面这两个重量级参数了，对于 Native Kubernetes 而言，k8s-pod-template 一般只需要进行 pod-template 配置即可，Dynamic Option 是 pod-template 参数的补充，对于一些个性化配置可以在 Dynamic Option 中配置。更多 Dynamic Option 直接参考 Flink 官网即可。
+  Finally, there are the following two heavyweight parameters. For Native Kubernetes, k8s-pod-template generally only requires pod-template configuration. Dynamic Option is a supplement to the pod-template parameters. For some personalized configurations, you can Configured in Dynamic Option. For more Dynamic Option, please directly refer to the Flink official website.
 
 ![](/blog/relx/pod_template.png)
 
-### **作业上线**
+### **Job online**
 
-作业开发完成之后是作业上线环节，在这一环节中 StreamPark 做了大量的工作，具体如下:
+After the job development is completed, the job comes online. In this step, StreamPark has done a lot of work, as follows:
 
-- 准备环境
-- 作业中的依赖下载
-- 构建作业(打JAR包)
-- 构建镜像
-- 推送镜像到远程仓库
+- Prepare environment
+- Dependency download in job
+- Build job (JAR package)
+- Build image
+- Push the image to the remote warehouse
 
-**对于用户来说: 只需要点击任务列表中的云状的上线按钮即可。**
+**For users: Just click the cloud-shaped online button in the task list**
 
 ![](/blog/relx/operation.png)
 
-在镜像构建和推送的时候我们可以看到 StreamPark 做的一系列工作: **读取配置、构建镜像、推送镜像到远程仓库...** 这里要给StreamPark 一个大大的赞！
+We can see a series of work done by StreamPark when building and pushing the image.: **Read the configuration, build the image, and push the image to the remote warehouse...** I want to give StreamPark a big thumbs up!
 
 ![](/blog/relx/step_details.png)
 
-### **作业提交**
+### **Assignment submission**
 
-最后只需要点击 Operation 里 start Application 按钮便可启动一个 Flink on Kubernetes 作业，作业启动成功之后点击作业名便可跳转到 Jobmanager WebUI 页面、整个过程非常简单丝滑。
+  Finally, you only need to click the start Application button in Operation to start a Flink on Kubernetes job. After the job is successfully started, click on the job name to jump to the Jobmanager WebUI page. The whole process is very simple and smooth.
 
 ![](/blog/relx/homework_submit.png)
 
-整个过程仅需上述三步，即可完成在 StreamPark 上开发和部署一个Flink on Kubernetes 作业。而 StreamPark 对于 Flink on Kubernetes 的支持远远不止提交个任务这么简单。
+  The entire process only requires the above three steps to complete the development and deployment of a Flink on Kubernetes job on StreamPark. StreamPark's support for Flink on Kubernetes goes far beyond simply submitting a task.
 
-### **作业管理**
+### **Job management**
 
-**在作业提交之后，StreamPark 能实时获取到任务的最新 checkpoint 地址、任务的运行状态、集群实时的资源消耗信息，针对运行的任务可以非常方便的一键启停, 在停止作业时支持记录 savepoint 的位置, 以及再次启动时从 savepoint 恢复状态等功能，从而保证了生产环境的数据一致性，真正具备 Flink on Kubernetes 的 一站式开发、部署、运维监控的能力。**
+**After the job is submitted, StreamPark can obtain the latest checkpoint address of the task, the running status of the task, and the real-time resource consumption information of the cluster in real time. It can very conveniently start and stop the running task with one click, and supports recording the savepoint location when stopping the job. , as well as functions such as restoring the state from savepoint when restarting, thus ensuring the data consistency of the production environment and truly possessing the one-stop development, deployment, operation and maintenance monitoring capabilities of Flink on Kubernetes.**
 
-接下来我们来看看这一块的能力 StreamPark 是如何进行支持的:
+Next, let’s take a look at how StreamPark supports this capability:
 
-- **实时记录checkpoint**
+- **Record checkpoint in real time**
 
-------
+  After the job is submitted, sometimes it is necessary to change the job logic but to ensure data consistency, then the platform needs to have the ability to record the location of each checkpoint in real time, as well as the ability to record the last savepoint location when stopped. StreamPark is on Flink on Kubernetes This function is implemented very well. By default, checkpoint information will be obtained and recorded in the corresponding table every 5 seconds, and according to the policy of retaining the number of checkpoints in Flink, only state.checkpoints.num-retained will be retained, and the excess will be deleted. There is an option to check the savepoint when the task is stopped. If the savepoint option is checked, the savepoint operation will be performed when the task is stopped, and the specific location of the savepoint will also be recorded in the table.
 
-在作业提交之后，有时候需要更改作业逻辑但是要保证数据的一致性，那么就需要平台具有实时记录每一次 checkpoint 位置的能力, 以及停止时记录最后的 savepoint 位置的能力，StreamPark 在 Flink on Kubernetes 上很好的实现了该功能。默认会每隔5秒获取一次 checkpoint 信息记录到对应的表中，并且会按照 Flink 中保留 checkpoint 数量的策略，只保留 state.checkpoints.num-retained 个，超过的部分则删除。在任务停止时有勾选 savepoint 的选项，如勾选了savepoint 选项，在任务停止时会做 savepoint 操作，同样会记录 savepoint 具体位置到表中。
-
-默认 savepoint 的根路径只需要在 Flink Home flink-conf.yaml 文件中配置即可自动识别，除了默认地址，在停止时也可以自定义指定 savepoint 的根路径。
+  The root path of the default savepoint only needs to be configured in the Flink Home flink-conf.yaml file to automatically identify it. In addition to the default address, the root path of the savepoint can also be customized and specified when stopping.
 
 ![](/blog/relx/savepoint.png)
 
 ![](/blog/relx/checkpoint.png)
 
-- **实时跟踪运行状态**
+- **Track running status in real time**
 
-------
-
-对于生产环境的挑战，很重要的一点就是监控是否到位，Flink on Kubernetes 更是如此。这点很重要, 也是最基本需要具备的能力，StreamPark 可实时监控 Flink on Kubernetes 作业的运行状态并在平台上展示给用户，在页面上可以很方便的根据各种运行状态来检索任务。
+  For challenges in the production environment, a very important point is whether monitoring is in place, especially for Flink on Kubernetes. This is very important and is the most basic capability. StreamPark can monitor the running status of Flink on Kubernetes jobs in real time and display it to users on the platform. Tasks can be easily retrieved based on various running statuses on the page.
 
 ![](/blog/relx/run_status.png)
 
-- **完善的告警机制**
+- **Complete alarm mechanism**
 
-------
-
-除此之外 StreamPark 还具备完善的报警功能: 支持邮件、钉钉、微信和短信 等。这也是当初公司调研之后选择 StreamPark 作为 Flink on Kubernetes 一站式平台的重要原因。
+  In addition, StreamPark also has complete alarm functions: supporting email, DingTalk, WeChat and SMS, etc. This is also an important reason why the company chose StreamPark as the one-stop platform for Flink on Kubernetes after initial research.
 
 ![](/blog/relx/alarm.png)
 
-通过以上我们看到 StreamPark 在支持 Flink on Kubernetes 开发部署过程中具备的能力, 包括：**作业的开发能力、部署能力、监控能力、运维能力、异常处理能力等，StreamPark 提供的是一套相对完整的解决方案。 且已经具备了一些 CICD/DevOps 的能力，整体的完成度还在持续提升。是在整个开源领域中对于 Flink on Kubernetes 一站式开发部署运维工作全链路都支持的产品，StreamPark 是值得被称赞的。**
+  From the above, we can see that StreamPark has the capabilities to support the development and deployment process of Flink on Kubernetes, including: ** job development capabilities, deployment capabilities, monitoring capabilities, operation and maintenance capabilities, exception handling capabilities, etc. StreamPark provides a relatively complete set of s solution. And it already has some CICD/DevOps capabilities, and the overall completion level continues to improve. It is a product that supports the full link of Flink on Kubernetes one-stop development, deployment, operation and maintenance work in the entire open source field. StreamPark is worthy of praise. **
 
-## **StreamPark 在雾芯科技的落地实践**
+## **StreamPark’s implementation in Wuxin Technology**
 
-StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作业和实时指标计算作业的开发部署，有 Jar 任务也有 Flink SQL 任务，全部使用 Native Kubernetes 部署；数据源有CDC、Kafka 等，Sink 端有 Maxcompute、kafka、Hive 等，以下是公司开发环境StreamPark 平台截图： 
+  StreamPark was launched late in Wuxin Technology. It is currently mainly used for the development and deployment of real-time data integration jobs and real-time indicator calculation jobs. There are Jar tasks and Flink SQL tasks, all deployed using Native Kubernetes; data sources include CDC, Kafka, etc., and Sink end There are Maxcompute, kafka, Hive, etc. The following is a screenshot of the company's development environment StreamPark platform:
 
 ![](/blog/relx/screenshot.png)
 
-## 遇到的问题  
+## Problems encountered
 
-任何新技术都有探索与踩坑的过程，失败的经验是宝贵的，这里介绍下 StreamPark 在雾芯科技落地过程中踩的一些坑和经验，**这块的内容不仅仅关于 StreamPark 的部分, 相信会带给所有使用 Flink on Kubernetes 的小伙伴一些参考。
+  Any new technology has a process of exploration and pitfalls. The experience of failure is precious. Here are some pitfalls and experiences that StreamPark has stepped into during the implementation of fog core technology. **The content of this section is not only about StreamPark. I believe it will bring some reference to all friends who use Flink on Kubernetes.
 
-### **常见问题总结如下**
+### **FAQs are summarized below**
 
-- **kubernetes pod 拉取镜像失败**
+- **Kubernetes pod failed to pull the image**
 
-这个问题主要在于 Kubernetes pod-template 缺少 docker的 imagePullSecrets
+The main problem is that Kubernetes pod-template lacks docker’s imagePullSecrets
 
-- **scala 版本不一致**
+- **Scala version inconsistent**
 
-由于 StreamPark 部署需要 Scala 环境，而且 Flink SQL 运行需要用到 StreamPark 提供的 Flink SQL Client，因此一定要保证 Flink 作业的 Scala 版本和 StreamPark 的 Scala 版本保持一致。
+  Since StreamPark deployment requires a Scala environment, and Flink SQL operation requires the Flink SQL Client provided by StreamPark, it is necessary to ensure that the Scala version of the Flink job is consistent with the Scala version of StreamPark.
 
-- **注意类冲突**
+- **Be aware of class conflicts**
 
-进行 Flink SQL 作业开发的时候需要注意 Flink 镜像和 Flink connector 及 UDF 中有没有类冲突，最好的避免类冲突的办法是将 Flink 镜像和常用的 Flink connector 及用户 UDF 打成一个可用的基础镜像，之后其他 Flink SQL 作业直接复用即可。
+  When developing Flink SQL jobs, you need to pay attention to whether there are any class conflicts between the Flink image and the Flink connector and UDF. The best way to avoid class conflicts is to make the Flink image and the commonly used Flink connector and user UDF into a usable basic image. After that, other Flink SQL jobs can be reused directly.
 
-- **没有 Hadoop 环境怎么存储 checkpoint?**
+- **How to store checkpoint without Hadoop environment?**
 
-HDFS 阿里云 OSS/AWS S3 都可以进行 checkpoint 和 savepoint 存储，Flink 基础镜像已经有了对于 OSS 和 S3 的支持，如果没有 HDFS 可以使用阿里云 OSS 或者 S3存储状态和 checkpoint 和 savepoint 数据，只需要在 Flink 动态参数中简单配置一下即可。
+  HDFS, Alibaba Cloud OSS/AWS S3 can both perform checkpoint and savepoint storage. The Flink basic image already has support for OSS and S3. If you do not have HDFS, you can use Alibaba Cloud OSS or S3 to store status and checkpoint and savepoint data. You only need to use Flink Simply configure it in the dynamic parameters.
 
 ```shell
 
@@ -218,19 +212,19 @@ HDFS 阿里云 OSS/AWS S3 都可以进行 checkpoint 和 savepoint 存储，Flin
 -Dstate.savepoints.dir=oss://realtime-xxx/streamx/dev/savepoints/
 ```
 
-- **改了代码重新发布后并未生效**
+- **The changed code did not take effect after it was republished**
 
-该问题与 Kubernetes pod 镜像拉取策略有关，建议将 Pod 镜像拉取策略设置为 Always：
+This issue is related to the Kubernetes pod image pull policy. It is recommended to set the Pod image pull policy to Always:
 
 ‍-Dkubernetes.container.image.pull-policy=Always
 
-- **任务每次重启都会导致多出一个 Job 实例**
+- **Each restart of the task will result in one more Job instance**
 
-在配置了基于 kubernetes 的HA的前提条件下，当需要停止 Flink 任务时，需要通过 StreamPark 的 cancel 来进行，不要直接通过 kubernetes 集群删除 Flink 任务的 Deployment。因为 Flink 的关闭有其自有的关闭流程，在删除 pod 同时 Configmap 中的相应配置文件也会被一并删除，而直接删除 pod 会导致 Configmap 的残留。当相同名称的任务重启时，会出现两个相同 Job 现象，因为在启动时，任务会加载之前残留的配置文件，尝试将已经关闭的任务恢复。
+  Under the premise that kubernetes-based HA is configured, when you need to stop the Flink task, you need to use cancel of StreamPark. Do not delete the Deployment of the Flink task directly through the kubernetes cluster. Because Flink's shutdown has its own shutdown process, when deleting a pod, the corresponding configuration files in the Configmap will also be deleted. Direct deletion of the pod will result in the remnants of the Configmap. When a task with the same name is restarted, two identical jobs will appear because at startup, the task will load the remaining configuration files and try to restore the closed task.
 
-- **kubernetes pod 域名访问怎么实现**
+- **How to implement kubernetes pod domain name access**
 
-域名配置只需要按照 Kubernetes 资源在 pod-template 中配置即，可针对以上问题给大家分享一个本人总结的一个 pod-template.yaml 模板：
+Domain name configuration only needs to be configured in pod-template according to Kubernetes resources. I can share with you a pod-template.yaml template that I summarized based on the above issues:
 
 ```yaml
 
@@ -242,7 +236,7 @@ spec:
   serviceAccount: default
   containers:
   - name: flink-main-container
-    image: 
+    image:
   imagePullSecrets:
   - name: regsecret
   hostAliases:
@@ -258,15 +252,15 @@ spec:
 
 ```
 
-### **最佳实践**
+### **Best Practices**
 
-悦刻的大数据组件很多基于阿里云，比如 Maxcompute、阿里云 Redis，同时我们这边 Flink SQL 作业需要用到一些 UDF。最开始我们是采用使用 Flink Base image + maven dependency + upload udf jar 的方式，但是实践过程中遇到了一些比如版本冲突、类冲突的问题，同时如果是大批量作业的话这种方式开发效率比较低，最后我们采取将公司级别的常用的 Flink connector 和 udf 和 Flink base image 打包成公司级别的基础镜像，新 Flink SQL 作业使用该基础镜像之后直接写 Flink SQL 即可，大大提高了开发效率。
+  Many of RELX's big data components are based on Alibaba Cloud, such as Maxcompute and Alibaba Cloud Redis. At the same time, our Flink SQL jobs need to use some UDFs. At first, we adopted the method of using Flink Base image + maven dependency + upload udf jar, but in practice we encountered some problems such as version conflicts and class conflicts. At the same time, if it is a large-volume job, the development efficiency of this method is relatively low. Finally, we packaged the commonly used Flink connectors, udf and Flink base image at the company level into a company-level base image. New Flink SQL jobs can directly write Flink SQL after using this base image, which greatly improves development efficiency.
 
-**下面分享一个制作基础镜像的简单步骤：**
+**Let’s share a simple step to create a basic image：**
 
-**1. 准备需要的 JAR**
+**1. Prepare the required JAR**
 
-将常用 Flink Connector Jar 和用户 Udf Jar 放置在同一文件夹 lib 下，以下都是Flink 1.13.6 常用的一些 connector 包
+Place the commonly used Flink Connector Jar and the user Udf Jar in the same folder lib. The following are some commonly used connector packages in Flink 1.13.6
 
 ```jar
 bigdata-udxf-1.0.0-shaded.jar
@@ -278,34 +272,34 @@ ververica-connector-odps-1.13-vvr-4.0.7.jar
 ververica-connector-redis-1.13-vvr-4.0.7.jar
 ```
 
-**2. 准备 Dockerfile**
+**2. Prepare Dockerfile**
 
-创建 Dockerfile 文件，并将 Dockerfile 文件跟上面文件夹放置在同一文件夹下
+Create a Dockerfile file and place the Dockerfile file in the same folder as the above folder
 
 ```shell
 FROM flink:1.13.6-scala_2.11COPY lib $FLINK_HOME/lib/
 ```
 
-**3. 基础镜像制作并推送私有仓库**
+**3. Create a basic image and push it to a private warehouse**
 
 ```shell
-docker login --username=xxxdocker \ 
+docker login --username=xxxdocker \
 build -t udf_flink_1.13.6-scala_2.11:latest \
 .docker tag udf_flink_1.13.6-scala_2.11:latest \
 k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latestdocker \
 push k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latest
 ```
 
-##  **未来期待**   
+##  **Future Expectations**
 
-- **StreamPark 对于 Flink 作业 Metric 监控的支持**
+- **StreamPark supports Flink job metric monitoring**
 
-StreamPark 如果可以对接 Flink Metric 数据而且可以在 StreamPark 平台上展示每时每刻 Flink 的实时消费数据情况就太棒了
+It would be great if StreamPark could connect to Flink Metric data and display Flink’s real-time consumption data at every moment on the StreamPark platform.
 
-- **StreamPark 对于Flink 作业日志持久化的支持**
+- **StreamPark supports Flink job log persistence**
 
-对于部署到 YARN 的 Flink 来说，如果 Flink 程序挂了，我们可以去 YARN 上看历史日志，但是对于 Kubernetes 来说，如果程序挂了，那么 Kubernetes 的 pod 就消失了，就没法查日志了。所以用户需要借助 Kubernetes 上的工具进行日志持久化，如果 StreamPark 支持 Kubernetes 日志持久化接口就更好了。 
+  For Flink deployed to YARN, if the Flink program hangs, we can go to YARN to view the historical logs. However, for Kubernetes, if the program hangs, the Kubernetes pod will disappear and there will be no way to check the logs. Therefore, users need to use tools on Kubernetes for log persistence. It would be better if StreamPark supports the Kubernetes log persistence interface.
 
-- **镜像过大的问题改进**
+- **Improvement of the problem of too large image**
 
-StreamPark 目前对于 Flink on Kubernetes 作业的镜像支持是将基础镜像和用户代码打成一个 Fat 镜像推送到 Docker 仓库，这种方式存在的问题就是镜像过大的时候耗时比较久，希望未来基础镜像可以复用不需要每次都与业务代码打到一起，这样可以极大地提升开发效率和节约成本。
+StreamPark's current image support for Flink on Kubernetes jobs is to combine the basic image and user code into a Fat image and push it to the Docker warehouse. The problem with this method is that it takes a long time when the image is too large. It is hoped that the basic image can be restored in the future. There is no need to hit the business code together every time, which can greatly improve development efficiency and save costs.
