@@ -1,5 +1,5 @@
 ---
-id: flink-development-framework-streampark
+slug: flink-development-framework-streampark
 title: Flink Development Toolkit StreamPark
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
