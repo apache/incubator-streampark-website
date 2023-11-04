@@ -4,7 +4,7 @@ title: China Union's Flink Real-Time Computing Platform Ops Practice
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
-# China Union Flink Real-Time Computing Platform Ops Practices
+![](/blog/chinaunion/overall_architecture.png)
 
 **Abstract:** This article is compiled from the sharing of Mu Chunjin, the head of China Union Data Science's real-time computing team and Apache StreamPark Committer, at the Flink Forward Asia 2022 platform construction session. The content of this article is mainly divided into four parts:
 
@@ -13,11 +13,10 @@ tags: [StreamPark, Production Practice, FlinkSQL]
 - Integrated Management Based on StreamPark
 - Future Planning and Evolution
 
+<!-- truncate -->
+
+
 ## **Introduction to the Real-Time Computing Platform Background**
-
-![](/blog/chinaunion/overall_architecture.png)
-
-
 
 The image above depicts the overall architecture of the real-time computing platform. At the bottom layer, we have the data sources. Due to some sensitive information, the detailed information of the data sources is not listed. It mainly includes three parts: business databases, user behavior logs, and user location. China Union has a vast number of data sources, with just the business databases comprising tens of thousands of tables. The data is primarily processed through Flink SQL and the DataStream API. The data processing workflow includes real-time parsing of data sources by Flink, real-time computation of rules, and real-time products. Users perform real-time data subscriptions on the visualization subscription platform. They can draw an electronic fence on the map and set some rules, such as where the data comes from, how long it stays inside the fence, etc. They can also filter some features. User information that meets these rules will be pushed in real-time. Next is the real-time security part. If a user connects to a high-risk base station or exhibits abnormal operational behavior, we may suspect fraudulent activity and take actions such as shutting down the phone number, among other things. Additionally, there are some real-time features of users and a real-time big screen display.
 

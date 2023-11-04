@@ -4,8 +4,6 @@ title: StreamPark 一站式计算利器在海博科技的生产实践，助力�
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
-# StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设
-
 **摘要：**本文「 StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设 」作者是海博科技大数据架构师王庆焕，主要内容为：
 
 1. 选择 StreamPark
@@ -15,6 +13,8 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 5. 未来期待
 
 海博科技是一家行业领先的人工智能物联网产品和解决方案公司。目前在公共安全、智慧城市、智慧制造领域，为全国客户提供包括算法、软件和硬件产品在内的全栈式整体解决方案。
+
+<!-- truncate -->
 
 ## **01. 选择 StreamPark**
 
@@ -52,7 +52,7 @@ StreamPark 在海博主要用于运行实时 Flink SQL任务: 读取 Kafka 上�
 
 从2021年10月开始，公司逐渐将 Flink SQL 任务迁移至 StreamPark 平台来集中管理，承载我司实时物联数据的汇聚、计算、预警。
 
-截至目前，StreamPark 已在多个政府、公安生产环境进行部署，汇聚处理城市实时物联数据、人车抓拍数据。以下是在某市专网部署的 StreamPark 平台截图 : 
+截至目前，StreamPark 已在多个政府、公安生产环境进行部署，汇聚处理城市实时物联数据、人车抓拍数据。以下是在某市专网部署的 StreamPark 平台截图 :
 
 ![](/blog/haibo/application.png)
 

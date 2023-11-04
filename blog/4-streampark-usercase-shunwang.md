@@ -4,8 +4,6 @@ title: StreamPark 在顺网科技的大规模生产实践
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
-# StreamPark 在顺网科技的大规模生产实践
-
 ![](/blog/shunwang/autor.png)
 
 **导读：**本文主要介绍顺网科技在使用 Flink 计算引擎中遇到的一些挑战，基于 StreamPark 作为实时数据平台如何来解决这些问题，从而大规模支持公司的业务。
@@ -17,6 +15,8 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 - 落地实践
 - 带来的收益
 - 未来规划
+
+<!-- truncate -->
 
 ## **公司业务介绍**
 
@@ -189,7 +189,7 @@ https://github.com/apache/streampark/issues/2142
 
 
 
-## 带来的收益 
+## 带来的收益
 
 我们从 StreamX 1.2.3（StreamPark 前身）开始探索和使用，经过一年多时间的磨合，我们发现 StreamPark 真实解决了 Flink 作业在开发管理和运维上的诸多痛点。
 
@@ -201,7 +201,7 @@ StreamPark 给顺网科技带来的最大的收益就是降低了 Flink 的使�
 
 ![图片](/blog/shunwang/achievements2.png)
 
-##  未 来 规 划 
+##  未 来 规 划
 
 顺网科技作为 StreamPark 早期的用户之一，在 1 年期间内一直和社区同学保持交流，参与 StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 StreamPark 上管理 Flink 表的元数据信息，基于 Flink 引擎通过多 Catalog 实现跨数据源查询分析功能。目前 StreamPark 正在对接 Flink-SQL-Gateway 能力，这一块在未来对于表元数据的管理和跨数据源查询功能会提供了很大的帮助。
 
