@@ -1,17 +1,14 @@
 ---
-id: 'local development and debugging'
-title: 'Local Development and Debugging'
+id: 'development'
+title: 'Development Guide'
 sidebar_position: 3
 ---
 
 ### Environment Requirements
 
-- Maven 3.6+
-- nodejs (version >= 16.14)
-- npm 7.11.2 ( https://nodejs.org/en/ )
-- pnpm (npm install -g pnpm)
-- JDK 1.8+
-- Scala 2.12.x
+import { DevelopmentEnvs } from '../components/TableData.jsx';
+
+<DevelopmentEnvs></DevelopmentEnvs>
 
 ### Clone the Source Code
 
@@ -26,8 +23,6 @@ cd incubator-streampark/
 ./build.sh
 ```
 
-![Build Success](/doc/image/streampark_build_success.png)
-
 ### Open the Project
 
 Here, we are using `idea` to open the project.
@@ -40,12 +35,12 @@ open -a /Applications/IntelliJ\ IDEA\ CE.app/ ./
 
 ```bash
 cd ./dist
-tar -zxvf apache-streampark-2.2.0-SNAPSHOT-incubating-bin.tar.gz
+tar -zxvf apache-streampark-2.2.0-incubating-bin.tar.gz
 ```
 
 ### Copy the Path
 
-Copy the path of the extracted directory, for example: `/Users/user/IdeaProjects/incubator-streampark/dist/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin`
+Copy the path of the extracted directory, for example: `${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin`
 
 ### Start the Backend Service
 
@@ -58,7 +53,7 @@ Modify the launch configuration
 Check `Add VM options`, and input the parameter `-Dapp.home=$path`, where `$path` is the path we just copied.
 
 ```bash
--Dapp.home=/Users/user/IdeaProjects/incubator-streampark/dist/apache-streampark_2.12-2.2.0-SNAPSHOT-incubating-bin
+-Dapp.home=${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin
 ```
 
 ![Streampark Run Config](/doc/image/streampark_run_config.jpeg)

@@ -10,7 +10,7 @@ tags: [StreamPark, DataStream, FlinkSQL]
 
 Hadoop 体系虽然在目前应用非常广泛，但架构繁琐、运维复杂度过高、版本升级困难，且由于部门原因，数据中台需求排期较长，我们急需探索敏捷性开发的数据平台模式。在目前云原生架构的普及和湖仓一体化的大背景下，我们已经确定了将 Doris 作为离线数据仓库，将 TiDB（目前已经应用于生产）作为实时数据平台，同时因为 Doris 具有 on MySQL 的 ODBC 能力，所以又可以对外部数据库资源进行整合，统一对外输出报表
 
-![](/blog/doris.png)
+![](/blog/belle/doris.png)
 
 <center style={{"color": "gray"}}>(这里借用一下 Doris 官方的架构图)</center>
 
@@ -44,7 +44,7 @@ Hadoop 体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 
 首先，针对 Flink 原生镜像需要二次 build 的问题：我们利用了 MinIO 作为外部存储，并使用 s3-fuse 通过 DaemonSet 的方式直接挂载在了每个宿主节点上，我们所需要提交的 jar 包都可以放到上面统一管理。这样的话，即使扩缩容 Flink 节点，也能实现 S3 挂载自动伸缩。
 
-![](/blog/k8s.png)
+![](/blog/belle/k8s.png)
 
 Flink 从 1.13 版本开始，就支持 Pod Template，我们可以在 Pod Template 中利用数据卷挂载的方式再将宿主机目录挂载到每个 pod 中，从而无需镜像打包而直接在 K8s 上运行 Flink 程序。如上图，我们将 S3 先通过 s3-fuse Pod 挂载在 Node 1、Node 2 的 `/mnt/data-s3fs` 目录下，然后再将 `/mnt/data-s3fs` 挂载到 Pod A 中。
 
@@ -155,25 +155,25 @@ Flink 从 1.13 版本开始，就支持 Pod Template，我们可以在 Pod Templ
 
 在 StreamPark 中，我们只需要配置相应的参数，并在 Maven POM 中填写相应的依赖，或者上传依赖 jar 包，点击 Apply，相应的依赖就会生成。这就意味着我们也可以将所有使用的 UDF 打成 jar 包，以及各种 connector.jar，直接在 SQL 中使用。如下图:
 
-![](/blog/dependency.png)
+![](/blog/belle/dependency.png)
 
 SQL 校验能力和 Zeppelin 基本一致:
 
-![](/blog/sqlverify.png)
+![](/blog/belle/sqlverify.png)
 
 我们也可以指定资源，指定 Flink Run 中的动态参数 Dynamic Option，甚至参数可以整合 Pod  Template
 
-![](/blog/pod.png)
+![](/blog/belle/pod.png)
 
 程序保存后，点击运行时，也可以指定 savepoint。任务提交成功后，StreamPark 会根据 FlinkPod 网络 Exposed Type（loadBalancer/NodePort/ClusterIp），返回相应的 WebURL，从而自然的实现 WebUI 跳转。但是，目前因为线上私有 K8s 集群出于安全性考虑，尚未打通 Pod 与客户端节点网络（目前也没有这个规划）。所以么，我们只使用 NodePort。如果后续任务数过多，有使用 ClusterIP 的需求的话，我们可能会将 StreamPark 部署在 K8s，或者同 Ingress 做进一步整合。
 
-![](/blog/start.png)
+![](/blog/belle/start.png)
 
 注意：K8s master 如果使用 vip 做均衡代理的情况下，Flink 1.13 版本会返回 vip 的 ip 地址，在 1.14 版本中已经修复该问题。
 
 下面是 K8s Application 模式下具体提交流程
 
-![](/blog/flow.png)
+![](/blog/belle/flow.png)
 
 <center style={{"color": "gray"}}>（以上是依据个人理解绘制的任务提交流程图，如有错误，敬请谅解）</center>
 
@@ -197,15 +197,15 @@ Native-Session 模式需要事先使用 Flink 命令创建一个运行在 K8s �
 -Dkubernetes.rest-service.exposed.type=Nodeport
 ```
 
-![](/blog/flinksql.png)
+![](/blog/belle/flinksql.png)
 
 如上图，使用该 ClusterId 作为 StreamPark 的任务参数 Kubernetes ClusterId。保存提交任务后，任务会很快处于 Running 状态：
 
-![](/blog/detail.png)
+![](/blog/belle/detail.png)
 
 我们顺着 application info 的 WebUI 点击跳转：
 
-![](/blog/dashboard.png)
+![](/blog/belle/dashboard.png)
 
 可以看到，其实 StreamPark 是将 jar 包通过 REST API 上传到 Flink 集群上，并调度执行任务的。
 
@@ -243,4 +243,4 @@ Native-Session 模式需要事先使用 Flink 命令创建一个运行在 K8s �
 StreamPark GitHub：[https://github.com/apache/incubator-streampark](https://github.com/apache/incubator-streampark) <br/>
 Doris GitHub：[https://github.com/apache/doris](https://github.com/apache/doris)
 
-![](/blog/author.png)
+![](/blog/belle/author.png)

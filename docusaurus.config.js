@@ -75,6 +75,8 @@ const config = {
         },
 
         blog: {
+          blogSidebarCount: 15,
+          postsPerPage: 5,
           showReadingTime: true,
           // Please change this to your repo.
           editUrl:
@@ -287,27 +289,27 @@ const config = {
             {
               html: `
                 <div class="subscribe-box">
-                    <div class="d-flex align-items-center" style="margin-bottom: 30px;padding-top: 11px">
-                      <div class="subscribe-input flex-fill">
-                        <input class="form-control" id="email_address" maxLength="60" type="text" name="email_address" placeholder="Subscribe with us">
-                      </div>
-                      <div class="subscribe-submit-inner">
-                        <a class="btn btn-white m-0" type="submit" href="mailto:dev-subscribe@streampark.apache.org">
-                          <span><i class="fa fa-paper-plane text-white"></i></span>
-                        </a>
-                      </div>
+                  <div class="d-flex align-items-center" style="margin-bottom: 30px;padding-top: 11px">
+                    <div class="subscribe-input flex-fill">
+                      <input class="form-control" id="email_address" maxLength="60" type="text" name="email_address" placeholder="Subscribe with us">
                     </div>
-                    <ul class="icon-bottom">
-                        <li>
-                          <a href="javascript:void(0)">
-                            <i class="fa fa-wechat"></i>
-                            <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
-                          </a>
-                        </li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-slack"></i></a></li>
-                        <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                    </ul>
+                    <div class="subscribe-submit-inner">
+                      <a class="btn btn-white m-0" type="submit" href="mailto:dev-subscribe@streampark.apache.org">
+                        <span><i class="fa fa-paper-plane text-white"></i></span>
+                      </a>
+                    </div>
+                  </div>
+                  <ul class="icon-bottom">
+                    <li>
+                      <a href="javascript:void(0)">
+                        <i class="fa fa-wechat"></i>
+                        <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                      </a>
+                    </li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-slack"></i></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+                  </ul>
                 </div>
               `,
             }
@@ -315,26 +317,26 @@ const config = {
         }
       ],
       copyright: `
-            <div  style="text-align: left;margin-top:30px">
-                <div class="d-flex align-items-center">
-                    <div>
-                      <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
-                        <img src="/image/apache-incubator.svg" alt="Apache Incubator logo" class="footer__logo">
-                      </a>
-                    </div>
-                    <div>
-                      <p style="font-family: Avenir-Medium;font-size: 14px;color: #999;line-height: 25px;">
-                      Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
-                      </p>
-                  </div>
-                </div>
+        <div  style="text-align: left;margin-top:30px">
+          <div class="d-flex align-items-center">
+            <div>
+              <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+                <img src="/image/apache-incubator.svg" alt="Apache Incubator logo" class="footer__logo">
+              </a>
+            </div>
+            <div>
+              <p style="font-family: Avenir-Medium;font-size: 14px;color: #999;line-height: 25px;">
+              Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+              </p>
+            </div>
+          </div>
 
-                <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
-                  <span>
-                      Copyright © 2022-${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
-                  </span>
-                </div>
-            </div>`,
+          <div style="border-top: 1px solid #525252;min-height: 60px;line-height: 25px;text-align: left;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;">
+            <span>
+              Copyright © 2022-${new Date().getFullYear()} The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+            </span>
+          </div>
+        </div>`,
     },
 
     prism: {

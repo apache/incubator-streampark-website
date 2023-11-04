@@ -326,7 +326,7 @@ const ClientTables = () => {
 };
 
 
-const ClientEnvs = () => {
+const DeploymentEnvs = () => {
     return (
 
         <div>
@@ -341,7 +341,48 @@ const ClientEnvs = () => {
                 </thead>
                 <tbody>
                 {
-                    dataSource.envs.map((item, i) => (
+                    dataSource.deploymentEnvs.map((item, i) => (
+                        <tr key={i}>
+                            <td>
+                                <span className="label-info">{item.name}</span>
+                            </td>
+                            <td>{item.version}</td>
+                            <td>
+                                {
+                                    item.required
+                                        ?
+                                        <span className="icon-toggle-on" title="必须"></span>
+                                        :
+                                        <span className="icon-toggle-off" title="可选"></span>
+                                }
+                            </td>
+                            <td>{item.other}</td>
+                        </tr>
+                    ))
+                }
+                </tbody>
+            </table>
+        </div>
+
+    );
+};
+
+const DevelopmentEnvs = () => {
+    return (
+
+        <div>
+            <table className="table-data" style={{width: '100%', display: 'inline-table'}}>
+                <thead>
+                <tr>
+                    <td>要求</td>
+                    <td>版本</td>
+                    <td>是否必须</td>
+                    <td>其他事项</td>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    dataSource.developmentEnvs.map((item, i) => (
                         <tr key={i}>
                             <td>
                                 <span className="label-info">{item.name}</span>
@@ -378,5 +419,6 @@ export {
     ClientFixedDelay,
     ClientFailureRate,
     ClientTables,
-    ClientEnvs
+    DevelopmentEnvs,
+    DeploymentEnvs
 };

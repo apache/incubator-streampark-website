@@ -35,7 +35,7 @@ sso:
     enable: true
 ```
 
-- Select preferred 3rd party login approch, such as Github or Google auth, and fill in the `application-sso.yml` config as below: 
+- Select preferred 3rd party login approch, such as Github or Google auth, refer to the [pac4j configuration guide](https://github.com/pac4j/pac4j/blob/master/documentation/docs/config-module.md) for more parameter setting details, and fill in the `application-sso.yml` config as below: 
 ```
 pac4j:
   callbackUrl: http://localhost:10000/callback
@@ -64,7 +64,9 @@ pac4j:
 <img src="/doc/image/sso/login-success-redirect.png"/><br></br>
 
 ## Note
-Currently we only support `OAuth` and `OpenID Connect (OIDC)` as normal supported login approch, if you need to support `Saml`, or `CAS`, please go to the `streampark-console/streampark-console-service/pom.xml`, change to include them in the below dependency:
+- After new users loggining via SSO, their account will be added into streampark automatically at the backend. But admin still need to add the user under proper group manually, otherwise new user still cannot direct to the landing page after successful login.
+
+- Currently we only support `OAuth` and `OpenID Connect (OIDC)` as normal supported login approch, if you need to support `Saml`, or `CAS`, please go to the `streampark-console/streampark-console-service/pom.xml`, change to include them in the below dependency:
 ```
         <!-- Include pac4j-config/core/oauth/oidc-->
         <dependency>

@@ -1,6 +1,6 @@
 ---
 id: 'LDAP'
-title: 'LDAP Quick Tutorial'
+title: 'LDAP Tutorial'
 sidebar_position: 5
 ---
 

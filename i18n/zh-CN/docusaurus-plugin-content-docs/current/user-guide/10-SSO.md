@@ -36,7 +36,7 @@ sso:
     enable: true
 ```
 
-- 选择第三方方式，例如Github或谷歌登录，填写如下所示的`application-sso.yml`配置:
+- 选择第三方方式，例如Github或谷歌登录，参数设置细节可参照[pac4j配置指引](https://github.com/pac4j/pac4j/blob/master/documentation/docs/config-module.md), 并填写如下所示的`application-sso.yml`配置:
 ```
 pac4j:
   callbackUrl: http://localhost:10000/callback
@@ -65,7 +65,9 @@ pac4j:
 <img src="/doc/image/sso/login-success-redirect.png"/><br></br>
 
 ## 注意事项
-目前我们仅支持`OAuth`和`OpenID Connect (OIDC)`作为常规支持的登录方式，如果您需要支持`Saml`或`CAS`，请转到`streampark-console/streampark-console-service/pom.xml`，将它们更为包含在依赖当中:
+- 新用户通过SSO登录后，其帐户将自动添加到streampark中。但管理员仍然需要手动将用户添加到适当的组下，否则新用户登录成功后仍然无法定向到登陆页面。
+
+- 目前我们仅支持`OAuth`和`OpenID Connect (OIDC)`作为常规支持的登录方式，如果您需要支持`Saml`或`CAS`，请转到`streampark-console/streampark-console-service/pom.xml`，将它们更为包含在依赖当中:
 ```
         <!-- Include pac4j-config/core/oauth/oidc-->
         <dependency>
