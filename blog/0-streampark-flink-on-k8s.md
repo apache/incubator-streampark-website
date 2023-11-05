@@ -1,7 +1,7 @@
 ---
 slug: streampark-flink-on-k8s
 title: StreamPark Flink on Kubernetes practice
-tags: [StreamPark, 生产实践, FlinkSQL, Kubernetes]
+tags: [StreamPark, Production Practice, FlinkSQL, Kubernetes]
 description: Wuxin Technology was founded in January 2018. The current main business includes the research and development, design, manufacturing and sales of RELX brand products. With core technologies and capabilities covering the entire industry chain, RELX is committed to providing users with products that are both high quality and safe
 ---
 
