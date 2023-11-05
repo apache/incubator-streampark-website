@@ -76,11 +76,12 @@ const config = {
 
         blog: {
           blogSidebarCount: 15,
-          postsPerPage: 5,
+          postsPerPage: 6,
           showReadingTime: true,
+          blogSidebarTitle: "近期文章",
           // Please change this to your repo.
           editUrl:
-            'https://github.com/apache/incubator-streampark-website/edit/dev/',
+            'https://github.com/apache/incubator-streampark-website/edit/dev/'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

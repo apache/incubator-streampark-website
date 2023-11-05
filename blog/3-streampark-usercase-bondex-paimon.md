@@ -336,7 +336,7 @@ Job Submission: Initialize Paimon catalog configuration.
 
 ```sql
 SET 'execution.runtime-mode' = 'streaming';
-set 'table.exec.sink.upsert-materialize' = 'none'; 
+set 'table.exec.sink.upsert-materialize' = 'none';
 SET 'sql-client.execution.result-mode' = 'tableau';
 -- Create and use FTS Catalog with underlying storage solution using Alibaba Cloud OSS
 CREATE CATALOG `table_store` WITH (
@@ -805,12 +805,12 @@ The ADS layer's aggregated table uses agg sum, which can result in the DWD data 
 
 Solution:
 
-By specifying 'changelog-producer' = 'full-compaction', 
-Table Store will compare the results between full compactions and produce the differences as changelog. 
+By specifying 'changelog-producer' = 'full-compaction',
+Table Store will compare the results between full compactions and produce the differences as changelog.
 The latency of changelog is affected by the frequency of full compactions.
 
-By specifying changelog-producer.compaction-interval table property (default value 30min), 
-users can define the maximum interval between two full compactions to ensure latency. 
+By specifying changelog-producer.compaction-interval table property (default value 30min),
+users can define the maximum interval between two full compactions to ensure latency.
 This table property does not affect normal compactions and they may still be performed once in a while by writers to reduce reader costs.
 
 This approach can solve the aforementioned issue. However, it has led to a new problem. The default 'changelog-producer.compaction-interval' is 30 minutes, meaning that it takes 30 minutes for changes upstream to be reflected in the ads query. During production, it has been found that changing the compaction interval to 1 minute or 2 minutes can cause inaccuracies in the ADS layer aggregation data again.

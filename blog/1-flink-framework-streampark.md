@@ -4,7 +4,11 @@ title: Flink Development Toolkit StreamPark
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
-<br/>
+Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current prevalence of cloud-native architecture and the backdrop of lake and warehouse integration, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
+
+![](/blog/belle/doris.png)
+
+<!-- truncate -->
 
 # 1. Background
 

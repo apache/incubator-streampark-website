@@ -4,9 +4,9 @@ title: StreamPark Flink on Kubernetes 实践
 tags: [StreamPark, 生产实践, FlinkSQL, Kubernetes]
 ---
 
-# StreamPark Flink on Kubernetes 实践
-
 雾芯科技创立于2018年1月。目前主营业务包括 RELX 悦刻品牌产品的研发、设计、制造及销售。凭借覆盖全产业链的核心技术与能力，RELX 悦刻致力于为用户提供兼具高品质和安全性的产品。
+
+<!-- truncate -->
 
 ## **为什么选择 Native Kubernetes**
 
@@ -55,15 +55,15 @@ COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
 5. 使用 Kubectl 命令获取到 Flink 作业的 WebUI 访问地址和 JobId
 
 ```shell
-kubectl -n flink-cluster get svc 
+kubectl -n flink-cluster get svc
 ```
 
 6. 使用Flink命令停止作业
 
 ```shell
-./bin/flink cancel 
-    --target kubernetes-application 
-    -Dkubernetes.cluster-id=my-first-application-cluster 
+./bin/flink cancel
+    --target kubernetes-application
+    -Dkubernetes.cluster-id=my-first-application-cluster
     -Dkubernetes.namespace=flink-cluster <jobId>
 ```
 
@@ -180,11 +180,11 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 ## **StreamPark 在雾芯科技的落地实践**
 
-StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作业和实时指标计算作业的开发部署，有 Jar 任务也有 Flink SQL 任务，全部使用 Native Kubernetes 部署；数据源有CDC、Kafka 等，Sink 端有 Maxcompute、kafka、Hive 等，以下是公司开发环境StreamPark 平台截图： 
+StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作业和实时指标计算作业的开发部署，有 Jar 任务也有 Flink SQL 任务，全部使用 Native Kubernetes 部署；数据源有CDC、Kafka 等，Sink 端有 Maxcompute、kafka、Hive 等，以下是公司开发环境StreamPark 平台截图：
 
 ![](/blog/relx/screenshot.png)
 
-## 遇到的问题  
+## 遇到的问题
 
 任何新技术都有探索与踩坑的过程，失败的经验是宝贵的，这里介绍下 StreamPark 在雾芯科技落地过程中踩的一些坑和经验，**这块的内容不仅仅关于 StreamPark 的部分, 相信会带给所有使用 Flink on Kubernetes 的小伙伴一些参考。
 
@@ -242,7 +242,7 @@ spec:
   serviceAccount: default
   containers:
   - name: flink-main-container
-    image: 
+    image:
   imagePullSecrets:
   - name: regsecret
   hostAliases:
@@ -289,14 +289,14 @@ FROM flink:1.13.6-scala_2.11COPY lib $FLINK_HOME/lib/
 **3. 基础镜像制作并推送私有仓库**
 
 ```shell
-docker login --username=xxxdocker \ 
+docker login --username=xxxdocker \
 build -t udf_flink_1.13.6-scala_2.11:latest \
 .docker tag udf_flink_1.13.6-scala_2.11:latest \
 k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latestdocker \
 push k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latest
 ```
 
-##  **未来期待**   
+##  **未来期待**
 
 - **StreamPark 对于 Flink 作业 Metric 监控的支持**
 
@@ -304,7 +304,7 @@ StreamPark 如果可以对接 Flink Metric 数据而且可以在 StreamPark 平�
 
 - **StreamPark 对于Flink 作业日志持久化的支持**
 
-对于部署到 YARN 的 Flink 来说，如果 Flink 程序挂了，我们可以去 YARN 上看历史日志，但是对于 Kubernetes 来说，如果程序挂了，那么 Kubernetes 的 pod 就消失了，就没法查日志了。所以用户需要借助 Kubernetes 上的工具进行日志持久化，如果 StreamPark 支持 Kubernetes 日志持久化接口就更好了。 
+对于部署到 YARN 的 Flink 来说，如果 Flink 程序挂了，我们可以去 YARN 上看历史日志，但是对于 Kubernetes 来说，如果程序挂了，那么 Kubernetes 的 pod 就消失了，就没法查日志了。所以用户需要借助 Kubernetes 上的工具进行日志持久化，如果 StreamPark 支持 Kubernetes 日志持久化接口就更好了。
 
 - **镜像过大的问题改进**
 
