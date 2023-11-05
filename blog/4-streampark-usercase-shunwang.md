@@ -1,213 +1,213 @@
 ---
 slug: streampark-usercase-shunwang
-title: StreamPark 在顺网科技的大规模生产实践
-tags: [StreamPark, 生产实践, FlinkSQL]
+title: StreamPark in the Large-Scale Production Practice at Shunwang Technology
+tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
 ![](/blog/shunwang/autor.png)
 
-**导读：**本文主要介绍顺网科技在使用 Flink 计算引擎中遇到的一些挑战，基于 StreamPark 作为实时数据平台如何来解决这些问题，从而大规模支持公司的业务。
+**Preface:** This article primarily discusses the challenges encountered by Shunwang Technology in using the Flink computation engine, and how StreamPark is leveraged as a real-time data platform to address these challenges, thus supporting the company's business on a large scale.
 
 
-- 公司业务介绍
-- 遇到的挑战
-- 为什么用 StreamPark
-- 落地实践
-- 带来的收益
-- 未来规划
+- Introduction to the company's business
+- Challenges encountered
+- Why choose StreamPark
+- Implementation in practice
+- Benefits realized
+- Future planning
 
 <!-- truncate -->
 
-## **公司业务介绍**
+## **Introduction to the Company's Business**
 
-杭州顺网科技股份有限公司成立于 2005 年，秉承科技连接快乐的企业使命，是国内具有影响力的泛娱乐技术服务平台之一。多年来公司始终以产品和技术为驱动，致力于以数字化平台服务为人们创造沉浸式的全场景娱乐体验。
+Hangzhou Shunwang Technology Co., Ltd. was established in 2005. Upholding the corporate mission of connecting happiness through technology, it is one of the influential pan-entertainment technology service platforms in China. Over the years, the company has always been driven by products and technology, dedicated to creating immersive entertainment experiences across all scenes through digital platform services.
 
 
 
-自顺网科技成立以来，随着业务快速发展，顺网科技服务了 8 万家线下实体店，拥有超过 5000 万互联网用户，年触达超 1.4 亿网民，每 10 家公共上网服务场所有 7 家使用顺网科技产品。
+Since its inception, Shunwang Technology has experienced rapid business growth, serving 80,000 offline physical stores, owning more than 50 million internet users, reaching over 140 million netizens annually, with 7 out of every 10 public internet service venues using Shunwang Technology's products.
 
-在拥有庞大的用户群体的情况下，顺网科技为了给用户提供更加优质的产品体验，实现企业的数字化转型，从 2015 年开始大力发展大数据， Flink 在顺网科技的实时计算中一直扮演着重要的角色。在顺网科技，实时计算大概分为 4 个应用场景：
+With a vast user base, Shunwang Technology has been committed to providing a superior product experience and achieving digital transformation of the enterprise. Since 2015, it has vigorously developed big data capabilities, with Flink playing a crucial role in Shunwang Technology’s real-time computing. At Shunwang Technology, real-time computing is roughly divided into four application scenarios:
 
-- 用户画像实时更新：包括网吧画像和网民画像。
-- 实时风控：包括活动防刷、异地登录监测等。
-- 数据同步：包括 Kafka 数据同步到 Hive / Iceberg / ClickHouse 等。
-- 实时数据分析：包括游戏、语音、广告、直播等业务实时大屏。
+- Real-time update of user profiles: This includes internet cafe profiles and netizen profiles.
+- Real-time risk control: This includes activity anti-brushing, monitoring of logins from different locations, etc.
+- Data synchronization: This includes data synchronization from Kafka to Hive / Iceberg / ClickHouse, etc.
+- Real-time data analysis: This includes real-time big screens for games, voice, advertising, live broadcasts, and other businesses.
 
-到目前为止，顺网科技每日需要处理 TB 级别的数据，总共拥有 700+ 个实时任务，其中 FlinkSQL 任务占比为 95% 以上。随着公司业务快速发展和数据时效性要求变高，预计在今年年底 Flink 任务会达到 900+。
+To date, Shunwang Technology has to process TB-level data daily, with a total of more than 700 real-time tasks, of which FlinkSQL tasks account for over 95%. With the rapid development of the company's business and the increased demand for data timeliness, it is expected that the number of Flink tasks will reach 900+ by the end of this year.
 
-## **遇到的挑战**
+## **Challenges Encountered**
 
-Flink 作为当下实时计算领域中最流行的技术框架之一，拥有高吞吐、低延迟、有状态计算等强大的特性。在探索中我们发现 Flink 虽然拥有强大的计算能力，但是对于作业开发管理和运维问题，社区并没有提供有效的解决方案。我们对 Flink 作业开发管理上遇到的一些痛点大概总结为 4 个方面，如下：
+Flink, as one of the most popular real-time computing frameworks currently, boasts powerful features such as high throughput, low latency, and stateful computations. However, in our exploration, we found that while Flink has strong computational capabilities, the community has not provided effective solutions for job development management and operational issues. We have roughly summarized some of the pain points we encountered in Flink job development management into four aspects, as follows:
 
-![图片](/blog/shunwang/pain.png)
+![Image](/blog/shunwang/pain.png)
 
-在面对 Flink 作业管理和运维上的的一系列痛点后，我们一直在寻找合适的解决方案来降低开发同学使用 Flink 门槛，提高工作效率。
+Facing a series of pain points in the management and operation of Flink jobs, we have been looking for suitable solutions to lower the barrier to entry for our developers using Flink and improve work efficiency.
 
-在没有遇到 StreamPark 之前，我们调研了部分公司的 Flink 管理解决方案，发现都是通过自研实时作业平台的方式来开发和管理 Flink 作业。于是，我们也决定自研一套实时计算管理平台，来满足了开发同学对于 Flink 作业管理和运维的基础需求，我们这套平台叫 Streaming-Launcher，大体功能如下：
+Before we encountered StreamPark, we researched some companies' Flink management solutions and found that they all developed and managed Flink jobs through self-developed real-time job platforms. Consequently, we decided to develop our own real-time computing management platform to meet the basic needs of our developers for Flink job management and operation. Our platform is called Streaming-Launcher, with the following main functions:
 
-![图片](/blog/shunwang/launcher.png)
+![Image](/blog/shunwang/launcher.png)
 
-但是后续开发同学在使用过程中，发现 Streaming-Launcher 存在比较多的缺陷：Flink 开发成本依然过高、工作效率低下、问题排查困难。我们总结了 Streaming-Launcher 存在的缺陷，大致如下：
+However, as our developers continued to use Streaming-Launcher, they discovered quite a few deficiencies: the development cost for Flink remained too high, work efficiency was poor, and troubleshooting was difficult. We summarized the defects of Streaming-Launcher as follows:
 
-### **SQL开发流程繁琐**
+### **Cumbersome SQL Development Process**
 
-作业务开发需要多个工具完成一个 SQL 作业开发，提高了开发同学的使用门槛。
+Business developers need multiple tools to complete the development of a single SQL job, increasing the barrier to entry for our developers.
 
 ![cc0b1414ed43942e0ef5e9129c2bf817](/blog/shunwang/sql_develop.png)
 
-### **SQL-Client 存在弊端**
+### **Drawbacks of SQL-Client**
 
-Flink 提供的 SQL-Client 目前对作业运行模式支持上，存在一定的弊端。
+The SQL-Client provided by Flink currently has certain drawbacks regarding the support for job execution modes.
 
-![图片](/blog/shunwang/sql_client.png)
+![Image](/blog/shunwang/sql_client.png)
 
-### **作业缺少统一管理**
+### **Lack of Unified Job Management**
 
-Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学无法直观的看到作业运行情况，只能通过告警信息来判断作业运行情况，这对开发同学来说非常不友好。如果因为 Yarn 集群稳定性问题或者网络波动等不确定因素，一下子失败大批量任务，在开发同学手动恢复作业的过程中，很容易漏恢复某个任务而造成生产事故。
+Within Streaming-Launcher, there is no provision of a unified job management interface. Developers cannot intuitively see the job running status and can only judge the job situation through alarm information, which is very unfriendly to developers. If a large number of tasks fail at once due to Yarn cluster stability problems or network fluctuations and other uncertain factors, it is easy for developers to miss restoring a certain task while manually recovering jobs, which can lead to production accidents.
 
-### **问题诊断流程繁琐**
+### **Cumbersome Problem Diagnosis Process**
 
-一个作业查看日志需要通过多个步骤，一定程度上降低了开发同学工作效率。
+To view logs for a job, developers must go through multiple steps, which to some extent reduces their work efficiency.
 
-![图片](/blog/shunwang/step.png)
+![Image](/blog/shunwang/step.png)
 
-## **为什么用** **StreamPark**
+## **Why Use StreamPark**
 
-面对自研平台 Streaming-Launcher 存在的缺陷，我们一直在思考如何将 Flink 的使用门槛降到更低，进一步提高工作效率。考虑到人员投入成本和时间成本，我们决定向开源社区求助寻找合适的开源项目来对我们的 Flink 任务进行管理和运维。
-
-
-
-### 01  **StreamPark 解决 Flink 问题的利器**
-
-很幸运在 2022 年 6 月初，我们在 GitHub 机缘巧合之间认识到了 StreamPark，我们满怀希望地对 StreamPark 进行了初步的探索。发现 StreamPark 具备的能力大概分为三大块：用户权限管理、作业运维管理和开发脚手架。
-
-**用户权限管理**
-
-在 StreamPark 平台中为了避免用户权限过大，发生一些不必要的误操作，影响作业运行稳定性和环境配置的准确性，提供了相应的一些用户权限管理功能，这对企业级用户来说，非常有必要。
+Faced with the defects of our self-developed platform Streaming-Launcher, we have been considering how to further lower the barriers to using Flink and improve work efficiency. Considering the cost of human resources and time, we decided to seek help from the open-source community and look for an appropriate open-source project to manage and maintain our Flink tasks.
 
 
 
-![图片](/blog/shunwang/permission.png)
+### 01  **StreamPark: A Powerful Tool for Solving Flink Issues**
+
+Fortunately, in early June 2022, we stumbled upon StreamPark on GitHub and embarked on a preliminary exploration full of hope. We found that StreamPark's capabilities can be broadly divided into three areas: user rights management, job operation and maintenance management, and development scaffolding.
+
+**User Rights Management**
+
+In the StreamPark platform, to avoid the risk of users having too much authority and making unnecessary misoperations that affect job stability and the accuracy of environmental configurations, some user rights management functions are provided. This is very necessary for enterprise-level users.
 
 
 
-**作业运维管理**
-
-**我们在对 StreamPark 做调研的时候，最关注的是 StreamPark 对于作业的管理的能力。**StreamPark 是否有能力管理作业一个完整的生命周期：作业开发、作业部署、作业管理、问题诊断等。**很幸运，StreamPark 在这一方面非常优秀，对于开发同学来说只需要关注业务本身，不再需要特别关心 Flink 作业管理和运维上遇到的一系列痛点。**在 StreamPark 作业开发管理管理中，大致分为三个模块：作业管理基础功能，Jar 作业管理，FlinkSQL 作业管理。如下：
-
-![图片](/blog/shunwang/homework_manager.png)
-
-**开发脚手架**
-
-通过进一步的研究发现，StreamPark 不仅仅是一个平台，还包含 Flink 作业开发脚手架, 在 StreamPark 中，针对编写代码的 Flink 作业，提供一种更好的解决方案，将程序配置标准化，提供了更为简单的编程模型，同时还提供了一些列 Connectors，降低了 DataStream 开发的门槛。
+![Image](/blog/shunwang/permission.png)
 
 
 
-![图片](/blog/shunwang/connectors.png)
+**Job Operation and Maintenance Management**
+
+**Our main focus during the research on StreamPark was its capability to manage the entire lifecycle of jobs:** from development and deployment to management and problem diagnosis. **Fortunately, StreamPark excels in this aspect, relieving developers from the pain points associated with Flink job management and operation.** Within StreamPark’s job operation and maintenance management, there are three main modules: basic job management functions, Jar job management, and FlinkSQL job management as shown below:
+
+![Image](/blog/shunwang/homework_manager.png)
+
+**Development Scaffolding**
+
+Further research revealed that StreamPark is not just a platform but also includes a development scaffold for Flink jobs. It offers a better solution for code-written Flink jobs, standardizing program configuration, providing a simplified programming model, and a suite of Connectors that lower the barrier to entry for DataStream development.
+
+
+
+![Image](/blog/shunwang/connectors.png)
 
 
 
 
 
-### 02  **StreamPark 解决自研平台的问题**
+### 02  **How StreamPark Addresses Issues of the Self-Developed Platform**
 
-上面我们简单介绍了 StreamPark 的核心能力。在顺网科技的技术选型过程中，我们发现 StreamPark 所具备强大的功能不仅包含了现有 Streaming-Launcher 的基础功能，还提供了更完整的对应方案解决了 Streaming-Launcher 的诸多不足。在这部分，着重介绍下 StreamPark 针对我们自研平台 Streaming-Launcher 的不足所提供的解决方案。
-
-
-
-![图片](/blog/shunwang/function.png)
+We briefly introduced the core capabilities of StreamPark above. During the technology selection process at Shunwang Technology, we found that StreamPark not only includes the basic functions of our existing Streaming-Launcher but also offers a more complete set of solutions to address its many shortcomings. Here, we focus on the solutions provided by StreamPark for the deficiencies of our self-developed platform, Streaming-Launcher.
 
 
 
-**Flink 作业一站式的开发能力**
-
-StreamPark 为了降低 Flink 作业开发门槛，提高开发同学工作效率，**提供了 FlinkSQL IDE、参数管理、任务管理、代码管理、一键编译、一键作业上下线等使用的功能**。在调研中，我们发现 StreamPark 集成的这些功能可以进一步提升开发同学的工作效率。在某种程度上来说，开发同学不需要去关心 Flink 作业管理和运维的难题，只要专注于业务的开发。同时，这些功能也解决了 Streaming-Launcher 中 SQL 开发流程繁琐的痛点。
-
-![图片](/blog/shunwang/application.png)
-
-**支持多种部署模式**
-
-在 Streaming-Launcher 中，由于只支持 Yarn Session 模式，对于开发同学来说，其实非常不灵活。StreamPark 对于这一方面也提供了完善的解决方案。**StreamPark 完整的支持了Flink 的所有部署模式：Remote、Yarn Per-Job、Yarn Application、Yarn Session、K8s Session、K8s Application****，**可以让开发同学针对不同的业务场景自由选择合适的运行模式。**
-
-**作业统一管理中心**
-
-对于开发同学来说，作业运行状态是他们最关心的内容之一。在 Streaming-Launcher 中由于缺乏作业统一管理界面，开发同学只能通过告警信息和 Yarn 中Application 的状态信息来判断任务状态，这对开发同学来说非常不友好。StreamPark 针对这一点，提供了作业统一管理界面，可以一目了然查看到每个任务的运行情况。
-
-![图片](/blog/shunwang/management.png)
-
-在 Streaming-Launcher 中，开发同学在作业问题诊断的时候，需要通过多个步骤才能定位作业运行日志。StreamPark 提供了一键跳转功能，能快速定位到作业运行日志。
-
-![图片](/blog/shunwang/logs.png)
+![Image](/blog/shunwang/function.png)
 
 
 
-## 落 地 实 践
+**One-Stop Flink Job Development Capability**
 
-在 StreamPark 引入顺网科技时，由于公司业务的特点和开发同学的一些定制化需求，我们对 StreamPark 的功能做了一些增加和优化，同时也总结了一些在使用过程中遇到的问题和对应的解决方案。
+To lower the barriers to Flink job development and improve developers' work efficiency, **StreamPark provides features like FlinkSQL IDE, parameter management, task management, code management, one-click compilation, and one-click job deployment and undeployment**. Our research found that these integrated features of StreamPark could further enhance developers’ work efficiency. To some extent, developers no longer need to concern themselves with the difficulties of Flink job management and operation and can focus on developing the business logic. These features also solve the pain point of cumbersome SQL development processes in Streaming-Launcher.
 
-### 01  **结合 Flink-SQL-Gateway 的能力**
+![Image](/blog/shunwang/application.png)
 
-在顺网科技，我们基于 Flink-SQL-Gateway 自研了 ODPS 平台来方便业务开发同学管理 Flink 表的元数据。业务开发同学在 ODPS 上对 Flink 表进行 DDL 操作，然后在 StreamPark 上对创建的 Flink 表进行分析查询操作。在整个业务开发流程上，我们对 Flink 表的创建和分析实现了解耦，让开发流程显得比较清晰。
+**Support for Multiple Deployment Modes**
 
-开发同学如果想在 ODPS 上查询实时数据，我们需要提供一个 Flink SQL 的运行环境。我们使用 StreamPark 运行了一个 Yarn Session 的 Flink 环境提供给 ODPS 做实时查询。
+The Streaming-Launcher was not flexible for developers since it only supported the Yarn Session mode. StreamPark provides a comprehensive solution for this aspect. **StreamPark fully supports all of Flink's deployment modes: Remote, Yarn Per-Job, Yarn Application, Yarn Session, K8s Session, and K8s Application,** allowing developers to freely choose the appropriate running mode for different business scenarios.
 
-![图片](/blog/shunwang/homework.png)
+**Unified Job Management Center**
 
-目前 StreamPark 社区为了进一步降低实时作业开发门槛，正在对接 Flink-SQL-Gateway。
+For developers, job running status is one of their primary concerns. In Streaming-Launcher, due to the lack of a unified job management interface, developers had to rely on alarm information and Yarn application status to judge the state of tasks, which was very unfriendly. StreamPark addresses this issue by providing a unified job management interface, allowing for a clear view of the running status of each task.
+
+![Image](/blog/shunwang/management.png)
+
+In the Streaming-Launcher, developers had to go through multiple steps to diagnose job issues and locate job runtime logs. StreamPark offers a one-click jump feature that allows quick access to job runtime logs.
+
+![Image](/blog/shunwang/logs.png)
+
+
+
+## Practical Implementation
+
+When introducing StreamPark to Shunwang Technology, due to the company's business characteristics and some customized requirements from the developers, we made some additions and optimizations to the functionalities of StreamPark. We have also summarized some problems encountered during the use and corresponding solutions.
+
+### 01  **Leveraging the Capabilities of Flink-SQL-Gateway**
+
+At Shunwang Technology, we have developed the ODPS platform based on the Flink-SQL-Gateway to facilitate business developers in managing the metadata of Flink tables. Business developers perform DDL operations on Flink tables in ODPS, and then carry out analysis and query operations on the created Flink tables in StreamPark. Throughout the entire business development process, we have decoupled the creation and analysis of Flink tables, making the development process appear more straightforward.
+
+If developers wish to query real-time data in ODPS, we need to provide a Flink SQL runtime environment. We have used StreamPark to run a Yarn Session Flink environment to support ODPS in conducting real-time queries.
+
+![Image](/blog/shunwang/homework.png)
+
+Currently, the StreamPark community is interfacing with Flink-SQL-Gateway to further lower the barriers to developing real-time jobs.
 
 https://github.com/apache/streampark/issues/2274
 
 
 
-### 02  **增强 Flink 集群管理能力**
+### 02  **Enhancing Flink Cluster Management Capabilities**
 
-在顺网科技，存在大量从 Kafka 数据同步到 Iceberg / PG / Clickhouse / Hive 的作业。这些作业需要的 Yarn 对于资源要求和时效性要求不高，但是如果全部使用 Yarn Application 和 per-job 模式，每个任务都会启动 JobManager，那么会造成 Yarn 资源的浪费。对此，我们决定使用 Yarn Session 模式运行这些大量的数据同步作业。
+At Shunwang Technology, there are numerous jobs synchronizing data from Kafka to Iceberg / PG / Clickhouse / Hive. These jobs do not have high resource requirements and timeliness demands on Yarn. However, if Yarn Application and per-job modes are used for all tasks, where each task starts a JobManager, this would result in a waste of Yarn resources. For this reason, we decided to run these numerous data synchronization jobs in Yarn Session mode.
 
-在实践中我们发现业务开发同学很难直观的知道在每个 Yarn Session 中运行了多少个作业，其中包括作业总数和正在运行中的作业数量。基于这个原因，我们为了方便开发同学可以直观地观察到 Yarn Session 中的作业数量，在 Flink Cluster 界面增加了 All Jobs 和 Running Jobs 来表示在一个 Yarn Session 中总的作业数和正在运行的作业数。
+In practice, we found it difficult for business developers to intuitively know how many jobs are running in each Yarn Session, including the total number of jobs and the number of jobs that are running. Based on this, to facilitate developers to intuitively observe the number of jobs in a Yarn Session, we added All Jobs and Running Jobs in the Flink Cluster interface to indicate the total number of jobs and the number of running jobs in a Yarn Session.
 
-![图片](/blog/shunwang/cluster.png)
-
-
-
-### 03  **增强告警能力**
-
-因为每个公司的短信告警平台实现都各不相同，所以 StreamPark 社区并没有抽象出统一的短信告警功能。在此，我们通过 Webhook 的方式，自己实现了短信告警功能。
-
-![图片](/blog/shunwang/alarm.png)
+![Image](/blog/shunwang/cluster.png)
 
 
 
-### 04  **增加阻塞队列解决限流问题**
+### 03  **Enhancing Alert Capabilities**
 
-在生产实践中，我们发现在大批量任务同时失败的时候，比如 Yarn Session 集群挂了，飞书 / 微信等平台在多线程同时调用告警接口时会存在限流的问题，那么大量的告警信息因为飞书 / 微信等平台限流问题，StreamPark 只会发送一部分的告警信息，这样非常容易误导开发同学排查问题。在顺网科技，我们增加了一个阻塞队列和一个告警线程，来解决限流问题。
+Since each company's SMS alert platform is implemented differently, the StreamPark community has not abstracted a unified SMS alert function. Here, we have implemented the SMS alert function through the Webhook method.
 
-![图片](/blog/shunwang/queue.png)
+![Image](/blog/shunwang/alarm.png)
 
-当作业监控调度器检测到作业异常时，会产生一条作业异常的消息发送的阻塞队列中，在告警线程中会一直消费阻塞队列中的消息，在得到作业异常消息后则会根据用户配置的告警信息单线程发送到不同的平台中。虽然这样做可能会让用户延迟收到告警，但是我们在实践中发现同时有 100+ 个 Flink 作业失败，用户接受到告警的延迟时间小于 3s。对于这种延迟时间，我们业务开发同学完全是可以接受的。该改进目前已经记录 ISSUE，正在考虑贡献到社区中。
+
+
+### 04  **Adding a Blocking Queue to Solve Throttling Issues**
+
+In production practice, we found that when a large number of tasks fail at the same time, such as when a Yarn Session cluster goes down, platforms like Feishu/Lark and WeChat have throttling issues when multiple threads call the alert interface simultaneously. Consequently, only a portion of the alert messages will be sent by StreamPark due to the throttling issues of platforms like Feishu/Lark and WeChat, which can easily mislead developers in troubleshooting. At Shunwang Technology, we added a blocking queue and an alert thread to solve the throttling issue.
+
+![Image](/blog/shunwang/queue.png)
+
+When the job monitoring scheduler detects an abnormality in a job, it generates a job exception message and sends it to the blocking queue. The alert thread will continuously consume messages from the blocking queue. Upon receiving a job exception message, it will send the alert to different platforms sequentially according to the user-configured alert information. Although this method might delay the alert delivery to users, in practice, we found that even with 100+ Flink jobs failing simultaneously, the delay in receiving alerts is less than 3 seconds. Such a delay is completely acceptable to our business development colleagues. This improvement has been recorded as an ISSUE and is currently under consideration for contribution to the community.
 
 https://github.com/apache/streampark/issues/2142
 
 
 
-## 带来的收益
+## Benefits Brought
 
-我们从 StreamX 1.2.3（StreamPark 前身）开始探索和使用，经过一年多时间的磨合，我们发现 StreamPark 真实解决了 Flink 作业在开发管理和运维上的诸多痛点。
+We started exploring and using StreamX 1.2.3 (the predecessor of StreamPark) and after more than a year of running in, we found that StreamPark truly resolves many pain points in the development management and operation and maintenance of Flink jobs.
 
-StreamPark 给顺网科技带来的最大的收益就是降低了 Flink 的使用门槛，提升了开发效率。我们业务开发同学在原先的 Streaming-Launcher 中需要使用 vscode、GitLab 和调度平台等多个工具完成一个 FlinkSQL 作业开发，从开发到编译到发布的流程中经过多个工具使用，流程繁琐。StreamPark 提供一站式服务，可以在 StreamPark 上完成作业开发编译发布，简化了整个开发流程。
+The greatest benefit that StreamPark has brought to Shunwang Technology is the lowered threshold for using Flink and improved development efficiency. Previously, our business development colleagues had to use multiple tools such as vscode, GitLab, and a scheduling platform in the original Streaming-Launcher to complete a FlinkSQL job development. The process was tedious, going through multiple tools from development to compilation to release. StreamPark provides one-stop service, allowing job development, compilation, and release to be completed on StreamPark, simplifying the entire development process.
 
-**目前 StreamPark 在顺网科技已经大规模在生产环境投入使用，StreamPark 从最开始管理的 500+ 个 FlinkSQL 作业增加到了近 700 个 FlinkSQL作业，同时管理了 10+ 个 Yarn Sesssion Cluster。**
+**At present, StreamPark has been massively deployed in the production environment at Shunwang Technology, with the number of FlinkSQL jobs managed by StreamPark increasing from the initial 500+ to nearly 700, while also managing more than 10 Yarn Session Clusters.**
 
-![图片](/blog/shunwang/achievements1.png)
+![Image](/blog/shunwang/achievements1.png)
 
-![图片](/blog/shunwang/achievements2.png)
+![Image](/blog/shunwang/achievements2.png)
 
-##  未 来 规 划
+## Future Plans
 
-顺网科技作为 StreamPark 早期的用户之一，在 1 年期间内一直和社区同学保持交流，参与 StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 StreamPark 上管理 Flink 表的元数据信息，基于 Flink 引擎通过多 Catalog 实现跨数据源查询分析功能。目前 StreamPark 正在对接 Flink-SQL-Gateway 能力，这一块在未来对于表元数据的管理和跨数据源查询功能会提供了很大的帮助。
+As one of the early users of StreamPark, Shunwang Technology has been communicating with the community for a year and participating in the polishing of StreamPark's stability. We have submitted the Bugs encountered in production operations and new Features to the community. In the future, we hope to manage the metadata information of Flink tables on StreamPark, and implement cross-data-source query analysis functions based on the Flink engine through multiple Catalogs. Currently, StreamPark is interfacing with Flink-SQL-Gateway capabilities, which will greatly help in the management of table metadata and cross-data-source query functions in the future.
 
-由于在顺网科技多是已 Yarn Session 模式运行的作业，我们希望 StreamPark 可以提供更多对于 Remote集群、Yarn Session 集群和 K8s Session 集群功能支持，比如监控告警，优化操作流程等方面。
+Since Shunwang Technology primarily runs jobs in Yarn Session mode, we hope that StreamPark can provide more support for Remote clusters, Yarn Session clusters, and K8s Session clusters, such as monitoring and alerts, and optimizing operational processes.
 
-考虑到未来，随着业务发展可能会使用 StreamPark 管理更多的 Flink 实时作业，单节点模式下的 StreamPark 可能并不安全。所以我们对于 StreamPark 的 HA 也是非常期待。
+Considering the future, as the business develops, we may use StreamPark to manage more Flink real-time jobs, and StreamPark in single-node mode may not be safe. Therefore, we are also looking forward to the High Availability (HA) of StreamPark.
 
-对于 StreamPark 对接 Flink-SQL-Gateway 能力、丰富 Flink Cluster 功能和 StreamPark HA，我们后续也会参与建设中。
+We will also participate in the construction of the capabilities of StreamPark interfacing with Flink-SQL-Gateway, enriching Flink Cluster functionality, and StreamPark HA.
 
