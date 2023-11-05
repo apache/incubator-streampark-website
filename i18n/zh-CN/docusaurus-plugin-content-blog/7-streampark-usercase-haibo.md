@@ -22,7 +22,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 在体验对比了 Apache Zeppelin 和 StreamPark 之后，我们选择了 StreamPark 作为公司的实时计算平台。相比 Apache Zeppelin， StreamPark 并不出名。‍‍‍‍‍‍‍‍‍‍‍‍但是在体验了 StreamPark 发行的初版，阅读其设计文档后，我们发现其基于 **一站式** 设计的思想，能够覆盖 Flink 任务开发的全生命周期，使得配置、开发、部署、运维全部在一个平台即可完成。我们的开发、运维、测试的同学可以使用 StreamPark 协同工作，**低代码** + **一站式** 的设计思想坚定了我们使用 StreamPark 的信心。
 
-//视频链接（ StreamX 官方闪屏）
+//视频链接（ StreamX 官方视频）
 
 
 
