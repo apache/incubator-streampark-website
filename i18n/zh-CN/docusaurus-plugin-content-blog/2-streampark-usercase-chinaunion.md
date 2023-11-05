@@ -13,6 +13,8 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 - 基于 StreamPark 一体化管理
 - 未来规划与演进
 
+<!-- truncate -->
+
 ## **实时计算平台背景介绍**
 
 ![](/blog/chinaunion/overall_architecture.png)

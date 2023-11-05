@@ -1,0 +1,56 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.blogPostTitle {
+  font-size: 3rem;
+}
+.blogPostTitleLink {
+  color: var(--ifm-heading-color);
+  font-weight: 500;
+  position: relative;
+  transition: 0.5s;
+}
+.blogPostTitleLink a {
+  color: var(--ifm-heading-color);
+  font-weight: 500;
+  position: relative;
+  transition: 0.5s;
+}
+
+.blogPostTitleLink:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.blogPostTitleLink:hover:after {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  visibility: visible;
+}
+
+.blogPostTitleLink:after {
+  background: var(--ifm-color-primary);
+  bottom: 0;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  transition: 0.3s linear;
+  visibility: hidden;
+  width: 100%;
+}
+
+/**
+  Blog post title should be smaller on smaller devices
+**/
+@media (max-width: 576px) {
+  .title {
+    font-size: 2rem;
+  }
+}

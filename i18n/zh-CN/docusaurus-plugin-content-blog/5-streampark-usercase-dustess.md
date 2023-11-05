@@ -4,8 +4,6 @@ title: StreamPark 在尘锋信息的最佳实践，化繁为简极致体验
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
-# StreamPark 在尘锋信息的最佳实践，化繁为简极致体验
-
 **摘要：**本文源自 StreamPark 在尘锋信息的生产实践, 作者是资深数据开发工程师Gump。主要内容为：
 
 1. 技术选型
@@ -18,7 +16,9 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 目前，尘锋已在全国拥有13个城市中心，覆盖华北、华中、华东、华南、西南五大区域，为超30个行业的10,000+家企业提供数字营销服务。
 
-## **01 技术选型** 
+<!-- truncate -->
+
+## **01 技术选型**
 
 尘锋信息在2021年进入了快速发展时期，随着服务行业和企业客户的增加，实时需求越来越多，落地实时计算平台迫在眉睫。
 
@@ -26,7 +26,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 - 快：由于业务紧迫，我们需要快速落地规划的技术选型并运用生产
 - 稳：满足快的基础上，所选择技术一定要稳定服务业务
-- 新：在以上基础，所选择的技术也尽量的新  
+- 新：在以上基础，所选择的技术也尽量的新
 - 全：所选择技术能够满足公司快速发展和变化的业务，能够符合团队长期发展目标，能够支持且快速支持二次开发
 
 首先在计算引擎方面：我们选择 Flink，原因如下:
@@ -67,9 +67,9 @@ Flink SQL 可以极大提升开发效率和提高 Flink 的普及。StreamPark �
 
 
 
-Flink SQL 现在虽然足够强大，但使用 Java 和 Scala 等 JVM 语言开发 Flink 任务会更加灵活、定制化更强、便于调优和提升资源利用率。与 SQL 相比 Jar 包提交任务最大的问题是Jar包的上传管理等，没有优秀的工具产品会严重降低开发效率和加大维护成本。 
+Flink SQL 现在虽然足够强大，但使用 Java 和 Scala 等 JVM 语言开发 Flink 任务会更加灵活、定制化更强、便于调优和提升资源利用率。与 SQL 相比 Jar 包提交任务最大的问题是Jar包的上传管理等，没有优秀的工具产品会严重降低开发效率和加大维护成本。
 
-StreamPark 除了支持 Jar 上传，更提供了**在线更新构建**的功能，优雅解决了以上问题：  
+StreamPark 除了支持 Jar 上传，更提供了**在线更新构建**的功能，优雅解决了以上问题：
 
 1、新建 Project ：填写 GitHub/Gitlab（支持企业私服）地址及用户名密码, StreamPark 就能 Pull 和 Build 项目。
 
@@ -158,7 +158,7 @@ StreamPark 的环境搭建非常简单，跟随官网的搭建教程可以在小
 http://www.streamxhub.com/docs/user-guide/deployment
 ```
 
-为了快速落地和生产使用，我们选择了稳妥的 On Yarn 资源管理模式（虽然 StreamPark 已经很完善的支持 K8S），且已经有较多公司通过 StreamPark 落地了 K8S 部署方式，大家可以参考: 
+为了快速落地和生产使用，我们选择了稳妥的 On Yarn 资源管理模式（虽然 StreamPark 已经很完善的支持 K8S），且已经有较多公司通过 StreamPark 落地了 K8S 部署方式，大家可以参考:
 
 ```
 http://www.streamxhub.com/blog/flink-development-framework-streamx
@@ -194,11 +194,11 @@ StreamPark 非常贴心的准备了 Demo SQL 任务，可以直接在刚搭建�
 StreamingContext = ParameterTool + StreamExecutionEnvironment
 ```
 
-- StreamingContext 为 StreamPark 的封装对象 
-- ParameterTool 为解析配置文件后的参数对象 
+- StreamingContext 为 StreamPark 的封装对象
+- ParameterTool 为解析配置文件后的参数对象
 
 ```
- String value = ParameterTool.get("${user.custom.key}") 
+ String value = ParameterTool.get("${user.custom.key}")
 ```
 
 - StreamExecutionEnvironment 为 Apache Flink 原生任务上下文
@@ -223,13 +223,13 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 - 计算能力开放：将大数据平台的服务器资源开放业务团队使用
 - 解决方案开放：Flink 生态的成熟 Connector、Exactly Once 语义支持，可减少业务团队流处理相关的开发成本及维护成本
 
-目前 StreamPark 还不支持多业务组功能，多业务组功能会抽象后贡献社区。   
+目前 StreamPark 还不支持多业务组功能，多业务组功能会抽象后贡献社区。
 
-![](/blog/dustess/manager.png)        
+![](/blog/dustess/manager.png)
 
 ![](/blog/dustess/task_retrieval.png)
 
-## **04 未来规划**   
+## **04 未来规划**
 
 ### **01 Flink on K8S**
 
