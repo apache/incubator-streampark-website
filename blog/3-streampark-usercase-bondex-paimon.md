@@ -4,8 +4,6 @@ title: 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
 tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 ---
 
-# 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
-
 ![](/blog/bondex/Bondex.png)
 
 **导读：**本文主要介绍作为供应链物流服务商海程邦达在数字化转型过程中采用 Paimon + StreamPark 平台实现流式数仓的落地方案。我们以 Apache StreamPark 流批一体平台提供了一个易于上手的生产操作手册，以帮助用户提交 Flink 任务并迅速掌握 Paimon 的使用方法。
@@ -15,6 +13,8 @@ tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 - 生产实践
 - 问题排查分析
 - 未来规划
+
+<!-- truncate -->
 
 ## 01 公司业务情况介绍
 
@@ -262,9 +262,9 @@ kubectl create ns streamx
 使用 default 账户创建 clusterrolebinding 资源:
 
 ```shell
-kubectl create secret docker-registry streamparksecret 
---docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
---docker-username=xxxxxx 
+kubectl create secret docker-registry streamparksecret
+--docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com
+--docker-username=xxxxxx
 --docker-password=xxxxxx -n streamx```
 ```
 
@@ -283,9 +283,9 @@ kubectl create secret docker-registry streamparksecret
 创建 k8s secret 密钥用来拉取 ACR 中的镜像 streamparksecret 为密钥名称 自定义
 
 ```shell
-kubectl create secret docker-registry streamparksecret 
---docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
---docker-username=xxxxxx 
+kubectl create secret docker-registry streamparksecret
+--docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com
+--docker-username=xxxxxx
 --docker-password=xxxxxx -n streamx
 ```
 
@@ -312,13 +312,13 @@ kubectl -f rbac.yaml
 kubectl -f oss-plugin.yaml
 ```
 
-\- 创建 CP&SP 的 PV 
+\- 创建 CP&SP 的 PV
 
 ```shell
 kubectl -f checkpoints_pv.yaml kubectl -f savepoints_pv.yaml
 ```
 
-\- 创建 CP&SP 的 PVC 
+\- 创建 CP&SP 的 PVC
 
 ```shell
 kubectl -f checkpoints_pvc.yaml kubectl -f savepoints_pvc.yaml
@@ -336,7 +336,7 @@ kubectl -f checkpoints_pvc.yaml kubectl -f savepoints_pvc.yaml
 
 ```sql
 SET 'execution.runtime-mode' = 'streaming';
-set 'table.exec.sink.upsert-materialize' = 'none'; 
+set 'table.exec.sink.upsert-materialize' = 'none';
 SET 'sql-client.execution.result-mode' = 'tableau';
 -- 创建并使用 FTS Catalog 底层存储方案采用阿里云oss
 CREATE CATALOG `table_store` WITH (
@@ -368,7 +368,7 @@ Kubernetes Namespace ：streamx
 Kubernetes ClusterId ：（任务名自定义即可）
 
 #上传到阿里云镜像仓库的基础镜像
-Flink Base Docker Image ：registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.16.0    
+Flink Base Docker Image ：registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.16.0
 
 Rest-Service Exposed Type：NodePort
 
@@ -408,7 +408,7 @@ volumes:
     persistentVolumeClaim:
       claimName: flink-savepoints-csi-pvc
 
-imagePullSecrets:      
+imagePullSecrets:
 - name: streamparksecret
 ```
 
@@ -675,7 +675,7 @@ CREATE TABLE IF NOT EXISTS dwm.`dwm_business_order_count` (
 `delivery_center_op_name` varchar(200) NOT NULL COMMENT '交付名称',
 `sum_orderCount` BIGINT NOT NULL COMMENT '订单数',
 `create_date` timestamp NOT NULL COMMENT '创建时间',
-PRIMARY KEY (`l_year`, 
+PRIMARY KEY (`l_year`,
              `l_month`,
              `l_date`,
              `order_type_name`,
@@ -805,12 +805,12 @@ ADS 层聚合表采用 agg sum 会出现 dwd 数据流不产生 update_before，
 
 解决办法：
 
-By specifying 'changelog-producer' = 'full-compaction', 
-Table Store will compare the results between full compactions and produce the differences as changelog. 
+By specifying 'changelog-producer' = 'full-compaction',
+Table Store will compare the results between full compactions and produce the differences as changelog.
 The latency of changelog is affected by the frequency of full compactions.
 
-By specifying changelog-producer.compaction-interval table property (default value 30min), 
-users can define the maximum interval between two full compactions to ensure latency. 
+By specifying changelog-producer.compaction-interval table property (default value 30min),
+users can define the maximum interval between two full compactions to ensure latency.
 This table property does not affect normal compactions and they may still be performed once in a while by writers to reduce reader costs.
 
 这样能解决上述问题。但是随之而来出现了新的问题。默认 changelog-producer.compaction-interval 是 30min，意味着 上游的改动到 ads 查询要间隔 30min，生产过程中发现将压缩间隔时间改成 1min 或者 2 分钟的情况下，又会出现上述 ADS 层聚合数据不准的情况。

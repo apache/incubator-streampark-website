@@ -4,8 +4,6 @@ title: StreamPark 在 Joyme 的生产实践
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
-<br/>
-
 **摘要：** 本文带来 StreamPark 在 Joyme 中的生产实践, 作者是 Joyme 的大数据工程师秦基勇, 主要内容为:
 
 - 遇见StreamPark
@@ -15,6 +13,8 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 - 常见问题
 - 社区印象
 - 总结
+
+<!-- truncate -->
 
 ## 1 遇见 StreamPark
 
@@ -55,7 +55,7 @@ CREATE TABLE source_table (
 'format.derive-schema' = 'true'
 );
 
--- 落地表sink 
+-- 落地表sink
 CREATE TABLE sink_table (
 `uid` STRING
 ) WITH (
@@ -92,9 +92,9 @@ SELECT  Data.uid  FROM source_table;
 
 由于我们的模式部署是 on Yarn，在动态选项配置里配置了 Yarn 的队列名称。也有一些配置了开启增量的 Checkpoint 选项和状态过期时间，基本的这些参数都可以从 Flink 的官网去查询到。之前有一些作业确实经常出现内存溢出的问题，加上增量参数和过期参数以后，作业的运行情况好多了。还有就是 Flink Sql 作业设计到状态这种比较大和逻辑复杂的情况下，我个人感觉还是用 Streaming 代码来实现比较好控制一些。
 
-- -Dyarn.application.queue= yarn队列名称 
-- -Dstate.backend.incremental=true 
-- -Dtable.exec.state.ttl=过期时间 
+- -Dyarn.application.queue= yarn队列名称
+- -Dstate.backend.incremental=true
+- -Dtable.exec.state.ttl=过期时间
 
 完成配置以后提交，然后在 application 界面进行部署。
 

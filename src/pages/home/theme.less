@@ -65,10 +65,6 @@ section,
   overflow: auto !important;
 }
 
-.overflow-hidden {
-  overflow: hidden !important;
-}
-
 .overflow-visible {
   overflow: visible !important;
 }
@@ -2565,6 +2561,12 @@ section,
   .container-sm,
   .container {
     max-width: 1200px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: var(--ifm-container-width-xl)
   }
 }
 
