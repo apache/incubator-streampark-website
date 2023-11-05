@@ -4,8 +4,6 @@ title: Based on Apache Paimon + StreamPark's Streaming Data Warehouse Practice b
 tags: [StreamPark, Production Practice, paimon, streaming-warehouse]
 ---
 
-# Based on Apache Paimon + StreamPark's Streaming Data Warehouse Practice by Bondex
-
 ![](/blog/bondex/Bondex.png)
 
 **Foreword: **This article mainly introduces the implementation of a streaming data warehouse by Bondex, a supply chain logistics service provider, in the process of digital transformation using the Paimon + StreamPark platform. We provide an easy-to-follow operational manual with the Apache StreamPark integrated stream-batch platform to help users submit Flink tasks and quickly master the use of Paimon.
@@ -15,6 +13,8 @@ tags: [StreamPark, Production Practice, paimon, streaming-warehouse]
 - Production Practice
 - Troubleshooting Analysis
 - Future Planning
+
+<!-- truncate -->
 
 ## 01 Introduction to Company Business
 
@@ -303,20 +303,19 @@ https://bondextest.oss-cn-zhangjiakou.aliyuncs.com/ossyaml.zip
 https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver/blob/master/docs/oss.md
 
 ```shell
-kubectl apply -f rbac.yaml
+kubectl -f rbac.yaml
 ```
 
 \- Deploy the OSS CSI Plugin:
 
 ```shell
-kubectl apply -f oss-plugin.yaml
+kubectl -f oss-plugin.yaml
 ```
 
 \- Create PV for CP (Checkpoints) & SP (Savepoints):
 
 ```shell
-kubectl apply -f checkpoints_pv.yaml
-kubectl apply -f savepoints_pv.yaml
+kubectl -f checkpoints_pv.yaml kubectl -f savepoints_pv.yaml
 ```
 
 \- Create PVC for CP & SP:
@@ -342,7 +341,7 @@ SET 'sql-client.execution.result-mode' = 'tableau';
 -- Create and use FTS Catalog with underlying storage solution using Alibaba Cloud OSS
 CREATE CATALOG `table_store` WITH (
 'type' = 'paimon',
-'warehouse' = 'oss://xxxxx/xxxxx' #custom OSS storage path
+'warehouse' = 'oss://xxxxx/xxxxx' # customize oss storage path
 );
 USE CATALOG `table_store`;
 ```
@@ -409,7 +408,7 @@ volumes:
     persistentVolumeClaim:
       claimName: flink-savepoints-csi-pvc
 
-imagePullSecrets:      
+imagePullSecrets:
 - name: streamparksecret
 ```
 
