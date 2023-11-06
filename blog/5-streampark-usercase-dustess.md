@@ -36,11 +36,14 @@ Firstly, in terms of the computing engine: We chose Flink for the following reas
 - The domestic ecosystem of Flink has become increasingly mature, and Flink is starting to break boundaries towards the development of stream-based data warehousing.
 
 At the platform level, we comprehensively compared StreamPark, Apache Zeppelin, and flink-streaming-platform-web, also thoroughly read their source code and conducted an analysis of their advantages and disadvantages. We won’t elaborate on the latter two projects in this article, but those interested can search for them on GitHub. We ultimately chose StreamPark for the following reasons:
+
 ### **High Completion**
 
 #### **1. Supports Multiple Flink Versions**
 
 //Video link (Flink Multi-Version Support Demo)
+
+
 
 When creating a task, you can **freely choose the Flink version**. The Flink binary package will be automatically uploaded to HDFS (if using Yarn for submission), and only one copy of a version's binary package will be saved on HDFS. When the task is initiated, the Flink binary package in HDFS will be automatically loaded according to the context, which is very elegant. This can meet the needs for coexistence of multiple versions and for testing new versions of Flink during upgrades.
 
@@ -61,6 +64,8 @@ Flink SQL can greatly improve development efficiency and the popularity of Flink
 #### **4. Online Building of JAVA Tasks**
 
 //Video link (JAVA Task Building Demo)
+
+
 
 Although Flink SQL is now powerful enough, using JVM languages like Java and Scala to develop Flink tasks can be more flexible, more customizable, and better for tuning and improving resource utilization. The biggest problem with submitting tasks via Jar packages, compared to SQL, is the management of the Jar uploads. Without excellent tooling products, this can significantly reduce development efficiency and increase maintenance costs.
 
