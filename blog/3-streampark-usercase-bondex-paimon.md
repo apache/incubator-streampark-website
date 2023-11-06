@@ -265,7 +265,7 @@ Use the default account to create the clusterrolebinding resource:
 kubectl create secret docker-registry streamparksecret 
 --docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
 --docker-username=xxxxxx 
---docker-password=xxxxxx -n streampark```
+--docker-password=xxxxxx -n streamx```
 ```
 
 **Container Image Registry Configuration:**
@@ -286,7 +286,7 @@ Create a k8s secret key to pull images from ACR; streamparksecret is the name of
 kubectl create secret docker-registry streamparksecret 
 --docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
 --docker-username=xxxxxx 
---docker-password=xxxxxx -n streampark
+--docker-password=xxxxxx -n streamx
 ```
 
 **Creation of PVC Resources for Checkpoints/Savepoints, Utilizing Alibaba Cloud's OSS for K8S Persistence**
