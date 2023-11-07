@@ -521,15 +521,6 @@ p {
   color: var(--ifm-color-primary-light);
 }
 
-/* 文档侧栏字体大小 */
-.menu__list-item > .menu__link[tabindex] {
-  font-size: 0.875rem;
-  font-weight: normal;
-  font-family: serif;
-  letter-spacing: 1.2px;
-  line-height: 1.8em;
-}
-
 /* 搜索 */
 .navbar__search-input {
   outline: none;
