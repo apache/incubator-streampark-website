@@ -1,11 +1,11 @@
 ---
 slug: streampark-usercase-haibo
-title: StreamPark An All-in-One Computation Tool in Haibo Tech's Production and its Role in Smart City Construction
+title: An All-in-One Computation Tool in Haibo Tech's Production Practice and facilitation in Smart City Construction
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
 
-**Summary:** This article, titled "StreamPark: An All-in-One Computation Tool in Haibo Tech's Production and its Role in Smart City Construction," is authored by Wang Qinghuan, the Big Data Architect at Haibo Tech. The main topics covered include:
+**Summary:** The author of this article, "StreamPark: An All-in-One Computation Tool in Haibo Tech's Production Practice and facilitation in Smart City Construction," is the Big Data Architect at Haibo Tech. The main topics covered include:
 
 1. Choosing StreamPark
 2. Getting Started Quickly
@@ -22,7 +22,7 @@ Haibo Tech is an industry-leading company offering AI IoT products and solutions
 
 Haibo Tech started using Flink SQL to aggregate and process various real-time IoT data since 2020. With the accelerated pace of smart city construction in various cities, the types and volume of IoT data to be aggregated are also increasing. This has resulted in an increasing number of Flink SQL tasks being maintained online, making a dedicated platform for managing numerous Flink SQL tasks an urgent need.
 
-After evaluating Apache Zeppelin and StreamPark, we chose StreamPark as our real-time computing platform. Compared to Apache Zeppelin, StreamPark may not be as well-known. However, after experiencing the initial release of StreamPark and reading its design documentation, we recognized that its "all-in-one" design philosophy covers the entire lifecycle of Flink task development. This means that configuration, development, deployment, and operations can all be accomplished on a single platform. Our developers, operators, and testers can collaboratively work on StreamPark. The "low-code" + "all-in-one" design principles solidified our confidence in using StreamPark.
+After evaluating Apache Zeppelin and StreamPark, we chose StreamPark as our real-time computing platform. Compared to Apache Zeppelin, StreamPark may not be as well-known. However, after experiencing the initial release of StreamPark and reading its design documentation, we recognized that its all-in-one design philosophy covers the entire lifecycle of Flink task development. This means that configuration, development, deployment, and operations can all be accomplished on a single platform. Our developers, operators, and testers can collaboratively work on StreamPark. The **low-code** + **all-in-one** design principles solidified our confidence in using StreamPark.
 
 // Video link (streampark official video)
 
