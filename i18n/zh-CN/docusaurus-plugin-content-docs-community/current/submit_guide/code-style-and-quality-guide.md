@@ -249,6 +249,24 @@ sidebar_position: 3
     public CurrentHashMap funName();
   ```
 
+3. 使用 `isEmpty()` 而不是 `length() == 0` 或者 `size() == 0`
+
+   - 负面示例：
+
+      ```java
+      if (pathPart.length() == 0) {
+        return;
+      }
+      ```
+
+   - 正面示例：
+
+     ```java
+     if (pathPart.isEmpty()) {
+       return;
+     }
+     ```
+
 ### 3.5 并发处理
 
 1. 需要管理 `线程池`，使用统一的入口点获取 `线程池`。

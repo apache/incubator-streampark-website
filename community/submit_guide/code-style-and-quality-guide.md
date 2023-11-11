@@ -249,6 +249,24 @@ sidebar_position: 3
     public CurrentHashMap funName();
   ```
 
+3. Use `isEmpty()` instead of `length() == 0` or `size() == 0`
+
+    - Negative demo：
+
+       ```java
+       if (pathPart.length() == 0) {
+         return;
+       }
+       ```
+
+    - Positive demo：
+
+      ```java
+      if (pathPart.isEmpty()) {
+        return;
+      }
+      ```
+
 ### 3.5 Concurrent Processing
 
 1. The `thread pool` needs to be managed, using a unified entry point to obtain the `thread pool`.
