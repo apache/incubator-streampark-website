@@ -253,11 +253,11 @@ sidebar_position: 3
 
     - Negative demo：
 
-       ```java
-       if (pathPart.length() == 0) {
-         return;
-       }
-       ```
+      ```java
+      if (pathPart.length() == 0) {
+        return;
+      }
+      ```
 
     - Positive demo：
 

@@ -253,11 +253,11 @@ sidebar_position: 3
 
    - 负面示例：
 
-      ```java
-      if (pathPart.length() == 0) {
-        return;
-      }
-      ```
+     ```java
+     if (pathPart.length() == 0) {
+       return;
+     }
+     ```
 
    - 正面示例：
 
