@@ -9,7 +9,7 @@ tags: [StreamPark, Production Practice, paimon, streaming-warehouse]
 **Foreword: **This article mainly introduces the implementation of a streaming data warehouse by Bondex, a supply chain logistics service provider, in the process of digital transformation using the Paimon + StreamPark platform. We provide an easy-to-follow operational manual with the Apache StreamPark integrated stream-batch platform to help users submit Flink tasks and quickly master the use of Paimon.
 
 - Introduction to Company Business
-- Pain Points in Big Data Technology and Selection
+- Pain Points and Selection in Big Data Technology
 - Production Practice
 - Troubleshooting Analysis
 - Future Planning
@@ -110,9 +110,9 @@ This solution adopts Flink Application on K8s clusters, with Flink CDC for real-
 
 **Scalability: **Capable of efficiently processing large-scale real-time data with good scalability. It can operate in a distributed computing environment, automatically handling parallelization, fault recovery, and load balancing to ensure efficient and reliable data processing.
 
-**Flink Integration: **Built on [Apache Flink](https://github.com/apache/flink), it harnesses Flink’s powerful stream processing engine for high performance and robustness. Users can fully utilize the features and ecosystem of Flink, such as its extensive connectors, state management, and event-time processing.
+**Flink Integration: **Built on [Apache Flink](https://github.com/apache/flink), it leverages Flink’s powerful stream processing engine for high performance and robustness. Users can fully utilize the features and ecosystem of Flink, such as its extensive connectors, state management, and event-time processing.
 
-**Ease of Use: **Provides an intuitive graphical interface and simplified API, enabling easy construction and deployment of data processing tasks without needing to delve into underlying technical details.
+**Ease of Use: **Provides a straightforward graphical interface and simplified API, enabling easy construction and deployment of data processing tasks without needing to delve into underlying technical details.
 
 By submitting Paimon tasks on the StreamPark platform, we can establish a full-link real-time flowing, queryable, and layered reusable Pipline.
 
@@ -171,7 +171,7 @@ rest.port: 8081
 rest.address: localhost
 ```
 
-It is advisable to add FLINK_HOME locally for convenient troubleshooting before deploying on k8s.
+It is suggested to add FLINK_HOME locally for convenient troubleshooting before deploying on k8s.
 
 vim /etc/profile
 
@@ -182,7 +182,7 @@ export PATH=$PATH:$FLINK_HOME/bin
 source /etc/profile
 ```
 
-In StreamPark, add Flink configuration:
+In StreamPark, add Flink conf:
 
 ![](/blog/bondex/flink_conf.jpg)
 
@@ -289,7 +289,7 @@ kubectl create secret docker-registry streamparksecret
 --docker-password=xxxxxx -n streamx
 ```
 
-**Creation of PVC Resources for Checkpoints/Savepoints, Utilizing Alibaba Cloud's OSS for K8S Persistence**
+Creation of PVC Resources for Checkpoints/Savepoints, Utilizing Alibaba Cloud's OSS for K8S Persistence
 
 **OSS CSI Plugin:**
 
@@ -298,7 +298,7 @@ https://bondextest.oss-cn-zhangjiakou.aliyuncs.com/ossyaml.zip
 
 **Configuration Requirements:**
 
-\- Create a service account with the necessary RBAC permissions, reference:
+\- Create a service account with the necessary RBAC permissions, please refer as below:
 
 https://github.com/kubernetes-sigs/alibaba-cloud-csi-driver/blob/master/docs/oss.md
 
@@ -813,13 +813,13 @@ By specifying changelog-producer.compaction-interval table property (default val
 users can define the maximum interval between two full compactions to ensure latency.
 This table property does not affect normal compactions and they may still be performed once in a while by writers to reduce reader costs.
 
-This approach can solve the aforementioned issue. However, it has led to a new problem. The default 'changelog-producer.compaction-interval' is 30 minutes, meaning that it takes 30 minutes for changes upstream to be reflected in the ads query. During production, it has been found that changing the compaction interval to 1 minute or 2 minutes can cause inaccuracies in the ADS layer aggregation data again.
+This approach can solve the above mentioned issue. However, it has led to a new problem. The default changelog-producer.compaction-interval is 30 minutes, meaning that it takes 30 minutes for changes upstream to be reflected in the ads query. During production, it has been found that changing the compaction interval to 1 minute or 2 minutes can cause inaccuracies in the ADS layer aggregation data again.
 
 ```sql
 'changelog-producer.compaction-interval' = '2m'
 ```
 
-When writing into the Flink Table Store, it is necessary to configure 'table.exec.sink.upsert-materialize' to 'none' to avoid generating an upsert stream, ensuring that the Flink Table Store can retain a complete changelog for subsequent stream read operations.
+When writing into the Flink Table Store, it is necessary to configure table.exec.sink.upsert-materialize= none to avoid generating an upsert stream, ensuring that the Flink Table Store can retain a complete changelog for subsequent stream read operations.
 
 ```sql
 set 'table.exec.sink.upsert-materialize' = 'none'
