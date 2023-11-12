@@ -825,7 +825,7 @@ When writing into the Flink Table Store, it is necessary to configure table.exec
 set 'table.exec.sink.upsert-materialize' = 'none'
 ```
 
-**2. The same 'sequence.field' causes the dwd detailed wide table to not receive data updates**
+**2. The same sequence.field causes the dwd detailed wide table to not receive data updates**
 
 **mysql cdc collects data into the paimon table**
 
