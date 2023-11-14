@@ -1,10 +1,10 @@
 ---
 slug: streampark-usercase-dustess
-title: StreamPark's Best Practices at Dustwind Information: Simplifying Complexity for the Ultimate Experience
+title: StreamPark's Best Practices at Dustess Information: Simplifying Complexity for the Ultimate Experience
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
-**Abstract:** This article originates from the production practices of StreamPark at Dustwind Information, written by the senior data development engineer, Gump. The main content includes:
+**Abstract:** This article originates from the production practices of StreamPark at Dustess Information, written by the senior data development engineer, Gump. The main content includes:
 
 1. Technology selection
 2. Practical implementation
@@ -12,15 +12,15 @@ tags: [StreamPark, Production Practice, FlinkSQL]
 4. Future planning
 5. Closing remarks
 
-Dustwind Information is a one-stop private domain operation management solution provider based on the WeChat Work ecosystem. It is committed to becoming the leading expert in private domain operation and management across all industries, helping enterprises build a new model of private domain operation management in the digital age, and promoting high-quality development for businesses.
+Dustess Information is a one-stop private domain operation management solution provider based on the WeChat Work ecosystem. It is committed to becoming the leading expert in private domain operation and management across all industries, helping enterprises build a new model of private domain operation management in the digital age, and promoting high-quality development for businesses.
 
-Currently, Dustwind has established 13 city centers nationwide, covering five major regions: North China, Central China, East China, South China, and Southwest China, providing digital marketing services to over 10,000 enterprises across more than 30 industries.
+Currently, Dustess has established 13 city centers nationwide, covering five major regions: North China, Central China, East China, South China, and Southwest China, providing digital marketing services to over 10,000 enterprises across more than 30 industries.
 
 <!-- truncate -->
 
 ## **01 Technology Selection**
 
-Dustwind Information entered a rapid development phase in 2021. With the increase in service industries and corporate clients, the demand for real-time solutions became more pressing, necessitating the immediate implementation of a real-time computing platform.
+Dustess Information entered a rapid development phase in 2021. With the increase in service industries and corporate clients, the demand for real-time solutions became more pressing, necessitating the immediate implementation of a real-time computing platform.
 
 As the company is in a phase of rapid growth, with urgent and rapidly changing needs, the team's technology selection followed these principles:
 
@@ -184,7 +184,7 @@ Since most of the data development team members have a background in Java and Sc
 
 **First Phase:** StreamPark provides support for native Apache Flink projects. We configured our existing tasks' Git addresses in StreamPark, used Maven to package them as Jar files, and created StreamPark Apache Flink tasks for seamless migration. In this process, StreamPark was merely used as a platform tool for task submission and state maintenance, without leveraging the other features mentioned above.
 
-**Second Phase:** After migrating tasks to StreamPark in the first phase and having them run on the platform, the tasks' configurations, such as checkpointing, fault tolerance, and adjustments to business parameters within Flink tasks, required source code modifications, pushes, and builds. This was very inefficient and opaque.
+**Second Phase:** After migrating tasks to StreamPark in the first phase and having them run on the platform, the tasks' configurations, such as checkpoint, fault tolerance, and adjustments to business parameters within Flink tasks, required source code modifications, pushes, and builds. This was very inefficient and opaque.
 
 Therefore, following StreamPark's QuickStart, we quickly integrated StreamPark's programming model, which is an encapsulation for StreamPark Flink tasks (for Apache Flink).
 
@@ -205,7 +205,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 ## **03 Business Support & Capability Opening**
 
-Currently, Chenfeng's real-time computing platform based on StreamPark has been online since the end of November last year and has launched 50+ Flink tasks, including 10+ Flink SQL tasks and 40+ Jar tasks. At present, it is mainly used internally by the data team, and the real-time computing platform will be opened up for use by business teams across the company shortly, which will significantly increase the number of tasks.
+Currently, Dustess Info's real-time computing platform based on StreamPark has been online since the end of November last year and has launched 50+ Flink tasks, including 10+ Flink SQL tasks and 40+ Jar tasks. At present, it is mainly used internally by the data team, and the real-time computing platform will be opened up for use by business teams across the company shortly, which will significantly increase the number of tasks.
 
 ![](/blog/dustess/online_jar.png)
 
@@ -259,7 +259,7 @@ Regarding the unification of stream and batch, I am also currently researching a
 
 ## **05 Closing Words**
 
-That's all for the sharing of StreamPark in the production practice at Chenfeng Information. Thank you all for reading this far. The original intention of writing this article was to bring a bit of StreamPark's production practice experience and reference to everyone, and together with the buddies in the StreamPark community, to jointly build StreamPark. In the future, I plan to participate and contribute more. A big thank you to the developers of StreamPark for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that StreamPark will get better and better, **and I also believe that StreamPark will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink community: The future is real-time!
+That's all for the sharing of StreamPark in the production practice at Dustess Info. Thank you all for reading this far. The original intention of writing this article was to bring a bit of StreamPark's production practice experience and reference to everyone, and together with the buddies in the StreamPark community, to jointly build StreamPark. In the future, I plan to participate and contribute more. A big thank you to the developers of StreamPark for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that StreamPark will get better and better, **and I also believe that StreamPark will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink community: The future is real-time!
 
 
 
