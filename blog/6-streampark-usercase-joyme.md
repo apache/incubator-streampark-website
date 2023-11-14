@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-joyme
-title: StreamPark in Joyme's Production Practice
+title: StreamPark's Production Practice in Joyme
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
@@ -74,9 +74,9 @@ INSERT INTO sink_table
 SELECT  Data.uid  FROM source_table;
 ```
 
-### **2. Dependency Addition**
+### **2. Add Dependency**
 
-In terms of dependencies, StreamPark has a unique approach. A complete Flink SQL job is innovatively split into two components within StreamPark: the SQL and the dependencies. The SQL part is self-explanatory and requires no further explanation, but the dependencies are the various Connector JARs needed within the SQL, such as Kafka and MySQL Connectors. If these are used within the SQL, then these Connector dependencies must be introduced. In StreamPark, there are two ways to add dependencies: one is based on the standard Maven pom coordinates, and the other is by uploading the required Jars from a local source. These two methods can also be mixed and used as needed; simply apply, and these dependencies will be automatically loaded when the job is submitted.
+In terms of dependencies, it's an unique feature to Streampark. A complete Flink SQL job is innovatively split into two components within StreamPark: the SQL and the dependencies. The SQL part is easy to understand and requires no further explanation, but the dependencies are the various Connector JARs needed within the SQL, such as Kafka and MySQL Connectors. If these are used within the SQL, then these Connector dependencies must be introduced. In StreamPark, there are two ways to add dependencies: one is based on the standard Maven pom coordinates, and the other is by uploading the required Jars from a local source. These two methods can also be mixed and used as needed; simply apply, and these dependencies will be automatically loaded when the job is submitted.
 
 ![](/blog/joyme/add_dependency.png)
 
@@ -92,11 +92,11 @@ The rest of the parameter settings should be configured according to the specifi
 
 Since our deployment mode is on Yarn, we configured the name of the Yarn queue in the dynamic options. Some configurations have also been set to enable incremental checkpoints and state TTL (time-to-live), all of which can be found on Flink's official website. Before, some jobs frequently encountered out-of-memory issues. After adding the incremental parameter and TTL, the job operation improved significantly. Also, in cases where the Flink SQL job involves larger states and complex logic, I personally feel that it's better to implement them through streaming code for more control.
 
-- -Dyarn.application.queue= [Yarn queue name]
+- -Dyarn.application.queue=Yarn queue name
 - -Dstate.backend.incremental=true
-- -Dtable.exec.state.ttl= [expiration time]
+- -Dtable.exec.state.ttl=expiration time
 
-After completing the configuration, submit it, and then deploy it from the application interface.
+After completing the configuration, submit & deploy it from the application interface.
 
 ![](/blog/joyme/application_job.png)
 
@@ -114,7 +114,7 @@ To create a new task, select Custom code, choose the Flink version, select the p
 
 ![](/blog/joyme/add_projectconfiguration.png)
 
-As well as the task’s parallelism, monitoring method, etc., memory size should be configured based on the needs of the task. Program Args, the program parameters, are defined according to the program's needs. For example: If our unified startup class is StartJobApp, to start a job, it's necessary to pass the full name of the job, informing the startup class which class to find to launch the task—essentially, a reflection mechanism. After the job configuration is complete, it is also submitted with Submit and then deployed from the application interface.
+As well as the task’s parallelism, monitoring method, etc., memory size should be configured based on the needs of the task. Program Args, the program parameters, are defined according to the program's needs. For example: If our unified startup class is StartJobApp, to start a job, it's necessary to pass the full name of the job, informing the startup class which class to find to launch the task—essentially, which is a reflection mechanism. After the job configuration is complete, it is also submitted with Submit and then deployed from the application interface.
 
 ![](/blog/joyme/application_interface.png)
 
@@ -158,4 +158,4 @@ Often when we discuss issues in the StreamPark user group, we get immediate resp
 
 Currently, our company runs 60 real-time jobs online, with Flink SQL and custom code each making up about half. More real-time tasks will be put online subsequently. Many colleagues worry about the stability of StreamPark, but based on several months of production practice in our company, StreamPark is just a platform to help you develop, deploy, monitor, and manage jobs. Whether it is stable or not depends on the stability of our own Hadoop Yarn cluster (we use the onyan mode) and has little to do with StreamPark itself. It also depends on the robustness of the Flink SQL or code you write. These two aspects should be the primary concerns. Only when these two aspects are problem-free can the flexibility of StreamPark be fully utilized to improve job performance. To discuss the stability of StreamPark in isolation is somewhat extreme.
 
-That is all the content shared by StreamPark at LeWo Unlimited. Thank you for reading this far. We are very grateful for such an excellent product provided by StreamPark, which is a true act of benefiting others. From version 1.0 to 1.2.1, the bugs encountered are promptly fixed, and every issue is taken seriously. We are still using the onyarn deployment mode. Restarting yarn will still cause jobs to be lost, but restarting yarn is not something we do every day. The community will also look to fix this problem as soon as possible. I believe that StreamPark will get better and better, with a promising future ahead.
+That is all the content shared by StreamPark at Joyme. Thank you for reading this article. We are very grateful for such an excellent product provided by StreamPark, which is a true act of benefiting others. From version 1.0 to 1.2.1, the bugs encountered are promptly fixed, and every issue is taken seriously. We are still using the on yarn deployment mode. Restarting yarn will still cause jobs to be lost, but restarting yarn is not something we do every day. The community will also look to fix this problem as soon as possible. I believe that StreamPark will get better and better, with a promising future ahead.
