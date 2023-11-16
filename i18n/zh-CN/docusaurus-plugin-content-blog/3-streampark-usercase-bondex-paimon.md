@@ -253,19 +253,19 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 kubectl cluster-info
 ```
 
-Kubernetes RBAC 配置,创建 streamx 命名空间:
+Kubernetes RBAC 配置,创建 streampark 命名空间:
 
 ```shell
-kubectl create ns streamx
+kubectl create ns streampark
 ```
 
 使用 default 账户创建 clusterrolebinding 资源:
 
 ```shell
-kubectl create secret docker-registry streamparksecret
---docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com
---docker-username=xxxxxx
---docker-password=xxxxxx -n streamx```
+kubectl create secret docker-registry streamparksecret 
+--docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
+--docker-username=xxxxxx 
+--docker-password=xxxxxx -n streampark```
 ```
 
 **容器镜像仓库配置:**
@@ -283,10 +283,10 @@ kubectl create secret docker-registry streamparksecret
 创建 k8s secret 密钥用来拉取 ACR 中的镜像 streamparksecret 为密钥名称 自定义
 
 ```shell
-kubectl create secret docker-registry streamparksecret
---docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com
---docker-username=xxxxxx
---docker-password=xxxxxx -n streamx
+kubectl create secret docker-registry streamparksecret 
+--docker-server=registry-vpc.cn-zhangjiakou.aliyuncs.com 
+--docker-username=xxxxxx 
+--docker-password=xxxxxx -n streampark
 ```
 
 创建挂载 checkpoint/savepoint 的 pvc 资源，基于阿里云的对象存储OSS做K8S的持久化
@@ -363,7 +363,7 @@ Execution Mode ：kubernetes application
 
 Flink Version ：flink-1.16.0-scala-2.12
 
-Kubernetes Namespace ：streamx
+Kubernetes Namespace ：streampark
 
 Kubernetes ClusterId ：（任务名自定义即可）
 
@@ -872,7 +872,7 @@ WITH (
 
 ![](/blog/bondex/loki.png)
 
-java.util.concurrent.TimeoutException: Invocation of [RemoteRpcInvocation(JobMasterGateway.updateTaskExecutionState(TaskExecutionState))] at recipient [akka.tcp://flink@fts-business-order-count.streamx:6123/user/rpc/jobmanager_2] timed out. This is usually caused by: 1) Akka failed sending the message silently, due to problems like oversized payload or serialization failures. In that case, you should find detailed error information in the logs. 2) The recipient needs more time for responding, due to problems like slow machines or network jitters. In that case, you can try to increase akka.ask.timeout.\n"
+java.util.concurrent.TimeoutException: Invocation of [RemoteRpcInvocation(JobMasterGateway.updateTaskExecutionState(TaskExecutionState))] at recipient [akka.tcp://flink@fts-business-order-count.streampark:6123/user/rpc/jobmanager_2] timed out. This is usually caused by: 1) Akka failed sending the message silently, due to problems like oversized payload or serialization failures. In that case, you should find detailed error information in the logs. 2) The recipient needs more time for responding, due to problems like slow machines or network jitters. In that case, you can try to increase akka.ask.timeout.\n"
 
 初步判断应该是由于以上2个原因导致触发了 akka 的超时机制，那就调整集群的akka超时间配置和进行单个任务拆分或者调大资源配置。
 
