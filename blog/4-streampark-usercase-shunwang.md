@@ -13,7 +13,7 @@ tags: [StreamPark, Production Practice, FlinkSQL]
 - Challenges encountered
 - Why choose StreamPark
 - Implementation in practice
-- Benefits realized
+- Benefits Brought
 - Future planning
 
 <!-- truncate -->
@@ -79,11 +79,11 @@ Faced with the defects of our self-developed platform Streaming-Launcher, we hav
 
 ### 01  **StreamPark: A Powerful Tool for Solving Flink Issues**
 
-Fortunately, in early June 2022, we stumbled upon StreamPark on GitHub and embarked on a preliminary exploration full of hope. We found that StreamPark's capabilities can be broadly divided into three areas: user rights management, job operation and maintenance management, and development scaffolding.
+Fortunately, in early June 2022, we stumbled upon StreamPark on GitHub and embarked on a preliminary exploration full of hope. We found that StreamPark's capabilities can be broadly divided into three areas: user permission management, job operation and maintenance management, and development scaffolding.
 
-**User Rights Management**
+**User Permission Management**
 
-In the StreamPark platform, to avoid the risk of users having too much authority and making unnecessary misoperations that affect job stability and the accuracy of environmental configurations, some user rights management functions are provided. This is very necessary for enterprise-level users.
+In the StreamPark platform, to avoid the risk of users having too much authority and making unnecessary misoperations that affect job stability and the accuracy of environmental configurations, some user permission management functions are provided. This is very necessary for enterprise-level users.
 
 
 
@@ -153,7 +153,7 @@ If developers wish to query real-time data in ODPS, we need to provide a Flink S
 
 ![Image](/blog/shunwang/homework.png)
 
-Currently, the StreamPark community is interfacing with Flink-SQL-Gateway to further lower the barriers to developing real-time jobs.
+Currently, the StreamPark community is intergrating with Flink-SQL-Gateway to further lower the barriers to developing real-time jobs.
 
 https://github.com/apache/streampark/issues/2274
 
@@ -203,11 +203,11 @@ The greatest benefit that StreamPark has brought to Shunwang Technology is the l
 
 ## Future Plans
 
-As one of the early users of StreamPark, Shunwang Technology has been communicating with the community for a year and participating in the polishing of StreamPark's stability. We have submitted the Bugs encountered in production operations and new Features to the community. In the future, we hope to manage the metadata information of Flink tables on StreamPark, and implement cross-data-source query analysis functions based on the Flink engine through multiple Catalogs. Currently, StreamPark is interfacing with Flink-SQL-Gateway capabilities, which will greatly help in the management of table metadata and cross-data-source query functions in the future.
+As one of the early users of StreamPark, Shunwang Technology has been communicating with the community for a year and participating in the polishing of StreamPark's stability. We have submitted the Bugs encountered in production operations and new Features to the community. In the future, we hope to manage the metadata information of Flink tables on StreamPark, and implement cross-data-source query analysis functions based on the Flink engine through multiple Catalogs. Currently, StreamPark is integrating with Flink-SQL-Gateway capabilities, which will greatly help in the management of table metadata and cross-data-source query functions in the future.
 
 Since Shunwang Technology primarily runs jobs in Yarn Session mode, we hope that StreamPark can provide more support for Remote clusters, Yarn Session clusters, and K8s Session clusters, such as monitoring and alerts, and optimizing operational processes.
 
 Considering the future, as the business develops, we may use StreamPark to manage more Flink real-time jobs, and StreamPark in single-node mode may not be safe. Therefore, we are also looking forward to the High Availability (HA) of StreamPark.
 
-We will also participate in the construction of the capabilities of StreamPark interfacing with Flink-SQL-Gateway, enriching Flink Cluster functionality, and StreamPark HA.
+We will also participate in the construction of the capabilities of StreamPark is integrating with Flink-SQL-Gateway, enriching Flink Cluster functionality, and StreamPark HA.
 
