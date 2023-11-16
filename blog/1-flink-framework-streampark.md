@@ -1,6 +1,6 @@
 ---
 slug: flink-development-framework-streampark
-title: Flink Development Toolkit StreamPark
+title: StreamPark - Powerful Flink Development Framework
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
