@@ -22,7 +22,7 @@ export default function () {
         <div className="overlay opacity-90 z-index-n1"></div>
         <div className="container-fluid px-7 pb-2 cover-container">
           <div className="row justify-content-center">
-            <div className="col-md-6  col-8 align-self-center pe-5" data-aos="fade-right">
+            <div className="col-md-6 col-8 align-self-center pe-0" data-aos="fade-right">
               <div className="text-start mt-0">
                 <div className="mb-5 system_info pt-0">
                   <div className=" fw-bold mb-3">
