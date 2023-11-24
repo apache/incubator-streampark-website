@@ -38,7 +38,7 @@ RUN mkdir -p $FLINK_HOME/usrlib
 COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
 ```
 
-4. 使用 Flink 客户端脚本启动 Flink 任务
+3. 使用 Flink 客户端脚本启动 Flink 任务
 
 ```shell
 
@@ -52,13 +52,13 @@ COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
     local:///opt/flink/usrlib/my-flink-job.jar
 ```
 
-5. 使用 Kubectl 命令获取到 Flink 作业的 WebUI 访问地址和 JobId
+4. 使用 Kubectl 命令获取到 Flink 作业的 WebUI 访问地址和 JobId
 
 ```shell
 kubectl -n flink-cluster get svc
 ```
 
-6. 使用Flink命令停止作业
+5. 使用Flink命令停止作业
 
 ```shell
 ./bin/flink cancel
@@ -186,7 +186,7 @@ StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作
 
 ## 遇到的问题
 
-任何新技术都有探索与踩坑的过程，失败的经验是宝贵的，这里介绍下 StreamPark 在雾芯科技落地过程中踩的一些坑和经验，**这块的内容不仅仅关于 StreamPark 的部分, 相信会带给所有使用 Flink on Kubernetes 的小伙伴一些参考。
+任何新技术都有探索与踩坑的过程，失败的经验是宝贵的，这里介绍下 StreamPark 在雾芯科技落地过程中踩的一些坑和经验，**这块的内容不仅仅关于 StreamPark 的部分, 相信会带给所有使用 Flink on Kubernetes 的小伙伴一些参考**。
 
 ### **常见问题总结如下**
 
@@ -222,7 +222,9 @@ HDFS 阿里云 OSS/AWS S3 都可以进行 checkpoint 和 savepoint 存储，Flin
 
 该问题与 Kubernetes pod 镜像拉取策略有关，建议将 Pod 镜像拉取策略设置为 Always：
 
+```shell
 ‍-Dkubernetes.container.image.pull-policy=Always
+```
 
 - **任务每次重启都会导致多出一个 Job 实例**
 
