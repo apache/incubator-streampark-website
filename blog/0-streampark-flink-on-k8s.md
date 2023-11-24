@@ -38,7 +38,7 @@ RUN mkdir -p $FLINK_HOME/usrlib
 COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
 ```
 
-4. Use Flink client script to start Flink tasks
+3. Use Flink client script to start Flink tasks
 
 ```shell
 
@@ -52,13 +52,13 @@ COPY my-flink-job.jar $FLINK_HOME/usrlib/my-flink-job.jar
     local:///opt/flink/usrlib/my-flink-job.jar
 ```
 
-5. Use the Kubectl command to obtain the WebUI access address and JobId of the Flink job.
+4. Use the Kubectl command to obtain the WebUI access address and JobId of the Flink job.
 
 ```shell
 kubectl -n flink-cluster get svc
 ```
 
-6. Stop the job using Flink command
+5. Stop the job using Flink command
 
 ```shell
 ./bin/flink cancel
@@ -73,13 +73,13 @@ kubectl -n flink-cluster get svc
 
   There will be higher requirements for using Flink on Kubernetes in enterprise-level production environments. Generally, you will choose to build your own platform or purchase related commercial products. No matter which solution meets the product capabilities: large-scale task development and deployment, status tracking, operation and maintenance monitoring , failure alarms, unified task management, high availability, etc. are common demands.
 
-  In response to the above issues, we investigated open source projects in the open source field that support the development and deployment of Flink on Kubernetes tasks. During the investigation, we also encountered other excellent open source projects. After comprehensively comparing multiple open source projects, we came to the conclusion: ** Whether StreamPark is completed The overall performance such as speed, user experience, and stability are all very good, so we finally chose StreamPark as our one-stop real-time computing platform. **
+  In response to the above issues, we investigated open source projects in the open source field that support the development and deployment of Flink on Kubernetes tasks. During the investigation, we also encountered other excellent open source projects. After comprehensively comparing multiple open source projects, we came to the conclusion: **StreamPark has great performance in either completness, user experience, or stability, so we finally chose StreamPark as our one-stop real-time computing platform. **
 
   Let’s take a look at how StreamPark supports Flink on Kubernetes:
 
 ### **Basic environment configuration**
 
-  Basic environment configuration includes Kubernetes and Docker warehouse information as well as Flink client information configuration. The simplest way for the Kubernetes basic environment is to directly copy the .kube/config of the Kubernetes node to the StreamPark node user directory, and then use the kubectl command to create a Flink-specific Kubernetes Namespace and perform RBAC configuration.
+  Basic environment configuration includes Kubernetes and Docker repository information as well as Flink client information configuration. The simplest way for the Kubernetes basic environment is to directly copy the .kube/config of the Kubernetes node to the StreamPark node user directory, and then use the kubectl command to create a Flink-specific Kubernetes Namespace and perform RBAC configuration.
 
 ```shell
 # Create k8s namespace used by Flink jobs
@@ -125,13 +125,13 @@ After the job development is completed, the job comes online. In this step, Stre
 - Dependency download in job
 - Build job (JAR package)
 - Build image
-- Push the image to the remote warehouse
+- Push the image to the remote repository
 
 **For users: Just click the cloud-shaped online button in the task list**
 
 ![](/blog/relx/operation.png)
 
-We can see a series of work done by StreamPark when building and pushing the image.: **Read the configuration, build the image, and push the image to the remote warehouse...** I want to give StreamPark a big thumbs up!
+We can see a series of work done by StreamPark when building and pushing the image: **Read the configuration, build the image, and push the image to the remote repository...** I want to give StreamPark a big thumbs up!
 
 ![](/blog/relx/step_details.png)
 
@@ -181,13 +181,13 @@ Next, let’s take a look at how StreamPark supports this capability:
 
 ## Problems encountered
 
-  Any new technology has a process of exploration and pitfalls. The experience of failure is precious. Here are some pitfalls and experiences that StreamPark has stepped into during the implementation of fog core technology. **The content of this section is not only about StreamPark. I believe it will bring some reference to all friends who use Flink on Kubernetes.
+  Any new technology has a process of exploration and fall into pitfalls. The experience of failure is precious. Here are some pitfalls and experiences that StreamPark has stepped into during the implementation of fog core technology. **The content of this section is not only about StreamPark. I believe it will bring some reference to all friends who use Flink on Kubernetes**.
 
 ### **FAQs are summarized below**
 
 - **Kubernetes pod failed to pull the image**
 
-The main problem is that Kubernetes pod-template lacks docker’s imagePullSecrets
+  The main problem is that Kubernetes pod-template lacks docker’s imagePullSecrets
 
 - **Scala version inconsistent**
 
@@ -215,9 +215,11 @@ The main problem is that Kubernetes pod-template lacks docker’s imagePullSecre
 
 - **The changed code did not take effect after it was republished**
 
-This issue is related to the Kubernetes pod image pull policy. It is recommended to set the Pod image pull policy to Always:
+  This issue is related to the Kubernetes pod image pull policy. It is recommended to set the Pod image pull policy to Always:
 
+```shell
 ‍-Dkubernetes.container.image.pull-policy=Always
+```
 
 - **Each restart of the task will result in one more Job instance**
 
@@ -225,7 +227,7 @@ This issue is related to the Kubernetes pod image pull policy. It is recommended
 
 - **How to implement kubernetes pod domain name access**
 
-Domain name configuration only needs to be configured in pod-template according to Kubernetes resources. I can share with you a pod-template.yaml template that I summarized based on the above issues:
+  Domain name configuration only needs to be configured in pod-template according to Kubernetes resources. I can share with you a pod-template.yaml template that I summarized based on the above issues:
 
 ```yaml
 
@@ -281,7 +283,7 @@ Create a Dockerfile file and place the Dockerfile file in the same folder as the
 FROM flink:1.13.6-scala_2.11COPY lib $FLINK_HOME/lib/
 ```
 
-**3. Create a basic image and push it to a private warehouse**
+**3. Create a basic image and push it to a private repository**
 
 ```shell
 docker login --username=xxxdocker \
@@ -295,7 +297,7 @@ push k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latest
 
 - **StreamPark supports Flink job metric monitoring**
 
-It would be great if StreamPark could connect to Flink Metric data and display Flink’s real-time consumption data at every moment on the StreamPark platform.
+  It would be great if StreamPark could connect to Flink Metric data and display Flink’s real-time consumption data at every moment on the StreamPark platform.
 
 - **StreamPark supports Flink job log persistence**
 
@@ -303,4 +305,4 @@ It would be great if StreamPark could connect to Flink Metric data and display F
 
 - **Improvement of the problem of too large image**
 
-StreamPark's current image support for Flink on Kubernetes jobs is to combine the basic image and user code into a Fat image and push it to the Docker warehouse. The problem with this method is that it takes a long time when the image is too large. It is hoped that the basic image can be restored in the future. There is no need to hit the business code together every time, which can greatly improve development efficiency and save costs.
+  StreamPark's current image support for Flink on Kubernetes jobs is to combine the basic image and user code into a Fat image and push it to the Docker repository. The problem with this method is that it takes a long time when the image is too large. It is hoped that the basic image can be restored in the future. There is no need to hit the business code together every time, which can greatly improve development efficiency and save costs.

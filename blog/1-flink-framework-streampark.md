@@ -4,7 +4,7 @@ title: StreamPark - Powerful Flink Development Framework
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
-Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current prevalence of cloud-native architecture and the backdrop of lake and warehouse integration, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
+Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current popularization of cloud-native architecture and the integration between lake and warehous, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
 
 ![](/blog/belle/doris.png)
 
@@ -12,7 +12,7 @@ Although the Hadoop system is widely used today, its architecture is complicated
 
 # 1. Background
 
-Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current prevalence of cloud-native architecture and the backdrop of lake and warehouse integration, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
+Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current popularization of cloud-native architecture and the integration between lake and warehous, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
 
 ![](/blog/belle/doris.png)
 
@@ -217,7 +217,7 @@ It becomes evident that StreamPark essentially uploads the jar package to the Fl
 
 ### Custom Code Mode
 
-To our delight, StreamPark also provides support for coding DataStream/FlinkSQL tasks. For special requirements, we can author our implementations in Java/Scala. You can compose tasks following the scaffold method recommended by StreamPark or write a standard Flink task. By adopting this approach, we can delegate code management to git, utilizing the platform for automated compilation, packaging, and deployment. Naturally, if functionality can be achieved via SQL, we would prefer not to customize DataStream, thereby minimizing unnecessary operational complexities.
+To our delight, StreamPark also provides support for coding DataStream/FlinkSQL tasks. For special requirements, we can achieve our implementations in Java/Scala. You can compose tasks following the scaffold method recommended by StreamPark or write a standard Flink task. By adopting this approach, we can delegate code management to git, utilizing the platform for automated compilation, packaging, and deployment. Naturally, if functionality can be achieved via SQL, we would prefer not to customize DataStream, thereby minimizing unnecessary operational complexities.
 
 <br/><br/>
 
@@ -225,11 +225,11 @@ To our delight, StreamPark also provides support for coding DataStream/FlinkSQL 
 
 ## Suggestions for Improvement
 
-StreamPark, as with any new tool, does have areas ripe for enhancement based on our current evaluations:
+StreamPark, similar to any other new tools, does have areas for further enhancement based on our current evaluations:
 
 * **Strengthening Resource Management**: Features like multi-file system jar resources and robust task versioning are still awaiting additions.
 * **Enriching Frontend Features**: For instance, once a task is added, functionalities like copying could be integrated.
-* **Visualization of Task Submission Logs**: The process of task submission involves loading class files, jar packaging, building and submitting images, and more. A failure at any of these stages could halt the task. Yet, error logs often lack clarity, or due to some anomaly, the exceptions aren't thrown as expected, leaving users puzzled about rectifications.
+* **Visualization of Task Submission Logs**: The process of task submission involves loading class files, jar packaging, building and submitting images, and more. A failure at any of these stages could halt the task. However, error logs are not always clear, or due to some anomaly, the exceptions aren't thrown as expected, leaving users puzzled about rectifications.
 
 It's a universal truth that innovations aren't perfect from the outset. Although minor issues exist and there are areas for improvement with StreamPark, its merits outweigh its limitations. As a result, we've chosen StreamPark as our Flink DevOps platform. We're also committed to collaborating with its main developers to refine StreamPark further. We wholeheartedly invite others to use it and contribute towards its advancement.
 
