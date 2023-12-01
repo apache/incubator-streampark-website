@@ -16,13 +16,13 @@ The installation of the one-stop platform `streampark-console` has been introduc
 
 The following example demonstrates how to deploy a DataStream application
 
-<video src="http://assets.streamxhub.com/datastream.mp4" controls="controls" width="100%" height="100%"></video>
+
 
 ### Deploy the FlinkSql task
 
 The following example demonstrates how to deploy a FlinkSql application
 
-<video src="http://assets.streamxhub.com//flinksql.mp4" controls="controls" width="100%" height="100%"></video>
+
 
 - The flink sql used in the project demonstration is as follows
 

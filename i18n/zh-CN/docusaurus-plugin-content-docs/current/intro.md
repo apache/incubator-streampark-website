@@ -15,7 +15,7 @@ make stream processing easier!!!
 使用 `StreamPark` 开发流处理作业, 可以极大降低学习成本和开发门槛, 让开发者只用关心最核心的业务,`StreamPark` 规范了项目的配置,鼓励函数式编程,定义了最佳的编程方式,提供了一系列开箱即用的`Connectors`,标准化了配置、开发、测试、部署、监控、运维的整个过程, 提供了`scala`和`java`两套 Api, 并且提供了一个一站式的流处理作业开发管理平台, 从流处理作业开发到上线全生命周期都
 做了支持, 是一个一站式的流出来计算平台.
 
-<video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
+
 
 ## 🎉 Features
 
