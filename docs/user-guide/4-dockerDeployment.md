@@ -105,6 +105,7 @@ vim docker-compose
       dockerfile: deploy/docker/console/Dockerfile
 #    image: ${HUB}:${TAG}
 ```
+![](/doc/image/streampark_source_generation_image.png)
 
 ```shell
 docker-compose up -d
