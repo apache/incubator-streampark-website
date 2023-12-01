@@ -110,10 +110,8 @@ vim docker-compose.yaml
 ![](/doc/image/streampark_source_generation_image.png)
 
 ```shell
-cd ../..
-./build.sh
+docker-compose up -d
 ```
-![](/doc/image/streampark_build.png)
 
 ## docker-compse配置
 
