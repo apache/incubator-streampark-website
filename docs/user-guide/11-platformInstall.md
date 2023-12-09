@@ -102,7 +102,7 @@ tar -zxvf apache-streampark_2.12-2.0.0-incubating-bin.tar.gz
 ![7_mysql_schema_file](/doc/image/install/7_mysql_schema_file.png)
 > 数据库创建脚本： /usr/local/apache-streampark_2.12-2.0.0-incubating-bin/script/data/mysql-data.sql
 
-![8_mysql_data_file](/doc/image/install/8_mysql_data_file.png.png)
+![8_mysql_data_file](/doc/image/install/8_mysql_data_file.png)
 
 
 ### 连接MySQL数据库 && 执行初始化脚本
@@ -110,10 +110,6 @@ tar -zxvf apache-streampark_2.12-2.0.0-incubating-bin.tar.gz
 source /usr/local/apache-streampark_2.12-2.0.0-incubating-bin/script/schema/mysql-schema.sql
 ```
 ![9_import_streampark_schema_file](/doc/image/install/9_import_streampark_schema_file.png)
-```bash
-source source /usr/local/apache-streampark_2.12-2.0.0-incubating-bin/script/data/mysql-data.sql
-```
-![10_import_streampark_data_file](/doc/image/install/10_import_streampark_data_file.png)
 ```bash
 source source /usr/local/apache-streampark_2.12-2.0.0-incubating-bin/script/data/mysql-data.sql
 ```
