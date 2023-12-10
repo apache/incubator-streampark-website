@@ -157,7 +157,7 @@ bash startup.sh
 
 ### 系统登录
 
-After the above steps, even if the deployment is completed, you can directly log in to the system
+经过以上步骤，即使部署完成，也可以直接登录系统
 
 ![StreamPark Login](/doc/image/streampark_login.jpeg)
 
