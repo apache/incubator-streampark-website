@@ -32,6 +32,7 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
+      - run: npx update-browserslist-db@latest
       - run: yarn install
       - run: yarn build
       - uses: peaceiris/actions-gh-pages@v3
