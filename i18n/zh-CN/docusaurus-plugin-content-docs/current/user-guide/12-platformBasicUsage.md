@@ -180,11 +180,11 @@ curl -X POST '/flink/app/cancel' \
 
 ![44_system_menu_1](/doc/image/platform-usage/44_system_menu_1.png)
 
-![44_system_menu_2](/doc/image/platform-usage/44_system_menu_2.png)
+![45_system_menu_2](/doc/image/platform-usage/45_system_menu_2.png)
 
-![44_system_menu_3](/doc/image/platform-usage/44_system_menu_3.png)
+![46_system_menu_3](/doc/image/platform-usage/46_system_menu_3.png)
 
-![44_system_menu_4](/doc/image/platform-usage/44_system_menu_4.png)
+![47_system_menu_4](/doc/image/platform-usage/47_system_menu_4.png)
 
 #### Alert Setting
 > 支持多种告警通知模式
@@ -221,15 +221,15 @@ curl -X POST '/flink/app/cancel' \
 ### 原生flink集群部署模式
 ![55_flink_deployment_difference_1](/doc/image/platform-usage/55_flink_deployment_difference_1.png)
 
-![55_flink_deployment_difference_2](/doc/image/platform-usage/55_flink_deployment_difference_2.png)
+![56_flink_deployment_difference_2](/doc/image/platform-usage/56_flink_deployment_difference_2.png)
 
-![55_flink_deployment_difference_3](/doc/image/platform-usage/55_flink_deployment_difference_3.png)
+![57_flink_deployment_difference_3](/doc/image/platform-usage/57_flink_deployment_difference_3.png)
 
-![55_flink_deployment_difference_4](/doc/image/platform-usage/55_flink_deployment_difference_4.png)
+![58_flink_deployment_difference_4](/doc/image/platform-usage/58_flink_deployment_difference_4.png)
 
-![55_flink_deployment_difference_5](/doc/image/platform-usage/55_flink_deployment_difference_5.png)
+![59_flink_deployment_difference_5](/doc/image/platform-usage/59_flink_deployment_difference_5.png)
 
-![55_flink_deployment_difference_6](/doc/image/platform-usage/55_flink_deployment_difference_6.png)
+![60_flink_deployment_difference_6](/doc/image/platform-usage/60_flink_deployment_difference_6.png)
 
 ### 如何在StreamPark中使用
 > **Session 模式**
