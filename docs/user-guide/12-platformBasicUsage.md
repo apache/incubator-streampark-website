@@ -221,15 +221,15 @@ curl -X POST '/flink/app/cancel' \
 ### 原生flink集群部署模式
 ![55_flink_deployment_difference_1](/doc/image/platform-usage/55_flink_deployment_difference_1.png)
 
-![55_flink_deployment_difference_2](/doc/image/platform-usage/55_flink_deployment_difference_2.png)
+![56_flink_deployment_difference_2](/doc/image/platform-usage/56_flink_deployment_difference_2.png)
 
-![55_flink_deployment_difference_3](/doc/image/platform-usage/55_flink_deployment_difference_3.png)
+![57_flink_deployment_difference_3](/doc/image/platform-usage/57_flink_deployment_difference_3.png)
 
-![55_flink_deployment_difference_4](/doc/image/platform-usage/55_flink_deployment_difference_4.png)
+![58_flink_deployment_difference_4](/doc/image/platform-usage/58_flink_deployment_difference_4.png)
 
-![55_flink_deployment_difference_5](/doc/image/platform-usage/55_flink_deployment_difference_5.png)
+![59_flink_deployment_difference_5](/doc/image/platform-usage/59_flink_deployment_difference_5.png)
 
-![55_flink_deployment_difference_6](/doc/image/platform-usage/55_flink_deployment_difference_6.png)
+![60_flink_deployment_difference_6](/doc/image/platform-usage/60_flink_deployment_difference_6.png)
 
 ### 如何在StreamPark中使用
 > **Session 模式**
