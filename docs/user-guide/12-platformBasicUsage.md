@@ -180,11 +180,11 @@ curl -X POST '/flink/app/cancel' \
 
 ![44_system_menu_1](/doc/image/platform-usage/44_system_menu_1.png)
 
-![44_system_menu_2](/doc/image/platform-usage/44_system_menu_2.png)
+![45_system_menu_2](/doc/image/platform-usage/45_system_menu_2.png)
 
-![44_system_menu_3](/doc/image/platform-usage/44_system_menu_3.png)
+![46_system_menu_3](/doc/image/platform-usage/46_system_menu_3.png)
 
-![44_system_menu_4](/doc/image/platform-usage/44_system_menu_4.png)
+![47_system_menu_4](/doc/image/platform-usage/47_system_menu_4.png)
 
 #### Alert Setting
 > 支持多种告警通知模式
