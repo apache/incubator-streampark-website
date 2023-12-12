@@ -28,17 +28,6 @@ export default function (props) {
         .concat(suffix)
   }
 
-  function getSignLink(scala, version, suffix) {
-    return 'https://downloads.apache.org/incubator/streampark/'
-        .concat(version)
-        .concat('/apache-streampark_')
-        .concat(scala)
-        .concat('-')
-        .concat(version)
-        .concat('-incubating-bin.tar.gz')
-        .concat(suffix)
-  }
-
   return (
       <table className="table-ui mb-4">
         <thead>
@@ -59,9 +48,9 @@ export default function (props) {
               <td className='text-center'>
                 <a href={getSourceLink(release.version, '')} target="_blank">source</a>
                 <span> ( </span>
-                <a href={getSignLink(release.version, '.sha512')} target="_blank">sha512</a>
+                <a href={getSourceLink(release.version, '.sha512')} target="_blank">sha512</a>
                 <span> | </span>
-                <a href={getSignLink(release.version, '.asc')} target="_blank">signature</a>
+                <a href={getSourceLink(release.version, '.asc')} target="_blank">signature</a>
                 <span> ) </span>
               </td>
               <td className='text-center'>
@@ -69,11 +58,11 @@ export default function (props) {
                   {'apache-streampark_2.12-' + release.version + '-incubating-bin.tar.gz'}
                 </a>
                 <span> ( </span>
-                <a href={getSignLink('2.12', release.version, '.asc')} target="_blank">
+                <a href={getBinaryLink('2.12', release.version, '.asc')} target="_blank">
                   Sign
                 </a>
                 <span> | </span>
-                <a href={getSignLink('2.12', release.version, '.sha512')} target="_blank">
+                <a href={getBinaryLink('2.12', release.version, '.sha512')} target="_blank">
                   SHA512
                 </a>
                 <span> ) </span>
@@ -82,11 +71,11 @@ export default function (props) {
                   {'apache-streampark_2.11-' + release.version + '-incubating-bin.tar.gz'}
                 </a>
                 <span> ( </span>
-                <a href={getSignLink('2.11', release.version, '.asc')} target="_blank">
+                <a href={getBinaryLink('2.11', release.version, '.asc')} target="_blank">
                   Sign
                 </a>
                 <span> | </span>
-                <a href={getSignLink('2.11', release.version, '.sha512')} target="_blank">
+                <a href={getBinaryLink('2.11', release.version, '.sha512')} target="_blank">
                   SHA512
                 </a>
                 <span> ) </span>
