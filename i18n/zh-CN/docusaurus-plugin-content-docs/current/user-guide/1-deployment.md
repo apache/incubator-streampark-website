@@ -157,7 +157,7 @@ bash startup.sh
 
 ### 系统登录
 
-经过以上步骤，即使部署完成，也可以直接登录系统
+经过以上步骤，即可部署完成，可以直接登录系统
 
 ![StreamPark Login](/doc/image/streampark_login.jpeg)
 
