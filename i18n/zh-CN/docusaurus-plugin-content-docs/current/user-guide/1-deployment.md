@@ -154,6 +154,13 @@ bash startup.sh
 ```
 相关的日志会输出到**streampark-console-service-1.0.0/logs/streampark.out** 里
 
+
+### 系统登录
+
+经过以上步骤，即可部署完成，可以直接登录系统
+
+![StreamPark Login](/doc/image/streampark_login.jpeg)
+
 :::tip 提示
 默认密码: <strong> admin / streampark </strong>
 :::
