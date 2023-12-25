@@ -1,35 +1,35 @@
-# 快速上手
-> 说明：该部分旨在通过简单的操作步骤，体验使用StreamPark平台提交flink作业的便捷流程。
+# Quick Start
+> Note: This section is designed to provide a convenient process for submitting Flink jobs using the StreamPark platform through simple operational steps.
 
-## 配置FLINK_HOME
+## Configure FLINK_HOME
 ![1_config_flink_home](/doc/image/platform-usage/1_config_flink_home.png)
 
 ![2_add_flink_home_info](/doc/image/platform-usage/2_add_flink_home_info.png)
-> 点击"OK"，保存
+> Click "OK" to save
 
 ![3_display_flink_home_config](/doc/image/platform-usage/3_display_flink_home_config.png)
-## 配置Flink Cluster
-> 根据flink 部署模式 以及 资源管理方式，StreamPark 支持以下6种作业模式
+## Configure Flink Cluster
+> Depending on the Flink deployment mode and resource management method, StreamPark supports the following six job modes:
 > - **Standalone Session**
 > - **Yarn Session**
 > - **Yarn Per-job**
 > - **Yarn Application**
 > - **K8s Session**
 > - **K8s Application**
-> 
-本次选取较为简单的 Standalone Session 模式(**下图绿色连线**)，快速上手。
+>
+For this guide, choose the simpler Standalone Session mode (**indicated by the green line in the image below**) for a quick start.
 
 ![4_flink_deployment_execute_model](/doc/image/platform-usage/4_flink_deployment_execute_model.png)
 
-### 服务器启动 flink Standalone Session
+### Start Flink Standalone Session on Server
 ```bash
 start-cluster.sh
 ```
 ![5_start_flink_standalone_session_service](/doc/image/platform-usage/5_start_flink_standalone_session_service.png)
-> 页面访问：[http://hadoop:8081/](http://hadoop:8081/)
+> Page access: [http://hadoop:8081/](http://hadoop:8081/)
 
 ![6_flink_standalone_session_web_ui](/doc/image/platform-usage/6_flink_standalone_session_web_ui.png)
-### 配置Flink Cluster
+### Configure Flink Cluster
 ![7_config_flink_cluster_menu.png](/doc/image/platform-usage/7_config_flink_cluster_menu.png)
 
 ![8_add_flink_cluster_info.png](/doc/image/platform-usage/8_add_flink_cluster_info.png)
@@ -38,83 +38,84 @@ start-cluster.sh
 
 ![10_display_flink_cluster_list](/doc/image/platform-usage/10_display_flink_cluster_list.png)
 
-## 创建作业
+## Create Job
 ![11_add_flink_job_menu](/doc/image/platform-usage/11_add_flink_job_menu.png)
-### 主要参数
-> - Development Mode: 选择 “Flink SQL”
-> - Execution Mode:  选择 “remote”
-> - Flink Version:  选择  "flink-1.14", 即 “1.1 配置FLINK_HOME”里面配置的 
-> - Flink Cluster:  选择 “myStandalonSession”, 即“1.2 配置FLINK Cluster”里面配置的 
-> - Flink SQL: 详见下面示例
-> - Application Name: 作业名称
+### Main Parameters
+> - Development Mode: Choose “Flink SQL”
+> - Execution Mode: Choose “remote”
+> - Flink Version: Select "flink-1.14", as configured in “1.1 Configure FLINK_HOME”
+> - Flink Cluster: Select “myStandalonSession”, as configured in “1.2 Configure FLINK Cluster”
+> - Flink SQL: See example below
+> - Application Name: Job name
 
-### 创建作业
+### Create Job
 ![12_add_flink_job_param_1](/doc/image/platform-usage/12_add_flink_job_param_1.png)
 
 ![13_add_flink_job_param_2](/doc/image/platform-usage/13_add_flink_job_param_2.png)
 
 ![14_add_flink_job_param_3](/doc/image/platform-usage/14_add_flink_job_param_3.png)
 
-### 保存作业
-> 点击 蓝色“Submit”按钮，提交作业
+### Save Job
+> Click the blue “Submit” button to submit the job
 
 ![15_save_flink_job](/doc/image/platform-usage/15_save_flink_job.png)
 
 ![16_display_flink_job_list](/doc/image/platform-usage/16_display_flink_job_list.png)
 
-## 构建作业
+## Build Job
 ![17_build_flink_job](/doc/image/platform-usage/17_build_flink_job.png)
-> 构建成功
+> Build successful
 
 ![18_build_flink_job_successfully](/doc/image/platform-usage/18_build_flink_job_successfully.png)
 
-## 启动作业
+## Start Job
 ![19_start_flink_job](/doc/image/platform-usage/19_start_flink_job.png)
 
-### 启动检查点设置
+### Start Checkpoint Settings
 ![20_set_checkpoint_when_start_flink_job](/doc/image/platform-usage/20_set_checkpoint_when_start_flink_job.png)
 
-### 提交作业
+### Submit Job
 ![21_submit_flink_job_1](/doc/image/platform-usage/21_submit_flink_job_1.png)
 ![22_submit_flink_job_2](/doc/image/platform-usage/22_submit_flink_job_2.png)
 
-## 查看作业状态
-### 通过StreamPark看板查看
+## Check Job Status
+### View via StreamPark Dashboard
 > StreamPark dashboard
 
 ![23_flink_job_dashboard](/doc/image/platform-usage/23_flink_job_dashboard.png)
 
-> 查看作业详情
+> View job details
 
 ![24_display_flink_job_details](/doc/image/platform-usage/24_display_flink_job_details.png)
 
 ![25_display_flink_job_details_page](/doc/image/platform-usage/25_display_flink_job_details_page.png)
 
-### 查看原生 flink web ui
+### View Native Flink Web UI
 ![26_display_native_flink_job_web_ui](/doc/image/platform-usage/26_display_native_flink_job_web_ui.png)
 
-![27_display_native_flink_job_web_ui_2](/doc/image/platform-usage/27_display_native_flink_job_web_ui_2.png)
+![27_display_native_flink_job_web_ui_2](/doc/image/platform-usage/27_display_native_flink_job
 
-> 至此，一个使用StreamPark平台提交flink job的流程基本完成。下面简单总结下StreamPark平台管理flink作业的大致流程。
+_web_ui_2.png)
 
-## StreamPark平台管理flink job的流程
+> With this, the process of submitting a Flink job using the StreamPark platform is essentially complete. Below is a brief summary of the general process for managing Flink jobs on the StreamPark platform.
+
+## StreamPark Platform's Process for Managing Flink Jobs
 ![28_streampark_process_workflow](/doc/image/platform-usage/28_streampark_process_workflow.png)
 
-> 通过 StreamPark 平台 停止、修改、删除 flink job 相对简单，大家可自行体验，需要说明的一点是：**若作业为running状态，则不可删除，需先停止**。
+> Stopping, modifying, and deleting Flink jobs through the StreamPark platform is relatively simple and can be experienced by users themselves. It is worth noting that: **If a job is in a running state, it cannot be deleted and must be stopped first**.
 
-
-# StreamPark系统模块简介
-## 系统设置
-> 菜单位置
+# StreamPark System Module Introduction
+## System Settings
+> Menu location
 
 ![29_streampark_system_menu](/doc/image/platform-usage/29_streampark_system_menu.png)
 
 ### User Management
-> 用于管理StreamPark平台用户
+> For managing users of the StreamPark platform
 
 ![30_streampark_user_management_menu](/doc/image/platform-usage/30_streampark_user_management_menu.png)
 ### Token Management
-> 允许用户以Restful api形式操作flink job
+> Allows users to operate Flink jobs in the form of Restful APIs
 
 ![31_streampark_token_management_menu](/doc/image/platform-usage/31_streampark_token_management_menu.png)
 
@@ -131,42 +132,42 @@ curl -X POST '/flink/app/cancel' \
 -i
 ```
 ### Role Management
-> 用户角色：目前有2种，develop 和 admin。
+> User roles: Currently, there are two types, develop and admin.
 
 ![33_streampark_role_menu](/doc/image/platform-usage/33_streampark_role_menu.png)
 
 ### Team Management
-> 团队：用于区分管理企业不同团队的作业。
+> Teams: Used to distinguish and manage jobs of different teams in an enterprise.
 
 ![34_streampark_team_menu](/doc/image/platform-usage/34_streampark_team_menu.png)
 
 ### Member Management
-> (团队)成员管理
+> (Team) member management
 
 ![35_streampark_member_menu](/doc/image/platform-usage/35_streampark_member_menu.png)
 
 ### Menu Management
-> 管理系统菜单
+> Managing system menus
 
 ![36_streampark_menu_management](/doc/image/platform-usage/36_streampark_menu_management.png)
 
-## StreamPark菜单模块
+## StreamPark Menu Modules
 ### Project
-> StreamPark结合代码仓库实现CICD
+> StreamPark integrates with code repositories to achieve CICD
 
 ![37_streampark_project_menu](/doc/image/platform-usage/37_streampark_project_menu.png)
-> 使用时，点击 “+ Add new ”,配置repo信息，保存。
+> To use, click "+ Add new," configure repo information, and save.
 
 ![38_streampark_project_menu_usage_1](/doc/image/platform-usage/38_streampark_project_menu_usage_1.png)
 
 ![39_streampark_project_menu_usage_2](/doc/image/platform-usage/39_streampark_project_menu_usage_2.png)
 
 ### Application
-> **核心模块：用于对 flink job 全生命周期(创建、构建、启动、停止、删除等)管理。**
+> **Core Module: Used for full lifecycle management (creation, build, start, stop, delete, etc.) of Flink jobs.**
 
 ![40_application_menu](/doc/image/platform-usage/40_application_menu.png)
 ### Variable
-> 变量管理：管理变量，可在Application 作业创建时使用。
+> Variable management: Manage variables that can be used when creating Application jobs.
 
 ![41_variable_menu_usage_1](/doc/image/platform-usage/41_variable_menu_usage_1.png)
 
@@ -176,7 +177,7 @@ curl -X POST '/flink/app/cancel' \
 
 ### Setting
 #### System Setting
-> 用于系统配置：Maven 、 Docker 、 alert email、Ingress
+> For system configurations: Maven, Docker, alert email, Ingress
 
 ![44_system_menu_1](/doc/image/platform-usage/44_system_menu_1.png)
 
@@ -187,12 +188,12 @@ curl -X POST '/flink/app/cancel' \
 ![47_system_menu_4](/doc/image/platform-usage/47_system_menu_4.png)
 
 #### Alert Setting
-> 支持多种告警通知模式
+> Supports multiple alert notification modes
 
 ![48_alert_setting_menu](/doc/image/platform-usage/48_alert_setting_menu.png)
 
 #### Flink Home
-> 【**待完善**】可对flink作业进行一些操作，如对flink sql校验等
+> 【**To be improved**】Can perform some operations on Flink jobs, such as validation of Flink SQL, etc.
 
 ![49_flink_home_list](/doc/image/platform-usage/49_flink_home_list.png)
 
@@ -201,9 +202,9 @@ curl -X POST '/flink/app/cancel' \
 ![51_flink_home_usage_2](/doc/image/platform-usage/51_flink_home_usage_2.png)
 
 #### Flink Cluster
-> - Session模式执行flink作业，根据资源管理方式不同，可以分为3种：Standalone、Yarn、K8s
-> - 【**待完善**】应用场景：资源充足，作业之间隔离性需求不是很强的场景
-> - 关于session模式，详见：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode)
+> - For executing Flink jobs in Session mode, there are three types based on different resource management methods: Standalone, Yarn, K8s
+> - 【**To be improved**】Application scenario: Suitable for scenarios with sufficient resources and where job isolation requirements are not very strict
+> - For more on session mode, see: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode)
 
 
 ![52_add_flink_cluster_info](/doc/image/platform-usage/52_add_flink_cluster_info.png)
@@ -212,13 +213,13 @@ curl -X POST '/flink/app/cancel' \
 
 ![54_visit_flink_cluster_web_ui](/doc/image/platform-usage/54_visit_flink_cluster_web_ui.png)
 
-# 原生flink 与 StreamPark关联使用
-> 【**待完善**】其实，个人理解，StreamPark一大特点是对flink原生作业的管理模式在用户使用层面进行了优化，使得用户能利用该平台快速开发、部署、运行、监控flink作业。所以，想表达的意思是：如果用户对原生flink比较熟悉的话，那StreamPark使用起来就会更加得心应手。
+# Using Native Flink with StreamPark
+> 【**To be improved**】In fact, a key feature of StreamPark is the optimization of the management mode for native Flink jobs at the user level, enabling users to rapidly develop, deploy, run, and monitor Flink jobs using the platform. Meaning, if users are familiar with native Flink, they will find StreamPark even more intuitive to use.
 
-## flink部署模式
-> 下面内容摘自 **张利兵 老师 极客时间专栏** 《[Flink核心技术与实战](https://time.geekbang.org/course/intro/100058801)》
+## Flink Deployment Modes
+> The following content is excerpted from **Teacher Zhang Libing's Geek Time Column** " [Flink Core Technology and Practice](https://time.geekbang.org/course/intro/100058801)"
 
-### 原生flink集群部署模式
+### Native Flink Cluster Deployment Modes
 ![55_flink_deployment_difference_1](/doc/image/platform-usage/55_flink_deployment_difference_1.png)
 
 ![56_flink_deployment_difference_2](/doc/image/platform-usage/56_flink_deployment_difference_2.png)
@@ -231,17 +232,17 @@ curl -X POST '/flink/app/cancel' \
 
 ![60_flink_deployment_difference_6](/doc/image/platform-usage/60_flink_deployment_difference_6.png)
 
-### 如何在StreamPark中使用
-> **Session 模式**
+### How to Use in StreamPark
+> **Session Mode**
 
-1. 配置 Flink Cluster
+1. Configure Flink Cluster
 
 ![61_flink_session_cluster_usage_1](/doc/image/platform-usage/61_flink_session_cluster_usage_1.png)
 
-2. 创建作业时在 Execution Mode选择对应资源管理器的model 和  已经建立好的Flink Cluster
+2. When creating a job, select the corresponding resource manager's model and an established Flink Cluster in Execution Mode
 
 ![62_flink_session_cluster_usage_2](/doc/image/platform-usage/62_flink_session_cluster_usage_2.png)
-> **Application 模式**
+> **Application Mode**
 
 ![63_flink_application_model_usage_1](/doc/image/platform-usage/63_flink_application_model_usage_1.png)
 
@@ -251,54 +252,54 @@ curl -X POST '/flink/app/cancel' \
 
 ![66_flink_application_model_usage_4](/doc/image/platform-usage/66_flink_application_model_usage_4.png)
 
-## 设置作业参数
-### 原生flink作业参数
-> 官网：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/)
+## Setting Job Parameters
+### Native Flink Job Parameters
+> Official website: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/)
 
-> 原生提交命令(含参数)
+> Native submission command (with parameters)
 
 ```bash
 flink run-application -t yarn-application \
 	-Dyarn.provided.lib.dirs="hdfs://myhdfs/my-remote-flink-dist-dir" \
 	hdfs://myhdfs/jars/my-application.jar
 ```
-### 如何在StreamPark中使用
-> 创建 或 修改 作业时，在“Dynamic Properties”里面按指定格式添加即可
+### How to Use in StreamPark
+> When creating or modifying a job, add in “Dynamic Properties” as per the specified format
 
 ![67_dynamic_params_usage](/doc/image/platform-usage/67_dynamic_params_usage.png)
 
-## 告警策略
-> 【**待完善**】
+## Alert Strategy
+> 【**To be improved**】
 
-### 原生flink重启机制
-> 参考：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/)
+### Native Flink Restart Mechanism
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/)
 
 ![68_native_flink_restart_strategy](/doc/image/platform-usage/68_native_flink_restart_strategy.png)
 
-### 如何在StreamPark中使用
-> 【**待完善**】一般在作业失败或出现异常时，会触发告警
+### How to Use in StreamPark
+> 【**To be improved**】Generally, alerts are triggered when a job fails or an anomaly occurs
 
-1. 配置告警通知
+1. Configure alert notifications
 
 ![69_streampark_alert_settings_1](/doc/image/platform-usage/69_streampark_alert_settings_1.png)
 
 ![70_streampark_alert_settings_2](/doc/image/platform-usage/70_streampark_alert_settings_2.png)
 
-2. 创建 或 修改 作业时，在"Fault Alert Template"、“CheckPoint Failure Options”里面配置即可
+2. When creating or modifying a job, configure in "Fault Alert Template" and “CheckPoint Failure Options”
 
 ![71_streampark_alert_usage](/doc/image/platform-usage/71_streampark_alert_usage.png)
 
 ## cp/sp
-> 【**待完善**】
+> 【**To be improved**】
 
-### 原生flink checkpoint 和 savepoint
-> cp:  [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/)
+### Native Flink Checkpoint and Savepoint
+> cp: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/)
 > sp: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/savepoints/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/savepoints/)
 
 
 ![72_native_flink_save_checkpoint_gramma](/doc/image/platform-usage/72_native_flink_save_checkpoint_gramma.png)
-### 如何在StreamPark中配置savepoint
-> 当停止作业时，可以让用户设置savepoint
+### How to Configure Savepoint in StreamPark
+> Users can set a savepoint when stopping a job
 
 ![73_streampark_save_checkpoint](/doc/image/platform-usage/73_streampark_save_checkpoint.png)
 
@@ -306,50 +307,50 @@ flink run-application -t yarn-application \
 
 ![75_streampark_save_checkpoint_log](/doc/image/platform-usage/75_streampark_save_checkpoint_log.png)
 
-> 查看savepoint
+> View savepoint
 
 ![76_show_checkpoint_file_name](/doc/image/platform-usage/76_show_checkpoint_file_name.png)
 
 ![77_show_checkpoint_file_name_2](/doc/image/platform-usage/77_show_checkpoint_file_name_2.png)
 
-### 如何在StreamPark中由指定savepoint恢复作业
-> 启动作业时，会让选择
+### How to Restore a Job from a Specified Savepoint in StreamPark
+> Users have the option to choose during job startup
 
 ![78_usage_checkpoint_in_streampark](/doc/image/platform-usage/78_usage_checkpoint_in_streampark.png)
 
-## 作业状态
-> 【**待完善**】
+## Job Status
+> 【**To be improved**】
 
-### 原生flink 作业状态
-> 参考：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
+### Native Flink Job Status
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
 
 ![79_native_flink_job_status](/doc/image/platform-usage/79_native_flink_job_status.svg)
 
-### StreamPark中的作业状态
-> 【**待完善**】
+### Job Status in StreamPark
+> 【**To be improved**】
 
 
-## 作业详情
-### 原生flink作业详情
-> 通过 “[Apache Flink Dashboard](http://hadoop:8088/proxy/application_1701871016253_0004/#/)”查看
+## Job Details
+### Native Flink Job Details
+> View through “[Apache Flink Dashboard](http://hadoop:8088/proxy/application_1701871016253_0004/#/)”
 
 ![80_native_flink_job_details_page](/doc/image/platform-usage/80_native_flink_job_details_page.png)
 
-### StreamPark中作业详情
+### Job Details in StreamPark
 ![81_streampark_flink_job_details_page](/doc/image/platform-usage/81_streampark_flink_job_details_page.png)
 
-> 同时在k8s模式下的作业，StreamPark还支持启动日志实时展示，如下
+> In addition, for jobs in k8s mode, StreamPark also supports real-time display of startup logs, as shown below
 
 ![82_streampark_flink_job_starting_log_info](/doc/image/platform-usage/82_streampark_flink_job_starting_log_info.png)
 
-## 如何与第三方系统集成
-### 原生flink如何与第三方系统集成
-> 原生flink提供了 rest api
-> 参考：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/)
+## Integration with Third-Party Systems
+### How Native Flink Integrates with Third-Party Systems
+> Native Flink provides a REST API
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/)
 
-### StreamPark如何与第三方系统集成
-> 也提供了Restful Api，支持与其他系统对接，
-> 比如：开启作业 启动|停止 restapi 接口
+### How StreamPark Integrates with Third-Party Systems
+> StreamPark also provides Restful APIs, supporting integration with other systems.
+> For example, it offers REST API interfaces for starting and stopping jobs.
 
 ![83_streampark_restful_api_1](/doc/image/platform-usage/83_streampark_restful_api_1.png)
 ![84_streampark_restful_api_2](/doc/image/platform-usage/84_streampark_restful_api_2.png)
