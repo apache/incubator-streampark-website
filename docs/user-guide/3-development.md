@@ -75,10 +75,12 @@ Visit `http://localhost:10001/`, enter the username `admin` and the password `st
 
 ### Demonstrate Debugging Code
 
-Select the `Project` menu, and click on build.
+1.Start the project in debug mode in Idea
 
-![Streampark Project Build](/doc/image/streampark_project_build.png)
+2.Add breakpoints in the link/app/list of the Application Controller
 
-Debugging results:
+![Streampark Project Build](/doc/image/streampark_debug_build.png)
 
-![Streampark Debugging](/doc/image/streampark_debugging.png)
+3.Entering your account password to log in to streampark and selecting team will trigger a breakpoint
+
+![Streampark Project Build](/doc/image/streampark_debugging.png)
