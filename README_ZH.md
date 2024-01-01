@@ -19,7 +19,7 @@ dev  默认分支
 
 本网站是使用 Node.js 编译的，使用的是 [Docusaurus](https://docusaurus.io/) 框架组件：
 
-1. 下载并安装 Node.js（version>12.5.0）
+1. 下载并安装 Node.js（Node >=16.15.1 <= 18）
 2. 克隆代码到本地 `git clone git@github.com:apache/incubator-streampark-website.git`
 2. 运行 `npm install` 来安装所需的依赖库。
 3. 在根目录运行`npm run start`，可以访问 http://localhost:3000 查看站点英文模式预览
