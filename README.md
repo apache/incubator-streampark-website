@@ -19,7 +19,14 @@ dev #default branch
 
 This website is compiled using node, using Docusaurus framework components
 
-1. Download and install nodejs (Node >=16.15.1 <= 18)
+1. Download and install nodejs, The supported versions are as follows:
+
+   |  OS     | NodeJs       | 
+   |  ----   | ----         |
+   | Windows | 16.15.1 ~ 18 |
+   | OSX     | 16.15.1 ~ 18 |
+   | Linux   | 16.15.1 ~ 18 |  
+
 2. Clone the code to the local `git clone git@github.com:apache/incubator-streampark-website.git`
 2. Run `npm install` to install the required dependent libraries.
 3. Run `npm run start` in the root directory, you can visit http://localhost:3000 to view the English mode preview of the site
