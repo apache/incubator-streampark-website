@@ -23,7 +23,7 @@ cd incubator-streampark/
 ./build.sh
 ```
 
-### 打开项目    
+### 打开项目
 
 此处使用`idea`打开项目
 
