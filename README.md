@@ -17,7 +17,7 @@ dev #default branch
 
 ## 1. Preview and generate static files
 
-This website is compiled using node, using [Docusaurus(2.4.3)](https://docusaurus.io/)
+This website is compiled using node, using [Docusaurus(2.4.3)](https://docusaurus.io/) framework components
 
 1. Download and install nodejs, The supported versions are as follows:
 
