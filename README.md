@@ -17,15 +17,15 @@ dev #default branch
 
 ## 1. Preview and generate static files
 
-This website is compiled using node, using Docusaurus framework components
+This website is compiled using node, using [Docusaurus(2.4.3)](https://docusaurus.io/)
 
 1. Download and install nodejs, The supported versions are as follows:
 
    |  OS     | NodeJs       | 
    |  ----   | ----         |
-   | Windows | 16.15.1 ~ 18 |
-   | OSX     | 16.15.1 ~ 18 |
-   | Linux   | 16.15.1 ~ 18 |  
+   | Windows | 16.14 ~ 18   |
+   | OSX     | 16.14 ~ 18   |
+   | Linux   | 16.14 ~ 18   |
 
 2. Clone the code to the local `git clone git@github.com:apache/incubator-streampark-website.git`
 2. Run `npm install` to install the required dependent libraries.
