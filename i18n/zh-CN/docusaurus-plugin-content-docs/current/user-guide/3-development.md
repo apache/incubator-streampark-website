@@ -74,11 +74,14 @@ pnpm serve
 ![Streampark Select Team](/doc/image/streampark_select_team.jpg)
 
 ### 演示调试代码
+1.在idea以debug模式启动项目
 
-选择`Project`菜单，点击build
+2.在ApplicationController的flink/app/list加入断点
 
-![Streampark Project Build](/doc/image/streampark_project_build.png)
+![Streampark Project Build](/doc/image/streampark_debug_build.png)
 
-调试效果
+3.输入帐号密码登陆streampark,选择team之后就会触犯断点
 
-![Streampark Debugging](/doc/image/streampark_debugging.png)
+![Streampark Project Build](/doc/image/streampark_debugging.png)
+
+
