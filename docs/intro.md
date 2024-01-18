@@ -4,35 +4,35 @@ title: 'What is StreamPark'
 sidebar_position: 1
 ---
 
-# StreamPark
+# Apache StreamPark™
+
 make stream processing easier!!!
 
 > An amazing framework makes stream processing easier.
 
-## 🚀 What is StreamPark
+## 🚀 What is Apache StreamPark™
 
-`StreamPark` is an easy-to-use stream processing application development framework and one-stop stream processing operation platform, Aimed at ease building and managing streaming applications, StreamPark provides scaffolding for writing streaming process logics with Apache Flink and Apache Spark.
+`Apache StreamPark` is an easy-to-use stream processing application development framework and one-stop stream processing operation platform, Aimed at ease building and managing streaming applications, StreamPark provides scaffolding for writing streaming process logics with Apache Flink and Apache Spark.
 StreamPark also provides a professional task management including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
 
 
-## Why StreamPark
+## Why Apache StreamPark™
 
 Apache Flink and Apache Spark are widely used as the next generation of big data streaming computing engines.  Based on a bench of excellent experiences combined with best practices, we extracted the task deployment and runtime parameters into the configuration files. In this way,  an easy-to-use RuntimeContext with out-of-the-box connectors would bring easier and more efficient task development experience. It reduces the learning cost and development barriers, hence developers can focus on the business logic.
 On the other hand, It can be challenge for enterprises to use Flink & Spark if there is no professional management platform for Flink & Spark tasks during the deployment phase. StreamPark provides such a professional task management platform, including task development, scheduling, interactive query, deployment, operation, maintenance, etc.
 
 ## 🎉 Features
-* Apache Flink & Spark application development scaffold
+* Apache Flink & Apache Spark application development scaffold
 * Support multiple versions of Flink & Spark
 * Wide range of out-of-the-box connectors
 * One-stop stream processing operation platform
 * Support catalog、olap、streaming-warehouse etc.
 * ...
 
+## 🏳‍🌈 Architecture of Apache StreamPark™
 
-## 🏳‍🌈 Architecture of StreamPark
-
-The overall architecture of StreamPark is shown in the following figure. StreamPark consists of three parts, they are StreamPark-core and StreamPark-console.
+The overall architecture of Apache StreamPark is shown in the following figure. Apache StreamPark consists of three parts, they are StreamPark-core and StreamPark-console.
 
 ![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
