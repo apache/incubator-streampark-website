@@ -30,7 +30,7 @@ Software versions used in this document:
 > - **Hadoop : 3.2.1**
 
 Main component dependencies:
-![2_main_components_dep](/doc/image/install/2_main_components_dep.png)
+![2_main_components_dep](/doc/image_en/install/2_main_components_dep.png)
 # Pre-installation Preparation
 > JDK, MYSQL, HADOOP need to be installed by users themselves.
 
@@ -168,14 +168,14 @@ vim application.yml
 ![15_application_yml_server_port](/doc/image/install/15_application_yml_server_port.png)
 > If the flink job jar is too large, it may fail to upload, so consider modifying (max-file-size and max-request-size); of course, other factors in the actual environment should be considered: nginx restrictions, etc.
 
-![16_application_yml_spring_profile_active](/doc/image/install/16_application_yml_spring_profile_active.png)
+![16_application_yml_spring_profile_active](/doc/image_en/install/16_application_yml_spring_profile_active.png)
 > Supports Knox configuration, some users have privately deployed Hadoop environments, accessible through Knox
 > workspace: Configure workspace information (e.g., savepoint and checkpoint storage paths)
 
-![17_application_yml_streampark_workspace](/doc/image/install/17_application_yml_streampark_workspace.png)
+![17_application_yml_streampark_workspace](/doc/image_en/install/17_application_yml_streampark_workspace.png)
 > ldap
 
-![18_application_yml_ldap](/doc/image/install/18_application_yml_ldap.png)
+![18_application_yml_ldap](/doc/image_en/install/18_application_yml_ldap.png)
 
 ### 【Optional】Configuring Kerberos
 > Background: Enterprise-level Hadoop cluster environments have set security access mechanisms, such as Kerberos. StreamPark can also be configured with Kerberos, allowing Flink to authenticate through Kerberos and submit jobs to the Hadoop cluster.
