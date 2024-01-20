@@ -26,7 +26,7 @@ For this guide, choose the simpler Standalone Session mode (**indicated by the g
 start-cluster.sh
 ```
 ![5_start_flink_standalone_session_service](/doc/image_en/platform-usage/5_start_flink_standalone_session_service.png)
-> Page access: [http://hadoop:8081/](http://hadoop:8081/)
+> Page access: [http://vm:8081/](http://vm:8081/)
 
 ![6_flink_standalone_session_web_ui](/doc/image_en/platform-usage/6_flink_standalone_session_web_ui.png)
 ### Configure Flink Cluster
@@ -43,7 +43,7 @@ start-cluster.sh
 ### Main Parameters
 > - Development Mode: Choose “Flink SQL”
 > - Execution Mode: Choose “remote”
-> - Flink Version: Select "flink-1.14", as configured in “1.1 Configure FLINK_HOME”
+> - Flink Version: Select "flink-1.17", as configured in “1.1 Configure FLINK_HOME”
 > - Flink Cluster: Select “myStandalonSession”, as configured in “1.2 Configure FLINK Cluster”
 > - Flink SQL: See example below
 > - Application Name: Job name
@@ -204,7 +204,7 @@ curl -X POST '/flink/app/cancel' \
 #### Flink Cluster
 > - For executing Flink jobs in Session mode, there are three types based on different resource management methods: Standalone, Yarn, K8s
 > - 【**To be improved**】Application scenario: Suitable for scenarios with sufficient resources and where job isolation requirements are not very strict
-> - For more on session mode, see: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/overview/#session-mode)
+> - For more on session mode, see: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/overview/#session-mode](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/overview/#session-mode)
 
 
 ![52_add_flink_cluster_info](/doc/image_en/platform-usage/52_add_flink_cluster_info.png)
@@ -217,21 +217,6 @@ curl -X POST '/flink/app/cancel' \
 > 【**To be improved**】In fact, a key feature of StreamPark is the optimization of the management mode for native Flink jobs at the user level, enabling users to rapidly develop, deploy, run, and monitor Flink jobs using the platform. Meaning, if users are familiar with native Flink, they will find StreamPark even more intuitive to use.
 
 ## Flink Deployment Modes
-> The following content is excerpted from **Teacher Zhang Libing's Geek Time Column** " [Flink Core Technology and Practice](https://time.geekbang.org/course/intro/100058801)"
-
-### Native Flink Cluster Deployment Modes
-![55_flink_deployment_difference_1](/doc/image_en/platform-usage/55_flink_deployment_difference_1.png)
-
-![56_flink_deployment_difference_2](/doc/image_en/platform-usage/56_flink_deployment_difference_2.png)
-
-![57_flink_deployment_difference_3](/doc/image_en/platform-usage/57_flink_deployment_difference_3.png)
-
-![58_flink_deployment_difference_4](/doc/image_en/platform-usage/58_flink_deployment_difference_4.png)
-
-![59_flink_deployment_difference_5](/doc/image_en/platform-usage/59_flink_deployment_difference_5.png)
-
-![60_flink_deployment_difference_6](/doc/image_en/platform-usage/60_flink_deployment_difference_6.png)
-
 ### How to Use in StreamPark
 > **Session Mode**
 
@@ -254,7 +239,7 @@ curl -X POST '/flink/app/cancel' \
 
 ## Setting Job Parameters
 ### Native Flink Job Parameters
-> Official website: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/deployment/config/)
+> Official website: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/config/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/config/)
 
 > Native submission command (with parameters)
 
@@ -272,7 +257,7 @@ flink run-application -t yarn-application \
 > 【**To be improved**】
 
 ### Native Flink Restart Mechanism
-> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/task_failure_recovery/)
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/task_failure_recovery/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/task_failure_recovery/)
 
 ![68_native_flink_restart_strategy](/doc/image_en/platform-usage/68_native_flink_restart_strategy.png)
 
@@ -293,8 +278,8 @@ flink run-application -t yarn-application \
 > 【**To be improved**】
 
 ### Native Flink Checkpoint and Savepoint
-> cp: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/dev/datastream/fault-tolerance/checkpointing/)
-> sp: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/savepoints/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/state/savepoints/)
+> cp: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/fault-tolerance/checkpointing/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/fault-tolerance/checkpointing/)
+> sp: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/savepoints/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/savepoints/)
 
 
 ![72_native_flink_save_checkpoint_gramma](/doc/image_en/platform-usage/72_native_flink_save_checkpoint_gramma.png)
@@ -322,7 +307,7 @@ flink run-application -t yarn-application \
 > 【**To be improved**】
 
 ### Native Flink Job Status
-> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/internals/job_scheduling/#jobmanager-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84)
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/internals/job_scheduling/#jobmanager-data-structures](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/internals/job_scheduling/#jobmanager-data-structures)
 
 ![79_native_flink_job_status](/doc/image_en/platform-usage/79_native_flink_job_status.svg)
 
@@ -346,7 +331,7 @@ flink run-application -t yarn-application \
 ## Integration with Third-Party Systems
 ### How Native Flink Integrates with Third-Party Systems
 > Native Flink provides a REST API
-> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/)
+> Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/)
 
 ### How StreamPark Integrates with Third-Party Systems
 > StreamPark also provides Restful APIs, supporting integration with other systems.
