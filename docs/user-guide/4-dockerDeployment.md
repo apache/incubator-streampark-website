@@ -24,7 +24,7 @@ To start the service with docker-compose, you need to install [docker-compose](h
 
 This method is suitable for beginners to learn and become familiar with the features. The configuration will reset after the container is restarted. Below, you can configure Mysql or Pgsql for persistence.
 
-#### 2. Deployment
+### 2. Deployment
 
 ```shell
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
@@ -34,21 +34,21 @@ docker-compose up -d
 
 Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamPark link will redirect you to the login page, where the default user and password for StreamPark are admin and streampark respectively. To learn more about the operation, please refer to the user manual for a quick start.
 
-#### 3. Configure flink home
+### 3. Configure flink home
 
 ![](/doc/image/streampark_flinkhome.png)
 
-#### 4. Configure flink-session cluster
+### 4. Configure flink-session cluster
 
 ![](/doc/image/remote.png)
 
 Note:When configuring the flink-sessin cluster address, the ip address is not localhost, but the host network ip, which can be obtained through ifconfig
 
-#### 5. Submit flink job
+### 5. Submit flink job
 
 ![](/doc/image/remoteSubmission.png)
 
-##### Use existing Mysql services
+#### Use existing Mysql services
 This approach is suitable for enterprise production, where you can quickly deploy StreamPark based on docker and associate it with an online database
 Note: The diversity of deployment support is maintained through the .env configuration file, make sure there is one and only one .env file in the directory
 
@@ -72,7 +72,7 @@ SPRING_DATASOURCE_PASSWORD=streampark
 ```
 docker-compose up -d
 ```
-##### Use existing Pgsql services
+#### Use existing Pgsql services
 
 ```shell
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
