@@ -438,4 +438,4 @@ StreamPark 支持两种方式写入数据：1.addSink() 2. writeUsingOutputForma
 
 ## 其他配置
 
-其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/config/)
