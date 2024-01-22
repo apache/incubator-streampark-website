@@ -44,7 +44,7 @@ Copy the path of the extracted directory, for example: `${workspace}/incubator-s
 
 ### Start the Backend Service
 
-Navigate to `streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/Apache StreamParkConsoleBootstrap.java`
+Navigate to `streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/Apache StreamPark™ConsoleBootstrap.java`
 
 Modify the launch configuration
 

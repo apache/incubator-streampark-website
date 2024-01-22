@@ -12,8 +12,8 @@ make stream processing easier!!!
 
 ## 🚀 什么是 Apache StreamPark™
 
-实时即未来,在实时处理流域 `Apache Spark` 和 `Apache Flink` 是一个伟大的进步,尤其是 `Apache Flink` 被普遍认为是下一代大数据流计算引擎, 我们在使用 `Flink` & `Spark` 时发现从编程模型, 启动配置到运维管理都有很多可以抽象共用的地方, 我们将一些好的经验固化下来并结合业内的最佳实践, 通过不断努力诞生了今天的框架 —— `Apache StreamPark`, 项目的初衷是 —— 让流处理更简单,
-使用 `Apache StreamPark` 开发流处理作业, 可以极大降低学习成本和开发门槛, 让开发者只用关心最核心的业务,`Apache StreamPark` 规范了项目的配置,鼓励函数式编程,定义了最佳的编程方式,提供了一系列开箱即用的`Connectors`,标准化了配置、开发、测试、部署、监控、运维的整个过程, 提供了`scala`和`java`两套 Api, 并且提供了一个一站式的流处理作业开发管理平台, 从流处理作业开发到上线全生命周期都
+实时即未来,在实时处理流域 `Apache Spark` 和 `Apache Flink` 是一个伟大的进步,尤其是 `Apache Flink` 被普遍认为是下一代大数据流计算引擎, 我们在使用 `Flink` & `Spark` 时发现从编程模型, 启动配置到运维管理都有很多可以抽象共用的地方, 我们将一些好的经验固化下来并结合业内的最佳实践, 通过不断努力诞生了今天的框架 —— `Apache StreamPark™`, 项目的初衷是 —— 让流处理更简单,
+使用 `Apache StreamPark™` 开发流处理作业, 可以极大降低学习成本和开发门槛, 让开发者只用关心最核心的业务,`Apache StreamPark™` 规范了项目的配置,鼓励函数式编程,定义了最佳的编程方式,提供了一系列开箱即用的`Connectors`,标准化了配置、开发、测试、部署、监控、运维的整个过程, 提供了`scala`和`java`两套 Api, 并且提供了一个一站式的流处理作业开发管理平台, 从流处理作业开发到上线全生命周期都
 做了支持, 是一个一站式的流处理计算平台.
 
 
@@ -29,9 +29,9 @@ make stream processing easier!!!
 
 ## 🏳‍🌈 组成部分
 
-`Apache StreamPark` 核心由`streampark-core` 和 `streampark-console` 组成
+`Apache StreamPark™` 核心由`streampark-core` 和 `streampark-console` 组成
 
-![Apache StreamPark Archite](/doc/image/streampark_archite.png)
+![Apache StreamPark™ Archite](/doc/image/streampark_archite.png)
 
 ### 1️⃣ streampark-core
 

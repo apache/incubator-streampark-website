@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import { DeploymentEnvs } from '../components/TableData.jsx';
 
-Apache StreamPark 总体组件栈架构如下， 由 streampark-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
+Apache StreamPark™ 总体组件栈架构如下， 由 streampark-core 和 streampark-console 两个大的部分组成 , streampark-console 是一个非常重要的模块, 定位是一个**综合实时数据平台**，**流式数仓平台**, **低代码 ( Low Code )**, **Flink & Spark 任务托管平台**，可以较好的管理 Flink 任务，集成了项目编译、发布、参数配置、启动、savepoint，火焰图 ( flame graph )，Flink SQL，监控等诸多功能于一体，大大简化了 Flink 任务的日常操作和维护，融合了诸多最佳实践。其最终目标是打造成一个实时数仓，流批一体的一站式大数据解决方案
 
-![Apache StreamPark Archite](/doc/image/streampark_archite.png)
+![Apache StreamPark™ Archite](/doc/image/streampark_archite.png)
 
 streampark-console 提供了开箱即用的安装包，安装之前对环境有些要求，具体要求如下：
 
@@ -16,7 +16,7 @@ streampark-console 提供了开箱即用的安装包，安装之前对环境有�
 
 <DeploymentEnvs></DeploymentEnvs>
 
-目前 Apache StreamPark 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
+目前 Apache StreamPark™ 对 Flink 的任务发布，同时支持 `Flink on YARN` 和 `Flink on Kubernetes` 两种模式。
 
 ### Hadoop
 使用 `Flink on YARN`，需要部署的集群安装并配置 Hadoop的相关环境变量，如你是基于 CDH 安装的 hadoop 环境，
@@ -34,7 +34,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### Kubernetes
 
-使用 `Flink on Kubernetes`，需要额外部署/或使用已经存在的 Kubernetes 集群，请参考条目： [**Apache StreamPark Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)。
+使用 `Flink on Kubernetes`，需要额外部署/或使用已经存在的 Kubernetes 集群，请参考条目： [**Apache StreamPark™ Flink-K8s 集成支持**](../flink-k8s/1-deployment.md)。
 
 ## 安装
 
@@ -100,7 +100,7 @@ streampark-console-service-1.2.1
 ```yaml
 spring:
   profiles.active: mysql #[h2,pgsql,mysql]
-  application.name: Apache StreamPark
+  application.name: Apache StreamPark™
   devtools.restart.enabled: false
   mvc.pathmatch.matching-strategy: ant_path_matcher
   servlet:
@@ -159,7 +159,7 @@ bash startup.sh
 
 经过以上步骤，即可部署完成，可以直接登录系统
 
-![Apache StreamPark Login](/doc/image/streampark_login.jpeg)
+![Apache StreamPark™ Login](/doc/image/streampark_login.jpeg)
 
 :::tip 提示
 默认密码: <strong> admin / streampark </strong>
@@ -167,9 +167,9 @@ bash startup.sh
 
 ## 系统配置
 
-进入系统之后，第一件要做的事情就是修改系统配置，在菜单/Apache StreamPark/Setting 下，操作界面如下:
+进入系统之后，第一件要做的事情就是修改系统配置，在菜单/Apache StreamPark™/Setting 下，操作界面如下:
 
-![Apache StreamPark Settings](/doc/image/streampark_settings_2.0.0.png)
+![Apache StreamPark™ Settings](/doc/image/streampark_settings_2.0.0.png)
 
 主要配置项分为以下几类
 

@@ -20,7 +20,7 @@ sidebar_position: 8
 如果由于输入错误而将任务提交到错误的队列中，
 可能会影响队列上 Yarn 应用程序的稳定性，并滥用队列资源。
 
-因此，Apache StreamPark 引入了队列管理功能，以确保一组添加的队列在同一团队内共享，
+因此，Apache StreamPark™ 引入了队列管理功能，以确保一组添加的队列在同一团队内共享，
 也就是确保队列资源在团队范围内是隔离的。它可以产生以下好处：
 - 当部署 Flink `yarn-application` 应用程序或 Flink `yarn-session` 集群时，
 它可以快速准确地设置 Yarn 队列（`yarn.application.queue`）和标签（`yarn.application.node-label`）。
@@ -81,11 +81,11 @@ sidebar_position: 8
   <img src="/doc/image/yarn-queue/use_yarn_session_mode_to_create_application.png"/><br></br>
 
 - 会话集群被所有团队共享。为什么创建 `yarn-session` Flink 集群时，只能使用当前团队中的队列而非所有团队中的队列作为候选队列列表？
-> 基于上述所提到的，Apache StreamPark 希望在创建 `yarn-session` Flink 集群时，管理员只能指定当前团队所属的队列，这有助于管理员更好地感知当前操作对当前团队的影响。
+> 基于上述所提到的，Apache StreamPark™ 希望在创建 `yarn-session` Flink 集群时，管理员只能指定当前团队所属的队列，这有助于管理员更好地感知当前操作对当前团队的影响。
 
 - 为什么不支持将 `flink yarn-session clusters / general clusters` 在团队范围内进行隔离？
   - 集群可见性的变化带来的影响范围比队列可见性的变化范围更大。
-  - Apache StreamPark 需要面对更大的向后兼容性难题，同时还需要考虑用户体验。
+  - Apache StreamPark™ 需要面对更大的向后兼容性难题，同时还需要考虑用户体验。
   - 目前，社区对使用 `yarn-application` 和 `yarn-session` 集群模式部署的用户群体和应用规模没有确切的研究。
     基于这一事实，社区没有提供更大的功能支持。
 

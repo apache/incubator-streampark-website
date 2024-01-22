@@ -4,7 +4,7 @@ title: How to Release
 sidebar_position: 4
 ---
 
-This tutorial describes in detail how to release Apache StreamPark, take the release of version 2.1.0 as an example.
+This tutorial describes in detail how to release Apache StreamPark™, take the release of version 2.1.0 as an example.
 
 ## 1. Environmental requirements
 
@@ -59,9 +59,9 @@ GnuPG needs to construct a user ID to identify your key.
 
 Real name: muchunjin # Please enter 'gpg real name'
 Email address: muchunjin@apache.org # Please enter your apache email address here
-Comment: for apache Apache StreamPark release create at 20230501 # Please enter some comments here
+Comment: for apache Apache StreamPark™ release create at 20230501 # Please enter some comments here
 You selected this USER-ID:
-    "muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>"
+    "muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>"
 
 Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O # Please enter O here
 We need to generate a lot of random bytes. It is a good idea to perform
@@ -94,7 +94,7 @@ public and secret key created and signed.
 
 pub   rsa4096 2023-05-01 [SC]
       85778A4CE4DD04B7E07813ABACFB69E705016886
-uid                      muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>
+uid                      muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>
 sub   rsa4096 2023-05-01 [E]
 ```
 
@@ -108,7 +108,7 @@ $ gpg --keyid-format SHORT --list-keys
 ------------------------
 pub   rsa4096/05016886 2023-05-01 [SC]
       85778A4CE4DD04B7E07813ABACFB69E705016886
-uid         [ultimate] muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>
+uid         [ultimate] muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>
 sub   rsa4096/0C5A4E1C 2023-05-01 [E]
 
 # Send public key to keyserver via key id
@@ -122,7 +122,7 @@ Verify whether it is synchronized to the public network, it will take about a mi
 
 ```shell
 $ gpg --keyserver keyserver.ubuntu.com --recv-keys 05016886   # If the following content appears, it means success
-gpg: key ACFB69E705016886: "muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>" not changed
+gpg: key ACFB69E705016886: "muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>" not changed
 gpg: Total number processed: 1
 gpg:              unchanged: 1
 ```
@@ -137,8 +137,8 @@ If the query results are as follows, it means that the key is successfully creat
 
 #### 2.4 Add the gpg public key to the KEYS file of the Apache SVN project warehouse
 
-- Apache StreamPark Branch Dev https://dist.apache.org/repos/dist/dev/incubator/streampark
-- Apache StreamPark Branch Release https://dist.apache.org/repos/dist/release/incubator/streampark/
+- Apache StreamPark™ Branch Dev https://dist.apache.org/repos/dist/dev/incubator/streampark
+- Apache StreamPark™ Branch Release https://dist.apache.org/repos/dist/release/incubator/streampark/
 
 ##### 2.4.1 Add public key to KEYS in dev branch
 
@@ -380,15 +380,15 @@ $ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 apache-streampark-2.1.0-incubating-src.tar.gz
 gpg: Signature made Tue May  2 12:16:35 2023 CST
 gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: Good signature from "muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+gpg: Good signature from "muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>" [ultimate]
 apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
 gpg: Signature made Tue May  2 12:16:36 2023 CST
 gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: Good signature from "muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+gpg: Good signature from "muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>" [ultimate]
 apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
 gpg: Signature made Tue May  2 12:16:37 2023 CST
 gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: BAD signature from "muchunjin (for apache Apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+gpg: BAD signature from "muchunjin (for apache Apache StreamPark™ release create at 20230501) <muchunjin@apache.org>" [ultimate]
 
 # Verify SHA512
 $ for i in *.tar.gz; do echo $i; sha512sum --check $i.sha512; done
@@ -404,7 +404,7 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 #### 3.6 Publish the dev directory of the Apache SVN warehouse of the material package
 
 ```shell
-# Check out the dev directory of the Apache SVN warehouse to the streampark_svn_dev directory under dist in the root directory of the Apache StreamPark project
+# Check out the dev directory of the Apache SVN warehouse to the streampark_svn_dev directory under dist in the root directory of the Apache StreamPark™ project
 svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 
 svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark
@@ -431,7 +431,7 @@ svn add 2.0.0-RC1
 svn status
 
 # 3. Submit to svn remote server
-svn commit -m "release for Apache StreamPark 2.1.0"
+svn commit -m "release for Apache StreamPark™ 2.1.0"
 ```
 
 #### 3.7 Check Apache SVN Commit Results
@@ -447,13 +447,13 @@ svn commit -m "release for Apache StreamPark 2.1.0"
 Send a voting email in the community requires at least three `+1` and no `-1`.
 
 > `Send to`: dev@streampark.apache.org <br />
-> `Title`: [VOTE] Release Apache StreamPark (Incubating) 2.1.0 rc1 <br />
+> `Title`: [VOTE] Release Apache StreamPark™ (Incubating) 2.1.0 rc1 <br />
 > `Body`: 
 
 ```
-Hello Apache StreamPark Community:
+Hello Apache StreamPark™ Community:
 
-This is a call for vote to release Apache StreamPark(Incubating) version release-2.1.0-RC1.
+This is a call for vote to release Apache StreamPark™(Incubating) version release-2.1.0-RC1.
 
 Apache Streamark,Make stream processing easier! easy-to-use streaming application development framework and operation platform.
 
@@ -482,11 +482,11 @@ Please vote accordingly:
 
 *Valid check is a requirement for a vote. *Checklist for reference:
 
-[ ] Download Apache StreamPark are valid.
+[ ] Download Apache StreamPark™ are valid.
 [ ] Checksums and PGP signatures are valid.
 [ ] Source code distributions have correct names matching the current
 release.
-[ ] LICENSE and NOTICE files are correct for each Apache StreamPark repo.
+[ ] LICENSE and NOTICE files are correct for each Apache StreamPark™ repo.
 [ ] All files have license headers if necessary.
 [ ] No compiled archives bundled in source archive.
 [ ] Can compile from source.
@@ -508,13 +508,13 @@ Thanks!
 After 72 hours, the voting results will be counted, and the voting result email will be sent, as follows.
 
 > `Send to`: dev@streampark.apache.org <br />
-> `Title`: [RESULT][VOTE] Release Apache StreamPark (Incubating) 2.1.0-rc1 <br />
+> `Title`: [RESULT][VOTE] Release Apache StreamPark™ (Incubating) 2.1.0-rc1 <br />
 > `Body`:
 
 ```
-Dear Apache StreamPark community,
+Dear Apache StreamPark™ community,
 
-Thanks for your review and vote for "Release Apache StreamPark (Incubating) 2.1.0-rc1"
+Thanks for your review and vote for "Release Apache StreamPark™ (Incubating) 2.1.0-rc1"
 I'm happy to announce the vote has passed:
 
 
@@ -556,18 +556,18 @@ Send a voting email in the incubator community requires at least three `+1` and 
 
 > `Send to`: general@incubator.apache.org <br />
 > `cc`: dev@streampark.apache.org、tison@apache.org、willem.jiang@gmail.com <br />
-> `Title`: [VOTE] Release Apache StreamPark(Incubating) 2.1.0-rc1 <br />
+> `Title`: [VOTE] Release Apache StreamPark™(Incubating) 2.1.0-rc1 <br />
 > `Body`:
 
 ```
 Hello Incubator Community:
 
-This is a call for a vote to release Apache StreamPark(Incubating) version 2.1.0-RC1.
-The Apache StreamPark community has voted on and approved a proposal to release Apache StreamPark(Incubating) version 2.1.0-RC1.
+This is a call for a vote to release Apache StreamPark™(Incubating) version 2.1.0-RC1.
+The Apache StreamPark™ community has voted on and approved a proposal to release Apache StreamPark™(Incubating) version 2.1.0-RC1.
 We now kindly request the Incubator PMC members review and vote on this incubator release.
-Apache StreamPark, Make stream processing easier! easy-to-use streaming application development framework and operation platform.
+Apache StreamPark™, Make stream processing easier! easy-to-use streaming application development framework and operation platform.
 
-Apache StreamPark community vote thread:
+Apache StreamPark™ community vote thread:
 https://lists.apache.org/thread/t01b2lbtqzyt7j4dsbdp5qjc3gngjsdq
 
 Vote result thread:
@@ -611,7 +611,7 @@ How to Build:
 
 Thanks,
 
-On behalf of Apache StreamPark(Incubating) community
+On behalf of Apache StreamPark™(Incubating) community
 
 
 Best,
@@ -635,13 +635,13 @@ Then the voting results will be counted, and the voting result email will be sen
 
 > `Send to`: general@incubator.apache.org <br />
 > `cc`: dev@streampark.apache.org、tison@apache.org、willem.jiang@gmail.com <br />
-> `Title`: [RESULT][VOTE] Release Apache StreamPark(Incubating) 2.1.0-rc1 <br />
+> `Title`: [RESULT][VOTE] Release Apache StreamPark™(Incubating) 2.1.0-rc1 <br />
 > `Body`:
 
 ```
 Hi all,
 
-Thanks for your review and vote for "Release Apache StreamPark (Incubating) 2.1.0-rc1"
+Thanks for your review and vote for "Release Apache StreamPark™ (Incubating) 2.1.0-rc1"
 I'm happy to announce the vote has passed:
 
 3 binding votes, no +0 or -1 votes.
@@ -658,7 +658,7 @@ Vote thread:
 https://lists.apache.org/thread/k3cvcbzxqs6qy62d1o6r9pqpykcgvvhm
 
 
-Thanks everyone for your feedback and help with Apache StreamPark apache release. The Apache StreamPark team will take the steps to complete this release and will announce it soon.
+Thanks everyone for your feedback and help with Apache StreamPark™ apache release. The Apache StreamPark™ team will take the steps to complete this release and will announce it soon.
 
 Best,
 ChunJin Mu
@@ -743,25 +743,25 @@ The rename the release-2.1.0-rc1 branch to release-2.1.0.
 
 > `Send to`: general@incubator.apache.org <br />
 > `cc`: dev@streampark.apache.org <br />
-> `Title`: [ANNOUNCE] Release Apache StreamPark (Incubating) 2.1.0 <br />
+> `Title`: [ANNOUNCE] Release Apache StreamPark™ (Incubating) 2.1.0 <br />
 > `Body`:
 
 ```
 Hi all,
 
-We are glad to announce the release of Apache StreamPark(incubating) 2.1.0.
+We are glad to announce the release of Apache StreamPark™(incubating) 2.1.0.
 Once again I would like to express my thanks to your help.
 
-Apache StreamPark(https://streampark.apache.org/) Make stream processing easier! easy-to-use streaming application development framework and operation platform
+Apache StreamPark™(https://streampark.apache.org/) Make stream processing easier! easy-to-use streaming application development framework and operation platform
 
 Download Links: https://streampark.apache.org/download/
 Release Notes: https://streampark.apache.org/download/release-note/2.1.0
 
-Apache StreamPark Resources:
+Apache StreamPark™ Resources:
 - Issue: https://github.com/apache/incubator-streampark/issues
 - Mailing list: dev@streampark.apache.org
 
-- Apache StreamPark Team
+- Apache StreamPark™ Team
 
 Best,
 ChunJin Mu

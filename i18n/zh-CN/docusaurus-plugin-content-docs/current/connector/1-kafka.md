@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 [Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 **精确一次** 的处理语义
 
-`Apache StreamPark`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
+`Apache StreamPark™`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
 
 ## 依赖
 
@@ -68,7 +68,7 @@ properties.setProperty("group.id", "test")
 val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStringSchema(), properties))
 
 ```
-可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`Apache StreamPark`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
+可以看到一上来定义了一堆kafka的连接信息,这种方式各项参数都是硬编码的方式写死的,非常的不灵敏,下面我们来看看如何用`Apache StreamPark™`接入 `kafka`的数据,只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
 ### 基础消费示例
 
@@ -314,7 +314,7 @@ DataStream<String> source1 = new KafkaSource<String>(context)
 更多详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
 
 Flink Kafka Consumer 还能够使用正则表达式基于 Topic 名称的模式匹配来发现 Topic,详情请参考[官网文档](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
-在`Apache StreamPark`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
+在`Apache StreamPark™`中提供更简单的方式,具体需要在 `pattern`下配置要匹配的`topic`实例名称的正则即可
 
 <Tabs>
 <TabItem value="配置" label="配置">
@@ -403,7 +403,7 @@ DataStream<String> stream = env.addSource(myConsumer);
 </TabItem>
 </Tabs>
 
-在`Apache StreamPark`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
+在`Apache StreamPark™`中不推荐这种方式进行设定,提供了更方便的方式,只需要在配置里指定 `auto.offset.reset` 即可
 
 * `earliest` 从最早的记录开始
 * `latest` 从最新的记录开始
@@ -535,7 +535,7 @@ class JavaUser implements Serializable {
 
 在许多场景中,记录的时间戳是(显式或隐式)嵌入到记录本身中。此外,用户可能希望定期或以不规则的方式`Watermark`,例如基于`Kafka`流中包含当前事件时间的`watermark`的特殊记录。对于这些情况，`Flink Kafka Consumer`是允许指定`AssignerWithPeriodicWatermarks`或`AssignerWithPunctuatedWatermarks`
 
-在`Apache StreamPark`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
+在`Apache StreamPark™`中运行传入一个`WatermarkStrategy`作为参数来分配`Watermark`,如下面的示例,解析`topic`中的数据为`user`对象,`user`中有个 `orderTime` 是时间类型,我们以这个为基准,为其分配一个`Watermark`
 
 <Tabs>
 
@@ -665,7 +665,7 @@ class JavaUser implements Serializable {
 
 ## Kafka Sink (Producer)
 
-在`Apache StreamPark`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
+在`Apache StreamPark™`中`Kafka Producer` 被称为`KafkaSink`,它允许将消息写入一个或多个`Kafka topic中`
 
 <Tabs>
 
@@ -990,7 +990,7 @@ class JavaUser implements Serializable {
 
 ### 指定partitioner
 
-`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`Apache StreamPark`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
+`KafkaSink`允许显示的指定一个kafka分区器,不指定默认使用`Apache StreamPark™`内置的 **KafkaEqualityPartitioner** 分区器,顾名思义,该分区器可以均匀的将数据写到各个分区中去,`scala` api是通过`partitioner`参数来设置分区器,
 `java` api中是通过`partitioner()`方法来设置的
 
 :::tip 注意事项

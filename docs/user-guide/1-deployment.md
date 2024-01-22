@@ -6,9 +6,9 @@ sidebar_position: 1
 
 import { DeploymentEnvs } from '../components/TableData.jsx';
 
-The overall component stack structure of Apache StreamPark is as follows. It consists of two major parts: streampark-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
+The overall component stack structure of Apache StreamPark™ is as follows. It consists of two major parts: streampark-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
 
-![Apache StreamPark Archite](/doc/image_en/streampark_archite.png)
+![Apache StreamPark™ Archite](/doc/image_en/streampark_archite.png)
 
 streampark-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
 
@@ -16,7 +16,7 @@ streampark-console provides an out-of-the-box installation package. Before insta
 
 <DeploymentEnvs></DeploymentEnvs>
 
-At present, Apache StreamPark has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
+At present, Apache StreamPark™ has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
 
 ### Hadoop
 To use `Flink on YARN`, you need to install and configure Hadoop-related environment variables in the deployed cluster. For example, if you installed the hadoop environment based on CDH,
@@ -34,7 +34,7 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### Kubernetes
 
-Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**Apache StreamPark Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
+Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**Apache StreamPark™ Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
 
 ## Build & Deploy
 
@@ -118,7 +118,7 @@ Go to `conf`, modify `conf/application.yml`, find the spring item, find the prof
 ```yaml
 spring:
   profiles.active: mysql #[h2,pgsql,mysql]
-  application.name: Apache StreamPark
+  application.name: Apache StreamPark™
   devtools.restart.enabled: false
   mvc.pathmatch.matching-strategy: ant_path_matcher
   servlet:
@@ -177,7 +177,7 @@ Relevant logs will be output to **streampark-console-service-1.0.0/logs/streampa
 
 After the above steps, even if the deployment is completed, you can directly log in to the system
 
-![Apache StreamPark Login](/doc/image/streampark_login.jpeg)
+![Apache StreamPark™ Login](/doc/image/streampark_login.jpeg)
 
 :::tip hint
 Default password: <strong> admin / streampark </strong>
@@ -185,9 +185,9 @@ Default password: <strong> admin / streampark </strong>
 
 ## System Configuration
 
-After entering the system, the first thing to do is to modify the system configuration. Under the menu/Apache StreamPark/Setting, the operation interface is as follows:
+After entering the system, the first thing to do is to modify the system configuration. Under the menu/Apache StreamPark™/Setting, the operation interface is as follows:
 
-![Apache StreamPark Settings](/doc/image/streampark_settings_2.0.0.png)
+![Apache StreamPark™ Settings](/doc/image/streampark_settings_2.0.0.png)
 
 The main configuration items are divided into the following categories
 

@@ -1,9 +1,9 @@
 # 引言
 ## 目的和范围
-> 本文档旨在帮助用户完成 Apache StreamPark 的安装和初步配置
+> 本文档旨在帮助用户完成 Apache StreamPark™ 的安装和初步配置
 
 ## 目标受众
-> 面向需要在其系统中部署 Apache StreamPark 的系统开发和运维人员
+> 面向需要在其系统中部署 Apache StreamPark™ 的系统开发和运维人员
 
 # 系统要求
 > 参考：[https://streampark.apache.org/docs/user-guide/deployment#environmental-requirements](https://streampark.apache.org/docs/user-guide/deployment#environmental-requirements)
@@ -15,13 +15,13 @@
 ## 软件要求
 Notes:  
 
-1. **单纯安装Apache StreamPark，可忽略hadoop**
+1. **单纯安装Apache StreamPark™，可忽略hadoop**
 2. 若采用 yarn application 模式 执行flink作业，需要hadoop
 > - JDK : 1.8+                            
 > - MySQL : 5.6+                      
 > - Flink : 1.12.0+                    
 > - Hadoop : 2.7.0+                 
-> - Apache StreamPark :  2.0.0+            
+> - Apache StreamPark™ :  2.0.0+            
 
 本文档采用的软件版本信息
 > - **JDK：1.8.0_181**
@@ -75,7 +75,7 @@ flink -v
 cp mysql-connector-java-8.0.28.jar /usr/local/streampark/lib
 ```
 ![4_mysql_dep](/doc/image/install/4_mysql_dep.png)
-## 下载Apache StreamPark
+## 下载Apache StreamPark™
 > 下载URL:[https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz)
 
 > 上传 [apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz) 至 服务器 /usr/local 路径
@@ -90,11 +90,11 @@ tar -zxvf apache-streampark_2.12-2.0.0-incubating-bin.tar.gz
 
 # 安装
 ## 初始化系统数据
-> **目的：创建Apache StreamPark组件部署依赖的数据库(表)，同时将其运行需要的数据提前初始化(比如：web页面的菜单、用户等信息)，便于后续操作。**
+> **目的：创建Apache StreamPark™组件部署依赖的数据库(表)，同时将其运行需要的数据提前初始化(比如：web页面的菜单、用户等信息)，便于后续操作。**
 
 ### 查看执行SteamPark元数据SQL文件
 > 说明：
-> - Apache StreamPark支持MySQL、PostgreSQL、H2
+> - Apache StreamPark™支持MySQL、PostgreSQL、H2
 > - 本次以MySQL为例，PostgreSQL流程基本一致
 
 > 数据库创建脚本： /usr/local/apache-streampark_2.12-2.0.0-incubating-bin/script/schema/mysql-schema.sql
@@ -133,7 +133,7 @@ show tables;
 ```
 ![13_show_streampark_db_tables](/doc/image/install/13_show_streampark_db_tables.png)
 
-## Apache StreamPark配置
+## Apache StreamPark™配置
 > 目的：配置启动需要的数据源。
 > 配置文件所在路径：/usr/local/streampark/conf
 
@@ -180,7 +180,7 @@ vim application.yml
 ![18_application_yml_ldap](/doc/image/install/18_application_yml_ldap.png)
 
 ### 【可选】配置kerberos
-> 背景：企业级hadoop集群环境都有设置安全访问机制，比如kerberos。Apache StreamPark也可配置kerberos，使得flink可通过kerberos认证，向hadoop集群提交作业。
+> 背景：企业级hadoop集群环境都有设置安全访问机制，比如kerberos。Apache StreamPark™也可配置kerberos，使得flink可通过kerberos认证，向hadoop集群提交作业。
 
 > **修改项如下:**
 > 1. **security.kerberos.login.enable=true**
@@ -190,13 +190,13 @@ vim application.yml
 > 5. **java.security.krb5.conf=/etc/krb5.conf**
 
 ![19_kerberos_yml_config](/doc/image/install/19_kerberos_yml_config.png)
-## 启动Apache StreamPark
-## 进入服务器Apache StreamPark安装路径
+## 启动Apache StreamPark™
+## 进入服务器Apache StreamPark™安装路径
 ```bash
 cd /usr/local/streampark/
 ```
 ![20_enter_streampark_dir](/doc/image/install/20_enter_streampark_dir.png)
-## 启动Apache StreamPark服务
+## 启动Apache StreamPark™服务
 ```bash
 ./bin/startup.sh
 ```

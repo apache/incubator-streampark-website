@@ -12,11 +12,11 @@ import TabItem from '@theme/TabItem';
 
 [Apache Doris](https://doris.apache.org/) is a high-performance, and real-time analytical database,
 which could support high-concurrent point query scenarios.
-Apache StreamPark encapsulates DoirsSink for writing data to Doris in real-time, based on  [Doris' stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)
+Apache StreamPark™ encapsulates DoirsSink for writing data to Doris in real-time, based on  [Doris' stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)
 
-### Write with Apache StreamPark
+### Write with Apache StreamPark™
 
-Use `Apache StreamPark` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
+Use `Apache StreamPark™` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
 such as: {"id":1,"name":"streampark"} The example of the running program is java, as follows:
 
 #### configuration list

@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 There are some rules and conventions to be followed in any framework. Only by following and mastering these rules can we use them more easily and achieve twice the result with half the effort.When we develop Flink job, we actually use the API provided by Flink to write an executable program (which must have a `main()` function) according to the development method required by Flink. We access various`Connector`in the program, and after a series of `operator`operations, we finally sink the data to the target storage through the `Connector` .
 
-We call this method of step-by-step programming according to certain agreed rules the "programming paradigm". In this chapter, we will talk about the "programming paradigm" of Apache StreamPark and the development considerations.
+We call this method of step-by-step programming according to certain agreed rules the "programming paradigm". In this chapter, we will talk about the "programming paradigm" of Apache StreamPark™ and the development considerations.
 
 Let's start from these aspects
 
@@ -25,11 +25,11 @@ Let's start from these aspects
 ![](/doc/image_en/streampark_archite.png)
 
 ## Programming paradigm
-`streampark-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with Apache StreamPark looks like, and what the specifications and requirements are.
+`streampark-core` is positioned as a programming time framework, rapid development scaffolding, specifically created to simplify Flink development. Developers will use this module during the development phase. Let's take a look at what the programming paradigm of `DataStream` and `Flink Sql` with Apache StreamPark™ looks like, and what the specifications and requirements are.
 
 
 ### DataStream
-Apache StreamPark provides both `scala` and `Java` APIs to develop `DataStream` programs, the specific code development is as follows.
+Apache StreamPark™ provides both `scala` and `Java` APIs to develop `DataStream` programs, the specific code development is as follows.
 
 
 <Tabs>
@@ -77,7 +77,7 @@ To develop with the `scala` API, the program must inherit from `FlinkStreaming`.
 Development with the `Java` API can not omit the `main()` method due to the limitations of the language itself, so it will be a standard `main()` function,. The user needs to create the `StreamingContext` manually. `StreamingContext` is a very important class, which will be introduced later.
 
 :::tip tip
-The above lines of `scala` and `Java` code are the basic skeleton code necessary to develop `DataStream` with Apache StreamPark. Developing a `DataStream` program with Apache StreamPark. Starting from these lines of code, Java API development requires the developer to manually start the task `start`.
+The above lines of `scala` and `Java` code are the basic skeleton code necessary to develop `DataStream` with Apache StreamPark™. Developing a `DataStream` program with Apache StreamPark™. Starting from these lines of code, Java API development requires the developer to manually start the task `start`.
 :::
 
 ### Flink Sql
@@ -86,11 +86,11 @@ The TableEnvironment is used to create the contextual execution environment for 
 
 The Flink community has been promoting the batch processing capability of DataStream and unifying the stream-batch integration, and in Flink 1.12, the stream-batch integration is truly unified, many historical APIs such as: DataSet API, BatchTableEnvironment API, etc. are deprecated and retired from the history stage. TableEnvironment** and **StreamTableEnvironment**.
 
- Apache StreamPark provides a more convenient API for the development of **TableEnvironment** and **StreamTableEnvironment** environments.
+ Apache StreamPark™ provides a more convenient API for the development of **TableEnvironment** and **StreamTableEnvironment** environments.
 
 #### TableEnvironment
 
-To develop Table & SQL jobs, TableEnvironment will be the recommended entry class for Flink, supporting both Java API and Scala API, the following code demonstrates how to develop a TableEnvironment type job in Apache StreamPark
+To develop Table & SQL jobs, TableEnvironment will be the recommended entry class for Flink, supporting both Java API and Scala API, the following code demonstrates how to develop a TableEnvironment type job in Apache StreamPark™
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -128,7 +128,7 @@ public class JavaTableApp {
 
 :::tip tip
 
-The above lines of Scala and Java code are the essential skeleton code for developing a TableEnvironment with Apache StreamPark.
+The above lines of Scala and Java code are the essential skeleton code for developing a TableEnvironment with Apache StreamPark™.
 Scala API must inherit FlinkTable, Java API development needs to manually construct TableContext, and the developer needs to manually start the task `start`.
 
 :::
@@ -136,7 +136,7 @@ Scala API must inherit FlinkTable, Java API development needs to manually constr
 #### StreamTableEnvironment
 
 `StreamTableEnvironment` is used in stream computing scenarios, where the object of stream computing is a `DataStream`. Compared to `TableEnvironment`, `StreamTableEnvironment` provides an interface to convert between `DataStream` and `Table`. If your application is written using the `DataStream API` in addition to the `Table API` & `SQL`, you need to use the `StreamTableEnvironment`.
-The following code demonstrates how to develop a `StreamTableEnvironment` type job in Apache StreamPark.
+The following code demonstrates how to develop a `StreamTableEnvironment` type job in Apache StreamPark™.
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -181,12 +181,12 @@ public class JavaStreamTableApp {
 
 
 :::tip tip
-The above lines of scala and Java code are the essential skeleton code for developing `StreamTableEnvironment` with Apache StreamPark, and for developing `StreamTableEnvironment` programs with Apache StreamPark. Starting from these lines of code, Java code needs to construct `StreamTableContext` manually, and `Java API` development requires the developer to start the task `start` manually.
+The above lines of scala and Java code are the essential skeleton code for developing `StreamTableEnvironment` with Apache StreamPark™, and for developing `StreamTableEnvironment` programs with Apache StreamPark™. Starting from these lines of code, Java code needs to construct `StreamTableContext` manually, and `Java API` development requires the developer to start the task `start` manually.
 :::
 
 ## RunTime Context
 
-**RunTime Context** - **StreamingContext** , **TableContext** , **StreamTableContext** are three very important objects in Apache StreamPark, next we look at the definition and role of these three **Context**.
+**RunTime Context** - **StreamingContext** , **TableContext** , **StreamTableContext** are three very important objects in Apache StreamPark™, next we look at the definition and role of these three **Context**.
 
 <center>
 <img src="/doc/image/streampark_coreapi.png" width="60%"/>
@@ -224,7 +224,7 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
 This object is very important and will be used throughout the lifecycle of the task in the `DataStream` job. The `StreamingContext` itself inherits from the `StreamExecutionEnvironment`, and the configuration file is fully integrated into the `StreamingContext`, so that it is very easy to get various parameters from the `StreamingContext`.
 :::
 
-In Apache StreamPark, `StreamingContext` is also the entry class for the Java API to write `DataStream` jobs, one of the constructors of `StreamingContext` is specially built for the Java API, the constructor is defined as follows:
+In Apache StreamPark™, `StreamingContext` is also the entry class for the Java API to write `DataStream` jobs, one of the constructors of `StreamingContext` is specially built for the Java API, the constructor is defined as follows:
 
 ```scala
 /**
@@ -301,7 +301,7 @@ class TableContext(val parameter: ParameterTool,
 }
 ```
 
-In Apache StreamPark, `TableContext` is also the entry class for the Java API to write `Table Sql` jobs of type `TableEnvironment`. One of the constructor methods of `TableContext` is a constructor specifically built for the `Java API`, which is defined as follows:
+In Apache StreamPark™, `TableContext` is also the entry class for the Java API to write `Table Sql` jobs of type `TableEnvironment`. One of the constructor methods of `TableContext` is a constructor specifically built for the `Java API`, which is defined as follows:
 
 ```scala
 
@@ -391,7 +391,7 @@ class StreamTableContext(val parameter: ParameterTool,
 ```
 
 
-In Apache StreamPark, `StreamTableContext` is the entry class for the Java API to write `Table Sql` jobs of type `StreamTableEnvironment`. One of the constructors of `StreamTableContext` is a function built specifically for the Java API, which is defined as follows:
+In Apache StreamPark™, `StreamTableContext` is the entry class for the Java API to write `Table Sql` jobs of type `StreamTableEnvironment`. One of the constructors of `StreamTableContext` is a function built specifically for the Java API, which is defined as follows:
 
 ```scala
 
@@ -526,7 +526,7 @@ The **destroy** stage is an optional stage that requires developer participation
 
 ## Catalog Structure
 
-The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Apache StreamPark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart)
+The recommended project directory structure is as follows, please refer to the directory structure and configuration in [Apache StreamPark™-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart)
 
 ``` tree
 .
@@ -602,11 +602,11 @@ assembly.xml is the configuration file needed for the assembly packaging plugin,
 
 ## Packaged Deployment
 
-The recommended packaging mode in [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) is recommended. It runs `maven package` directly to generate a standard Apache StreamPark recommended project package, after unpacking the directory structure is as follows.
+The recommended packaging mode in [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) is recommended. It runs `maven package` directly to generate a standard Apache StreamPark™ recommended project package, after unpacking the directory structure is as follows.
 
 ``` text
 .
-Apache StreamPark-flink-quickstart-1.0.0
+Apache StreamPark™-flink-quickstart-1.0.0
 ├── bin
 │   ├── startup.sh                             //Launch Script
 │   ├── setclasspath.sh                        //Java environment variable-related scripts (used internally, not of concern to users)
@@ -616,7 +616,7 @@ Apache StreamPark-flink-quickstart-1.0.0
 │   ├── application.yaml                       //Project's configuration file
 │   ├── sql.yaml                               // flink sql file
 ├── lib
-│   └── Apache StreamPark-flink-quickstart-1.0.0.jar     //The project's jar package
+│   └── Apache StreamPark™-flink-quickstart-1.0.0.jar     //The project's jar package
 └── temp
 ```
 

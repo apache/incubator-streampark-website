@@ -71,7 +71,7 @@ Subject: [VOTE] New committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
-Hi Apache StreamPark PPMC,
+Hi Apache StreamPark™ PPMC,
 
 This is a formal vote about inviting ${NEW_COMMITTER_NAME} as our new committer.
 
@@ -92,7 +92,7 @@ Subject: [RESULT] [VOTE] New committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
-Hi Apache StreamPark PPMC,
+Hi Apache StreamPark™ PPMC,
 
 The vote has now closed. The results are:
 
@@ -110,13 +110,13 @@ The vote is ***successful/not successful***
 ```text
 To: ${NEW_COMMITTER_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Invitation to become Apache StreamPark committer: ${NEW_COMMITTER_NAME}
+Subject: Invitation to become Apache StreamPark™ committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
 Hello ${NEW_COMMITTER_NAME},
 
-The Apache StreamPark Project Management Committee (PMC) 
+The Apache StreamPark™ Project Management Committee (PMC) 
 hereby offers you committer privileges to the project.
 These privileges are offered on the understanding that
 you'll use them reasonably and with common sense.
@@ -148,7 +148,7 @@ B. If you accept, the next step is to register an iCLA:
     https://www.apache.org/licenses/#submitting
 
     3. When you transmit the completed iCLA, request 
-    to notify the Apache StreamPark and choose a 
+    to notify the Apache StreamPark™ and choose a 
     unique Apache ID. Look to see if your preferred 
     ID is already taken at 
     https://people.apache.org/committer-index.html
@@ -165,7 +165,7 @@ establishing you as a committer.
 ```text
 To: ${NEW_COMMITTER_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Re: invitation to become Apache StreamPark committer
+Subject: Re: invitation to become Apache StreamPark™ committer
 ```
 
 ```text
@@ -207,7 +207,7 @@ requires adherence to the ASF Code of Conduct:
   https://www.apache.org/foundation/policies/conduct.html
 
 Yours,
-The Apache StreamPark PPMC
+The Apache StreamPark™ PPMC
 ```
 
 ### Committer Done Template

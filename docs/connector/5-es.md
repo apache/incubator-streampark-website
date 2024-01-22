@@ -14,12 +14,12 @@ for Elasticsearch, which is used to write data to Elasticsearch, which can provi
 
 ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the
 Elasticsearch cluster.
-`Apache StreamPark` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
+`Apache StreamPark™` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
 operations for Elasticsearch6 and above.
 
 :::tip hint
 
-Because there are conflicts between different versions of Flink Connector Elasticsearch, Apache StreamPark temporarily only
+Because there are conflicts between different versions of Flink Connector Elasticsearch, Apache StreamPark™ temporarily only
 supports write operations of Elasticsearch6 and above. If you wants to using Elasticsearch5, you need to exclude the
 flink-connector-elasticsearch6 dependency and introduce the flink-connector-elasticsearch5 dependency to create
 org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink instance writes data.
@@ -200,11 +200,11 @@ input.addSink(esSinkBuilder.build)
 
 </Tabs>
 
-The ElasticsearchSink created above is very inflexible to add parameters. `Apache StreamPark` follows the concept of convention over configuration and automatic configuration.
-Users only need to configure es connection parameters and Flink operating parameters, and Apache StreamPark will automatically assemble source and sink,
+The ElasticsearchSink created above is very inflexible to add parameters. `Apache StreamPark™` follows the concept of convention over configuration and automatic configuration.
+Users only need to configure es connection parameters and Flink operating parameters, and Apache StreamPark™ will automatically assemble source and sink,
 which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## Using Apache StreamPark writes to Elasticsearch
+## Using Apache StreamPark™ writes to Elasticsearch
 
 Please ensure that operation requests are sent to the Elasticsearch cluster at least once after enabling Flink checkpointing in ESSink.
 
@@ -234,7 +234,7 @@ host: localhost:9200
 
 ### 2. 写入Elasticsearch
 
-Using Apache StreamPark writes to Elasticsearch
+Using Apache StreamPark™ writes to Elasticsearch
 
 <Tabs>
 
@@ -289,7 +289,7 @@ object ConnectorApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,Apache StreamPark也对以上功能进行了支持，对应方法如下：
+Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,Apache StreamPark™也对以上功能进行了支持，对应方法如下：
 
 ```scala
 import org.apache.streampark.flink.core.scala.StreamingContext
@@ -376,8 +376,8 @@ See [Official Documentation](https://nightlies.apache.org/flink/flink-docs-relea
 The BulkProcessor inside es can further configure its behavior of how to refresh the cache operation request,
 see the [official documentation](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink) for details - **Configuring the Internal** Bulk Processor
 
-### Apache StreamPark configuration
+### Apache StreamPark™ configuration
 
-All other configurations must comply with the Apache StreamPark configuration.
+All other configurations must comply with the Apache StreamPark™ configuration.
 For [specific configurable](/docs/development/conf) items and the role of each parameter,
 please refer to the project configuration

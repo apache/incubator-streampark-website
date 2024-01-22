@@ -85,4 +85,4 @@ sidebar_position: 2
 
 * 然后社区的 Committers 将进行 CodeReview，并与您讨论一些细节（包括设计、实现、性能等）。当团队的每个成员都对此修改感到满意时，提交将被合并到 dev 分支。
 
-* 最后，恭喜您，您已经成为 Apache StreamPark 的官方贡献者！
+* 最后，恭喜您，您已经成为 Apache StreamPark™ 的官方贡献者！

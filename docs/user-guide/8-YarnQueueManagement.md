@@ -19,7 +19,7 @@ will be time-consuming and accompanied by poor user experience.
 If a task is submitted to an incorrect queue due to the error-input, 
 it's likely to affect the stability of yarn applications on the queue and the abuse of the queue resource.
 
-So Apache StreamPark introduced the queue management feature to ensure that a set of added queues are shared within the same team, 
+So Apache StreamPark™ introduced the queue management feature to ensure that a set of added queues are shared within the same team, 
 that is, ensure that queues resource is isolated within the scope of the team. It can generate the following benefits:
 - When deploying Flink `yarn-application` applications or Flink `yarn-session` clusters, 
 it could set quickly and accurately yarn queue(`yarn.application.queue`) & labels(`yarn.application.node-label`).
@@ -88,13 +88,13 @@ due to the relationship between the queues and the `yarn-session` mode flink clu
   <img src="/doc/image/yarn-queue/use_yarn_session_mode_to_create_application.png"/><br></br>
 
 - Session cluster is shared by all teams. Why is it that when creating a `yarn-session` flink cluster, only the queues in the current team instead of all teams can be used in the queues candidate list ?
-> Based on the mentioned above, Apache StreamPark hopes that when creating a `yarn-session` flink cluster, 
+> Based on the mentioned above, Apache StreamPark™ hopes that when creating a `yarn-session` flink cluster, 
 administrators can specify the queue belonged to current of the current team only,
 which could be better for administrators to perceive the impact of current operations on the current team.
 
 - Why not support the isolation for `flink yarn-session clusters / general clusters` on team wide ?  
   - The impact range caused by changes in cluster visibility is larger than that caused by changes in queue visibility.  
-  - Apache StreamPark need to face greater difficulties in backward compatibility while also considering the user experience.   
+  - Apache StreamPark™ need to face greater difficulties in backward compatibility while also considering the user experience.   
   - At present, there is no exact research on the users group and applications scale deployed using
     `yarn-application` & `yarn-session` cluster modes in the community.    
   Based on this fact, the community didn't provide greater feature support.    

@@ -8,12 +8,12 @@ sidebar_position: 6
 
 ADMIN 创建或修改用户时可以指定用户类型，用户类型有 ADMIN 和 USER 两种。
 
-- ADMIN 表示系统管理员，即：Apache StreamPark 的超级管理员，有 Apache StreamPark 管理页面以及各个团队的所有权限。
+- ADMIN 表示系统管理员，即：Apache StreamPark™ 的超级管理员，有 Apache StreamPark™ 管理页面以及各个团队的所有权限。
 - USER 表示平台的普通用户。创建 USER 只是创建账号的过程，默认普通用户在平台没有任何权限。创建 USER 后且系统管理员给 USER 在一些团队绑定角色后，USER 才会在相应团队有权限。
 
 ## 团队管理
 
-为了方便管理公司内不同部门的作业，Apache StreamPark 支持了团队管理。系统管理员可以在 Apache StreamPark 上为不同部门创建不同的团队。
+为了方便管理公司内不同部门的作业，Apache StreamPark™ 支持了团队管理。系统管理员可以在 Apache StreamPark™ 上为不同部门创建不同的团队。
 
 <img src="/doc/image/team/team_management.png"/><br></br>
 
@@ -27,9 +27,9 @@ ADMIN 创建或修改用户时可以指定用户类型，用户类型有 ADMIN �
 
 ## 角色管理
 
-为了便于管理作业以及防止误操作，团队内部也需要区分管理员和普通开发者，所以 Apache StreamPark 引入了角色管理。
+为了便于管理作业以及防止误操作，团队内部也需要区分管理员和普通开发者，所以 Apache StreamPark™ 引入了角色管理。
 
-当前，Apache StreamPark 支持两者角色，分别是：team admin 和 developer。 team admin 拥有团队内的所有权限，developer 相比 team admin 而言，少了删除作业、添加 USER 到团队等权限。
+当前，Apache StreamPark™ 支持两者角色，分别是：team admin 和 developer。 team admin 拥有团队内的所有权限，developer 相比 team admin 而言，少了删除作业、添加 USER 到团队等权限。
 
 <img src="/doc/image/team/role_management.png"/><br></br>
 

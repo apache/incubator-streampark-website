@@ -21,7 +21,7 @@ sidebar_position: 1
     limitations under the License.
 -->
 
-The Apache StreamPark developer mailing list is the preferred means for all your questions when using Apache StreamPark, which pushes your doubts out to the entire community.
+The Apache StreamPark™ developer mailing list is the preferred means for all your questions when using Apache StreamPark™, which pushes your doubts out to the entire community.
 This is the best way to keep up-to-date with the community.
 
 Before you post anything to the mailing lists, be sure that you already **subscribe** to them.
@@ -31,12 +31,12 @@ The currently available lists are listed in the below table.
 
 ### Developer List
 
-- Use this list for your Apache StreamPark questions
-- Used by Apache StreamPark contributors to discuss development of Apache StreamPark
+- Use this list for your Apache StreamPark™ questions
+- Used by Apache StreamPark™ contributors to discuss development of Apache StreamPark™
 
 ### Commits List
 
-- Notifications on changes to the Apache StreamPark codebase
+- Notifications on changes to the Apache StreamPark™ codebase
 
 | List Name           | Address                      | Subscribe                                                   | Unsubscribe                                                     | Archive                                                                     |
 |---------------------|------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ Sending a subscription email is also very simple. The steps are as follows:
 - 1、**Subscribe**: Click the **subscribe** button in the above table, and it redirects to your mail client. The subject and content are arbitrary.
    After that, you will receive a confirmation email from dev-help@streampark.apache.org (if not received, please confirm whether the email is automatically classified as SPAM, promotion email, subscription email, etc.).
 - 2、**Confirm**: Reply directly to the confirmation email, or click on the link in the email to reply quickly. The subject and content are arbitrary.
-- 3、**Welcome**: After completing the above steps, you will receive a welcome email with the subject WELCOME to dev@streampark.apache.org, and you have successfully subscribed to the Apache StreamPark mailing list.
+- 3、**Welcome**: After completing the above steps, you will receive a welcome email with the subject WELCOME to dev@streampark.apache.org, and you have successfully subscribed to the Apache StreamPark™ mailing list.
 
 ## Post Plain Text Mails
 

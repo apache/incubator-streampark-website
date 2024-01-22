@@ -9,7 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 一些后台服务通过http请求接收数据，这种场景下flink可以通过http请求写入结果数据，目前flink官方未提供通过http请求写入
-数据的连接器。Apache StreamPark 基于asynchttpclient封装了HttpSink异步实时写入数据。
+数据的连接器。Apache StreamPark™ 基于asynchttpclient封装了HttpSink异步实时写入数据。
 
 `HttpSink`写入不支持事务，向目标服务写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。异步写入重试多次失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）
 ,最终通过人为介入来恢复数据，达到最终数据一致。
@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 </dependency>
 ```
 
-## Apache StreamPark 方式写入
+## Apache StreamPark™ 方式写入
 
 ### http异步写入支持类型
 
@@ -134,4 +134,4 @@ object HttpSinkApp extends FlinkStreaming {
 :::
 
 ## 其他配置
-其他的所有的配置都必须遵守 **Apache StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **Apache StreamPark™** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)

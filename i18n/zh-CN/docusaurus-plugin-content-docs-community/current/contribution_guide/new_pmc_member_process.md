@@ -69,7 +69,7 @@ Subject: [VOTE] New PMC member candidate: ${NEW_PMC_NAME}
 ```
 
 ```text
-Hi Apache StreamPark PPMC,
+Hi Apache StreamPark™ PPMC,
 
 This is a formal vote about inviting ${NEW_PMC_NAME} as our new PMC member.
 
@@ -91,7 +91,7 @@ Subject: [RESULT] [VOTE] New PMC member: ${NEW_PMC_NAME}
 ```
 
 ```text
-Hi Apache StreamPark PPMC,
+Hi Apache StreamPark™ PPMC,
 
 The vote has now closed. The results are:
 
@@ -109,11 +109,11 @@ The vote is ***successful/not successful***
 ```text
 To: board@apache.org
 Cc: private@<project>.apache.org
-Subject: [NOTICE] ${NEW_PMC_NAME} for Apache StreamPark PMC member
+Subject: [NOTICE] ${NEW_PMC_NAME} for Apache StreamPark™ PMC member
 ```
 
 ```text
-Apache StreamPark proposes to invite ${NEW_PMC_NAME} to join the PMC.
+Apache StreamPark™ proposes to invite ${NEW_PMC_NAME} to join the PMC.
 
 The vote result is available here: https://lists.apache.org/...
 ```
@@ -125,13 +125,13 @@ The vote result is available here: https://lists.apache.org/...
 ```text
 To: ${NEW_PMC_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Invitation to become Apache StreamPark PMC member: ${NEW_PMC_NAME}
+Subject: Invitation to become Apache StreamPark™ PMC member: ${NEW_PMC_NAME}
 ```
 
 ```text
 Hello ${NEW_PMC_NAME},
 
-The Apache StreamPark Project Management Committee (PMC) 
+The Apache StreamPark™ Project Management Committee (PMC) 
 hereby offers you committer privileges to the project
 as well as membership in the PMC.
 These privileges are offered on the understanding that
@@ -162,7 +162,7 @@ B. If you accept, the next step is to register an iCLA:
     https://www.apache.org/licenses/#submitting
 
     3. When you transmit the completed iCLA, request 
-    to notify the Apache StreamPark and choose a 
+    to notify the Apache StreamPark™ and choose a 
     unique Apache ID. Look to see if your preferred 
     ID is already taken at 
     https://people.apache.org/committer-index.html
@@ -179,7 +179,7 @@ establishing you as a PMC member.
 ```text
 To: ${NEW_PMC_EMAIL}
 Cc: private@streamparkv.apache.org
-Subject: Re: invitation to become Apache StreamPark PMC member
+Subject: Re: invitation to become Apache StreamPark™ PMC member
 ```
 
 ```text
@@ -221,7 +221,7 @@ requires adherence to the ASF Code of Conduct:
   https://www.apache.org/foundation/policies/conduct.html
 
 Yours,
-The Apache StreamPark PPMC
+The Apache StreamPark™ PPMC
 ```
 
 ### PMC成员完成模板
@@ -266,9 +266,9 @@ To: dev@streampark.apache.org
 ```
 
 ```text
-Hi Apache StreamPark Community,
+Hi Apache StreamPark™ Community,
 
-The Podling Project Management Committee (PPMC) for Apache StreamPark
+The Podling Project Management Committee (PPMC) for Apache StreamPark™
 has invited ${NEW_PMC_NAME} to become our PMC member and
 we are pleased to announce that he has accepted.
 
@@ -282,5 +282,5 @@ submission process. This should enable better productivity.
 A PPMC member helps manage and guide the direction of the project.
 
 Thanks,
-On behalf of the Apache StreamPark (Incubating) PPMC
+On behalf of the Apache StreamPark™ (Incubating) PPMC
 ```

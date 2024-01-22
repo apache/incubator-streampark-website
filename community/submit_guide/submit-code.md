@@ -85,4 +85,4 @@ sidebar_position: 2
 
 * Then the community Committers will do CodeReview, and then he will discuss some details (including design, implementation, performance, etc.) with you. When everyone on the team is satisfied with this modification, the commit will be merged into the dev branch
 
-* Finally, congratulations, you have become an official contributor to Apache StreamPark !
+* Finally, congratulations, you have become an official contributor to Apache StreamPark™ !

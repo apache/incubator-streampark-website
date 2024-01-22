@@ -8,7 +8,7 @@ sidebar_position: 2
 
 The support for pvc resource(mount file resources such as checkpoint/savepoint/logs and so on) is based on pod-template at current version。
 
-Users do not have to concern the Native-Kubernetes Session.It will be processed when Session Cluster is constructed .Native-Kubernetes Application can be constructed by configuring on Apache StreamPark webpage using `pod-template`、`jm-pod-template`、`tm-pod-template`.
+Users do not have to concern the Native-Kubernetes Session.It will be processed when Session Cluster is constructed .Native-Kubernetes Application can be constructed by configuring on Apache StreamPark™ webpage using `pod-template`、`jm-pod-template`、`tm-pod-template`.
 
 <br/>
 
@@ -45,9 +45,9 @@ There are three ways to provide the dependency when using `rocksdb-backend`.
 
 1.  Flink Base Docker Image contains the dependency（user fix the dependency conflict by themself）;
 
-2. Put the dependency `flink-statebackend-rocksdb_xx.jar` to  the path `Workspace/jars` in Apache StreamPark ;
+2. Put the dependency `flink-statebackend-rocksdb_xx.jar` to  the path `Workspace/jars` in Apache StreamPark™ ;
 
-3. Add the rockdb-backend dependency to Apache StreamPark Dependency(Apache StreamPark will fix the conflict automatically) ：
+3. Add the rockdb-backend dependency to Apache StreamPark™ Dependency(Apache StreamPark™ will fix the conflict automatically) ：
 
    ![rocksdb dependency](/doc/image/rocksdb_dependency.png)
 

@@ -1,10 +1,10 @@
 ---
 slug: streampark-usercase-dustess
-title: Apache StreamPark's Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
-tags: [Apache StreamPark, Production Practice, FlinkSQL]
+title: Apache StreamPark™'s Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
+tags: [Apache StreamPark™, Production Practice, FlinkSQL]
 ---
 
-**Abstract:** This article originates from the production practices of Apache StreamPark at Dustess Information, written by the senior data development engineer, Gump. The main content includes:
+**Abstract:** This article originates from the production practices of Apache StreamPark™ at Dustess Information, written by the senior data development engineer, Gump. The main content includes:
 
 1. Technology selection
 2. Practical implementation
@@ -35,7 +35,7 @@ Firstly, in terms of the computing engine: We chose Flink for the following reas
 - Flink supports both batch and stream processing. Although the company's current batch processing architecture is based on Hive, Spark, etc., using Flink for stream computing facilitates the subsequent construction of unified batch and stream processing and lake-house architecture.
 - The domestic ecosystem of Flink has become increasingly mature, and Flink is starting to break boundaries towards the development of stream-based data warehousing.
 
-At the platform level, we comprehensively compared Apache StreamPark, Apache Zeppelin, and flink-streaming-platform-web, also thoroughly read their source code and conducted an analysis of their advantages and disadvantages. We won’t elaborate on the latter two projects in this article, but those interested can search for them on GitHub. We ultimately chose Apache StreamPark for the following reasons:
+At the platform level, we comprehensively compared Apache StreamPark™, Apache Zeppelin, and flink-streaming-platform-web, also thoroughly read their source code and conducted an analysis of their advantages and disadvantages. We won’t elaborate on the latter two projects in this article, but those interested can search for them on GitHub. We ultimately chose Apache StreamPark™ for the following reasons:
 
 ### **High Completion**
 
@@ -51,11 +51,11 @@ When creating a task, you can **freely choose the Flink version**. The Flink bin
 
 #### **2. Supports Multiple Deployment Modes**
 
-Apache StreamPark supports **all the mainstream submission modes** for Flink, such as standalone, yarn-session, yarn application, yarn-perjob, kubernetes-session, kubernetes-application. Moreover, Apache StreamPark does not simply piece together Flink run commands to submit tasks. Instead, it introduces the Flink Client source package and directly calls the Flink Client API for task submission. The advantages of this approach include modular code, readability, ease of extension, stability, and the ability to quickly adapt to upgrades of the Flink version.
+Apache StreamPark™ supports **all the mainstream submission modes** for Flink, such as standalone, yarn-session, yarn application, yarn-perjob, kubernetes-session, kubernetes-application. Moreover, Apache StreamPark™ does not simply piece together Flink run commands to submit tasks. Instead, it introduces the Flink Client source package and directly calls the Flink Client API for task submission. The advantages of this approach include modular code, readability, ease of extension, stability, and the ability to quickly adapt to upgrades of the Flink version.
 
 ![](/blog/dustess/execution_mode.png)
 
-Flink SQL can greatly improve development efficiency and the popularity of Flink. Apache StreamPark’s support for **Flink SQL is very comprehensive**, with an excellent SQL editor, dependency management, multi-version task management, etc. The Apache StreamPark official website states that it will introduce metadata management integration for Flink SQL in the future. Stay tuned.
+Flink SQL can greatly improve development efficiency and the popularity of Flink. Apache StreamPark™’s support for **Flink SQL is very comprehensive**, with an excellent SQL editor, dependency management, multi-version task management, etc. The Apache StreamPark™ official website states that it will introduce metadata management integration for Flink SQL in the future. Stay tuned.
 
 ![](/blog/dustess/flink_sql.png)
 
@@ -69,33 +69,33 @@ Flink SQL can greatly improve development efficiency and the popularity of Flink
 
 Although Flink SQL is now powerful enough, using JVM languages like Java and Scala to develop Flink tasks can be more flexible, more customizable, and better for tuning and improving resource utilization. The biggest problem with submitting tasks via Jar packages, compared to SQL, is the management of the Jar uploads. Without excellent tooling products, this can significantly reduce development efficiency and increase maintenance costs.
 
-Besides supporting Jar uploads, Apache StreamPark also provides an **online update build** feature, which elegantly solves the above problems:
+Besides supporting Jar uploads, Apache StreamPark™ also provides an **online update build** feature, which elegantly solves the above problems:
 
-1. Create Project: Fill in the GitHub/Gitlab (supports enterprise private servers) address and username/password, and Apache StreamPark can Pull and Build the project.
+1. Create Project: Fill in the GitHub/Gitlab (supports enterprise private servers) address and username/password, and Apache StreamPark™ can Pull and Build the project.
 
-2. When creating a Apache StreamPark Custom-Code task, refer to the Project, specify the main class, and optionally automate Pull, Build, and bind the generated Jar when starting the task, which is very elegant!
+2. When creating a Apache StreamPark™ Custom-Code task, refer to the Project, specify the main class, and optionally automate Pull, Build, and bind the generated Jar when starting the task, which is very elegant!
 
-At the same time, the Apache StreamPark community is also perfecting the entire task compilation and launch process. The future Apache StreamPark will be even more refined and professional on this foundation.
+At the same time, the Apache StreamPark™ community is also perfecting the entire task compilation and launch process. The future Apache StreamPark™ will be even more refined and professional on this foundation.
 
 ![](/blog/dustess/system_list.png)
 
 #### **5. Comprehensive Task Parameter Configuration**
 
-For data development using Flink, the parameters submitted with Flink run are almost impossible to maintain. Apache StreamPark has also **elegantly solved** this kind of problem, mainly because, as mentioned above, Apache StreamPark directly calls the Flink Client API and has connected the entire process through the Apache StreamPark product frontend.
+For data development using Flink, the parameters submitted with Flink run are almost impossible to maintain. Apache StreamPark™ has also **elegantly solved** this kind of problem, mainly because, as mentioned above, Apache StreamPark™ directly calls the Flink Client API and has connected the entire process through the Apache StreamPark™ product frontend.
 
 ![](/blog/dustess/parameter_configuration.png)
 
-As you can see, Apache StreamPark's task parameter settings cover all the mainstream parameters, and every parameter has been thoughtfully provided with an introduction and an optimal recommendation based on best practices. This is also very beneficial for newcomers to Flink, helping them to avoid common pitfalls!
+As you can see, Apache StreamPark™'s task parameter settings cover all the mainstream parameters, and every parameter has been thoughtfully provided with an introduction and an optimal recommendation based on best practices. This is also very beneficial for newcomers to Flink, helping them to avoid common pitfalls!
 
 #### **6. Excellent Configuration File Design**
 
-In addition to the native parameters for Flink tasks, which are covered by the task parameters above, Apache StreamPark also provides a powerful **Yaml configuration file** mode and **programming model**.
+In addition to the native parameters for Flink tasks, which are covered by the task parameters above, Apache StreamPark™ also provides a powerful **Yaml configuration file** mode and **programming model**.
 
 ![](/blog/dustess/extended_parameters.jpg)
 
-1. For Flink SQL tasks, you can configure the parameters that Apache StreamPark has already built-in, such as **CheckPoint, retry mechanism, State Backend, table planner, mode**, etc., directly using the task's Yaml configuration file.
+1. For Flink SQL tasks, you can configure the parameters that Apache StreamPark™ has already built-in, such as **CheckPoint, retry mechanism, State Backend, table planner, mode**, etc., directly using the task's Yaml configuration file.
 
-2. For Jar tasks, Apache StreamPark offers a generic programming model that encapsulates the native Flink API. Combined with the wrapper package provided by Apache StreamPark, it can very elegantly retrieve custom parameters from the configuration file. For more details, see the documentation:
+2. For Jar tasks, Apache StreamPark™ offers a generic programming model that encapsulates the native Flink API. Combined with the wrapper package provided by Apache StreamPark™, it can very elegantly retrieve custom parameters from the configuration file. For more details, see the documentation:
 
 Programming model:
 
@@ -111,13 +111,13 @@ http://www.streamxhub.com/docs/development/config
 
 In addition:
 
-Apache StreamPark also **supports Apache Flink native tasks**. The parameter configuration can be statically maintained within the Java task internal code, covering a wide range of scenarios, such as seamless migration of existing Flink tasks, etc.
+Apache StreamPark™ also **supports Apache Flink native tasks**. The parameter configuration can be statically maintained within the Java task internal code, covering a wide range of scenarios, such as seamless migration of existing Flink tasks, etc.
 
 #### **7. Checkpoint Management**
 
-Regarding Flink's Checkpoint (Savepoint) mechanism, the greatest difficulty is maintenance. Apache StreamPark has also elegantly solved this problem:
+Regarding Flink's Checkpoint (Savepoint) mechanism, the greatest difficulty is maintenance. Apache StreamPark™ has also elegantly solved this problem:
 
-- Apache StreamPark will **automatically maintain** the task Checkpoint directory and versions in the system for easy retrieval.
+- Apache StreamPark™ will **automatically maintain** the task Checkpoint directory and versions in the system for easy retrieval.
 - When users need to update and restart an application, they can choose whether to save a Savepoint.
 - When restarting a task, it is possible to choose to recover from a specified version of Checkpoint/Savepoint.
 
@@ -129,42 +129,42 @@ As shown below, developers can very intuitively and conveniently upgrade or deal
 
 #### **8. Comprehensive Alerting Features**
 
-For streaming computations, which are 7*24H resident tasks, monitoring and alerting are very important. Apache StreamPark also has a **comprehensive solution** for these issues:
+For streaming computations, which are 7*24H resident tasks, monitoring and alerting are very important. Apache StreamPark™ also has a **comprehensive solution** for these issues:
 
 - It comes with an email-based alerting method, which has zero development cost and can be used once configured.
-- Thanks to the excellent modularity of the Apache StreamPark source code, it's possible to enhance the code at the Task Track point and introduce the company's internal SDK for telephone, group, and other alerting methods, all with a very low development cost.
+- Thanks to the excellent modularity of the Apache StreamPark™ source code, it's possible to enhance the code at the Task Track point and introduce the company's internal SDK for telephone, group, and other alerting methods, all with a very low development cost.
 
 ![](/blog/dustess/alarm_email.png)
 
 ### **Excellent Source Code**
 
-Following the principle of technology selection, a new technology must be sufficiently understood in terms of underlying principles and architectural ideas before it is considered for production use. Before choosing Apache StreamPark, its architecture and source code were subjected to in-depth study and reading. It was found that the underlying technologies used by Apache StreamPark are very familiar to Chinese developers: MySQL, Spring Boot, Mybatis Plus, Vue, etc. The code style is unified and elegantly implemented with complete annotations. The modules are independently abstracted and reasonable, employing numerous design patterns, and the code quality is very high, making it highly suitable for troubleshooting and further development in the later stages.
+Following the principle of technology selection, a new technology must be sufficiently understood in terms of underlying principles and architectural ideas before it is considered for production use. Before choosing Apache StreamPark™, its architecture and source code were subjected to in-depth study and reading. It was found that the underlying technologies used by Apache StreamPark™ are very familiar to Chinese developers: MySQL, Spring Boot, Mybatis Plus, Vue, etc. The code style is unified and elegantly implemented with complete annotations. The modules are independently abstracted and reasonable, employing numerous design patterns, and the code quality is very high, making it highly suitable for troubleshooting and further development in the later stages.
 
 ![](/blog/dustess/code_notebook.png)
 
-In November 2021, Apache StreamPark was successfully selected by Open Source China as a GVP - Gitee "Most Valuable Open Source Project," which speaks volumes about its quality and potential.
+In November 2021, Apache StreamPark™ was successfully selected by Open Source China as a GVP - Gitee "Most Valuable Open Source Project," which speaks volumes about its quality and potential.
 
 ![](/blog/dustess/certificate.png)
 
 ### **03 Active Community**
 
-The community is currently very active. Since the end of November 2021, when Apache StreamPark (based on 1.2.0-release) was implemented, Apache StreamPark had just started to be recognized by everyone, and there were some minor bugs in the user experience (not affecting core functionality). At that time, in order to go live quickly, some features were disabled and some minor bugs were fixed. Just as we were preparing to contribute back to the community, we found that these had already been fixed, indicating that the community's iteration cycle is very fast. In the future, our company's team will also strive to stay in sync with the community, quickly implement new features, and improve data development efficiency while reducing maintenance costs.
+The community is currently very active. Since the end of November 2021, when Apache StreamPark™ (based on 1.2.0-release) was implemented, Apache StreamPark™ had just started to be recognized by everyone, and there were some minor bugs in the user experience (not affecting core functionality). At that time, in order to go live quickly, some features were disabled and some minor bugs were fixed. Just as we were preparing to contribute back to the community, we found that these had already been fixed, indicating that the community's iteration cycle is very fast. In the future, our company's team will also strive to stay in sync with the community, quickly implement new features, and improve data development efficiency while reducing maintenance costs.
 
 ## **02 Implementation Practice**
 
-Apache StreamPark's environment setup is very straightforward, following the official website's building tutorial you can complete the setup within a few hours. It now supports a front-end and back-end separation packaging deployment model, which can meet the needs of more companies, and there has already been a Docker Build related PR, suggesting that Apache StreamPark's compilation and deployment will become even more convenient and quick in the future. Related documentation is as follows:
+Apache StreamPark™'s environment setup is very straightforward, following the official website's building tutorial you can complete the setup within a few hours. It now supports a front-end and back-end separation packaging deployment model, which can meet the needs of more companies, and there has already been a Docker Build related PR, suggesting that Apache StreamPark™'s compilation and deployment will become even more convenient and quick in the future. Related documentation is as follows:
 
 ```
 http://www.streamxhub.com/docs/user-guide/deployment
 ```
 
-For rapid implementation and production use, we chose the reliable On Yarn resource management mode (even though Apache StreamPark already supports K8S quite well), and there are already many companies that have deployed using Apache StreamPark on K8S, which you can refer to:
+For rapid implementation and production use, we chose the reliable On Yarn resource management mode (even though Apache StreamPark™ already supports K8S quite well), and there are already many companies that have deployed using Apache StreamPark™ on K8S, which you can refer to:
 
 ```
 http://www.streamxhub.com/blog/flink-development-framework-streamx
 ```
 
-Integrating Apache StreamPark with the Hadoop ecosystem can be said to be zero-cost (provided that Flink is integrated with the Hadoop ecosystem according to the Flink official website, and tasks can be launched via Flink scripts).
+Integrating Apache StreamPark™ with the Hadoop ecosystem can be said to be zero-cost (provided that Flink is integrated with the Hadoop ecosystem according to the Flink official website, and tasks can be launched via Flink scripts).
 
 Currently, we are also conducting K8S testing and solution design, and will be migrating to K8S in the future.
 
@@ -174,7 +174,7 @@ At present, our company's tasks based on Flink SQL are mainly for simple real-ti
 
 ![](/blog/dustess/online_flinksql.png)
 
-Apache StreamPark has thoughtfully prepared a demo SQL task that can be run directly on a newly set up platform. This attention to detail demonstrates the community's commitment to user experience. Initially, our simple tasks were written and executed using Flink SQL, and Apache StreamPark's support for Flink SQL is excellent, with a superior SQL editor and innovative POM and Jar package dependency management that can meet many SQL scenario needs.
+Apache StreamPark™ has thoughtfully prepared a demo SQL task that can be run directly on a newly set up platform. This attention to detail demonstrates the community's commitment to user experience. Initially, our simple tasks were written and executed using Flink SQL, and Apache StreamPark™'s support for Flink SQL is excellent, with a superior SQL editor and innovative POM and Jar package dependency management that can meet many SQL scenario needs.
 
 Currently, we are researching and designing solutions related to metadata, permissions, UDFs, etc.
 
@@ -182,11 +182,11 @@ Currently, we are researching and designing solutions related to metadata, permi
 
 Since most of the data development team members have a background in Java and Scala, we've implemented Jar-based builds for more flexible development, transparent tuning of Flink tasks, and to cover more scenarios. Our implementation was in two phases:
 
-**First Phase:** Apache StreamPark provides support for native Apache Flink projects. We configured our existing tasks' Git addresses in Apache StreamPark, used Maven to package them as Jar files, and created Apache StreamPark Apache Flink tasks for seamless migration. In this process, Apache StreamPark was merely used as a platform tool for task submission and state maintenance, without leveraging the other features mentioned above.
+**First Phase:** Apache StreamPark™ provides support for native Apache Flink projects. We configured our existing tasks' Git addresses in Apache StreamPark™, used Maven to package them as Jar files, and created Apache StreamPark™ Apache Flink tasks for seamless migration. In this process, Apache StreamPark™ was merely used as a platform tool for task submission and state maintenance, without leveraging the other features mentioned above.
 
-**Second Phase:** After migrating tasks to Apache StreamPark in the first phase and having them run on the platform, the tasks' configurations, such as checkpoint, fault tolerance, and adjustments to business parameters within Flink tasks, required source code modifications, pushes, and builds. This was very inefficient and opaque.
+**Second Phase:** After migrating tasks to Apache StreamPark™ in the first phase and having them run on the platform, the tasks' configurations, such as checkpoint, fault tolerance, and adjustments to business parameters within Flink tasks, required source code modifications, pushes, and builds. This was very inefficient and opaque.
 
-Therefore, following Apache StreamPark's QuickStart, we quickly integrated Apache StreamPark's programming model, which is an encapsulation for Apache StreamPark Flink tasks (for Apache Flink).
+Therefore, following Apache StreamPark™'s QuickStart, we quickly integrated Apache StreamPark™'s programming model, which is an encapsulation for Apache StreamPark™ Flink tasks (for Apache Flink).
 
 Example：
 
@@ -194,7 +194,7 @@ Example：
 StreamingContext = ParameterTool + StreamExecutionEnvironment
 ```
 
-- StreamingContext is the encapsulation object for Apache StreamPark
+- StreamingContext is the encapsulation object for Apache StreamPark™
 - ParameterTool is the parameter object after parsing the configuration file
 
 ```
@@ -205,7 +205,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 ## **03 Business Support & Capability Opening**
 
-Currently, Dustess Info's real-time computing platform based on Apache StreamPark has been online since the end of November last year and has launched 50+ Flink tasks, including 10+ Flink SQL tasks and 40+ Jar tasks. At present, it is mainly used internally by the data team, and the real-time computing platform will be opened up for use by business teams across the company shortly, which will significantly increase the number of tasks.
+Currently, Dustess Info's real-time computing platform based on Apache StreamPark™ has been online since the end of November last year and has launched 50+ Flink tasks, including 10+ Flink SQL tasks and 40+ Jar tasks. At present, it is mainly used internally by the data team, and the real-time computing platform will be opened up for use by business teams across the company shortly, which will significantly increase the number of tasks.
 
 ![](/blog/dustess/online_jar.png)
 
@@ -213,17 +213,17 @@ Currently, Dustess Info's real-time computing platform based on Apache StreamPar
 
 The real-time data warehouse mainly uses Jar tasks because the model is more generic. Using Jar tasks can generically handle a large number of data table synchronization and calculations, and even achieve configuration-based synchronization. Our real-time data warehouse mainly uses Apache Doris for storage, with Flink handling the cleaning and calculations (the goal being storage-computation separation).
 
-Using Apache StreamPark to integrate other components is also very straightforward, and we have also abstracted the configuration related to Apache Doris and Kafka into the configuration file, which greatly enhances our development efficiency and flexibility.
+Using Apache StreamPark™ to integrate other components is also very straightforward, and we have also abstracted the configuration related to Apache Doris and Kafka into the configuration file, which greatly enhances our development efficiency and flexibility.
 
 ### **02 Capability Opening**
 
-Other business teams outside the data team also have many stream processing scenarios. Hence, after secondary development of the real-time computing platform based on Apache StreamPark, we opened up the following capabilities to all business teams in the company:
+Other business teams outside the data team also have many stream processing scenarios. Hence, after secondary development of the real-time computing platform based on Apache StreamPark™, we opened up the following capabilities to all business teams in the company:
 
 - Business capability opening: The upstream real-time data warehouse collects all business tables through log collection and writes them into Kafka. Business teams can base their business-related development on Kafka, or they can perform OLAP analysis through the real-time data warehouse (Apache Doris).
 - Computing capability opening: The server resources of the big data platform are made available for use by business teams.
 - Solution opening: The mature Connectors of the Flink ecosystem and support for Exactly Once semantics can reduce the development and maintenance costs related to stream processing for business teams.
 
-Currently, Apache StreamPark does not support multi-business group functions. The multi-business group function will be abstracted and contributed to the community.
+Currently, Apache StreamPark™ does not support multi-business group functions. The multi-business group function will be abstracted and contributed to the community.
 
 ![](/blog/dustess/manager.png)
 
@@ -240,7 +240,7 @@ Currently, all our company's Flink tasks run on Yarn, which meets current needs,
 - **Separation of Storage and Computation**. Flink's computational resources and state storage are separated; computational resources can be mixed with other component resources, improving machine utilization.
 - **Elastic Scaling**. It is capable of elastic scaling, better saving manpower and material costs.
 
-I am also currently organizing and implementing related technical architectures and solutions and have completed the technical verification of Flink on Kubernetes using Apache StreamPark in an experimental environment. With the support of the Apache StreamPark platform and the enthusiastic help of the community, I believe that production implementation is not far off.
+I am also currently organizing and implementing related technical architectures and solutions and have completed the technical verification of Flink on Kubernetes using Apache StreamPark™ in an experimental environment. With the support of the Apache StreamPark™ platform and the enthusiastic help of the community, I believe that production implementation is not far off.
 
 ### **02 Stream-Batch Unification Construction**
 
@@ -259,7 +259,7 @@ Regarding the unification of stream and batch, I am also currently researching a
 
 ## **05 Closing Words**
 
-That's all for the sharing of Apache StreamPark in the production practice at Dustess Info. Thank you all for reading this far. The original intention of writing this article was to bring a bit of Apache StreamPark's production practice experience and reference to everyone, and together with the buddies in the Apache StreamPark community, to jointly build Apache StreamPark. In the future, I plan to participate and contribute more. A big thank you to the developers of Apache StreamPark for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that Apache StreamPark will get better and better, **and I also believe that Apache StreamPark will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink community: The future is real-time!
+That's all for the sharing of Apache StreamPark™ in the production practice at Dustess Info. Thank you all for reading this far. The original intention of writing this article was to bring a bit of Apache StreamPark™'s production practice experience and reference to everyone, and together with the buddies in the Apache StreamPark™ community, to jointly build Apache StreamPark™. In the future, I plan to participate and contribute more. A big thank you to the developers of Apache StreamPark™ for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that Apache StreamPark™ will get better and better, **and I also believe that Apache StreamPark™ will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink community: The future is real-time!
 
 
 

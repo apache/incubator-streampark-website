@@ -5,22 +5,22 @@ sidebar_position: 1
 ---
 
 
-Apache StreamPark Flink Kubernetes is based on [Flink Native Kubernetes](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/resource-providers/native_kubernetes/) and support deployment modes as below：
+Apache StreamPark™ Flink Kubernetes is based on [Flink Native Kubernetes](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/resource-providers/native_kubernetes/) and support deployment modes as below：
 
 * Native-Kubernetes Application
 * Native-Kubernetes Session
-At now, one Apache StreamPark only supports one Kubernetes cluster.You can submit [Fearure Request Issue](https://github.com/apache/incubator-streampark/issues) , when multiple Kubernetes clusters are needed.
+At now, one Apache StreamPark™ only supports one Kubernetes cluster.You can submit [Fearure Request Issue](https://github.com/apache/incubator-streampark/issues) , when multiple Kubernetes clusters are needed.
 <br></br>
 
 ## Environments requirement
 
-Additional operating environment to run Apache StreamPark Flink-K8s is as below:
+Additional operating environment to run Apache StreamPark™ Flink-K8s is as below:
 * Kubernetes
-* Maven（Apache StreamPark runNode）
-* Docker（Apache StreamPark runNode）
+* Maven（Apache StreamPark™ runNode）
+* Docker（Apache StreamPark™ runNode）
 
 
-Apache StreamPark entity can be deployed on Kubernetes nodes, and can also be deployed on node out of Kubernetes cluster when there are **smooth network** between the node and cluster.
+Apache StreamPark™ entity can be deployed on Kubernetes nodes, and can also be deployed on node out of Kubernetes cluster when there are **smooth network** between the node and cluster.
 <br></br>
 
 
@@ -29,7 +29,7 @@ Apache StreamPark entity can be deployed on Kubernetes nodes, and can also be de
 
 ### configuration for connecting  Kubernetes
 
-Apache StreamPark connects to Kubernetes cluster by default connection credentials `～/.kube/config `.User can copy `.kube/config` from  Kubernetes node to Apache StreamPark nodes,or download it from Kubernetes provided by cloud service providers.If considering Permission constraints, User also can
+Apache StreamPark™ connects to Kubernetes cluster by default connection credentials `～/.kube/config `.User can copy `.kube/config` from  Kubernetes node to Apache StreamPark™ nodes,or download it from Kubernetes provided by cloud service providers.If considering Permission constraints, User also can
 generate custom account`s  configuration by themselves.
 
 ```shell
@@ -51,12 +51,12 @@ kubectl create clusterrolebinding flink-role-binding-default --clusterrole=edit 
 ### Configuration for remote Docker service
 
 
-On Setting page of Apache StreamPark, user can configure the connection information for Docker service of Kubernetes cluster.
+On Setting page of Apache StreamPark™, user can configure the connection information for Docker service of Kubernetes cluster.
 
 ![docker register setting](/doc/image/docker_register_setting.png)
 
 
-Building a Namespace named `streampark`(other name should be set at Setting page of Apache StreamPark) at remote Docker.The namespace is push/pull space of Apache StreamPark Flink image and Docker Register User should own `pull`/`push`  permission of this namespace.
+Building a Namespace named `streampark`(other name should be set at Setting page of Apache StreamPark™) at remote Docker.The namespace is push/pull space of Apache StreamPark™ Flink image and Docker Register User should own `pull`/`push`  permission of this namespace.
 
 
 ```shell
@@ -81,9 +81,9 @@ parameter descriptions are as below：
 * **Flink Base Docker Image**： Base Flink Docker Image Tag can be obtained from  [DockerHub - offical/flink](https://hub.docker.com/_/flink) .And user can also use private image when Docker Register Account owns `pull` permission of it.
 
 * **Rest-Service Exposed Type**：Description of candidate values for native Flink K8s configuration [kubernetes.rest-service.exposed.type](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/config/#kubernetes) ：
-  * `ClusterIP`：ip that Apache StreamPark can access；
-  * `LoadBalancer`：resource of LoadBalancer should be allocated in advance， Flink Namespace own permission of automatic binding，and Apache StreamPark can access LoadBalancer`s gateway；
-  * `NodePort`：Apache StreamPark can access  all K8s nodes；
+  * `ClusterIP`：ip that Apache StreamPark™ can access；
+  * `LoadBalancer`：resource of LoadBalancer should be allocated in advance， Flink Namespace own permission of automatic binding，and Apache StreamPark™ can access LoadBalancer`s gateway；
+  * `NodePort`：Apache StreamPark™ can access  all K8s nodes；
 * **Kubernetes Pod Template**： It`s Flink custom configuration of pod-template.The container-name must be flink-main-container. If the k8s pod needs a secret key to pull the docker image, please fill in the information about
 the secret key in the pod template file.The example pod-template is as below：
 
@@ -114,7 +114,7 @@ The additional configuration of Flink-Native-Kubernetes Session Job will be deci
 
 ## other configuration
 
-Apache StreamPark parameter related to Flink-K8s in `applicaton.yml` are as below.And in most condition, it is no need to change it.
+Apache StreamPark™ parameter related to Flink-K8s in `applicaton.yml` are as below.And in most condition, it is no need to change it.
 
 | Configuration item                                                    | Description                                                                                                          | Default value |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|

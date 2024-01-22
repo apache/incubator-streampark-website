@@ -21,10 +21,10 @@ sidebar_position: 2
     limitations under the License.
 -->
 
-## Become A Committer of Apache StreamPark
+## Become A Committer of Apache StreamPark™
 
 Anyone being supportive of the community and working in any of the
-CoPDoC areas can become an Apache StreamPark committer. The CoPDoC is an
+CoPDoC areas can become an Apache StreamPark™ committer. The CoPDoC is an
 acronym from ASF to describe how we recognize your contributions not
 only by code.
 
@@ -36,12 +36,12 @@ only by code.
   of the authors
 - **Code** - discussion goes nowhere without code
 
-Apache StreamPark community strives to be meritocratic. Thus, once someone
+Apache StreamPark™ community strives to be meritocratic. Thus, once someone
 has contributed sufficiently to any area of CoPDoC they can be a
-candidate for committer-ship and at last voted in as a Apache StreamPark
-committer. Being an Apache StreamPark committer does not necessarily mean
+candidate for committer-ship and at last voted in as a Apache StreamPark™
+committer. Being an Apache StreamPark™ committer does not necessarily mean
 you must commit code with your commit privilege to the codebase; it
-means you are committed to the Apache StreamPark project and are productively
+means you are committed to the Apache StreamPark™ project and are productively
 contributing to our community's success.
 
 ## Committer requirements:
@@ -58,8 +58,8 @@ and fair.
 Committer candidates should have a decent amount of continuous
 engagements and contributions (fixing bugs, adding new features,
 writing documentation, maintaining issues boards, code review, or answering
-community questions) to Apache StreamPark either by contributing to the codebase
-of the main website or Apache StreamPark's GitHub repositories.
+community questions) to Apache StreamPark™ either by contributing to the codebase
+of the main website or Apache StreamPark™'s GitHub repositories.
 
 - +3 months with light activity and engagement.
 - +2 months of medium activity and engagement.
@@ -67,7 +67,7 @@ of the main website or Apache StreamPark's GitHub repositories.
 
 ### Quality of contributions
 - A solid general understanding of the project
-- Well tested, well-designed, following Apache StreamPark coding
+- Well tested, well-designed, following Apache StreamPark™ coding
   standards, and simple patches.
 - Well-organized and detailed user-oriented documentation.
 

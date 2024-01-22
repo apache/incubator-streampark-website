@@ -1,7 +1,7 @@
 ---
 slug: streampark-flink-on-k8s
-title: Apache StreamPark Flink on Kubernetes practice
-tags: [Apache StreamPark, Production Practice, FlinkSQL, Kubernetes]
+title: Apache StreamPark™ Flink on Kubernetes practice
+tags: [Apache StreamPark™, Production Practice, FlinkSQL, Kubernetes]
 description: Wuxin Technology was founded in January 2018. The current main business includes the research and development, design, manufacturing and sales of RELX brand products. With core technologies and capabilities covering the entire industry chain, RELX is committed to providing users with products that are both high quality and safe
 ---
 
@@ -21,9 +21,9 @@ Native Kubernetes offers the following advantages:
 
 ![](/blog/relx/nativekubernetes_architecture.png)
 
-When Flink On Kubernetes meets Apache StreamPark
+When Flink On Kubernetes meets Apache StreamPark™
 
-  Flink on Native Kubernetes currently supports Application mode and Session mode. Compared with the two, Application mode deployment avoids the resource isolation problem and client resource consumption problem of Session mode. Therefore, it is recommended to use Application Mode to deploy Flink tasks in ** production environments. **Let’s take a look at the method of using the original script and the process of using Apache StreamPark to develop and deploy a Flink on Native Kubernetes job.
+  Flink on Native Kubernetes currently supports Application mode and Session mode. Compared with the two, Application mode deployment avoids the resource isolation problem and client resource consumption problem of Session mode. Therefore, it is recommended to use Application Mode to deploy Flink tasks in ** production environments. **Let’s take a look at the method of using the original script and the process of using Apache StreamPark™ to develop and deploy a Flink on Native Kubernetes job.
 Deploy Kubernetes using scripts
 
 In the absence of a platform that supports Flink on Kubernetes task development and deployment, you need to use scripts to submit and stop tasks. This is also the default method provided by Flink. The specific steps are as follows:
@@ -69,17 +69,17 @@ kubectl -n flink-cluster get svc
 
   The above is the process of deploying a Flink task to Kubernetes using the most original script method provided by Flink. Only the most basic task submission is achieved. If it is to reach the production use level, there are still a series of problems that need to be solved, such as: the method is too Originally, it was unable to adapt to large batches of tasks, unable to record task checkpoints and real-time status tracking, difficult to operate and monitor tasks, had no alarm mechanism, and could not be managed in a centralized manner, etc.
 
-## **Deploy Flink on Kubernetes using Apache StreamPark**
+## **Deploy Flink on Kubernetes using Apache StreamPark™**
 
   There will be higher requirements for using Flink on Kubernetes in enterprise-level production environments. Generally, you will choose to build your own platform or purchase related commercial products. No matter which solution meets the product capabilities: large-scale task development and deployment, status tracking, operation and maintenance monitoring , failure alarms, unified task management, high availability, etc. are common demands.
 
-  In response to the above issues, we investigated open source projects in the open source field that support the development and deployment of Flink on Kubernetes tasks. During the investigation, we also encountered other excellent open source projects. After comprehensively comparing multiple open source projects, we came to the conclusion: **Apache StreamPark has great performance in either completness, user experience, or stability, so we finally chose Apache StreamPark as our one-stop real-time computing platform. **
+  In response to the above issues, we investigated open source projects in the open source field that support the development and deployment of Flink on Kubernetes tasks. During the investigation, we also encountered other excellent open source projects. After comprehensively comparing multiple open source projects, we came to the conclusion: **Apache StreamPark™ has great performance in either completness, user experience, or stability, so we finally chose Apache StreamPark™ as our one-stop real-time computing platform. **
 
-  Let’s take a look at how Apache StreamPark supports Flink on Kubernetes:
+  Let’s take a look at how Apache StreamPark™ supports Flink on Kubernetes:
 
 ### **Basic environment configuration**
 
-  Basic environment configuration includes Kubernetes and Docker repository information as well as Flink client information configuration. The simplest way for the Kubernetes basic environment is to directly copy the .kube/config of the Kubernetes node to the Apache StreamPark node user directory, and then use the kubectl command to create a Flink-specific Kubernetes Namespace and perform RBAC configuration.
+  Basic environment configuration includes Kubernetes and Docker repository information as well as Flink client information configuration. The simplest way for the Kubernetes basic environment is to directly copy the .kube/config of the Kubernetes node to the Apache StreamPark™ node user directory, and then use the kubectl command to create a Flink-specific Kubernetes Namespace and perform RBAC configuration.
 
 ```shell
 # Create k8s namespace used by Flink jobs
@@ -93,17 +93,17 @@ Docker account information can be configured directly in the Docker Setting inte
 
 ![](/blog/relx/docker_setting.png)
 
-Apache StreamPark can adapt to multi-version Flink job development. The Flink client can be configured directly on the Apache StreamPark Setting interface:
+Apache StreamPark™ can adapt to multi-version Flink job development. The Flink client can be configured directly on the Apache StreamPark™ Setting interface:
 
 ![](/blog/relx/flinkversion_setting.png)
 
 ### **Job development**
 
-After Apache StreamPark has configured the basic environment, it only takes three steps to develop and deploy a Flink job:
+After Apache StreamPark™ has configured the basic environment, it only takes three steps to develop and deploy a Flink job:
 
 ![](/blog/relx/development_process.png)
 
-  Apache StreamPark supports both Upload Jar and direct writing of Flink SQL jobs. **Flink SQL jobs only need to enter SQL and dependencies. This method greatly improves the development experience and avoids problems such as dependency conflicts.** This article does not focus on this part。
+  Apache StreamPark™ supports both Upload Jar and direct writing of Flink SQL jobs. **Flink SQL jobs only need to enter SQL and dependencies. This method greatly improves the development experience and avoids problems such as dependency conflicts.** This article does not focus on this part。
 
   Here you need to select the deployment mode as kubernetes application, and configure the following parameters on the job development page: The parameters in the red box are the basic parameters of Flink on Kubernetes.
 
@@ -119,7 +119,7 @@ After Apache StreamPark has configured the basic environment, it only takes thre
 
 ### **Job online**
 
-After the job development is completed, the job comes online. In this step, Apache StreamPark has done a lot of work, as follows:
+After the job development is completed, the job comes online. In this step, Apache StreamPark™ has done a lot of work, as follows:
 
 - Prepare environment
 - Dependency download in job
@@ -131,7 +131,7 @@ After the job development is completed, the job comes online. In this step, Apac
 
 ![](/blog/relx/operation.png)
 
-We can see a series of work done by Apache StreamPark when building and pushing the image: **Read the configuration, build the image, and push the image to the remote repository...** I want to give Apache StreamPark a big thumbs up!
+We can see a series of work done by Apache StreamPark™ when building and pushing the image: **Read the configuration, build the image, and push the image to the remote repository...** I want to give Apache StreamPark™ a big thumbs up!
 
 ![](/blog/relx/step_details.png)
 
@@ -141,17 +141,17 @@ We can see a series of work done by Apache StreamPark when building and pushing 
 
 ![](/blog/relx/homework_submit.png)
 
-  The entire process only requires the above three steps to complete the development and deployment of a Flink on Kubernetes job on Apache StreamPark. Apache StreamPark's support for Flink on Kubernetes goes far beyond simply submitting a task.
+  The entire process only requires the above three steps to complete the development and deployment of a Flink on Kubernetes job on Apache StreamPark™. Apache StreamPark™'s support for Flink on Kubernetes goes far beyond simply submitting a task.
 
 ### **Job management**
 
-**After the job is submitted, Apache StreamPark can obtain the latest checkpoint address of the task, the running status of the task, and the real-time resource consumption information of the cluster in real time. It can very conveniently start and stop the running task with one click, and supports recording the savepoint location when stopping the job. , as well as functions such as restoring the state from savepoint when restarting, thus ensuring the data consistency of the production environment and truly possessing the one-stop development, deployment, operation and maintenance monitoring capabilities of Flink on Kubernetes.**
+**After the job is submitted, Apache StreamPark™ can obtain the latest checkpoint address of the task, the running status of the task, and the real-time resource consumption information of the cluster in real time. It can very conveniently start and stop the running task with one click, and supports recording the savepoint location when stopping the job. , as well as functions such as restoring the state from savepoint when restarting, thus ensuring the data consistency of the production environment and truly possessing the one-stop development, deployment, operation and maintenance monitoring capabilities of Flink on Kubernetes.**
 
-Next, let’s take a look at how Apache StreamPark supports this capability:
+Next, let’s take a look at how Apache StreamPark™ supports this capability:
 
 - **Record checkpoint in real time**
 
-  After the job is submitted, sometimes it is necessary to change the job logic but to ensure data consistency, then the platform needs to have the ability to record the location of each checkpoint in real time, as well as the ability to record the last savepoint location when stopped. Apache StreamPark is on Flink on Kubernetes This function is implemented very well. By default, checkpoint information will be obtained and recorded in the corresponding table every 5 seconds, and according to the policy of retaining the number of checkpoints in Flink, only state.checkpoints.num-retained will be retained, and the excess will be deleted. There is an option to check the savepoint when the task is stopped. If the savepoint option is checked, the savepoint operation will be performed when the task is stopped, and the specific location of the savepoint will also be recorded in the table.
+  After the job is submitted, sometimes it is necessary to change the job logic but to ensure data consistency, then the platform needs to have the ability to record the location of each checkpoint in real time, as well as the ability to record the last savepoint location when stopped. Apache StreamPark™ is on Flink on Kubernetes This function is implemented very well. By default, checkpoint information will be obtained and recorded in the corresponding table every 5 seconds, and according to the policy of retaining the number of checkpoints in Flink, only state.checkpoints.num-retained will be retained, and the excess will be deleted. There is an option to check the savepoint when the task is stopped. If the savepoint option is checked, the savepoint operation will be performed when the task is stopped, and the specific location of the savepoint will also be recorded in the table.
 
   The root path of the default savepoint only needs to be configured in the Flink Home flink-conf.yaml file to automatically identify it. In addition to the default address, the root path of the savepoint can also be customized and specified when stopping.
 
@@ -161,27 +161,27 @@ Next, let’s take a look at how Apache StreamPark supports this capability:
 
 - **Track running status in real time**
 
-  For challenges in the production environment, a very important point is whether monitoring is in place, especially for Flink on Kubernetes. This is very important and is the most basic capability. Apache StreamPark can monitor the running status of Flink on Kubernetes jobs in real time and display it to users on the platform. Tasks can be easily retrieved based on various running statuses on the page.
+  For challenges in the production environment, a very important point is whether monitoring is in place, especially for Flink on Kubernetes. This is very important and is the most basic capability. Apache StreamPark™ can monitor the running status of Flink on Kubernetes jobs in real time and display it to users on the platform. Tasks can be easily retrieved based on various running statuses on the page.
 
 ![](/blog/relx/run_status.png)
 
 - **Complete alarm mechanism**
 
-  In addition, Apache StreamPark also has complete alarm functions: supporting email, DingTalk, WeChat and SMS, etc. This is also an important reason why the company chose Apache StreamPark as the one-stop platform for Flink on Kubernetes after initial research.
+  In addition, Apache StreamPark™ also has complete alarm functions: supporting email, DingTalk, WeChat and SMS, etc. This is also an important reason why the company chose Apache StreamPark™ as the one-stop platform for Flink on Kubernetes after initial research.
 
 ![](/blog/relx/alarm.png)
 
-  From the above, we can see that Apache StreamPark has the capabilities to support the development and deployment process of Flink on Kubernetes, including: ** job development capabilities, deployment capabilities, monitoring capabilities, operation and maintenance capabilities, exception handling capabilities, etc. Apache StreamPark provides a relatively complete set of s solution. And it already has some CICD/DevOps capabilities, and the overall completion level continues to improve. It is a product that supports the full link of Flink on Kubernetes one-stop development, deployment, operation and maintenance work in the entire open source field. Apache StreamPark is worthy of praise. **
+  From the above, we can see that Apache StreamPark™ has the capabilities to support the development and deployment process of Flink on Kubernetes, including: ** job development capabilities, deployment capabilities, monitoring capabilities, operation and maintenance capabilities, exception handling capabilities, etc. Apache StreamPark™ provides a relatively complete set of s solution. And it already has some CICD/DevOps capabilities, and the overall completion level continues to improve. It is a product that supports the full link of Flink on Kubernetes one-stop development, deployment, operation and maintenance work in the entire open source field. Apache StreamPark™ is worthy of praise. **
 
-## **Apache StreamPark’s implementation in Wuxin Technology**
+## **Apache StreamPark™’s implementation in Wuxin Technology**
 
-  Apache StreamPark was launched late in Wuxin Technology. It is currently mainly used for the development and deployment of real-time data integration jobs and real-time indicator calculation jobs. There are Jar tasks and Flink SQL tasks, all deployed using Native Kubernetes; data sources include CDC, Kafka, etc., and Sink end There are Maxcompute, kafka, Hive, etc. The following is a screenshot of the company's development environment Apache StreamPark platform:
+  Apache StreamPark™ was launched late in Wuxin Technology. It is currently mainly used for the development and deployment of real-time data integration jobs and real-time indicator calculation jobs. There are Jar tasks and Flink SQL tasks, all deployed using Native Kubernetes; data sources include CDC, Kafka, etc., and Sink end There are Maxcompute, kafka, Hive, etc. The following is a screenshot of the company's development environment Apache StreamPark™ platform:
 
 ![](/blog/relx/screenshot.png)
 
 ## Problems encountered
 
-  Any new technology has a process of exploration and fall into pitfalls. The experience of failure is precious. Here are some pitfalls and experiences that Apache StreamPark has stepped into during the implementation of fog core technology. **The content of this section is not only about Apache StreamPark. I believe it will bring some reference to all friends who use Flink on Kubernetes**.
+  Any new technology has a process of exploration and fall into pitfalls. The experience of failure is precious. Here are some pitfalls and experiences that Apache StreamPark™ has stepped into during the implementation of fog core technology. **The content of this section is not only about Apache StreamPark™. I believe it will bring some reference to all friends who use Flink on Kubernetes**.
 
 ### **FAQs are summarized below**
 
@@ -191,7 +191,7 @@ Next, let’s take a look at how Apache StreamPark supports this capability:
 
 - **Scala version inconsistent**
 
-  Since Apache StreamPark deployment requires a Scala environment, and Flink SQL operation requires the Flink SQL Client provided by Apache StreamPark, it is necessary to ensure that the Scala version of the Flink job is consistent with the Scala version of Apache StreamPark.
+  Since Apache StreamPark™ deployment requires a Scala environment, and Flink SQL operation requires the Flink SQL Client provided by Apache StreamPark™, it is necessary to ensure that the Scala version of the Flink job is consistent with the Scala version of Apache StreamPark™.
 
 - **Be aware of class conflicts**
 
@@ -223,7 +223,7 @@ Next, let’s take a look at how Apache StreamPark supports this capability:
 
 - **Each restart of the task will result in one more Job instance**
 
-  Under the premise that kubernetes-based HA is configured, when you need to stop the Flink task, you need to use cancel of Apache StreamPark. Do not delete the Deployment of the Flink task directly through the kubernetes cluster. Because Flink's shutdown has its own shutdown process, when deleting a pod, the corresponding configuration files in the Configmap will also be deleted. Direct deletion of the pod will result in the remnants of the Configmap. When a task with the same name is restarted, two identical jobs will appear because at startup, the task will load the remaining configuration files and try to restore the closed task.
+  Under the premise that kubernetes-based HA is configured, when you need to stop the Flink task, you need to use cancel of Apache StreamPark™. Do not delete the Deployment of the Flink task directly through the kubernetes cluster. Because Flink's shutdown has its own shutdown process, when deleting a pod, the corresponding configuration files in the Configmap will also be deleted. Direct deletion of the pod will result in the remnants of the Configmap. When a task with the same name is restarted, two identical jobs will appear because at startup, the task will load the remaining configuration files and try to restore the closed task.
 
 - **How to implement kubernetes pod domain name access**
 
@@ -295,14 +295,14 @@ push k8s-harbor.xxx.com/streamx/udf_flink_1.13.6-scala_2.11:latest
 
 ##  **Future Expectations**
 
-- **Apache StreamPark supports Flink job metric monitoring**
+- **Apache StreamPark™ supports Flink job metric monitoring**
 
-  It would be great if Apache StreamPark could connect to Flink Metric data and display Flink’s real-time consumption data at every moment on the Apache StreamPark platform.
+  It would be great if Apache StreamPark™ could connect to Flink Metric data and display Flink’s real-time consumption data at every moment on the Apache StreamPark™ platform.
 
-- **Apache StreamPark supports Flink job log persistence**
+- **Apache StreamPark™ supports Flink job log persistence**
 
-  For Flink deployed to YARN, if the Flink program hangs, we can go to YARN to view the historical logs. However, for Kubernetes, if the program hangs, the Kubernetes pod will disappear and there will be no way to check the logs. Therefore, users need to use tools on Kubernetes for log persistence. It would be better if Apache StreamPark supports the Kubernetes log persistence interface.
+  For Flink deployed to YARN, if the Flink program hangs, we can go to YARN to view the historical logs. However, for Kubernetes, if the program hangs, the Kubernetes pod will disappear and there will be no way to check the logs. Therefore, users need to use tools on Kubernetes for log persistence. It would be better if Apache StreamPark™ supports the Kubernetes log persistence interface.
 
 - **Improvement of the problem of too large image**
 
-  Apache StreamPark's current image support for Flink on Kubernetes jobs is to combine the basic image and user code into a Fat image and push it to the Docker repository. The problem with this method is that it takes a long time when the image is too large. It is hoped that the basic image can be restored in the future. There is no need to hit the business code together every time, which can greatly improve development efficiency and save costs.
+  Apache StreamPark™'s current image support for Flink on Kubernetes jobs is to combine the basic image and user code into a Fat image and push it to the Docker repository. The problem with this method is that it takes a long time when the image is too large. It is hoped that the basic image can be restored in the future. There is no need to hit the business code together every time, which can greatly improve development efficiency and save costs.

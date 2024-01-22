@@ -143,7 +143,7 @@ cd apache-streampark-${release_version}-incubating-src
 
 ***选择编译模式, 这里只能选择1***
 
->[Apache StreamPark] Apache StreamPark supports front-end and server-side mixed / detached packaging mode, Which mode do you need ?
+>[Apache StreamPark™] Apache StreamPark™ supports front-end and server-side mixed / detached packaging mode, Which mode do you need ?
 >
 >1. mixed mode
 >
@@ -153,7 +153,7 @@ cd apache-streampark-${release_version}-incubating-src
 
 ***选择 scala 版本, 第一次编译 scala 2.11版本选择 1, 第二次编译 scala 2.12版本选择 2***
 
->[Apache StreamPark] Apache StreamPark supports Scala 2.11 and 2.12. Which version do you need ?
+>[Apache StreamPark™] Apache StreamPark™ supports Scala 2.11 and 2.12. Which version do you need ?
 >
 >1. 2.11
 >2. 2.12
@@ -183,7 +183,7 @@ https://apache.org/legal/resolved.html)
 <font color="red">
 回复的邮件一定要带上自己检查了那些项信息，仅仅回复`+1 approve`，是无效的。
 
-PPMC在dev@streampark.apache.org Apache StreamPark 的社区投票时，请带上 binding后缀，表示对 Apache StreamPark 社区中的投票具有约束性投票，方便统计投票结果。
+PPMC在dev@streampark.apache.org Apache StreamPark™ 的社区投票时，请带上 binding后缀，表示对 Apache StreamPark™ 社区中的投票具有约束性投票，方便统计投票结果。
 
 IPMC在general@incubator.apache.org incubator社区投票，请带上 binding后缀，表示对incubator社区中的投票具有约束性投票，方便统计投票结果。
 

@@ -12,10 +12,10 @@ import TabItem from '@theme/TabItem';
 [Flink 官方](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/)提供了[Elasticsearch](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/)的连接器,用于向 elasticsearch 中写入数据,可提供 **至少一次** 的处理语义
 
 ElasticsearchSink 使用 TransportClient（6.x 之前）或者 RestHighLevelClient（6.x 开始）和 Elasticsearch 集群进行通信，
-`Apache StreamPark`对 flink-connector-elasticsearch6 进一步封装，屏蔽开发细节，简化Elasticsearch6及以上的写入操作。
+`Apache StreamPark™`对 flink-connector-elasticsearch6 进一步封装，屏蔽开发细节，简化Elasticsearch6及以上的写入操作。
 
 :::tip 提示
-因为Flink Connector Elasticsearch 不同版本之间存在冲突`Apache StreamPark`暂时仅支持Elasticsearch6及以上的写入操作，如需写入Elasticsearch5需要使用者排除
+因为Flink Connector Elasticsearch 不同版本之间存在冲突`Apache StreamPark™`暂时仅支持Elasticsearch6及以上的写入操作，如需写入Elasticsearch5需要使用者排除
 flink-connector-elasticsearch6 依赖，引入 flink-connector-elasticsearch5依赖 创建
 org.apache.flink.streaming.connectors.elasticsearch5.ElasticsearchSink 实例写入数据。
 :::
@@ -177,10 +177,10 @@ input.addSink(esSinkBuilder.build)
 
 </Tabs>
 
-以上创建ElasticsearchSink添加参数非常的不灵敏。`Apache StreamPark`使用约定大于配置、自动配置的方式只需要配置es
-连接参数、flink运行参数，Apache StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+以上创建ElasticsearchSink添加参数非常的不灵敏。`Apache StreamPark™`使用约定大于配置、自动配置的方式只需要配置es
+连接参数、flink运行参数，Apache StreamPark™ 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## Apache StreamPark 写入 Elasticsearch
+## Apache StreamPark™ 写入 Elasticsearch
 
 ESSink 在启用 Flink checkpoint 后，保证至少一次将操作请求发送到 Elasticsearch 集群。
 
@@ -212,7 +212,7 @@ host: localhost:9200
 
 ### 2. 写入Elasticsearch
 
-用 Apache StreamPark 写入Elasticsearch非常简单,代码如下:
+用 Apache StreamPark™ 写入Elasticsearch非常简单,代码如下:
 
 <Tabs>
 
@@ -266,7 +266,7 @@ object ConnectorApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,Apache StreamPark也对以上功能进行了支持，对应方法如下：
+Flink ElasticsearchSinkFunction可以执行多种类型请求，如（DeleteRequest、 UpdateRequest、IndexRequest）,Apache StreamPark™也对以上功能进行了支持，对应方法如下：
 ```scala
 import org.apache.streampark.flink.core.scala.StreamingContext
 import org.apache.flink.streaming.api.datastream.DataStreamSink
@@ -344,5 +344,5 @@ Elasticsearch 操作请求可能由于多种原因而失败，可以通过实现
 [官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**处理失败的 Elasticsearch 请求** 单元
 ### 配置内部批量处理器
 es内部`BulkProcessor`可以进一步配置其如何刷新缓存操作请求的行为详细查看[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**配置内部批量处理器** 单元
-### Apache StreamPark配置
-其他的所有的配置都必须遵守 **Apache StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+### Apache StreamPark™配置
+其他的所有的配置都必须遵守 **Apache StreamPark™** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)

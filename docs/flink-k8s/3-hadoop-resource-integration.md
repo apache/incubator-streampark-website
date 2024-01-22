@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## Using Hadoop resource in Flink on K8s
 
-Using Hadoop resources under the Apache StreamPark Flink-K8s runtime, such as checkpoint mount HDFS, read and write Hive, etc. The general process is as follows:
+Using Hadoop resources under the Apache StreamPark™ Flink-K8s runtime, such as checkpoint mount HDFS, read and write Hive, etc. The general process is as follows:
 
 #### 1、HDFS
 
@@ -26,7 +26,7 @@ flink-json-1.14.5.jar       log4j-1.2-api-2.17.1.jar           log4j-slf4j-impl-
 
 ​         This is to download the shaded jar and put it in the lib directory of flink. Take hadoop2 as an example, download `flink-shaded-hadoop-2-uber`：https://repo1.maven.org/maven2/org/apache/flink/flink-shaded-hadoop-2-uber/2.7.5-9.0/flink-shaded-hadoop-2-uber-2.7.5-9.0.jar
 
-​	In addition, you can configure the shade jar in a dependent manner in the `Dependency` in the Apache StreamPark task configuration. the following configuration:
+​	In addition, you can configure the shade jar in a dependent manner in the `Dependency` in the Apache StreamPark™ task configuration. the following configuration:
 
 ```xml
 <dependency>
@@ -128,7 +128,7 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 ​                c、`flink-sql-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-hive-2.3.6_2.12/1.14.5/flink-sql-connector-hive-2.3.6_2.12-1.14.5.jar
 
-​            Similarly, the above-mentioned hive-related jars can also be dependently configured in the `Dependency` in the task configuration of Apache StreamPark in a dependent manner, which will not be repeated here.
+​            Similarly, the above-mentioned hive-related jars can also be dependently configured in the `Dependency` in the task configuration of Apache StreamPark™ in a dependent manner, which will not be repeated here.
 
 ##### ii、Add hive configuration file (hive-site.xml)
 

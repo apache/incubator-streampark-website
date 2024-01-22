@@ -21,7 +21,7 @@ sidebar_position: 1
     limitations under the License.
 -->
 
-Apache StreamPark 开发者邮件列表是您在使用 Apache StreamPark 时提出所有问题的首选方式，它能将您的问题推向整个社区。
+Apache StreamPark™ 开发者邮件列表是您在使用 Apache StreamPark™ 时提出所有问题的首选方式，它能将您的问题推向整个社区。
 这是与社区保持同步的最佳方式。
 
 在您向邮件列表发送任何内容之前，请确保您已经**订阅**了它们。
@@ -31,12 +31,12 @@ Apache StreamPark 开发者邮件列表是您在使用 Apache StreamPark 时提�
 
 ### 开发者列表
 
-- 使用此列表提出您对 Apache StreamPark 的问题
-- 由 Apache StreamPark 贡献者用来讨论 Apache StreamPark 的开发
+- 使用此列表提出您对 Apache StreamPark™ 的问题
+- 由 Apache StreamPark™ 贡献者用来讨论 Apache StreamPark™ 的开发
 
 ### 提交列表
 
-- 关于 Apache StreamPark 代码库的更改的通知
+- 关于 Apache StreamPark™ 代码库的更改的通知
 
 | 列表名称           | 地址                      | 订阅                                                   | 退订                                                     | 归档                                                                     |
 |---------------------|------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------|
@@ -50,7 +50,7 @@ Apache StreamPark 开发者邮件列表是您在使用 Apache StreamPark 时提�
 - 1、**订阅**：点击上表中的 **订阅** 按钮，它将重定向到您的邮件客户端。主题和内容是任意的。
   之后，您会从 dev-help@streampark.apache.org 收到确认邮件（如果没有收到，请确认电子邮件是否被自动分类为垃圾邮件、推广邮件、订阅邮件等）。
 - 2、**确认**：直接回复确认邮件，或点击邮件中的链接快速回复。主题和内容是任意的。
-- 3、**欢迎**：在完成上述步骤后，您会收到一个主题为 WELCOME to dev@streampark.apache.org 的欢迎邮件，您已成功订阅 Apache StreamPark 邮件列表。
+- 3、**欢迎**：在完成上述步骤后，您会收到一个主题为 WELCOME to dev@streampark.apache.org 的欢迎邮件，您已成功订阅 Apache StreamPark™ 邮件列表。
 
 ## 发送纯文本邮件
 

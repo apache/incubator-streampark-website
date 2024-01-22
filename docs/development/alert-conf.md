@@ -7,14 +7,14 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-`Apache StreamPark` supports a variety of alerts, mainly as follows：
+`Apache StreamPark™` supports a variety of alerts, mainly as follows：
 
 * **E-mail**: Mail notification
 * **DingTalk**: DingTalk Custom Group Robot
 * **WeChat**: Enterprise WeChat Custom Group Robot
 * **Lark**: Feishu Custom Group Robot
 
-Apache StreamPark support any combination of alerts
+Apache StreamPark™ support any combination of alerts
 
 :::info Future plan
 
@@ -24,7 +24,7 @@ Apache StreamPark support any combination of alerts
 
 ## Added alert configuration
 
-`Click Apache StreamPark` -> Setting on the left, then click `Alert Setting` to enter the alert configuration.
+`Click Apache StreamPark™` -> Setting on the left, then click `Alert Setting` to enter the alert configuration.
 ![alert_add_setting.png](/doc/image/alert/alert_add_setting.png)
 
 Click `Add New` to add alert configuration:
