@@ -8,7 +8,7 @@ sidebar_position: 2
 
 The installation of the one-stop platform `streampark-console` has been introduced in detail in the previous chapter. In this chapter, let's see how to quickly deploy and run a job with `streampark-console`. The official structure and specification) and projects developed with `streampark` are well supported. Let's use `streampark-quickstart` to quickly start the journey of `streampark-console`
 
-`streampark-quickstart` is a sample program for developing Flink by StreamPark. For details, please refer to:
+`streampark-quickstart` is a sample program for developing Flink by Apache StreamPark. For details, please refer to:
 
 - Github: [https://github.com/apache/incubator-streampark-quickstart.git](https://github.com/apache/incubator-streampark-quickstart)
 

@@ -9,11 +9,11 @@ import TabItem from '@theme/TabItem';
 
 Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html) connector for reading from or writing to JDBC, which can provides **AT_LEAST_ONCE** (at least once) processing semantics
 
-`StreamPark` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
+`Apache StreamPark` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
 
 ## JDBC Configuration
 
-The implementation of the `Jdbc Connector` in `StreamPark` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
+The implementation of the `Jdbc Connector` in `Apache StreamPark` uses the [`HikariCP`](https://github.com/brettwooldridge/HikariCP) connection pool, which is configured under the namespace of `jdbc`, and the agreed configuration is as follows:
 
 ```yaml
 jdbc:
@@ -60,7 +60,7 @@ Except for the special `semantic` configuration item, all other configurations m
 
 ## JDBC read
 
-In `StreamPark`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
+In `Apache StreamPark`, `JdbcSource` is used to read data, and according to the data `offset` to read data can be replayed, we look at the specific how to use `JdbcSource` to read data, if the demand is as follows
 
 <div class="counter">
 
@@ -208,7 +208,7 @@ public interface SQLResultFunction<T> extends Serializable {
 
 ## JDBC Read Write
 
-In `StreamPark`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
+In `Apache StreamPark`, `JdbcSink` is used to write data, let's see how to write data with `JdbcSink`, the example is to read data from `kakfa` and write to `mysql`.
 
 <Tabs>
 <TabItem value="Setting" default>
@@ -229,7 +229,7 @@ jdbc:
   password: 123456
 ```
 :::danger Cautions
-The configuration under `jdbc` **semantic** is the semantics of writing, as described in [Jdbc Info Configuration](#jdbc-info-config), the configuration will only take effect on `JdbcSink`, `StreamPark` is based on two-phase commit to achieve **EXACTLY_ONCE** semantics,
+The configuration under `jdbc` **semantic** is the semantics of writing, as described in [Jdbc Info Configuration](#jdbc-info-config), the configuration will only take effect on `JdbcSink`, `Apache StreamPark` is based on two-phase commit to achieve **EXACTLY_ONCE** semantics,
 This requires that the database being manipulated supports transactions(`mysql`, `oracle`, `MariaDB`, `MS SQL Server`), theoretically all databases that support standard Jdbc transactions can do EXACTLY_ONCE (exactly once) write
 :::
 

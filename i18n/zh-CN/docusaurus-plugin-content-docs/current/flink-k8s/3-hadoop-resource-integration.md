@@ -6,7 +6,7 @@ sidebar_position: 3
 
 ## 在 Flink on K8s 上使用 Hadoop 资源
 
-在 StreamPark Flink-K8s runtime 下使用 Hadoop 资源，如 checkpoint 挂载 HDFS、读写 Hive 等，大概流程如下：
+在 Apache StreamPark Flink-K8s runtime 下使用 Hadoop 资源，如 checkpoint 挂载 HDFS、读写 Hive 等，大概流程如下：
 
 #### 1、HDFS
 
@@ -26,7 +26,7 @@ flink-json-1.14.5.jar       log4j-1.2-api-2.17.1.jar           log4j-slf4j-impl-
 
 ​         这是需要将 shade jar 下载下来，然后放在 flink 的 lib 目录下，这里 以hadoop2 为例，下载 `flink-shaded-hadoop-2-uber`：https://repo1.maven.org/maven2/org/apache/flink/flink-shaded-hadoop-2-uber/2.7.5-9.0/flink-shaded-hadoop-2-uber-2.7.5-9.0.jar
 
-​	另外，可以将 shade jar 以依赖的方式在 StreamPark 的任务配置中的`Dependency` 进行依赖配置，如下配置：
+​	另外，可以将 shade jar 以依赖的方式在 Apache StreamPark 的任务配置中的`Dependency` 进行依赖配置，如下配置：
 
 ```xml
 <dependency>
@@ -128,7 +128,7 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 ​                c、`flink-sql-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-hive-2.3.6_2.12/1.14.5/flink-sql-connector-hive-2.3.6_2.12-1.14.5.jar
 
-​               同样，也可以将上述 hive 相关 jar 以依赖的方式在 StreamPark 的任务配置中的`Dependency` 进行依赖配置，这里不再赘述。
+​               同样，也可以将上述 hive 相关 jar 以依赖的方式在 Apache StreamPark 的任务配置中的`Dependency` 进行依赖配置，这里不再赘述。
 
 ##### ii、添加 hive 的配置文件（hive-site.xml）
 

@@ -1,5 +1,5 @@
 # 快速上手
-> 说明：该部分旨在通过简单的操作步骤，体验使用StreamPark平台提交flink作业的便捷流程。
+> 说明：该部分旨在通过简单的操作步骤，体验使用Apache StreamPark平台提交flink作业的便捷流程。
 
 ## 配置FLINK_HOME
 ![1_config_flink_home](/doc/image/platform-usage/1_config_flink_home.png)
@@ -9,7 +9,7 @@
 
 ![3_display_flink_home_config](/doc/image/platform-usage/3_display_flink_home_config.png)
 ## 配置Flink Cluster
-> 根据flink 部署模式 以及 资源管理方式，StreamPark 支持以下6种作业模式
+> 根据flink 部署模式 以及 资源管理方式，Apache StreamPark 支持以下6种作业模式
 > - **Standalone Session**
 > - **Yarn Session**
 > - **Yarn Per-job**
@@ -79,8 +79,8 @@ start-cluster.sh
 ![22_submit_flink_job_2](/doc/image/platform-usage/22_submit_flink_job_2.png)
 
 ## 查看作业状态
-### 通过StreamPark看板查看
-> StreamPark dashboard
+### 通过Apache StreamPark看板查看
+> Apache StreamPark dashboard
 
 ![23_flink_job_dashboard](/doc/image/platform-usage/23_flink_job_dashboard.png)
 
@@ -95,22 +95,22 @@ start-cluster.sh
 
 ![27_display_native_flink_job_web_ui_2](/doc/image/platform-usage/27_display_native_flink_job_web_ui_2.png)
 
-> 至此，一个使用StreamPark平台提交flink job的流程基本完成。下面简单总结下StreamPark平台管理flink作业的大致流程。
+> 至此，一个使用Apache StreamPark平台提交flink job的流程基本完成。下面简单总结下Apache StreamPark平台管理flink作业的大致流程。
 
-## StreamPark平台管理flink job的流程
+## Apache StreamPark平台管理flink job的流程
 ![28_streampark_process_workflow](/doc/image/platform-usage/28_streampark_process_workflow.png)
 
-> 通过 StreamPark 平台 停止、修改、删除 flink job 相对简单，大家可自行体验，需要说明的一点是：**若作业为running状态，则不可删除，需先停止**。
+> 通过 Apache StreamPark 平台 停止、修改、删除 flink job 相对简单，大家可自行体验，需要说明的一点是：**若作业为running状态，则不可删除，需先停止**。
 
 
-# StreamPark系统模块简介
+# Apache StreamPark系统模块简介
 ## 系统设置
 > 菜单位置
 
 ![29_streampark_system_menu](/doc/image/platform-usage/29_streampark_system_menu.png)
 
 ### User Management
-> 用于管理StreamPark平台用户
+> 用于管理Apache StreamPark平台用户
 
 ![30_streampark_user_management_menu](/doc/image/platform-usage/30_streampark_user_management_menu.png)
 ### Token Management
@@ -150,9 +150,9 @@ curl -X POST '/flink/app/cancel' \
 
 ![36_streampark_menu_management](/doc/image/platform-usage/36_streampark_menu_management.png)
 
-## StreamPark菜单模块
+## Apache StreamPark菜单模块
 ### Project
-> StreamPark结合代码仓库实现CICD
+> Apache StreamPark结合代码仓库实现CICD
 
 ![37_streampark_project_menu](/doc/image/platform-usage/37_streampark_project_menu.png)
 > 使用时，点击 “+ Add new ”,配置repo信息，保存。
@@ -212,8 +212,8 @@ curl -X POST '/flink/app/cancel' \
 
 ![54_visit_flink_cluster_web_ui](/doc/image/platform-usage/54_visit_flink_cluster_web_ui.png)
 
-# 原生flink 与 StreamPark关联使用
-> 【**待完善**】其实，个人理解，StreamPark一大特点是对flink原生作业的管理模式在用户使用层面进行了优化，使得用户能利用该平台快速开发、部署、运行、监控flink作业。所以，想表达的意思是：如果用户对原生flink比较熟悉的话，那StreamPark使用起来就会更加得心应手。
+# 原生flink 与 Apache StreamPark关联使用
+> 【**待完善**】其实，个人理解，Apache StreamPark一大特点是对flink原生作业的管理模式在用户使用层面进行了优化，使得用户能利用该平台快速开发、部署、运行、监控flink作业。所以，想表达的意思是：如果用户对原生flink比较熟悉的话，那Apache StreamPark使用起来就会更加得心应手。
 
 ## flink部署模式
 > 下面内容摘自 **张利兵 老师 极客时间专栏** 《[Flink核心技术与实战](https://time.geekbang.org/course/intro/100058801)》
@@ -231,7 +231,7 @@ curl -X POST '/flink/app/cancel' \
 
 ![60_flink_deployment_difference_6](/doc/image/platform-usage/60_flink_deployment_difference_6.png)
 
-### 如何在StreamPark中使用
+### 如何在Apache StreamPark中使用
 > **Session 模式**
 
 1. 配置 Flink Cluster
@@ -262,7 +262,7 @@ flink run-application -t yarn-application \
 	-Dyarn.provided.lib.dirs="hdfs://myhdfs/my-remote-flink-dist-dir" \
 	hdfs://myhdfs/jars/my-application.jar
 ```
-### 如何在StreamPark中使用
+### 如何在Apache StreamPark中使用
 > 创建 或 修改 作业时，在“Dynamic Properties”里面按指定格式添加即可
 
 ![67_dynamic_params_usage](/doc/image/platform-usage/67_dynamic_params_usage.png)
@@ -275,7 +275,7 @@ flink run-application -t yarn-application \
 
 ![68_native_flink_restart_strategy](/doc/image/platform-usage/68_native_flink_restart_strategy.png)
 
-### 如何在StreamPark中使用
+### 如何在Apache StreamPark中使用
 > 【**待完善**】一般在作业失败或出现异常时，会触发告警
 
 1. 配置告警通知
@@ -297,7 +297,7 @@ flink run-application -t yarn-application \
 
 
 ![72_native_flink_save_checkpoint_gramma](/doc/image/platform-usage/72_native_flink_save_checkpoint_gramma.png)
-### 如何在StreamPark中配置savepoint
+### 如何在Apache StreamPark中配置savepoint
 > 当停止作业时，可以让用户设置savepoint
 
 ![73_streampark_save_checkpoint](/doc/image/platform-usage/73_streampark_save_checkpoint.png)
@@ -312,7 +312,7 @@ flink run-application -t yarn-application \
 
 ![77_show_checkpoint_file_name_2](/doc/image/platform-usage/77_show_checkpoint_file_name_2.png)
 
-### 如何在StreamPark中由指定savepoint恢复作业
+### 如何在Apache StreamPark中由指定savepoint恢复作业
 > 启动作业时，会让选择
 
 ![78_usage_checkpoint_in_streampark](/doc/image/platform-usage/78_usage_checkpoint_in_streampark.png)
@@ -325,7 +325,7 @@ flink run-application -t yarn-application \
 
 ![79_native_flink_job_status](/doc/image/platform-usage/79_native_flink_job_status.svg)
 
-### StreamPark中的作业状态
+### Apache StreamPark中的作业状态
 > 【**待完善**】
 
 
@@ -335,10 +335,10 @@ flink run-application -t yarn-application \
 
 ![80_native_flink_job_details_page](/doc/image/platform-usage/80_native_flink_job_details_page.png)
 
-### StreamPark中作业详情
+### Apache StreamPark中作业详情
 ![81_streampark_flink_job_details_page](/doc/image/platform-usage/81_streampark_flink_job_details_page.png)
 
-> 同时在k8s模式下的作业，StreamPark还支持启动日志实时展示，如下
+> 同时在k8s模式下的作业，Apache StreamPark还支持启动日志实时展示，如下
 
 ![82_streampark_flink_job_starting_log_info](/doc/image/platform-usage/82_streampark_flink_job_starting_log_info.png)
 
@@ -347,7 +347,7 @@ flink run-application -t yarn-application \
 > 原生flink提供了 rest api
 > 参考：[https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/ops/rest_api/)
 
-### StreamPark如何与第三方系统集成
+### Apache StreamPark如何与第三方系统集成
 > 也提供了Restful Api，支持与其他系统对接，
 > 比如：开启作业 启动|停止 restapi 接口
 

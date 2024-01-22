@@ -1,12 +1,12 @@
 ---
 slug: streampark-usercase-joyme
-title: StreamPark 在 Joyme 的生产实践
-tags: [StreamPark, 生产实践, FlinkSQL]
+title: Apache StreamPark 在 Joyme 的生产实践
+tags: [Apache StreamPark, 生产实践, FlinkSQL]
 ---
 
-**摘要：** 本文带来 StreamPark 在 Joyme 中的生产实践, 作者是 Joyme 的大数据工程师秦基勇, 主要内容为:
+**摘要：** 本文带来 Apache StreamPark 在 Joyme 中的生产实践, 作者是 Joyme 的大数据工程师秦基勇, 主要内容为:
 
-- 遇见StreamPark
+- 遇见Apache StreamPark
 - Flink Sql 作业开发
 - Custom code 作业开发
 - 监控告警
@@ -16,9 +16,9 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 <!-- truncate -->
 
-## 1 遇见 StreamPark
+## 1 遇见 Apache StreamPark
 
-遇见 StreamPark 是必然的，基于我们现有的实时作业开发模式，不得不寻找一个开源的平台来支撑我司的实时业务。我们的现状如下:
+遇见 Apache StreamPark 是必然的，基于我们现有的实时作业开发模式，不得不寻找一个开源的平台来支撑我司的实时业务。我们的现状如下:
 
 - 编写作业打包到服务器，然后执行 Flink run 命令进行提交，过程繁琐，效率低下
 - Flink Sql 通过自研的老平台提交，老平台开发人员已离职，后续的代码无人维护，即便有人维护也不得不面对维护成本高的问题
@@ -27,13 +27,13 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 基于以上种种原因，我们需要一个开源平台来管理我们的实时作业，同时我们也需要进行重构，统一开发模式，统一开发语言，将项目集中管理。
 
-第一次遇见 StreamPark 就基本确定了，我们根据官网的文档快速进行了部署安装，搭建以后进行了一些操作，界面友好，Flink 多版本支持，权限管理，作业监控等一系列功能已能较好的满足我们的需求，进一步了解到其社区也很活跃，从 1.1.0 版本开始见证了 StreamPark 功能完善的过程，开发团队是非常有追求的，相信会不断的完善。
+第一次遇见 Apache StreamPark 就基本确定了，我们根据官网的文档快速进行了部署安装，搭建以后进行了一些操作，界面友好，Flink 多版本支持，权限管理，作业监控等一系列功能已能较好的满足我们的需求，进一步了解到其社区也很活跃，从 1.1.0 版本开始见证了 Apache StreamPark 功能完善的过程，开发团队是非常有追求的，相信会不断的完善。
 
 ## 2 Flink SQL 作业开发
 
 Flink Sql 开发模式带来了很大的便利，对于一些简单的指标开发，只需要简单的 Sql 就可以完成，不需要写一行代码。Flink Sql 方便了很多同学的开发工作，毕竟一些做仓库的同学在编写代码方面还是有些难度。
 
-打开 StreamPark 的任务新增界面进行添加新任务，默认 Development Mode 就是 Flink Sql 模式。直接在 Flink Sql 部分编写Sql 逻辑。
+打开 Apache StreamPark 的任务新增界面进行添加新任务，默认 Development Mode 就是 Flink Sql 模式。直接在 Flink Sql 部分编写Sql 逻辑。
 
 Flink Sql 部分，按照 Flink 官网的文档逐步编写逻辑 Sql 即可，对于我司来说，一般就三部分: 接入 Source ，中间逻辑处理，最后 Sink。基本上 Source 都是消费 kafka 的数据，逻辑处理层会有关联 MySQL 去做维表查询，最后 Sink 部分大多是 Es，Redis，MySQL。
 
@@ -76,7 +76,7 @@ SELECT  Data.uid  FROM source_table;
 
 ### **2. 添加依赖**
 
-关于依赖这块是 StreamPark 里特有的，在 StreamPark 中创新型的将一个完整的 Flink Sql 任务拆分成两部分组成: Sql 和 依赖, Sql 很好理解不多啰嗦, 依赖是 Sql 里需要用到的一些 Connector 的 Jar, 如 Sql 里用到了 Kafka 和 MySQL 的 Connector, 那就需要引入这两个 Connector 的依赖, 在 StreamPark 中添加依赖两种方式，一种是基于标准的 Maven pom 坐标方式，另一种是从本地上传需要的 Jar 。这两种也可以混着用，按需添加，点击应用即可， 在提交作业的时候就会自动加载这些依赖。
+关于依赖这块是 Apache StreamPark 里特有的，在 Apache StreamPark 中创新型的将一个完整的 Flink Sql 任务拆分成两部分组成: Sql 和 依赖, Sql 很好理解不多啰嗦, 依赖是 Sql 里需要用到的一些 Connector 的 Jar, 如 Sql 里用到了 Kafka 和 MySQL 的 Connector, 那就需要引入这两个 Connector 的依赖, 在 Apache StreamPark 中添加依赖两种方式，一种是基于标准的 Maven pom 坐标方式，另一种是从本地上传需要的 Jar 。这两种也可以混着用，按需添加，点击应用即可， 在提交作业的时候就会自动加载这些依赖。
 
 ![](/blog/joyme/add_dependency.png)
 
@@ -106,7 +106,7 @@ Streaming 作业我们是使用 Flink java 进行开发，将之前 Spark scala�
 
 ![](/blog/joyme/project_configuration.png)
 
-配置完成以后，根据对应的项目进行编译，也就完成项目的打包环节。这样后面的 Constom code 作业也可以引用。每次需要上线都需要进行编译才可以，否则只能是上次编译的代码。这里有个问题，为了安全，我司的 gitlab 账号密码都是定期更新的。这样就会导致，StreamPark 已经配置好的项目还是之前的密码，结果导致编译时从 git 里拉取项目失败，导致整个编译环节失败，针对这个问题，我们联系到社区，了解到这部分已经在后续的 1.2.1 版本中支持了项目的修改操作。
+配置完成以后，根据对应的项目进行编译，也就完成项目的打包环节。这样后面的 Constom code 作业也可以引用。每次需要上线都需要进行编译才可以，否则只能是上次编译的代码。这里有个问题，为了安全，我司的 gitlab 账号密码都是定期更新的。这样就会导致，Apache StreamPark 已经配置好的项目还是之前的密码，结果导致编译时从 git 里拉取项目失败，导致整个编译环节失败，针对这个问题，我们联系到社区，了解到这部分已经在后续的 1.2.1 版本中支持了项目的修改操作。
 
 ![](/blog/joyme/flink_system.png)
 
@@ -120,7 +120,7 @@ Streaming 作业我们是使用 Flink java 进行开发，将之前 Spark scala�
 
 ## 4 监控告警
 
-StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息。
+Apache StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息。
 
 ![](/blog/joyme/system_setting.png)
 
@@ -132,7 +132,7 @@ StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息
 
 ![](/blog/joyme/alarm_eamil.png)
 
-关于报警这一块目前我们基于 StreamPark 的 t_flink_app 表进行了一个定时任务的开发。为什么要这么做？因为发送邮件这种通知，大部分人可能不会去及时去看。所以我们选择监控每个任务的状态去把对应的监控信息发送我们的飞书报警群，这样可以及时发现问题去解决任务。一个简单的 python 脚本，然后配置了 crontab 去定时执行。
+关于报警这一块目前我们基于 Apache StreamPark 的 t_flink_app 表进行了一个定时任务的开发。为什么要这么做？因为发送邮件这种通知，大部分人可能不会去及时去看。所以我们选择监控每个任务的状态去把对应的监控信息发送我们的飞书报警群，这样可以及时发现问题去解决任务。一个简单的 python 脚本，然后配置了 crontab 去定时执行。
 
 ## 5 常见问题
 
@@ -152,10 +152,10 @@ StreamPark 的监控需要在 setting 模块去配置发送邮件的基本信息
 
 ## 6 社区印象
 
-很多时候我们在 StreamPark 用户群里讨论问题，都会得到社区小伙伴的即时响应。提交的一些 issue 在当下不能解决的，基本也会在下一个版本或者最新的代码分支中进行修复。在群里，我们也看到很多不是社区的小伙伴，也在积极互相帮助去解决问题。群里也有很多其他社区的大佬，很多小伙伴也积极加入了社区的开发工作。整个社区给我的感觉还是很活跃！
+很多时候我们在 Apache StreamPark 用户群里讨论问题，都会得到社区小伙伴的即时响应。提交的一些 issue 在当下不能解决的，基本也会在下一个版本或者最新的代码分支中进行修复。在群里，我们也看到很多不是社区的小伙伴，也在积极互相帮助去解决问题。群里也有很多其他社区的大佬，很多小伙伴也积极加入了社区的开发工作。整个社区给我的感觉还是很活跃！
 
 ## 7 总结
 
-目前我司线上运行 60 个实时作业，Flink sql 与 Custom-code 差不多各一半。后续也会有更多的实时任务进行上线。很多同学都会担心 StreamPark 稳不稳定的问题，就我司根据几个月的生产实践而言，StreamPark 只是一个帮助你开发作业，部署，监控和管理的一个平台。到底稳不稳，还是要看自家的 Hadoop yarn 集群稳不稳定（我们用的onyan模式），其实已经跟 StreamPark关系不大了。还有就是你写的 Flink Sql 或者是代码健不健壮。更多的是这两方面应该是大家要考虑的，这两方面没问题再充分利用 StreamPark 的灵活性才能让作业更好的运行，单从一方面说 StreamPark 稳不稳定，实属偏激。
+目前我司线上运行 60 个实时作业，Flink sql 与 Custom-code 差不多各一半。后续也会有更多的实时任务进行上线。很多同学都会担心 Apache StreamPark 稳不稳定的问题，就我司根据几个月的生产实践而言，Apache StreamPark 只是一个帮助你开发作业，部署，监控和管理的一个平台。到底稳不稳，还是要看自家的 Hadoop yarn 集群稳不稳定（我们用的onyan模式），其实已经跟 Apache StreamPark关系不大了。还有就是你写的 Flink Sql 或者是代码健不健壮。更多的是这两方面应该是大家要考虑的，这两方面没问题再充分利用 Apache StreamPark 的灵活性才能让作业更好的运行，单从一方面说 Apache StreamPark 稳不稳定，实属偏激。
 
-以上就是 StreamPark 在乐我无限的全部分享内容，感谢大家看到这里。非常感谢 StreamPark 提供给我们这么优秀的产品，这就是做的利他人之事。从1.0 到 1.2.1 平时遇到那些bug都会被即时的修复，每一个issue都被认真对待。目前我们还是 onyarn的部署模式，重启yarn还是会导致作业的lost状态，重启yarn也不是天天都干的事，关于这个社区也会尽早的会去修复这个问题。相信 StreamPark 会越来越好，未来可期。
+以上就是 Apache StreamPark 在乐我无限的全部分享内容，感谢大家看到这里。非常感谢 Apache StreamPark 提供给我们这么优秀的产品，这就是做的利他人之事。从1.0 到 1.2.1 平时遇到那些bug都会被即时的修复，每一个issue都被认真对待。目前我们还是 onyarn的部署模式，重启yarn还是会导致作业的lost状态，重启yarn也不是天天都干的事，关于这个社区也会尽早的会去修复这个问题。相信 Apache StreamPark 会越来越好，未来可期。

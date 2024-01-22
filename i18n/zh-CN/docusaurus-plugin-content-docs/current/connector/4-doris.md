@@ -9,11 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [Apache Doris](https://doris.apache.org/)是一款基于大规模并行处理技术的分布式 SQL 数据库，主要面向 OLAP 场景。
-StreamPark 基于Doris的[stream load](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)封装了DoirsSink用于向Doris实时写入数据。
+Apache StreamPark 基于Doris的[stream load](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)封装了DoirsSink用于向Doris实时写入数据。
 
-### StreamPark 方式写入
+### Apache StreamPark 方式写入
 
-用`StreamPark`写入 `doris`的数据, 目前 DorisSink 只支持 JSON 格式(单层)写入，如：{"id":1,"name":"streampark"}
+用`Apache StreamPark`写入 `doris`的数据, 目前 DorisSink 只支持 JSON 格式(单层)写入，如：{"id":1,"name":"streampark"}
 运行程序样例为java，如下:
 
 #### 配置信息

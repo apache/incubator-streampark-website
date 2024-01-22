@@ -8,16 +8,16 @@ sidebar_position: 6
 
 ADMIN can select the user type when creating or modifying a user. There are two user types: ADMIN and USER.
 
-- ADMIN means the system administrator, that is: the super administrator of StreamPark, who has all the permissions of
-  the StreamPark management page and each team.
+- ADMIN means the system administrator, that is: the super administrator of Apache StreamPark, who has all the permissions of
+  the Apache StreamPark management page and each team.
 - USER means a normal user of the platform. Creating a USER is just creating an account. By default, users don't have
   any permissions on the platform. After account is created and the ADMIN binds it to some teams, USER will have
   permissions in the corresponding teams.
 
 ## Team Management
 
-In order to facilitate the management of applications in different departments within the company, StreamPark supports
-team management. ADMIN can create different teams for different departments on StreamPark.
+In order to facilitate the management of applications in different departments within the company, Apache StreamPark supports
+team management. ADMIN can create different teams for different departments on Apache StreamPark.
 
 <img src="/doc/image/team/team_management.png"/><br></br>
 
@@ -34,9 +34,9 @@ can view or operate the applications of the corresponding team.
 ## Role Management
 
 In order to facilitate application management and prevent misoperation, the team also needs to distinguish between
-administrator and developer, so StreamPark introduces role management.
+administrator and developer, so Apache StreamPark introduces role management.
 
-Currently, StreamPark supports two roles: team admin and developer. The team admin has all the permissions in the team.
+Currently, Apache StreamPark supports two roles: team admin and developer. The team admin has all the permissions in the team.
 Compared with the team admin, the developer has fewer permissions to delete applications and add USER to the team.
 
 <img src="/doc/image/team/role_management.png"/><br></br>

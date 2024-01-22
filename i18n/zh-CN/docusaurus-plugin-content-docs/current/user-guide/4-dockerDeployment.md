@@ -4,7 +4,7 @@ title: 'Docker 部署'
 sidebar_position: 4
 ---
 
-本教程使用 Docker 完成 StreamPark 的部署。
+本教程使用 Docker 完成 Apache StreamPark 的部署。
 
 ## 前置条件
 
@@ -17,9 +17,9 @@ sidebar_position: 4
 ### 2. 安装 docker-compose
 使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)
 
-## 部署 StreamPark
+## 部署 Apache StreamPark
 
-### 1. 基于 h2 和 docker-compose 部署 StreamPark
+### 1. 基于 h2 和 docker-compose 部署 Apache StreamPark
 
 该方式适用于入门学习、熟悉功能特性，容器重启后配置会失效，下方可以配置Mysql、Pgsql进行持久化
 
@@ -30,7 +30,7 @@ wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/do
 wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/.env
 docker-compose up -d
 ```
-服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问StreamPark链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streampark。想要了解更多操作请参考用户手册快速上手。
+服务启动后，可以通过 http://localhost:10000 访问 Apache StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问Apache StreamPark链接后会跳转到登陆页面，Apache StreamPark 默认的用户和密码分别为 admin 和 streampark。想要了解更多操作请参考用户手册快速上手。
 ![](/doc/image/streampark_docker-compose.png)
 
 该部署方式会自动给你启动一个flink-session集群供你去进行flink任务使用，同时也会挂载本地docker服务以及~/.kube来用于k8s模式的任务提交
@@ -51,7 +51,7 @@ docker-compose up -d
 
 
 #### 使用已有的 Mysql 服务
-该方式适用于企业生产，你可以基于 docker 快速部署 StreamPark 并将其和线上数据库进行关联
+该方式适用于企业生产，你可以基于 docker 快速部署 Apache StreamPark 并将其和线上数据库进行关联
 注意：部署支持的多样性是通过.env这个配置文件来进行维护的，要保证目录下有且仅有一个.env文件
 
 ```shell
@@ -93,7 +93,7 @@ SPRING_DATASOURCE_PASSWORD=streampark
 docker-compose up -d
 ```
 
-## 基于源码构建镜像进行StreamPark部署
+## 基于源码构建镜像进行Apache StreamPark部署
 
 ```shell
 git clone https://github.com/apache/incubator-streampark.git

@@ -1,16 +1,16 @@
 ---
 slug: streampark-usercase-ziru
 title: Ziroom's Real-Time Computing Platform Practice Based on Apache StreamPark
-tags: [StreamPark, Production Practice]
+tags: [Apache StreamPark, Production Practice]
 ---
 
 ![](/blog/ziru/cover.png)
 
-**Introduction:** Ziroom, an O2O internet company focusing on providing rental housing products and services, has built an online, data-driven, and intelligent platform that covers the entire chain of urban living. Real-time computing has always played an important role in Ziroom. To date, Ziroom processes TB-level data daily. This article, brought by the real-time computing team from Ziroom, introduces the in-depth practice of Ziroom's real-time computing platform based on StreamPark.
+**Introduction:** Ziroom, an O2O internet company focusing on providing rental housing products and services, has built an online, data-driven, and intelligent platform that covers the entire chain of urban living. Real-time computing has always played an important role in Ziroom. To date, Ziroom processes TB-level data daily. This article, brought by the real-time computing team from Ziroom, introduces the in-depth practice of Ziroom's real-time computing platform based on Apache StreamPark.
 
 - Challenges in real-time computing
 - The journey to the solution
-- In-depth practice based on StreamPark
+- In-depth practice based on Apache StreamPark
 - Summary of practical experience and examples
 - Benefits brought by the implementation
 - Future plans
@@ -63,7 +63,7 @@ Therefore, there is a need to improve the efficiency of development and debuggin
 
 In the early stages of platform construction, we comprehensively surveyed almost all relevant projects in the industry, covering both commercial paid versions and open-source versions, starting from early 2022. After investigation and comparison, we found that these projects have their limitations to varying extents, and their usability and stability could not be effectively guaranteed.
 
-Overall, StreamPark performed best in our evaluation. It was the only project without major flaws and with strong extensibility: supporting both SQL and JAR jobs, with the most complete and stable deployment mode for Flink jobs. Its unique architectural design not only avoids locking in specific Flink versions but also supports convenient version switching and parallel processing, effectively solving job dependency isolation and conflict issues. The job management & operations capabilities we focused on were also very complete, including monitoring, alerts, SQL validation, SQL version comparison, CI, etc. StreamPark's support for Flink on K8s was the most comprehensive among all the open-source projects we surveyed. However, StreamPark's K8s mode submission required local image building, leading to storage resource consumption.
+Overall, Apache StreamPark performed best in our evaluation. It was the only project without major flaws and with strong extensibility: supporting both SQL and JAR jobs, with the most complete and stable deployment mode for Flink jobs. Its unique architectural design not only avoids locking in specific Flink versions but also supports convenient version switching and parallel processing, effectively solving job dependency isolation and conflict issues. The job management & operations capabilities we focused on were also very complete, including monitoring, alerts, SQL validation, SQL version comparison, CI, etc. Apache StreamPark's support for Flink on K8s was the most comprehensive among all the open-source projects we surveyed. However, Apache StreamPark's K8s mode submission required local image building, leading to storage resource consumption.
 
 In the latest 2.2 version, the community has already restructured this part.
 
@@ -73,19 +73,19 @@ After analyzing the pros and cons of many open-source projects, we decided to pa
 
 2. In the selection of open-source components, after comprehensive comparison and evaluation of various indicators, we finally chose what was then StreamX. Subsequent close communication with the community allowed us to deeply appreciate the serious and responsible attitude of the founders and the united and friendly atmosphere of the community. We also witnessed the project's inclusion in the Apache Incubator in September 2022, making us hopeful for its future.
 
-3. On the basis of StreamPark, we aim to promote integration with the existing ecosystem of the company to better meet our business needs.
+3. On the basis of Apache StreamPark, we aim to promote integration with the existing ecosystem of the company to better meet our business needs.
 
-## **In-depth Practice Based on StreamPark**
+## **In-depth Practice Based on Apache StreamPark**
 
-Based on the above decisions, we initiated the evolution of the real-time computing platform, oriented by "pain point needs," and built a stable, efficient, and easy-to-maintain real-time computing platform based on StreamPark. Since the beginning of 2022, we have participated in the construction of the community while officially scheduling our internal platform construction.
+Based on the above decisions, we initiated the evolution of the real-time computing platform, oriented by "pain point needs," and built a stable, efficient, and easy-to-maintain real-time computing platform based on Apache StreamPark. Since the beginning of 2022, we have participated in the construction of the community while officially scheduling our internal platform construction.
 
-First, we further improved related functionalities on the basis of StreamPark:
+First, we further improved related functionalities on the basis of Apache StreamPark:
 
 ![](/blog/ziru/platform_construction.png)
 
 ### **01 LDAP Login Support**
 
-On the basis of StreamPark, we further improved related functionalities, including support for LDAP, so that in the future we can fully open up real-time capabilities, allowing analysts from the company's four business lines to use the platform, expected to reach about 170 people. With the increase in numbers, account management becomes increasingly important, especially in the case of personnel changes, account cancellation, and application become frequent and time-consuming operations. Therefore, integrating LDAP becomes particularly important. We communicated with the community in a timely manner and initiated a discussion, eventually contributing this Feature. Now, starting LDAP in StreamPark has become very simple, requiring just two steps:
+On the basis of Apache StreamPark, we further improved related functionalities, including support for LDAP, so that in the future we can fully open up real-time capabilities, allowing analysts from the company's four business lines to use the platform, expected to reach about 170 people. With the increase in numbers, account management becomes increasingly important, especially in the case of personnel changes, account cancellation, and application become frequent and time-consuming operations. Therefore, integrating LDAP becomes particularly important. We communicated with the community in a timely manner and initiated a discussion, eventually contributing this Feature. Now, starting LDAP in Apache StreamPark has become very simple, requiring just two steps:
 
 #### step1: Fill in the corresponding LDAP
 
@@ -116,7 +116,7 @@ On the login interface, click LDAP login method, then enter the corresponding ac
 
 ### **02 Automatic Ingress Generation for Job Submission**
 
-Due to the company's network security policy, only port 80 is opened on the Kubernetes host machines by the operation team, making it impossible to directly access the job WebUI on Kubernetes via "domain + random port." To solve this problem, we needed to use Ingress to add a proxy layer to the access path, achieving the effect of access routing. In StreamPark version 2.0, we contributed the functionality related to Ingress [3]. We adopted a strategy pattern implementation, initially obtaining Kubernetes metadata information to identify its version and accordingly constructing respective objects, ensuring smooth use of the Ingress function across various Kubernetes environments.
+Due to the company's network security policy, only port 80 is opened on the Kubernetes host machines by the operation team, making it impossible to directly access the job WebUI on Kubernetes via "domain + random port." To solve this problem, we needed to use Ingress to add a proxy layer to the access path, achieving the effect of access routing. In Apache StreamPark version 2.0, we contributed the functionality related to Ingress [3]. We adopted a strategy pattern implementation, initially obtaining Kubernetes metadata information to identify its version and accordingly constructing respective objects, ensuring smooth use of the Ingress function across various Kubernetes environments.
 
 The specific configuration steps are as follows:
 
@@ -138,7 +138,7 @@ You will notice that the generated address consists of three parts: domain + job
 
 ### **03 Support for Viewing Job Deployment Logs**
 
-In the process of continuous job deployment, we gradually realized that without logs, we cannot perform effective operations. Log retention, archiving, and viewing became an important part in our later problem-solving process. Therefore, in StreamPark version 2.0, we contributed the ability to archive startup logs in On Kubernetes mode and view them on the page [4]. Now, by clicking the log viewing button in the job list, it is very convenient to view the real-time logs of the job.
+In the process of continuous job deployment, we gradually realized that without logs, we cannot perform effective operations. Log retention, archiving, and viewing became an important part in our later problem-solving process. Therefore, in Apache StreamPark version 2.0, we contributed the ability to archive startup logs in On Kubernetes mode and view them on the page [4]. Now, by clicking the log viewing button in the job list, it is very convenient to view the real-time logs of the job.
 
 ![](/blog/ziru/k8s_log.png)
 
@@ -148,7 +148,7 @@ In actual use, as the number of jobs increased, the number of users rose, and mo
 
 To solve this problem, we proposed a demand in the community: we hoped that each job could directly jump to the corresponding monitoring chart and log archive page through a hyperlink, so that users could directly view the monitoring information and logs related to their jobs. This avoids tedious searches in complex system interfaces, thus improving the efficiency of troubleshooting.
 
-We had a discussion in the community, and it was quickly responded to, as everyone thought it was a common need. Soon, a developer contributed a design and related PR, and the issue was quickly resolved. Now, to enable this feature in StreamPark has become very simple:
+We had a discussion in the community, and it was quickly responded to, as everyone thought it was a common need. Soon, a developer contributed a design and related PR, and the issue was quickly resolved. Now, to enable this feature in Apache StreamPark has become very simple:
 
 #### step1: Create a badge label
 
@@ -225,11 +225,11 @@ User B's actual execution SQL:
 SELECT name, Encryption_function(age), price, Sensitive_field_functions(phone) FROM user;
 ```
 
-### **06 Data Synchronization Platform Based on StreamPark**
+### **06 Data Synchronization Platform Based on Apache StreamPark**
 
-With the successful implementation of StreamPark's technical solutions in the company, we achieved deep support for Flink jobs, bringing a qualitative leap in data processing. This prompted us to completely revamp our past data synchronization logic, aiming to reduce operational costs through technical optimization and integration. Therefore, we gradually replaced historical Sqoop jobs, Canal jobs, and Hive JDBC Handler jobs with Flink CDC jobs, Flink stream, and batch jobs. In this process, we continued to optimize and strengthen StreamPark's interface capabilities, adding a status callback mechanism and achieving perfect integration with the DolphinScheduler [7] scheduling system, further enhancing our data processing capabilities.
+With the successful implementation of Apache StreamPark's technical solutions in the company, we achieved deep support for Flink jobs, bringing a qualitative leap in data processing. This prompted us to completely revamp our past data synchronization logic, aiming to reduce operational costs through technical optimization and integration. Therefore, we gradually replaced historical Sqoop jobs, Canal jobs, and Hive JDBC Handler jobs with Flink CDC jobs, Flink stream, and batch jobs. In this process, we continued to optimize and strengthen Apache StreamPark's interface capabilities, adding a status callback mechanism and achieving perfect integration with the DolphinScheduler [7] scheduling system, further enhancing our data processing capabilities.
 
-External system integration with StreamPark is simple, requiring only a few steps:
+External system integration with Apache StreamPark is simple, requiring only a few steps:
 
 1. First, create a token for API access:
 
@@ -255,11 +255,11 @@ curl -X POST '/flink/app/start' \
 
 ## **Summary of Practical Experience**
 
-During our in-depth use of StreamPark, we summarized some common issues and explored solutions in the practice process, which we have compiled into examples for reference.
+During our in-depth use of Apache StreamPark, we summarized some common issues and explored solutions in the practice process, which we have compiled into examples for reference.
 
 ### **01 Building Base Images**
 
-To deploy a Flink job on Kubernetes using StreamPark, you first need to prepare a Base image built on Flink. Then, on the Kubernetes platform, the user-provided image is used to start the Flink job. If we continue to use the official "bare image," it is far from sufficient for actual development. Business logic developed by users often involves multiple upstream and downstream data sources, requiring related data source Connectors and dependencies like Hadoop. Therefore, these dependencies need to be included in the image. Below, I will introduce the specific operation steps.
+To deploy a Flink job on Kubernetes using Apache StreamPark, you first need to prepare a Base image built on Flink. Then, on the Kubernetes platform, the user-provided image is used to start the Flink job. If we continue to use the official "bare image," it is far from sufficient for actual development. Business logic developed by users often involves multiple upstream and downstream data sources, requiring related data source Connectors and dependencies like Hadoop. Therefore, these dependencies need to be included in the image. Below, I will introduce the specific operation steps.
 
 #### step1: First, create a folder containing two folders and a Dockerfile file
 
@@ -328,7 +328,7 @@ RUN unzip -d arthas-latest-bin arthas-packaging-latest-bin.zip
 
 ### **03 Resolution of Dependency Conflicts in Images**
 
-In the process of using StreamPark, we often encounter dependency conflict exceptions like NoClassDefFoundError, ClassNotFoundException, and NoSuchMethodError in Flink jobs running on base images. The troubleshooting approach is to find the package path of the conflicting class indicated in the error. For example, if the error class is in org.apache.orc:orc-core, go to the corresponding module directory, run `mvn dependency::tree`, search for orc-core, see who brought in the dependency, and remove it using exclusion. Below, I will introduce in detail a method of custom packaging to resolve dependency conflicts, illustrated by a dependency conflict caused by the flink-shaded-hadoop-3-uber JAR package in a base image.
+In the process of using Apache StreamPark, we often encounter dependency conflict exceptions like NoClassDefFoundError, ClassNotFoundException, and NoSuchMethodError in Flink jobs running on base images. The troubleshooting approach is to find the package path of the conflicting class indicated in the error. For example, if the error class is in org.apache.orc:orc-core, go to the corresponding module directory, run `mvn dependency::tree`, search for orc-core, see who brought in the dependency, and remove it using exclusion. Below, I will introduce in detail a method of custom packaging to resolve dependency conflicts, illustrated by a dependency conflict caused by the flink-shaded-hadoop-3-uber JAR package in a base image.
 
 #### step1: Clone the flink-shaded project locally👇
 
@@ -346,7 +346,7 @@ git clone https://github.com/apache/flink-shaded.git
 
 ### **04 Centralized Job Configuration Example**
 
-One of the great conveniences of using StreamPark is centralized configuration management. You can configure all settings in the conf file in the Flink directory bound to the platform.
+One of the great conveniences of using Apache StreamPark is centralized configuration management. You can configure all settings in the conf file in the Flink directory bound to the platform.
 
 ```shell
 cd /flink-1.14.5/conf
@@ -363,9 +363,9 @@ Clicking Sync Conf will synchronize the global configuration file, and new jobs 
 
 ![](/blog/ziru/sync_conf.png)
 
-### **05 StreamPark DNS Resolution Configuration**
+### **05 Apache StreamPark DNS Resolution Configuration**
 
-A correct and reasonable DNS resolution configuration is very important when submitting FlinkSQL on the StreamPark platform. It mainly involves the following points:
+A correct and reasonable DNS resolution configuration is very important when submitting FlinkSQL on the Apache StreamPark platform. It mainly involves the following points:
 
 1. Flink jobs' Checkpoint writing to HDFS requires a snapshot write to an HDFS node obtained through ResourceManager. If there are expansions in the Hadoop cluster in the enterprise, and these new nodes are not covered by the DNS resolution service, this will directly lead to Checkpoint failure, affecting online stability.
 
@@ -449,7 +449,7 @@ To achieve isolation between production and testing environments, we introduced 
 export HADOOP_CONF_DIR=/home/streamx/conf
 ```
 
-This effectively cut off the default logic of Flink on K8s loading HDFS configuration. This operation ensures that A StreamPark only connects to A Hadoop environment, while B StreamPark connects to B Hadoop environment, thus achieving complete isolation between testing and production environments.
+This effectively cut off the default logic of Flink on K8s loading HDFS configuration. This operation ensures that A Apache StreamPark only connects to A Hadoop environment, while B Apache StreamPark connects to B Hadoop environment, thus achieving complete isolation between testing and production environments.
 
 Specifically, after this command takes effect, we can ensure that Flink jobs submitted on port 10002 connect to the B Hadoop environment. Thus, the B Hadoop environment is isolated from the Hadoop environment used by Flink jobs submitted on port 10000 in the past, effectively preventing interference between different environments and ensuring system stability and reliability.
 
@@ -540,16 +540,16 @@ netstat -tlnp | grep 10002
 
 ## **Benefits Brought**
 
-Our team has been using StreamX (the predecessor of StreamPark) and, after more than a year of practice and refinement, StreamPark has significantly improved our challenges in developing, managing, and operating Apache Flink jobs. As a one-stop service platform, StreamPark greatly simplifies the entire development process. Now, we can complete job development, compilation, and release directly on the StreamPark platform, not only lowering the management and deployment threshold of Flink but also significantly improving development efficiency.
+Our team has been using StreamX (the predecessor of Apache StreamPark) and, after more than a year of practice and refinement, Apache StreamPark has significantly improved our challenges in developing, managing, and operating Apache Flink jobs. As a one-stop service platform, Apache StreamPark greatly simplifies the entire development process. Now, we can complete job development, compilation, and release directly on the Apache StreamPark platform, not only lowering the management and deployment threshold of Flink but also significantly improving development efficiency.
 
-Since deploying StreamPark, we have been using the platform on a large scale in a production environment. From initially managing over 50 FlinkSQL jobs to nearly 500 jobs now, as shown in the diagram, StreamPark is divided into 7 teams, each with dozens of jobs. This transformation not only demonstrates StreamPark's scalability and efficiency but also fully proves its strong practical value in actual business.
+Since deploying Apache StreamPark, we have been using the platform on a large scale in a production environment. From initially managing over 50 FlinkSQL jobs to nearly 500 jobs now, as shown in the diagram, Apache StreamPark is divided into 7 teams, each with dozens of jobs. This transformation not only demonstrates Apache StreamPark's scalability and efficiency but also fully proves its strong practical value in actual business.
 
 ![](/blog/ziru/production_environment.png)
 
 ## **Future Expectations**
 
-As one of the early users of StreamPark, we have maintained close communication with the community, participating in the stability improvement of StreamPark. We have submitted bugs encountered in production operation and new features to the community. In the future, we hope to manage the metadata information of Apache Paimon lake tables and the capability of auxiliary jobs for
+As one of the early users of Apache StreamPark, we have maintained close communication with the community, participating in the stability improvement of Apache StreamPark. We have submitted bugs encountered in production operation and new features to the community. In the future, we hope to manage the metadata information of Apache Paimon lake tables and the capability of auxiliary jobs for
 
-Paimon's Actions on StreamPark. Based on the Flink engine, by interfacing with the Catalog of lake tables and Action jobs, we aim to realize the management and optimization of lake table jobs in one integrated capability. Currently, StreamPark is working on integrating the capabilities with Paimon data, which will greatly assist in real-time data lake ingestion in the future.
+Paimon's Actions on Apache StreamPark. Based on the Flink engine, by interfacing with the Catalog of lake tables and Action jobs, we aim to realize the management and optimization of lake table jobs in one integrated capability. Currently, Apache StreamPark is working on integrating the capabilities with Paimon data, which will greatly assist in real-time data lake ingestion in the future.
 
-We are very grateful for the technical support that the StreamPark team has provided us all along. We wish Apache StreamPark continued success, more users, and its early graduation to become a top-level Apache project.
+We are very grateful for the technical support that the Apache StreamPark team has provided us all along. We wish Apache StreamPark continued success, more users, and its early graduation to become a top-level Apache project.

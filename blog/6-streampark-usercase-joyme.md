@@ -1,12 +1,12 @@
 ---
 slug: streampark-usercase-joyme
-title: StreamPark's Production Practice in Joyme
-tags: [StreamPark, Production Practice, FlinkSQL]
+title: Apache StreamPark's Production Practice in Joyme
+tags: [Apache StreamPark, Production Practice, FlinkSQL]
 ---
 
-**Abstract:** This article presents the production practices of StreamPark at Joyme, written by Qin Jiyong, a big data engineer at Joyme. The main contents include:
+**Abstract:** This article presents the production practices of Apache StreamPark at Joyme, written by Qin Jiyong, a big data engineer at Joyme. The main contents include:
 
-- Encountering StreamPark
+- Encountering Apache StreamPark
 - Flink SQL job development
 - Custom code job development
 - Monitoring and alerting
@@ -16,9 +16,9 @@ tags: [StreamPark, Production Practice, FlinkSQL]
 
 <!-- truncate -->
 
-## 1 Encountering StreamPark
+## 1 Encountering Apache StreamPark
 
-Encountering StreamPark was inevitable. Based on our existing real-time job development mode, we had to find an open-source platform to support our company's real-time business. Our current situation was as follows:
+Encountering Apache StreamPark was inevitable. Based on our existing real-time job development mode, we had to find an open-source platform to support our company's real-time business. Our current situation was as follows:
 
 - We wrote jobs and packaged them to servers, then executed the Flink run command to submit them, which was a cumbersome and inefficient process.
 - Flink SQL was submitted through a self-developed old platform. The developers of the old platform had left, and no one maintained the subsequent code, even if someone did, they would have to face the problem of high maintenance costs.
@@ -27,13 +27,13 @@ Encountering StreamPark was inevitable. Based on our existing real-time job deve
 
 For all these reasons, we needed an open-source platform to manage our real-time jobs, and we also needed to refactor to unify the development mode and language and centralize project management.
 
-The first encounter with StreamPark basically confirmed our choice. We quickly deployed and installed according to the official documentation, performed some operations after setting up, and were greeted with a user-friendly interface. StreamPark's support for multiple versions of Flink, permission management, job monitoring, and other series of functions already met our needs well. Further understanding revealed that its community is also very active. We have witnessed the process of StreamPark's feature completion since version 1.1.0. The development team is very ambitious, and we believe they will continue to improve.
+The first encounter with Apache StreamPark basically confirmed our choice. We quickly deployed and installed according to the official documentation, performed some operations after setting up, and were greeted with a user-friendly interface. Apache StreamPark's support for multiple versions of Flink, permission management, job monitoring, and other series of functions already met our needs well. Further understanding revealed that its community is also very active. We have witnessed the process of Apache StreamPark's feature completion since version 1.1.0. The development team is very ambitious, and we believe they will continue to improve.
 
 ## 2 Development of Flink SQL Jobs
 
 The Flink SQL development mode has brought great convenience. For some simple metric developments, it is possible to complete them with just a few SQL statements, without the need to write a single line of code. Flink SQL has facilitated the development work for many colleagues, especially since writing code can be somewhat difficult for those who work on warehouses.
 
-To add a new task, you open the task addition interface of StreamPark, where the default Development Mode is Flink SQL mode. You can write the SQL logic directly in the Flink SQL section.
+To add a new task, you open the task addition interface of Apache StreamPark, where the default Development Mode is Flink SQL mode. You can write the SQL logic directly in the Flink SQL section.
 
 For the Flink SQL part, you can progressively write the logic SQL following the Flink official website's documentation. Generally, for our company, it consists of three parts: the Source connection, intermediate logic processing, and finally the Sink. Essentially, the Source is consuming data from Kafka, the logic layer will involve MySQL for dimension table queries, and the Sink part is mostly Elasticsearch, Redis, or MySQL.
 
@@ -76,7 +76,7 @@ SELECT  Data.uid  FROM source_table;
 
 ### **2. Add Dependency**
 
-In terms of dependencies, it's an unique feature to Streampark. A complete Flink SQL job is innovatively split into two components within StreamPark: the SQL and the dependencies. The SQL part is easy to understand and requires no further explanation, but the dependencies are the various Connector JARs needed within the SQL, such as Kafka and MySQL Connectors. If these are used within the SQL, then these Connector dependencies must be introduced. In StreamPark, there are two ways to add dependencies: one is based on the standard Maven pom coordinates, and the other is by uploading the required Jars from a local source. These two methods can also be mixed and used as needed; simply apply, and these dependencies will be automatically loaded when the job is submitted.
+In terms of dependencies, it's an unique feature to Streampark. A complete Flink SQL job is innovatively split into two components within Apache StreamPark: the SQL and the dependencies. The SQL part is easy to understand and requires no further explanation, but the dependencies are the various Connector JARs needed within the SQL, such as Kafka and MySQL Connectors. If these are used within the SQL, then these Connector dependencies must be introduced. In Apache StreamPark, there are two ways to add dependencies: one is based on the standard Maven pom coordinates, and the other is by uploading the required Jars from a local source. These two methods can also be mixed and used as needed; simply apply, and these dependencies will be automatically loaded when the job is submitted.
 
 ![](/blog/joyme/add_dependency.png)
 
@@ -106,7 +106,7 @@ For streaming jobs, we use Flink Java for development, having refactored previou
 
 ![](/blog/joyme/project_configuration.png)
 
-Once the configuration is completed, compile the corresponding project to finish the packaging phase. Thus, the Custom code jobs can also reference it. Compilation is required every time the code needs to go live; otherwise, only the last compiled code is available. Here's an issue: for security reasons, our company’s GitLab account passwords are regularly updated. This leads to a situation where the StreamPark projects have the old passwords configured, resulting in a failure when pulling projects from Git during compilation. To address this problem, we contacted the community and learned that the capability to modify projects has been added in the subsequent version 1.2.1.
+Once the configuration is completed, compile the corresponding project to finish the packaging phase. Thus, the Custom code jobs can also reference it. Compilation is required every time the code needs to go live; otherwise, only the last compiled code is available. Here's an issue: for security reasons, our company’s GitLab account passwords are regularly updated. This leads to a situation where the Apache StreamPark projects have the old passwords configured, resulting in a failure when pulling projects from Git during compilation. To address this problem, we contacted the community and learned that the capability to modify projects has been added in the subsequent version 1.2.1.
 
 ![](/blog/joyme/flink_system.png)
 
@@ -120,7 +120,7 @@ As well as the task’s parallelism, monitoring method, etc., memory size should
 
 ## 4 Monitoring and Alerts
 
-The monitoring in StreamPark requires configuration in the setting module to set up the basic information for sending emails.
+The monitoring in Apache StreamPark requires configuration in the setting module to set up the basic information for sending emails.
 
 ![](/blog/joyme/system_setting.png)
 
@@ -132,7 +132,7 @@ When our jobs fail, we can receive alerts through email. These alerts are quite 
 
 ![](/blog/joyme/alarm_eamil.png)
 
-Regarding alerts, we have developed a scheduled task based on StreamPark's t_flink_app table. Why do this? Because most people might not check their emails promptly when it comes to email notifications. Therefore, we opted to monitor the status of each task and send corresponding monitoring information to our Lark (Feishu) alert group, enabling us to promptly identify and address issues with the tasks. It's a simple Python script, then configured with crontab to execute at scheduled times.
+Regarding alerts, we have developed a scheduled task based on Apache StreamPark's t_flink_app table. Why do this? Because most people might not check their emails promptly when it comes to email notifications. Therefore, we opted to monitor the status of each task and send corresponding monitoring information to our Lark (Feishu) alert group, enabling us to promptly identify and address issues with the tasks. It's a simple Python script, then configured with crontab to execute at scheduled times.
 
 ## 5 Common Issues
 
@@ -152,10 +152,10 @@ If the task has started but fails during the running phase, this situation might
 
 ## 6 Community Impression
 
-Often when we discuss issues in the StreamPark user group, we get immediate responses from community members. Issues that cannot be resolved at the moment are generally fixed in the next version or the latest code branch. In the group, we also see many non-community members actively helping each other out. There are many big names from other communities as well, and many members actively join the community development work. The whole community feels very active to me!
+Often when we discuss issues in the Apache StreamPark user group, we get immediate responses from community members. Issues that cannot be resolved at the moment are generally fixed in the next version or the latest code branch. In the group, we also see many non-community members actively helping each other out. There are many big names from other communities as well, and many members actively join the community development work. The whole community feels very active to me!
 
 ## 7 Conclusion
 
-Currently, our company runs 60 real-time jobs online, with Flink SQL and custom code each making up about half. More real-time tasks will be put online subsequently. Many colleagues worry about the stability of StreamPark, but based on several months of production practice in our company, StreamPark is just a platform to help you develop, deploy, monitor, and manage jobs. Whether it is stable or not depends on the stability of our own Hadoop Yarn cluster (we use the onyan mode) and has little to do with StreamPark itself. It also depends on the robustness of the Flink SQL or code you write. These two aspects should be the primary concerns. Only when these two aspects are problem-free can the flexibility of StreamPark be fully utilized to improve job performance. To discuss the stability of StreamPark in isolation is somewhat extreme.
+Currently, our company runs 60 real-time jobs online, with Flink SQL and custom code each making up about half. More real-time tasks will be put online subsequently. Many colleagues worry about the stability of Apache StreamPark, but based on several months of production practice in our company, Apache StreamPark is just a platform to help you develop, deploy, monitor, and manage jobs. Whether it is stable or not depends on the stability of our own Hadoop Yarn cluster (we use the onyan mode) and has little to do with Apache StreamPark itself. It also depends on the robustness of the Flink SQL or code you write. These two aspects should be the primary concerns. Only when these two aspects are problem-free can the flexibility of Apache StreamPark be fully utilized to improve job performance. To discuss the stability of Apache StreamPark in isolation is somewhat extreme.
 
-That is all the content shared by StreamPark at Joyme. Thank you for reading this article. We are very grateful for such an excellent product provided by StreamPark, which is a true act of benefiting others. From version 1.0 to 1.2.1, the bugs encountered are promptly fixed, and every issue is taken seriously. We are still using the on yarn deployment mode. Restarting yarn will still cause jobs to be lost, but restarting yarn is not something we do every day. The community will also look to fix this problem as soon as possible. I believe that StreamPark will get better and better, with a promising future ahead.
+That is all the content shared by Apache StreamPark at Joyme. Thank you for reading this article. We are very grateful for such an excellent product provided by Apache StreamPark, which is a true act of benefiting others. From version 1.0 to 1.2.1, the bugs encountered are promptly fixed, and every issue is taken seriously. We are still using the on yarn deployment mode. Restarting yarn will still cause jobs to be lost, but restarting yarn is not something we do every day. The community will also look to fix this problem as soon as possible. I believe that Apache StreamPark will get better and better, with a promising future ahead.

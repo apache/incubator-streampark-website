@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 [Flink officially](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](https://kafka.apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
 
-`KafkaSource` and `KafkaSink` in `StreamPark` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
+`KafkaSource` and `KafkaSink` in `Apache StreamPark` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
 
 ## Dependencies
 
@@ -66,7 +66,7 @@ val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStr
 
 ```
 
-You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `StreamPark` to access `kafka` data, we just define the configuration file in the rule format and then write the code
+You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `Apache StreamPark` to access `kafka` data, we just define the configuration file in the rule format and then write the code
 
 ### example
 
@@ -173,7 +173,7 @@ Let's take a look at more usage and configuration methods
 
 ### Consume multiple Kafka instances
 
-`StreamPark` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streampark is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
+`Apache StreamPark` has taken into account the configuration of kafka of multiple different instances at the beginning of development . How to unify the configuration, and standardize the format? The solution in streampark is this, if we want to consume two different instances of kafka at the same time, the configuration file is defined as follows,
 As you can see in the `kafka.source` directly under the kafka instance name, here we unified called **alias** , **alias** must be unique, to distinguish between different instances
 If there is only one kafka instance, then you can not configure `alias`
 When writing the code for consumption, pay attention to the corresponding **alias** can be specified, the configuration and code is as follows
@@ -304,7 +304,7 @@ Regarding kafka's partition dynamics, by default, partition discovery is disable
 For more details, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#partition-discovery)
 
 Flink Kafka Consumer is also able to discover Topics using regular expressions, please refer to the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/kafka.html#topic-discovery)
-A simpler way is provided in `StreamPark`, you need to configure the regular pattern of the matching `topic` instance name in `pattern`
+A simpler way is provided in `Apache StreamPark`, you need to configure the regular pattern of the matching `topic` instance name in `pattern`
 
 <Tabs>
 <TabItem value="Setting" label="Setting">
@@ -391,7 +391,7 @@ DataStream<String> stream = env.addSource(myConsumer);
 </TabItem>
 </Tabs>
 
-This setting is not recommended in `StreamPark`, a more convenient way is provided by specifying `auto.offset.reset` in the configuration
+This setting is not recommended in `Apache StreamPark`, a more convenient way is provided by specifying `auto.offset.reset` in the configuration
 
 * `earliest` consume from earliest record
 * `latest` consume from latest record
@@ -524,7 +524,7 @@ The returned object is wrapped in a `KafkaRecord`, which has the current `offset
 
 In many case, the timestamp of the record is embedded (explicitly or implicitly) in the record itself. In addition, users may want to specify in a custom way, for example a special record in a `Kafka` stream containing a `watermark` of the current event time. For these cases, `Flink Kafka Consumer` is allowed to specify `AssignerWithPeriodicWatermarks` or `AssignerWithPunctuatedWatermarks`.
 
-In the `StreamPark` run pass a `WatermarkStrategy` as a parameter to assign a `Watermark`, for example, parse the data in the `topic` as a `user` object, there is an `orderTime` in `user` which is a time type, we use this as a base to assign a `Watermark` to it
+In the `Apache StreamPark` run pass a `WatermarkStrategy` as a parameter to assign a `Watermark`, for example, parse the data in the `topic` as a `user` object, there is an `orderTime` in `user` which is a time type, we use this as a base to assign a `Watermark` to it
 
 <Tabs>
 
@@ -651,7 +651,7 @@ If the `watermark assigner` relies on messages read from `Kafka` to raise the `w
 
 ## Kafka Sink (Producer)
 
-In `StreamPark` the `Kafka Producer` is called `KafkaSink`, which allows messages to be written to one or more `Kafka topics`.
+In `Apache StreamPark` the `Kafka Producer` is called `KafkaSink`, which allows messages to be written to one or more `Kafka topics`.
 
 <Tabs>
 
@@ -980,7 +980,7 @@ class JavaUser implements Serializable {
 
 
 ### specific partitioner
-`KafkaSink` allows you to specify a kafka partitioner, if you don't specify it, the default is to use `StreamPark` built-in **KafkaEqualityPartitioner** partitioner, as the name, the partitioner can write data to each partition evenly, the `scala` api is set by the ` partitioner` parameter to set the partitioner,
+`KafkaSink` allows you to specify a kafka partitioner, if you don't specify it, the default is to use `Apache StreamPark` built-in **KafkaEqualityPartitioner** partitioner, as the name, the partitioner can write data to each partition evenly, the `scala` api is set by the ` partitioner` parameter to set the partitioner,
 `java` api is set by `partitioner()` method
 
 

@@ -4,7 +4,7 @@ title: 'Docker Tutorial'
 sidebar_position: 4
 ---
 
-This tutorial uses the docker method to deploy StreamPark via Docker.
+This tutorial uses the docker method to deploy Apache StreamPark via Docker.
 
 ## Prepare
     Docker 1.13.1+
@@ -18,9 +18,9 @@ To start the service with docker, you need to install [docker](https://www.docke
 
 To start the service with docker-compose, you need to install [docker-compose](https://docs.docker.com/compose/install/) first
 
-## StreamPark Deployment
+## Apache StreamPark Deployment
 
-### 1. StreamPark deployment based on h2 and docker-compose
+### 1. Apache StreamPark deployment based on h2 and docker-compose
 
 This method is suitable for beginners to learn and become familiar with the features. The configuration will reset after the container is restarted. Below, you can configure Mysql or Pgsql for persistence.
 
@@ -32,7 +32,7 @@ wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/do
 docker-compose up -d
 ```
 
-Once the service is started, StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the StreamPark link will redirect you to the login page, where the default user and password for StreamPark are admin and streampark respectively. To learn more about the operation, please refer to the user manual for a quick start.
+Once the service is started, Apache StreamPark can be accessed through http://localhost:10000 and also through http://localhost:8081 to access Flink. Accessing the Apache StreamPark link will redirect you to the login page, where the default user and password for Apache StreamPark are admin and streampark respectively. To learn more about the operation, please refer to the user manual for a quick start.
 
 ### 3. Configure flink home
 
@@ -49,7 +49,7 @@ Note:When configuring the flink-sessin cluster address, the ip address is not lo
 ![](/doc/image/remoteSubmission.png)
 
 #### Use existing Mysql services
-This approach is suitable for enterprise production, where you can quickly deploy StreamPark based on docker and associate it with an online database
+This approach is suitable for enterprise production, where you can quickly deploy Apache StreamPark based on docker and associate it with an online database
 Note: The diversity of deployment support is maintained through the .env configuration file, make sure there is one and only one .env file in the directory
 
 ```shell
@@ -92,7 +92,7 @@ SPRING_DATASOURCE_PASSWORD=streampark
 docker-compose up -d
 ```
 
-## Build images based on source code for StreamPark deployment
+## Build images based on source code for Apache StreamPark deployment
 ```
 git clone https://github.com/apache/incubator-streampark.git
 cd incubator-streampark/deploy/docker

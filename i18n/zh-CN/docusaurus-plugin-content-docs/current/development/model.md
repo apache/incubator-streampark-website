@@ -8,7 +8,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 任何框架都有一些要遵循的规则和约定, 我们只有遵循并掌握了这些规则, 才能更加游刃有余的使用, 使其发挥事半功倍的效果, 我们开发 Flink 作业,其实就是利用 Flink 提供的 API , 按照 Flink 要求的开发方式, 写一个可以执行的(必须有`main()`函数)的程序, 在程序里接入各种`Connector`经过一系列的`算子`操作, 最终将数据通过`Connector` sink 到目标存储,
-我们把这种按照某种约定的规则去逐步编程的方式称之为`编程模型`, 这一章节我们就来聊聊 StreamPark 的`编程模型`以及开发注意事项
+我们把这种按照某种约定的规则去逐步编程的方式称之为`编程模型`, 这一章节我们就来聊聊 Apache StreamPark 的`编程模型`以及开发注意事项
 
 我们从这几个方面开始入手
 
@@ -25,11 +25,11 @@ import TabItem from '@theme/TabItem';
 
 ## 编程模型
 
-`streampark-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 StreamPark 来开发编程模型是什么样的,有什么规范和要求
+`streampark-core` 定位是编程时框架,快速开发脚手架,专门为简化 Flink 开发而生,开发者在开发阶段会使用到该模块,下面我们来看看 `DataStream` 和 `Flink Sql` 用 Apache StreamPark 来开发编程模型是什么样的,有什么规范和要求
 
 ### DataStream
 
- StreamPark 提供了`scala`和`Java`两种 API 来开发 `DataStream` 程序,具体代码开发如下
+ Apache StreamPark 提供了`scala`和`Java`两种 API 来开发 `DataStream` 程序,具体代码开发如下
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -78,7 +78,7 @@ public class MyFlinkJavaApp {
 
 :::tip 提示
 
-以上几行 `scala` 和 `Java` 代码就是用 StreamPark 开发 `DataStream` 必不可少的最基本的骨架代码,用 StreamPark 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
+以上几行 `scala` 和 `Java` 代码就是用 Apache StreamPark 开发 `DataStream` 必不可少的最基本的骨架代码,用 Apache StreamPark 开发 `DataStream` 程序,从这几行代码开始, Java API 开发需要开发者手动启动任务 `start`
 
 :::
 
@@ -88,11 +88,11 @@ TableEnvironment 是用来创建 Table & SQL 程序的上下文执行环境,也�
 
 Flink 社区一直在推进 DataStream 的批处理能力,统一流批一体,在 Flink 1.12 中流批一体真正统一运行,诸多历史 API 如: DataSet API, BatchTableEnvironment API 等被废弃,退出历史舞台,官方推荐使用 **TableEnvironment** 和 **StreamTableEnvironment**
 
- StreamPark 针对 **TableEnvironment** 和 **StreamTableEnvironment** 这两种环境的开发,提供了对应的更方便快捷的 API
+ Apache StreamPark 针对 **TableEnvironment** 和 **StreamTableEnvironment** 这两种环境的开发,提供了对应的更方便快捷的 API
 
 #### TableEnvironment
 
-开发Table & SQL 作业, TableEnvironment 会是 Flink 推荐使用的入口类, 同时能支持 Java API 和 Scala API,下面的代码演示了在 StreamPark 如何开发一个 TableEnvironment 类型的作业
+开发Table & SQL 作业, TableEnvironment 会是 Flink 推荐使用的入口类, 同时能支持 Java API 和 Scala API,下面的代码演示了在 Apache StreamPark 如何开发一个 TableEnvironment 类型的作业
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -130,7 +130,7 @@ public class JavaTableApp {
 
 :::tip 提示
 
-以上几行 Scala 和 Java 代码就是用 StreamPark 开发 TableEnvironment 必不可少的最基本的骨架代码,用 StreamPark 开发 TableEnvironment 程序,从这几行代码开始,
+以上几行 Scala 和 Java 代码就是用 Apache StreamPark 开发 TableEnvironment 必不可少的最基本的骨架代码,用 Apache StreamPark 开发 TableEnvironment 程序,从这几行代码开始,
 Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContext ,需要开发者手动启动任务 `start`
 
 :::
@@ -138,7 +138,7 @@ Scala API 必须继承 FlinkTable, Java API 开发需要手动构造 TableContex
 #### StreamTableEnvironment
 
 `StreamTableEnvironment` 用于流计算场景,流计算的对象是 `DataStream`。相比 `TableEnvironment`, `StreamTableEnvironment` 提供了 `DataStream` 和 `Table` 之间相互转换的接口,如果用户的程序除了使用 `Table API` & `SQL` 编写外,还需要使用到 `DataStream API`,则需要使用 `StreamTableEnvironment`。
-下面的代码演示了在 StreamPark 如何开发一个 `StreamTableEnvironment` 类型的作业
+下面的代码演示了在 Apache StreamPark 如何开发一个 `StreamTableEnvironment` 类型的作业
 
 <Tabs>
 <TabItem value="scala" label="Scala" default>
@@ -183,12 +183,12 @@ public class JavaStreamTableApp {
 
 
 :::tip 特别注意
-以上几行 scala 和 Java 代码就是用 StreamPark 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 StreamPark 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
+以上几行 scala 和 Java 代码就是用 Apache StreamPark 开发 `StreamTableEnvironment` 必不可少的最基本的骨架代码,用 Apache StreamPark 开发 `StreamTableEnvironment` 程序,从这几行代码开始,Java 代码需要手动构造 `StreamTableContext`,`Java API`开发需要开发者手动启动任务`start`
 :::
 
 ## RunTime Context
 
-**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 StreamPark 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
+**RunTime Context** — **StreamingContext** , **TableContext** , **StreamTableContext** 是 Apache StreamPark 中几个非常重要三个对象,接下来我们具体看看这三个 **Context** 的定义和作用
 
 <center>
 <img src="/doc/image/streampark_coreapi.png" width="60%"/>
@@ -226,7 +226,7 @@ class StreamingContext(val parameter: ParameterTool, private val environment: St
 这个对象非常重要,在 `DataStream` 作业中会贯穿整个任务的生命周期, `StreamingContext` 本身继承自 `StreamExecutionEnvironment` ,配置文件会完全融合到 `StreamingContext` 中,这样就可以非常方便的从 `StreamingContext` 中获取各种参数
 :::
 
-在 StreamPark 中, `StreamingContext` 也是 Java API 编写 `DataStream` 作业的入口类, `StreamingContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+在 Apache StreamPark 中, `StreamingContext` 也是 Java API 编写 `DataStream` 作业的入口类, `StreamingContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
 
 ```scala
 /**
@@ -303,7 +303,7 @@ class TableContext(val parameter: ParameterTool,
 }
 ```
 
-在 StreamPark 中,`TableContext` 也是 Java API 编写 `TableEnvironment` 类型的 `Table Sql` 作业的入口类,`TableContext` 的构造方法中有一个是专门为 `Java API` 打造的,该构造函数定义如下:
+在 Apache StreamPark 中,`TableContext` 也是 Java API 编写 `TableEnvironment` 类型的 `Table Sql` 作业的入口类,`TableContext` 的构造方法中有一个是专门为 `Java API` 打造的,该构造函数定义如下:
 
 ```scala
 
@@ -393,7 +393,7 @@ class StreamTableContext(val parameter: ParameterTool,
 ```
 
 
-在StreamPark中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
+在Apache StreamPark中,`StreamTableContext` 是 Java API 编写 `StreamTableEnvironment` 类型的 `Table Sql` 作业的入口类,`StreamTableContext` 的构造方法中有一个是专门为 Java API 打造的,该构造函数定义如下:
 
 ```scala
 
@@ -528,7 +528,7 @@ StreamTableContext context = new StreamTableContext(JavaConfig);
 :::
 
 ## 目录结构
-推荐的项目目录结构如下,具体可以参考[StreamPark Quickstart](https://github.com/apache/incubator-streampark-quickstart) 里的目录结构和配置
+推荐的项目目录结构如下,具体可以参考[Apache StreamPark Quickstart](https://github.com/apache/incubator-streampark-quickstart) 里的目录结构和配置
 
 ``` tree
 .
@@ -604,7 +604,7 @@ assembly.xml 是assembly打包插件需要用到的配置文件,定义如下:
 
 ## 打包部署
 
-推荐 [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) 里的打包模式,直接运行`maven package`即可生成一个标准的StreamPark推荐的项目包,解包后目录结构如下
+推荐 [streampark-flink-quickstart](https://github.com/apache/incubator-streampark-quickstart/tree/dev/quickstart-flink) 里的打包模式,直接运行`maven package`即可生成一个标准的Apache StreamPark推荐的项目包,解包后目录结构如下
 
 ``` text
 .

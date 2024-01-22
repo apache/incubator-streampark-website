@@ -1,7 +1,7 @@
 ---
 slug: flink-development-framework-streampark
-title: StreamPark - Powerful Flink Development Framework
-tags: [StreamPark, DataStream, FlinkSQL]
+title: Apache StreamPark - Powerful Flink Development Framework
+tags: [Apache StreamPark, DataStream, FlinkSQL]
 ---
 
 Although the Hadoop system is widely used today, its architecture is complicated, it has a high maintenance complexity, version upgrades are challenging, and due to departmental reasons, data center scheduling is prolonged. We urgently need to explore agile data platform models. With the current popularization of cloud-native architecture and the integration between lake and warehous, we have decided to use Doris as an offline data warehouse and TiDB (which is already in production) as a real-time data platform. Furthermore, because Doris has ODBC capabilities on MySQL, it can integrate external database resources and uniformly output reports.
@@ -56,18 +56,18 @@ However, because object storage requires the entire object to be rewritten for r
 
 <br/>
 
-## Introducing StreamPark
+## Introducing Apache StreamPark
 
 Previously, when we wrote Flink SQL, we generally used Java to wrap SQL, packed it into a jar package, and submitted it to the S3 platform through the command line. This approach has always been unfriendly; the process is cumbersome, and the costs for development and operations are too high. We hoped to further streamline the process by abstracting the Flink TableEnvironment, letting the platform handle initialization, packaging, and running Flink tasks, and automating the building, testing, and deployment of Flink applications.
 
-This is an era of open-source uprising. Naturally, we turned our attention to the open-source realm: among numerous open-source projects, after comparing various projects, we found that both Zeppelin and StreamPark provide substantial support for Flink and both claim to support Flink on K8s. Eventually, both were shortlisted for our selection. Here's a brief comparison of their support for K8s (if there have been updates since, please kindly correct).
+This is an era of open-source uprising. Naturally, we turned our attention to the open-source realm: among numerous open-source projects, after comparing various projects, we found that both Zeppelin and Apache StreamPark provide substantial support for Flink and both claim to support Flink on K8s. Eventually, both were shortlisted for our selection. Here's a brief comparison of their support for K8s (if there have been updates since, please kindly correct).
 
 <table>
     <thead>
         <tr>
             <td>Feature</td>
             <td>Zeppelin</td>
-            <td>StreamPark</td>
+            <td>Apache StreamPark</td>
         </tr>
     </thead>
     <tbody>
@@ -123,15 +123,15 @@ This is an era of open-source uprising. Naturally, we turned our attention to th
 
 <br/>
 
-During our research process, we communicated with the main developers of both tools multiple times. After our repeated studies and assessments, we eventually decided to adopt StreamPark as our primary Flink development tool for now.
+During our research process, we communicated with the main developers of both tools multiple times. After our repeated studies and assessments, we eventually decided to adopt Apache StreamPark as our primary Flink development tool for now.
 
 <video src="http://assets.streamxhub.com/streamx-video.mp4" controls="controls" width="100%" height="100%"></video>
 
-<center style={{"color": "gray"}}>(StreamPark's official splash screen)</center>
+<center style={{"color": "gray"}}>(Apache StreamPark's official splash screen)</center>
 
 <br/>
 
-After extended development and testing by our team, StreamPark currently boasts:
+After extended development and testing by our team, Apache StreamPark currently boasts:
 
 * Comprehensive <span style={{"color": "red"}}>SQL validation capabilities</span>
 * It has achieved <span style={{"color": "red"}}>automatic build/push for images</span>
@@ -143,21 +143,21 @@ This effectively addresses most of the challenges we currently face in developme
 
 <video src="http://assets.streamxhub.com/streamx-1.2.0.mp4" controls="controls" width="100%" height="100%"></video>
 
-<center style={{"color": "gray"}}>(Demo video showcasing StreamPark's support for multiple Flink versions)</center>
+<center style={{"color": "gray"}}>(Demo video showcasing Apache StreamPark's support for multiple Flink versions)</center>
 
 <br/>
 
-In its latest release, version 1.2.0, StreamPark provides robust support for both K8s-Native-Application and K8s-Session-Application modes.
+In its latest release, version 1.2.0, Apache StreamPark provides robust support for both K8s-Native-Application and K8s-Session-Application modes.
 
 <video src="http://assets.streamxhub.com/streamx-k8s.mp4" controls="controls" width="100%" height="100%"></video>
 
-<center style={{"color": "gray"}}>(StreamPark's K8s deployment demo video)</center>
+<center style={{"color": "gray"}}>(Apache StreamPark's K8s deployment demo video)</center>
 
 <br/>
 
 ### K8s Native Application Mode
 
-Within StreamPark, all we need to do is configure the relevant parameters, fill in the corresponding dependencies in the Maven POM, or upload the dependency jar files. Once we click on 'Apply', the specified dependencies will be generated. This implies that we can also compile all the UDFs we use into jar files, as well as various connector.jar files, and use them directly in SQL. As illustrated below:
+Within Apache StreamPark, all we need to do is configure the relevant parameters, fill in the corresponding dependencies in the Maven POM, or upload the dependency jar files. Once we click on 'Apply', the specified dependencies will be generated. This implies that we can also compile all the UDFs we use into jar files, as well as various connector.jar files, and use them directly in SQL. As illustrated below:
 
 ![](/blog/belle/dependency.png)
 
@@ -169,7 +169,7 @@ We can also specify resources, designate dynamic parameters within Flink Run as 
 
 ![](/blog/belle/pod.png)
 
-After saving the program, when clicking to run, we can also specify a savepoint. Once the task is successfully submitted, StreamPark will, based on the FlinkPod's network Exposed Type (be it loadBalancer, NodePort, or ClusterIp), return the corresponding WebURL, seamlessly enabling a WebUI redirect. However, as of now, due to security considerations within our online private K8s cluster, there hasn't been a connection established between the Pod and client node network (and there's currently no plan for this). Hence, we only employ NodePort. If the number of future tasks increases significantly, and there's a need for ClusterIP, we might consider deploying StreamPark in K8s or further integrate it with Ingress.
+After saving the program, when clicking to run, we can also specify a savepoint. Once the task is successfully submitted, Apache StreamPark will, based on the FlinkPod's network Exposed Type (be it loadBalancer, NodePort, or ClusterIp), return the corresponding WebURL, seamlessly enabling a WebUI redirect. However, as of now, due to security considerations within our online private K8s cluster, there hasn't been a connection established between the Pod and client node network (and there's currently no plan for this). Hence, we only employ NodePort. If the number of future tasks increases significantly, and there's a need for ClusterIP, we might consider deploying Apache StreamPark in K8s or further integrate it with Ingress.
 
 ![](/blog/belle/start.png)
 
@@ -185,7 +185,7 @@ Below is the specific submission process in the K8s Application mode:
 
 ### K8s Native Session Mode
 
-StreamPark also offers robust support for the <span style={{"color": "red"}}> K8s Native-Session mode</span>, which lays a solid technical foundation for our subsequent offline FlinkSQL development or for segmenting certain resources.
+Apache StreamPark also offers robust support for the <span style={{"color": "red"}}> K8s Native-Session mode</span>, which lays a solid technical foundation for our subsequent offline FlinkSQL development or for segmenting certain resources.
 
 To use the Native-Session mode, one must first use the Flink command to create a Flink cluster that operates within K8s. For instance:
 
@@ -203,7 +203,7 @@ To use the Native-Session mode, one must first use the Flink command to create a
 
 ![](/blog/belle/flinksql.png)
 
-As shown in the image above, we use that ClusterId as the Kubernetes ClusterId task parameter for StreamPark. Once the task is saved and submitted, it quickly transitions to a 'Running' state:
+As shown in the image above, we use that ClusterId as the Kubernetes ClusterId task parameter for Apache StreamPark. Once the task is saved and submitted, it quickly transitions to a 'Running' state:
 
 ![](/blog/belle/detail.png)
 
@@ -211,13 +211,13 @@ Following the application info's WebUI link:
 
 ![](/blog/belle/dashboard.png)
 
-It becomes evident that StreamPark essentially uploads the jar package to the Flink cluster through REST API and then schedules the task for execution.
+It becomes evident that Apache StreamPark essentially uploads the jar package to the Flink cluster through REST API and then schedules the task for execution.
 
 <br/>
 
 ### Custom Code Mode
 
-To our delight, StreamPark also provides support for coding DataStream/FlinkSQL tasks. For special requirements, we can achieve our implementations in Java/Scala. You can compose tasks following the scaffold method recommended by StreamPark or write a standard Flink task. By adopting this approach, we can delegate code management to git, utilizing the platform for automated compilation, packaging, and deployment. Naturally, if functionality can be achieved via SQL, we would prefer not to customize DataStream, thereby minimizing unnecessary operational complexities.
+To our delight, Apache StreamPark also provides support for coding DataStream/FlinkSQL tasks. For special requirements, we can achieve our implementations in Java/Scala. You can compose tasks following the scaffold method recommended by Apache StreamPark or write a standard Flink task. By adopting this approach, we can delegate code management to git, utilizing the platform for automated compilation, packaging, and deployment. Naturally, if functionality can be achieved via SQL, we would prefer not to customize DataStream, thereby minimizing unnecessary operational complexities.
 
 <br/><br/>
 
@@ -225,26 +225,26 @@ To our delight, StreamPark also provides support for coding DataStream/FlinkSQL 
 
 ## Suggestions for Improvement
 
-StreamPark, similar to any other new tools, does have areas for further enhancement based on our current evaluations:
+Apache StreamPark, similar to any other new tools, does have areas for further enhancement based on our current evaluations:
 
 * **Strengthening Resource Management**: Features like multi-file system jar resources and robust task versioning are still awaiting additions.
 * **Enriching Frontend Features**: For instance, once a task is added, functionalities like copying could be integrated.
 * **Visualization of Task Submission Logs**: The process of task submission involves loading class files, jar packaging, building and submitting images, and more. A failure at any of these stages could halt the task. However, error logs are not always clear, or due to some anomaly, the exceptions aren't thrown as expected, leaving users puzzled about rectifications.
 
-It's a universal truth that innovations aren't perfect from the outset. Although minor issues exist and there are areas for improvement with StreamPark, its merits outweigh its limitations. As a result, we've chosen StreamPark as our Flink DevOps platform. We're also committed to collaborating with its main developers to refine StreamPark further. We wholeheartedly invite others to use it and contribute towards its advancement.
+It's a universal truth that innovations aren't perfect from the outset. Although minor issues exist and there are areas for improvement with Apache StreamPark, its merits outweigh its limitations. As a result, we've chosen Apache StreamPark as our Flink DevOps platform. We're also committed to collaborating with its main developers to refine Apache StreamPark further. We wholeheartedly invite others to use it and contribute towards its advancement.
 
 <br/>
 
 ## Future Prospects
 
 * We'll keep our focus on Doris and plan to unify business data with log data in Doris, leveraging Flink to realize lakehouse capabilities.
-* Our next step is to explore integrating StreamPark with DolphinScheduler 2.x. This would enhance DolphinScheduler's offline tasks, and gradually we aim to replace Spark with Flink for a unified batch-streaming solution.
+* Our next step is to explore integrating Apache StreamPark with DolphinScheduler 2.x. This would enhance DolphinScheduler's offline tasks, and gradually we aim to replace Spark with Flink for a unified batch-streaming solution.
 * Drawing from our own experiments with S3, after building the fat-jar, we're considering bypassing image building. Instead, we'll mount PVC directly to the Flink Pod's directory using Pod Template, refining the code submission process even further.
-* We plan to persistently implement StreamPark in our production environment. Collaborating with community developers, we aim to boost StreamPark's Flink stream development, deployment, and monitoring capabilities. Our collective vision is to evolve StreamPark into a holistic stream data DevOps platform.
+* We plan to persistently implement Apache StreamPark in our production environment. Collaborating with community developers, we aim to boost Apache StreamPark's Flink stream development, deployment, and monitoring capabilities. Our collective vision is to evolve Apache StreamPark into a holistic stream data DevOps platform.
 
 Resources:
 
-StreamPark GitHub: [https://github.com/apache/incubator-streampark](https://github.com/apache/incubator-streampark) <br/>
+Apache StreamPark GitHub: [https://github.com/apache/incubator-streampark](https://github.com/apache/incubator-streampark) <br/>
 Doris GitHub: [https://github.com/apache/doris](https://github.com/apache/doris)
 
 ![](/blog/belle/author.png)

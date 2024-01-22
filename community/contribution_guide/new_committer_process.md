@@ -71,7 +71,7 @@ Subject: [VOTE] New committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
-Hi StreamPark PPMC,
+Hi Apache StreamPark PPMC,
 
 This is a formal vote about inviting ${NEW_COMMITTER_NAME} as our new committer.
 
@@ -92,7 +92,7 @@ Subject: [RESULT] [VOTE] New committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
-Hi StreamPark PPMC,
+Hi Apache StreamPark PPMC,
 
 The vote has now closed. The results are:
 
@@ -110,13 +110,13 @@ The vote is ***successful/not successful***
 ```text
 To: ${NEW_COMMITTER_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Invitation to become StreamPark committer: ${NEW_COMMITTER_NAME}
+Subject: Invitation to become Apache StreamPark committer: ${NEW_COMMITTER_NAME}
 ```
 
 ```text
 Hello ${NEW_COMMITTER_NAME},
 
-The StreamPark Project Management Committee (PMC) 
+The Apache StreamPark Project Management Committee (PMC) 
 hereby offers you committer privileges to the project.
 These privileges are offered on the understanding that
 you'll use them reasonably and with common sense.
@@ -165,7 +165,7 @@ establishing you as a committer.
 ```text
 To: ${NEW_COMMITTER_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Re: invitation to become StreamPark committer
+Subject: Re: invitation to become Apache StreamPark committer
 ```
 
 ```text

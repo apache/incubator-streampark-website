@@ -143,7 +143,7 @@ cd apache-streampark-${release_version}-incubating-src
 
 ***package mode, just select mixed mode ***
 
->[StreamPark] StreamPark supports front-end and server-side mixed / detached packaging mode, Which mode do you need ?
+>[Apache StreamPark] Apache StreamPark supports front-end and server-side mixed / detached packaging mode, Which mode do you need ?
 >
 >1. mixed mode
 >
@@ -151,7 +151,7 @@ cd apache-streampark-${release_version}-incubating-src
 >
 >  select 1
 
->[StreamPark] StreamPark supports Scala 2.11 and 2.12. Which version do you need ?
+>[Apache StreamPark] Apache StreamPark supports Scala 2.11 and 2.12. Which version do you need ?
 >
 >1. 2.11
 >2. 2.12

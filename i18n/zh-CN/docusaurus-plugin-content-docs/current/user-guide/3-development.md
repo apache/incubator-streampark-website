@@ -44,7 +44,7 @@ tar -zxvf apache-streampark-2.2.0-incubating-bin.tar.gz
 
 ### 启动后台服务
 
-找到 `streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/StreamParkConsoleBootstrap.java`
+找到 `streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/Apache StreamParkConsoleBootstrap.java`
 
 修改启动配置
 

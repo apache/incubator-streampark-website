@@ -6,9 +6,9 @@ sidebar_position: 2
 
 ## K8s PVC 资源使用说明
 
-当前版本 StreamPark Flink-K8s 任务对 PVC 资源（挂载 checkpoint/savepoint/logs 等文件资源）的支持基于 pod-template。
+当前版本 Apache StreamPark Flink-K8s 任务对 PVC 资源（挂载 checkpoint/savepoint/logs 等文件资源）的支持基于 pod-template。
 
-Native-Kubernetes Session 由创建 Session Cluster 时控制，这里不再赘述。Native-Kubernetes Application 支持在 StreamPark 页面上直接编写 `pod-template`，`jm-pod-template`，`tm-pod-template` 配置。
+Native-Kubernetes Session 由创建 Session Cluster 时控制，这里不再赘述。Native-Kubernetes Application 支持在 Apache StreamPark 页面上直接编写 `pod-template`，`jm-pod-template`，`tm-pod-template` 配置。
 
 <br/>
 
@@ -44,9 +44,9 @@ spec:
 
 1. 提供的 Flink Base Docker Image 已经包含该依赖（用户自行解决依赖冲突）；
 
-2. 在 StreamPark 本地 `Workspace/jars` 目录下放置 `flink-statebackend-rocksdb_xx.jar` 依赖；
+2. 在 Apache StreamPark 本地 `Workspace/jars` 目录下放置 `flink-statebackend-rocksdb_xx.jar` 依赖；
 
-3. 在 StreamPark Dependency 配置中加入 rockdb-backend 依赖（此时 StreamPark 会自动解决依赖冲突）：
+3. 在 Apache StreamPark Dependency 配置中加入 rockdb-backend 依赖（此时 Apache StreamPark 会自动解决依赖冲突）：
 
    ![rocksdb dependency](/doc/image/rocksdb_dependency.png)
 

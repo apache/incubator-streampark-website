@@ -1,12 +1,12 @@
 ---
 slug: streampark-usercase-bondex-with-paimon
-title: Based on Apache Paimon + StreamPark's Streaming Data Warehouse Practice by Bondex
-tags: [StreamPark, Production Practice, paimon, streaming-warehouse]
+title: Based on Apache Paimon + Apache StreamPark's Streaming Data Warehouse Practice by Bondex
+tags: [Apache StreamPark, Production Practice, paimon, streaming-warehouse]
 ---
 
 ![](/blog/bondex/Bondex.png)
 
-**Foreword: **This article mainly introduces the implementation of a streaming data warehouse by Bondex, a supply chain logistics service provider, in the process of digital transformation using the Paimon + StreamPark platform. We provide an easy-to-follow operational manual with the Apache StreamPark integrated stream-batch platform to help users submit Flink tasks and quickly master the use of Paimon.
+**Foreword: **This article mainly introduces the implementation of a streaming data warehouse by Bondex, a supply chain logistics service provider, in the process of digital transformation using the Paimon + Apache StreamPark platform. We provide an easy-to-follow operational manual with the Apache StreamPark integrated stream-batch platform to help users submit Flink tasks and quickly master the use of Paimon.
 
 - Introduction to Company Business
 - Pain Points and Selection in Big Data Technology
@@ -102,11 +102,11 @@ Continuing the characteristics of the Kappa architecture with a single stream pr
 
 ## 03 Production Practices
 
-This solution adopts Flink Application on K8s clusters, with Flink CDC for real-time ingestion of relational database data from business systems. Tasks for Flink + Paimon Streaming Data Warehouse are submitted through the StreamPark task platform, with the Trino engine ultimately used to access Finereport for service provision and developer queries. Paimon's underlying storage supports the S3 protocol, and as the company's big data services rely on Alibaba Cloud, Object Storage Service (OSS) is used as the data filesystem.
+This solution adopts Flink Application on K8s clusters, with Flink CDC for real-time ingestion of relational database data from business systems. Tasks for Flink + Paimon Streaming Data Warehouse are submitted through the Apache StreamPark task platform, with the Trino engine ultimately used to access Finereport for service provision and developer queries. Paimon's underlying storage supports the S3 protocol, and as the company's big data services rely on Alibaba Cloud, Object Storage Service (OSS) is used as the data filesystem.
 
-[StreamPark](https://github.com/apache/incubator-streampark) is a real-time computing platform that leverages the powerful capabilities of [Paimon](https://github.com/apache/incubator-paimon) to process real-time data streams. This platform offers the following key features:
+[Apache StreamPark](https://github.com/apache/incubator-streampark) is a real-time computing platform that leverages the powerful capabilities of [Paimon](https://github.com/apache/incubator-paimon) to process real-time data streams. This platform offers the following key features:
 
-**Real-time Data Processing: **StreamPark supports the submission of real-time data stream tasks, capable of real-time acquisition, transformation, filtering, and analysis of data. This is extremely important for applications that require rapid response to real-time data, such as real-time monitoring, real-time recommendations, and real-time risk control.
+**Real-time Data Processing: **Apache StreamPark supports the submission of real-time data stream tasks, capable of real-time acquisition, transformation, filtering, and analysis of data. This is extremely important for applications that require rapid response to real-time data, such as real-time monitoring, real-time recommendations, and real-time risk control.
 
 **Scalability: **Capable of efficiently processing large-scale real-time data with good scalability. It can operate in a distributed computing environment, automatically handling parallelization, fault recovery, and load balancing to ensure efficient and reliable data processing.
 
@@ -114,7 +114,7 @@ This solution adopts Flink Application on K8s clusters, with Flink CDC for real-
 
 **Ease of Use: **Provides a straightforward graphical interface and simplified API, enabling easy construction and deployment of data processing tasks without needing to delve into underlying technical details.
 
-By submitting Paimon tasks on the StreamPark platform, we can establish a full-link real-time flowing, queryable, and layered reusable Pipline.
+By submitting Paimon tasks on the Apache StreamPark platform, we can establish a full-link real-time flowing, queryable, and layered reusable Pipline.
 
 ![](/blog/bondex/pipline.png)
 
@@ -127,7 +127,7 @@ The main components versions used are as follows:
 
 ### **Environment Setup**
 
-Download flink-1.16.0-scala-2.12.tar.gz which can be obtained from the official Flink website. Download the corresponding version of the package to the StreamPark deployment server.
+Download flink-1.16.0-scala-2.12.tar.gz which can be obtained from the official Flink website. Download the corresponding version of the package to the Apache StreamPark deployment server.
 
 ```shell
 # Unzip
@@ -182,7 +182,7 @@ export PATH=$PATH:$FLINK_HOME/bin
 source /etc/profile
 ```
 
-In StreamPark, add Flink conf:
+In Apache StreamPark, add Flink conf:
 
 ![](/blog/bondex/flink_conf.jpg)
 
@@ -236,7 +236,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 
 Next, prepare the Paimon jar package. You can download the corresponding version from the Apache [Repository](https://repository.apache.org/content/groups/snapshots/org/apache/paimon). It's important to note that it should be consistent with the major version of Flink.
 
-### **Managing Jobs with StreamPark**
+### **Managing Jobs with Apache StreamPark**
 
 **Prerequisites:**
 
@@ -247,7 +247,7 @@ Next, prepare the Paimon jar package. You can download the corresponding version
 
 **Kubernetes Client Connection Configuration:**
 
-Copy the k8s master node's `~/.kube/config` configuration directly to the directory on the StreamPark server, then execute the following command on the StreamPark server to display the k8s cluster as running, which indicates successful permission and network verification.
+Copy the k8s master node's `~/.kube/config` configuration directly to the directory on the Apache StreamPark server, then execute the following command on the Apache StreamPark server to display the k8s cluster as running, which indicates successful permission and network verification.
 
 ```shell
 kubectl cluster-info
@@ -272,11 +272,11 @@ kubectl create secret docker-registry streamparksecret
 
 In this case, Alibaba Cloud's Container Registry Service (ACR) is used, but you can also substitute it with a self-hosted image service such as Harbor.
 
-Create a namespace named StreamPark (set the security setting to private).
+Create a namespace named Apache StreamPark (set the security setting to private).
 
 ![](/blog/bondex/aliyun.png)
 
-Configure the image repository in StreamPark; task build images will be pushed to the repository.
+Configure the image repository in Apache StreamPark; task build images will be pushed to the repository.
 
 ![](/blog/bondex/dockersystem_setting.png)
 
@@ -935,4 +935,4 @@ In complex real-time tasks, resources can be increased by modifying dynamic para
 - Subsequently, we will integrate with Trino Catalog to access Doris, realizing a one-service solution for both offline and real-time data.
 - We will continue to advance the pace of building an integrated streaming and batch data warehouse within the group, adopting the architecture of Doris + Paimon.
 
-Here, I would like to thank Teacher Zhixin and the StreamPark community for their strong support during the use of StreamPark + Paimon. The problems encountered in the learning process are promptly clarified and resolved. We will also actively participate in community exchanges and contributions in the future, enabling Paimon to provide more developers and enterprises with integrated stream and batch data lake solutions.
+Here, I would like to thank Teacher Zhixin and the Apache StreamPark community for their strong support during the use of Apache StreamPark + Paimon. The problems encountered in the learning process are promptly clarified and resolved. We will also actively participate in community exchanges and contributions in the future, enabling Paimon to provide more developers and enterprises with integrated stream and batch data lake solutions.

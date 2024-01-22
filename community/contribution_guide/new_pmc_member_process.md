@@ -69,7 +69,7 @@ Subject: [VOTE] New PMC member candidate: ${NEW_PMC_NAME}
 ```
 
 ```text
-Hi StreamPark PPMC,
+Hi Apache StreamPark PPMC,
 
 This is a formal vote about inviting ${NEW_PMC_NAME} as our new PMC member.
 
@@ -90,7 +90,7 @@ Subject: [RESULT] [VOTE] New PMC member: ${NEW_PMC_NAME}
 ```
 
 ```text
-Hi StreamPark PPMC,
+Hi Apache StreamPark PPMC,
 
 The vote has now closed. The results are:
 
@@ -108,11 +108,11 @@ The vote is ***successful/not successful***
 ```text
 To: board@apache.org
 Cc: private@<project>.apache.org
-Subject: [NOTICE] ${NEW_PMC_NAME} for StreamPark PMC member
+Subject: [NOTICE] ${NEW_PMC_NAME} for Apache StreamPark PMC member
 ```
 
 ```text
-StreamPark proposes to invite ${NEW_PMC_NAME} to join the PMC.
+Apache StreamPark proposes to invite ${NEW_PMC_NAME} to join the PMC.
 
 The vote result is available here: https://lists.apache.org/...
 ```
@@ -124,13 +124,13 @@ See [newpmc](https://www.apache.org/dev/pmc.html#newpmc)
 ```text
 To: ${NEW_PMC_EMAIL}
 Cc: private@streampark.apache.org
-Subject: Invitation to become StreamPark PMC member: ${NEW_PMC_NAME}
+Subject: Invitation to become Apache StreamPark PMC member: ${NEW_PMC_NAME}
 ```
 
 ```text
 Hello ${NEW_PMC_NAME},
 
-The StreamPark Project Management Committee (PMC) 
+The Apache StreamPark Project Management Committee (PMC) 
 hereby offers you committer privileges to the project
 as well as membership in the PMC.
 These privileges are offered on the understanding that
@@ -178,7 +178,7 @@ establishing you as a PMC member.
 ```text
 To: ${NEW_PMC_EMAIL}
 Cc: private@streamparkv.apache.org
-Subject: Re: invitation to become StreamPark PMC member
+Subject: Re: invitation to become Apache StreamPark PMC member
 ```
 
 ```text
@@ -265,7 +265,7 @@ To: dev@streampark.apache.org
 ```
 
 ```text
-Hi StreamPark Community,
+Hi Apache StreamPark Community,
 
 The Podling Project Management Committee (PPMC) for Apache StreamPark
 has invited ${NEW_PMC_NAME} to become our PMC member and

@@ -1,12 +1,12 @@
 ---
 slug: streampark-usercase-bondex-with-paimon
-title: 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
-tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
+title: 海程邦达基于 Apache Paimon + Apache StreamPark 的流式数仓实践
+tags: [Apache StreamPark, 生产实践, paimon, streaming-warehouse]
 ---
 
 ![](/blog/bondex/Bondex.png)
 
-**导读：**本文主要介绍作为供应链物流服务商海程邦达在数字化转型过程中采用 Paimon + StreamPark 平台实现流式数仓的落地方案。我们以 Apache StreamPark 流批一体平台提供了一个易于上手的生产操作手册，以帮助用户提交 Flink 任务并迅速掌握 Paimon 的使用方法。
+**导读：**本文主要介绍作为供应链物流服务商海程邦达在数字化转型过程中采用 Paimon + Apache StreamPark 平台实现流式数仓的落地方案。我们以 Apache StreamPark 流批一体平台提供了一个易于上手的生产操作手册，以帮助用户提交 Flink 任务并迅速掌握 Paimon 的使用方法。
 
 - 公司业务情况介绍
 - 大数据技术痛点以及选型
@@ -102,11 +102,11 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 ## 03 生 产 实 践
 
-本方案采用 Flink Application On K8s 集群，Flink CDC 实时摄取业务系统关系型数据库数据，通过 StreamPark 任务平台提交 Flink + Paimon Streaming Data Warehouse 任务， 最后采用 Trino 引擎接入 Finereport 提供服务和开发人员的查询。Paimon 底层存储支持 S3 协议，因为公司大数据服务依赖于阿里云所以使用对象存储OSS作为数据文件系统。
+本方案采用 Flink Application On K8s 集群，Flink CDC 实时摄取业务系统关系型数据库数据，通过 Apache StreamPark 任务平台提交 Flink + Paimon Streaming Data Warehouse 任务， 最后采用 Trino 引擎接入 Finereport 提供服务和开发人员的查询。Paimon 底层存储支持 S3 协议，因为公司大数据服务依赖于阿里云所以使用对象存储OSS作为数据文件系统。
 
-[StreamPark](https://github.com/apache/incubator-streampark) 是一个实时计算平台，与 [Paimon](https://github.com/apache/incubator-paimon) 结合使用其强大功能来处理实时数据流。此平台提供以下主要功能：
+[Apache StreamPark](https://github.com/apache/incubator-streampark) 是一个实时计算平台，与 [Paimon](https://github.com/apache/incubator-paimon) 结合使用其强大功能来处理实时数据流。此平台提供以下主要功能：
 
-**实时数据处理：**StreamPark 支持提交实时数据流任务，能够实时获取、转换、过滤和分析数据。这对于需要快速响应实时数据的应用非常重要，例如实时监控、实时推荐和实时风控等领域。
+**实时数据处理：**Apache StreamPark 支持提交实时数据流任务，能够实时获取、转换、过滤和分析数据。这对于需要快速响应实时数据的应用非常重要，例如实时监控、实时推荐和实时风控等领域。
 
 **可扩展性：**可以高效处理大规模实时数据，具备良好的可扩展性。可以在分布式计算环境中运行，并能够自动处理并行化、故障恢复和负载均衡等问题，以确保高效且可靠地处理数据。
 
@@ -114,7 +114,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 **易用性：**提供了直观的图形界面和简化的 API，可以轻松地构建和部署数据处理任务，而无需深入了解底层技术细节。
 
-通过在 StreamPark 平台上提交 Paimon 任务，我们可以建立一个全链路实时流动、可查询和分层可复用的 Pipline。
+通过在 Apache StreamPark 平台上提交 Paimon 任务，我们可以建立一个全链路实时流动、可查询和分层可复用的 Pipline。
 
 ![](/blog/bondex/pipline.png)
 
@@ -127,7 +127,7 @@ kappa 架构只用一套数据流处理架构来解决离线和实时数据，�
 
 ### **环境构建**
 
-下载 flink-1.16.0-scala-2.12.tar.gz 可以在 flink官网 下载对应版本的安装包到StreamPark 部署服务器
+下载 flink-1.16.0-scala-2.12.tar.gz 可以在 flink官网 下载对应版本的安装包到Apache StreamPark 部署服务器
 
 ```shell
 #解压
@@ -182,7 +182,7 @@ export PATH=$PATH:$FLINK_HOME/bin
 source /etc/profile
 ```
 
-在 StreamPark 添加 Flink conf:
+在 Apache StreamPark 添加 Flink conf:
 
 ![](/blog/bondex/flink_conf.jpg)
 
@@ -236,7 +236,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 
 接下来准备 Paimon jar 包，可以在 Apache [Repository](https://repository.apache.org/content/groups/snapshots/org/apache/paimon) 下载对应版本，需要注意的是要和 flink 大版本保持一致
 
-### **使用 StreamPark 管理作业**
+### **使用 Apache StreamPark 管理作业**
 
 **前提条件：**
 
@@ -247,7 +247,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 
 **Kubernetes 客户端连接配置：**
 
-将 k8s master节点~/.kube/config 配置直接拷贝到 StreamPark 服务器的目录，之后在 StreamPark 服务器执行以下命令显示 k8s 集群 running 代表权限和网络验证成功。
+将 k8s master节点~/.kube/config 配置直接拷贝到 Apache StreamPark 服务器的目录，之后在 Apache StreamPark 服务器执行以下命令显示 k8s 集群 running 代表权限和网络验证成功。
 
 ```shell
 kubectl cluster-info
@@ -272,11 +272,11 @@ kubectl create secret docker-registry streamparksecret
 
 案例中使用阿里云容器镜像服务ACR，也可以使用自建镜像服务harbor代替。
 
-创建命名空间 StreamPark (安全设置需要设置为私有)
+创建命名空间 Apache StreamPark (安全设置需要设置为私有)
 
 ![](/blog/bondex/aliyun.png)
 
-在 StreamPark 配置镜像仓库，任务构建镜像会推送到镜像仓库
+在 Apache StreamPark 配置镜像仓库，任务构建镜像会推送到镜像仓库
 
 ![](/blog/bondex/dockersystem_setting.png)
 
@@ -935,4 +935,4 @@ https://github.com/apache/incubator-paimon/pull/1308
 - 后面将基于 trino Catalog接入Doris，实现真正的离线数据和实时数据的one service
 - 采用 doris + paimon 的架构方案继续推进集团内部流批一体数仓建设的步伐
 
-在这里要感谢之信老师和 StreamPark 社区在使用 StreamPark + Paimon 过程中的大力支持，在学习使用过程中遇到的问题，都能在第一时间给到解惑并得到解决，我们后面也会积极参与社区的交流和建设，让 paimon 能为更多开发者和企业提供流批一体的数据湖解决方案。
+在这里要感谢之信老师和 Apache StreamPark 社区在使用 Apache StreamPark + Paimon 过程中的大力支持，在学习使用过程中遇到的问题，都能在第一时间给到解惑并得到解决，我们后面也会积极参与社区的交流和建设，让 paimon 能为更多开发者和企业提供流批一体的数据湖解决方案。

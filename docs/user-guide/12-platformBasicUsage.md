@@ -1,5 +1,5 @@
 # Quick Start
-> Note: This section is designed to provide a convenient process for submitting Flink jobs using the StreamPark platform through simple operational steps.
+> Note: This section is designed to provide a convenient process for submitting Flink jobs using the Apache StreamPark platform through simple operational steps.
 
 ## Configure FLINK_HOME
 ![1_config_flink_home](/doc/image_en/platform-usage/1_config_flink_home.png)
@@ -9,7 +9,7 @@
 
 ![3_display_flink_home_config](/doc/image_en/platform-usage/3_display_flink_home_config.png)
 ## Configure Flink Cluster
-> Depending on the Flink deployment mode and resource management method, StreamPark supports the following six job modes:
+> Depending on the Flink deployment mode and resource management method, Apache StreamPark supports the following six job modes:
 > - **Standalone Session**
 > - **Yarn Session**
 > - **Yarn Per-job**
@@ -79,8 +79,8 @@ start-cluster.sh
 ![22_submit_flink_job_2](/doc/image_en/platform-usage/22_submit_flink_job_2.png)
 
 ## Check Job Status
-### View via StreamPark Dashboard
-> StreamPark dashboard
+### View via Apache StreamPark Dashboard
+> Apache StreamPark dashboard
 
 ![23_flink_job_dashboard](/doc/image_en/platform-usage/23_flink_job_dashboard.png)
 
@@ -97,21 +97,21 @@ start-cluster.sh
 
 _web_ui_2.png)
 
-> With this, the process of submitting a Flink job using the StreamPark platform is essentially complete. Below is a brief summary of the general process for managing Flink jobs on the StreamPark platform.
+> With this, the process of submitting a Flink job using the Apache StreamPark platform is essentially complete. Below is a brief summary of the general process for managing Flink jobs on the Apache StreamPark platform.
 
-## StreamPark Platform's Process for Managing Flink Jobs
+## Apache StreamPark Platform's Process for Managing Flink Jobs
 ![28_streampark_process_workflow](/doc/image_en/platform-usage/28_streampark_process_workflow.png)
 
-> Stopping, modifying, and deleting Flink jobs through the StreamPark platform is relatively simple and can be experienced by users themselves. It is worth noting that: **If a job is in a running state, it cannot be deleted and must be stopped first**.
+> Stopping, modifying, and deleting Flink jobs through the Apache StreamPark platform is relatively simple and can be experienced by users themselves. It is worth noting that: **If a job is in a running state, it cannot be deleted and must be stopped first**.
 
-# StreamPark System Module Introduction
+# Apache StreamPark System Module Introduction
 ## System Settings
 > Menu location
 
 ![29_streampark_system_menu](/doc/image_en/platform-usage/29_streampark_system_menu.png)
 
 ### User Management
-> For managing users of the StreamPark platform
+> For managing users of the Apache StreamPark platform
 
 ![30_streampark_user_management_menu](/doc/image_en/platform-usage/30_streampark_user_management_menu.png)
 ### Token Management
@@ -151,9 +151,9 @@ curl -X POST '/flink/app/cancel' \
 
 ![36_streampark_menu_management](/doc/image_en/platform-usage/36_streampark_menu_management.png)
 
-## StreamPark Menu Modules
+## Apache StreamPark Menu Modules
 ### Project
-> StreamPark integrates with code repositories to achieve CICD
+> Apache StreamPark integrates with code repositories to achieve CICD
 
 ![37_streampark_project_menu](/doc/image_en/platform-usage/37_streampark_project_menu.png)
 > To use, click "+ Add new," configure repo information, and save.
@@ -213,11 +213,11 @@ curl -X POST '/flink/app/cancel' \
 
 ![54_visit_flink_cluster_web_ui](/doc/image_en/platform-usage/54_visit_flink_cluster_web_ui.png)
 
-# Using Native Flink with StreamPark
-> 【**To be improved**】In fact, a key feature of StreamPark is the optimization of the management mode for native Flink jobs at the user level, enabling users to rapidly develop, deploy, run, and monitor Flink jobs using the platform. Meaning, if users are familiar with native Flink, they will find StreamPark even more intuitive to use.
+# Using Native Flink with Apache StreamPark
+> 【**To be improved**】In fact, a key feature of Apache StreamPark is the optimization of the management mode for native Flink jobs at the user level, enabling users to rapidly develop, deploy, run, and monitor Flink jobs using the platform. Meaning, if users are familiar with native Flink, they will find Apache StreamPark even more intuitive to use.
 
 ## Flink Deployment Modes
-### How to Use in StreamPark
+### How to Use in Apache StreamPark
 > **Session Mode**
 
 1. Configure Flink Cluster
@@ -248,7 +248,7 @@ flink run-application -t yarn-application \
 	-Dyarn.provided.lib.dirs="hdfs://myhdfs/my-remote-flink-dist-dir" \
 	hdfs://myhdfs/jars/my-application.jar
 ```
-### How to Use in StreamPark
+### How to Use in Apache StreamPark
 > When creating or modifying a job, add in “Dynamic Properties” as per the specified format
 
 ![67_dynamic_params_usage](/doc/image_en/platform-usage/67_dynamic_params_usage.png)
@@ -261,7 +261,7 @@ flink run-application -t yarn-application \
 
 ![68_native_flink_restart_strategy](/doc/image_en/platform-usage/68_native_flink_restart_strategy.png)
 
-### How to Use in StreamPark
+### How to Use in Apache StreamPark
 > 【**To be improved**】Generally, alerts are triggered when a job fails or an anomaly occurs
 
 1. Configure alert notifications
@@ -283,7 +283,7 @@ flink run-application -t yarn-application \
 
 
 ![72_native_flink_save_checkpoint_gramma](/doc/image_en/platform-usage/72_native_flink_save_checkpoint_gramma.png)
-### How to Configure Savepoint in StreamPark
+### How to Configure Savepoint in Apache StreamPark
 > Users can set a savepoint when stopping a job
 
 ![73_streampark_save_checkpoint](/doc/image_en/platform-usage/73_streampark_save_checkpoint.png)
@@ -298,7 +298,7 @@ flink run-application -t yarn-application \
 
 ![77_show_checkpoint_file_name_2](/doc/image_en/platform-usage/77_show_checkpoint_file_name_2.png)
 
-### How to Restore a Job from a Specified Savepoint in StreamPark
+### How to Restore a Job from a Specified Savepoint in Apache StreamPark
 > Users have the option to choose during job startup
 
 ![78_usage_checkpoint_in_streampark](/doc/image_en/platform-usage/78_usage_checkpoint_in_streampark.png)
@@ -311,7 +311,7 @@ flink run-application -t yarn-application \
 
 ![79_native_flink_job_status](/doc/image_en/platform-usage/79_native_flink_job_status.svg)
 
-### Job Status in StreamPark
+### Job Status in Apache StreamPark
 > 【**To be improved**】
 
 
@@ -321,10 +321,10 @@ flink run-application -t yarn-application \
 
 ![80_native_flink_job_details_page](/doc/image_en/platform-usage/80_native_flink_job_details_page.png)
 
-### Job Details in StreamPark
+### Job Details in Apache StreamPark
 ![81_streampark_flink_job_details_page](/doc/image_en/platform-usage/81_streampark_flink_job_details_page.png)
 
-> In addition, for jobs in k8s mode, StreamPark also supports real-time display of startup logs, as shown below
+> In addition, for jobs in k8s mode, Apache StreamPark also supports real-time display of startup logs, as shown below
 
 ![82_streampark_flink_job_starting_log_info](/doc/image_en/platform-usage/82_streampark_flink_job_starting_log_info.png)
 
@@ -333,8 +333,8 @@ flink run-application -t yarn-application \
 > Native Flink provides a REST API
 > Reference: [https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/)
 
-### How StreamPark Integrates with Third-Party Systems
-> StreamPark also provides Restful APIs, supporting integration with other systems.
+### How Apache StreamPark Integrates with Third-Party Systems
+> Apache StreamPark also provides Restful APIs, supporting integration with other systems.
 > For example, it offers REST API interfaces for starting and stopping jobs.
 
 ![83_streampark_restful_api_1](/doc/image_en/platform-usage/83_streampark_restful_api_1.png)

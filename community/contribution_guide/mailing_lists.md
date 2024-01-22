@@ -21,7 +21,7 @@ sidebar_position: 1
     limitations under the License.
 -->
 
-The StreamPark developer mailing list is the preferred means for all your questions when using StreamPark, which pushes your doubts out to the entire community.
+The Apache StreamPark developer mailing list is the preferred means for all your questions when using Apache StreamPark, which pushes your doubts out to the entire community.
 This is the best way to keep up-to-date with the community.
 
 Before you post anything to the mailing lists, be sure that you already **subscribe** to them.
@@ -31,12 +31,12 @@ The currently available lists are listed in the below table.
 
 ### Developer List
 
-- Use this list for your StreamPark questions
-- Used by StreamPark contributors to discuss development of StreamPark
+- Use this list for your Apache StreamPark questions
+- Used by Apache StreamPark contributors to discuss development of Apache StreamPark
 
 ### Commits List
 
-- Notifications on changes to the StreamPark codebase
+- Notifications on changes to the Apache StreamPark codebase
 
 | List Name           | Address                      | Subscribe                                                   | Unsubscribe                                                     | Archive                                                                     |
 |---------------------|------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------|

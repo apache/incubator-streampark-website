@@ -30,7 +30,7 @@ sidebar_position: 3
 - **Documentation** - 没有它，内容只会停留在作者的头脑中。
 - **Code** - 没有代码，讨论就毫无意义。
 
-Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有人在 CoPDoC 的任何领域有了足够的贡献，他们就可以成为 PMC 成员资格的候选人，最终被投票选为 StreamPark 的 PMC 成员。成为 Apache StreamPark 的 PMC 成员并不一定意味着您必须使用您的提交权限向代码库提交代码；它意味着您致力于 StreamPark 项目并为我们社区的成功做出了积极的贡献。
+Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有人在 CoPDoC 的任何领域有了足够的贡献，他们就可以成为 PMC 成员资格的候选人，最终被投票选为 Apache StreamPark 的 PMC 成员。成为 Apache StreamPark 的 PMC 成员并不一定意味着您必须使用您的提交权限向代码库提交代码；它意味着您致力于 Apache StreamPark 项目并为我们社区的成功做出了积极的贡献。
 
 ## PMC 成员的要求：
 
@@ -38,7 +38,7 @@ Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有�
 
 ### 持续的贡献
 
-PMC 成员的候选人应该持续参与并为 StreamPark 做出大量的贡献（例如修复漏洞、添加新功能、编写文档、维护问题板、代码审查或回答社区问题），无论是向主网站的代码库还是 StreamPark 的 GitHub 仓库贡献。
+PMC 成员的候选人应该持续参与并为 Apache StreamPark 做出大量的贡献（例如修复漏洞、添加新功能、编写文档、维护问题板、代码审查或回答社区问题），无论是向主网站的代码库还是 Apache StreamPark 的 GitHub 仓库贡献。
 
 - +5 个月的轻度活动和参与。
 - +4 个月的中度活动和参与。

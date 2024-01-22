@@ -21,11 +21,11 @@ sidebar_position: 1
     limitations under the License.
 -->
 
-Good documentation is critical for any type of software. Any contribution that can improve the StreamPark documentation is welcome.
+Good documentation is critical for any type of software. Any contribution that can improve the Apache StreamPark documentation is welcome.
 
 ## Get the document project
 
-Documentation for the StreamPark project is maintained in a separate [git repository](https://github.com/apache/incubator-streampark-website).
+Documentation for the Apache StreamPark project is maintained in a separate [git repository](https://github.com/apache/incubator-streampark-website).
 
 First you need to fork the document project into your own github repository, and then clone the document to your local computer.
 

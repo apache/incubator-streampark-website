@@ -38,10 +38,10 @@ only by code.
 
 Apache StreamPark community strives to be meritocratic. Thus, once someone
 has contributed sufficiently to any area of CoPDoC they can be a
-candidate for committer-ship and at last voted in as a StreamPark
+candidate for committer-ship and at last voted in as a Apache StreamPark
 committer. Being an Apache StreamPark committer does not necessarily mean
 you must commit code with your commit privilege to the codebase; it
-means you are committed to the StreamPark project and are productively
+means you are committed to the Apache StreamPark project and are productively
 contributing to our community's success.
 
 ## Committer requirements:
@@ -58,8 +58,8 @@ and fair.
 Committer candidates should have a decent amount of continuous
 engagements and contributions (fixing bugs, adding new features,
 writing documentation, maintaining issues boards, code review, or answering
-community questions) to StreamPark either by contributing to the codebase
-of the main website or StreamPark's GitHub repositories.
+community questions) to Apache StreamPark either by contributing to the codebase
+of the main website or Apache StreamPark's GitHub repositories.
 
 - +3 months with light activity and engagement.
 - +2 months of medium activity and engagement.

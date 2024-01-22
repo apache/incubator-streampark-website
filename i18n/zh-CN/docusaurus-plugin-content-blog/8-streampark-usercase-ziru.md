@@ -1,16 +1,16 @@
 ---
 slug: streampark-usercase-ziru
 title: 自如基于Apache StreamPark 的实时计算平台实践
-tags: [StreamPark, 生产实践]
+tags: [Apache StreamPark, 生产实践]
 ---
 
 ![](/blog/ziru/cover.png)
 
-**导读：**自如作为一家专注于提供租房产品和服务的 O2O 互联网公司，构建了一个涵盖城市居住生活领域全链条的在线化、数据化、智能化平台，实时计算在自如一直扮演着重要的角色。到目前为止，自如每日需要处理 TB 级别的数据，本文由来自自如的实时计算小伙伴带来，介绍了自如基于 StreamPark 的实时计算平台深度实践。
+**导读：**自如作为一家专注于提供租房产品和服务的 O2O 互联网公司，构建了一个涵盖城市居住生活领域全链条的在线化、数据化、智能化平台，实时计算在自如一直扮演着重要的角色。到目前为止，自如每日需要处理 TB 级别的数据，本文由来自自如的实时计算小伙伴带来，介绍了自如基于 Apache StreamPark 的实时计算平台深度实践。
 
 - 实时计算遇到的挑战
 - 需求解决方案之路
-- 基于 StreamPark 的深度实践
+- 基于 Apache StreamPark 的深度实践
 - 实践经验总结和示例
 - 带来的收益
 - 未来规划
@@ -62,7 +62,7 @@ tags: [StreamPark, 生产实践]
 
 在平台构建的初期阶段，2022 年初开始我们就全面调查了行业内的几乎所有相关项目，涵盖了商业付费版和开源版。经过调查和对比发现，这些项目都或多或少地存在一定的局限性，可用性和稳定性也无法有效地保障。
 
-综合下来 StreamPark 在我们的评估中表现最优，是唯一一个没有硬伤且扩展性很强的项目：同时支持 SQL 和 JAR 作业，在 Flink 作业的部署模式上也是最为完善和稳定的，特有的架构设计使得不仅不会锁定 Flink 版本，还支持便捷的版本切换和并行处理，有效解决了作业依赖隔离和冲突的问题。我们重点关注的作业管理 & 运维能力也非常完善，包括监控、告警、SQL 校验、SQL 版本对比、CI 等功能，StreamPark 对 Flink on K8s 的支持也是我们调研的所有开源项目中最为完善的。但 StreamPark 的 K8s 模式提交需在本地构建镜像导致存储资源消耗。
+综合下来 Apache StreamPark 在我们的评估中表现最优，是唯一一个没有硬伤且扩展性很强的项目：同时支持 SQL 和 JAR 作业，在 Flink 作业的部署模式上也是最为完善和稳定的，特有的架构设计使得不仅不会锁定 Flink 版本，还支持便捷的版本切换和并行处理，有效解决了作业依赖隔离和冲突的问题。我们重点关注的作业管理 & 运维能力也非常完善，包括监控、告警、SQL 校验、SQL 版本对比、CI 等功能，Apache StreamPark 对 Flink on K8s 的支持也是我们调研的所有开源项目中最为完善的。但 Apache StreamPark 的 K8s 模式提交需在本地构建镜像导致存储资源消耗。
 
 目前在最新的 2.2 版本中社区已经重构了这部分实现
 
@@ -72,19 +72,19 @@ tags: [StreamPark, 生产实践]
 
 2.在开源组件的选择上，我们经过各项指标综合对比评估，最终选择了当时的 StreamX。后续和社区保持密切的沟通，在此过程中深刻感受到创始人认真负责的态度和社区的团结友善的氛围，也见证了项目 2022 年 09 月加入 Apache 孵化器的过程，这让我们对该项目的未来充满希望。
 
-3.在 StreamPark 基础上，我们要推动与公司已有生态的整合，以便更好地满足我们的业务需求。
+3.在 Apache StreamPark 基础上，我们要推动与公司已有生态的整合，以便更好地满足我们的业务需求。
 
-## **基于 StreamPark 的深度实践** 
+## **基于 Apache StreamPark 的深度实践** 
 
 基于上述决策，我们启动了以 “痛点需求” 为导向的实时计算平台演进工作，基于StremaPark 打造一个稳定、高效、易维护的实时计算平台。从 2022 年初开始我们便参与社区的建设，同时我们内部平台建设也正式提上日程。
 
-首先我们在 StreamPark 的基础上进一步完善相关的功能：
+首先我们在 Apache StreamPark 的基础上进一步完善相关的功能：
 
 ![](/blog/ziru/platform_construction.png)
 
 ### **01 LDAP 登录支持**
 
-在 StreamPark 的基础上，我们进一步完善了相关的功能，其中包括对 LDAP 的支持，以便我们未来可以完全开放实时能力，让公司的四个业务线所属的分析师能够使用该平台，预计届时人数将达到 170 人左右。随着人数的增加，账号的管理变得越发重要，特别是在人员变动时，账号的注销和申请将成为一项频繁且耗时的操作。所以，接入 LDAP 变得尤为重要。因此我们及时和社区沟通，并且发起讨论，最终我们贡献了该 Feature。现在在 StreamPark 开启 LDAP 已经变得非常简单，只需要简单两步即可：
+在 Apache StreamPark 的基础上，我们进一步完善了相关的功能，其中包括对 LDAP 的支持，以便我们未来可以完全开放实时能力，让公司的四个业务线所属的分析师能够使用该平台，预计届时人数将达到 170 人左右。随着人数的增加，账号的管理变得越发重要，特别是在人员变动时，账号的注销和申请将成为一项频繁且耗时的操作。所以，接入 LDAP 变得尤为重要。因此我们及时和社区沟通，并且发起讨论，最终我们贡献了该 Feature。现在在 Apache StreamPark 开启 LDAP 已经变得非常简单，只需要简单两步即可：
 
 #### step1:  填写对应的 LDAP 配置:
 
@@ -115,7 +115,7 @@ ldap:
 
 ### **02 提交作业自动生成 Ingress**
 
-由于公司的网络安全政策，运维人员在 Kubernetes 的宿主机上仅开放了 80 端口，这导致我们无法直接通过 “域名+随机端口” 的方式访问在 Kubernetes 上的作业 WebUI。为了解决这个问题，我们需要使用Ingress在访问路径上增加一层代理，从而启到访问路由的效果。在 StreamPark 2.0 版本我们贡献了 Ingress 相关的功能[3]。采用了策略模式的实现方式，在初始构建阶段，获取 Kubernetes 的元数据信息来识别其版本，针对不同版本来进行相应的对象构建，确保了在各种 Kubernetes 环境中都能够顺利地使用 Ingress 功能。
+由于公司的网络安全政策，运维人员在 Kubernetes 的宿主机上仅开放了 80 端口，这导致我们无法直接通过 “域名+随机端口” 的方式访问在 Kubernetes 上的作业 WebUI。为了解决这个问题，我们需要使用Ingress在访问路径上增加一层代理，从而启到访问路由的效果。在 Apache StreamPark 2.0 版本我们贡献了 Ingress 相关的功能[3]。采用了策略模式的实现方式，在初始构建阶段，获取 Kubernetes 的元数据信息来识别其版本，针对不同版本来进行相应的对象构建，确保了在各种 Kubernetes 环境中都能够顺利地使用 Ingress 功能。
 
 具体的配置步骤如下：
 
@@ -137,7 +137,7 @@ ldap:
 
 ### **03 支持查看作业部署日志**
 
-在持续部署作业的过程中，我们逐渐意识到，没有日志就无法进行有效的运维操作，日志的留存归档和查看成为了我们在后期排查问题时非常重要的一环。因此在 StreamPark 2.0 版本我们贡献了 On Kubernetes 模式下启动日志存档、页面查看的能力[4]，现在点击作业列表里的日志查看按钮，可以很方便的查看作业的实时日志。
+在持续部署作业的过程中，我们逐渐意识到，没有日志就无法进行有效的运维操作，日志的留存归档和查看成为了我们在后期排查问题时非常重要的一环。因此在 Apache StreamPark 2.0 版本我们贡献了 On Kubernetes 模式下启动日志存档、页面查看的能力[4]，现在点击作业列表里的日志查看按钮，可以很方便的查看作业的实时日志。
 
 ![](/blog/ziru/k8s_log.png)
 
@@ -147,7 +147,7 @@ ldap:
 
 为了解决这个问题，我们在社区提出一个需求：希望每个作业都能够通过超链接直接跳转到对应的监控图表和日志归档页面，这样使用者就可以直接查看与自己作业相关的监控信息和日志。无需在复杂的系统界面中进行繁琐的搜索，从而提高故障排查的效率。
 
-我们在社区展开了讨论、并很快得到响应、大家都认为这是一个普遍存在的需求、因此很快有开发小伙伴提交了设计和相关PR，该问题也很快被解决，现在在 StreamPark 中要开启该功能已经变得非常简单:
+我们在社区展开了讨论、并很快得到响应、大家都认为这是一个普遍存在的需求、因此很快有开发小伙伴提交了设计和相关PR，该问题也很快被解决，现在在 Apache StreamPark 中要开启该功能已经变得非常简单:
 
 #### step1: 创建徽章标签
 
@@ -222,11 +222,11 @@ SELECT Encryption_function(name), age, price, Sensitive_field_functions(phone) F
 SELECT name, Encryption_function(age), price, Sensitive_field_functions(phone) FROM user;
 ```
 
-### **06 基于 StreamPark 的数据同步平台**
+### **06 基于 Apache StreamPark 的数据同步平台**
 
-随着 StreamPark 的技术解决方案在公司的成功落地，我们实现了对 Flink 作业的深度支持，从而为数据处理带来质的飞跃。这促使我们对过往的数据同步逻辑进行彻底的革新，目标是通过技术的优化和整合，最大限度地降低运维成本。因此，我们逐步替换了历史上的 Sqoop 作业、Canal 作业和 Hive JDBC Handler 作业，转而采用 Flink CDC 作业、Flink 流和批作业。在这个过程中，我们也不断优化和强化 StreamPark 的接口能力，新增了状态回调机制，同时实现了与 DolphinScheduler[7] 调度系统的完美集成，进一步提升了我们的数据处理能力。
+随着 Apache StreamPark 的技术解决方案在公司的成功落地，我们实现了对 Flink 作业的深度支持，从而为数据处理带来质的飞跃。这促使我们对过往的数据同步逻辑进行彻底的革新，目标是通过技术的优化和整合，最大限度地降低运维成本。因此，我们逐步替换了历史上的 Sqoop 作业、Canal 作业和 Hive JDBC Handler 作业，转而采用 Flink CDC 作业、Flink 流和批作业。在这个过程中，我们也不断优化和强化 Apache StreamPark 的接口能力，新增了状态回调机制，同时实现了与 DolphinScheduler[7] 调度系统的完美集成，进一步提升了我们的数据处理能力。
 
-外部系统集成 StreamPark 步骤如下，只需要简单几个步骤即可：
+外部系统集成 Apache StreamPark 步骤如下，只需要简单几个步骤即可：
 
 1.首先创建 API 访问的 Token：
 
@@ -252,11 +252,11 @@ curl -X POST '/flink/app/start' \
 
 ## **实践经验总结**  
 
-在深度使用 StreamPark 实践过程中，我们总结了一些常见问题和实践过程中所探索出解决方案，我们把这些汇总成示例，仅供大家参考。
+在深度使用 Apache StreamPark 实践过程中，我们总结了一些常见问题和实践过程中所探索出解决方案，我们把这些汇总成示例，仅供大家参考。
 
 ### **01 构建 Base 镜像**
 
-要使用 StreamPark 在 Kubernetes 上部署一个 Flink 作业，首先要准备一个基于 Flink 构建的 Base 镜像。然后，在 Kubernetes 平台上，会使用用户所提供的镜像来启动 Flink 作业。如果是沿用官方所提供的 “裸镜像”，在实际开发中是远远不够的，用户开发的业务逻辑往往会涉及到上下游多个数据源，这就需要相关数据源的 Connector，以及 Hadoop 等关联依赖。因此需要将这部分依赖项打入镜像中，下面我将介绍具体操作步骤。
+要使用 Apache StreamPark 在 Kubernetes 上部署一个 Flink 作业，首先要准备一个基于 Flink 构建的 Base 镜像。然后，在 Kubernetes 平台上，会使用用户所提供的镜像来启动 Flink 作业。如果是沿用官方所提供的 “裸镜像”，在实际开发中是远远不够的，用户开发的业务逻辑往往会涉及到上下游多个数据源，这就需要相关数据源的 Connector，以及 Hadoop 等关联依赖。因此需要将这部分依赖项打入镜像中，下面我将介绍具体操作步骤。
 
 #### step1: 首先创建一个文件夹，内部包含两个文件夹和一个 Dockerfile 文件
 
@@ -325,7 +325,7 @@ RUN unzip -d arthas-latest-bin arthas-packaging-latest-bin.zip
 
 ### **03 镜像中依赖冲突的解决方式**
 
-在使用 StreamPark 的过程中，我们常遇到基于 Base 镜像运行的 Flink 作业中出现 NoClassDefFoundError、ClassNotFoundException 和 NoSuchMethodError 这三种依赖冲突异常。排查思路就是，找到报错中所示的冲突类，所在的包路径。例如这个报错的类在 org.apache.orc:orc-core， 就到相应模块的目录下跑 mvn dependency::tree 然后搜 orc-core，看一下是谁带进来的依赖，用 exclusion 去掉就可以了。下面我通过一个 base 镜像中的 flink-shaded-hadoop-3-uber JAR 包引起的依赖冲突示例，来详细介绍通过自定义打包的方法来解决依赖冲突。
+在使用 Apache StreamPark 的过程中，我们常遇到基于 Base 镜像运行的 Flink 作业中出现 NoClassDefFoundError、ClassNotFoundException 和 NoSuchMethodError 这三种依赖冲突异常。排查思路就是，找到报错中所示的冲突类，所在的包路径。例如这个报错的类在 org.apache.orc:orc-core， 就到相应模块的目录下跑 mvn dependency::tree 然后搜 orc-core，看一下是谁带进来的依赖，用 exclusion 去掉就可以了。下面我通过一个 base 镜像中的 flink-shaded-hadoop-3-uber JAR 包引起的依赖冲突示例，来详细介绍通过自定义打包的方法来解决依赖冲突。
 
 #### step1: Clone flink-shaded 项目到本地👇
 
@@ -343,7 +343,7 @@ git clone https://github.com/apache/flink-shaded.git
 
 ### **04 集中作业配置示例**
 
-使用 StreamPark 有个非常大的便利就是可以进行配置的集中管理，可以将所有的配置项，配置到平台所绑定的 Flink 目录下的 conf 文件中。
+使用 Apache StreamPark 有个非常大的便利就是可以进行配置的集中管理，可以将所有的配置项，配置到平台所绑定的 Flink 目录下的 conf 文件中。
 
 ```shell
 cd /flink-1.14.5/conf
@@ -360,9 +360,9 @@ vim flink-conf.yaml
 
 ![](/blog/ziru/sync_conf.png)
 
-### **05 StreamPark 配置 DNS 解析**
+### **05 Apache StreamPark 配置 DNS 解析**
 
-在使用 StreamPark 平台提交 FlinkSQL 的过程中，一个正确合理的 DNS 解析配置非常重要。主要涉及到以下几点：
+在使用 Apache StreamPark 平台提交 FlinkSQL 的过程中，一个正确合理的 DNS 解析配置非常重要。主要涉及到以下几点：
 
 1.Flink 作业的 Checkpoint 写入 HDFS 需要通过 ResourceManager 获取的一个 HDFS 节点进行快照写入，如果企业中同时有发生Hadoop集群的扩容，并且这些这些新扩容出来的节点，没有被DNS解析服务所覆盖，就直接会导致Checkpoint失败，从而影响线上稳定。
 
@@ -444,7 +444,7 @@ metadata:
 export HADOOP_CONF_DIR=/home/streamx/conf
 ```
 
-有效地切断了 Flink on K8s 加载 HDFS 配置的默认逻辑。这样的操作确保了 A StreamPark 仅连接至 A Hadoop 环境，而 B StreamPark 则对应连接至 B Hadoop 环境，从而达到了将测试和生产环境进行完整隔离的目的。
+有效地切断了 Flink on K8s 加载 HDFS 配置的默认逻辑。这样的操作确保了 A Apache StreamPark 仅连接至 A Hadoop 环境，而 B Apache StreamPark 则对应连接至 B Hadoop 环境，从而达到了将测试和生产环境进行完整隔离的目的。
 
 具体来说，在这一操作指令生效后，我们就可以确保在 10002 端口提交的 Flink 作业所连接的 Hadoop 环境为 B Hadoop 环境。这样一来，B Hadoop 环境与过去在 10000 端口提交的 Flink 作业所使用的Hadoop环境就成功实现了隔离，有效防止了不同环境之间的相互干扰，确保了系统的稳定性和可靠性。
 
@@ -533,17 +533,17 @@ netstat -tlnp | grep 10002
 
 ## **带来的收益**  
 
-我们的团队从 StreamX（即 StreamPark 的前身）开始使用，经过一年多的实践和磨合，StreamPark 显著改善了我们在 Apache Flink 作业的开发管理和运维上的诸多挑战。StreamPark 作为一站式服务平台，极大地简化了整个开发流程。现在，我们可以直接在 StreamPark 平台上完成作业的开发、编译和发布，这不仅降低了 Flink 的管理和部署门槛，还显著提高了开发效率。
+我们的团队从 StreamX（即 Apache StreamPark 的前身）开始使用，经过一年多的实践和磨合，Apache StreamPark 显著改善了我们在 Apache Flink 作业的开发管理和运维上的诸多挑战。Apache StreamPark 作为一站式服务平台，极大地简化了整个开发流程。现在，我们可以直接在 Apache StreamPark 平台上完成作业的开发、编译和发布，这不仅降低了 Flink 的管理和部署门槛，还显著提高了开发效率。
 
-自从部署 StreamPark 以来，我们已经在生产环境中大规模使用该平台。从最初管理的 50 多个 FlinkSQL 作业，增长到目前近 500 个作业，如图在 StreamPark 上划分为 7 个 team，每个 team 中有几十个作业。这一转变不仅展示了 StreamPark 的可扩展性和高效性，也充分证明了它在实际业务中的强大应用价值。
+自从部署 Apache StreamPark 以来，我们已经在生产环境中大规模使用该平台。从最初管理的 50 多个 FlinkSQL 作业，增长到目前近 500 个作业，如图在 Apache StreamPark 上划分为 7 个 team，每个 team 中有几十个作业。这一转变不仅展示了 Apache StreamPark 的可扩展性和高效性，也充分证明了它在实际业务中的强大应用价值。
 
 ![](/blog/ziru/production_environment.png)
 
 ## **未 来 期 待**  
 
-自如作为 StreamPark 早期的用户之一，我们一直和社区同学保持密切交流，参与 StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 StreamPark 上管理 Apache Paimon 湖表的元数据信息和 Paimon 的 Action 辅助作业的能力，基于 Flink 引擎通过对接湖表的 Catalog 和 Action 作业，来实现湖表作业的管理、优化于一体的能力。目前 StreamPark 正在对接 Paimon 数据集成的能力，这一块在未来对于实时一键入湖会提供很大的帮助。
+自如作为 Apache StreamPark 早期的用户之一，我们一直和社区同学保持密切交流，参与 Apache StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 Apache StreamPark 上管理 Apache Paimon 湖表的元数据信息和 Paimon 的 Action 辅助作业的能力，基于 Flink 引擎通过对接湖表的 Catalog 和 Action 作业，来实现湖表作业的管理、优化于一体的能力。目前 Apache StreamPark 正在对接 Paimon 数据集成的能力，这一块在未来对于实时一键入湖会提供很大的帮助。
 
-在此也非常感谢 StreamPark 团队一直以来对我们的技术支持，祝 Apache StreamPark 越来越好，越来越多用户去使用，早日毕业成为顶级 Apache 项目。
+在此也非常感谢 Apache StreamPark 团队一直以来对我们的技术支持，祝 Apache StreamPark 越来越好，越来越多用户去使用，早日毕业成为顶级 Apache 项目。
 
 
 

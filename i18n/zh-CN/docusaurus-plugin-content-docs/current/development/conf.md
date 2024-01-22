@@ -16,7 +16,7 @@ ClientFailureRate,
 ClientTables
 } from '../components/TableData.jsx';
 
-配置在`StreamPark`中是非常重要的概念,先说说为什么需要配置
+配置在`Apache StreamPark`中是非常重要的概念,先说说为什么需要配置
 
 ## 为什么需要配置
 
@@ -101,10 +101,10 @@ public class JavaTableApp {
 
 **答案是肯定的**
 
-针对参数设置的问题,在`StreamPark`中提出统一程序配置的概念,把程序的一系列参数从开发到部署阶段按照特定的格式配置到`application.yml`里,抽象出
+针对参数设置的问题,在`Apache StreamPark`中提出统一程序配置的概念,把程序的一系列参数从开发到部署阶段按照特定的格式配置到`application.yml`里,抽象出
 一个通用的配置模板,按照这种规定的格式将上述配置的各项参数在配置文件里定义出来,在程序启动的时候将这个项目配置传入到程序中即可完成环境的初始化工作,在任务启动的时候也会自动识别启动时的参数.
 
-针对Flink Sql作业在代码里写sql的问题,`StreamPark`针对`Flink Sql`作业做了更高层级封装和抽象,开发者只需要将sql按照一定的规范要求定义到`application.yaml`中,在程序启动时传入该文件到主程序中, 就会自动按照要求加载执行sql
+针对Flink Sql作业在代码里写sql的问题,`Apache StreamPark`针对`Flink Sql`作业做了更高层级封装和抽象,开发者只需要将sql按照一定的规范要求定义到`application.yaml`中,在程序启动时传入该文件到主程序中, 就会自动按照要求加载执行sql
 
 下面我们来详细看看这个配置文件的各项配置都是如何进行配置的,有哪些注意事项
 
@@ -245,7 +245,7 @@ option下的参数必须是 `完整参数名`
 `$internal.application.main` 和 `yarn.application.name` 这两个参数是必须的
 :::
 如您需要设置更多的参数,可参考[`这里`](https://ci.apache.org/projects/flink/flink-docs-release-1.12/deployment/config.html)
-一定要将这些参数放到`property`下,并且参数名称要正确,`StreamPark`会自动解析这些参数并生效
+一定要将这些参数放到`property`下,并且参数名称要正确,`Apache StreamPark`会自动解析这些参数并生效
 
 ##### Memory参数
 Memory相关的参数设置也非常之多,一般常见的配置如下
@@ -325,7 +325,7 @@ sql: |
 
 :::danger 特别注意
 
-上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, StreamPark封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
+上面内容中 **sql:** 后面的 **|** 是必带的, 加上 **|** 会保留整段内容的格式,重点是保留了换行符, Apache StreamPark封装了Flink Sql的提交,可以直接将多个Sql一次性定义出来,每个Sql必须用 **;** 分割,每段 Sql也必须遵循Flink Sql规定的格式和规范
 :::
 
 ## 总结

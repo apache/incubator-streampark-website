@@ -21,11 +21,11 @@ sidebar_position: 1
     limitations under the License.
 -->
 
-对于任何类型的软件来说，良好的文档都是至关重要的。任何能够改进 StreamPark 文档的贡献都是受欢迎的。
+对于任何类型的软件来说，良好的文档都是至关重要的。任何能够改进 Apache StreamPark 文档的贡献都是受欢迎的。
 
 ## 获取文档项目
 
-StreamPark 项目的文档在一个单独的 [git 仓库](https://github.com/apache/incubator-streampark-website) 中维护。
+Apache StreamPark 项目的文档在一个单独的 [git 仓库](https://github.com/apache/incubator-streampark-website) 中维护。
 
 首先，您需要将文档项目 fork 到您自己的 github 仓库，然后将文`clone`到您的本地计算机。
 
