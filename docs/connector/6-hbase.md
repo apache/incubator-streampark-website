@@ -243,7 +243,7 @@ Reading and writing HBase in this way is cumbersome and inconvenient. `StreamPar
 Users only need to configure Hbase connection parameters and Flink operating parameters. StreamPark will automatically assemble source and sink,
 which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## write and read Hbase with StreamPark
+## write and read Hbase with Apache StreamPark™
 
 ### 1. Configure policies and connection information
 

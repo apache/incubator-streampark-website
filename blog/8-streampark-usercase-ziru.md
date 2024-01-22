@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-ziru
-title: Ziroom's Real-Time Computing Platform Practice Based on Apache StreamPark
+title: Ziroom's Real-Time Computing Platform Practice Based on Apache Apache StreamPark™
 tags: [StreamPark, Production Practice]
 ---
 
@@ -75,7 +75,7 @@ After analyzing the pros and cons of many open-source projects, we decided to pa
 
 3. On the basis of StreamPark, we aim to promote integration with the existing ecosystem of the company to better meet our business needs.
 
-## **In-depth Practice Based on StreamPark**
+## **In-depth Practice Based on Apache StreamPark™**
 
 Based on the above decisions, we initiated the evolution of the real-time computing platform, oriented by "pain point needs," and built a stable, efficient, and easy-to-maintain real-time computing platform based on StreamPark. Since the beginning of 2022, we have participated in the construction of the community while officially scheduling our internal platform construction.
 
@@ -225,7 +225,7 @@ User B's actual execution SQL:
 SELECT name, Encryption_function(age), price, Sensitive_field_functions(phone) FROM user;
 ```
 
-### **06 Data Synchronization Platform Based on StreamPark**
+### **06 Data Synchronization Platform Based on Apache StreamPark™**
 
 With the successful implementation of StreamPark's technical solutions in the company, we achieved deep support for Flink jobs, bringing a qualitative leap in data processing. This prompted us to completely revamp our past data synchronization logic, aiming to reduce operational costs through technical optimization and integration. Therefore, we gradually replaced historical Sqoop jobs, Canal jobs, and Hive JDBC Handler jobs with Flink CDC jobs, Flink stream, and batch jobs. In this process, we continued to optimize and strengthen StreamPark's interface capabilities, adding a status callback mechanism and achieving perfect integration with the DolphinScheduler [7] scheduling system, further enhancing our data processing capabilities.
 
@@ -363,7 +363,7 @@ Clicking Sync Conf will synchronize the global configuration file, and new jobs 
 
 ![](/blog/ziru/sync_conf.png)
 
-### **05 StreamPark DNS Resolution Configuration**
+### **05 Apache StreamPark™ DNS Resolution Configuration**
 
 A correct and reasonable DNS resolution configuration is very important when submitting FlinkSQL on the StreamPark platform. It mainly involves the following points:
 

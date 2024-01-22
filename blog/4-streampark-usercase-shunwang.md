@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-shunwang
-title: StreamPark in the Large-Scale Production Practice at Shunwang Technology
+title: Apache StreamPark™ in the Large-Scale Production Practice at Shunwang Technology
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
@@ -71,13 +71,13 @@ To view logs for a job, developers must go through multiple steps, which to some
 
 ![Image](/blog/shunwang/step.png)
 
-## **Why Use StreamPark**
+## **Why Use Apache StreamPark™**
 
 Faced with the defects of our self-developed platform Streaming-Launcher, we have been considering how to further lower the barriers to using Flink and improve work efficiency. Considering the cost of human resources and time, we decided to seek help from the open-source community and look for an appropriate open-source project to manage and maintain our Flink tasks.
 
 
 
-### 01  **StreamPark: A Powerful Tool for Solving Flink Issues**
+### 01  **Apache StreamPark™: A Powerful Tool for Solving Flink Issues**
 
 Fortunately, in early June 2022, we stumbled upon StreamPark on GitHub and embarked on a preliminary exploration full of hope. We found that StreamPark's capabilities can be broadly divided into three areas: user permission management, job operation and maintenance management, and development scaffolding.
 
@@ -109,7 +109,7 @@ Further research revealed that StreamPark is not just a platform but also includ
 
 
 
-### 02  **How StreamPark Addresses Issues of the Self-Developed Platform**
+### 02  **How Apache StreamPark™ Addresses Issues of the Self-Developed Platform**
 
 We briefly introduced the core capabilities of StreamPark above. During the technology selection process at Shunwang Technology, we found that StreamPark not only includes the basic functions of our existing Streaming-Launcher but also offers a more complete set of solutions to address its many shortcomings. Here, we focus on the solutions provided by StreamPark for the deficiencies of our self-developed platform, Streaming-Launcher.
 

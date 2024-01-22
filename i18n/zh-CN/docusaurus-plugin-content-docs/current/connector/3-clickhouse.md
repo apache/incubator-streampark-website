@@ -63,7 +63,7 @@ public class ClickHouseUtil {
 
 以上将各项参数拼接为请求 url 的方式较繁琐，并且是硬编码的方式写死的,非常的不灵敏.
 
-### StreamPark 方式写入
+### Apache StreamPark™ 方式写入
 
 用`StreamPark`接入 `clickhouse`的数据, 只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下在`StreamPark`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 
@@ -152,7 +152,7 @@ $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data
 上述方式操作较简陋，当然也可以使用java 代码来进行写入, StreamPark 对 http post 写入方式进行封装增强，增加缓存、异步写入、失败重试、达到重试阈值后数据备份至外部组件（kafka,mysql,hdfs,hbase）
 等功能，以上功能只需要按照规定的格式定义好配置文件然后编写代码即可,配置和代码如下
 
-### StreamPark 方式写入
+### Apache StreamPark™ 方式写入
 
 在`StreamPark`中`clickhose jdbc` 约定的配置见配置列表，运行程序样例为scala，如下:
 

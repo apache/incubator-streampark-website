@@ -404,7 +404,7 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 #### 3.6 发布Apache SVN仓库中dev目录的物料包
 
 ```shell
-# 检出Apache SVN仓库中的dev目录到Apache StreamPark项目根目录下的dist/streampark_svn_dev目录下
+# 检出Apache SVN仓库中的dev目录到Apache Apache StreamPark™项目根目录下的dist/streampark_svn_dev目录下
 svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 
 svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark

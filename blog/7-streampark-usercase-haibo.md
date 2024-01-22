@@ -18,7 +18,7 @@ Haibo Tech is an industry-leading company offering AI IoT products and solutions
 <!-- truncate -->
 
 
-## **01. Choosing StreamPark**
+## **01. Choosing Apache StreamPark™**
 
 Haibo Tech started using Flink SQL to aggregate and process various real-time IoT data since 2020. With the accelerated pace of smart city construction in various cities, the types and volume of IoT data to be aggregated are also increasing. This has resulted in an increasing number of Flink SQL tasks being maintained online, making a dedicated platform for managing numerous Flink SQL tasks an urgent need.
 

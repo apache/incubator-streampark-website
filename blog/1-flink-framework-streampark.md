@@ -1,6 +1,6 @@
 ---
 slug: flink-development-framework-streampark
-title: StreamPark - Powerful Flink Development Framework
+title: Apache StreamPark™ - Powerful Flink Development Framework
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
@@ -56,7 +56,7 @@ However, because object storage requires the entire object to be rewritten for r
 
 <br/>
 
-## Introducing StreamPark
+## Introducing Apache StreamPark™
 
 Previously, when we wrote Flink SQL, we generally used Java to wrap SQL, packed it into a jar package, and submitted it to the S3 platform through the command line. This approach has always been unfriendly; the process is cumbersome, and the costs for development and operations are too high. We hoped to further streamline the process by abstracting the Flink TableEnvironment, letting the platform handle initialization, packaging, and running Flink tasks, and automating the building, testing, and deployment of Flink applications.
 

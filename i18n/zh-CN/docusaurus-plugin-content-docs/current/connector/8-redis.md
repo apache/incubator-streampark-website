@@ -169,7 +169,7 @@ public class FlinkRedisSink {
 以上创建FlinkJedisPoolConfig较繁琐，redis的每种操作都要构建RedisMapper,非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置redis
 连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## StreamPark 写入 Redis
+## Apache StreamPark™ 写入 Redis
 
 RedisSink 默认为AT_LEAST_ONCE (至少一次)的处理语义，在开启checkpoint情况下两阶段段提交支持EXACTLY_ONCE语义，可使用的连接类型： 单节点模式、哨兵模式。
 

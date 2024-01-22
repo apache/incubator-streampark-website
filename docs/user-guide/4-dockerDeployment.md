@@ -18,9 +18,9 @@ To start the service with docker, you need to install [docker](https://www.docke
 
 To start the service with docker-compose, you need to install [docker-compose](https://docs.docker.com/compose/install/) first
 
-## StreamPark Deployment
+## Apache StreamPark™ Deployment
 
-### 1. StreamPark deployment based on h2 and docker-compose
+### 1. Apache StreamPark™ deployment based on h2 and docker-compose
 
 This method is suitable for beginners to learn and become familiar with the features. The configuration will reset after the container is restarted. Below, you can configure Mysql or Pgsql for persistence.
 
@@ -92,7 +92,7 @@ SPRING_DATASOURCE_PASSWORD=streampark
 docker-compose up -d
 ```
 
-## Build images based on source code for StreamPark deployment
+## Build images based on source code for Apache StreamPark™ deployment
 ```
 git clone https://github.com/apache/incubator-streampark.git
 cd incubator-streampark/deploy/docker

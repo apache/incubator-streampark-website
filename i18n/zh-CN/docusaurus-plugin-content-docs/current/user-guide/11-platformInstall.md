@@ -75,7 +75,7 @@ flink -v
 cp mysql-connector-java-8.0.28.jar /usr/local/streampark/lib
 ```
 ![4_mysql_dep](/doc/image/install/4_mysql_dep.png)
-## 下载StreamPark
+## 下载Apache StreamPark™
 > 下载URL:[https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz)
 
 > 上传 [apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz) 至 服务器 /usr/local 路径
@@ -133,7 +133,7 @@ show tables;
 ```
 ![13_show_streampark_db_tables](/doc/image/install/13_show_streampark_db_tables.png)
 
-## StreamPark配置
+## Apache StreamPark™配置
 > 目的：配置启动需要的数据源。
 > 配置文件所在路径：/usr/local/streampark/conf
 
@@ -190,13 +190,13 @@ vim application.yml
 > 5. **java.security.krb5.conf=/etc/krb5.conf**
 
 ![19_kerberos_yml_config](/doc/image/install/19_kerberos_yml_config.png)
-## 启动StreamPark
-## 进入服务器StreamPark安装路径
+## 启动Apache StreamPark™
+## 进入服务器Apache StreamPark™安装路径
 ```bash
 cd /usr/local/streampark/
 ```
 ![20_enter_streampark_dir](/doc/image/install/20_enter_streampark_dir.png)
-## 启动StreamPark服务
+## 启动Apache StreamPark™服务
 ```bash
 ./bin/startup.sh
 ```
