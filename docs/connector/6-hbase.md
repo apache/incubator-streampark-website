@@ -445,4 +445,4 @@ StreamPark supports two ways to write data: 1. addSink() 2. writeUsingOutputForm
 
 ## Other configuration
 
-All other configurations must comply with the StreamPark configuration. For specific configurable items and the role of each parameter, please refer to the 【project configuration](/docs/development/conf)
+All other configurations must comply with the StreamPark configuration. For specific configurable items and the role of each parameter, please refer to the[project configuration](/docs/development/conf)
