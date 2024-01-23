@@ -65,7 +65,7 @@ public class ClickHouseUtil {
 
 The method of splicing various parameters into the request url is cumbersome and hard-coded, which is very inflexible.
 
-### Write with StreamPark
+### Write with Apache StreamPark™
 
 To access `ClickHouse` data with `StreamPark`, you only need to define the configuration file in the specified format and then write code.
 The configuration and code are as follows. The configuration of `ClickHose JDBC` in `StreamPark` is in the configuration list, and the sample running program is scala

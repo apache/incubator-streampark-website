@@ -236,7 +236,7 @@ class HBaseWriter extends RichSinkFunction<String> {
 
 以方式读写Hbase较繁琐，非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置Hbase连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## StreamPark 读写 Hbase
+## Apache StreamPark™ 读写 Hbase
 
 ### 1. 配置策略和连接信息
 

@@ -22,7 +22,7 @@ sidebar_position: 2
 -->
 
 
-## 成为 Apache StreamPark 的 Committer
+## 成为 Apache Apache StreamPark™ 的 Committer
 
 任何支持社区并在 CoPDoC 领域中工作的人都可以成为 Apache StreamPark 的Committer。CoPDoC 是 ASF 的缩写，用来描述我们如何不仅仅通过代码来认识到您的贡献。
 

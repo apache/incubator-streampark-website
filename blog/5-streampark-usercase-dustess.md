@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-dustess
-title: StreamPark's Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
+title: Apache StreamPark™'s Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 

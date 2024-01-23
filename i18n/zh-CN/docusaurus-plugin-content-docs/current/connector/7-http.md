@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 </dependency>
 ```
 
-## StreamPark 方式写入
+## Apache StreamPark™ 方式写入
 
 ### http异步写入支持类型
 

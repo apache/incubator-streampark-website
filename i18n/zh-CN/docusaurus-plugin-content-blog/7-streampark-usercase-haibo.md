@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-haibo
-title: StreamPark 一站式计算利器在海博科技的生产实践，助力智慧城市建设
+title: Apache StreamPark™ 一站式计算利器在海博科技的生产实践，助力智慧城市建设
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
@@ -16,7 +16,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 <!-- truncate -->
 
-## **01. 选择 StreamPark**
+## **01. 选择 Apache StreamPark™**
 
 海博科技自 2020 年开始使用 Flink SQL 汇聚、处理各类实时物联数据。随着各地市智慧城市建设步伐的加快，需要汇聚的各类物联数据的数据种类、数据量也不断增加，导致线上维护的 Flink SQL 任务越来越多，一个专门的能够管理众多 Flink SQL 任务的计算平台成为了迫切的需求。
 

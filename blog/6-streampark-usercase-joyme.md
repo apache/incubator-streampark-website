@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-joyme
-title: StreamPark's Production Practice in Joyme
+title: Apache StreamPark™'s Production Practice in Joyme
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
@@ -16,7 +16,7 @@ tags: [StreamPark, Production Practice, FlinkSQL]
 
 <!-- truncate -->
 
-## 1 Encountering StreamPark
+## 1 Encountering Apache StreamPark™
 
 Encountering StreamPark was inevitable. Based on our existing real-time job development mode, we had to find an open-source platform to support our company's real-time business. Our current situation was as follows:
 

@@ -71,7 +71,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 由于作业运维困境上的种种因素，会产生业务支撑困境，如导致上线故障率高、影响数据质量、上线时间长、数据延迟高、告警漏发处理等，引起的投诉，此外，我们的业务影响不明确，一旦出现问题，处理问题会成为第一优先级。
 
-## **基于 StreamPark 一体化管理**
+## **基于 Apache StreamPark™ 一体化管理**
 
 ![](/blog/chinaunion/job_management.png)
 

@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-ziru
-title: 自如基于Apache StreamPark 的实时计算平台实践
+title: 自如基于Apache Apache StreamPark™ 的实时计算平台实践
 tags: [StreamPark, 生产实践]
 ---
 
@@ -74,7 +74,7 @@ tags: [StreamPark, 生产实践]
 
 3.在 StreamPark 基础上，我们要推动与公司已有生态的整合，以便更好地满足我们的业务需求。
 
-## **基于 StreamPark 的深度实践** 
+## **基于 Apache StreamPark™ 的深度实践** 
 
 基于上述决策，我们启动了以 “痛点需求” 为导向的实时计算平台演进工作，基于StremaPark 打造一个稳定、高效、易维护的实时计算平台。从 2022 年初开始我们便参与社区的建设，同时我们内部平台建设也正式提上日程。
 
@@ -222,7 +222,7 @@ SELECT Encryption_function(name), age, price, Sensitive_field_functions(phone) F
 SELECT name, Encryption_function(age), price, Sensitive_field_functions(phone) FROM user;
 ```
 
-### **06 基于 StreamPark 的数据同步平台**
+### **06 基于 Apache StreamPark™ 的数据同步平台**
 
 随着 StreamPark 的技术解决方案在公司的成功落地，我们实现了对 Flink 作业的深度支持，从而为数据处理带来质的飞跃。这促使我们对过往的数据同步逻辑进行彻底的革新，目标是通过技术的优化和整合，最大限度地降低运维成本。因此，我们逐步替换了历史上的 Sqoop 作业、Canal 作业和 Hive JDBC Handler 作业，转而采用 Flink CDC 作业、Flink 流和批作业。在这个过程中，我们也不断优化和强化 StreamPark 的接口能力，新增了状态回调机制，同时实现了与 DolphinScheduler[7] 调度系统的完美集成，进一步提升了我们的数据处理能力。
 
@@ -360,7 +360,7 @@ vim flink-conf.yaml
 
 ![](/blog/ziru/sync_conf.png)
 
-### **05 StreamPark 配置 DNS 解析**
+### **05 Apache StreamPark™ 配置 DNS 解析**
 
 在使用 StreamPark 平台提交 FlinkSQL 的过程中，一个正确合理的 DNS 解析配置非常重要。主要涉及到以下几点：
 

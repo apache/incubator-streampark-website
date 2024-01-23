@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-dustess
-title: StreamPark 在尘锋信息的最佳实践，化繁为简极致体验
+title: Apache StreamPark™ 在尘锋信息的最佳实践，化繁为简极致体验
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 

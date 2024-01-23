@@ -1,6 +1,6 @@
 ---
 id: 'intro'
-title: 'What is StreamPark'
+title: 'What is Apache StreamPark™'
 sidebar_position: 1
 ---
 
@@ -36,13 +36,13 @@ The overall architecture of Apache StreamPark is shown in the following figure. 
 
 ![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
-### 1️⃣ StreamPark-core
+### 1️⃣ Apache StreamPark™-core
 
 The positioning of `StreamPark-core` is a framework uesd while developing, it focuses on coding development, regulates configuration files, and develops in the convention over configuration guide.
 StreamPark-core provides a development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending `DataStream-related` methods and integrating DataStream and `Flink sql` api .
 development efficiency and development experience will be highly improved because users can focus on the business.
 
-### 2️⃣ StreamPark-console
+### 2️⃣ Apache StreamPark™-console
 
 `StreamPark-console` is a comprehensive real-time `low code` data platform that can manage `Flink` tasks more convenient.
 It integrates the experience of many best practices and integrates many functions such as project compilation, release,

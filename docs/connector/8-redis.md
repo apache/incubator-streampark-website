@@ -166,7 +166,7 @@ public class FlinkRedisSink {
 The above creation of FlinkJedisPoolConfig is tedious, and each operation of redis has to build RedisMapper, which is very insensitive. `StreamPark` uses a convention over configuration and automatic configuration. This only requires configuring redis
 StreamPark automatically assembles the source and sink parameters, which greatly simplifies the development logic and improves development efficiency and maintainability.
 
-## StreamPark Writes to Redis
+## Apache StreamPark™ Writes to Redis
 
 RedisSink defaults to AT_LEAST_ONCE (at least once) processing semantics, two-stage segment submission supports EXACTLY_ONCE semantics with checkpoint enabled, available connection types: single-node mode, sentinel mode.
 

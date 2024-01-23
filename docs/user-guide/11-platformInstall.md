@@ -75,7 +75,7 @@ flink -v
 cp mysql-connector-java-8.0.28.jar /usr/local/streampark/lib
 ```
 ![4_mysql_dep](/doc/image/install/4_mysql_dep.png)
-## Download StreamPark
+## Download Apache StreamPark™
 > Download URL: [https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz)
 
 > Upload [apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz) to the server /usr/local path
@@ -131,7 +131,7 @@ show tables;
 ```
 ![13_show_streampark_db_tables](/doc/image/install/13_show_streampark_db_tables.png)
 
-## StreamPark Configuration
+## Apache StreamPark™ Configuration
 > Purpose: Configure the data sources needed for startup.
 > Configuration file location: /usr/local/streampark/conf
 
@@ -188,13 +188,13 @@ vim application.yml
 > 5. **java.security.krb5.conf=/etc/krb5.conf**
 
 ![19_kerberos_yml_config](/doc/image/install/19_kerberos_yml_config.png)
-## Starting StreamPark
-## Enter the StreamPark Installation Path on the Server
+## Starting Apache StreamPark™
+## Enter the Apache StreamPark™ Installation Path on the Server
 ```bash
 cd /usr/local/streampark/
 ```
 ![20_enter_streampark_dir](/doc/image/install/20_enter_streampark_dir.png)
-## Start the StreamPark Service
+## Start the Apache StreamPark™ Service
 ```bash
 ./bin/startup.sh
 ```
