@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-bondex-with-paimon
-title: Based on Apache Paimon + StreamPark's Streaming Data Warehouse Practice by Bondex
+title: Based on Apache Paimon + Apache StreamPark™'s Streaming Data Warehouse Practice by Bondex
 tags: [StreamPark, Production Practice, paimon, streaming-warehouse]
 ---
 
@@ -236,7 +236,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 
 Next, prepare the Paimon jar package. You can download the corresponding version from the Apache [Repository](https://repository.apache.org/content/groups/snapshots/org/apache/paimon). It's important to note that it should be consistent with the major version of Flink.
 
-### **Managing Jobs with StreamPark**
+### **Managing Jobs with Apache StreamPark™**
 
 **Prerequisites:**
 

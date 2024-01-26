@@ -1,6 +1,6 @@
 ---
 slug: streampark-flink-on-k8s
-title: StreamPark Flink on Kubernetes 实践
+title: Apache StreamPark™ Flink on Kubernetes 实践
 tags: [StreamPark, 生产实践, FlinkSQL, Kubernetes]
 ---
 
@@ -20,7 +20,7 @@ Native Kubernetes 和 Standalone Kubernetes 主要区别在于 Flink 与 Kuberne
 
 ![](/blog/relx/nativekubernetes_architecture.png)
 
-## **当 Flink On Kubernetes 遇见 StreamPark**
+## **当 Flink On Kubernetes 遇见 Apache StreamPark™**
 
 Flink on Native Kubernetes 目前支持 Application 模式和 Session 模式，两者对比 Application 模式部署规避了 Session 模式的资源隔离问题、以及客户端资源消耗问题，因此**生产环境更推荐采用 Application Mode 部署 Flink 任务。**下面我们分别看看使用原始脚本的方式和使用 StreamPark 开发部署一个 Flink on Native Kubernetes 作业的流程。
 
@@ -69,7 +69,7 @@ kubectl -n flink-cluster get svc
 
 以上就是使用 Flink 提供的最原始的脚本方式把一个 Flink 任务部署到 Kubernetes 上的过程，只做到了最基本的任务提交，如果要达到生产使用级别，还有一系列的问题需要解决，如：方式过于原始无法适配大批量任务、无法记录任务checkpoint 和实时状态跟踪、任务运维和监控困难、无告警机制、 无法集中化管理等等。
 
-## **使用 StreamPark 部署 Flink on Kubernetes**
+## **使用 Apache StreamPark™ 部署 Flink on Kubernetes**
 
 ------
 
@@ -178,7 +178,7 @@ StreamPark 既支持 Upload Jar 也支持直接编写 Flink SQL 作业, **Flink 
 
 通过以上我们看到 StreamPark 在支持 Flink on Kubernetes 开发部署过程中具备的能力, 包括：**作业的开发能力、部署能力、监控能力、运维能力、异常处理能力等，StreamPark 提供的是一套相对完整的解决方案。 且已经具备了一些 CICD/DevOps 的能力，整体的完成度还在持续提升。是在整个开源领域中对于 Flink on Kubernetes 一站式开发部署运维工作全链路都支持的产品，StreamPark 是值得被称赞的。**
 
-## **StreamPark 在雾芯科技的落地实践**
+## **Apache StreamPark™ 在雾芯科技的落地实践**
 
 StreamPark 在雾芯科技落地较晚，目前主要用于实时数据集成作业和实时指标计算作业的开发部署，有 Jar 任务也有 Flink SQL 任务，全部使用 Native Kubernetes 部署；数据源有CDC、Kafka 等，Sink 端有 Maxcompute、kafka、Hive 等，以下是公司开发环境StreamPark 平台截图：
 

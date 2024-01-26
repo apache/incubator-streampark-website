@@ -1,6 +1,6 @@
 ---
 slug: streampark-flink-on-k8s
-title: StreamPark Flink on Kubernetes practice
+title: Apache StreamPark™ Flink on Kubernetes practice
 tags: [StreamPark, Production Practice, FlinkSQL, Kubernetes]
 description: Wuxin Technology was founded in January 2018. The current main business includes the research and development, design, manufacturing and sales of RELX brand products. With core technologies and capabilities covering the entire industry chain, RELX is committed to providing users with products that are both high quality and safe
 ---
@@ -69,7 +69,7 @@ kubectl -n flink-cluster get svc
 
   The above is the process of deploying a Flink task to Kubernetes using the most original script method provided by Flink. Only the most basic task submission is achieved. If it is to reach the production use level, there are still a series of problems that need to be solved, such as: the method is too Originally, it was unable to adapt to large batches of tasks, unable to record task checkpoints and real-time status tracking, difficult to operate and monitor tasks, had no alarm mechanism, and could not be managed in a centralized manner, etc.
 
-## **Deploy Flink on Kubernetes using StreamPark**
+## **Deploy Flink on Kubernetes using Apache StreamPark™**
 
   There will be higher requirements for using Flink on Kubernetes in enterprise-level production environments. Generally, you will choose to build your own platform or purchase related commercial products. No matter which solution meets the product capabilities: large-scale task development and deployment, status tracking, operation and maintenance monitoring , failure alarms, unified task management, high availability, etc. are common demands.
 
@@ -173,7 +173,7 @@ Next, let’s take a look at how StreamPark supports this capability:
 
   From the above, we can see that StreamPark has the capabilities to support the development and deployment process of Flink on Kubernetes, including: ** job development capabilities, deployment capabilities, monitoring capabilities, operation and maintenance capabilities, exception handling capabilities, etc. StreamPark provides a relatively complete set of s solution. And it already has some CICD/DevOps capabilities, and the overall completion level continues to improve. It is a product that supports the full link of Flink on Kubernetes one-stop development, deployment, operation and maintenance work in the entire open source field. StreamPark is worthy of praise. **
 
-## **StreamPark’s implementation in Wuxin Technology**
+## **Apache StreamPark™’s implementation in Wuxin Technology**
 
   StreamPark was launched late in Wuxin Technology. It is currently mainly used for the development and deployment of real-time data integration jobs and real-time indicator calculation jobs. There are Jar tasks and Flink SQL tasks, all deployed using Native Kubernetes; data sources include CDC, Kafka, etc., and Sink end There are Maxcompute, kafka, Hive, etc. The following is a screenshot of the company's development environment StreamPark platform:
 

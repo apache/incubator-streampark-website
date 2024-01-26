@@ -68,7 +68,7 @@ In terms of job operation and maintenance dilemmas, firstly, the job deployment 
 
 Due to various factors in the job operation and maintenance difficulties, business support challenges arise, such as a high rate of failures during launch, impact on data quality, lengthy launch times, high data latency, and issues with missed alarm handling, leading to complaints. In addition, the impact on our business is unclear, and once a problem arises, addressing the issue becomes the top priority.
 
-## **基于 StreamPark 一体化管理**
+## **基于 Apache StreamPark™ 一体化管理**
 
 ![](/blog/chinaunion/job_management.png)
 

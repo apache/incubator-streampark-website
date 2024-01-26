@@ -17,9 +17,9 @@ sidebar_position: 4
 ### 2. 安装 docker-compose
 使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)
 
-## 部署 StreamPark
+## 部署 Apache StreamPark™
 
-### 1. 基于 h2 和 docker-compose 部署 StreamPark
+### 1. 基于 h2 和 docker-compose 部署 Apache StreamPark™
 
 该方式适用于入门学习、熟悉功能特性，容器重启后配置会失效，下方可以配置Mysql、Pgsql进行持久化
 
@@ -93,7 +93,7 @@ SPRING_DATASOURCE_PASSWORD=streampark
 docker-compose up -d
 ```
 
-## 基于源码构建镜像进行StreamPark部署
+## 基于源码构建镜像进行Apache StreamPark™部署
 
 ```shell
 git clone https://github.com/apache/incubator-streampark.git

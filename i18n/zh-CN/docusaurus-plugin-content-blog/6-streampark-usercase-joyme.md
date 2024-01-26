@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-joyme
-title: StreamPark 在 Joyme 的生产实践
+title: Apache StreamPark™ 在 Joyme 的生产实践
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
@@ -16,7 +16,7 @@ tags: [StreamPark, 生产实践, FlinkSQL]
 
 <!-- truncate -->
 
-## 1 遇见 StreamPark
+## 1 遇见 Apache StreamPark™
 
 遇见 StreamPark 是必然的，基于我们现有的实时作业开发模式，不得不寻找一个开源的平台来支撑我司的实时业务。我们的现状如下:
 

@@ -30,7 +30,7 @@ Software versions used in this document:
 > - **Hadoop : 3.2.1**
 
 Main component dependencies:
-![2_main_components_dep](/doc/image/install/2_main_components_dep.png)
+![2_main_components_dep](/doc/image_en/install/2_main_components_dep.png)
 # Pre-installation Preparation
 > JDK, MYSQL, HADOOP need to be installed by users themselves.
 
@@ -75,7 +75,7 @@ flink -v
 cp mysql-connector-java-8.0.28.jar /usr/local/streampark/lib
 ```
 ![4_mysql_dep](/doc/image/install/4_mysql_dep.png)
-## Download StreamPark
+## Download Apache StreamPark™
 > Download URL: [https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz)
 
 > Upload [apache-streampark_2.12-2.0.0-incubating-bin.tar.gz](https://dlcdn.apache.org/incubator/streampark/2.0.0/apache-streampark_2.12-2.0.0-incubating-bin.tar.gz) to the server /usr/local path
@@ -131,7 +131,7 @@ show tables;
 ```
 ![13_show_streampark_db_tables](/doc/image/install/13_show_streampark_db_tables.png)
 
-## StreamPark Configuration
+## Apache StreamPark™ Configuration
 > Purpose: Configure the data sources needed for startup.
 > Configuration file location: /usr/local/streampark/conf
 
@@ -168,14 +168,14 @@ vim application.yml
 ![15_application_yml_server_port](/doc/image/install/15_application_yml_server_port.png)
 > If the flink job jar is too large, it may fail to upload, so consider modifying (max-file-size and max-request-size); of course, other factors in the actual environment should be considered: nginx restrictions, etc.
 
-![16_application_yml_spring_profile_active](/doc/image/install/16_application_yml_spring_profile_active.png)
+![16_application_yml_spring_profile_active](/doc/image_en/install/16_application_yml_spring_profile_active.png)
 > Supports Knox configuration, some users have privately deployed Hadoop environments, accessible through Knox
 > workspace: Configure workspace information (e.g., savepoint and checkpoint storage paths)
 
-![17_application_yml_streampark_workspace](/doc/image/install/17_application_yml_streampark_workspace.png)
+![17_application_yml_streampark_workspace](/doc/image_en/install/17_application_yml_streampark_workspace.png)
 > ldap
 
-![18_application_yml_ldap](/doc/image/install/18_application_yml_ldap.png)
+![18_application_yml_ldap](/doc/image_en/install/18_application_yml_ldap.png)
 
 ### 【Optional】Configuring Kerberos
 > Background: Enterprise-level Hadoop cluster environments have set security access mechanisms, such as Kerberos. StreamPark can also be configured with Kerberos, allowing Flink to authenticate through Kerberos and submit jobs to the Hadoop cluster.
@@ -188,13 +188,13 @@ vim application.yml
 > 5. **java.security.krb5.conf=/etc/krb5.conf**
 
 ![19_kerberos_yml_config](/doc/image/install/19_kerberos_yml_config.png)
-## Starting StreamPark
-## Enter the StreamPark Installation Path on the Server
+## Starting Apache StreamPark™
+## Enter the Apache StreamPark™ Installation Path on the Server
 ```bash
 cd /usr/local/streampark/
 ```
 ![20_enter_streampark_dir](/doc/image/install/20_enter_streampark_dir.png)
-## Start the StreamPark Service
+## Start the Apache StreamPark™ Service
 ```bash
 ./bin/startup.sh
 ```
