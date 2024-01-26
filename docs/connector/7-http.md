@@ -142,4 +142,4 @@ After the asynchronous write data reaches the maximum retry value, the data will
 
 ## Other configuration
 All other configurations must comply with the **StreamPark** configuration.
-For specific configurable items and the role of each parameter, please refer [Project configuration](/docs/development/conf)
+For specific configurable items and the role of each parameter, please refer [Project configuration](/docs/development/config/)

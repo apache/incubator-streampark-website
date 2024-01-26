@@ -364,4 +364,4 @@ EXACTLY_ONCE semantics checkpoint data sink cache inside the memory, you need to
 
 ## Other Configuration
 
-All other configurations must adhere to the **StreamPark** configuration, please refer to [project configuration](/docs/development/conf) for specific configurable items and the role of each parameter.
+All other configurations must adhere to the **StreamPark** configuration, please refer to [project configuration](/docs/development/config/) for specific configurable items and the role of each parameter.
