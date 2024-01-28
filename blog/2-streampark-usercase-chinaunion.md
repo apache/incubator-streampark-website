@@ -54,7 +54,7 @@ The operational maintenance background can also be divided into the following pa
 - Numerous users: Over 30 internal and external organizations' users are utilizing the platform.
 - Low monitoring latency: Once an issue is identified, we must address it immediately to avoid user complaints.
 
-## **Flink 实时作业运维挑战**
+## **Flink Real-Time Job Operation and Maintenance Challenges**
 
 ![](/blog/chinaunion/difficulties.png)
 
@@ -68,7 +68,7 @@ In terms of job operation and maintenance dilemmas, firstly, the job deployment 
 
 Due to various factors in the job operation and maintenance difficulties, business support challenges arise, such as a high rate of failures during launch, impact on data quality, lengthy launch times, high data latency, and issues with missed alarm handling, leading to complaints. In addition, the impact on our business is unclear, and once a problem arises, addressing the issue becomes the top priority.
 
-## **基于 Apache StreamPark™ 一体化管理**
+## **Integrated Management based on Apache StreamPark™**
 
 ![](/blog/chinaunion/job_management.png)
 
