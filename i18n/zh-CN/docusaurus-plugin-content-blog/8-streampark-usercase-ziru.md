@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-ziru
-title: 自如基于Apache Apache StreamPark™ 的实时计算平台实践
+title: 自如基于Apache StreamPark™ 的实时计算平台实践
 tags: [StreamPark, 生产实践]
 ---
 
