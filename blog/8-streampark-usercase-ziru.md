@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-ziru
-title: Ziroom's Real-Time Computing Platform Practice Based on Apache Apache StreamPark™
+title: Ziroom's Real-Time Computing Platform Practice Based on Apache StreamPark™
 tags: [StreamPark, Production Practice]
 ---
 
