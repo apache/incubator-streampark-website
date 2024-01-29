@@ -32,19 +32,19 @@ On the other hand, It can be challenge for enterprises to use Flink & Spark if t
 
 ## 🏳‍🌈 Architecture of Apache StreamPark™
 
-The overall architecture of Apache StreamPark is shown in the following figure. Apache StreamPark consists of three parts, they are StreamPark-core and StreamPark-console.
+The overall architecture of Apache StreamPark is shown in the following figure. Apache StreamPark consists of three parts, they are streampark-core and streampark-console.
 
 ![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
-### 1️⃣ Apache StreamPark™-core
+### 1️⃣ streampark-core
 
-The positioning of `StreamPark-core` is a framework uesd while developing, it focuses on coding development, regulates configuration files, and develops in the convention over configuration guide.
-StreamPark-core provides a development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending `DataStream-related` methods and integrating DataStream and `Flink sql` api .
+The positioning of `streampark-core` is a framework uesd while developing, it focuses on coding development, regulates configuration files, and develops in the convention over configuration guide.
+streampark-core provides a development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending `DataStream-related` methods and integrating DataStream and `Flink sql` api .
 development efficiency and development experience will be highly improved because users can focus on the business.
 
-### 2️⃣ Apache StreamPark™-console
+### 2️⃣ streampark-console
 
-`StreamPark-console` is a comprehensive real-time `low code` data platform that can manage `Flink` tasks more convenient.
+`streampark-console` is a comprehensive real-time `low code` data platform that can manage `Flink` tasks more convenient.
 It integrates the experience of many best practices and integrates many functions such as project compilation, release,
 parameter configuration, startup, `savepoint`, `flame graph`, `Flink SQL`, monitoring, etc.,
 which greatly simplifies the daily operation of Flink tasks and maintenance. The ultimate goal is to create a one-stop big data platform,
