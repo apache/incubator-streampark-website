@@ -379,5 +379,5 @@ see the [official documentation](https://nightlies.apache.org/flink/flink-docs-r
 ### Apache StreamPark™ configuration
 
 All other configurations must comply with the StreamPark configuration.
-For [specific configurable](/docs/development/conf) items and the role of each parameter,
+For [specific configurable](/docs/development/config) items and the role of each parameter,
 please refer to the project configuration
