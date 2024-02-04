@@ -692,7 +692,7 @@ In `StreamPark` the `Kafka Producer` is called `KafkaSink`, which allows message
 
 ### Fault Tolerance and Semantics
 
-After enabling Flink's `checkpointing`, `KafkaSink` can provide `once-exactly` semantic, please refer to Chapter 2 on [project configuration](/docs/development/conf/#checkpoints) for the specific setting of `checkpointing`.
+After enabling Flink's `checkpointing`, `KafkaSink` can provide `once-exactly` semantic, please refer to Chapter 2 on [project configuration](/docs/development/config/#checkpoints) for the specific setting of `checkpointing`.
 
 In addition to enabling checkpointing for Flink, you can also choose from three different modes  by passing the appropriate `semantic` parameters to `KafkaSink`
 
