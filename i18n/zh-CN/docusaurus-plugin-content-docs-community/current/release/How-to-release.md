@@ -404,7 +404,7 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 #### 3.6 发布Apache SVN仓库中dev目录的物料包
 
 ```shell
-# 检出Apache SVN仓库中的dev目录到Apache Apache StreamPark™项目根目录下的dist/streampark_svn_dev目录下
+# 检出Apache SVN仓库中的dev目录到Apache StreamPark™项目根目录下的dist/streampark_svn_dev目录下
 svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 
 svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark
@@ -455,7 +455,7 @@ Hello StreamPark Community:
 
 This is a call for vote to release Apache StreamPark(Incubating) version release-2.1.0-RC1.
 
-Apache Streamark,Make stream processing easier! easy-to-use streaming application development framework and operation platform.
+Apache Streamark - Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 Release notes:
 https://streampark.apache.org/download/release-note/2.1.0/
@@ -567,7 +567,7 @@ Hello Incubator Community:
 This is a call for a vote to release Apache StreamPark(Incubating) version 2.1.0-RC1.
 The Apache StreamPark community has voted on and approved a proposal to release Apache StreamPark(Incubating) version 2.1.0-RC1.
 We now kindly request the Incubator PMC members review and vote on this incubator release.
-Apache StreamPark, Make stream processing easier! easy-to-use streaming application development framework and operation platform.
+Apache StreamPark, Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 StreamPark community vote thread:
 https://lists.apache.org/thread/t01b2lbtqzyt7j4dsbdp5qjc3gngjsdq
@@ -758,7 +758,7 @@ Hi all,
 We are glad to announce the release of Apache StreamPark(incubating) 2.1.0.
 Once again I would like to express my thanks to your help.
 
-StreamPark(https://streampark.apache.org/) Make stream processing easier! easy-to-use streaming application development framework and operation platform
+Apache StreamPark(https://streampark.apache.org/) - Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 Download Links: https://streampark.apache.org/download/
 Release Notes: https://streampark.apache.org/download/release-note/2.1.0
