@@ -250,11 +250,11 @@ git clone -b release-2.1.0-rc1 -c core.autocrlf=false git@github.com:apache/incu
 
 ```shell
 mvn clean install \
--Pscala-2.11,shaded \
+-Pscala-2.11 \
 -DskipTests \
 -Dcheckstyle.skip=true \
 -Dmaven.javadoc.skip=true \
--pl 'streampark-common,streampark-flink,streampark-shaded' \
+-pl 'streampark-common,streampark-flink' \
 -pl '!streampark-console/streampark-console-service' \
 -amd
 ```
@@ -271,11 +271,11 @@ mvn deploy \
 
 ```shell
 mvn clean install \
--Pscala-2.12,shaded \
+-Pscala-2.12 \
 -DskipTests \
 -Dcheckstyle.skip=true \
 -Dmaven.javadoc.skip=true \
--pl 'streampark-common,streampark-flink,streampark-shaded' \
+-pl 'streampark-common,streampark-flink' \
 -pl '!streampark-console/streampark-console-service' \
 -amd
 ```
@@ -288,15 +288,6 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.3 Release shaded to the Apache Nexus repository
-
-```shell
-mvn clean install \
--DskipTests \
--Dcheckstyle.skip=true \
--Dmaven.javadoc.skip=true
-```
-
 ```shell
 mvn deploy \
 -Papache-release \
@@ -305,9 +296,9 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.4 Check for successful publishing to the Apache Nexus repository
+##### 3.3.3 Check for successful publishing to the Apache Nexus repository
 
-> Visit https://repository.apache.org/ and log in, if there are scala 2.11, scala 2.12, shaded packages, it means success.
+> Visit https://repository.apache.org/ and log in, if there are scala 2.11, scala 2.12, it means success.
 
 ![图片](https://user-images.githubusercontent.com/19602424/236657233-08d142eb-5f81-427b-a04d-9ab3172199c1.png)
 
@@ -316,13 +307,13 @@ mvn deploy \
 > Scala 2.11 compilation and packaging
 
 ```shell
-mvn -Pscala-2.11,shaded,webapp,dist -DskipTests clean install
+> ./build.sh # choose "mixed mode" and "scala 2.11"
 ```
 
 > Scala 2.12 compilation and packaging
 
 ```shell
-mvn -Pscala-2.12,shaded,webapp,dist -DskipTests clean install
+> ./build.sh # choose "mixed mode" and "scala 2.12"
 ```
 
 > Package the project source code
