@@ -4,29 +4,55 @@ import config from './languages.json'
 
 export default function (props) {
   const tableData = props.dataSource || []
+  const latest = props.latest || false
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
   const dataSource = config?.[language];
 
-  function getSourceLink(version, suffix) {
-    return 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
-        .concat(version)
-        .concat('/apache-streampark-')
-        .concat(version)
-        .concat('-incubating-src.tar.gz')
-        .concat(suffix)
-  }
+    function getSourceLink(version) {
+        const prefix = latest
+            ? 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
+            : 'https://archive.apache.org/dist/incubator/streampark/';
 
-  function getBinaryLink(scala, version, suffix) {
-    return 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
-        .concat(version)
-        .concat('/apache-streampark_')
-        .concat(scala)
-        .concat('-')
-        .concat(version)
-        .concat('-incubating-bin.tar.gz')
-        .concat(suffix)
-  }
+        return prefix
+            .concat(version)
+            .concat('/apache-streampark-')
+            .concat(version)
+            .concat('-incubating-src.tar.gz')
+    }
+
+    function getSourceSigs(version, suffix) {
+        return 'https://downloads.apache.org/incubator/streampark/'
+            .concat(version)
+            .concat('/apache-streampark-')
+            .concat(version)
+            .concat('-incubating-src.tar.gz')
+            .concat(suffix)
+    }
+
+    function getBinaryLink(scala, version) {
+        const prefix = latest
+            ? 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
+            : 'https://archive.apache.org/dist/incubator/streampark/';
+        return prefix
+            .concat(version)
+            .concat('/apache-streampark_')
+            .concat(scala)
+            .concat('-')
+            .concat(version)
+            .concat('-incubating-bin.tar.gz')
+    }
+
+    function getBinarySigs(scala, version, suffix) {
+        return 'https://downloads.apache.org/incubator/streampark/'
+            .concat(version)
+            .concat('/apache-streampark_')
+            .concat(scala)
+            .concat('-')
+            .concat(version)
+            .concat('-incubating-bin.tar.gz')
+            .concat(suffix)
+    }
 
   return (
       <table className="table-ui mb-4">
@@ -46,36 +72,36 @@ export default function (props) {
               <td className='text-center'> {release.version} </td>
               <td className='text-center'> {release.date} </td>
               <td className='text-center'>
-                <a href={getSourceLink(release.version, '')} target="_blank">source</a>
+                <a href={getSourceLink(release.version)} target="_blank">source</a>
                 <span> ( </span>
-                <a href={getSourceLink(release.version, '.sha512')} target="_blank">sha512</a>
+                <a href={getSourceSigs(release.version, '.sha512')} target="_blank">sha512</a>
                 <span> | </span>
-                <a href={getSourceLink(release.version, '.asc')} target="_blank">signature</a>
+                <a href={getSourceSigs(release.version, '.asc')} target="_blank">signature</a>
                 <span> ) </span>
               </td>
               <td className='text-center'>
-                <a href={getBinaryLink('2.12', release.version, '')} target="_blank">
+                <a href={getBinaryLink('2.12', release.version)} target="_blank">
                   {'apache-streampark_2.12-' + release.version + '-incubating-bin.tar.gz'}
                 </a>
                 <span> ( </span>
-                <a href={getBinaryLink('2.12', release.version, '.asc')} target="_blank">
+                <a href={getBinarySigs( '2.12', release.version, '.asc')} target="_blank">
                   Sign
                 </a>
                 <span> | </span>
-                <a href={getBinaryLink('2.12', release.version, '.sha512')} target="_blank">
+                <a href={getBinarySigs('2.12', release.version, '.sha512')} target="_blank">
                   SHA512
                 </a>
                 <span> ) </span>
                 <br/>
-                <a href={getBinaryLink('2.11', release.version, '')} target="_blank">
+                <a href={getBinaryLink('2.11', release.version)} target="_blank">
                   {'apache-streampark_2.11-' + release.version + '-incubating-bin.tar.gz'}
                 </a>
                 <span> ( </span>
-                <a href={getBinaryLink('2.11', release.version, '.asc')} target="_blank">
+                <a href={getBinarySigs('2.11', release.version, '.asc')} target="_blank">
                   Sign
                 </a>
                 <span> | </span>
-                <a href={getBinaryLink('2.11', release.version, '.sha512')} target="_blank">
+                <a href={getBinarySigs('2.11', release.version, '.sha512')} target="_blank">
                   SHA512
                 </a>
                 <span> ) </span>

@@ -10,13 +10,8 @@ export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
-  let latest = downloadDataSource[0];
-  downloadDataSource.forEach((item) => {
-    if (item.date > latest.date) {
-      latest = item;
-    }
-  })
-  const lastRelease = [latest]
+  const lastRelease = [downloadDataSource[0]];
+  const archived = downloadDataSource.slice(1, downloadDataSource.length)
   return (
     <Layout>
       <div className="block download_page" style={{ padding: "10px 0 30px" }}>
@@ -44,7 +39,7 @@ export default function () {
           </ul>
         </div>
         <h3 className="fs-4 mb-4 fw-bold">{dataSource.latestVersion}</h3>
-        <ReleaseTable dataSource={lastRelease}>
+        <ReleaseTable dataSource={lastRelease} latest={true}>
         </ReleaseTable>
         <h3 className="fs-4 mb-4 fw-bold">{dataSource.archived}</h3>
         <div className="custom-info-block">
@@ -56,7 +51,7 @@ export default function () {
             <li>{dataSource.note}</li>
           </ul>
         </div>
-        <ReleaseTable dataSource={downloadDataSource}>
+        <ReleaseTable dataSource={archived} latest={false}>
         </ReleaseTable>
         <h4>License</h4>
         <p>
