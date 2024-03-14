@@ -24,7 +24,7 @@
   "en": {
     "download": "Download Apache StreamPark (incubating)",
     "last": {
-      "title": "Please choose a StreamPark version to download from the blowing tables, the latest release is recommended.",
+      "title": "Please choose a StreamPark version to download from the following tables, the latest release is recommended.",
       "verification": "Please verify the release with corresponding hashes(sha512), signatures and ",
       "projectKey": "project release KEYS",
       "check": "The instructions for checking hashes(sha512) and signatures is indicated on",
@@ -33,7 +33,7 @@
     },
     "latestVersion": "The latest release",
     "archived": "All archived releases",
-    "note": "Previous releases of StreamPark may be affected by security issues, please consider use the latest one.",
+    "note": "Previous releases of StreamPark may be affected by security issues, please use the latest one.",
     "table": {
       "version": "Version",
       "date": "Date",
