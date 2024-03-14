@@ -9,11 +9,12 @@ export default function (props) {
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
   const dataSource = config?.[language];
 
-    function getSourceLink(version) {
-        const prefix = latest
-            ? 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
-            : 'https://archive.apache.org/dist/incubator/streampark/';
+  const dynURL = 'https://www.apache.org/dyn/closer.lua/incubator/streampark/';
+  const archiveURL = 'https://archive.apache.org/dist/incubator/streampark/';
+  const downloadURL = 'https://downloads.apache.org/incubator/streampark/'
 
+    function getSourceLink(version) {
+        const prefix = latest ? dynURL : archiveURL
         return prefix
             .concat(version)
             .concat('/apache-streampark-')
@@ -21,19 +22,8 @@ export default function (props) {
             .concat('-incubating-src.tar.gz')
     }
 
-    function getSourceSigs(version, suffix) {
-        return 'https://downloads.apache.org/incubator/streampark/'
-            .concat(version)
-            .concat('/apache-streampark-')
-            .concat(version)
-            .concat('-incubating-src.tar.gz')
-            .concat(suffix)
-    }
-
     function getBinaryLink(scala, version) {
-        const prefix = latest
-            ? 'https://www.apache.org/dyn/closer.lua/incubator/streampark/'
-            : 'https://archive.apache.org/dist/incubator/streampark/';
+        const prefix = latest ? dynURL : archiveURL;
         return prefix
             .concat(version)
             .concat('/apache-streampark_')
@@ -43,8 +33,18 @@ export default function (props) {
             .concat('-incubating-bin.tar.gz')
     }
 
+    function getSourceSigs(version, suffix) {
+        const prefix = latest ? downloadURL : archiveURL;
+        return prefix.concat(version)
+            .concat('/apache-streampark-')
+            .concat(version)
+            .concat('-incubating-src.tar.gz')
+            .concat(suffix)
+    }
+
     function getBinarySigs(scala, version, suffix) {
-        return 'https://downloads.apache.org/incubator/streampark/'
+        const prefix = latest ? downloadURL : archiveURL;
+        return prefix
             .concat(version)
             .concat('/apache-streampark_')
             .concat(scala)
@@ -71,25 +71,25 @@ export default function (props) {
             return <tr key={release.version} style={{fontSize: '13px'}}>
               <td className='text-center'> {release.version} </td>
               <td className='text-center'> {release.date} </td>
-              <td className='text-center'>
-                <a href={getSourceLink(release.version)} target="_blank">source</a>
-                <span> ( </span>
-                <a href={getSourceSigs(release.version, '.sha512')} target="_blank">sha512</a>
-                <span> | </span>
-                <a href={getSourceSigs(release.version, '.asc')} target="_blank">signature</a>
-                <span> ) </span>
-              </td>
-              <td className='text-center'>
-                <a href={getBinaryLink('2.12', release.version)} target="_blank">
+                <td className='text-center'>
+                  <a href={getSourceLink(release.version)} target="_blank">source</a>
+                  <span> ( </span>
+                  <a href={getSourceSigs(release.version, '.asc')} target="_blank">signature</a>
+                  <span> | </span>
+                  <a href={getSourceSigs(release.version, '.sha512')} target="_blank">sha512</a>
+                  <span> ) </span>
+                </td>
+                <td className='text-center'>
+                    <a href={getBinaryLink('2.12', release.version)} target="_blank">
                   {'apache-streampark_2.12-' + release.version + '-incubating-bin.tar.gz'}
                 </a>
                 <span> ( </span>
                 <a href={getBinarySigs( '2.12', release.version, '.asc')} target="_blank">
-                  Sign
+                  signature
                 </a>
                 <span> | </span>
                 <a href={getBinarySigs('2.12', release.version, '.sha512')} target="_blank">
-                  SHA512
+                  sha512
                 </a>
                 <span> ) </span>
                 <br/>
@@ -98,11 +98,11 @@ export default function (props) {
                 </a>
                 <span> ( </span>
                 <a href={getBinarySigs('2.11', release.version, '.asc')} target="_blank">
-                  Sign
+                  signature
                 </a>
                 <span> | </span>
                 <a href={getBinarySigs('2.11', release.version, '.sha512')} target="_blank">
-                  SHA512
+                  sha512
                 </a>
                 <span> ) </span>
               </td>
