@@ -226,14 +226,3 @@ The cluster modes currently supported by Flink include:
 -   Yarn Session
 -   Kubernetes Session
 
-### Upgrade Process
-
-When you need to **upgrade an existing installation**, please follow these guidelines:
-
--   Ensure that you execute the scripts in the `upgrade` directory in sequence according to the version numbers.
--   Pay special attention, if you need to upgrade across multiple versions, you must execute the upgrade script for each version step by step.
-
-For example, to upgrade from version 2.0.0 to 2.0.2, you should proceed as follows:
-
-1. First, execute the upgrade script from 2.0.0 to 2.0.1.
-2. Then, execute the upgrade script from 2.0.1 to 2.0.2.
