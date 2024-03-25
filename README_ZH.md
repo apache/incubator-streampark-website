@@ -4,18 +4,13 @@
 
 [English](README.md) | [中文](README_ZH.md)
 
-这是包含 `http://streampark.apache.org` 的所有源代码的存储库。
-本指南将指导您如何为 Apache StreamPark™(Incubating) 的网站做出贡献。
+这是包含 `http://streampark.apache.org` 的所有源代码的存储库。本指南将指导您如何为 Apache StreamPark™ (Incubating) 的网站做出贡献。
 
 ## 分支
 
-dev 为默认主分支，修改请先 fork 到自己的仓库，然后在 main 分支上进行开发修改。
+dev 为默认主分支，修改请先 fork 到自己的仓库，然后在 dev 分支上进行开发修改。
 
-```
-dev  默认分支
-```
-
-## 1.预览并生成静态文件
+## 1. 预览并生成静态文件
 
 本网站是使用 Node.js 编译的，使用的是 [Docusaurus(2.4.3)](https://docusaurus.io/) 框架组件：
 
