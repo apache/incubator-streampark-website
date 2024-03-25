@@ -10,7 +10,7 @@ This guide will guide you how to contribute to the Apache StreamPark™ (Incubat
 
 ## Branch
 
-dev is the default branch. For all modifications, please fork first, and then proceed on the dev branch.
+dev is the default branch. For all modifications, please fork first, and then check out a new branch to proceed.
 
 ## 1. Preview and generate static files
 
@@ -118,10 +118,10 @@ Visit the page http://streampark.apache.org/team; located in `src/pages/team`:
 Visit the page http://streampark.apache.org/user; located in `src/pages/user`:
 
 ```
-└─versions
-        data.json
-        images.json
-        index.js
-        index.less
-        languages.json
+├─user
+│ data.json
+│ images.json
+│ index.js
+│ index.less
+│ languages.json
 ```

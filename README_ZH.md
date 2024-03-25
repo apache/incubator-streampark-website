@@ -8,27 +8,32 @@
 
 ## 分支
 
-dev 为默认主分支，修改请先 fork 到自己的仓库，然后在 dev 分支上进行开发修改。
+dev 为默认主分支，修改请先 fork 到自己的仓库，然后切换到自己的开发分支上进行开发修改。
 
 ## 1. 预览并生成静态文件
 
-本网站是使用 Node.js 编译的，使用的是 [Docusaurus(2.4.3)](https://docusaurus.io/) 框架组件：
+本网站使用 Node.js 编译（>=16.14 <=18），并基于 [Docusaurus (2.4.3)](https://docusaurus.io/) 框架构建。
 
-1. 下载并安装 Node.js（version>=16.14 and version<=18)）
-2. 克隆代码到本地 `git clone git@github.com:apache/incubator-streampark-website.git`
-2. 运行 `npm install` 来安装所需的依赖库。
-3. 在根目录运行`npm run start`，可以访问 http://localhost:3000 查看站点英文模式预览
-4. 在根目录运行`npm run start-zh`，可以访问 http://localhost:3000 查看站点的中文模式预览
-5. 要生成静态网站资源文件，运行 `npm run build`。构建的静态资源在 build 目录中。
+运行以下命令下载网站源代码并在本地预览：
 
-## 2.目录结构
+```shell
+git clone https://github.com/apache/incubator-streampark-website.git streampark-website
+cd streampark-website
+npm install
+npm run start
+```
 
-```html
+这段命令将在浏览器打开 http://localhost:3000 页面提供英文预览版。如果想预览中文版本，请使用 `npm run start-zh` 命令。
 
+运行 `npm run build` 命令可以生成静态网站资源文件，构建出来的静态资源在 build 目录中。
+
+## 2. 目录结构
+
+```text
 |-- community //社区
-|-- docs     //文档  存放下一个即将发布的版本
-|-- download //下载
-|-- faq      //Q&A
+|-- docs      //文档  存放下一个即将发布的版本
+|-- download  //下载
+|-- faq       //Q&A
 |-- i18n
 |   -- zh-CN  //国际化中文
 |       |-- code.json
@@ -57,53 +62,47 @@ dev 为默认主分支，修改请先 fork 到自己的仓库，然后在 dev �
 |   |-- home //首页的图片
 |   |-- image  //模块公用图片
 |-- docusaurus.config.js
-
 ```
 
-## 3.规范
+## 3. 规范
 
 ### 3.1 目录命名规范
 
-全部采用小写方式，以中下划线分隔，有复数结构时，要采用复数命名法，缩写不用复数
+全部采用小写方式，以中下划线分隔，有复数结构时，要采用复数命名法，缩写不用复数：
 
-正例： `scripts / styles / components / images / utils / layouts / demo_styles / demo-scripts / img / doc`
-
-反例： `script / style / demoStyles / imgs / docs`
+* 正例： `scripts / styles / components / images / utils / layouts / demo_styles / demo-scripts / img / doc`
+* 反例： `script / style / demoStyles / imgs / docs`
 
 ### 3.2 JavaScript 以及静态资源文件命名规范
 
-全部采用小写方式， 以中划线分隔
+全部采用小写方式， 以中划线分隔：
 
-正例： `render-dom.js / signup.css / index.html / company-logo.png`
-
-反例： `renderDom.js / UserManagement.html`
+* 正例： `render-dom.js / signup.css / index.html / company-logo.png`
+* 反例： `renderDom.js / UserManagement.html`
 
 ### 3.3 资源路径
 
-* 图片资源统一放在 `static/{模块名}` 下
-* CSS 等样式文件放在 `src/css` 目录下
+图片资源统一放在 `static/{模块名}` 下，CSS 等样式文件放在 `src/css` 目录下。
 
 ### 3.4 页面内容修改
 
-> 除了首页、团队、用户、Docs>All Version 模块页面外，其余页面都能通过底部的 'Edit this page' 按钮，直接跳转至对应的 GitHub 的资源修改页
+除了首页、团队、用户、Docs>All Version 模块页面外，其余页面都能通过底部的 'Edit this page' 按钮，直接跳转至对应的 GitHub 的资源修改页。
 
 ### 3.5 首页页面修改
 
-访问页面：[http://streampark.apache.org/](http://streampark.apache.org/)
-
-位于 `src/pages/home`：
+* 对应页面 http://streampark.apache.org/zh-CN
+* 源码位于 `src/pages/home`
 
 ```
 ├─home
 │      languages.json 首页中英文的配置
-│      index.less  首页样式
+│      index.less     首页样式
 ```
 
 ### 3.6 团队页面修改
 
-访问页面：[http://streampark.apache.org/zh-CN/team](http://streampark.apache.org/zh-CN/team)
-
-位于 `src/pages/team`：
+* 对应页面 http://streampark.apache.org/zh-CN/team
+* 源码位于 `src/pages/team`
 
 ```
 ├─team
@@ -114,15 +113,14 @@ dev 为默认主分支，修改请先 fork 到自己的仓库，然后在 dev �
 
 ### 3.7  用户列表页面修改
 
-访问页面：[http://streampark.apache.org/zh-CN/user/](http://streampark.apache.org/zh-CN/user/)
-
-位于 `src/pages/user`：
+* 对应页面 http://streampark.apache.org/zh-CN/user/
+* 源码位于 `src/pages/user`
 
 ```
-└─versions
-        data.json
-        images.json
-        index.js
-        index.less
-        languages.json
+├─user
+│ data.json
+│ images.json
+│ index.js
+│ index.less
+│ languages.json
 ```
