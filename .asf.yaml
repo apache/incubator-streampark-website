@@ -31,7 +31,6 @@ github:
   protected_branches:
     # prevent accidentially deleted
     dev: {}
-    asf-site: {}
 
 publish:
   whoami: asf-site
