@@ -28,6 +28,10 @@ github:
     squash:  true
     merge:   false
     rebase:  false
+  protected_branches:
+    # prevent accidentially deleted
+    dev: {}
+    asf-site: {}
 
 publish:
   whoami: asf-site
