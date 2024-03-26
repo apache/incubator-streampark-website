@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkapache_streampark_website=self.webpackChunkapache_streampark_website||[]).push([[2709],{27864:e=>{e.exports=JSON.parse('{"label":"Kubernetes","permalink":"/blog/tags/kubernetes","allTagsPath":"/blog/tags","count":1}')}}]);
