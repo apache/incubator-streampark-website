@@ -21,7 +21,7 @@ sidebar_position: 3
     limitations under the License.
 -->
 
-## 成为 Apache StreamPark 的 PMC 成员
+## 成为 Apache StreamPark™ 的 PMC 成员
 
 任何支持社区并在 CoPDoC 领域中工作的人都可以成为 Apache StreamPark 的PMC 成员。CoPDoC 是 ASF 的缩写，用来描述我们如何不仅仅通过代码来认识到您的贡献。
 

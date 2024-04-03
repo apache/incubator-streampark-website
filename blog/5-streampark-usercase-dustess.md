@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-dustess
-title: StreamPark's Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
+title: Apache StreamPark™'s Best Practices at Dustess, Simplifying Complexity for the Ultimate Experience
 tags: [StreamPark, Production Practice, FlinkSQL]
 ---
 
@@ -100,13 +100,13 @@ In addition to the native parameters for Flink tasks, which are covered by the t
 Programming model:
 
 ```
-http://www.streamxhub.com/docs/development/dev-model
+https://streampark.apache.org/docs/development/dev-model
 ```
 
 Built-in Configuration File Parameters:
 
 ```
-http://www.streamxhub.com/docs/development/config
+https://streampark.apache.org/docs/development/config
 ```
 
 In addition:
@@ -155,13 +155,13 @@ The community is currently very active. Since the end of November 2021, when Str
 StreamPark's environment setup is very straightforward, following the official website's building tutorial you can complete the setup within a few hours. It now supports a front-end and back-end separation packaging deployment model, which can meet the needs of more companies, and there has already been a Docker Build related PR, suggesting that StreamPark's compilation and deployment will become even more convenient and quick in the future. Related documentation is as follows:
 
 ```
-http://www.streamxhub.com/docs/user-guide/deployment
+https://streampark.apache.org/docs/user-guide/deployment
 ```
 
 For rapid implementation and production use, we chose the reliable On Yarn resource management mode (even though StreamPark already supports K8S quite well), and there are already many companies that have deployed using StreamPark on K8S, which you can refer to:
 
 ```
-http://www.streamxhub.com/blog/flink-development-framework-streamx
+https://streampark.apache.org/blog/flink-development-framework-streampark
 ```
 
 Integrating StreamPark with the Hadoop ecosystem can be said to be zero-cost (provided that Flink is integrated with the Hadoop ecosystem according to the Flink official website, and tasks can be launched via Flink scripts).

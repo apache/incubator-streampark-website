@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-shunwang
-title: StreamPark 在顺网科技的大规模生产实践
+title: Apache StreamPark™ 在顺网科技的大规模生产实践
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
@@ -72,13 +72,13 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 ![图片](/blog/shunwang/step.png)
 
-## **为什么用** **StreamPark**
+## **为什么用** **Apache StreamPark™**
 
 面对自研平台 Streaming-Launcher 存在的缺陷，我们一直在思考如何将 Flink 的使用门槛降到更低，进一步提高工作效率。考虑到人员投入成本和时间成本，我们决定向开源社区求助寻找合适的开源项目来对我们的 Flink 任务进行管理和运维。
 
 
 
-### 01  **StreamPark 解决 Flink 问题的利器**
+### 01  **Apache StreamPark™ 解决 Flink 问题的利器**
 
 很幸运在 2022 年 6 月初，我们在 GitHub 机缘巧合之间认识到了 StreamPark，我们满怀希望地对 StreamPark 进行了初步的探索。发现 StreamPark 具备的能力大概分为三大块：用户权限管理、作业运维管理和开发脚手架。
 
@@ -110,7 +110,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 
 
-### 02  **StreamPark 解决自研平台的问题**
+### 02  **Apache StreamPark™ 解决自研平台的问题**
 
 上面我们简单介绍了 StreamPark 的核心能力。在顺网科技的技术选型过程中，我们发现 StreamPark 所具备强大的功能不仅包含了现有 Streaming-Launcher 的基础功能，还提供了更完整的对应方案解决了 Streaming-Launcher 的诸多不足。在这部分，着重介绍下 StreamPark 针对我们自研平台 Streaming-Launcher 的不足所提供的解决方案。
 

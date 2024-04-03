@@ -80,7 +80,7 @@
     },
     "slogan": {
       "key": "make stream processing easier!",
-      "description":  "Make stream processing easier! easy-to-use streaming application development framework and operation platform"
+      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink and Apache Spark supported."
     },
     "feature": [
       {

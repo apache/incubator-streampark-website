@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-bondex-with-paimon
-title: 海程邦达基于 Apache Paimon + StreamPark 的流式数仓实践
+title: 海程邦达基于 Apache Paimon + Apache StreamPark™ 的流式数仓实践
 tags: [StreamPark, 生产实践, paimon, streaming-warehouse]
 ---
 
@@ -236,7 +236,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 
 接下来准备 Paimon jar 包，可以在 Apache [Repository](https://repository.apache.org/content/groups/snapshots/org/apache/paimon) 下载对应版本，需要注意的是要和 flink 大版本保持一致
 
-### **使用 StreamPark 管理作业**
+### **使用 Apache StreamPark™ 管理作业**
 
 **前提条件：**
 

@@ -17,17 +17,17 @@ sidebar_position: 4
 ### 2. 安装 docker-compose
 使用 docker-compose 启动服务，需要先安装 [docker-compose](https://docs.docker.com/compose/install/)
 
-## 部署 StreamPark
+## 部署 Apache StreamPark™
 
-### 1. 基于 h2 和 docker-compose 部署 StreamPark
+### 1. 基于 h2 和 docker-compose 部署 Apache StreamPark™
 
 该方式适用于入门学习、熟悉功能特性，容器重启后配置会失效，下方可以配置Mysql、Pgsql进行持久化
 
 #### 2. 部署
 
 ```shell
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/.env
 docker-compose up -d
 ```
 服务启动后，可以通过 http://localhost:10000 访问 StreamPark，同时也可以通过 http://localhost:8081访问Flink。访问StreamPark链接后会跳转到登陆页面，StreamPark 默认的用户和密码分别为 admin 和 streampark。想要了解更多操作请参考用户手册快速上手。
@@ -55,8 +55,8 @@ docker-compose up -d
 注意：部署支持的多样性是通过.env这个配置文件来进行维护的，要保证目录下有且仅有一个.env文件
 
 ```shell
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/mysql/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/mysql/.env
 vim .env
 ```
 
@@ -77,8 +77,8 @@ docker-compose up -d
 ### 沿用已有的 Pgsql 服务
 
 ```shell
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/docker-compose.yaml
-wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/deploy/docker/pgsql/.env
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/docker-compose.yaml
+wget https://raw.githubusercontent.com/apache/incubator-streampark/dev/docker/pgsql/.env
 vim .env
 ```
 
@@ -93,18 +93,18 @@ SPRING_DATASOURCE_PASSWORD=streampark
 docker-compose up -d
 ```
 
-## 基于源码构建镜像进行StreamPark部署
+## 基于源码构建镜像进行Apache StreamPark™部署
 
 ```shell
 git clone https://github.com/apache/incubator-streampark.git
-cd incubator-streampark/deploy/docker
+cd incubator-streampark/docker
 vim docker-compose.yaml
 ```
 
 ```shell
     build:
       context: ../..
-      dockerfile: deploy/docker/Dockerfile
+      dockerfile: docker/Dockerfile
 #   image: ${HUB}:${TAG}
 ```
 ![](/doc/image/streampark_source_generation_image.png)
@@ -187,7 +187,7 @@ volumes:
 最后，执行启动命令：
 
 ```shell
-cd deploy/docker
+cd docker
 docker-compose up -d
 ```
 

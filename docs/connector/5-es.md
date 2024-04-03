@@ -204,7 +204,7 @@ The ElasticsearchSink created above is very inflexible to add parameters. `Strea
 Users only need to configure es connection parameters and Flink operating parameters, and StreamPark will automatically assemble source and sink,
 which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## Using StreamPark writes to Elasticsearch
+## Using Apache StreamPark™ writes to Elasticsearch
 
 Please ensure that operation requests are sent to the Elasticsearch cluster at least once after enabling Flink checkpointing in ESSink.
 
@@ -376,8 +376,8 @@ See [Official Documentation](https://nightlies.apache.org/flink/flink-docs-relea
 The BulkProcessor inside es can further configure its behavior of how to refresh the cache operation request,
 see the [official documentation](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink) for details - **Configuring the Internal** Bulk Processor
 
-### StreamPark configuration
+### Apache StreamPark™ configuration
 
 All other configurations must comply with the StreamPark configuration.
-For [specific configurable](/docs/development/conf) items and the role of each parameter,
+For [specific configurable](/docs/development/config) items and the role of each parameter,
 please refer to the project configuration

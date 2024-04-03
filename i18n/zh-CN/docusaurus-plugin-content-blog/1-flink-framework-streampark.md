@@ -1,6 +1,6 @@
 ---
 slug: flink-development-framework-streampark
-title: Flink 开发利器 StreamPark
+title: Flink 开发利器 Apache StreamPark™
 tags: [StreamPark, DataStream, FlinkSQL]
 ---
 
@@ -58,7 +58,7 @@ Flink 从 1.13 版本开始，就支持 Pod Template，我们可以在 Pod Templ
 
 <br/>
 
-## 引入 StreamPark
+## 引入 Apache StreamPark™
 
 之前我们写 Flink SQL 基本上都是使用 Java 包装 SQL，打 jar 包，提交到 S3 平台上。通过命令行方式提交代码，但这种方式始终不友好，流程繁琐，开发和运维成本太大。我们希望能够进一步简化流程，将 Flink TableEnvironment 抽象出来，有平台负责初始化、打包运行 Flink 任务，实现 Flink 应用程序的构建、测试和部署自动化。
 

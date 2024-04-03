@@ -180,7 +180,7 @@ input.addSink(esSinkBuilder.build)
 以上创建ElasticsearchSink添加参数非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置es
 连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## StreamPark 写入 Elasticsearch
+## Apache StreamPark™ 写入 Elasticsearch
 
 ESSink 在启用 Flink checkpoint 后，保证至少一次将操作请求发送到 Elasticsearch 集群。
 
@@ -344,5 +344,5 @@ Elasticsearch 操作请求可能由于多种原因而失败，可以通过实现
 [官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**处理失败的 Elasticsearch 请求** 单元
 ### 配置内部批量处理器
 es内部`BulkProcessor`可以进一步配置其如何刷新缓存操作请求的行为详细查看[官方文档](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/datastream/elasticsearch/#elasticsearch-sink)**配置内部批量处理器** 单元
-### StreamPark配置
-其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+### Apache StreamPark™配置
+其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/config)

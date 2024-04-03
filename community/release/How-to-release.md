@@ -250,11 +250,11 @@ git clone -b release-2.1.0-rc1 -c core.autocrlf=false git@github.com:apache/incu
 
 ```shell
 mvn clean install \
--Pscala-2.11,shaded \
+-Pscala-2.11 \
 -DskipTests \
 -Dcheckstyle.skip=true \
 -Dmaven.javadoc.skip=true \
--pl 'streampark-common,streampark-flink,streampark-shaded' \
+-pl 'streampark-common,streampark-flink' \
 -pl '!streampark-console/streampark-console-service' \
 -amd
 ```
@@ -271,11 +271,11 @@ mvn deploy \
 
 ```shell
 mvn clean install \
--Pscala-2.12,shaded \
+-Pscala-2.12 \
 -DskipTests \
 -Dcheckstyle.skip=true \
 -Dmaven.javadoc.skip=true \
--pl 'streampark-common,streampark-flink,streampark-shaded' \
+-pl 'streampark-common,streampark-flink' \
 -pl '!streampark-console/streampark-console-service' \
 -amd
 ```
@@ -288,15 +288,6 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.3 Release shaded to the Apache Nexus repository
-
-```shell
-mvn clean install \
--DskipTests \
--Dcheckstyle.skip=true \
--Dmaven.javadoc.skip=true
-```
-
 ```shell
 mvn deploy \
 -Papache-release \
@@ -305,9 +296,9 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.4 Check for successful publishing to the Apache Nexus repository
+##### 3.3.3 Check for successful publishing to the Apache Nexus repository
 
-> Visit https://repository.apache.org/ and log in, if there are scala 2.11, scala 2.12, shaded packages, it means success.
+> Visit https://repository.apache.org/ and log in, if there are scala 2.11, scala 2.12, it means success.
 
 ![图片](https://user-images.githubusercontent.com/19602424/236657233-08d142eb-5f81-427b-a04d-9ab3172199c1.png)
 
@@ -316,13 +307,13 @@ mvn deploy \
 > Scala 2.11 compilation and packaging
 
 ```shell
-mvn -Pscala-2.11,shaded,webapp,dist -DskipTests clean install
+> ./build.sh # choose "mixed mode" and "scala 2.11"
 ```
 
 > Scala 2.12 compilation and packaging
 
 ```shell
-mvn -Pscala-2.12,shaded,webapp,dist -DskipTests clean install
+> ./build.sh # choose "mixed mode" and "scala 2.12"
 ```
 
 > Package the project source code
@@ -455,7 +446,7 @@ Hello StreamPark Community:
 
 This is a call for vote to release Apache StreamPark(Incubating) version release-2.1.0-RC1.
 
-Apache Streamark,Make stream processing easier! easy-to-use streaming application development framework and operation platform.
+Apache Streamark - Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 Release notes:
 https://streampark.apache.org/download/release-note/2.1.0/
@@ -565,7 +556,7 @@ Hello Incubator Community:
 This is a call for a vote to release Apache StreamPark(Incubating) version 2.1.0-RC1.
 The Apache StreamPark community has voted on and approved a proposal to release Apache StreamPark(Incubating) version 2.1.0-RC1.
 We now kindly request the Incubator PMC members review and vote on this incubator release.
-Apache StreamPark, Make stream processing easier! easy-to-use streaming application development framework and operation platform.
+Apache StreamPark, Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 StreamPark community vote thread:
 https://lists.apache.org/thread/t01b2lbtqzyt7j4dsbdp5qjc3gngjsdq
@@ -752,7 +743,7 @@ Hi all,
 We are glad to announce the release of Apache StreamPark(incubating) 2.1.0.
 Once again I would like to express my thanks to your help.
 
-StreamPark(https://streampark.apache.org/) Make stream processing easier! easy-to-use streaming application development framework and operation platform
+Apache StreamPark(https://streampark.apache.org/) - Make stream processing easier! Easy-to-use streaming application development framework and operation platform.
 
 Download Links: https://streampark.apache.org/download/
 Release Notes: https://streampark.apache.org/download/release-note/2.1.0

@@ -1,6 +1,6 @@
 ---
 slug: streampark-usercase-dustess
-title: StreamPark 在尘锋信息的最佳实践，化繁为简极致体验
+title: Apache StreamPark™ 在尘锋信息的最佳实践，化繁为简极致体验
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
@@ -100,13 +100,13 @@ StreamPark 除了支持 Jar 上传，更提供了**在线更新构建**的功能
 编程模型：
 
 ```
-http://www.streamxhub.com/docs/development/dev-model
+https://streampark.apache.org/docs/development/Programming-paradigm
 ```
 
 内置配置文件参数：
 
 ```
-http://www.streamxhub.com/docs/development/config
+https://streampark.apache.org/docs/development/config
 ```
 
 除此之外：
@@ -155,13 +155,13 @@ StreamPark 于 2021年11月成功被开源中国评选为GVP - Gitee「最有价
 StreamPark 的环境搭建非常简单，跟随官网的搭建教程可以在小时内完成搭建。目前已经支持了前后端分离打包部署的模式，可以满足更多公司的需求，而且已经有 Docker Build 相关的 PR，相信以后 StreamPark 的编译部署会更加方便快捷。相关文档如下:
 
 ```
-http://www.streamxhub.com/docs/user-guide/deployment
+https://streampark.apache.org/docs/user-guide/deployment
 ```
 
 为了快速落地和生产使用，我们选择了稳妥的 On Yarn 资源管理模式（虽然 StreamPark 已经很完善的支持 K8S），且已经有较多公司通过 StreamPark 落地了 K8S 部署方式，大家可以参考:
 
 ```
-http://www.streamxhub.com/blog/flink-development-framework-streamx
+https://streampark.apache.org/blog/flink-development-framework-streampark
 ```
 
 StreamPark 整合 Hadoop 生态可以说是0成本的（前提是按照 Flink 官网将 Flink 与 Hadoop 生态整合，能够通过 Flink 脚本启动任务即可）

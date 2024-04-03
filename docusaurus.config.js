@@ -23,7 +23,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/vsLight');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Apache StreamPark (incubating)',
-  tagline: 'Apache StreamPark - Make stream processing easier! easy-to-use streaming application development framework and operation platform',
+  tagline: 'Apache StreamPark - Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink and Apache Spark supported.',
   url: 'https://streampark.apache.org/',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
@@ -244,7 +244,7 @@ const config = {
                     <div class="flex align-center footer-system">
                       <span class='system-title'>About StreamPark</span>
                     </div>
-                    <p>Make stream processing easier! easy-to-use streaming application development framework and operation platform</p>
+                    <p>Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink and Apache Spark supported.</p>
                   </div>
                 `,
             }

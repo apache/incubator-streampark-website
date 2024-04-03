@@ -26,7 +26,7 @@ import TabItem from '@theme/TabItem';
 </dependency>
 ```
 
-## StreamPark 方式写入
+## Apache StreamPark™ 方式写入
 
 ### http异步写入支持类型
 
@@ -134,4 +134,4 @@ object HttpSinkApp extends FlinkStreaming {
 :::
 
 ## 其他配置
-其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/conf)
+其他的所有的配置都必须遵守 **StreamPark** 配置,具体可配置项和各个参数的作用请参考[项目配置](/docs/development/config/)
