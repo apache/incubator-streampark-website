@@ -1,4 +1,4 @@
-# Introduction
+# Platform Installation Introduction
 ## Purpose and Scope
 > This document aims to assist users in installing and initially configuring Apache StreamPark.
 
