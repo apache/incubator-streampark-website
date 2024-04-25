@@ -22,6 +22,7 @@ export default function () {
   }
 
   return (
+    <Layout>
     <BrowserOnly>
       {() => {
         // AOS JS
@@ -32,8 +33,7 @@ export default function () {
           once: !0
         });
         window.addEventListener('load', AOS.refresh);
-        return <Layout>
-          <div className="block team_page" style={{ padding: "10px 0 30px" }}>
+        return <div className="block team_page" style={{ padding: "10px 0 30px" }}>
             <h3 className="fs-2 mb-4 fw-bold text-center">StreamPark Team</h3>
             <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>
             <p className="team_desc team_indent">{dataSource.info.desc}</p>
@@ -126,11 +126,9 @@ export default function () {
               <img src="https://contrib.rocks/image?repo=apache/streampark"/>
             </div>
 
-          </div>
-        </Layout>;
+          </div>;
       }}
-
     </BrowserOnly>
-
+    </Layout>
   );
 }

@@ -14,7 +14,8 @@ export default function () {
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
 
-  return <BrowserOnly>
+  return <Layout>
+    <BrowserOnly>
     {() => {
       // AOS JS
       AOS.init({
@@ -24,8 +25,7 @@ export default function () {
         once: !0
       });
       window.addEventListener('load', AOS.refresh);
-      return <Layout>
-        <div className='block user_page'>
+      return <div className='block user_page'>
           <div className="user-main" style={{ padding: "10px 0 30px" }}>
             <h3 className="fs-2 mb-4 fw-bold text-center">{dataSource.common.ourUsers}</h3>
             <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>
@@ -46,10 +46,7 @@ export default function () {
             </div>
           </div>
         </div>
-      </Layout>
     }}
   </BrowserOnly>
-
-
-
+  </Layout>
 }
