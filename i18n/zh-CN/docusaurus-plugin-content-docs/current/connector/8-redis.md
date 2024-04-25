@@ -7,24 +7,24 @@ sidebar_position: 8
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Redis](http://www.redis.cn/)是一个开源内存数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据
-结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets） 与范围查询， bitmaps，
-hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis 内置了事务（transactions） 和不同级别的 磁盘持久化（persistence），
-并通过 Redis哨兵（Sentinel）和自动 分区（Cluster）提供高可用性（high availability）。
+[Redis](http://www.redis.cn/)是一个开源内存数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets）， 有序集合（sorted sets）与范围查询，bitmaps、hyperloglogs 和地理空间（geospatial） 索引半径查询。 Redis 内置了事务（transactions） 和不同级别的磁盘持久化（persistence），并通过 Redis哨兵（Sentinel）和自动分区（Cluster）提供高可用性（high availability）。
 
-flink官方未提供写入reids数据的连接器。StreamPark 基于[Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
-封装了RedisSink、配置redis连接参数，即可自动创建redis连接简化开发。目前RedisSink支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
+Apache Flink 官方未提供写入 Reids 数据的连接器。Apache StreamPark 基于 [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/) 封装了 RedisSink、配置 redis 连接参数，即可自动创建 redis 连接简化开发。目前 RedisSink 支持连接方式有：单节点模式、哨兵模式，因集群模式不支持事务，目前未支持。
 
-StreamPark 使用Redis的 **MULTI** 命令开启事务，**EXEC** 命令提交事务，细节见链接:
-http://www.redis.cn/topics/transactions.html ，使用RedisSink 默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE语义。
+StreamPark 使用Redis的 **MULTI** 命令开启事务，**EXEC** 命令提交事务，细节见链接：http://www.redis.cn/topics/transactions.html。RedisSink 默认支持 AT_LEAST_ONCE 的处理语义，在开启 checkpoint 情况下支持 EXACTLY_ONCE 语义。
 
 :::tip 提示
-redis 为key,value类型数据库，AT_LEAST_ONCE语义下flink作业出现异常重启后最新的数据会覆盖上一版本数据，达到最终数据一致。如果有外部程序在重启期间读取了数据会有和最终数据不一致的风险。
+
+Redis 是 key-value 类型的数据库，AT_LEAST_ONCE 语义下 Flink 作业出现异常重启后最新的数据会覆盖上一版本数据，达到最终数据一致。如果有外部程序在重启期间读取了数据会有和最终数据不一致的风险。
+
 EXACTLY_ONCE语义下会在flink作业checkpoint整体完成情况下批量写入redis，会有一个checkpoint时间间隔的延时。请根据业务场景选择合适语义。
+
 :::
 
 ## Redis写入依赖
-Flink Connector Redis 官方提供两种，以下两种api均相同，StreamPark 使用的是org.apache.bahir依赖
+
+Flink Connector Redis 官方提供两种，以下两种 API 均相同，StreamPark 使用的是 `org.apache.bahir` 依赖：
+
 ```xml
 <dependency>
     <groupId>org.apache.bahir</groupId>
@@ -32,6 +32,7 @@ Flink Connector Redis 官方提供两种，以下两种api均相同，StreamPark
     <version>1.0</version>
 </dependency>
 ```
+
 ```xml
 <dependency>
     <groupId>org.apache.flink</groupId>
@@ -40,9 +41,9 @@ Flink Connector Redis 官方提供两种，以下两种api均相同，StreamPark
 </dependency>
 ```
 
-## 常规方式写Redis
+## 常规方式写 Redis
 
-常规方式下使用Flink Connector Redis写入数据的方式如下:
+常规方式下使用 Flink Connector Redis 写入数据的方式如下:
 
 ### 1.接入source
 

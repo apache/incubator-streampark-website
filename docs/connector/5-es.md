@@ -8,14 +8,9 @@ sidebar_position: 5
 import Tabs from '@theme/Tabs'; import TabItem from '@theme/TabItem';
 
 [Elasticsearch](https://www.elastic.co/cn/elasticsearch/) is a distributed, RESTful style search and data analysis
-engine.
-[Flink officially](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/) provides a connector
-for Elasticsearch, which is used to write data to Elasticsearch, which can provide ** at least once** Semantics.
+engine. [Apache Flink officially](https://nightlies.apache.org/flink/flink-docs-release-1.14/zh/docs/connectors/) provides a connector for Elasticsearch, which is used to write data to Elasticsearch, which can provide ** at least once** Semantics.
 
-ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the
-Elasticsearch cluster.
-`StreamPark` further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write
-operations for Elasticsearch6 and above.
+ElasticsearchSink uses TransportClient (before 6.x) or RestHighLevelClient (starting with 6.x) to communicate with the Elasticsearch cluster. Apache StreamPark further encapsulates Flink-connector-elasticsearch6, shields development details, and simplifies write operations for Elasticsearch6 and above.
 
 :::tip hint
 

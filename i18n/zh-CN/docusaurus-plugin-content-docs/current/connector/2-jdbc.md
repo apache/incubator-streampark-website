@@ -7,13 +7,13 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Flink 官方 提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器,用于从 JDBC 中读取或者向其中写入数据,可提供 **AT_LEAST_ONCE** (至少一次)的处理语义
+Apache Flink 官方提供了[JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html)的连接器，用于从 JDBC 中读取或者向其中写入数据，可提供至少一次（**AT_LEAST_ONCE**）的处理语义。
 
-`StreamPark`中基于两阶段提交实现了 **EXACTLY_ONCE** (精确一次)语义的`JdbcSink`,并且采用[`HikariCP`](https://github.com/brettwooldridge/HikariCP)为连接池,让数据的读取和写入更简单更准确
+Apache StreamPark 中基于两阶段提交实现了精确一次（**EXACTLY_ONCE**）语义的 `JdbcSink` 类，并且采用 [`HikariCP`](https://github.com/brettwooldridge/HikariCP) 为连接池,让数据的读取和写入更简单更准确。
 
 ## JDBC 信息配置
 
-在`StreamPark`中`JDBC Connector`的实现用到了[` HikariCP `](https://github.com/brettwooldridge/HikariCP)连接池,相关的配置在`jdbc`的namespace下,约定的配置如下:
+在 Apache StreamPark 中，JDBC Connector 的实现用到了 [`HikariCP`](https://github.com/brettwooldridge/HikariCP) 连接池，相关的配置在`jdbc` 的 namespace 下，约定的配置如下：
 
 ```yaml
 jdbc:

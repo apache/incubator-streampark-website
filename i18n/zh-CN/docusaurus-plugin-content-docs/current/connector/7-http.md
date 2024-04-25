@@ -1,6 +1,6 @@
 ---
-id: 'Http-Connector'
-title: 'Http Connector'
+id: 'HTTP-Connector'
+title: 'HTTP Connector'
 original: true
 sidebar_position: 7
 ---
@@ -8,15 +8,14 @@ sidebar_position: 7
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-一些后台服务通过http请求接收数据，这种场景下flink可以通过http请求写入结果数据，目前flink官方未提供通过http请求写入
-数据的连接器。StreamPark 基于asynchttpclient封装了HttpSink异步实时写入数据。
+一些后台服务通过 HTTP 请求接收数据，这种场景下 Apache Flink 可以通过 HTTP 请求写入结果数据，目前 Apache Flink 官方未提供通过 HTTP 请求写入
+数据的连接器。Apache StreamPark 基于 asynchttpclient 封装了 HttpSink 异步实时写入数据。
 
-`HttpSink`写入不支持事务，向目标服务写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。异步写入重试多次失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）
-,最终通过人为介入来恢复数据，达到最终数据一致。
+`HttpSink` 写入不支持事务，向目标服务写入数据可提供至少一次的处理语义。异步写入重试多次失败的数据会写入外部组件，最终通过人为介入来恢复数据，达到最终数据一致。
 
+## HTTP 异步写入
 
-## http异步写入
-异步写入采用 asynchttpclient 作为客户端,需要先导入 asynchttpclient 的jar
+异步写入采用 asynchttpclient 作为客户端，需要先导入 asynchttpclient 相关依赖：
 
 ```xml
 <dependency>

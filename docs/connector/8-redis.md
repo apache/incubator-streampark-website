@@ -9,19 +9,24 @@ import TabItem from '@theme/TabItem';
 
 [Redis](http://www.redis.cn/) is an open source in-memory data structure storage system that can be used as a database, cache, and messaging middleware. It supports many types of data structures such as strings, hashes, lists, sets, ordered sets and range queries, bitmaps, hyperlogloglogs and geospatial index radius queries. Redis has built-in transactions and various levels of disk persistence, and provides high availability through Redis Sentinel and Cluster.
 
- Flink does not officially provide a connector for writing reids data.StreamPark is based on [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/)
+Apache Flink does not officially provide a connector for writing reids data. Apache StreamPark is based on [Flink Connector Redis](https://bahir.apache.org/docs/flink/current/flink-streaming-redis/).
+
 It encapsulates RedisSink, configures redis connection parameters, and automatically creates redis connections to simplify development. Currently, RedisSink supports the following connection methods: single-node mode, sentinel mode, and cluster mode because it does not support transactions.
 
-StreamPark uses Redis' **MULTI** command to open a transaction and the **EXEC** command to commit a transaction, see the link for details:
-http://www.redis.cn/topics/transactions.html , using RedisSink supports AT_LEAST_ONCE (at least once) processing semantics by default. EXACTLY_ONCE semantics are supported with checkpoint enabled.
+StreamPark uses Redis' **MULTI** command to open a transaction and the **EXEC** command to commit a transaction, see the link for details: http://www.redis.cn/topics/transactions.html, using RedisSink supports AT_LEAST_ONCE processing semantics by default. EXACTLY_ONCE semantics are supported with checkpoint enabled.
 
 :::tip tip
-redis is a key,value type database, AT_LEAST_ONCE semantics flink job with abnormal restart the latest data will overwrite the previous version of data to achieve the final data consistency. If an external program reads the data during the restart, there is a risk of inconsistency with the final data.
+
+Redis is a key-value database, AT_LEAST_ONCE semantics flink job with abnormal restart the latest data will overwrite the previous version of data to achieve the final data consistency. If an external program reads the data during the restart, there is a risk of inconsistency with the final data.
+
 EXACTLY_ONCE semantics will write to redis in batch when the flink job checkpoint is completed as a whole, and there will be a delay of checkpoint interval. Please choose the appropriate semantics according to the business scenario.
+
 :::
 
 ## Redis Write Dependency
-Flink Connector Redis officially provides two kinds, the following two api are the same, StreamPark is using org.apache.bahir dependency.
+
+Flink Connector Redis officially provides two kinds, the following two api are the same, StreamPark is using `org.apache.bahir` dependency.
+
 ```xml
 <dependency>
     <groupId>org.apache.bahir</groupId>
@@ -29,6 +34,7 @@ Flink Connector Redis officially provides two kinds, the following two api are t
     <version>1.0</version>
 </dependency>
 ```
+
 ```xml
 <dependency>
     <groupId>org.apache.flink</groupId>
