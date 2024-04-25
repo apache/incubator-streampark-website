@@ -100,7 +100,7 @@ Streaming-Launcher 中，没有提供统一的作业管理界面。开发同学�
 
 **开发脚手架**
 
-通过进一步的研究发现，StreamPark 不仅仅是一个平台，还包含 Flink 作业开发脚手架, 在 StreamPark 中，针对编写代码的 Flink 作业，提供一种更好的解决方案，将程序配置标准化，提供了更为简单的编程模型，同时还提供了一些列 Connectors，降低了 DataStream 开发的门槛。
+通过进一步的研究发现，StreamPark 不仅仅是一个平台，还包含 Flink 作业开发脚手架，在 StreamPark 中，针对编写代码的 Flink 作业，提供一种更好的解决方案，将程序配置标准化，提供了更为简单的编程模型，同时还提供了一些列 Connectors，降低了 DataStream 开发的门槛。
 
 
 

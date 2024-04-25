@@ -14,9 +14,9 @@ Native Kubernetes 具有以下优势：
 
 - 更短的 Failover 时间
 - 可以实现资源托管，不需要手动创建 TaskManager 的 Pod，可以自动完成销毁
-- 具有更加便捷的 HA，Flink 1.12版本之后在 Native Kubernetes 模式下，可以依赖于原生 Kubernetes 的 Leader选举机制来完成 JobManager 的 HA
+- 具有更加便捷的 HA，Flink 1.12 版本之后在 Native Kubernetes 模式下，可以依赖于原生 Kubernetes 的 Leader选举机制来完成 JobManager 的 HA
 
-Native Kubernetes 和 Standalone Kubernetes 主要区别在于 Flink 与 Kubernetes 交互的方式不同以及由此产生的一系列优势。Standalone Kubernetes 需要用户自定义 JobManager  和 TaskManager 的 Kubernetes 资源描述文件，提交作业时需要用 kubectl 结合资源描述文件启动 Flink 集群。而 Native Kubernetes 模式 Flink Client 里面集成了一个 Kubernetes Client，它可以直接和 Kubernetes API Server 进行通讯，完成 JobManager Deployment 以及 ConfigMap 的创建。JobManager Development 创建完成之后，它里面的 Resource Manager 模块可以直接和 Kubernetes API Server 进行通讯，完成 TaskManager pod 的创建和销毁工作以及 Taskmanager 的弹性伸缩。因此生产环境中推荐使用 Flink on Native Kubernetes 模式部署 Flink 任务。
+Native Kubernetes 和 Standalone Kubernetes 主要区别在于 Flink 与 Kubernetes 交互的方式不同以及由此产生的一系列优势。Standalone Kubernetes 需要用户自定义 JobManager 和 TaskManager 的 Kubernetes 资源描述文件，提交作业时需要用 kubectl 结合资源描述文件启动 Flink 集群。而 Native Kubernetes 模式 Flink Client 里面集成了一个 Kubernetes Client，它可以直接和 Kubernetes API Server 进行通讯，完成 JobManager Deployment 以及 ConfigMap 的创建。JobManager Development 创建完成之后，它里面的 Resource Manager 模块可以直接和 Kubernetes API Server 进行通讯，完成 TaskManager pod 的创建和销毁工作以及 Taskmanager 的弹性伸缩。因此生产环境中推荐使用 Flink on Native Kubernetes 模式部署 Flink 任务。
 
 ![](/blog/relx/nativekubernetes_architecture.png)
 
@@ -73,7 +73,7 @@ kubectl -n flink-cluster get svc
 
 ------
 
-对于企业级生产环境使用 Flink on Kubernetes 会有着更高的要求, 一般会选择自建平台或者购买相关商业产品, 不论哪种方案在产品能力上满足: **大批量任务开发部署、状态跟踪、运维监控、失败告警、任务统一管理、高可用性** 等这些是普遍的诉求。
+对于企业级生产环境使用 Flink on Kubernetes 会有着更高的要求，一般会选择自建平台或者购买相关商业产品，不论哪种方案在产品能力上满足: **大批量任务开发部署、状态跟踪、运维监控、失败告警、任务统一管理、高可用性** 等这些是普遍的诉求。
 
 针对以上问题我们调研了开源领域支持开发部署 Flink on Kubernetes 任务的开源项目，调研的过程中也不乏遇到了其他优秀的开源项目，在综合对比了多个开源项目后得出结论: **StreamPark 不论是完成度还是使用体验、稳定性等整体表现都非常出色，因此最终选择了 StreamPark 作为我们的一站式实时计算平台。**下面我们看看 StreamPark 是如何支持 Flink on Kubernetes :
 
