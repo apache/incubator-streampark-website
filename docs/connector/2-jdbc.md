@@ -7,9 +7,9 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html) connector for reading from or writing to JDBC, which can provides **AT_LEAST_ONCE** (at least once) processing semantics
+Apache Flink officially provides the [JDBC](https://ci.apache.org/projects/flink/flink-docs-release-1.12/dev/connectors/jdbc.html) connector for reading from or writing to JDBC, which can provides **AT_LEAST_ONCE** (at least once) processing semantics.
 
-`StreamPark` implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately
+Apache StreamPark implements **EXACTLY_ONCE** (Exactly Once) semantics of `JdbcSink` based on two-stage commit, and uses [`HikariCP`](https://github.com/brettwooldridge/HikariCP) as connection pool to make data reading and write data more easily and accurately.
 
 ## JDBC Configuration
 

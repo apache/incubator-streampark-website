@@ -10,34 +10,31 @@ import TabItem from '@theme/TabItem';
 
 ## Apache Doris Connector
 
-[Apache Doris](https://doris.apache.org/) is a high-performance, and real-time analytical database,
-which could support high-concurrent point query scenarios.
-StreamPark encapsulates DoirsSink for writing data to Doris in real-time, based on  [Doris' stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html)
+[Apache Doris](https://doris.apache.org/) is a high-performance, and real-time analytical database, which could support high-concurrent point query scenarios. Apache StreamPark encapsulates DoirsSink for writing data to Doris in real-time, based on [its stream loads](https://doris.apache.org/administrator-guide/load-data/stream-load-manual.html).
 
 ### Write with Apache StreamPark™
 
-Use `StreamPark` to write data to `Doris`.  DorisSink only supports JSON format (single-layer) writing currently,
-such as: {"id":1,"name":"streampark"} The example of the running program is java, as follows:
+`DorisSink` only supports JSON format (single-layer) writing currently, such as: `{"id":1,"name":"streampark"}` The example of the running program is Java, as follows:
 
-#### configuration list
+#### Configuration list
 
 ```yaml
 doris.sink:
-  fenodes:  127.0.0.1:8030    //doris fe http url
-  database: test            //doris database
-  table: test_tbl           //doris table
+  fenodes:  127.0.0.1:8030    # doris fe http url
+  database: test              # doris database
+  table: test_tbl             # doris table
   user: root
   password: 123456
-  batchSize: 100         //doris sink batch size per streamload
-  intervalMs: 3000      //doris sink the time interval of each streamload
-  maxRetries: 1          //stream load retries
-  streamLoad:              //doris streamload own parameters
+  batchSize: 100          # doris sink batch size per streamload
+  intervalMs: 3000        # doris sink the time interval of each streamload
+  maxRetries: 1           # stream load retries
+  streamLoad:             # doris streamload own parameters
     format: json
     strip_outer_array: true
     max_filter_ratio: 1
 ```
 
-#### write data to Doris
+#### Write data to Doris
 
 <Tabs>
 <TabItem value="Java" label="Java">

@@ -1,6 +1,6 @@
 ---
 id: '7-hbase'
-title: 'Hbase'
+title: 'HBase'
 sidebar_position: 7
 ---
 

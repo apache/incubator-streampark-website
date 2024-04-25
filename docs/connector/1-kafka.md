@@ -6,9 +6,9 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Flink officially](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](https://kafka.apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics
+[Apache Flink officially](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) provides a connector to [Apache Kafka](https://kafka.apache.org) connector for reading from or writing to a Kafka topic, providing **exactly once** processing semantics.
 
-`KafkaSource` and `KafkaSink` in `StreamPark` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data
+`KafkaSource` and `KafkaSink` in `StreamPark` are further encapsulated based on `kafka connector` from the official website, simplifying the development steps, making it easier to read and write data.
 
 ## Dependencies
 
@@ -17,7 +17,7 @@ import TabItem from '@theme/TabItem';
 
 ```xml
     <dependency>
-        <groupId>org.apache.streampark/groupId>
+        <groupId>org.apache.streampark</groupId>
         <artifactId>streampark-flink-core</artifactId>
         <version>${project.version}</version>
     </dependency>
