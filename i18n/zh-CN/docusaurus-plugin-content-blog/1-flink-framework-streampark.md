@@ -31,7 +31,7 @@ Hadoop 体系虽然在目前应用非常广泛，但架构繁琐、运维复杂�
 
 在这里，实际上有一些问题我们一直没有彻底解决：
 
-用过 Native-Application 模式的朋友都知道，每提交一个任务，都需要打包新的镜像，提交到私有仓库，然后再调用 Flink Run 指令沟通 K8s，去拉取镜像运行 Pod。任务提交之后，还需要去 K8s 查看 log, 但是：
+用过 Native-Application 模式的朋友都知道，每提交一个任务，都需要打包新的镜像，提交到私有仓库，然后再调用 Flink Run 指令沟通 K8s，去拉取镜像运行 Pod。任务提交之后，还需要去 K8s 查看 log，但是：
 
 1. 任务运行监控怎么处理？
 2. 使用 Cluster 模式还是 NodePort 暴露端口访问 Web UI？
@@ -167,7 +167,7 @@ SQL 校验能力和 Zeppelin 基本一致:
 
 ![](/blog/belle/sqlverify.png)
 
-我们也可以指定资源，指定 Flink Run 中的动态参数 Dynamic Option，甚至参数可以整合 Pod  Template
+我们也可以指定资源，指定 Flink Run 中的动态参数 Dynamic Option，甚至参数可以整合 Pod Template
 
 ![](/blog/belle/pod.png)
 

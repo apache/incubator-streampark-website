@@ -253,7 +253,7 @@ docker push registry-vpc.cn-zhangjiakou.aliyuncs.com/xxxxx/flink-table-store:v1.
 kubectl cluster-info
 ```
 
-Kubernetes RBAC 配置,创建 streampark 命名空间:
+Kubernetes RBAC 配置，创建 streampark 命名空间:
 
 ```shell
 kubectl create ns streampark
@@ -783,7 +783,7 @@ paimon-dws:
 
 ![](/blog/bondex/paimon-dws.png)
 
-特别提醒 sqlserver 数据库抽取时如果源表数据量过大全量抽取会锁表，建议在业务允许的情况下采用增量抽取。对于全量抽取 sqlserver 可以采用中转的方式 sqlserver 全量数据导入到 mysql，从 mysql 再到 paimon-ods ,后面再通过 sqlserever 做增量抽取。
+特别提醒 sqlserver 数据库抽取时如果源表数据量过大全量抽取会锁表，建议在业务允许的情况下采用增量抽取。对于全量抽取 sqlserver 可以采用中转的方式 sqlserver 全量数据导入到 mysql，从 mysql 再到 paimon-ods ，后面再通过 sqlserever 做增量抽取。
 
 ## 04 问题排查分析
 
@@ -797,7 +797,7 @@ sqlserver cdc 采集数据到 paimon 表，说明：
 
 **ads 表：**
 
-'merge-engine' = 'aggregation',  -- 使用 aggregation 聚合计算 sum
+'merge-engine' = 'aggregation'，-- 使用 aggregation 聚合计算 sum
 
 'fields.sum_amount.aggregate-function' = 'sum'
 
@@ -929,7 +929,7 @@ https://github.com/apache/incubator-paimon/pull/1308
 
 在复杂的实时任务中，可以通过修改动态参数的方式，增加资源。
 
-## 05  未 来 规 划
+## 05 未 来 规 划
 
 - 自建的数据平台 bondata 正在集成 paimon 的元数据信息、数据指标体系、血缘、一键 pipline 等功能，形成海程邦达的数据资产，并将在此基础上展开一站式数据治理
 - 后面将基于 trino Catalog接入Doris，实现真正的离线数据和实时数据的one service

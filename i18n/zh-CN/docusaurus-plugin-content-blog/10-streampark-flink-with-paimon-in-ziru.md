@@ -30,7 +30,7 @@ Paimon: https://github.com/apache/paimon
 
 自如的数据集成方案根据业务使用场景主要可分为两种：
 
-- **低新鲜度**：低新鲜度对数据的时效性要求是 **T+1day**  , 每日定时凌晨 00:00 采用 Hive jdbc handler 进行 MySQL 数据的全量拉取至 Hive，其基本流程如下图所示：
+- **低新鲜度**：低新鲜度对数据的时效性要求是 **T+1day**，每日定时凌晨 00:00 采用 Hive jdbc handler 进行 MySQL 数据的全量拉取至 Hive，其基本流程如下图所示：
 
   ![](/blog/ziru/low_freshness.png)
 

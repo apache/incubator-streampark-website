@@ -4,7 +4,7 @@ title: Apache StreamPark™ 在 Joyme 的生产实践
 tags: [StreamPark, 生产实践, FlinkSQL]
 ---
 
-**摘要：** 本文带来 StreamPark 在 Joyme 中的生产实践, 作者是 Joyme 的大数据工程师秦基勇, 主要内容为:
+**摘要：** 本文带来 StreamPark 在 Joyme 中的生产实践，作者是 Joyme 的大数据工程师秦基勇，主要内容为:
 
 - 遇见StreamPark
 - Flink Sql 作业开发
@@ -76,7 +76,7 @@ SELECT  Data.uid  FROM source_table;
 
 ### **2. 添加依赖**
 
-关于依赖这块是 StreamPark 里特有的，在 StreamPark 中创新型的将一个完整的 Flink Sql 任务拆分成两部分组成: Sql 和 依赖, Sql 很好理解不多啰嗦, 依赖是 Sql 里需要用到的一些 Connector 的 Jar, 如 Sql 里用到了 Kafka 和 MySQL 的 Connector, 那就需要引入这两个 Connector 的依赖, 在 StreamPark 中添加依赖两种方式，一种是基于标准的 Maven pom 坐标方式，另一种是从本地上传需要的 Jar 。这两种也可以混着用，按需添加，点击应用即可， 在提交作业的时候就会自动加载这些依赖。
+关于依赖这块是 StreamPark 里特有的，在 StreamPark 中创新型的将一个完整的 Flink Sql 任务拆分成两部分组成: Sql 和 依赖，Sql 很好理解不多啰嗦，依赖是 Sql 里需要用到的一些 Connector 的 Jar，如 Sql 里用到了 Kafka 和 MySQL 的 Connector，那就需要引入这两个 Connector 的依赖，在 StreamPark 中添加依赖两种方式，一种是基于标准的 Maven pom 坐标方式，另一种是从本地上传需要的 Jar 。这两种也可以混着用，按需添加，点击应用即可， 在提交作业的时候就会自动加载这些依赖。
 
 ![](/blog/joyme/add_dependency.png)
 
@@ -114,7 +114,7 @@ Streaming 作业我们是使用 Flink java 进行开发，将之前 Spark scala�
 
 ![](/blog/joyme/add_projectconfiguration.png)
 
-以及任务的并行度，监控的方式等，内存大小根据任务需要进行配置。Program Args 程序的参数则根据程序需要自行定义入口参数,比如：我们统一启动类是 StartJobApp，那么启动作业就需要传入作业的 Full name 告诉启动类要去找哪个类来启动此次任务，也就是一个反射机制，作业配置完成以后同样也是 Submit 提交，然后在 application 界面部署任务。
+以及任务的并行度，监控的方式等，内存大小根据任务需要进行配置。Program Args 程序的参数则根据程序需要自行定义入口参数，比如：我们统一启动类是 StartJobApp，那么启动作业就需要传入作业的 Full name 告诉启动类要去找哪个类来启动此次任务，也就是一个反射机制，作业配置完成以后同样也是 Submit 提交，然后在 application 界面部署任务。
 
 ![](/blog/joyme/application_interface.png)
 
