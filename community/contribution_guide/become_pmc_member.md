@@ -28,13 +28,13 @@ CoPDoC areas can become an Apache StreamPark PMC member. The CoPDoC is an
 acronym from ASF to describe how we recognize your contributions not
 only by code.
 
-- **Community** - You can join us via our mailing list, issue
+- **(Co)mmunity** - You can join us via our mailing list, issue
   trackers, discussions page to interact with community members, and
   share vision and knowledge
-- **Project** - a clear vision and consensus are needed
-- **Documentation** - without it, the stuff remains only in the minds
+- **(P)roject** - a clear vision and consensus are needed
+- **(Do)cumentation** - without it, the stuff remains only in the minds
   of the authors
-- **Code** - discussion goes nowhere without code
+- **(C)ode** - discussion goes nowhere without code
 
 Apache StreamPark community strives to be meritocratic. Thus, once someone
 has contributed sufficiently to any area of CoPDoC they can be a
@@ -61,11 +61,8 @@ writing documentation, maintaining issues boards, code review, or answering
 community questions) to StreamPark either by contributing to the codebase
 of the main website or StreamPark's GitHub repositories.
 
-- +5 months with light activity and engagement.
-- +4 months of medium activity and engagement.
-- +3 month with solid activity and engagement.
-
 ### Quality of contributions
+
 - A solid general understanding of the project
 - Well tested, well-designed, following Apache StreamPark coding
   standards, and simple patches.

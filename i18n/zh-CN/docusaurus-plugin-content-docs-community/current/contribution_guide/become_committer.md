@@ -24,12 +24,12 @@ sidebar_position: 2
 
 ## 成为 Apache StreamPark™ 的 Committer
 
-任何支持社区并在 CoPDoC 领域中工作的人都可以成为 Apache StreamPark 的Committer。CoPDoC 是 ASF 的缩写，用来描述我们如何不仅仅通过代码来认识到您的贡献。
+任何支持社区并在 CoPDoC 领域中工作的人都可以成为 Apache StreamPark 的Committer。CoPDoC 是以下四点的缩写，用来描述我们如何不仅仅通过代码来认识到您的贡献：
 
-- **Community** - 你可以通过我们的邮件列表、问题追踪器、讨论页面与社区成员互动，并分享愿景和知识。
-- **Project** - 需要明确的愿景和共识。
-- **Documentation** - 没有它，内容只会停留在作者的头脑中。
-- **Code** - 没有代码，讨论就毫无意义。
+- **(Co)mmunity** - 你可以通过我们的邮件列表、问题追踪器、讨论页面与社区成员互动，并分享愿景和知识。
+- **(P)roject** - 需要明确的愿景和共识。
+- **(Do)cumentation** - 没有它，内容只会停留在作者的头脑中。
+- **(C)ode** - 没有代码，讨论就毫无意义。
 
 Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有人在 CoPDoC 的任何领域有了足够的贡献，他们就可以成为 Committer 的候选人，最终被投票选为 StreamPark 的 Committer。成为 Apache StreamPark 的 Committer 并不一定意味着你必须使用你的提交权限向代码库提交代码；它意味着你致力于 StreamPark 项目并为我们社区的成功做出了积极的贡献。
 
@@ -41,11 +41,8 @@ Apache StreamPark 社区努力追求基于功绩的原则。因此，一旦有�
 
 Committer 的候选人应该持续参与并为 StreamPark 做出大量的贡献（例如修复漏洞、添加新功能、编写文档、维护问题板、代码审查或回答社区问题），无论是向主网站的代码库还是 StreamPark 的 GitHub 仓库贡献。
 
-- +3 个月的轻度活动和参与。
-- +2 个月的中度活动和参与。
-- +1 个月的高度活动和参与。
-
 ### 贡献的质量
+
 - 对项目有深入的理解。
 - 经过充分测试、良好设计、遵循 Apache StreamPark 的编码标准，及简单的修复补丁。
 - 井井有条的面向用户的详细文档。
