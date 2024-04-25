@@ -10,7 +10,7 @@ Make stream processing easier!
 
 ## 🚀 What is Apache StreamPark™
 
-`Apache StreamPark` is an easy-to-use stream processing application development framework and one-stop stream processing operation platform. Aimed to make it easy to build and manage streaming applications, StreamPark provides scaffolding for writing streaming process logic with Apache Flink and Apache Spark.
+Apache StreamPark is an easy-to-use stream processing application development framework and one-stop stream processing operation platform. Aimed to make it easy to build and manage streaming applications, StreamPark provides scaffolding for writing streaming process logic with Apache Flink and Apache Spark.
 
 StreamPark also provides a professional task management module including task development, scheduling, interactive queries, deployment, operations, and maintenance.
 
@@ -26,7 +26,7 @@ On the other hand, It can be challenge for enterprises to use Flink & Spark if t
 * Supports multiple versions of Flink & Spark
 * Wide range of out-of-the-box connectors
 * One-stop stream processing operation platform
-* Supports catalog、olap、streaming-warehouse, etc.
+* Supports catalog, OLAP, streaming warehouse, etc.
 
 ## 🏳‍🌈 Architecture of Apache StreamPark™
 
@@ -36,9 +36,9 @@ The overall architecture of Apache StreamPark is shown in the following figure. 
 
 ### 1️⃣ streampark-core
 
-`streampark-core` is a framework uesd during development. It supports on coding development, regulates configuration files, and follows the 'convention over configuration' guide.
+`streampark-core` is a framework used during development. It supports coding development, regulates configuration files, and follows the 'convention over configuration' principle.
 
-`streampark-core` provides development-time RunTime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending DataStream-related methods and integrating DataStream and the Flink SQL API. This improves development efficiency and developer experience, because users can focus on the business logic.
+`streampark-core` provides development-time Runtime Content and a series of out-of-the-box Connectors. Cumbersome operations are simplified by extending DataStream-related methods and integrating DataStream and the Flink SQL API. This improves development efficiency and developer experience, because users can focus on the business logic.
 
 ### 2️⃣ streampark-console
 
