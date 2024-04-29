@@ -56,7 +56,7 @@ export default function () {
         <h4>License</h4>
         <p>
           <em>
-            <span>The software licensed under </span>
+            <span>The software is licensed under the </span>
             <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">
               Apache License 2.0
             </a>.
