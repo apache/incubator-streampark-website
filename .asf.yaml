@@ -19,7 +19,7 @@ github:
   description: "Apache streampark Website"
   homepage: https://streampark.apache.org/
   features:
-    issues: false
+    issues: true
     projects: false
     wiki: false
   labels:
