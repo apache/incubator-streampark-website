@@ -147,7 +147,7 @@ $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data
 
 The operation of the above method is relatively simple. Sure java could also be used for writing. StreamPark adds many functions to the http post writing method,
 including encapsulation enhancement, adding cache, asynchronous writing, failure retry, and data backup after reaching the retry threshold，
-To external components (kafka, mysql, hdfs, hbase), etc., the above functions only need to define the configuration file in the prescribed format,
+To external components (Apache Kafka, MySQL, HDFS, Apache HBase), etc., the above functions only need to define the configuration file in the prescribed format,
 and write the code.
 
 ### Write to ClickHouse
