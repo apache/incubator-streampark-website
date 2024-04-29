@@ -25,7 +25,7 @@ export default function () {
       });
       window.addEventListener('load', AOS.refresh);
       return <Layout>
-        <div className='block user_page'>
+        <div className='block user_page container'>
           <div className="user-main" style={{ padding: "10px 0 30px" }}>
             <h3 className="fs-2 mb-4 fw-bold text-center">{dataSource.common.ourUsers}</h3>
             <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>

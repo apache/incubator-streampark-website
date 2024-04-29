@@ -14,7 +14,7 @@ export default function () {
   const archived = downloadDataSource.slice(1, downloadDataSource.length)
   return (
     <Layout>
-      <div className="block download_page" style={{ padding: "10px 0 30px" }}>
+      <div className="block download_page container" style={{ padding: "10px 0 30px" }}>
         <h2 className="fs-4 mb-4 fw-bold">{dataSource.download}</h2>
         <div className="custom-info-block">
           <div className='d-flex align-items-center'>

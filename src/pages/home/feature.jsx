@@ -7,7 +7,7 @@ export default function () {
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en'
   const dataSource = config?.[language];
   return (
-    <div className="section">
+    <div className="section feature">
       <div className="container">
         <div className="row text-center">
           <div className="col-12">
@@ -17,20 +17,22 @@ export default function () {
               <p className="lead text-muted">{dataSource.common.coreFeaturesDesc}</p>
             </div>
           </div>
+        </div>
+        <div className='row justify-content-center'>
           {
             dataSource.feature.map((feature, i) => (
-              <div className="col-md-4 col-6 px-4 px-md-3 cursor-pointer" key={i} data-aos="fade-up" data-aos-delay={(i % 3) * 100}>
+              <div className="characteristic-card col-md-4 col-6 px-4 px-md-3 cursor-pointer" key={i} data-aos="fade-up" data-aos-delay={(i % 3) * 100}>
                 <div className="feature-children  p-4 mb-5 shadow-sm hover-box-up">
                   <div className="text-primary text-center mb-3">
                     <div className="features-icon"><i className={feature.icon}></i></div>
                   </div>
-                  <h3 className="h5">{feature.title}</h3>
+                  <h3 className="h5 text-center">{feature.title}</h3>
                   <p>{feature.details}</p>
                 </div>
               </div>
             ))
           }
-        </div>
+          </div>
       </div>
     </div>
   );
