@@ -282,6 +282,14 @@ const config = {
               label: 'Pull Requests',
               href: 'https://github.com/apache/incubator-streampark/pulls',
             },
+            {
+              label: 'Issue Tracker (Website)',
+              href: 'https://github.com/apache/incubator-streampark-website/issues',
+            },
+            {
+              label: 'Pull Requests (Website)',
+              href: 'https://github.com/apache/incubator-streampark-website/pulls',
+            },
           ],
         },
         {
