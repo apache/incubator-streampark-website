@@ -116,11 +116,11 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 #### 2、Hive
 
-​        To sink data to hive, or use hive metastore as flink's metadata, it is necessary to open the path from flink to hive, which also needs to go through the following two steps:
+​        To sink data to Apache Hive, or use hive metastore as flink's metadata, it is necessary to open the path from Apache Flink to Apache Hive, which also needs to go through the following two steps:
 
-##### i、Add hive related jars
+##### i、Add Apache Hive related jars
 
-​	     As mentioned above, the default flink image does not include hive-related jars. The following three hive-related jars need to be placed in the lib directory of flink. Here, hive version 2.3.6 is used as an example:
+​	     As mentioned above, the default flink image does not include hive-related jars. The following three hive-related jars need to be placed in the lib directory of flink. Here, Apache Hive version 2.3.6 is used as an example:
 
 ​                a、`hive-exec`：https://repo1.maven.org/maven2/org/apache/hive/hive-exec/2.3.6/hive-exec-2.3.6.jar
 
@@ -130,7 +130,7 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 ​            Similarly, the above-mentioned hive-related jars can also be dependently configured in the `Dependency` in the task configuration of StreamPark in a dependent manner, which will not be repeated here.
 
-##### ii、Add hive configuration file (hive-site.xml)
+##### ii、Add Apache Hive configuration file (hive-site.xml)
 
 ​	       The difference from hdfs is that there is no default loading method for the hive configuration file in the flink source code, so developers need to manually add the hive configuration file. There are three main methods here:
 
@@ -165,7 +165,7 @@ spec:
 
 #### Conclusion
 
-​        Through the above method, flink can be connected with hadoop and hive. This method can be extended to general, that is, flink and external systems such as redis, mongo, etc., generally require the following two steps:
+​        Through the above method, Apache Flink can be connected with Apache Hadoop and Hive. This method can be extended to general, that is, flink and external systems such as redis, mongo, etc., generally require the following two steps:
 
 ​        i. Load the connector jar of the specified external service
 

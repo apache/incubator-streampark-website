@@ -7,9 +7,9 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Apache HBase](https://hbase.apache.org/book.html) is a highly reliable, high-performance, column-oriented, and scalable distributed storage system. Using HBase technology, large-scale structured storage clusters can be built on cheap PC Servers. Unlike general relational databases, HBase is a database suitable for unstructured data storage because HBase storage is based on a column rather than a row-based schema.
+[Apache HBase](https://hbase.apache.org/book.html) is a highly reliable, high-performance, column-oriented, and scalable distributed storage system. Using HBase technology, large-scale structured storage clusters can be built on cheap PC Servers. Unlike general relational databases, Apache HBase is a database suitable for unstructured data storage because HBase storage is based on a column rather than a row-based schema.
 
-Apache Flink does not officially provide a connector for HBase DataStream. Apache StreamPark encapsulates HBaseSource and HBaseSink based on `HBase-client`. It supports automatic connection creation based on configuration and simplifies development. StreamPark reading HBase can record the latest status of the read data when the checkpoint is enabled,
+Apache Flink does not officially provide a connector for HBase DataStream. Apache StreamPark encapsulates HBaseSource and HBaseSink based on `HBase-client`. It supports automatic connection creation based on configuration and simplifies development. StreamPark reading Apache HBase can record the latest status of the read data when the checkpoint is enabled,
 and the offset corresponding to the source can be restored through the data itself. Implement source-side AT_LEAST_ONCE.
 
 HBaseSource implements Flink Async I/O to improve streaming throughput. The sink side supports AT_LEAST_ONCE by default.
@@ -17,14 +17,14 @@ EXACTLY_ONCE is supported when checkpointing is enabled.
 
 :::tip hint
 
-StreamPark reading HBASE can record the latest state of the read data when checkpoint is enabled.
+StreamPark reading Apache HBase can record the latest state of the read data when checkpoint is enabled.
 Whether the previous state can be restored after the job is resumed depends entirely on whether the data itself has an offset identifier, which needs to be manually specified in the code. The recovery logic needs to be specified in the func parameter of the getDataStream method of HBaseSource.
 
 :::
 
-## Dependency of HBase writing
+## Dependency of Apache HBase writing
 
-HBase Maven Dependency:
+Apache HBase Maven Dependency:
 
 ```xml
 <dependency>
@@ -39,7 +39,7 @@ HBase Maven Dependency:
 </dependency>
 ```
 
-## Regular way to write and read HBase
+## Regular way to write and read Apache HBase
 ### 1.Create database and table
      create 'Student', {NAME => 'Stulnfo', VERSIONS => 3}, {NAME =>'Grades', BLOCKCACHE => true}
 ### 2.Write demo and Read demo
@@ -144,7 +144,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 
 /**
- * Desc: Read stream data, then write to HBase
+ * Desc: Read stream data, then write to Apache HBase
  */
 @Slf4j
 public class HBaseStreamWriteMain {
@@ -177,10 +177,10 @@ public class HBaseStreamWriteMain {
 }
 
 /**
-Write to HBase
+Write to Apache HBase
   Inherit RichSinkFunction to override the parent class method
   <p>
-  When writing to hbase, 500 items are flushed once, inserted in batches, using writeBufferSize
+  When writing to Apache HBase, 500 items are flushed once, inserted in batches, using writeBufferSize
  */
 class HBaseWriter extends RichSinkFunction<String> {
     private static final Logger logger = LoggerFactory.getLogger(HBaseWriter.class);
@@ -236,16 +236,16 @@ class HBaseWriter extends RichSinkFunction<String> {
 
 </Tabs>
 
-Reading and writing HBase in this way is cumbersome and inconvenient. `StreamPark` follows the concept of convention over configuration and automatic configuration.
-Users only need to configure HBase connection parameters and Flink operating parameters. StreamPark will automatically assemble source and sink,
+Reading and writing Apache HBase in this way is cumbersome and inconvenient. `StreamPark` follows the concept of convention over configuration and automatic configuration.
+Users only need to configure Apache HBase connection parameters and Flink operating parameters. StreamPark will automatically assemble source and sink,
 which greatly simplifies development logic and improves development efficiency and maintainability.
 
-## write and read HBase with Apache StreamPark™
+## write and read Apache HBase with Apache StreamPark™
 
 ### 1. Configure policies and connection information
 
 ```yaml
-# hbase
+# apache hbase
 hbase:
   zookeeper.quorum: test1,test2,test6
   zookeeper.property.clientPort: 2181
@@ -255,12 +255,12 @@ hbase:
 
 ```
 
-### 2. Read and write HBase
+### 2. Read and write Apache HBase
 
-Writing to HBase with StreamPark is very simple, the code is as follows:
+Writing to Apache HBase with StreamPark is very simple, the code is as follows:
 
 <Tabs>
-<TabItem value="read HBase">
+<TabItem value="read Apache HBase">
 
 ```scala
 
@@ -317,7 +317,7 @@ object HBaseSourceApp extends FlinkStreaming {
 ```
 </TabItem>
 
-<TabItem value="write HBase">
+<TabItem value="write Apache HBase">
 
 ```scala
 import org.apache.streampark.flink.core.scala.FlinkStreaming
@@ -360,7 +360,7 @@ object HBaseSinkApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-When StreamPark writes to HBase, you need to create the method of HBaseQuery,
+When StreamPark writes to Apache HBase, you need to create the method of HBaseQuery,
 specify the method to convert the query result into the required object, identify whether it is running,
 and pass in the running parameters. details as follows
 ```scala

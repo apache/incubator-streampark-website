@@ -9,11 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 Some background services receive data through HTTP requests. In this scenario, Apache Flink can write result data through HTTP
-requests. Currently, Flink officially does not provide a connector for writing data through HTTP requests. Apache StreamPark
+requests. Currently, Apache Flink officially does not provide a connector for writing data through HTTP requests. Apache StreamPark
 encapsulates HttpSink to write data asynchronously in real-time based on asynchttpclient.
 
 `HttpSink` writes do not support transactions, writing data to the target service provides AT_LEAST_ONCE semantics. Data
-that fails to be retried multiple times will be written to external components (kafka, mysql, hdfs, hbase), and the data
+that fails to be retried multiple times will be written to external components (Apache Kafka, MySQL, HDFS, Apache HBase), and the data
 will be restored manually to achieve final data consistency.
 
 ## http asynchronous write

@@ -18,12 +18,12 @@ StreamPark also provides a professional task management module including task de
 
 Apache Flink and Apache Spark are widely used as the next generation of big data streaming computing engines. Based on a foundation of excellent experiences combined with best practices, we extracted the task deployment and runtime parameters into the configuration files. In this way, an easy-to-use `RuntimeContext` with out-of-the-box connectors can bring an easier and more efficient task development experience. It reduces the learning cost and development barriers, so developers can focus on the business logic.
 
-On the other hand, It can be challenge for enterprises to use Flink & Spark if there is no professional management platform for Flink & Spark tasks during the deployment phase. StreamPark provides such a professional task management platform as described above.
+On the other hand, It can be challenge for enterprises to use Apache Flink & Apache Spark if there is no professional management platform for Flink & Spark tasks during the deployment phase. StreamPark provides such a professional task management platform as described above.
 
 ## 🎉 Features
 
 * Apache Flink & Apache Spark application development scaffold
-* Supports multiple versions of Flink & Spark
+* Supports multiple versions of Apache Flink & Apache Spark
 * Wide range of out-of-the-box connectors
 * One-stop stream processing operation platform
 * Supports catalog, OLAP, streaming warehouse, etc.

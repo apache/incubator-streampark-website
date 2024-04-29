@@ -42,7 +42,7 @@ The parameter `semantic` is the semantics when writing in `JdbcSink`, only effec
 
 #### EXACTLY_ONCE
 
-If `JdbcSink` is configured with `EXACTLY_ONCE` semantics, the underlying two-phase commit implementation is used to complete the write, at this time to flink with `Checkpointing` to take effect, how to open checkpoint please refer to Chapter 2 on [checkpoint](/docs/model/conf) configuration section
+If `JdbcSink` is configured with `EXACTLY_ONCE` semantics, the underlying two-phase commit implementation is used to complete the write, at this time to Apache Flink with `Checkpointing` to take effect, how to open checkpoint please refer to Chapter 2 on [checkpoint](/docs/model/conf) configuration section
 
 #### AT_LEAST_ONCE && NONE
 
