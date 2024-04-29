@@ -20,6 +20,7 @@ export default function (props) {
             .concat('/apache-streampark-')
             .concat(version)
             .concat('-incubating-src.tar.gz')
+            .concat('?action=download')
     }
 
     function getBinaryLink(scala, version) {
@@ -31,6 +32,7 @@ export default function (props) {
             .concat('-')
             .concat(version)
             .concat('-incubating-bin.tar.gz')
+            .concat('?action=download')
     }
 
     function getSourceSigs(version, suffix) {
