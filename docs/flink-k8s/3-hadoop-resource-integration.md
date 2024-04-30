@@ -4,17 +4,17 @@ title: 'Hadoop Resource Integration'
 sidebar_position: 3
 ---
 
-## Using Hadoop resource in Flink on K8s
+## Using Apache Hadoop resource in Flink on Kubernetes
 
-Using Hadoop resources under the StreamPark Flink-K8s runtime, such as checkpoint mount HDFS, read and write Hive, etc. The general process is as follows:
+Using Hadoop resources under StreamPark's Flink Kubernetes runtime, such as checkpoint mount HDFS, read and write Hive, etc. The general process is as follows:
 
-#### 1、HDFS
+### 1. Apache HDFS
 
-​       To put flink on k8s related resources in HDFS, you need to go through the following two steps:
+To put flink on k8s-related resources in HDFS, you need to go through the following two steps:
 
-##### i、add `shade jar`
+#### 1.1 Add the shaded jar
 
-​            By default, the flink image pulled from Docker does not include hadoop-related jars. Here, flink:1.14.5-scala_2.12-java8 is taken as an example, as follows:
+By default, the Flink image pulled from Docker does not include Hadoop-related jars. Here, flink:1.14.5-scala_2.12-java8 is taken as an example, as follows:
 
 ```shell
 [flink@ff]  /opt/flink-1.14.5/lib
@@ -24,9 +24,9 @@ flink-dist_2.12-1.14.5.jar  flink-table_2.12-1.14.5.jar        log4j-core-2.17.1
 flink-json-1.14.5.jar       log4j-1.2-api-2.17.1.jar           log4j-slf4j-impl-2.17.1.jar
 ```
 
-​         This is to download the shaded jar and put it in the lib directory of flink. Take hadoop2 as an example, download `flink-shaded-hadoop-2-uber`：https://repo1.maven.org/maven2/org/apache/flink/flink-shaded-hadoop-2-uber/2.7.5-9.0/flink-shaded-hadoop-2-uber-2.7.5-9.0.jar
+This is to download the shaded jar and put it in the lib directory of Flink. Take hadoop2 as an example; download `flink-shaded-hadoop-2-uber`：https://repo1.maven.org/maven2/org/apache/flink/flink-shaded-hadoop-2-uber/2.7.5-9.0/flink-shaded-hadoop-2-uber-2.7.5-9.0.jar
 
-​	In addition, you can configure the shade jar in a dependent manner in the `Dependency` in the StreamPark task configuration. the following configuration:
+In addition, you can configure the shaded jar in a dependent manner in the `Dependency` in the StreamPark task configuration. the following configuration:
 
 ```xml
 <dependency>
@@ -37,13 +37,13 @@ flink-json-1.14.5.jar       log4j-1.2-api-2.17.1.jar           log4j-slf4j-impl-
 </dependency>
 ```
 
-##### ii、add `core-site.xml` and `hdfs-site.xml`
+##### 1.2. add `core-site.xml` and `hdfs-site.xml`
 
-​            With the shade jar, you also need the corresponding configuration file to find the hadoop address. Two configuration files are mainly involved here: `core-site.xml` and `hdfs-site.xml`, through the source code analysis of flink (the classes involved are mainly: org .apache.flink.kubernetes.kubeclient.parameters.AbstractKubernetesParameters), the two files have a fixed loading order, as follows:
+With the shaded jar, you also need the corresponding configuration file to find the Hadoop address. Two configuration files are mainly involved here: `core-site.xml` and `hdfs-site.xml`, through the source code analysis of flink (the classes involved are mainly: `org.apache.flink.kubernetes.kubeclient.parameters.AbstractKubernetesParameters`), the two files have a fixed loading order, as follows:
 
 ```java
 // The process of finding hadoop configuration files:
-// 1、Find out whether parameters have been added:${kubernetes.hadoop.conf.config-map.name}
+// 1. Find out whether parameters have been added:${kubernetes.hadoop.conf.config-map.name}
 @Override
 public Optional<String> getExistingHadoopConfigurationConfigMap() {
     final String existingHadoopConfigMap =
@@ -106,7 +106,7 @@ private List<File> getHadoopConfigurationFileItems(String localHadoopConfigurati
         return Collections.emptyList();
     }
 }
-// If the above files are found, it means that there is a hadoop environment. The above two files will be parsed into kv pairs, and then constructed into a ConfigMap. The naming rules are as follows:
+// If the above files are found, a Hadoop environment exists. The above two files will be parsed into key-value pairs and then constructed into a ConfigMap. The naming rules are as follows:
 public static String getHadoopConfConfigMapName(String clusterId) {
     return Constants.HADOOP_CONF_CONFIG_MAP_PREFIX + clusterId;
 }
@@ -114,38 +114,34 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 
 
-#### 2、Hive
+### 2. Apache Hive
 
-​        To sink data to Apache Hive, or use hive metastore as flink's metadata, it is necessary to open the path from Apache Flink to Apache Hive, which also needs to go through the following two steps:
+To sink data to Apache Hive or use Hive Metastore for Flink's metadata, it is necessary to open the path from Apache Flink to Apache Hive, which also needs to go through the following two steps:
 
-##### i、Add Apache Hive related jars
+#### 2.1. Add Hive-related jars
 
-​	     As mentioned above, the default flink image does not include hive-related jars. The following three hive-related jars need to be placed in the lib directory of flink. Here, Apache Hive version 2.3.6 is used as an example:
+As mentioned above, the default flink image does not include hive-related jars. The following three hive-related jars need to be placed in the lib directory of Flink. Here, Apache Hive version 2.3.6 is used as an example:
 
-​                a、`hive-exec`：https://repo1.maven.org/maven2/org/apache/hive/hive-exec/2.3.6/hive-exec-2.3.6.jar
+1. `hive-exec`：https://repo1.maven.org/maven2/org/apache/hive/hive-exec/2.3.6/hive-exec-2.3.6.jar
+2. `flink-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-connector-hive_2.12/1.14.5/flink-connector-hive_2.12-1.14.5.jar
+3. `flink-sql-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-hive-2.3.6_2.12/1.14.5/flink-sql-connector-hive-2.3.6_2.12-1.14.5.jar
 
-​                b、`flink-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-connector-hive_2.12/1.14.5/flink-connector-hive_2.12-1.14.5.jar
+Similarly, the above-mentioned hive-related jars can also be dependently configured in the `Dependency` task configuration of StreamPark in a dependent manner, which will not be repeated here.
 
-​                c、`flink-sql-connector-hive`：https://repo1.maven.org/maven2/org/apache/flink/flink-sql-connector-hive-2.3.6_2.12/1.14.5/flink-sql-connector-hive-2.3.6_2.12-1.14.5.jar
+#### 2.2 Add Apache Hive configuration file (hive-site.xml)
 
-​            Similarly, the above-mentioned hive-related jars can also be dependently configured in the `Dependency` in the task configuration of StreamPark in a dependent manner, which will not be repeated here.
+The difference to HDFS is that there is no default loading method for the hive configuration file in the Flink source code, so developers need to manually add the hive configuration file. There are three main methods here:
 
-##### ii、Add Apache Hive configuration file (hive-site.xml)
-
-​	       The difference from hdfs is that there is no default loading method for the hive configuration file in the flink source code, so developers need to manually add the hive configuration file. There are three main methods here:
-
-​                  a. Put hive-site.xml in the custom image of flink, it is generally recommended to put it under the `/opt/flink/` directory in the image
-
-​                  b. Put hive-site.xml behind the remote storage system, such as HDFS, and load it when it is used
-
-​                  c. Mount hive-site.xml in k8s in the form of ConfigMap. It is recommended to use this method, as follows:
+1. Put hive-site.xml in the custom image of Flink, it is generally recommended to put it under the `/opt/flink/` directory in the image
+2. Put hive-site.xml behind the remote storage system, such as HDFS, and load it when it is used
+3. Mount hive-site.xml in k8s in the form of ConfigMap. It is recommended to use this method as follows:
 
 ```shell
-# 1、Mount the hive-site.xml at the specified location in the specified namespace
+# 1. Mount the hive-site.xml at the specified location in the specified namespace
 kubectl create cm hive-conf --from-file=hive-site.xml -n flink-test
-# 2、View the hive-site.xml mounted to k8s
+# 2. View the hive-site.xml mounted to k8s
 kubectl describe cm hive-conf -n flink-test 
-# 3、Mount this cm to the specified directory inside the container
+# 3. Mount this cm to the specified directory inside the container
 spec:
   containers:
     - name: flink-main-container
@@ -165,11 +161,7 @@ spec:
 
 #### Conclusion
 
-​        Through the above method, Apache Flink can be connected with Apache Hadoop and Hive. This method can be extended to general, that is, flink and external systems such as redis, mongo, etc., generally require the following two steps:
+Through the above method, Apache Flink can be connected with Apache Hadoop and Hive. This method can be extended to general, that is, flink and external systems such as redis, mongo, etc., generally require the following two steps:
 
-​        i. Load the connector jar of the specified external service
-
-​        ii. If there is, load the specified configuration file into the flink system
-
-
-
+1. Load the connector jar of the specified external service;
+2. If there is, load the specified configuration file into the Flink system.
