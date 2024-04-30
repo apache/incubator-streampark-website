@@ -4,7 +4,7 @@ title: 'Hadoop 资源集成'
 sidebar_position: 3
 ---
 
-## 在 Flink on K8s 上使用 Hadoop 资源
+## 在 Flink on K8s 上使用 Apache Hadoop 资源
 
 在 StreamPark Flink-K8s runtime 下使用 Hadoop 资源，如 checkpoint 挂载 HDFS、读写 Hive 等，大概流程如下：
 
@@ -114,7 +114,7 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 
 
-#### 2、Hive
+#### 2、Apache Hive
 
 ​        将数据 sink 到 hive，或者以 hive 的 metastore 作为 flink 的元数据，都需要打通 flink 到 hive 的路径，同样需要经过一下两个步骤：
 

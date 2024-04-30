@@ -4,7 +4,7 @@ title: 'Hadoop Resource Integration'
 sidebar_position: 3
 ---
 
-## Using Hadoop resource in Flink on K8s
+## Using Apache Hadoop resource in Flink on K8s
 
 Using Hadoop resources under the StreamPark Flink-K8s runtime, such as checkpoint mount HDFS, read and write Hive, etc. The general process is as follows:
 
@@ -114,7 +114,7 @@ public static String getHadoopConfConfigMapName(String clusterId) {
 
 
 
-#### 2、Hive
+#### 2、Apache Hive
 
 ​        To sink data to Apache Hive, or use hive metastore as flink's metadata, it is necessary to open the path from Apache Flink to Apache Hive, which also needs to go through the following two steps:
 
