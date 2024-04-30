@@ -1,6 +1,5 @@
 @import "colors.less";
 @import "default.less";
-@import "home.less";
 
 /* Attemps to fix active link on KB page in dark mode */
 .sidebarItemLink_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
@@ -250,7 +249,6 @@ code {
 }
 
 .alert {
-  border-color: var(--clickhouse-blue);
   --ifm-alert-foreground-color: var(--click-color-text);
 }
 
@@ -726,15 +724,20 @@ table td {
   }
 }
 
+// 有用
 .navbar__items {
   gap: 1rem;
 
   .navbar__link,
   .navbar__item {
-    display: flex;
+    display: none;
     align-items: center;
     font-size: inherit;
     line-height: inherit;
+
+    @media (min-width: 997px) {
+      display: flex;
+    }
   }
 
   &.navbar__items--right {
@@ -979,11 +982,7 @@ html[data-theme="dark"] {
   background-attachment: fixed;
 }
 
-.container {
-  width: auto;
-  max-width: none !important;
-  min-width: none !important;
-}
+
 
 // 设定全局字体大小为14px
 body {
@@ -1011,15 +1010,17 @@ body {
   }
 }
 
-
-/** doc sider */
-
 img {
   height: auto;
   max-width: 100%;
 }
 
-/** footer */
+.container {
+  width: auto;
+  max-width: none !important;
+  min-width: none !important;
+}
+
 .footer {
   background-color: var(--ifm-footer-background-color2);
   z-index: 1;
@@ -1121,13 +1122,6 @@ img {
   }
 }
 
-/** doc */
-
-/** doc sider */
-
-
-/** doc container */
-
 @media (min-width: 1440px) {
   .docs-wrapper {
     .container {
@@ -1146,12 +1140,6 @@ img {
 }
 
 @media screen and (max-width: 996px) {
-  .navbar {
-    .navbar__items--right .navbar__items {
-      display: none;
-    }
-  }
-
   .container {
     margin-left: 12px !important;
     margin-right: 12px !important;

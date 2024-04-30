@@ -6,7 +6,7 @@
  */
 
  .colorModeButton {
-  display: flex;
+  display: none;
   align-items: center;
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -16,6 +16,10 @@
   border: 0;
   border-radius: 4px;
   background: transparent;
+
+  @media screen and (min-width: 997px) {
+    display: flex; 
+  }
 }
 .colorModeButton:hover {
   background: var(--ifm-menu-color-background-active);
