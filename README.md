@@ -125,3 +125,7 @@ Visit the page http://streampark.apache.org/user; located in `src/pages/user`:
 │ index.less
 │ languages.json
 ```
+
+## License
+
+Licensed under the [Apache License, Version 2.0](LICENSE)
