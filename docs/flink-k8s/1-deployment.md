@@ -1,6 +1,6 @@
 ---
-id: 'k8s-dev'
-title: 'Flink on K8s '
+id: 'Kubernetes-dev'
+title: 'Flink on Kubernetes '
 sidebar_position: 1
 ---
 
@@ -14,9 +14,9 @@ At now, one StreamPark only supports one Kubernetes cluster.You can submit [Fear
 
 ## Environments requirement
 
-Additional operating environment to run StreamPark Flink-K8s is as below:
+Additional operating environment to run StreamPark Flink-Kubernetes is as below:
 * Kubernetes
-* Maven（StreamPark runNode）
+* Apache Maven（StreamPark runNode）
 * Docker（StreamPark runNode）
 
 
@@ -39,9 +39,9 @@ kubectl cluster-info
 ### configuration for coKubernetes RBAC
 
 
-User can configure RBAC for K8s Namespace by referring to Flink-Docs：https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/resource-providers/native_kubernetes/#rbac
+User can configure RBAC for Kubernetes Namespace by referring to Flink-Docs：https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/resource-providers/native_kubernetes/#rbac
 
-When Flink Namespace is `flink-dev` and there are no needed to explicitly specify K8s accounts, user can allocate resource to clusterrolebinding by the way as below
+When Flink Namespace is `flink-dev` and there are no needed to explicitly specify Kubernetes accounts, user can allocate resource to clusterrolebinding by the way as below
 
 
 ```
@@ -74,17 +74,17 @@ docker pull <your_register_addr>/streampark/busybox
 
 ### Application  Job release
 
-![k8s application submit](/doc/image/k8s_application_submit.png)
+![Kubernetes application submit](/doc/image/Kubernetes_application_submit.png)
 
 parameter descriptions are as below：
 
 * **Flink Base Docker Image**： Base Flink Docker Image Tag can be obtained from  [DockerHub - offical/flink](https://hub.docker.com/_/flink) .And user can also use private image when Docker Register Account owns `pull` permission of it.
 
-* **Rest-Service Exposed Type**：Description of candidate values for native Flink K8s configuration [kubernetes.rest-service.exposed.type](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/config/#kubernetes) ：
+* **Rest-Service Exposed Type**：Description of candidate values for native Flink Kubernetes configuration [kubernetes.rest-service.exposed.type](https://ci.apache.org/projects/flink/flink-docs-stable/docs/deployment/config/#kubernetes) ：
   * `ClusterIP`：ip that StreamPark can access；
   * `LoadBalancer`：resource of LoadBalancer should be allocated in advance， Flink Namespace own permission of automatic binding，and StreamPark can access LoadBalancer`s gateway；
-  * `NodePort`：StreamPark can access  all K8s nodes；
-* **Kubernetes Pod Template**： It`s Flink custom configuration of pod-template.The container-name must be flink-main-container. If the k8s pod needs a secret key to pull the docker image, please fill in the information about
+  * `NodePort`：StreamPark can access  all Kubernetes nodes；
+* **Kubernetes Pod Template**： It`s Flink custom configuration of pod-template.The container-name must be flink-main-container. If the Kubernetes pod needs a secret key to pull the docker image, please fill in the information about
 the secret key in the pod template file.The example pod-template is as below：
 
     ```
@@ -101,11 +101,11 @@ the secret key in the pod template file.The example pod-template is as below：
       - name: regsecret
     ```
 
-* **Dynamic Option**：It`s dynamic parameter of Flink on k8s（part of parameters can also be defined in pod-template）which should start with -D.Details are in[Flink on Kubernetes parameters](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/config/#kubernetes)
+* **Dynamic Option**：It`s dynamic parameter of Flink on Kubernetes（part of parameters can also be defined in pod-template）which should start with -D.Details are in[Flink on Kubernetes parameters](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/config/#kubernetes)
 
 After the job is started, it is supported to directly access the corresponding Flink Web UI page on the Detail page of the task：
 
-![k8s app detail](/doc/image/k8s_app_detail.png)
+![Kubernetes app detail](/doc/image/Kubernetes_app_detail.png)
 
 ### Session job release
 
@@ -114,14 +114,14 @@ The additional configuration of Flink-Native-Kubernetes Session Job will be deci
 
 ## other configuration
 
-StreamPark parameter related to Flink-K8s in `applicaton.yml` are as below.And in most condition, it is no need to change it.
+StreamPark parameter related to Flink-Kubernetes in `applicaton.yml` are as below.And in most condition, it is no need to change it.
 
 | Configuration item                                                    | Description                                                                                                          | Default value |
 |-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|---------------|
 | streampark.docker.register.image-namespace                            | namespace of Remote docker service repository， flink-job image will be pushed here                                   | null          |
-| streampark.flink-k8s.tracking.polling-task-timeout-sec.job-status     | timeout in seconds of flink state tracking task                                                                      | 120           |
-| streampark.flink-k8s.tracking.polling-task-timeout-sec.cluster-metric | timeout in seconds of flink metrics tracking task                                                                    | 120           |
-| streampark.flink-k8s.tracking.polling-interval-sec.job-status         | interval in seconds of flink state tracking task.To maintain accuracy, please set below 5s, the best setting is 2-3s | 5             |
-| streampark.flink-k8s.tracking.polling-interval-sec.cluster-metric     | interval in seconds of flink metrics tracking task                                                                   | 10            |
-| streampark.flink-k8s.tracking.silent-state-keep-sec                   | fault tolerance time in seconds of  silent  metrics                                                                  | 60            |
+| streampark.flink-Kubernetes.tracking.polling-task-timeout-sec.job-status     | timeout in seconds of flink state tracking task                                                                      | 120           |
+| streampark.flink-Kubernetes.tracking.polling-task-timeout-sec.cluster-metric | timeout in seconds of flink metrics tracking task                                                                    | 120           |
+| streampark.flink-Kubernetes.tracking.polling-interval-sec.job-status         | interval in seconds of flink state tracking task.To maintain accuracy, please set below 5s, the best setting is 2-3s | 5             |
+| streampark.flink-Kubernetes.tracking.polling-interval-sec.cluster-metric     | interval in seconds of flink metrics tracking task                                                                   | 10            |
+| streampark.flink-Kubernetes.tracking.silent-state-keep-sec                   | fault tolerance time in seconds of  silent  metrics                                                                  | 60            |
 
