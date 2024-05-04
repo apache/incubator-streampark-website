@@ -18,7 +18,7 @@
   "en": {
     "download": "Download Apache StreamPark (incubating)",
     "downloadDesc1": "The Apache StreamPark supports Scala 2.11 and 2.12. The dist file name rule is: apache-streampark_${scala.version}-${streampark.version}-incubating-bin.tar.gz，e.g:",
-    "downloadDesc2": "The 2.11/2.12 is a version of StreamPark adapted to Scala, the 2.1.4 is a version of StreamPark. download which one depends on the user's Scala version of Apache Flink/Spark, users need to download the file of StreamPark that matches the Scala version of Apache Flink/Spark.",
+    "downloadDesc2": "The 2.11/2.12 is a version of StreamPark adapted to Scala, the 2.1.4 is a version of StreamPark. Download which one depends on the user's Scala version of Apache Flink/Spark, users need to download the file of StreamPark that matches the Scala version of Apache Flink/Spark.",
     "latestVersion": "The latest release",
     "archived": "All archived releases",
     "note": "Previous releases of StreamPark may be affected by security issues, please use the latest one.",
