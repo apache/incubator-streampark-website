@@ -1,14 +1,8 @@
 {
   "zh-CN": {
     "download": "下载 Apache StreamPark (incubating)",
-    "last": {
-      "title": "请从下表中选择 StreamPark 版本下载，推荐最新版本。",
-      "verification": "验证下载版本，请使用相应的哈希（sha512）、签名和",
-      "projectKey": "项目发布KEYS",
-      "check": "检查哈希（sha512）和签名的说明显示在",
-      "verify": "验证说明",
-      "page": "页面"
-    },
+    "downloadDesc1": "Apache StreamPark 支持 scala 2.11 和 2.12 两个版本，提供的二进制安装包文件名规则是：apache-streampark_${scala.version}-${streampark.version}-incubating-bin.tar.gz，如：",
+    "downloadDesc2": "这里的 2.11/2.12 为 StreamPark 适配 scala 的版本，2.1.4 则为 StreamPark 的版本，下载哪个文件，取决于用户的 Apache Flink/Spark 的 scala 版本， 下载和 Apache Flink/Spark 的 scala 版本匹配的 StreamPark 安装包即可。",
     "latestVersion": "最新版本",
     "archived": "所有存档的版本",
     "note": "以前版本的 StreamPark 可能会受到安全问题的影响，请考虑使用最新版本。",
@@ -23,14 +17,8 @@
   },
   "en": {
     "download": "Download Apache StreamPark (incubating)",
-    "last": {
-      "title": "Please choose a StreamPark version to download from the following tables, the latest release is recommended.",
-      "verification": "Please verify the release with corresponding hashes(sha512), signatures and ",
-      "projectKey": "project release KEYS",
-      "check": "The instructions for checking hashes(sha512) and signatures is indicated on",
-      "verify": "Verify Instructions",
-      "page": "page"
-    },
+    "downloadDesc1": "The Apache StreamPark supports scala 2.11 and 2.12. The dist file name rule is：apache-streampark_${scala.version}-${streampark.version}-incubating-bin.tar.gz，e.g:",
+    "downloadDesc2": "The 2.11/2.12 is a version of StreamPark adapted to scala, The 2.1.4 is a version of StreamPark. Download which one depends on the user's scala version of Apache Flink/Spark，Users need to download the file of StreamPark that matches the scala version of Apache Flink/Spark.",
     "latestVersion": "The latest release",
     "archived": "All archived releases",
     "note": "Previous releases of StreamPark may be affected by security issues, please use the latest one.",
