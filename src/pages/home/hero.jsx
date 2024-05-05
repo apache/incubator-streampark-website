@@ -22,7 +22,7 @@ export default function () {
       <div className="section hero-main pb-6 overflow-hidden main-page">
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
-        <div className="container-fluid pb-2 cover-container container hero-px">
+        <div className="container-fluid pb-2 cover-container container-hero hero-px">
           <div className="row justify-content-center">
             <div
               className="col-10 col-sm-10 col-md-10 col-lg-6 align-self-center pe-0"

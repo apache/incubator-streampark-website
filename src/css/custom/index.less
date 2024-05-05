@@ -1122,27 +1122,19 @@ img {
   }
 }
 
-@media (min-width: 1440px) {
-  .docs-wrapper {
-    .container {
-      max-width: 95% !important;
-      margin-left: 1rem;
-    }
-  }
-}
-
-@media (min-width: 997px) {
-  .docs-wrapper {
-    .container {
-      margin-left: 1rem;
-    }
-  }
-}
-
 @media screen and (max-width: 996px) {
-  .container {
+
+  .container,
+  .container-hero {
     margin-left: 12px !important;
     margin-right: 12px !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container-hero {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 
@@ -1154,6 +1146,21 @@ img {
   .container {
     max-width: 1200px !important;
     min-width: 1200px !important;
+  }
+
+  .docs-wrapper {
+    .container {
+      margin-left: 1rem;
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .docs-wrapper {
+    .container {
+      max-width: 95% !important;
+      margin-left: 1rem;
+    }
   }
 }
 
