@@ -5,17 +5,17 @@ import Home from './home'
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import "../css/font.css"
 import "../css/font-awesome.min.css"
-export default function() {
+export default function () {
     const isBrowser = useIsBrowser();
-    const {siteConfig} = useDocusaurusContext();
+    const { siteConfig } = useDocusaurusContext();
 
     const pathname = isBrowser && location.pathname
 
     useEffect(() => {
         if (isBrowser) {
             const nav = document.getElementsByTagName('nav')[0];
-            const classList = nav &&  nav.classList;
-            if(!classList) return;
+            const classList = nav && nav.classList;
+            if (!classList) return;
             if (pathname === '/' || pathname === '/zh-CN/') {
                 classList.add('index-nav');
             } else {
@@ -29,7 +29,7 @@ export default function() {
             title={siteConfig.title}
             description="Description will go into a meta tag in <head />">
             <main>
-                <Home/>
+                <Home />
             </main>
         </Layout>
     );

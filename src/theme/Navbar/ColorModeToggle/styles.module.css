@@ -1,0 +1,33 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+ .colorModeButton {
+  display: none;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  gap: 8px;
+  color: var(--click-color-secondary-button-text);
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+
+  @media screen and (min-width: 997px) {
+    display: flex; 
+  }
+}
+
+.colorModeButton:hover {
+  background: var(--ifm-menu-color-background-active);
+}
+
+.colorModeButton span {
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+

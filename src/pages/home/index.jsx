@@ -21,7 +21,7 @@ export default function () {
           once: !0
         });
         window.addEventListener('load', AOS.refresh);
-        return <div className="home-wrap">
+        return <div className="home-wrap overflow-hidden">
           <Hero />
           <Feature />
           <Performance />

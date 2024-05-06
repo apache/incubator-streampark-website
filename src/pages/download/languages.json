@@ -5,6 +5,8 @@
     "downloadDesc2": "这里的 2.11/2.12 为 StreamPark 适配 Scala 的版本，2.1.4 则为 StreamPark 的版本，下载哪个文件，取决于用户的 Apache Flink/Spark 的 Scala 版本， 下载和 Apache Flink/Spark 的 Scala 版本匹配的 StreamPark 安装包即可。",
     "latestVersion": "最新版本",
     "archived": "所有存档的版本",
+    "instructions": "说明",
+    "notes": "注意",
     "note": "以前版本的 StreamPark 可能会受到安全问题的影响，请考虑使用最新版本。",
     "table": {
       "version": "版本",
@@ -21,6 +23,8 @@
     "downloadDesc2": "The 2.11/2.12 is a version of StreamPark adapted to Scala, the 2.1.4 is a version of StreamPark. Download which one depends on the user's Scala version of Apache Flink/Spark, users need to download the file of StreamPark that matches the Scala version of Apache Flink/Spark.",
     "latestVersion": "The latest release",
     "archived": "All archived releases",
+    "instructions": "Instructions",
+    "notes": "Notes",
     "note": "Previous releases of StreamPark may be affected by security issues, please use the latest one.",
     "table": {
       "version": "Version",

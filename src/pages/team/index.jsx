@@ -18,7 +18,7 @@ export default function () {
   }
 
   function avatarUrl(id) {
-    return 'https://avatars.githubusercontent.com/u/'+ id + '?v=4'
+    return 'https://avatars.githubusercontent.com/u/' + id + '?v=4'
   }
 
   return (
@@ -33,20 +33,20 @@ export default function () {
           once: !0
         });
         window.addEventListener('load', AOS.refresh);
-        return <div className="block team_page" style={{ padding: "10px 0 30px" }}>
+        return <div className="block team_page container overflow-hidden" style={{ padding: "10px 0 30px" }}>
             <h3 className="fs-2 mb-4 fw-bold text-center">StreamPark Team</h3>
             <hr className="divider my-4 mx-auto" style={{ maxWidth: "10rem" }}></hr>
             <p className="team_desc team_indent">{dataSource.info.desc}</p>
-            <h3 className="team_title mb-5">
+            <h3 className="team_title">
               Mentor
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.mentor.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -64,16 +64,16 @@ export default function () {
               }
             </div>
 
-            <h3 className="team_title mb-5">
+            <h3 className="team_title">
               PPMC
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.PPMC.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -91,16 +91,16 @@ export default function () {
               }
             </div>
 
-            <h3 className="team_title mb-5">
+            <h3 className="team_title">
               Committer
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.committer.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -118,12 +118,12 @@ export default function () {
               }
             </div>
 
-            <h3 className="team_title mb-5">
+            <h3 className="team_title">
               Contributors
             </h3>
             <span className="desc">{dataSource.info.contributors}</span>
             <div className="row py-4">
-              <img src="https://contrib.rocks/image?repo=apache/streampark"/>
+              <img src="https://contrib.rocks/image?repo=apache/streampark" />
             </div>
 
           </div>;

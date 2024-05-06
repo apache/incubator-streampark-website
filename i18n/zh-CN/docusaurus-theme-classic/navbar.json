@@ -3,7 +3,7 @@
     "message": "首页",
     "description": "Navbar item with label HOME"
   },
-  "item.label.Document": {
+  "item.label.Documentation": {
     "message": "文档",
     "description": "Navbar item with label DOC"
   },

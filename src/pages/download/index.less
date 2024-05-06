@@ -1,38 +1,17 @@
-@import url('/src/styles/variable.less');
-[data-theme="dark"] .download_page .custom-info-block {
-  background-color: rgba(255, 255, 255, 0.07) !important;
-  border: 1px solid #5e44ee;
-  color: #b5bbc5;
-  .custom-block-title{
-    color: #f3f4f5;
-  }
-}
 .download_page {
+  margin-top: 50px !important;
 
   a {
     text-decoration: none;
   }
 
-  margin-top: 50px !important;
-
-
   .custom-info-block {
-    margin: 28px 0;
-    padding: 20px 24px 4px 42px;
-    border-radius: 5px;
-    transition: color .5s, background-color .5s;
-    position: relative;
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 500;
-    color: #0000008c;
-    background-color: #f9f9f9;
-    border: 1px solid var(--ifm-color-warning);
-    .info-icon{
-      width:25px;
-      height:25px;
-      margin-right:5px;
+    .info-icon {
+      width: 25px;
+      height: 25px;
+      margin-right: 5px;
     }
+
     .custom-block-title {
       margin-bottom: 0px;
       font-size: 17px;
@@ -45,14 +24,12 @@
       position: relative;
       padding: 4px 0;
     }
-
   }
 
   .table-ui {
     display: table;
     max-width: 100%;
     width: 100%;
-    // background: #fff;
     background-color: var(--ifm-table-background);
     border: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
     -webkit-box-shadow: none;
@@ -83,7 +60,7 @@
         font-weight: 700;
         text-transform: none;
         border: none;
-        border-right:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+        border-right: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
 
         &:last-child {
           border-right: none;
@@ -107,8 +84,8 @@
         td {
           border: none;
           color: var(--ifm-table-cell-color);
-          border-top:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
-          border-right:var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+          border-top: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
+          border-right: var(--ifm-table-border-width) solid var(--ifm-table-border-color);
 
           &:last-child {
             border-right: none;
@@ -116,6 +93,112 @@
         }
 
       }
+    }
+  }
+}
+
+@media screen and (max-width: 996px) {
+  .release-card {
+    --border-color: #30363db3;
+    margin-bottom: 40px;
+    font-size: 16px;
+
+    .release-card-date {
+      margin-bottom: 12px;
+    }
+
+    .release-card-container {
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      line-height: 26px;
+      padding: 20px 16px;
+
+      .release-card-header {
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
+
+      .release-card-label-latest {
+        --border-color-success: #238636;
+        border-color: var(--border-color-success);
+        color: var(--border-color-success);
+        line-height: 4px;
+        border: 1px solid;
+        font-weight: 500;
+        padding: 7px 10px;
+        white-space: nowrap;
+        border-radius: 2rem;
+        height: 22px;
+        margin-top: 10px;
+      }
+
+      .release-card-title {
+        margin-top: 30px;
+      }
+
+      .release-card-symbol {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    }
+
+    span {
+      display: inline-block;
+    }
+
+    ul {
+      margin: 0;
+      margin-left: 10px;
+    }
+  }
+
+  .download_page {
+    .custom-info-block {
+      font-size: 0.875rem;
+      line-height: 1.3;
+      margin-bottom: 3rem;
+      opacity: .8;
+
+      li {
+        list-style-type: circle;
+      }
+    }
+  }
+
+  [data-theme="dark"] .download_page .custom-info-block {
+    --text-color: #b5bbc5;
+    color: var(--text-color);
+
+    .custom-block-title {
+      color: var(--text-color);
+    }
+  }
+}
+
+@media screen and (min-width: 997px) {
+  .download_page {
+    .custom-info-block {
+      margin: 28px 0;
+      padding: 20px 24px 4px 42px;
+      border-radius: 5px;
+      transition: color .5s, background-color .5s;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 500;
+      color: #0000008c;
+      background-color: #f9f9f9;
+      border: 1px solid var(--ifm-color-warning);
+    }
+  }
+
+  [data-theme="dark"] .download_page .custom-info-block {
+    background-color: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid #5e44ee;
+    color: #b5bbc5;
+
+    .custom-block-title {
+      color: #f3f4f5;
     }
   }
 }

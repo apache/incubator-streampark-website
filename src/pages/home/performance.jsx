@@ -12,7 +12,7 @@ export default function () {
   const dataSource = config?.[language];
 
   return (
-    <div className="section py-6 py-md-7">
+    <div className="section py-6 py-md-7 overflow-hidden performance">
       <div className="container">
         <div className="row text-center">
           <div className="col-12">
@@ -23,8 +23,8 @@ export default function () {
           </div>
         </div>
 
-        <div className="row mb-3 ">
-          <div className="col-6 ">
+        <div className="row performance-block-first">
+          <div className="col-md-6 col-sm-12">
             <ol className="process-vertical ps-0" >
               {
                 dataSource.development.map((item, i) => (
@@ -44,23 +44,23 @@ export default function () {
               }
             </ol>
           </div>
-          <div className="col-6  mb-5 align-self-center">
+
+          <div className="col-md-6 col-sm-12 mb-5 align-self-center">
             <div className="mb-5 my-lg-0 coder-bg" data-aos="fade-left" data-aos-delay="100">
               <img className="coder" width="70%"></img>
             </div>
           </div>
-
         </div>
         <div className='border-dot'></div>
         <div className="row mb-5 mt-5 mb-lg-7">
-          <div className="col-6 align-self-center">
-            <div className="px-5 px-md-7 mb-5 my-lg-0" data-aos="fade-up" data-aos-delay="100">
-              <Coding className="img-fluid" />
+          <div className="col-md-6 col-sm-12 align-self-center">
+            <div className="px-5 px-md-7 mb-5 my-lg-0 coder-bg" data-aos="fade-up" data-aos-delay="100">
+              <Coding className="img-fluid-coding" />
             </div>
           </div>
 
-          <div className="col-6 ">
-            <div className="mb-5 my-lg-0" data-aos="fade-up" data-aos-delay="200">
+          <div className="col-md-6 col-sm-12">
+            <div className="mb-5 my-lg-0 coder-bg" data-aos="fade-up" data-aos-delay="200">
               <img className="code" alt="QuickStart DataStream"></img>
             </div>
           </div>

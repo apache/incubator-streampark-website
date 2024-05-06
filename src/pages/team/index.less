@@ -1,18 +1,17 @@
-@import url('/src/styles/variable.less');
-
 .team_page {
 
   a {
     text-decoration: none;
   }
 
-  margin-top: 50px!important;
+  margin-top: 50px !important;
 
   .team_title {
     font-size: 25px;
     font-weight: 500;
     color: var(--ifm-color-primary-contrast-foreground);
     margin-top: 50px;
+    margin-bottom: 3rem;
   }
 
   .team_desc {
@@ -28,90 +27,25 @@
     color: var(--ifm-color-gray-700);
     margin-left: 1.2rem;
   }
-
-  .character_list {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
-    padding: 20px 0 0px;
-
-    .character_item {
-      border: 1px solid rgba(205, 221, 250, 0.8);
-      background-color: rgba(205, 222, 234, 0.2);
-      box-shadow: 0 3px 5px rgb(47 85 212 / 8%);
-      border-radius: 2px;
-      min-width: 0;
-      padding: 0 10px 5px;
-      margin: 40px 0 42px 0;
-
-      .character_avatar {
-        width: 120px;
-        height: 120px;
-        background: #D8D8D8;
-        display: inline-block;
-        border-radius: 50%;
-        border: 5px solid rgba(255, 255, 255, .08);
-        margin: -4rem auto -.5rem;
-      }
-
-      .character_name {
-        color: @enhance-color;
-        line-height: 36px;
-        font-size: 15px;
-        white-space: nowrap;
-        font-weight: 400;
-        overflow: hidden;
-        background-color: #fff;
-        margin-top: 20px;
-        border-radius: 18px;
-        text-overflow: ellipsis;
-        border: 1px solid rgba(205, 221, 250, 0.6);
-        box-shadow: 0 3px 5px rgb(47 85 212 / 5%);
-      }
-
-      .character_id {
-        color: #333;
-        line-height: 36px;
-        font-size: 12px;
-        white-space: nowrap;
-        font-weight: 400;
-        overflow: hidden;
-        border-radius: 18px;
-        background-color: #fff;
-        text-overflow: ellipsis;
-        border: 1px solid rgba(205, 221, 250, 0.6);
-        box-shadow: 0 3px 5px rgb(47 85 212 / 5%);
-
-        .githubId {
-          color: #666;
-          margin-right: 2px;
-        }
-      }
-
-      .character_link {
-        color: rgba(15, 18, 34, 0.65);
-        font-weight: 400;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
 }
-
 
 /*****************************
   team
 *****************************/
-.team-box{
-  width: 20% !important;
+.team-group {
+  --colum-width: minmax(165px, 1fr);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--colum-width));
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
 }
+
 .team-user-img {
+  aspect-ratio: 1 / 1;
   min-width: 100px;
-  border-radius:50%;
+  border-radius: 50%;
   border: 5px solid #fff;
-  box-shadow: 0 .375rem 1.5rem 0 rgba(87,96,113,.125)!important;
+  box-shadow: 0 .375rem 1.5rem 0 rgba(87, 96, 113, .125) !important;
 }
 
 [data-theme="dark"] .team-user-img {
@@ -127,13 +61,15 @@
 .hover-top-in:hover .hover-top--in {
   top: -10px
 }
+
 .bg-team {
-  margin-top: -1.5rem!important;
+  margin-top: -1.5rem !important;
   padding: 2.5rem 1rem .5rem 1rem;
-  background-color: rgb(255,255,255)!important;
+  background-color: rgb(255, 255, 255) !important;
   border-radius: .75rem;
-  box-shadow: 0 .375rem 1.5rem 0 rgba(87,96,113,.125)!important;
+  box-shadow: 0 .375rem 1.5rem 0 rgba(87, 96, 113, .125) !important;
 }
+
 .team-link {
   background-color: #fff;
   border-radius: 50%;
@@ -145,9 +81,10 @@
   text-align: center;
   font-size: 75%;
   line-height: normal;
-  margin-right:.25rem;
+  margin-right: .25rem;
+
   .github-icon {
-    width: 20px ;
+    width: 20px;
     height: 20px;
     color: #fff;
   }
@@ -160,9 +97,27 @@
 [data-theme="dark"] {
 
   .bg-team {
-    background-color: rgb(14,17,20)!important;
+    background-color: rgb(14, 17, 20) !important;
   }
 }
-.team-name{
+
+.team-name {
   font-size: 1rem;
+  height: 40px;
+}
+
+// mobile theme
+@media screen and (max-width: 996px) {
+  .team_page {
+    margin-top: 20px !important;
+
+    .team_indent {
+      line-height: 30px;
+    }
+
+    .team_title {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+  }
 }
