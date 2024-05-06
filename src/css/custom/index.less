@@ -767,6 +767,10 @@ table td {
   .dropdown__link {
     padding: .5rem 1.5rem;
   }
+
+  .locale_menu {
+    width: 14px;
+  }
 }
 
 [data-theme='light'] .secondary-nav--items .navbar__link {
@@ -1136,8 +1140,19 @@ img {
   }
 
   .navbar {
+    --navbar-font-size: 1.2rem;
+
+    .navbar__logo {
+      width: 57px;
+      height: 35px;
+    }
+
     .navbar-sidebar__items {
-      font-size: 1.2rem;
+      font-size: var(--navbar-font-size);
+    }
+
+    .locale_menu {
+      width: var(--navbar-font-size);
     }
   }
 }
@@ -1176,10 +1191,6 @@ img {
 }
 
 @media (min-width: 1600px) {
-  :root {
-    --ifm-navbar-item-padding-horizontal: 0.5rem;
-  }
-
   .container {
     max-width: 1320px !important;
     min-width: 1320px !important;

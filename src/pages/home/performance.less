@@ -69,7 +69,7 @@
   .border-dot {
     --width: min(100%, 500px);
     width: var(--width);
-    margin-left: calc((100% / 2 - var(--width)) / 2); // 取中
+    margin-left: max(calc((100% / 2 - var(--width)) / 2), 0); // 取中
 
     border: 1px dashed #e8e8e8;
     margin-bottom: 5rem;

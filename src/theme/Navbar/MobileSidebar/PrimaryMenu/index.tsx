@@ -22,10 +22,11 @@ export default function NavbarMobilePrimaryMenu(): JSX.Element {
   // TODO how can the order be defined for mobile?
   // Should we allow providing a different list of items?
   const items = useNavbarItems();
+  const ignoreType = ['custom-githubstar']
 
   return (
     <ul className="menu__list">
-      {items.map((item, i) => (
+      {items.filter(a => !ignoreType.includes(a.type)).map((item, i) => (
         <NavbarItem
           mobile
           {...item}
