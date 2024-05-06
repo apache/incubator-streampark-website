@@ -18,8 +18,8 @@ sidebar_position: 1
 
 ## 🎉 Features
 
-* Flink 和 Spark 应用程序开发脚手架
-* 支持多个版本的 Flink 和 Spark
+* Apache Flink 和 Apache Spark 应用程序开发脚手架
+* 支持多个版本的 Apache Flink 和 Apache Spark
 * 一系列开箱即用的连接器
 * 一站式流处理运营平台
 * 支持 Catalog / OLAP / Streaming Warehouse 等场景
