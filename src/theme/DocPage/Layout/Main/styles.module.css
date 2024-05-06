@@ -3,11 +3,11 @@
   width: 100%;
   height: 100%;
   padding-bottom: 2rem;
+}
 
-  .container {
-    min-width: none!important;
-    max-width: none!important;
-  }
+.docMainContainer .container {
+  min-width: none!important;
+  max-width: none!important;
 }
 
 @media (min-width: 997px) {
