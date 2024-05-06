@@ -32,13 +32,16 @@
 /*****************************
   team
 *****************************/
-.team-box {
-  width: 20% !important;
-  max-width: 250px;
-  min-width: 165px;
+.team-group {
+  --colum-width: minmax(165px, 1fr);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--colum-width));
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
 }
 
 .team-user-img {
+  aspect-ratio: 1 / 1;
   min-width: 100px;
   border-radius: 50%;
   border: 5px solid #fff;

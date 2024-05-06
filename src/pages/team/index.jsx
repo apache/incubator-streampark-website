@@ -18,7 +18,7 @@ export default function () {
   }
 
   function avatarUrl(id) {
-    return 'https://avatars.githubusercontent.com/u/'+ id + '?v=4'
+    return 'https://avatars.githubusercontent.com/u/' + id + '?v=4'
   }
 
   return (
@@ -41,12 +41,12 @@ export default function () {
               Mentor
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.mentor.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -68,12 +68,12 @@ export default function () {
               PPMC
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.PPMC.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -95,12 +95,12 @@ export default function () {
               Committer
               <span className="desc">{dataSource.info.tip}</span>
             </h3>
-            <div className="row py-4">
+            <div className="team-group">
               {
                 dataSource.committer.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -123,7 +123,7 @@ export default function () {
             </h3>
             <span className="desc">{dataSource.info.contributors}</span>
             <div className="row py-4">
-              <img src="https://contrib.rocks/image?repo=apache/streampark"/>
+              <img src="https://contrib.rocks/image?repo=apache/streampark" />
             </div>
 
           </div>
