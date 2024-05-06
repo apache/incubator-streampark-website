@@ -17,36 +17,20 @@ export default function () {
     <Layout>
       <div className="block download_page container" style={{ padding: "10px 0 30px" }}>
         <h2 className="fs-4 mb-4 fw-bold">{dataSource.download}</h2>
-        <div className="custom-info-block">
-          <div className='d-flex align-items-center'>
-            <InfoSvg className='info-icon' />
-            <p className="custom-block-title">{dataSource.instructions}</p>
-          </div>
-          <ul>
-            <li>{dataSource.last.title}</li>
-            <li>
-              <span>{dataSource.last.verification} </span>
-              <a href='https://downloads.apache.org/incubator/streampark/KEYS' target="_blank">
-                {dataSource.last.projectKey}
-              </a>.
-            </li>
-            <li>
-              <span>{dataSource.last.check} </span>
-              <a href='https://www.apache.org/dyn/closer.cgi#verify' target="_blank">
-                {dataSource.last.verify}
-              </a>
-              <span> {dataSource.last.page}.</span>
-            </li>
-          </ul>
+        <div>
+          <span> {dataSource.downloadDesc1}</span>
+          <li>apache-streampark_<span style={{ color: 'red' }}>2.11</span>-<span style={{ color: 'blue' }}>2.1.4</span>-incubating-bin.tar.gz</li>
+          <li>apache-streampark_<span style={{ color: 'red' }}>2.12</span>-<span style={{ color: 'blue' }}>2.1.4</span>-incubating-bin.tar.gz</li>
+          <span>{dataSource.downloadDesc2}</span>
         </div>
-        <h3 className="fs-4 mb-4 fw-bold">{dataSource.latestVersion}</h3>
+        <h3 className="fs-4 mb-4 mt-4 fw-bold">{dataSource.latestVersion}</h3>
         <ReleaseTable dataSource={lastRelease} latest={true}>
         </ReleaseTable>
         <h3 className="fs-4 mb-4 fw-bold">{dataSource.archived}</h3>
         <div className="custom-info-block">
           <div className='d-flex align-items-center'>
             <InfoSvg className='info-icon' />
-            <p className="custom-block-title">{dataSource.notes}</p>
+            <p className="custom-block-title">Note</p >
           </div>
           <ul>
             <li>{dataSource.note}</li>
