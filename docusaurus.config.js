@@ -64,14 +64,12 @@ const config = {
   presets: [
     [
       '@docusaurus/preset-classic',
-      // TODO: [remove] 新增提升
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
           editLocalizedFiles: true,
-          // TODO(fwx): [remove] 默认菜单收起
           sidebarCollapsed: true,
           // Please change this to your repo.
           editUrl: 'https://github.com/apache/incubator-streampark-website/edit/dev/'
@@ -87,9 +85,7 @@ const config = {
             'https://github.com/apache/incubator-streampark-website/edit/dev/'
         },
         theme: {
-          // TODO: [remove] 改为多css引入
           customCss: [
-            // require.resolve('./src/css/custom.css'),
             require.resolve('./src/css/custom/index.less'),
           ],
         },
@@ -98,7 +94,6 @@ const config = {
   ],
 
   themeConfig:
-    // TODO(fwx): [remove] 添加代码提示
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       validate: function () { return true },
@@ -250,7 +245,7 @@ const config = {
                 to: '/en',
               },
               {
-                label: 'Chinese',
+                label: '简体中文',
                 to: '/zh-CN',
               },
             ],
@@ -302,7 +297,6 @@ const config = {
       },
 
       prism: {
-        // TODO(fwx): [remove] 代码块theme样式调整
         theme: darkTheme,
         darkTheme: darkTheme,
         additionalLanguages: ['powershell', 'java', 'scala', 'yaml'],

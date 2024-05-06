@@ -19,7 +19,7 @@ export default function () {
         <div className="custom-info-block">
           <div className='d-flex align-items-center'>
             <InfoSvg className='info-icon' />
-            <p className="custom-block-title">Instructions</p>
+            <p className="custom-block-title">{dataSource.instructions}</p>
           </div>
           <ul>
             <li>{dataSource.last.title}</li>
@@ -45,7 +45,7 @@ export default function () {
         <div className="custom-info-block">
           <div className='d-flex align-items-center'>
             <InfoSvg className='info-icon' />
-            <p className="custom-block-title">Note</p>
+            <p className="custom-block-title">{dataSource.notes}</p>
           </div>
           <ul>
             <li>{dataSource.note}</li>

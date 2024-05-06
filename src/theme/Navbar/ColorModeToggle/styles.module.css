@@ -21,6 +21,7 @@
     display: flex; 
   }
 }
+
 .colorModeButton:hover {
   background: var(--ifm-menu-color-background-active);
 }

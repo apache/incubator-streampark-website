@@ -11,6 +11,8 @@
     },
     "latestVersion": "最新版本",
     "archived": "所有存档的版本",
+    "instructions": "说明",
+    "notes": "注意",
     "note": "以前版本的 StreamPark 可能会受到安全问题的影响，请考虑使用最新版本。",
     "table": {
       "version": "版本",
@@ -33,6 +35,8 @@
     },
     "latestVersion": "The latest release",
     "archived": "All archived releases",
+    "instructions": "Instructions",
+    "notes": "Notes",
     "note": "Previous releases of StreamPark may be affected by security issues, please use the latest one.",
     "table": {
       "version": "Version",
