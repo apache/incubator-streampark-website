@@ -9,6 +9,7 @@ import ReleaseTable from "./table"
 export default function () {
   const isBrowser = useIsBrowser();
   const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
+
   const dataSource = config?.[language];
   const lastRelease = [downloadDataSource[0]];
   const archived = downloadDataSource.slice(1, downloadDataSource.length)
@@ -56,7 +57,7 @@ export default function () {
         <h4>License</h4>
         <p>
           <em>
-            <span>The software licensed under </span>
+            <span>The software is licensed under the </span>
             <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">
               Apache License 2.0
             </a>.

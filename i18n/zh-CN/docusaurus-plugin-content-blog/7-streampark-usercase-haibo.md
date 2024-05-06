@@ -74,7 +74,7 @@ StreamPark 在海博主要用于运行实时 Flink SQL任务: 读取 Kafka 上�
 
 **3. 数据分析模型管理**
 
-针对无法使用 Flink SQL 需要开发 Flink 代码的任务，例如: 实时布控模型、离线数据分析模型，StreamPark 提供了 Custom code 的方式, 允许用户上传可执行的 Flink Jar 包并运行。
+针对无法使用 Flink SQL 需要开发 Flink 代码的任务，例如: 实时布控模型、离线数据分析模型，StreamPark 提供了 Custom code 的方式，允许用户上传可执行的 Flink Jar 包并运行。
 
 目前，我们已经将人员，车辆等 20 余类分析模型上传至 StreamPark，交由 StreamPark 管理运行。
 
@@ -96,6 +96,6 @@ Datahub 是 Linkedin 开发的一个元数据管理平台，提供了数据源�
 
 Workbench 将使用全新的工作台式的 SQL 开发风格，选择数据源即可生成 SQL，进一步提升 Flink 任务开发效率。统一的 UDF 资源中心将解决当前每个任务都要上传依赖包的问题。批量任务调度功能将解决当前 StreamPark 无法调度任务的遗憾。
 
-下图是 StreamPark 开发者设计的原型图,敬请期待。
+下图是 StreamPark 开发者设计的原型图，敬请期待。
 
 ![](/blog/haibo/data_source.png)

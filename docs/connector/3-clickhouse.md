@@ -9,13 +9,11 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 [ClickHouse](https://clickhouse.com/) is a columnar database management system (DBMS) for online analytics (OLAP).
-Currently, Flink does not officially provide a connector for writing to ClickHouse and reading from ClickHouse.
+Currently, Apache Flink does not officially provide a connector for writing to ClickHouse and reading from ClickHouse.
 Based on the access form supported by [ClickHouse - HTTP client](https://clickhouse.com/docs/zh/interfaces/http/)
 and [JDBC driver](https://clickhouse.com/docs/zh/interfaces/jdbc), StreamPark encapsulates ClickHouseSink for writing data to ClickHouse in real-time.
 
-`ClickHouse` writes do not support transactions, using JDBC write data to it could provide (AT_LEAST_ONCE) semanteme. Using the HTTP client to write asynchronously,
-it will retry the asynchronous write multiple times. The failed data will be written to external components (Kafka, MySQL, HDFS, HBase),
-the data will be restored manually to achieve final data consistency.
+ClickHouse writes do not support transactions, using JDBC write data to it could provide (AT_LEAST_ONCE) semanteme. Using the HTTP client to write asynchronously, it will retry the asynchronous write multiple times. The failed data will be written to external components (Apache Kafka, MySQL, Apache Hadoop HDFS, Apache HBase), the data will be restored manually to achieve final data consistency.
 
 ## JDBC synchronous write
 
@@ -149,7 +147,7 @@ $ echo 'INSERT INTO t VALUES (1),(2),(3)' | curl 'http://localhost:8123/' --data
 
 The operation of the above method is relatively simple. Sure java could also be used for writing. StreamPark adds many functions to the http post writing method,
 including encapsulation enhancement, adding cache, asynchronous writing, failure retry, and data backup after reaching the retry threshold，
-To external components (kafka, mysql, hdfs, hbase), etc., the above functions only need to define the configuration file in the prescribed format,
+To external components (Apache Kafka, MySQL, HDFS, Apache HBase), etc., the above functions only need to define the configuration file in the prescribed format,
 and write the code.
 
 ### Write to ClickHouse

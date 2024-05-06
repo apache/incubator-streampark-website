@@ -22,7 +22,7 @@ tags: [StreamPark, 生产实践]
 
 在拥有庞大用户群体情况下，自如为了给用户提供更加优质的产品体验，实现企业的数字化转型，从 2021 年开始大力发展实时计算，Flink 在自如的实时计算中一直扮演着重要的角色。到目前为止，自如每日需要处理 TB 级别的数据，总共拥有 500+ 个实时作业，并支撑每日超过 1000 万次的数据调用请求。
 
-## **实时计算遇到的挑战**  
+## **实时计算遇到的挑战**
 
 在自如，实时计算大概分为 2 个应用场景：
 
@@ -58,7 +58,7 @@ tags: [StreamPark, 生产实践]
 
 因此，急需提高开发、调试的效率
 
-## **寻求解决方案之路**  
+## **寻求解决方案之路**
 
 在平台构建的初期阶段，2022 年初开始我们就全面调查了行业内的几乎所有相关项目，涵盖了商业付费版和开源版。经过调查和对比发现，这些项目都或多或少地存在一定的局限性，可用性和稳定性也无法有效地保障。
 
@@ -86,7 +86,7 @@ tags: [StreamPark, 生产实践]
 
 在 StreamPark 的基础上，我们进一步完善了相关的功能，其中包括对 LDAP 的支持，以便我们未来可以完全开放实时能力，让公司的四个业务线所属的分析师能够使用该平台，预计届时人数将达到 170 人左右。随着人数的增加，账号的管理变得越发重要，特别是在人员变动时，账号的注销和申请将成为一项频繁且耗时的操作。所以，接入 LDAP 变得尤为重要。因此我们及时和社区沟通，并且发起讨论，最终我们贡献了该 Feature。现在在 StreamPark 开启 LDAP 已经变得非常简单，只需要简单两步即可：
 
-#### step1:  填写对应的 LDAP 配置:
+#### step1: 填写对应的 LDAP 配置:
 
 编辑 application.yml 文件，设置 LDAP 基础信息，如下：
 
@@ -250,7 +250,7 @@ curl -X POST '/flink/app/start' \
 
 ![](/blog/ziru/http_scheduling.png)
 
-## **实践经验总结**  
+## **实践经验总结**
 
 在深度使用 StreamPark 实践过程中，我们总结了一些常见问题和实践过程中所探索出解决方案，我们把这些汇总成示例，仅供大家参考。
 
@@ -466,12 +466,12 @@ public Optional<String> getExistingHadoopConfigurationConfigMap() {
 
 @Override
 public Optional<String> getLocalHadoopConfigurationDirectory() {
-    // 2、如果没有 1 中指定的参数,查找提交 native 命令的本地环境是否有环境变量:HADOOP_CONF_DIR
+    // 2、如果没有 1 中指定的参数，查找提交 native 命令的本地环境是否有环境变量:HADOOP_CONF_DIR
     final String hadoopConfDirEnv = System.getenv(Constants.ENV_HADOOP_CONF_DIR);
     if (StringUtils.isNotBlank(hadoopConfDirEnv)) {
         return Optional.of(hadoopConfDirEnv);
     }
-    // 3、如果没有 2 中环境变量,再继续看否有环境变量:HADOOP_HOME
+    // 3、如果没有 2 中环境变量，再继续看否有环境变量:HADOOP_HOME
     final String hadoopHomeEnv = System.getenv(Constants.ENV_HADOOP_HOME);
     if (StringUtils.isNotBlank(hadoopHomeEnv)) {
         // Hadoop 2.2+
@@ -498,7 +498,7 @@ if (hadoopConfigurationFileItems.isEmpty()) {
             localHadoopConfigurationDirectory.get());
     return flinkPod;
 }
-// 如果 2 或者 3 存在,会在路径下查找 core-site.xml 和 hdfs-site.xml 文件
+// 如果 2 或者 3 存在，会在路径下查找 core-site.xml 和 hdfs-site.xml 文件
 private List<File> getHadoopConfigurationFileItems(String localHadoopConfigurationDirectory) {
     final List<String> expectedFileNames = new ArrayList<>();
     expectedFileNames.add("core-site.xml");
@@ -518,7 +518,7 @@ private List<File> getHadoopConfigurationFileItems(String localHadoopConfigurati
     }
 }
 
-//如果有 hadoop 的环境,将会把上述两个文件解析为 kv 对,然后构建成一个 ConfigMap,名字命名规则如下
+//如果有 hadoop 的环境，将会把上述两个文件解析为 kv 对，然后构建成一个 ConfigMap，名字命名规则如下
 public static String getHadoopConfConfigMapName(String clusterId) {
     return Constants.HADOOP_CONF_CONFIG_MAP_PREFIX + clusterId;
 }
@@ -539,7 +539,7 @@ netstat -tlnp | grep 10002
 
 ![](/blog/ziru/production_environment.png)
 
-## **未 来 期 待**  
+## **未 来 期 待**
 
 自如作为 StreamPark 早期的用户之一，我们一直和社区同学保持密切交流，参与 StreamPark 的稳定性打磨，我们将生产运维中遇到的 Bug 和新的 Feature 提交给了社区。在未来，我们希望可以在 StreamPark 上管理 Apache Paimon 湖表的元数据信息和 Paimon 的 Action 辅助作业的能力，基于 Flink 引擎通过对接湖表的 Catalog 和 Action 作业，来实现湖表作业的管理、优化于一体的能力。目前 StreamPark 正在对接 Paimon 数据集成的能力，这一块在未来对于实时一键入湖会提供很大的帮助。
 

@@ -8,16 +8,14 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[ClickHouse](https://clickhouse.com/)是一个用于联机分析(OLAP)的列式数据库管理系统(DBMS)，主要面向OLAP场景。目前flink官方未提供写入
-读取clickhouse数据的连接器。StreamPark 基于ClickHouse 支持的访问形式[HTTP客户端](https://clickhouse.com/docs/zh/interfaces/http/)、
-[JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)封装了ClickHouseSink用于向clickhouse实时写入数据。
+[ClickHouse](https://clickhouse.com/) 是一个用于联机分析（OLAP）的列式数据库管理系统，主要面向 OLAP 场景。目前 Apache Flink 官方未提供写入
+读取 ClickHouse 数据的连接器。Apache StreamPark 基于 ClickHouse 支持的访问形式 [HTTP 客户端](https://clickhouse.com/docs/zh/interfaces/http/)、[JDBC 驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)封装了 `ClickHouseSink` 用于向 ClickHouse 实时写入数据。
 
-`ClickHouse`写入不支持事务，使用 JDBC 向其中写入数据可提供 AT_LEAST_ONCE (至少一次)的处理语义。使用 HTTP客户端 异步写入，对异步写入重试多次
-失败的数据会写入外部组件（kafka,mysql,hdfs,hbase）,最终通过人为介入来恢复数据，实现最终数据一致。
+ClickHouse 写入不支持事务，使用 JDBC 向其中写入数据可提供至少一次的处理语义。使用 HTTP 客户端异步写入，对异步写入重试多次失败的数据会写入外部组件,最终通过人为介入来恢复数据，实现最终数据一致。
 
 ## JDBC 同步写入
 
-[ClickHouse](https://clickhouse.com/)提供了[JDBC驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/),需要先导入clickhouse的jdbc驱动包
+[ClickHouse](https://clickhouse.com/) 提供了 [JDBC 驱动](https://clickhouse.com/docs/zh/interfaces/jdbc/)，需要先导入 ClickHouse 的 JDBC 驱动包：
 
 ```xml
 <dependency>

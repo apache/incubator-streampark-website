@@ -6,7 +6,7 @@ sidebar_position: 7
 
 ## Background Introduction
 
-In the actual production environment, Flink jobs are generally complex, and usually require multiple external components. For example, Flink jobs consume data from Kafka, then connect external components such as HBase or Redis to obtain additional business information, and then write it to the downstream external components. There are the following problems.
+In the actual production environment, Flink jobs are generally complex, and usually require multiple external components. For example, Flink jobs consume data from Kafka, then connect external components such as Apache HBase or Redis to obtain additional business information, and then write it to the downstream external components. There are the following problems.
 
 - The connection information of external components, such as IP, port and user password, needs to be configured in the application args and transferred to the Flink job, 
   so that the connection information of external components is distributed in multiple applications. Once the connection information of external components changes, 

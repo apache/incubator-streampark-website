@@ -1,5 +1,5 @@
 ---
-id: 'Hbase-Connector'
+id: 'HBase-Connector'
 title: 'Apache HBase Connector'
 sidebar_position: 6
 ---
@@ -7,37 +7,36 @@ sidebar_position: 6
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Apache HBase](https://hbase.apache.org/book.html)是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用HBase技术可在廉价PC Server
-上搭建起大规模结构化存储集群。 HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase基于列的而不是基于行的模式。
+[Apache HBase](https://hbase.apache.org/book.html) 是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统，利用 HBase 技术可在廉价服务器上搭建起大规模结构化存储集群。HBase不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库，HBase 基于列的而不是基于行的模式。
 
-flink官方未提供Hbase DataStream的连接器。StreamPark 基于`Hbase-client`封装了HBaseSource、HBaseSink,支持依据配置自动创建连接，简化开发。
-StreamPark 读取Hbase在开启chekpoint情况下可以记录读取数据的最新状态，通过数据本身标识可以恢复source对应偏移量。实现source端AT_LEAST_ONCE(至少一次语义)。
-HbaseSource 实现了flink Async I/O，用于提升streaming的吞吐量，sink端默认支持AT_LEAST_ONCE (至少一次)的处理语义。在开启checkpoint情况下支持EXACTLY_ONCE()精确一次语义。
+Apache Flink 官方未提供 HBase DataStream 的连接器。Apache StreamPark 基于 HBase client 封装了 HBaseSource、HBaseSink，支持依据配置自动创建连接，简化开发。StreamPark 读取 HBase 在开启 chekpoint 情况下可以记录读取数据的最新状态，通过数据本身标识可以恢复 source 对应偏移量。实现 source 端至少一次语义。
+
+HBaseSource 实现了 Flink 的 Async I/O 接口，可以提升流处理的吞吐量。Sink 端默认支持至少一次的处理语义。在开启 checkpoint 情况下支持精确一次语义。
 
 :::tip 提示
-StreamPark 读取HBASE在开启chekpoint情况下可以记录读取数据的最新状态，作业恢复后从是否可以恢复之前状态完全取决于数据本身是否有偏移量的标识，需要在代码手动指定。
-在HBaseSource的getDataStream方法func参数指定恢复逻辑。
+
+StreamPark 读取 HBase 在开启 chekpoint 情况下可以记录读取数据的最新状态，作业恢复后从是否可以恢复之前状态完全取决于数据本身是否有偏移量的标识，需要在代码手动指定。在 HBaseSource 的 getDataStream 方法 func 参数指定恢复逻辑。
+
 :::
 
 ## HBase写入依赖
-HBase Maven依赖
+
+HBase Maven 依赖:
+
 ```xml
 <dependency>
-<groupId>org.apache.hbase</groupId>
-<artifactId>hbase-client</artifactId>
-<version>${hbase.version}</version>
+  <groupId>org.apache.hbase</groupId>
+  <artifactId>hbase-client</artifactId>
+  <version>${hbase.version}</version>
 </dependency>
-```
-```xml
-
 <dependency>
-<groupId>org.apache.hbase</groupId>
-<artifactId>hbase-common</artifactId>
-<version>${hbase.version}</version>
+  <groupId>org.apache.hbase</groupId>
+  <artifactId>hbase-common</artifactId>
+  <version>${hbase.version}</version>
 </dependency>
 ```
 
-## 常规方式写入读取Hbase
+## 常规方式写入读取HBase
 ### 1.创建库表
      create 'Student', {NAME => 'Stulnfo', VERSIONS => 3}, {NAME =>'Grades', BLOCKCACHE => true}
 ### 2.写入读取demo
@@ -234,9 +233,9 @@ class HBaseWriter extends RichSinkFunction<String> {
 
 </Tabs>
 
-以方式读写Hbase较繁琐，非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置Hbase连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
+以方式读写HBase较繁琐，非常的不灵敏。`StreamPark`使用约定大于配置、自动配置的方式只需要配置HBase连接参数、flink运行参数，StreamPark 会自动组装source和sink，极大的简化开发逻辑，提升开发效率和维护性。
 
-## Apache StreamPark™ 读写 Hbase
+## Apache StreamPark™ 读写 HBase
 
 ### 1. 配置策略和连接信息
 
@@ -251,8 +250,8 @@ hbase:
 
 ```
 
-### 2. 读写入Hbase
-用 StreamPark 写入Hbase非常简单,代码如下:
+### 2. 读写入HBase
+用 StreamPark 写入HBase非常简单,代码如下:
 
 <Tabs>
 <TabItem value="读取HBase">
@@ -358,7 +357,7 @@ object HBaseSinkApp extends FlinkStreaming {
 </TabItem>
 </Tabs>
 
-StreamPark 写入Hbase 需要创建HBaseQuery的方法、指定将查询结果转化为需要对象的方法、标识是否在运行、传入运行参数。具体如下：
+StreamPark 写入HBase 需要创建HBaseQuery的方法、指定将查询结果转化为需要对象的方法、标识是否在运行、传入运行参数。具体如下：
 ```scala
 /**
  * @param ctx
@@ -384,7 +383,7 @@ class HBaseSource(@(transient@param) val ctx: StreamingContext, property: Proper
 
 }
 ```
-StreamPark HbaseSource 实现了flink Async I/O 用于提升Streaming的吞吐量，先创建 DataStream 然后创建 HBaseRequest 调用
+StreamPark HBaseSource 实现了flink Async I/O 用于提升Streaming的吞吐量，先创建 DataStream 然后创建 HBaseRequest 调用
 requestOrdered（） 或者 requestUnordered（） 创建异步流，建如下代码：
 ```scala
 class HBaseRequest[T: TypeInformation](@(transient@param) private val stream: DataStream[T], property: Properties = new Properties()) {

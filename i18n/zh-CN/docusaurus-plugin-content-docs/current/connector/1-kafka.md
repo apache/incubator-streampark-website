@@ -6,13 +6,13 @@ sidebar_position: 1
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-[Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了[Apache Kafka](http://kafka.apache.org)的连接器,用于从 Kafka topic 中读取或者向其中写入数据,可提供 **精确一次** 的处理语义
+[Apache Flink 官方](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html)提供了 [Apache Kafka](http://kafka.apache.org) 的连接器，用于从 Kafka 主题中读取或者向其中写入数据，可提供**精确一次**的处理语义。
 
-`StreamPark`中`KafkaSource`和`KafkaSink`基于官网的`kafka connector`进一步封装,屏蔽很多细节,简化开发步骤,让数据的读取和写入更简单
+Apache StreamPark 中 `KafkaSource` 和 `KafkaSink` 基于官网的 Kafka Connector 进一步封装，屏蔽了很多细节，简化开发步骤，让数据的读取和写入更简单。
 
 ## 依赖
 
-[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) 集成了通用的 Kafka 连接器，它会尽力与 Kafka client 的最新版本保持同步。该连接器使用的 Kafka client 版本可能会在 Flink 版本之间发生变化。 当前 Kafka client 向后兼容 0.10.0 或更高版本的 Kafka broker。 有关 Kafka 兼容性的更多细节，请参考 [Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) 官方文档。
+[Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) 集成了通用的 Kafka 连接器，它会尽力与 Kafka client 的最新版本保持同步。该连接器使用的 Kafka client 版本可能会在 Flink 版本之间发生变化。当前 Kafka client 向后兼容 0.10.0 或更高版本的 Kafka broker。有关 Kafka 兼容性的更多细节，请参考 [Apache Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) 的官方文档。
 
 ```xml
     <!--必须要导入的依赖-->
@@ -31,7 +31,7 @@ import TabItem from '@theme/TabItem';
 
 ```
 
-同时在开发阶段,以下的依赖也是必要的
+同时在开发阶段,以下的依赖也是必要的：
 
 ```xml
     <!--以下scope为provided的依赖也是必须要导入的-->

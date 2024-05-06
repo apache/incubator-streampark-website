@@ -30,7 +30,7 @@
       {
         "title": "流批一体",
         "icon": "lni-shuffle",
-        "details": "StreamPark 同时支持 Apache Flink & Spark，无缝支持流式处理和批处理，连接互通，创造更多可能"
+        "details": "StreamPark 同时支持 Apache Flink & Apache Spark，无缝支持流式处理和批处理，连接互通，创造更多可能"
       },
       {
         "title": "一站式解决方案",
@@ -91,7 +91,7 @@
       {
         "title": "Unified Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamPark supports both Apache Flink and Spark, making it easier to seamlessly support streaming and batch processing"
+        "details": "StreamPark supports both Apache Flink and Apache Spark, making it easier to seamlessly support streaming and batch processing"
       },
       {
         "title": "One-stop Solution",

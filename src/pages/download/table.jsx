@@ -21,18 +21,20 @@ export default function (props) {
       .concat('/apache-streampark-')
       .concat(version)
       .concat('-incubating-src.tar.gz')
+      .concat('?action=download')
   }
 
-  function getBinaryLink(scala, version) {
-    const prefix = latest ? dynURL : archiveURL;
-    return prefix
-      .concat(version)
-      .concat('/apache-streampark_')
-      .concat(scala)
-      .concat('-')
-      .concat(version)
-      .concat('-incubating-bin.tar.gz')
-  }
+    function getBinaryLink(scala, version) {
+        const prefix = latest ? dynURL : archiveURL;
+        return prefix
+            .concat(version)
+            .concat('/apache-streampark_')
+            .concat(scala)
+            .concat('-')
+            .concat(version)
+            .concat('-incubating-bin.tar.gz')
+            .concat('?action=download')
+    }
 
   function getSourceSigs(version, suffix) {
     const prefix = latest ? downloadURL : archiveURL;

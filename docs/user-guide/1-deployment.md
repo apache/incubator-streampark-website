@@ -6,21 +6,24 @@ sidebar_position: 1
 
 import { DeploymentEnvs } from '../components/TableData.jsx';
 
-The overall component stack structure of StreamPark is as follows. It consists of two major parts: streampark-core and streampark-console. streampark-console is a very important module, positioned as a **integrated real-time data platform**, ** streaming data warehouse Platform**, **Low Code**, **Flink & Spark task hosting platform**, can better manage Flink tasks, integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph ( flame graph ), Flink SQL, monitoring and many other functions are integrated into one, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. Its ultimate goal is to create a one-stop big data solution that integrates real-time data warehouses and batches
+The overall component stack structure of StreamPark consists of two major parts: streampark-core and streampark-console. 
+
+streampark-console is positioned as an integrated, real-time data platform, streaming data warehouse Platform, Low Code, Apache Flink & Apache Spark task hosting platform. It can manage Flink tasks better, and integrate project compilation, publishing, parameter configuration, startup, savepoint, flame graph, Flink SQL, monitoring and many other functions, which greatly simplifies the daily operation and maintenance of Flink tasks and integrates many best practices. 
+
+The goal is to create a one-stop big data solution that integrates real-time data warehouses and batches.
 
 ![StreamPark Archite](/doc/image_en/streampark_archite.png)
 
-streampark-console provides an out-of-the-box installation package. Before installation, there are some requirements for the environment. The specific requirements are as follows:
+streampark-console provides an out-of-the-box installation package. Before installation, make sure these requirements for the environment are in place:
 
 ## Environmental requirements
 
 <DeploymentEnvs></DeploymentEnvs>
 
-At present, StreamPark has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
+StreamPark has released tasks for Flink, and supports both `Flink on YARN` and `Flink on Kubernetes` modes.
 
 ### Hadoop
-To use `Flink on YARN`, you need to install and configure Hadoop-related environment variables in the deployed cluster. For example, if you installed the hadoop environment based on CDH,
-Related environment variables can refer to the following configuration:
+To use `Flink on YARN`, install and configure Hadoop-related environment variables in the deployed cluster. For example, if you installed the hadoop environment based on CDH, related environment variables can refer to the following configuration:
 
 ```shell
 export HADOOP_HOME=/opt/cloudera/parcels/CDH/lib/hadoop #hadoop installation manual
@@ -34,11 +37,11 @@ export HADOOP_YARN_HOME=$HADOOP_HOME/../hadoop-yarn
 
 ### Kubernetes
 
-Using `Flink on Kubernetes` requires additional deployment/or use of an existing Kubernetes cluster, please refer to the entry: [**StreamPark Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
+Using `Flink on Kubernetes` requires additional deployment or use of an existing Kubernetes cluster. Refer to the entry: [**StreamPark Flink-K8s Integration Support**](../flink-k8s/1-deployment.md).
 
 ## Build & Deploy
 
-You can directly download the compiled [**release package**](https://github.com/apache/incubator-streampark/releases) (recommended), or you can choose to manually compile and install. The manual compilation and installation steps are as follows:
+You can directly download the compiled [**release package**](https://github.com/apache/incubator-streampark/releases) (recommended), or you can manually compile and install. The manual compilation and installation steps are as follows:
 
 
 ### Environmental requirements
@@ -50,18 +53,18 @@ You can directly download the compiled [**release package**](https://github.com/
 
 ### install streampark
 
-[download](https://streampark.apache.org/download) streampark release package, unpacking as follows
+[download](https://streampark.apache.org/download) streampark release package, unpacking it as follows:
 
 ```textmate
 .
 streampark-console-service-2.0.0
 ├── bin
 │    ├── startup.sh                           //startup script
-│    ├── setclasspath.sh                      //Scripts related to java environment variables (internal use, users do not need to pay attention)
+│    ├── setclasspath.sh                      //Scripts related to Java environment variables (internal use, users do not need to pay attention)
 │    ├── shutdown.sh                          //stop script
 │    ├── yaml.sh                              //Internally uses a script that parses yaml parameters (for internal use, users don't need to pay attention)
 ├── conf
-│    ├── application.yaml                     //Project configuration file (be careful not to change the name)
+│    ├── application.yaml                     //Project configuration file (do NOT change the name)
 │    ├── flink-application.template           //flink configuration template (for internal use, users don't need to pay attention)
 │    ├── logback-spring.xml                   //logback
 │    └── ...
@@ -87,7 +90,7 @@ streampark-console-service-2.0.0
 
 ##### Initialize table structure
 
-In the installation process of versions before 1.2.1, there is no need to manually initialize data, just set the database information, and some column operations such as table creation and data initialization will be automatically completed. Versions after 1.2.1 (included) are not included. Automatic table creation and upgrade requires the user to manually execute ddl for initialization. The ddl description is as follows:
+In the installation process of versions before 1.2.1, there is no need to manually initialize data. Just set the database information, and some column operations such as table creation and data initialization will be automatically completed. For versions 1.2.1 and newer, automatic table creation and upgrade requires the user to manually execute ddl for initialization. The ddl description is as follows:
 
 ```textmate
 ├── script
@@ -104,16 +107,16 @@ In the installation process of versions before 1.2.1, there is no need to manual
 ├── logs                                     // log dir
 ├── temp                                     // temp dir, don't remove
 ```
-If streampark first installation, need to connect to the corresponding database client to execute the script under the `schema` and `data` directories in sequence, and if it is an upgrade, execute under `upgrade` sql file of the corresponding version number.
+For the first installation of streampark, you need to connect to the corresponding database client to execute the scripts under the `schema` and `data` directories in sequence. If it is an upgrade, execute under `upgrade` sql file of the corresponding version number.
 
 ##### Modify the configuration
-The installation and unpacking have been completed, and the next step is to prepare the data-related work
+Once installation and unpacking have been completed, the next step is to prepare the data-related work.
 
 ###### Create a new database `streampark`
-Make sure to create a new database `streampark` in mysql that the deployment machine can connect to
+Make sure to create a new database `streampark` in mysql that the deployment machine can connect to.
 
 ###### Modify connection information
-Go to `conf`, modify `conf/application.yml`, find the spring item, find the profiles.active configuration, and modify it to the corresponding information, as follows
+Go to `conf`, modify `conf/application.yml`, find the `spring` item, find the `profiles.active` configuration, and modify it to the corresponding information, as follows:
 
 ```yaml
 spring:
@@ -136,9 +139,9 @@ spring:
     banner-mode: off
 ```
 
-After modify `conf/application.yml`, then modify the `config/application-mysql.yml` to change the config information of database as follows:
+After you have modified `conf/application.yml`, modify `config/application-mysql.yml` to change the config information of the database as follows:
 
-**Tips: Because of license incompatibility between Apache project and mysql jdbc driver, so you should download mysql jdbc driver by yourself and put it in $STREAMPARK_HOME/lib**
+**Tips: Because of license incompatibility between the Apache project and the mysql jdbc driver, download the mysql jdbc driver yourself and put it in $STREAMPARK_HOME/lib**.
 
 ```yaml
 spring:
@@ -150,7 +153,7 @@ spring:
 ```
 
 ###### Modify workspace
-Go to `conf`, modify `conf/application.yml`, find the item streampark, find the workspace configuration, and change it to a directory that the user has permission to.
+Go to `conf`, `modify conf/application.yml`, find the item `streampark`, find the workspace configuration, and change it to a directory that the user has permissions to work with.
 
 ```yaml
 streampark:
@@ -158,13 +161,13 @@ streampark:
   hadoop-user-name: hdfs
   # Local workspace, used to store project source code, build directory, etc.
   workspace:
-    local: /opt/streampark_workspace # A local workspace directory (very important), users can change the directory by themselves, it is recommended to put it in other places separately to store the project source code, the built directory, etc.
+    local: /opt/streampark_workspace # A local workspace directory (very important). Users can change the directory by themselves, it is recommended to put it in other places separately to store the project source code, the built directory, etc.
     remote: hdfs:///streampark   # support hdfs:///streampark/ 、 /streampark 、hdfs://host:ip/streampark/
 ```
 
 ##### Start
 
-Enter `bin` and directly execute startup.sh to start the project. The default port is **10000**, if there is no accident, it will start successfully
+Enter `bin` and directly execute `startup.sh` to start the project. The default port is **10000**. If there is no error, it will start successfully
 
 ```bash
 cd streampark-console-service-2.0.0/bin
@@ -175,21 +178,21 @@ Relevant logs will be output to **streampark-console-service-1.0.0/logs/streampa
 
 ### login system
 
-After the above steps, even if the deployment is completed, you can directly log in to the system
+After the above steps, even if the deployment is completed, you can directly log in to the system:
 
 ![StreamPark Login](/doc/image/streampark_login.jpeg)
 
 :::tip hint
-Default password: <strong> admin / streampark </strong>
+Default password: **admin / streampark**
 :::
 
 ## System Configuration
 
-After entering the system, the first thing to do is to modify the system configuration. Under the menu/StreamPark/Setting, the operation interface is as follows:
+After you enter the system, the first thing to do is to modify the system configuration. Under the menu/StreamPark/Setting, the operation interface is as follows:
 
 ![StreamPark Settings](/doc/image/streampark_settings_2.0.0.png)
 
-The main configuration items are divided into the following categories
+The main configuration items are divided into the following categories:
 
 <div class="counter">
 
@@ -200,23 +203,23 @@ The main configuration items are divided into the following categories
 
 </div>
 
-### System Setting
+### System Settings
 The current system configuration includes:
 
--   Maven Setting
--   Docker Setting
--   Sender Email Setting
--   Ingress Setting
+-   Maven Settings
+-   Docker Settings
+-   Sender Email Settings
+-   Ingress Settings
 
-### Alert Setting
+### Alert Settings
 
-The configuration related to Alert Email is to configure the information of the sender's email. For the specific configuration, please refer to the relevant mailbox information and documents for configuration.
+The configuration related to Alert Email is to configure the information for the sender's email. For the specific configuration, refer to the relevant mailbox information and documents.
 
 ### Flink Home
-The global Flink Home is configured here. This is the only place in the system to specify the Flink environment, which will apply to all jobs.
+The global Flink Home is configured here. This is the only place in the system where you specify the Flink environment, which will apply to all jobs.
 
 :::info hint
-Special Note: The minimum supported Flink version is 1.12.0, and later versions are supported
+Special Note: The minimum supported Flink version is 1.12.0, and later versions are supported.
 :::
 
 ### Flink Cluster

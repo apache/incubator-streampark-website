@@ -116,6 +116,14 @@ $ gpg --keyserver keyserver.ubuntu.com --send-key 584EE68E
 # Among them, keyserver.ubuntu.com is the selected keyserver, it is recommended to use this, because the Apache Nexus verification uses this keyserver
 ```
 
+Configure gnupg to use standard DNS resolution:
+```shell
+# resolves common "gpg: keyserver receive failed: Network is unreachable" and 
+# "gpg: keyserver receive failed: No keyserver available" errors
+echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
+sudo pkill dirmngr
+```
+
 #### 2.3 Check if the key is created successfully
 
 Verify whether it is synchronized to the public network, it will take about a minute to find out the answer, if not successful, you can upload and retry multiple times.
