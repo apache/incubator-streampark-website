@@ -48,20 +48,6 @@ export default function () {
                     {dataSource.slogan.description}
                   </p>
                 </div>
-                {/* <a
-                  className="btn streampark-btn btn-github ztop"
-                  href="https://github.com/apache/incubator-streampark"
-                  target="_blank"
-                >
-                  <i className="lni-github-original !text-lg"></i>&nbsp;GitHub
-                </a> */}
-                {/* <a
-                  className="btn streampark-btn btn ml-3 ztop"
-                  href="/docs/user-guide/quick-start"
-                  style={{ marginLeft: "10px" }}
-                >
-                  <i className="lni-play"></i>&nbsp;Get started
-                </a> */}
                 <div>
                   <Button
                     theme="github"
@@ -80,41 +66,12 @@ export default function () {
                     Get started
                   </Button>
                 </div>
-
-                {/* <div style={{ marginTop: "20px" }} className="shields ztop">
-                  <img
-                    src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?sanitize=true"
-                    className="wow fadeInUp"
-                  ></img>
-                  <img
-                    src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?sanitize=true"
-                    className="wow fadeInUp"
-                  ></img>
-                  <img
-                    src="https://img.shields.io/github/downloads/apache/streampark/total.svg"
-                    className="wow fadeInUp"
-                  ></img>
-                </div> */}
               </div>
             </div>
             {/* hero image */}
             {HeroImage()}
-
-            <section className="achievement-banner">
-              <div className="achievement-banner-item">
-                <div className="achievement-banner-item__highlight">3.7k+</div>
-                <div>Github stars</div>
-              </div>
-              <div className="achievement-banner-item">
-                <div className="achievement-banner-item__highlight">964</div>
-                <div>Github forks</div>
-              </div>
-              <div className="achievement-banner-item">
-                <div className="achievement-banner-item__highlight">9.9k+</div>
-                <div>Total downloads</div>
-              </div>
-            </section>
           </div>
+          <AchievementBanner />
 
         </div>
         {/* <section className="achievement-banner-wrapper">
@@ -176,4 +133,119 @@ function Button({ href, theme = "primary", icon, children, className, ...props }
       {children}
     </a>
   )
+}
+
+function AchievementBanner() {
+  const formatNumber = (num) => {
+    if (num < 1000) {
+      return num
+    } else if (num < 1000_000) {
+      return (num / 1000).toFixed(1) + 'k+'
+    } else {
+      return (num / 1000_000).toFixed(1) + 'm+'
+    }
+  }
+
+  const numberIncrementAnimation = (end = 0, { start = 0, duration = 1000, rate = 50, callback } = {}) => {
+    const step = (end - start) / duration * rate
+    let current = start
+    const timer = setInterval(() => {
+      current += parseInt(step.toFixed(0));
+      if (current >= end) {
+        clearInterval(timer)
+        current = end
+      }
+      callback(current)
+    }, rate)
+    if (typeof callback === 'function') {
+      callback(current)
+    }
+    return current
+  }
+
+  const [counter, setCounter] = React.useState({
+    stars: 3710,
+    forks: 963,
+    downloads: 9900
+  })
+
+  React.useEffect(() => {
+    numberIncrementAnimation(3710, {
+      callback: (current) => {
+        setCounter(state => ({
+          ...state,
+          stars: current
+        }))
+      }
+    })
+    numberIncrementAnimation(963, {
+      callback: (current) => {
+        setCounter(state => ({
+          ...state,
+          forks: current
+        }))
+      }
+    })
+    numberIncrementAnimation(9900, {
+      callback: (current) => {
+        setCounter(state => ({
+          ...state,
+          downloads: current
+        })
+        )
+      }
+    })
+  }, [])
+
+  // FIXME: 需要解决 github api 请求速率限制的问题
+  /* React.useEffect(() => {
+    fetch('https://api.github.com/repos/apache/incubator-streampark')
+      .then(res => res.json())
+      .then(data => {
+        setCounter(state => ({
+          ...state,
+          stars: data.stargazers_count,
+          forks: data.forks_count,
+        }))
+      })
+    fetch('https://api.github.com/repos/apache/incubator-streampark/releases')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        let totalDownloads = 0;
+        for (let i = 0; i < data.length; ++i) {
+          for (let j = 0; j < data[i].assets.length; ++j) {
+            totalDownloads += data[i].assets[j].download_count;
+          }
+        }
+
+        setCounter(state => ({
+          ...state,
+          downloads: totalDownloads
+        }))
+      })
+  }, []) */
+
+  return (
+    <section className="achievement-banner">
+      <div className="achievement-banner-item">
+        <div className="achievement-banner-item__highlight">
+          {formatNumber(counter.stars)}
+        </div>
+        <div>Github stars</div>
+      </div>
+      <div className="achievement-banner-item">
+        <div className="achievement-banner-item__highlight">
+          {formatNumber(counter.forks)}
+        </div>
+        <div>Github forks</div>
+      </div>
+      <div className="achievement-banner-item">
+        <div className="achievement-banner-item__highlight">
+          {formatNumber(counter.downloads)}
+        </div>
+        <div>Total downloads</div>
+      </div>
+    </section>
+  );
 }
