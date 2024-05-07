@@ -52,7 +52,6 @@ export default function LocaleDropdownNavbarItem({
     })
     : localeConfigs[currentLocale].label;
 
-  console.log(222, dropdownLabel)
   return (
     <DropdownNavbarItem
       {...props}
