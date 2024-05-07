@@ -111,7 +111,7 @@ const config = {
         items: [
           {
             to: '/docs/intro',
-            label: 'Documentation',
+            label: 'Docs',
             position: "right",
             activeBaseRegex: `/docs`,
           },
