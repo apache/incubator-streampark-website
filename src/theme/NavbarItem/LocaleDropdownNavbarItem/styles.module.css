@@ -1,4 +1,11 @@
 .iconLanguage {
   vertical-align: text-bottom;
   margin-right: 5px;
+  width: 14px;
+}
+
+@media  screen and (max-width: 996px) {
+  .iconLanguage {
+    width: var(--navbar-font-size);
+  }
 }
