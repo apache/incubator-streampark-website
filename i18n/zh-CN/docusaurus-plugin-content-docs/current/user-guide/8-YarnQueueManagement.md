@@ -70,7 +70,7 @@ sidebar_position: 8
 ## 该功能的相关条目
 
 - 这个特性会影响使用旧动态属性指定了`yarn-application`模式下的flink应用程序和`yarn-session`模式下的flink集群的yarn队列(`yarn.application.queue`)和标签(`yarn.application.node-label`)的应用程序。  
-> 该功能不会对其产生任何影响。SteamPark仍然保留动态属性的最高优先级，并不强制验证动态属性中指定的队列和标签，为用户提供高级配置的空间。
+> 该功能不会对其产生任何影响。StreamPark仍然保留动态属性的最高优先级，并不强制验证动态属性中指定的队列和标签，为用户提供高级配置的空间。
 
 - Yarn队列的隔离并不严格。
 > 在当前的设计中，由于队列与`yarn-session`模式下的Flink集群之间的关系，队列的权限并没有被严格隔离。

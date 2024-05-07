@@ -92,7 +92,7 @@ tar -zxvf apache-streampark_2.12-2.0.0-incubating-bin.tar.gz
 ## Initialize System Data
 > **Purpose: Create databases (tables) dependent on StreamPark component deployment, and pre-initialize the data required for its operation (e.g., web page menus, user information), to facilitate subsequent operations.**
 
-### View Execution of SteamPark Metadata SQL File
+### View Execution of StreamPark Metadata SQL File
 > Explanation:
 > - StreamPark supports MySQL, PostgreSQL, H2
 > - This document uses MySQL as an example; the PostgreSQL process is basically the same

@@ -6,6 +6,7 @@ import './theme.less';
 import Hero from "./hero";
 import Feature from "./feature";
 import Performance from "./performance";
+// import Users from '../user'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 export default function () {

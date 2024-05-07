@@ -92,7 +92,7 @@ tar -zxvf apache-streampark_2.12-2.0.0-incubating-bin.tar.gz
 ## 初始化系统数据
 > **目的：创建StreamPark组件部署依赖的数据库(表)，同时将其运行需要的数据提前初始化(比如：web页面的菜单、用户等信息)，便于后续操作。**
 
-### 查看执行SteamPark元数据SQL文件
+### 查看执行StreamPark元数据SQL文件
 > 说明：
 > - StreamPark支持MySQL、PostgreSQL、H2
 > - 本次以MySQL为例，PostgreSQL流程基本一致

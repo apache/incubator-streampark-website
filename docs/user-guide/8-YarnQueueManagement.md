@@ -71,7 +71,7 @@ You must keep a admin user account. In the case, The admin user `admin` was used
 ## Items about the feature
 
 - Will this feature affect the `yarn-application` mode flink applications or `yarn-session` mode flink-clusters whose yarn queue(`yarn.application.queue`) & labels(`yarn.application.node-label`) specified by the old dynamic properties ?  
-> The feature will not affect it at all. SteamPark still retains the highest priority of dynamic properties and does 
+> The feature will not affect it at all. StreamPark still retains the highest priority of dynamic properties and does 
 not enforce verification on the specified queues and labels in the dynamic properties, providing users with space for advanced configuration.
 
 - The isolation of Yarn queue isn't stricter.
