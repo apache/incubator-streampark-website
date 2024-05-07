@@ -22,11 +22,11 @@ export default function () {
           {
             dataSource.feature.map((feature, i) => (
               <div className="characteristic-card col-md-4 col-6 px-4 px-md-3 cursor-pointer" key={i} data-aos="fade-up" data-aos-delay={(i % 3) * 100}>
-                <div className="feature-children  p-4 mb-5 shadow-sm hover-box-up">
+                <div className="feature-children p-4 pt-5 mb-5 shadow-md hover-box-up">
                   <div className="text-primary text-center mb-3">
                     <div className="features-icon"><i className={feature.icon}></i></div>
                   </div>
-                  <h3 className="h5 text-center">{feature.title}</h3>
+                  <h3 className="h5 text-left feature-title">{feature.title}</h3>
                   <p>{feature.details}</p>
                 </div>
               </div>
