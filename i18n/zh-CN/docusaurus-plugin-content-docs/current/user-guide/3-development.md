@@ -50,7 +50,7 @@ tar -zxvf apache-streampark-2.2.0-incubating-bin.tar.gz
 
 ![Streampark Modify Run Configuration](/doc/image/streampark_modify_run_configuration.jpg)
 
-勾选`Add VM options`，填写参数`-Dapp.home=$path`，`$path`是我们刚刚复制的路径
+勾选 `Add VM options` 和 `Add dependencies with "provided" scope to classpath`，填写参数 `-Dapp.home=$path`，`$path` 是我们刚刚复制的路径
 
 ```bash
 -Dapp.home=${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin

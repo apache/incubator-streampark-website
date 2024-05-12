@@ -50,7 +50,7 @@ Modify the launch configuration
 
 ![Streampark Modify Run Configuration](/doc/image/streampark_modify_run_configuration.jpg)
 
-Check `Add VM options`, and input the parameter `-Dapp.home=$path`, where `$path` is the path we just copied.
+Check `Add VM options` and `Add dependencies with "provided" scope to classpath`, and input the parameter `-Dapp.home=$path`, where `$path` is the path we just copied.
 
 ```bash
 -Dapp.home=${workspace}/incubator-streampark/dist/apache-streampark-2.2.0-incubating-bin
