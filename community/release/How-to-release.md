@@ -404,9 +404,9 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 
 ```shell
 # Check out the dev directory of the Apache SVN warehouse to the streampark_svn_dev directory under dist in the root directory of the Apache StreamPark project
-svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
+# svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 
-svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark
+svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 ```
 
 Create a version number directory and name it in the form of ${release_version}-${RC_version}. RC_version starts from 1, that is, the candidate version starts from RC1. During the release process, there is a problem that causes the vote to fail. If it needs to be corrected, it needs to iterate the RC version , the RC version number needs to be +1. For example: Vote for version 2.1.0-RC1. If the vote passes without any problems, the RC1 version material will be released as the final version material. If there is a problem (when the streampark/incubator community votes, the voters will strictly check various release requirements and compliance issues) and need to be corrected, then re-initiate the vote after the correction, and the candidate version for the next vote is 2.1.0- RC2.
@@ -596,7 +596,7 @@ More detailed checklist please refer:
 
 Steps to validate the release， Please refer to:
 • https://www.apache.org/info/verification.html
-• https://streampark.apache.org/community/release/how-to-verify
+• https://streampark.apache.org/community/release/how_to_verify_release
 
 
 How to Build:
