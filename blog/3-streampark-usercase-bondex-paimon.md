@@ -846,13 +846,18 @@ Upon investigation, it was discovered that the issue was caused by the configura
 **3. Aggregate function 'last_non_null_value' does not support retraction**
 
 Error:
+
+```
 Caused by: java.lang.UnsupportedOperationException: Aggregate function 'last_non_null_value' does not support retraction, If you allow this function to ignore retraction messages, you can configure 'fields.${field_name}.ignore-retract'='true'.
+```
 
 An explanation can be found in the official documentation:
 
+```
 Only sum supports retraction (UPDATE_BEFORE and DELETE), other aggregate functions do not support retraction.
+```
 
-This can be understood as: except for the SUM function, other Agg functions do not support Retraction. To avoid errors when receiving DELETE and UPDATEBEFORE messages, it is necessary to configure 'fields.${field_name}.ignore-retract'='true' for the specified field to ignore retraction and solve this error.
+This can be understood as: except for the SUM function, other Agg functions do not support Retraction. To avoid errors when receiving DELETE and UPDATEBEFORE messages, it is necessary to configure `'fields.${field_name}.ignore-retract'='true'` for the specified field to ignore retraction and solve this error.
 
 ```sql
 WITH (

@@ -186,9 +186,9 @@ $ mvn --encrypt-master-password <apache password>
 {EM+4/TYVDXYHRbkwjjAS3mE1RhRJXJUSG8aIO5RSxuHU26rKCjuS2vG+/wMjz9te}
 ```
 
-- Create the file ${user.home}/.m2/settings-security.xml and configure the password created in the previous step
+- Create the file `${user.home}/.m2/settings-security.xml` and configure the password created in the previous step
 
-```shell
+```xml
 <settingsSecurity>
   <master>{EM+4/TYVDXYHRbkwjjAS3mE1RhRJXJUSG8aIO5RSxuHU26rKCjuS2vG+/wMjz9te}</master>
 </settingsSecurity>
@@ -242,7 +242,7 @@ $ mvn --encrypt-password <apache passphrase>
 
 ## 3. Prepare material package & release Apache Nexus
 
-#### 3.1 Based on the dev branch, create a release-${release_version}-rcx branch, such as release-2.1.0-rc1, And create a tag named v2.1.0-rc1 based on the release-2.1.0-rc1 branch, and set this tag as pre-release.
+#### 3.1 Based on the dev branch, create a `release-${release_version}-rcx` branch, such as release-2.1.0-rc1, And create a tag named v2.1.0-rc1 based on the release-2.1.0-rc1 branch, and set this tag as pre-release.
 
 ![图片](https://user-images.githubusercontent.com/19602424/236656362-1d346faa-6582-44eb-9722-8bb2de0eaa92.png)
 
@@ -409,7 +409,7 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 ```
 
-Create a version number directory and name it in the form of ${release_version}-${RC_version}. RC_version starts from 1, that is, the candidate version starts from RC1. During the release process, there is a problem that causes the vote to fail. If it needs to be corrected, it needs to iterate the RC version , the RC version number needs to be +1. For example: Vote for version 2.1.0-RC1. If the vote passes without any problems, the RC1 version material will be released as the final version material. If there is a problem (when the streampark/incubator community votes, the voters will strictly check various release requirements and compliance issues) and need to be corrected, then re-initiate the vote after the correction, and the candidate version for the next vote is 2.1.0- RC2.
+Create a version number directory and name it in the form of `${release_version}-${RC_version}`. RC_version starts from 1, that is, the candidate version starts from RC1. During the release process, there is a problem that causes the vote to fail. If it needs to be corrected, it needs to iterate the RC version , the RC version number needs to be +1. For example: Vote for version 2.1.0-RC1. If the vote passes without any problems, the RC1 version material will be released as the final version material. If there is a problem (when the streampark/incubator community votes, the voters will strictly check various release requirements and compliance issues) and need to be corrected, then re-initiate the vote after the correction, and the candidate version for the next vote is 2.1.0- RC2.
 
 ```shell
 mkdir -p dist/streampark_svn_dev/2.1.0-RC1

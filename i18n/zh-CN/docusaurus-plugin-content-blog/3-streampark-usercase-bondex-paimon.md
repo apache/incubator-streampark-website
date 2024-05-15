@@ -846,13 +846,18 @@ set 'table.exec.sink.upsert-materialize' = 'none'
 **3. Aggregate function 'last_non_null_value' does not support retraction**
 
 报错：
+
+```
 Caused by: java.lang.UnsupportedOperationException: Aggregate function 'last_non_null_value' does not support retraction, If you allow this function to ignore retraction messages, you can configure 'fields.${field_name}.ignore-retract'='true'.
+```
 
 可以在官方文档找到解释：
 
+```
 Only sum supports retraction (UPDATE_BEFORE and DELETE), others aggregate functions do not support retraction.
+```
 
-可以理解为：除了 SUM 函数，其他的 Agg 函数都不支持 Retraction，为了避免接收到 DELETE 和 UPDATEBEFORE 消息报错，需要通过给指定字段配 'fields.${field_name}.ignore-retract'='true' 忽略，解决这个报错
+可以理解为：除了 SUM 函数，其他的 Agg 函数都不支持 Retraction，为了避免接收到 DELETE 和 UPDATEBEFORE 消息报错，需要通过给指定字段配 `'fields.${field_name}.ignore-retract'='true'` 忽略，解决这个报错
 
 ```sql
 WITH (

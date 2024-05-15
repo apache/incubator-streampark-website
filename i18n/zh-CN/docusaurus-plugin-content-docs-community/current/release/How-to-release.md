@@ -186,9 +186,9 @@ $ mvn --encrypt-master-password <apache password>
 {EM+4/TYVDXYHRbkwjjAS3mE1RhRJXJUSG8aIO5RSxuHU26rKCjuS2vG+/wMjz9te}
 ```
 
-- 创建文件 ${user.home}/.m2/settings-security.xml 并配置上一步创建的密码
+- 创建文件 `${user.home}/.m2/settings-security.xml` 并配置上一步创建的密码
 
-```shell
+```xml
 <settingsSecurity>
   <master>{EM+4/TYVDXYHRbkwjjAS3mE1RhRJXJUSG8aIO5RSxuHU26rKCjuS2vG+/wMjz9te}</master>
 </settingsSecurity>
@@ -242,7 +242,7 @@ $ mvn --encrypt-password <apache passphrase>
 
 ## 3. 准备物料 & 发布到Apache Nexus
 
-#### 3.1 基于dev分支，创建一个名为release-${release_version}-rcx的分支，例如release-2.1.0-rc1。并基于release-2.1.0-rc1分支创建一个名为v2.1.0-rc1的标签，并将此标签设置为预发布。
+#### 3.1 基于 dev 分支，创建一个名为 `release-${release_version}-rcx` 的分支，例如 release-2.1.0-rc1。并基于 release-2.1.0-rc1 分支创建一个名为 v2.1.0-rc1 的标签，并将此标签设置为预发布。
 
 ![图片](https://user-images.githubusercontent.com/19602424/236656362-1d346faa-6582-44eb-9722-8bb2de0eaa92.png)
 
@@ -409,7 +409,7 @@ apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
 svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
 ```
 
-创建一个版本号目录，并以${release_version}-${RC_version}的形式命名。RC_version从1开始，即候选版本从RC1开始。在发布过程中，如果出现导致投票失败的问题，需要进行修正，那么RC版本需要迭代，RC版本号需要+1。例如：为版本2.1.0-RC1投票。如果投票顺利通过，那么RC1版本的资料将作为最终版本的资料发布。如果出现问题（当streampark/incubator社区进行投票时，投票者会严格检查各种发布要求和合规问题）并需要纠正，那么修正后重新启动投票，下一次的候选版本为2.1.0-RC2。
+创建一个版本号目录，并以 `${release_version}-${RC_version}` 的形式命名。RC_version从1开始，即候选版本从RC1开始。在发布过程中，如果出现导致投票失败的问题，需要进行修正，那么RC版本需要迭代，RC版本号需要+1。例如：为版本2.1.0-RC1投票。如果投票顺利通过，那么RC1版本的资料将作为最终版本的资料发布。如果出现问题（当streampark/incubator社区进行投票时，投票者会严格检查各种发布要求和合规问题）并需要纠正，那么修正后重新启动投票，下一次的候选版本为2.1.0-RC2。
 
 ```shell
 mkdir -p dist/streampark_svn_dev/2.1.0-RC1
