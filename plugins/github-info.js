@@ -1,7 +1,7 @@
 // A JavaScript function that returns an object.
 // `context` is provided by Docusaurus. Example: siteConfig can be accessed from context.
 // `opts` is the user-defined options.
-const fetch = require('node-fetch');
+
 async function githubInfo(context, opts) {
   return {
     name: 'github-info-plugin',
