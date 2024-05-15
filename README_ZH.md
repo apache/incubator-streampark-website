@@ -1,4 +1,4 @@
-# Apache StreamPark™ WebSite
+# Apache StreamPark™ Website
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -12,20 +12,20 @@ dev 为默认主分支，修改请先 fork 到自己的仓库，然后切换到�
 
 ## 1. 预览并生成静态文件
 
-本网站使用 Node.js 编译（>=16.14 <=18），并基于 [Docusaurus (2.4.3)](https://docusaurus.io/) 框架构建。
+本网站使用 Node.js 编译（>=16.14 <=18），并基于 [Docusaurus (3.3.2)](https://docusaurus.io/) 框架构建。
 
 运行以下命令下载网站源代码并在本地预览：
 
 ```shell
 git clone https://github.com/apache/incubator-streampark-website.git streampark-website
 cd streampark-website
-npm install
-npm run start
+pnpm install
+pnpm run start
 ```
 
-这段命令将在浏览器打开 http://localhost:3000 页面提供英文预览版。如果想预览中文版本，请使用 `npm run start-zh` 命令。
+这段命令将在浏览器打开 http://localhost:3000 页面提供英文预览版。如果想预览中文版本，请使用 `pnpm run start-zh` 命令。
 
-运行 `npm run build` 命令可以生成静态网站资源文件，构建出来的静态资源在 build 目录中。
+运行 `pnpm run build` 命令可以生成静态网站资源文件，构建出来的静态资源在 build 目录中。
 
 ## 2. 目录结构
 

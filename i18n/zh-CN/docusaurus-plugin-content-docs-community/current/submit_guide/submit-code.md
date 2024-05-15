@@ -21,68 +21,61 @@ sidebar_position: 2
     limitations under the License.
 -->
 
-* 首先从远程仓库 <https://github.com/apache/incubator-streampark.git> 将代码的一份副本 fork 到您自己的仓库
+1. 首先从远程仓库 https://github.com/apache/incubator-streampark.git 将代码的一份副本 fork 到你自己的仓库。
 
-* 远程仓库目前有三个分支：
-  * **dev** 每日开发分支
-    > 每天的 dev 开发分支，新提交的代码可以向这个分支发起 pull request。
-
-  * **1.0.0-release** 发布版本分支
-    > 发布版本的分支，未来还会有 2.0... 等其他版本分支。
-
-* 将您的仓库clone到您的本地设备
+2. 将你的仓库 Clone 到本地设备：
 
     ```shell
-    git clone git@github.com:apache/incubator-streampark.git
+    git clone https://github.com/<your-github-id>/incubator-streampark.git
     ```
 
-* 添加远程仓库地址，命名为 upstream
+3. 添加远程仓库地址：
 
     ```shell
-    git remote add upstream git@github.com:apache/incubator-streampark.git
+    git remote add upstream https://github.com/apache/incubator-streampark.git
     ```
 
-* 查看仓库
+4. 查看仓库：
 
     ```shell
     git remote -v
     ```
 
-  > 此时会有两个仓库：origin（您自己的仓库）和 upstream（远程仓库）
+> 此时会有两个仓库：`origin`（你自己的仓库）和 `upstream`（远程仓库）。
 
-* 获取/更新远程仓库代码
+5. 获取/更新远程仓库代码：
 
     ```shell
     git fetch upstream
     ```
 
-* 将远程仓库代码同步到本地仓库
+4. 将远程仓库代码同步到本地仓库：
 
     ```shell
     git checkout origin/dev
     git merge --no-ff upstream/dev
     ```
 
-* 如果远程分支有新的分支，如 `dev-1.0`，您需要将这个分支同步到本地仓库
+5. 如果远程分支有新的分支，如 `dev-1.0`，你需要将这个分支同步到本地仓库：
 
     ```shell
     git checkout -b dev-1.0 upstream/dev-1.0
     git push --set-upstream origin dev-1.0
     ```
 
-* 在本地修改代码后，提交到自己的仓库：
+6. 在本地修改代码后，提交到自己的仓库：
 
     ```shell
     git commit -m '提交内容'
     git push
     ```
 
-* 将更改提交到远程仓库
+7. 将更改提交到远程仓库
 
-* 在github页面，点击“New pull request”。
+8. 在 GitHub 页面，点击 “New pull request” 按钮。
 
-* 选择修改过的本地分支和过去要合并的分支，点击“Create pull request”。
+9. 选择修改过的本地分支和过去要合并的分支，点击 “Create pull request” 按钮。
 
-* 然后社区的 Committers 将进行 CodeReview，并与您讨论一些细节（包括设计、实现、性能等）。当团队的每个成员都对此修改感到满意时，提交将被合并到 dev 分支。
+10. 随后，Committers 将进行 CodeReview 并与你讨论一些细节（包括设计、实现、性能等）。当团队的每个成员都对此修改感到满意时，提交将被合并到 dev 分支。
 
-* 最后，恭喜您，您已经成为 StreamPark 的官方贡献者！
+11. 恭喜你！你已经成为 Apache StreamPark 的贡献者！
