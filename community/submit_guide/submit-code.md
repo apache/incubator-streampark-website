@@ -21,68 +21,61 @@ sidebar_position: 2
     limitations under the License.
 -->
 
-* First from the remote repository <https://github.com/apache/incubator-streampark.git> fork a copy of the code into your own repository
+1. First, fork the upstream repository https://github.com/apache/incubator-streampark.git into your own repository.
 
-* There are currently three branches in the remote repository:
-    * **dev**   daily development branch
-      > Every day dev development branch, newly submitted code can pull request to this branch.
+2. Clone your repository to your local:
 
-    * **1.0.0-release** release version branch
-      > The release version branch, there will be 2.0...and other version branches in the future.
+    ```shell
+    git clone https://github.com/<your-github-id>/incubator-streampark.git
+    ```
 
-* Clone your repository to your local
+3. Add remote repository address, name it upstream:
 
-```shell
-    git clone git@github.com:apache/incubator-streampark.git
-```
+    ```shell
+    git remote add upstream https://github.com/apache/incubator-streampark.git
+    ```
 
-* Add remote repository address, named upstream
+4. View repository:
 
-```shell
-  git remote add upstream git@github.com:apache/incubator-streampark.git
-```
+    ```shell
+    git remote -v
+    ```
 
-* View repository
+> At this time, there will be two repositories: `origin` (your own repository) and `upstream` (remote repository).
 
-```shell
-  git remote -v
-```
-
-  > At this time, there will be two repositories: origin (your own repository) and upstream (remote repository)
-
-* Get/Update remote repository code
+5. Get/Update remote repository code:
 
     ```shell
     git fetch upstream
     ```
 
-* Synchronize remote repository code to local repository
+6. Synchronize remote repository code to local repository:
 
     ```shell
     git checkout origin/dev
     git merge --no-ff upstream/dev
     ```
 
-* If remote branch has a new branch such as `dev-1.0`, you need to synchronize this branch to the local repository
+7. If remote branch has a new branch such as `dev-1.0`, you need to synchronize this branch to the local repository:
 
     ```shell
     git checkout -b dev-1.0 upstream/dev-1.0
     git push --set-upstream origin dev-1.0
     ```
 
-* After modifying the code locally, submit it to your own repository:
+8. After modifying the code locally, submit it to your own repository:
 
     ```shell
     git commit -m 'commit content'
     git push
     ```
 
-* Submit changes to the remote repository
+9. Submit changes to the remote repository
 
-* On the github page, click "New pull request".
+10. On the github page, click "New pull request".
 
-* Select the modified local branch and the branch you want to merge with the past, click "Create pull request".
+11. Select the modified local branch and the branch you want to merge with the past, click "Create pull request".
 
-* Then the community Committers will do CodeReview, and then he will discuss some details (including design, implementation, performance, etc.) with you. When everyone on the team is satisfied with this modification, the commit will be merged into the dev branch
+12. Then the community Committers will do CodeReview, and then he will discuss some details (including design, implementation, performance, etc.) with you. When everyone on the team is satisfied with this modification, the commit will be merged into the dev branch
 
-* Finally, congratulations, you have become an official contributor to StreamPark !
+13. Congratulations! You have become a contributor to Apache StreamPark!

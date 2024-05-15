@@ -28,12 +28,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: install dependencies
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
       - uses: actions/setup-node@v4
         with:
           node-version: 16.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn build
+          cache: pnpm
+      - run: pnpm install
+      - run: pnpm build
       - uses: peaceiris/actions-gh-pages@v3
         if: github.event_name != 'pull_request'
         with:

@@ -1,4 +1,4 @@
-# Apache StreamPark™ WebSite
+# Apache StreamPark™ Website
 
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -7,27 +7,26 @@
 This is the repository containing all the source code of `http://streampark.apache.org`.
 This guide will guide you how to contribute to the Apache StreamPark™ (Incubating) website.
 
-
 ## Branch
 
-dev is the default branch. For all modifications, please fork first, and then check out a new branch to proceed.
+`dev` is the default branch. For all modifications, please fork first, and then check out a new branch to proceed.
 
 ## 1. Preview and generate static files
 
-This website is compiled using Node.js (version >=16.14 <=18), using [Docusaurus (2.4.3)](https://docusaurus.io/) framework components.
+This website is compiled using Node.js (version >=16.14 <=18), using [Docusaurus (3.3.2)](https://docusaurus.io/) framework components.
 
 To download and preview the website:
 
 ```shell
 git clone https://github.com/apache/incubator-streampark-website.git streampark-website
 cd streampark-website
-npm install
-npm run start
+pnpm install
+pnpm run start
 ```
 
-It'll open http://localhost:3000 for you to view the English preview of the site. Instead, run `npm run start-zh` to preview the Chinese version.
+It'll open http://localhost:3000 for you to view the English preview of the site. Instead, run `pnpm run start-zh` to preview the Chinese version.
 
-To generate static website resource files, run `npm run build`. The static resources of the build are in the `build` directory.
+To generate static website resource files, run `pnpm run build`. The static resources of the build are in the `build` directory.
 
 ## 2. Directory structure
 
