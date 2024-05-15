@@ -9,7 +9,7 @@ dependencies:
     specifier: 3.3.2
     version: 3.3.2(@docusaurus/types@3.3.2)(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
   '@docusaurus/plugin-content-docs':
-    specifier: ^3.3.2
+    specifier: 3.3.2
     version: 3.3.2(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
   '@docusaurus/preset-classic':
     specifier: 3.3.2
@@ -21,7 +21,7 @@ dependencies:
     specifier: 3.3.2
     version: 3.3.2(react-dom@18.3.1)(react@18.3.1)(typescript@4.9.5)
   '@docusaurus/utils-common':
-    specifier: ^3.3.2
+    specifier: 3.3.2
     version: 3.3.2(@docusaurus/types@3.3.2)
   '@easyops-cn/docusaurus-search-local':
     specifier: ^0.36.0
