@@ -13,7 +13,7 @@ This guide will guide you how to contribute to the Apache StreamPark™ (Incubat
 
 ## 1. Preview and generate static files
 
-This website is compiled using Node.js (version >=16.14 <=18), using [Docusaurus (3.3.2)](https://docusaurus.io/) framework components.
+This website is compiled using Node.js (version >=18), using [Docusaurus (3.3.2)](https://docusaurus.io/) framework components.
 
 To download and preview the website:
 

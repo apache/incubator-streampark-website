@@ -12,7 +12,7 @@ dev 为默认主分支，修改请先 fork 到自己的仓库，然后切换到�
 
 ## 1. 预览并生成静态文件
 
-本网站使用 Node.js 编译（>=16.14 <=18），并基于 [Docusaurus (3.3.2)](https://docusaurus.io/) 框架构建。
+本网站使用 Node.js 编译（>=18），并基于 [Docusaurus (3.3.2)](https://docusaurus.io/) 框架构建。
 
 运行以下命令下载网站源代码并在本地预览：
 
