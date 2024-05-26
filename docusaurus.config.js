@@ -162,6 +162,10 @@ const config = {
                 to: "/community/submit_guide/code_style_and_quality_guide",
               },
               {
+                label: "Documentation style guide",
+                to: "/community/submit_guide/documentation_style_guide",
+              },
+              {
                 label: "How to release",
                 to: "/community/release/how_to_release",
               },
