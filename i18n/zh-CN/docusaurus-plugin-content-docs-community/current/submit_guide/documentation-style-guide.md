@@ -1,6 +1,6 @@
 ---
 id: 'documentation_style_guide'
-title: '文档风格指南'
+title: '文档书写规范'
 sidebar_position: 4
 ---
 
