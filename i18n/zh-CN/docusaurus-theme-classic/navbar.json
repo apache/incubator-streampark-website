@@ -103,6 +103,10 @@
     "message": "代码风格和质量指南",
     "description": "Navbar item with label Code style and quality guide"
   },
+  "item.label.Documentation style guide": {
+    "message": "文档书写规范",
+    "description": "Navbar item with label Documentation style guide"
+  },
   "item.label.How to release": {
     "message": "如何发版",
     "description": "Navbar item with label How to release"
