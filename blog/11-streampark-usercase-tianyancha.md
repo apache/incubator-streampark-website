@@ -1,7 +1,7 @@
 ---
 slug: streampark-usercase-tianyancha
 title: Apache StreamPark™ helps Tianyancha real-time platform construction｜Multiple-fold increase in efficiency
-tags: [StreamPark, 生产实践]
+tags: [StreamPark, Production Practice]
 ---
 
 ![](/blog/tianyancha/new_cover.png)
