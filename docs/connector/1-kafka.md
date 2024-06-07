@@ -14,59 +14,57 @@ import TabItem from '@theme/TabItem';
 
 [Apache Flink](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html) integrates with the generic Kafka connector, which tries to keep up with the latest version of the Kafka client. The version of the Kafka client used by this connector may change between Flink versions. The current Kafka client is backward compatible with Kafka broker version 0.10.0 or later. For more details on Kafka compatibility, please refer to the [Apache Kafka](https://kafka.apache.org/protocol.html#protocol_compatibility) official documentation.
 
-
 ```xml
-    <dependency>
-        <groupId>org.apache.streampark</groupId>
-        <artifactId>streampark-flink-core</artifactId>
-        <version>${project.version}</version>
-    </dependency>
+<dependency>
+    <groupId>org.apache.streampark</groupId>
+    <artifactId>streampark-flink-core</artifactId>
+    <version>${project.version}</version>
+</dependency>
 
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-connector-kafka_2.11</artifactId>
-        <version>1.12.0</version>
-    </dependency>
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-connector-kafka_2.11</artifactId>
+    <version>1.12.0</version>
+</dependency>
 ```
 
-In the development phase, the following dependencies are also necessary
+In the development phase, the following dependencies are also necessary:
 
 ```xml
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-scala_${scala.binary.version}</artifactId>
-        <version>${flink.version}</version>
-        <scope>provided</scope>
-    </dependency>
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-scala_${scala.binary.version}</artifactId>
+    <version>${flink.version}</version>
+    <scope>provided</scope>
+</dependency>
 
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-clients_${scala.binary.version}</artifactId>
-        <version>${flink.version}</version>
-        <scope>provided</scope>
-    </dependency>
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-clients_${scala.binary.version}</artifactId>
+    <version>${flink.version}</version>
+    <scope>provided</scope>
+</dependency>
 
-    <dependency>
-        <groupId>org.apache.flink</groupId>
-        <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
-        <version>${flink.version}</version>
-        <scope>provided</scope>
-    </dependency>
+<dependency>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-streaming-scala_${scala.binary.version}</artifactId>
+    <version>${flink.version}</version>
+    <scope>provided</scope>
+</dependency>
 ```
 
 ## Kafka Source (Consumer)
 
-First, we introduce the standard kafka consumer approach based on the official website, the following code is taken from the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer)
+First, we introduce the standard kafka consumer approach based on the official website, the following code is taken from the [official website documentation](https://ci.apache.org/projects/flink/flink-docs-release-1.12/zh/dev/connectors/kafka.html#kafka-consumer):
 
 ```scala
 val properties = new Properties()
 properties.setProperty("bootstrap.servers", "localhost:9092")
 properties.setProperty("group.id", "test")
 val stream = env.addSource(new FlinkKafkaConsumer[String]("topic", new SimpleStringSchema(), properties))
-
 ```
 
-You can see a series of kafka connection information defined, this way the parameters are hard-coded, very insensitive, let's see how to use `StreamPark` to access `kafka` data, we just define the configuration file in the rule format and then write the code
+You can see a series of kafka connection information defined. In this way, the parameters are hard-coded and insensitive. Let's see how to use StreamPark to access data in Kafka. You need to define the configuration file in the rule format, and then write the code.
 
 ### example
 
@@ -80,7 +78,7 @@ kafka.source:
 ```
 
 :::info Cautions
-The prefix `kafka.source` is fixed, and the parameters related to kafka properties must comply with the [kafka official website](http://kafka.apache.org) specification for setting the parameter key
+The prefix `kafka.source` is fixed, and the parameters related to Kafka properties must comply with the official specification for setting the parameter key.
 :::
 
 <Tabs>
@@ -95,18 +93,14 @@ import org.apache.streampark.flink.core.scala.source.KafkaSource
 import org.apache.flink.api.scala._
 
 object kafkaSourceApp extends FlinkStreaming {
-
     override def handle(): Unit = {
         val source = KafkaSource().getDataStream[String]()
         print(source)
     }
-
 }
-
 ```
 
 </TabItem>
-
 <TabItem value="Java" label="Java">
 
 ```java
@@ -119,28 +113,26 @@ import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.streaming.api.datastream.DataStream;
 
 public class KafkaSimpleJavaApp {
-
     public static void main(String[] args) {
         StreamEnvConfig envConfig = new StreamEnvConfig(args, null);
         StreamingContext context = new StreamingContext(envConfig);
         DataStream<String> source = new KafkaSource<String>(context)
                 .getDataStream()
                 .map((MapFunction<KafkaRecord<String>, String>) KafkaRecord::value);
-
         source.print();
-
         context.start();
     }
 }
-
 ```
+
 </TabItem>
 </Tabs>
 
 ### Advanced configuration parameters
 
 `KafkaSource` is based on the Flink Kafka Connector construct a simpler kafka reading class, the constructor needs to pass `StreamingContext`, when the program starts to pass the configuration file can be, framework will automatically parse the configuration file, when `new KafkaSource` it will automatically get the relevant information from the configuration file, initialize and return a Kafka Consumer, in this case, only configuration one topic, so in the consumption of the time without specifying the topic directly by default to get this topic to consume, this is the simple example, more complex rules and read operations through the `. getDataStream()` pass parameters in the method to achieve
-Let's look at the signature of the `getDataStream` method
+
+Let's look at the signature of the `getDataStream` method:
 
 ```scala
 def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
@@ -149,7 +141,8 @@ def getDataStream[T: TypeInformation](topic: java.io.Serializable = null,
     strategy: WatermarkStrategy[KafkaRecord[T]] = null
 ): DataStream[KafkaRecord[T]]
 ```
-The specific description of the parameters are as follows
+
+The specific description of the parameters are as follows:
 
 | Parameter Name           | Parameter Type                 | Description                           | Default                              |
 |:---------------|:----------------------|:--------------------------------------|:-------------------------------------|
@@ -158,7 +151,7 @@ The specific description of the parameters are as follows
 | `deserializer` | DeserializationSchema | deserialize class of the data in the topic      | KafkaStringDeserializationSchema     |
 | `strategy`     | WatermarkStrategy     | watermark generation strategy                         |                                      |
 
-Let's take a look at more usage and configuration methods
+Let's take a look at more usage and configuration methods.
 
 <div class="counter">
 
