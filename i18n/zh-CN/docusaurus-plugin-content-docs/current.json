@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Get Started": {
+    "message": "快速开始",
+    "description": "The label for category Get Started in sidebar docs"
+  },
+  "sidebar.tutorialSidebar.category.Platform User Guide": {
+    "message": "平台使用手册",
+    "description": "The label for category Platform User Guide in sidebar docs"
+  },
+  "sidebar.tutorialSidebar.category.Development Framework": {
+    "message": "开发框架",
+    "description": "The label for category Development Framework in sidebar docs"
+  },
+  "sidebar.tutorialSidebar.category.Development Guide": {
+    "message": "开发者指南",
+    "description": "The label for category Development Guide in sidebar docs"
+  },
+  "sidebar.tutorialSidebar.category.Connectors": {
+    "message": "连接器",
+    "description": "The label for category Connectors in sidebar docs"
+  }
+}
