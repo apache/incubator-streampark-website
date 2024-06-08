@@ -160,10 +160,10 @@ article[itemprop="blogPost"] {
 }
 
 code {
-  background-color: #edf2fa;
   border: none;
   word-break: normal;
   padding: 3px 4px;
+  color: var(--ifm-color-primary-light);
   border-radius: 4px;
   span {
     font-style: normal !important;
@@ -171,8 +171,8 @@ code {
 }
 
 [data-theme='dark'] code {
-  background-color: var(--ifm-code-background) !important;
   font-weight: bolder;
+  color: unset;
 }
 
 .markdown h1:first-child {
@@ -428,7 +428,6 @@ prism-code {
   border-style: none;
   color: crimson;
 }
-
 
 /* Font colors on the ANSI compatibilty page */
 .text-warning {
