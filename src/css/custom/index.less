@@ -160,14 +160,19 @@ article[itemprop="blogPost"] {
 }
 
 code {
-  font-weight: 600;
-  padding: 1px 2px;
-  font-size: 12px;
-  background-color: var(--ifm-code-background) !important;
-
+  background-color: #edf2fa;
+  border: none;
+  word-break: normal;
+  padding: 3px 4px;
+  border-radius: 4px;
   span {
     font-style: normal !important;
   }
+}
+
+[data-theme='dark'] code {
+  background-color: var(--ifm-code-background) !important;
+  font-weight: bolder;
 }
 
 .markdown h1:first-child {
@@ -201,9 +206,7 @@ code {
 }
 
 .table-of-contents__link:hover,
-.table-of-contents__link:hover code,
-.table-of-contents__link--active,
-.table-of-contents__link--active code {
+.table-of-contents__link--active {
   font-weight: 600;
   color: var(--click-color-text);
 }
@@ -930,7 +933,7 @@ button.DocSearch {
   fill: white;
 }
 
-// -- custom -- 
+// -- custom --
 
 /** global */
 
@@ -1156,3 +1159,11 @@ img {
     min-width: 1200px !important;
   }
 }
+
+.table-data {
+  thead tr td {
+    background-color: var(--ifm-table-head-background);
+  }
+  border: 1px solid var(--ifm-table-head-background);
+}
+
