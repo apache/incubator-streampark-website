@@ -69,7 +69,7 @@
       "coreFeatures": "Key Features",
       "coreFeaturesDesc": "The key features of StreamPark™ is to make your stream processing easier.",
       "development": "Development Framework",
-      "developmentDesc": "StreamPark™ provided a development framework to quickly develop stream processing jobs.",
+      "developmentDesc": "StreamPark™ provided a development framework to quickly develop stream processing applications.",
       "honor": "Our Honor",
       "ourUsers": "Our Users",
       "readMore": "Read More",
@@ -82,40 +82,40 @@
     },
     "slogan": {
       "key": "make stream processing easier!",
-      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink® and Apache Spark™ supported."
+      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink® and Apache Spark™ supported, provides full lifecycle support for stream processing applications."
     },
     "feature": [
       {
         "title": "Easy to use",
         "icon": "lni-layers",
-        "details": "Only one service, easy deployment. Automatic job status tracking, enabling development and management of jobs within minutes."
+        "details": "Only one service, easy deployment. Automatic application status tracking, enabling development and management of applications within minutes."
       },
       {
         "title": "Unified Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamPark™ supports both Apache Flink® and Apache Spark™, making it easier to seamlessly support streaming and batch processing"
+        "details": "StreamPark™ supports both Apache Flink® and Apache Spark™, making it easier to seamlessly support streaming and batch processing."
       },
       {
         "title": "One-stop Solution",
         "icon": "lni-display-alt",
-        "details": "StreamPark™ provides full lifecycle support for stream processing jobs.from development to deployment, It is an one-stop streaming platform"
+        "details": "StreamPark™ provides full lifecycle support for stream processing applications.from development to deployment, It is an one-stop streaming platform."
       }
     ],
     "development": [
       {
         "icon": "lni-code",
         "title": "Write",
-        "description": "Develop your code quickly using the StreamPark™ API"
+        "description": "1. Develop your code quickly using the StreamPark™ API"
       },
       {
         "icon": "lni-bug",
         "title": "Debug",
-        "description": "Debug your code with the standardized configuration"
+        "description": "2. Debug your code with the application configuration"
       },
       {
         "icon": "lni-bolt-alt",
         "title": "Deploy",
-        "description": "Deploy and manage your jobs using StreamPark™"
+        "description": "3. Deploy and manage your applications using StreamPark™"
       }
     ],
     "honor" : {
