@@ -19,7 +19,7 @@
     },
     "slogan": {
       "key": "让流处理更简单!",
-      "description": "流处理极速开发框架，流批一体 & 湖仓一体的云原生平台，一站式流处理计算平台"
+      "description": "流处理开发框架 & 一站式实时计算平台，同时支持 Apache Flink 和 Apache Spark。"
     },
     "feature": [
       {
