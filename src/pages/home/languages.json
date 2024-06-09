@@ -8,7 +8,6 @@
       "coreFeaturesDesc": "StreamPark™ 让流处理作业开发 & 管理更简单的核心特性",
       "development": "开 发 框 架",
       "developmentDesc": "StreamPark™ 提供了开发框架，可快速完成流处理作业开发",
-      "honor": "我们的荣誉",
       "ourUsers": "Our Users",
       "readMore": "阅读更多",
       "download": "下载",
@@ -43,22 +42,19 @@
       {
         "icon": "lni-code",
         "title": "编写代码",
-        "description": "使用 Apache StreamPark™ 提供的快捷 API 开发流处理作业。"
+        "description": "1. 使用 Apache StreamPark™ 提供的快捷 API 开发流处理作业。"
       },
       {
         "icon": "lni-bug",
         "title": "调试代码",
-        "description": "传入 Apache StreamPark™ 约定的配置，进行本地作业开发调试。"
+        "description": "2. 传入 Apache StreamPark™ 约定的配置，进行本地作业开发调试。"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "部署任务",
-        "description": "使用 Apache StreamPark™ 提供的平台来部署和管理你的作业。"
+        "title": "部署作业",
+        "description": "3. 使用 Apache StreamPark™ 提供的平台来部署和管理你的作业。"
       }
-    ],
-    "honor" : {
-      "description": "我们获得了些殊荣，这些荣誉属于所有为 StreamPark™ 做出贡献的人，感谢你的付出！"
-    }
+    ]
   },
   "en": {
     "common": {
@@ -70,7 +66,6 @@
       "coreFeaturesDesc": "The key features of StreamPark™ is to make your stream processing easier.",
       "development": "Development Framework",
       "developmentDesc": "StreamPark™ provided a development framework to quickly develop stream processing applications.",
-      "honor": "Our Honor",
       "ourUsers": "Our Users",
       "readMore": "Read More",
       "download": "Download",
@@ -104,22 +99,19 @@
     "development": [
       {
         "icon": "lni-code",
-        "title": "Write",
+        "title": "Write Code",
         "description": "1. Develop your code quickly using the StreamPark™ API"
       },
       {
         "icon": "lni-bug",
-        "title": "Debug",
+        "title": "Debug Application",
         "description": "2. Debug your code with the application configuration"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "Deploy",
+        "title": "Deploy Application",
         "description": "3. Deploy and manage your applications using StreamPark™"
       }
-    ],
-    "honor" : {
-      "description": "We have received some precious honors, which belong to everyone who contributes to StreamPark™, Thanks"
-    }
+    ]
   }
 }
