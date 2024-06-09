@@ -19,7 +19,7 @@
   }
 
   .top2 {
-    margin-top: -50px;
+    margin-top: -70px;
   }
 
   .hero-main {
@@ -30,8 +30,8 @@
     }
 
     .hero-px {
-      padding-left: 6rem;
-      padding-right: 6rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
     }
 
     .cover-top {
@@ -39,20 +39,17 @@
       flex-direction: column;
       border-bottom: 2px solid var(--primary-color);
       vertical-align: bottom;
-      height: 180px;
+      height: 200px;
       transform: scaleX(3) rotate(-3deg);
     }
 
     .system_info {
       .project_title {
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif !important;
-        font-size: 4rem;
-        font-weight: 500;
+        font-weight: 200;
         line-height: 1;
         padding-bottom: 8px;
-        color: var(--primary-color);
-        position: relative;
-        white-space: nowrap;
+        color: #2e7fed;
       }
 
       h5 {
@@ -246,6 +243,7 @@
 
     .shields img {
       margin-right: 5px;
+      border-radius: 5px;
     }
   }
 
@@ -626,8 +624,10 @@
   }
 
   .incubating {
-    background-color: rgba(66, 144, 245, .15);
-
+    background-color: rgba(66, 144, 245, 0.15);
+    padding: 0.25em 0.7em;
+    color: #084696;
+    font-weight: 400;
     &:hover {
       background-color: rgba(66, 144, 245, .25);
     }
@@ -724,13 +724,13 @@
 
 @media (min-width: 1200px) {
   .system_info .project_title {
-    font-size: 3rem !important;
+    font-size: 3.5rem !important;
   }
 }
 
 @media (min-width: 1400px) {
   .system_info .project_title {
-    font-size: 3.5rem !important;
+    font-size: 4.0rem !important;
   }
 }
 
