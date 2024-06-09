@@ -41,7 +41,7 @@ export default function () {
                           Incubating
                         </span>
                       </div>
-                      <span className="project_title">Apache StreamPark™</span>
+                      <span className="project_title">Apache StreamPark<span className="tm">™</span></span>
                     </div>
                   </div>
                   <p className="desc lead">
