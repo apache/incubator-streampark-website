@@ -49,7 +49,19 @@
         font-weight: 200;
         line-height: 1;
         padding-bottom: 8px;
-        color: #2e7fed;
+        color: var(--primary-color);
+      }
+
+      .desc {
+        color: var(--ifm-color-secondary-contrast-foreground);
+        opacity: .8;
+      }
+
+      .tm {
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: fixed;
+        top: 30px;
       }
 
       h5 {
@@ -58,6 +70,7 @@
         line-height: 2;
       }
     }
+
 
     .cover-container {
       max-width: 1400px;
@@ -245,6 +258,16 @@
       margin-right: 5px;
       border-radius: 5px;
     }
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+
+  [data-theme="dark"] .lead {
+    color: #dddddd !important;
   }
 
   .ztop {
@@ -659,12 +682,8 @@
     color: #fff;
   }
 
-  .system_info .project_title {
-    color: var(--primary-color);
-  }
-
   .feature-children {
-    background-color: var(--bg-color);
+    background-color: #282828;
     border: 1px solid #333;
   }
 
@@ -690,7 +709,6 @@
     .desc {
       font-size: 1rem !important;
       line-height: 1.5 !important;
-      color: #63646d;
     }
   }
 }

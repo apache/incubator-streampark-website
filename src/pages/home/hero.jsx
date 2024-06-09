@@ -41,7 +41,7 @@ export default function () {
                           Incubating
                         </span>
                       </div>
-                      <span className="project_title">Apache StreamPark™</span>
+                      <span className="project_title">Apache StreamPark<span className="tm">™</span></span>
                     </div>
                   </div>
                   <p className="desc lead">
@@ -57,11 +57,11 @@ export default function () {
                   <i className="lni-play"></i>&nbsp;Get started
                 </a>
                 <div style={{marginTop: '20px'}} className="shields ztop">
-                  <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg"
+                  <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?style=for-the-badge"
                        className="wow fadeInUp"></img>
-                  <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg"
+                  <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?style=for-the-badge"
                        className="wow fadeInUp"></img>
-                  <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg"
+                  <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg?style=for-the-badge"
                        className="wow fadeInUp"></img>
                 </div>
               </div>
@@ -84,7 +84,7 @@ function HeroImage() {
     return null
   }
   return (
-    <div className="col-6 align-self-center">
+    <div className="col-6 pt-6 align-self-center">
       <div
         className="text-right"
         data-aos="fade-up"
