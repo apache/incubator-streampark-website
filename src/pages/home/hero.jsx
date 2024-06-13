@@ -20,81 +20,59 @@ export default function () {
       <div className="overflow-hidden">
         <Top1 className="top1" />
       </div>
-      <div className="section hero-main pb-6 overflow-hidden main-page">
+      <div className="section hero-main pt-4 pb-2 overflow-hidden main-page">
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
         <div className="container-fluid pb-2 cover-container container-hero hero-px">
           <div className="row justify-content-center">
             <div
-              className="col-10 col-sm-10 col-md-10 col-lg-6 align-self-center pe-0"
-              data-aos="fade-right"
+                className="col-10 col-sm-10 col-md-10 col-lg-6 align-self-center pe-0"
+                data-aos="fade-right"
             >
               <div className="text-start mt-0">
                 <div className="mb-5 system_info pt-0">
                   <div className="fw-bold mb-3">
                     <div
-                      className="d-flex flex-column align-items-start"
-                      style={{ width: "max-content" }}
+                        className="d-flex flex-column align-items-start"
+                        style={{width: "max-content"}}
                     >
-                      <div className="text-right" style={{ width: "100%" }}>
+                      <div className="text-right" style={{width: "100%"}}>
                         <span className="badge incubating fs-6 tag">
                           Incubating
                         </span>
                       </div>
-                      <span className="project_title">Apache StreamPark</span>
+                      <span className="project_title">Apache StreamPark<span className="tm">™</span></span>
                     </div>
                   </div>
                   <p className="desc lead">
                     {dataSource.slogan.description}
                   </p>
                 </div>
-                <div>
-                  <Button
-                    theme="github"
-                    icon="lni-github-original"
-                    href="https://github.com/apache/incubator-streampark"
-                    target="_blank"
-                  >
-                    Github
-                  </Button>
-                  <Button
-                    theme="primary"
-                    icon="lni-play"
-                    href="/docs/user-guide/quick-start"
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Get started
-                  </Button>
+                <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
+                   target="_blank">
+                  <i className="lni-github-original"></i>&nbsp;GitHub
+                </a>
+                <a className="btn streampark-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
+                   style={{marginLeft: '10px'}}>
+                  <i className="lni-play"></i>&nbsp;Get started
+                </a>
+                <div style={{marginTop: '20px'}} className="shields ztop">
+                  <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?style=for-the-badge"
+                       className="wow fadeInUp"></img>
+                  <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?style=for-the-badge"
+                       className="wow fadeInUp"></img>
+                  <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg?style=for-the-badge"
+                       className="wow fadeInUp"></img>
                 </div>
               </div>
             </div>
             {/* hero image */}
             {HeroImage()}
           </div>
-          <AchievementBanner />
-
         </div>
-        {/* <section className="achievement-banner-wrapper">
-          <div className="achievement-banner">
-            <div className="achievement-banner-item">
-              <div className="achievement-banner-item__highlight">3.7k+</div>
-              <div>Github stars</div>
-            </div>
-            <div className="achievement-banner-item">
-              <div className="achievement-banner-item__highlight">964</div>
-              <div>Github forks</div>
-            </div>
-            <div className="achievement-banner-item">
-              <div className="achievement-banner-item__highlight">9.9k+</div>
-              <div>Total downloads</div>
-            </div>
-          </div>
-        </section> */}
-
-        {/* <div className="pt-6 cover-top">
-          <Top2 className="top2" />
-        </div> */}
-        {/* <StreamWave /> */}
+        <div className='pt-6 pt-6 cover-top'>
+          <Top2 className="top2"/>
+        </div>
       </div>
     </>
   );
@@ -106,7 +84,7 @@ function HeroImage() {
     return null
   }
   return (
-    <div className="col-6 align-self-center">
+    <div className="col-6 pt-6 align-self-center">
       <div
         className="text-right"
         data-aos="fade-up"
@@ -114,7 +92,6 @@ function HeroImage() {
       >
         <Dashboard
           className="img-fluid"
-          style={{ transform: "translateY(4rem)" }}
         />
       </div>
     </div>

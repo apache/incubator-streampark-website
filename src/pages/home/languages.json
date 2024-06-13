@@ -4,10 +4,10 @@
       "getStart": "快速开始",
       "architecture": "系统架构",
       "learnMore": "了解更多",
-      "coreFeatures": "核心特性",
-      "coreFeaturesDesc": "StreamPark 让您的流处理作业更简单的核心特性",
-      "development": "开发脚手架",
-      "honor": "我们的荣誉",
+      "coreFeatures": "核 心 特 性",
+      "coreFeaturesDesc": "StreamPark™ 让流处理作业开发 & 管理更简单的核心特性",
+      "development": "开 发 框 架",
+      "developmentDesc": "StreamPark™ 提供了开发框架，可快速完成流处理作业开发",
       "ourUsers": "Our Users",
       "readMore": "阅读更多",
       "download": "下载",
@@ -19,45 +19,42 @@
     },
     "slogan": {
       "key": "让流处理更简单!",
-      "description": "流处理极速开发框架，流批一体 & 湖仓一体的云原生平台，一站式流处理计算平台"
+      "description": "Apache StreamPark™ 是一个流处理应用程序开发管理框架，旨在轻松构建和管理流处理应用程序，提供使用 Apache Flink® 和 Apache Spark™ 编写流处理应用的开发框架和一站式实时计算平台，核心能力包括不限于应用开发、部署、管理、运维、实时数仓等。"
     },
     "feature": [
       {
         "title": "简单易用",
         "icon": "lni-layers",
-        "details": "提供了一系列快捷 API 和 Connector，开箱即用，作业状态自动追踪, 分钟内即可完成作业的开发和管理"
+        "details": "Apache StreamPark™ 提供了一系列快捷 API 和 Connector，开箱即用，作业状态自动追踪，快速完成作业的开发和管理。"
       },
       {
         "title": "流批一体",
         "icon": "lni-shuffle",
-        "details": "StreamPark 同时支持 Apache Flink & Apache Spark，无缝支持流式处理和批处理，连接互通，创造更多可能"
+        "details": "Apache StreamPark™  同时支持 Apache Flink® & Apache Spark™，无缝支持流式处理和批处理，连接互通，创造无限可能。"
       },
       {
         "title": "一站式解决方案",
         "icon": "lni-display-alt",
-        "details": "StreamPark 为流处理作业提供全生命周期支持，从开发到部署，集等众多功能于一身，是一站式流处理平台"
+        "details": "Apache StreamPark™  为流处理作业提供全生命周期支持，从开发到部署，集等众多功能于一身，是一站式流处理平台。"
       }
     ],
     "development": [
       {
         "icon": "lni-code",
         "title": "编写代码",
-        "description": "使用 StreamPark API 快速进行作业开发"
+        "description": "1. 使用 Apache StreamPark™ 提供的快捷 API 开发流处理作业。"
       },
       {
         "icon": "lni-bug",
         "title": "调试代码",
-        "description": "传入 StreamPark 约定的配置，进行本地作业调试"
+        "description": "2. 传入 Apache StreamPark™ 约定的配置，进行本地作业开发调试。"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "部署任务",
-        "description": "使用 StreamPark 来部署和管理您的作业"
+        "title": "部署作业",
+        "description": "3. 使用 Apache StreamPark™ 提供的平台来部署和管理你的作业。"
       }
-    ],
-    "honor" : {
-      "description": "我们获得了些殊荣，这些荣誉属于所有为 StreamPark 做出贡献的人，感谢您的付出！"
-    }
+    ]
   },
   "en": {
     "common": {
@@ -66,9 +63,9 @@
       "description": "Description",
       "learnMore": "Learn More",
       "coreFeatures": "Key Features",
-      "coreFeaturesDesc": "The key features of StreamPark is to make your stream processing easier.",
+      "coreFeaturesDesc": "The key features of StreamPark™ is to make your stream processing easier.",
       "development": "Development Framework",
-      "honor": "Our Honor",
+      "developmentDesc": "StreamPark™ provided a development framework to quickly develop stream processing applications.",
       "ourUsers": "Our Users",
       "readMore": "Read More",
       "download": "Download",
@@ -80,44 +77,41 @@
     },
     "slogan": {
       "key": "make stream processing easier!",
-      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink and Apache Spark supported."
+      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink® and Apache Spark™ supported, provides full lifecycle support for stream processing applications."
     },
     "feature": [
       {
         "title": "Easy to use",
         "icon": "lni-layers",
-        "details": "Only one service, easy deployment. Automatic job status tracking, enabling development and management of jobs within minutes."
+        "details": "Only one service, easy deployment. Automatic application status tracking, enabling development and management of applications within minutes."
       },
       {
         "title": "Unified Batch & Streaming",
         "icon": "lni-shuffle",
-        "details": "StreamPark supports both Apache Flink and Apache Spark, making it easier to seamlessly support streaming and batch processing"
+        "details": "StreamPark™ supports both Apache Flink® and Apache Spark™, making it easier to seamlessly support streaming and batch processing."
       },
       {
         "title": "One-stop Solution",
         "icon": "lni-display-alt",
-        "details": "StreamPark provides full lifecycle support for stream processing jobs.from development to deployment, It is an one-stop streaming platform"
+        "details": "StreamPark™ provides full lifecycle support for stream processing applications.from development to deployment, It is an one-stop streaming platform."
       }
     ],
     "development": [
       {
         "icon": "lni-code",
-        "title": "Write",
-        "description": "Develop your code quickly using the StreamPark API"
+        "title": "Write Code",
+        "description": "1. Develop your code quickly using the StreamPark™ API"
       },
       {
         "icon": "lni-bug",
-        "title": "Debug",
-        "description": "Debug your code with the standardized configuration"
+        "title": "Debug Application",
+        "description": "2. Debug your code with the application configuration"
       },
       {
         "icon": "lni-bolt-alt",
-        "title": "Deploy",
-        "description": "Deploy and manage your jobs using StreamPark"
+        "title": "Deploy Application",
+        "description": "3. Deploy and manage your applications using StreamPark™"
       }
-    ],
-    "honor" : {
-      "description": "We have received some precious honors, which belong to everyone who contributes to StreamPark, Thanks"
-    }
+    ]
   }
 }

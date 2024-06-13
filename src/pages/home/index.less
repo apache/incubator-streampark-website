@@ -19,7 +19,7 @@
   }
 
   .top2 {
-    margin-top: -50px;
+    margin-top: -70px;
   }
 
   .hero-main {
@@ -30,8 +30,8 @@
     }
 
     .hero-px {
-      padding-left: 6rem;
-      padding-right: 6rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
     }
 
     .cover-top {
@@ -39,20 +39,32 @@
       flex-direction: column;
       border-bottom: 2px solid var(--primary-color);
       vertical-align: bottom;
-      height: 180px;
+      height: 200px;
       transform: scaleX(3) rotate(-3deg);
     }
 
     .system_info {
       .project_title {
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif !important;
-        font-size: 4rem;
-        font-weight: 500;
+        font-weight: 200;
         line-height: 1;
         padding-bottom: 8px;
         color: var(--primary-color);
-        position: relative;
-        white-space: nowrap;
+      }
+
+      .project_title, .desc {
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif !important;
+      }
+
+      .desc {
+        color: var(--ifm-color-secondary-contrast-foreground);
+        opacity: .8;
+      }
+
+      .tm {
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: fixed;
+        top: 30px;
       }
 
       h5 {
@@ -61,6 +73,7 @@
         line-height: 2;
       }
     }
+
 
     .cover-container {
       max-width: 1400px;
@@ -246,7 +259,18 @@
 
     .shields img {
       margin-right: 5px;
+      border-radius: 5px;
     }
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+
+  [data-theme="dark"] .lead {
+    color: #dddddd !important;
   }
 
   .ztop {
@@ -626,8 +650,10 @@
   }
 
   .incubating {
-    background-color: rgba(66, 144, 245, .15);
-
+    background-color: rgba(66, 144, 245, 0.15);
+    padding: 0.25em 0.7em;
+    color: #084696;
+    font-weight: 400;
     &:hover {
       background-color: rgba(66, 144, 245, .25);
     }
@@ -659,12 +685,8 @@
     color: #fff;
   }
 
-  .system_info .project_title {
-    color: var(--primary-color);
-  }
-
   .feature-children {
-    background-color: var(--bg-color);
+    background-color: #282828;
     border: 1px solid #333;
   }
 
@@ -690,7 +712,6 @@
     .desc {
       font-size: 1rem !important;
       line-height: 1.5 !important;
-      color: #63646d;
     }
   }
 }
@@ -724,13 +745,13 @@
 
 @media (min-width: 1200px) {
   .system_info .project_title {
-    font-size: 3rem !important;
+    font-size: 3.5rem !important;
   }
 }
 
 @media (min-width: 1400px) {
   .system_info .project_title {
-    font-size: 3.5rem !important;
+    font-size: 4.0rem !important;
   }
 }
 

@@ -22,7 +22,7 @@
       display: flex;
 
       &:last-child .process-vertical-icon::before {
-        bottom: 0.5rem;
+        display: none;
       }
 
       .process-vertical-icon {
@@ -37,7 +37,7 @@
           position: absolute;
           left: 45%;
           top: 4rem;
-          bottom: -2rem;
+          bottom: -4rem;
           border-left: 2px dashed #E5E7EB;
         }
 
@@ -70,8 +70,8 @@
     --width: min(100%, 500px);
     width: var(--width);
     margin-left: max(calc((100% / 2 - var(--width)) / 2), 0); // 取中
-
     border: 1px dashed #e8e8e8;
+    opacity: .7;
     margin-bottom: 5rem;
   }
 }

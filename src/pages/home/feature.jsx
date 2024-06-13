@@ -13,8 +13,8 @@ export default function () {
           <div className="col-12">
             <div className="mb-5 pt-6">
               <h2 className="article-title h3 fw-bold">{dataSource.common.coreFeatures}</h2>
-              <hr className="divider my-4 mx-auto" />
-              <p className="lead text-muted">{dataSource.common.coreFeaturesDesc}</p>
+              <hr className="divider my-4" />
+              <p className="lead desc">{dataSource.common.coreFeaturesDesc}</p>
             </div>
           </div>
         </div>
@@ -32,7 +32,7 @@ export default function () {
               </div>
             ))
           }
-          </div>
+        </div>
       </div>
     </div>
   );
