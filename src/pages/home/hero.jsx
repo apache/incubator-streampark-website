@@ -24,19 +24,19 @@ export default function () {
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
         <div className="container-fluid pb-2 cover-container container-hero hero-px">
-          <div className="row justify-content-center">
+          <div className="row justify-content-center ">
             <div
-                className="col-10 col-sm-10 col-md-10 col-lg-6 align-self-center pe-0"
-                data-aos="fade-right"
+              className="col-10 col-sm-10 col-md-10 col-lg-10 align-self-center pe-0"
+              data-aos="fade-right"
             >
-              <div className="text-start mt-0">
+              <div className="text-center mt-0">
                 <div className="mb-5 system_info pt-0">
-                  <div className="fw-bold mb-3">
+                  <div className="fw-bold mb-3 d-flex justify-content-center">
                     <div
-                        className="d-flex flex-column align-items-start"
-                        style={{width: "max-content"}}
+                      className="d-flex flex-column align-items-center"
+                      style={{ width: "max-content" }}
                     >
-                      <div className="text-right" style={{width: "100%"}}>
+                      <div className="text-right" style={{ width: "100%" }}>
                         <span className="badge incubating fs-6 tag">
                           Incubating
                         </span>
@@ -48,30 +48,38 @@ export default function () {
                     {dataSource.slogan.description}
                   </p>
                 </div>
-                <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
-                   target="_blank">
-                  <i className="lni-github-original"></i>&nbsp;GitHub
-                </a>
-                <a className="btn streampark-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
-                   style={{marginLeft: '10px'}}>
-                  <i className="lni-play"></i>&nbsp;Get started
-                </a>
-                <div style={{marginTop: '20px'}} className="shields ztop">
-                  <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?style=for-the-badge"
-                       className="wow fadeInUp"></img>
-                  <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?style=for-the-badge"
-                       className="wow fadeInUp"></img>
-                  <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg?style=for-the-badge"
-                       className="wow fadeInUp"></img>
+                <div className="d-flex flex-column align-items-center">
+                  <div>
+                    <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
+                      target="_blank">
+                      <i className="lni-github-original"></i>&nbsp;GitHub
+                    </a>
+                    <a className="btn streampark-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
+                      style={{ marginLeft: '10px' }}>
+                      <i className="lni-play"></i>&nbsp;Get started
+                    </a>
+                  </div>
+                  {/* <div className="shields ztop mt-2">
+                    <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?style=for-the-badge"
+                      className="wow fadeInUp"></img>
+                    <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?style=for-the-badge"
+                      className="wow fadeInUp"></img>
+                    <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg?style=for-the-badge"
+                      className="wow fadeInUp"></img>
+                  </div> */}
                 </div>
               </div>
             </div>
             {/* hero image */}
-            {HeroImage()}
+            {/* {HeroImage()} */}
           </div>
         </div>
+        <div className="d-flex flex-row justify-content-center">
+          {/* hero image */}
+          {HeroImage()}
+        </div>
         <div className='pt-6 pt-6 cover-top'>
-          <Top2 className="top2"/>
+          <Top2 className="top2" />
         </div>
       </div>
     </>
@@ -84,7 +92,7 @@ function HeroImage() {
     return null
   }
   return (
-    <div className="col-6 pt-6 align-self-center">
+    <div className="col-9 pt-4 align-self-center">
       <div
         className="text-right"
         data-aos="fade-up"

@@ -54,7 +54,12 @@
         "title": "部署作业",
         "description": "3. 使用 Apache StreamPark™ 提供的平台来部署和管理你的作业。"
       }
-    ]
+    ],
+    "users": {
+      "title": "StreamPark™ 赢得合作伙伴的广泛信赖",
+      "description": "Apache StreamPark™ 已经被广泛应用于金融、电商、物流、互联网、制造等行业，帮助用户快速构建和管理流处理作业，提升数据处理效率。",
+      "more": "更多合作伙伴"
+    }
   },
   "en": {
     "common": {
@@ -112,6 +117,11 @@
         "title": "Deploy Application",
         "description": "3. Deploy and manage your applications using StreamPark™"
       }
-    ]
+    ],
+    "users": {
+      "title": "Apache StreamPark™ is trust by",
+      "description": "StreamPark™ has been widely used in finance, e-commerce, logistics, Internet, manufacturing and other industries, helping users quickly build and manage stream processing jobs and improve data processing efficiency.",
+      "more": "More Partners"
+    }
   }
 }
