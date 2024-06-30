@@ -110,7 +110,7 @@ Streaming 作业我们是使用 Flink java 进行开发，将之前 Spark scala�
 
 ![](/blog/joyme/flink_system.png)
 
-新建任务，选择 Custom code ，选择 Flink 版本，选择项目以及模块 Jar 包，选择开发的应用模式为 Apache Flink (标准的 Flink 程序)，程序主函数入口类，任务的名称。
+新建任务，选择 Custom code ，选择 Flink 版本，选择项目以及模块 Jar 包，选择开发的应用模式为 Apache Flink® (标准的 Flink 程序)，程序主函数入口类，任务的名称。
 
 ![](/blog/joyme/add_projectconfiguration.png)
 

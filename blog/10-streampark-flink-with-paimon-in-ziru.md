@@ -78,13 +78,13 @@ Paimon can be used in conjunction with Apache Spark. Our scenario is Paimon comb
 
 Apache StreamPark is a stream processing development and management framework that provides a set of fast APIs for developing Flink/Spark jobs. In addition, it also provides a one-stop stream processing job development and management platform, covering the entire life cycle from stream processing job development to launch. Cycles are supported. StreamPark mainly includes the following core features:
 
-- **Stream processing application development framework**: Based on StreamPark, developers can easily build and manage stream processing applications, and better utilize Apache Flink to write stream processing applications.
+- **Stream processing application development framework**: Based on StreamPark, developers can easily build and manage stream processing applications, and better utilize Apache Flink® to write stream processing applications.
 
 - **Perfect management capabilities**: StreamPark provides a one-stop streaming task development and management platform that supports the full life cycle of Flink/Spark from application development to debugging, deployment, operation and maintenance, allowing Flink/Spark jobs to Make it simple.
 
 - **High degree of completion**: StreamPark supports multiple versions of Flink, allowing flexible switching of one platform. It also supports Flink’s deployment mode, effectively solving the problem of too cumbersome Flink on YARN/K8s deployment. Through automated processes, It simplifies the process of building, testing and deploying tasks and improves development efficiency.
 
-- **Rich management API**: StreamPark provides APIs for job operations, including job creation, copy, build, deployment, stop and start based on checkpoint/savepoint, etc., making it easy to implement external system calls to Apache Flink tasks. .
+- **Rich management API**: StreamPark provides APIs for job operations, including job creation, copy, build, deployment, stop and start based on checkpoint/savepoint, etc., making it easy to implement external system calls to Apache Flink® tasks. .
 
 ## **3. StreamPark + Paimon Practice**
 

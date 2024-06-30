@@ -540,7 +540,7 @@ netstat -tlnp | grep 10002
 
 ## **Benefits Brought**
 
-Our team has been using StreamX (the predecessor of StreamPark) and, after more than a year of practice and refinement, StreamPark has significantly improved our challenges in developing, managing, and operating Apache Flink jobs. As a one-stop service platform, StreamPark greatly simplifies the entire development process. Now, we can complete job development, compilation, and release directly on the StreamPark platform, not only lowering the management and deployment threshold of Flink but also significantly improving development efficiency.
+Our team has been using StreamX (the predecessor of StreamPark) and, after more than a year of practice and refinement, StreamPark has significantly improved our challenges in developing, managing, and operating Apache Flink® jobs. As a one-stop service platform, StreamPark greatly simplifies the entire development process. Now, we can complete job development, compilation, and release directly on the StreamPark platform, not only lowering the management and deployment threshold of Flink but also significantly improving development efficiency.
 
 Since deploying StreamPark, we have been using the platform on a large scale in a production environment. From initially managing over 50 FlinkSQL jobs to nearly 500 jobs now, as shown in the diagram, StreamPark is divided into 7 teams, each with dozens of jobs. This transformation not only demonstrates StreamPark's scalability and efficiency but also fully proves its strong practical value in actual business.
 

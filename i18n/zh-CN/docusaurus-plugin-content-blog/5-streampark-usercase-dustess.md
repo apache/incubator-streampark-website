@@ -111,7 +111,7 @@ https://streampark.apache.org/docs/development/config
 
 除此之外：
 
-StreamPark 也**支持Apache Flink 原生任务**，参数配置可以由 Java 任务内部代码静态维护，可以覆盖非常多的场景，比如存量 Flink 任务无缝迁移等等
+StreamPark 也**支持Apache Flink® 原生任务**，参数配置可以由 Java 任务内部代码静态维护，可以覆盖非常多的场景，比如存量 Flink 任务无缝迁移等等
 
 #### **7. Checkpoint 管理**
 
@@ -182,7 +182,7 @@ StreamPark 非常贴心的准备了 Demo SQL 任务，可以直接在刚搭建�
 
 由于目前团队的数据开发同学大多有 Java 和 Scala 语言基础，为了更加灵活的开发、更加透明的调优 Flink 任务及覆盖更多场景，我们也快速的落地了基于 Jar 包的构建方式。我们落地分为了两个阶段
 
-第一阶段：**StreamPark 提供了原生 Apache Flink 项目的支持**，我们将存量的任务Git地址配置至 StreamPark，底层使用 Maven 打包为 Jar 包，创建 StreamPark 的 Apache Flink任务，无缝的进行了迁移。在这个过程中，StreamPark 只是作为了任务提交和状态维护的一个平台工具，远远没有使用到上面提到的其他功能。
+第一阶段：**StreamPark 提供了原生 Apache Flink® 项目的支持**，我们将存量的任务Git地址配置至 StreamPark，底层使用 Maven 打包为 Jar 包，创建 StreamPark 的 Apache Flink任务，无缝的进行了迁移。在这个过程中，StreamPark 只是作为了任务提交和状态维护的一个平台工具，远远没有使用到上面提到的其他功能。
 
 第二阶段：第一阶段将任务都迁移至 StreamPark 上之后，任务已经在平台上运行，但是任务的配置，如 checkpoint，容错以及 Flink 任务内部的业务参数的调整都需要修改源码 push 及 build，效率十分低下且不透明。
 
@@ -201,7 +201,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
  String value = ParameterTool.get("${user.custom.key}")
 ```
 
-- StreamExecutionEnvironment 为 Apache Flink 原生任务上下文
+- StreamExecutionEnvironment 为 Apache Flink® 原生任务上下文
 
 ## **03 业务支撑 & 能力开放**
 
@@ -259,7 +259,7 @@ StreamingContext = ParameterTool + StreamExecutionEnvironment
 
 ## **05 结束语**
 
-以上就是 StreamPark 在尘锋信息生产实践的全部分享内容，感谢大家看到这里。写这篇文章的初心是为大家带来一点 StreamPark 的生产实践的经验和参考，并且和 StreamPark 社区的小伙伴们一道，共同建设 StreamPark ，未来也准备会有更多的参与和建设。非常感谢 StreamPark 的开发者们，能够提供这样优秀的产品，足够多的细节都感受到了大家的用心。虽然目前公司生产使用的（1.2.0-release）版本，在任务分组检索，编辑返回跳页等交互体验上还有些许不足，但瑕不掩瑜，相信 StreamPark 会越来越好，**也相信 StreamPark 会推动 Apache Flink 的普及**。最后用 Apache Flink 社区的一句话来作为结束吧：实时即未来！
+以上就是 StreamPark 在尘锋信息生产实践的全部分享内容，感谢大家看到这里。写这篇文章的初心是为大家带来一点 StreamPark 的生产实践的经验和参考，并且和 StreamPark 社区的小伙伴们一道，共同建设 StreamPark ，未来也准备会有更多的参与和建设。非常感谢 StreamPark 的开发者们，能够提供这样优秀的产品，足够多的细节都感受到了大家的用心。虽然目前公司生产使用的（1.2.0-release）版本，在任务分组检索，编辑返回跳页等交互体验上还有些许不足，但瑕不掩瑜，相信 StreamPark 会越来越好，**也相信 StreamPark 会推动 Apache Flink® 的普及**。最后用 Apache Flink® 社区的一句话来作为结束吧：实时即未来！
 
 
 
