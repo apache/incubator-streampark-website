@@ -111,7 +111,7 @@ https://streampark.apache.org/docs/development/config
 
 In addition:
 
-StreamPark also **supports Apache Flink native tasks**. The parameter configuration can be statically maintained within the Java task internal code, covering a wide range of scenarios, such as seamless migration of existing Flink tasks, etc.
+StreamPark also **supports Apache Flink® native tasks**. The parameter configuration can be statically maintained within the Java task internal code, covering a wide range of scenarios, such as seamless migration of existing Flink tasks, etc.
 
 #### **7. Checkpoint Management**
 
@@ -182,7 +182,7 @@ Currently, we are researching and designing solutions related to metadata, permi
 
 Since most of the data development team members have a background in Java and Scala, we've implemented Jar-based builds for more flexible development, transparent tuning of Flink tasks, and to cover more scenarios. Our implementation was in two phases:
 
-**First Phase:** StreamPark provides support for native Apache Flink projects. We configured our existing tasks' Git addresses in StreamPark, used Maven to package them as Jar files, and created StreamPark Apache Flink tasks for seamless migration. In this process, StreamPark was merely used as a platform tool for task submission and state maintenance, without leveraging the other features mentioned above.
+**First Phase:** StreamPark provides support for native Apache Flink® projects. We configured our existing tasks' Git addresses in StreamPark, used Maven to package them as Jar files, and created StreamPark Apache Flink® tasks for seamless migration. In this process, StreamPark was merely used as a platform tool for task submission and state maintenance, without leveraging the other features mentioned above.
 
 **Second Phase:** After migrating tasks to StreamPark in the first phase and having them run on the platform, the tasks' configurations, such as checkpoint, fault tolerance, and adjustments to business parameters within Flink tasks, required source code modifications, pushes, and builds. This was very inefficient and opaque.
 
@@ -259,7 +259,7 @@ Regarding the unification of stream and batch, I am also currently researching a
 
 ## **05 Closing Words**
 
-That's all for the sharing of StreamPark in the production practice at Dustess Info. Thank you all for reading this far. The original intention of writing this article was to bring a bit of StreamPark's production practice experience and reference to everyone, and together with the buddies in the StreamPark community, to jointly build StreamPark. In the future, I plan to participate and contribute more. A big thank you to the developers of StreamPark for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that StreamPark will get better and better, **and I also believe that StreamPark will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink community: The future is real-time!
+That's all for the sharing of StreamPark in the production practice at Dustess Info. Thank you all for reading this far. The original intention of writing this article was to bring a bit of StreamPark's production practice experience and reference to everyone, and together with the buddies in the StreamPark community, to jointly build StreamPark. In the future, I plan to participate and contribute more. A big thank you to the developers of StreamPark for providing such an excellent product; in many details, we can feel everyone's dedication. Although the current production version used by the company (1.2.0-release) still has some room for improvement in task group search, edit return jump page, and other interactive experiences, the merits outweigh the minor issues. I believe that StreamPark will get better and better, **and I also believe that StreamPark will promote the popularity of Apache Flink**. Finally, let's end with a phrase from the Apache Flink® community: The future is real-time!
 
 
 

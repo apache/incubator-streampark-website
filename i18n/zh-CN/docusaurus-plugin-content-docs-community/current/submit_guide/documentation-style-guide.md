@@ -93,11 +93,11 @@ sidebar_position: 4
 
 正例：
 
-> Apache Flink 是 Apache StreamPark 支持的计算引擎之一。
+> Apache Flink® 是 Apache StreamPark 支持的计算引擎之一。
 
 反例：
 
-> Apache Flink 是 Apache StreamPark支持的计算引擎之一。
+> Apache Flink® 是 Apache StreamPark支持的计算引擎之一。
 >
 > Apache Flink是 Apache StreamPark 支持的计算引擎之一。
 
@@ -107,13 +107,13 @@ sidebar_position: 4
 
 正例：
 
-> 某个公司的 Apache StreamPark 平台运行了 5000 个 Apache Flink 作业。
+> 某个公司的 Apache StreamPark 平台运行了 5000 个 Apache Flink® 作业。
 
 反例：
 
-> 某个公司的 Apache StreamPark 平台运行了5000 个 Apache Flink 作业。
+> 某个公司的 Apache StreamPark 平台运行了5000 个 Apache Flink® 作业。
 >
-> 某个公司的 Apache StreamPark 平台运行了 5000个 Apache Flink 作业。
+> 某个公司的 Apache StreamPark 平台运行了 5000个 Apache Flink® 作业。
 
 #### 2.1.3 数字和单位之间
 
@@ -131,13 +131,13 @@ sidebar_position: 4
 
 > 角度为 90° 的角，就是直角。
 >
-> Apache StreamPark 可以给 Apache Flink 作业管理带来约 15% 的效率提升。
+> Apache StreamPark 可以给 Apache Flink® 作业管理带来约 15% 的效率提升。
 
 反例：
 
 > 角度为 90 ° 的角，就是直角。
 >
-> Apache StreamPark 可以给 Apache Flink 作业管理带来约 15 % 的效率提升。
+> Apache StreamPark 可以给 Apache Flink® 作业管理带来约 15 % 的效率提升。
 
 #### 2.1.4 全角标点符号和其他字符之间不需要空格
 

@@ -162,7 +162,7 @@ In the process of intensive use, we also found some problems. In order to better
 
 ## **Benefits derived**
 
-Apache StreamPark has brought us significant benefits,**mainly in its one-stop service capability, which enables business developers to complete the development, compilation, submission and management of Flink jobs** on a unified platform. It greatly saves our time on Flink job development and deployment, significantly improves development efficiency, and realizes full-process automation from user rights management to Git deployment, task submission, alerting, and automatic recovery, effectively solving the complexity of Apache Flink operation and maintenance.
+Apache StreamPark has brought us significant benefits,**mainly in its one-stop service capability, which enables business developers to complete the development, compilation, submission and management of Flink jobs** on a unified platform. It greatly saves our time on Flink job development and deployment, significantly improves development efficiency, and realizes full-process automation from user rights management to Git deployment, task submission, alerting, and automatic recovery, effectively solving the complexity of Apache Flink® operation and maintenance.
 
 ![](/blog/tianyancha/earnings.png)
 

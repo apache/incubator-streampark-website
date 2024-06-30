@@ -110,7 +110,7 @@ Once the configuration is completed, compile the corresponding project to finish
 
 ![](/blog/joyme/flink_system.png)
 
-To create a new task, select Custom code, choose the Flink version, select the project and the module Jar package, and choose the development application mode as Apache Flink (standard Flink program), program main function entry class, and the task's name.
+To create a new task, select Custom code, choose the Flink version, select the project and the module Jar package, and choose the development application mode as Apache Flink® (standard Flink program), program main function entry class, and the task's name.
 
 ![](/blog/joyme/add_projectconfiguration.png)
 

@@ -72,19 +72,19 @@ Paimon: https://github.com/apache/paimon
 
 - **支持表结构变更同步**：当数据源表结构发生变化时，Paimon 能自动识别并同步这些变化。
 
-Paimon 可以结合 Apache Spark 来使用，我们场景是 Paimon 结合 Flink 的方式，这样一来 “**如何管理 4000+个 Flink 数据同步作业**” 将会是我们面临的新问题。在全面调研了相关项目，经过各项维度综合评估后，**我们决定采用 StreamPark**，那么为什么选择 StremaPark 呢？
+Paimon 可以结合 Apache Spark™ 来使用，我们场景是 Paimon 结合 Flink 的方式，这样一来 “**如何管理 4000+个 Flink 数据同步作业**” 将会是我们面临的新问题。在全面调研了相关项目，经过各项维度综合评估后，**我们决定采用 StreamPark**，那么为什么选择 StremaPark 呢？
 
 ### **StreamPark 的核心特性**
 
 Apache StreamPark 是一个流处理开发管理框架，提供了一套快捷的API 用来开发 Flink/Spark 作业，此外还提供了一个一站式的流处理作业开发管理平台，从流处理作业开发到上线全生命周期都做了支持，StreamPark 主要包含下面这些核心特点：
 
-- **流处理应用开发框架**：基于 StreamPark，开发者可以轻松构建和管理流处理应用程序，更好地利用  Apache Flink 去编写流处理应用程序。
+- **流处理应用开发框架**：基于 StreamPark，开发者可以轻松构建和管理流处理应用程序，更好地利用  Apache Flink® 去编写流处理应用程序。
 
 - **完善的作为管理能力**：StreamPark 提供一站式流任务开发管理平台，支持了 Flink / Spark 从应用开发到调试、部署、运维等全生命周期的能力支持，让 Flink / Spark 作业变得简单。
 
 - **完成度高**：StreamPark 支持了 Flink 多版本，可以做到一个平台灵活切换，同时支持 Flink 所的部署模式，有效解决了 Flink on YARN / K8s 部署过于繁琐的问题，通过自动化流程，简化了任务的构建、测试和部署流程，并提高了开发效率。
 
-- **丰富的管理 API**：StreamPark 提供了作业操作的 API，包括作业创建、拷贝、构建、部署、基于 checkpoint/savepoint 的停止和启动等功能，使外部系统调用 Apache Flink 任务变得易于实现。
+- **丰富的管理 API**：StreamPark 提供了作业操作的 API，包括作业创建、拷贝、构建、部署、基于 checkpoint/savepoint 的停止和启动等功能，使外部系统调用 Apache Flink® 任务变得易于实现。
 
 ## **3. StreamPark + Paimon 实践**
 

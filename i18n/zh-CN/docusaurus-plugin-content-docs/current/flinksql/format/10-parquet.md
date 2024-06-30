@@ -57,7 +57,7 @@ Parquet 格式也支持 `ParquetOutputFormat` 的配置。 例如, 可以配置 
 
 ## 数据类型映射
 
-目前，Parquet 格式类型映射与 Apache Hive 兼容，但与 Apache Spark 有所不同：
+目前，Parquet 格式类型映射与 Apache Hive 兼容，但与 Apache Spark™ 有所不同：
 
 * Timestamp：不参考精度，直接映射 timestamp 类型至 int96。
 * Decimal：根据精度，映射 decimal 类型至固定长度字节的数组。
