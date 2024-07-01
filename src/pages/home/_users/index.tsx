@@ -9,7 +9,7 @@ import row2 from './row2.json';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Marquee from 'react-fast-marquee';
-import styles from './style.module.css';
+import styles from './styles.module.css';
 import { IconRightArrow } from '@site/src/components/Icons/RightArrow';
 import { useTranslation } from '@site/src/hooks/useTranslation';
 

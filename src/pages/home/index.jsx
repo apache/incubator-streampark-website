@@ -6,7 +6,7 @@ import './theme.less';
 import Hero from "./hero";
 import Feature from "./feature";
 import Performance from "./performance";
-import TrustUsers from './TrustUsers'
+import TrustUsers from './_users'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 export default function () {
