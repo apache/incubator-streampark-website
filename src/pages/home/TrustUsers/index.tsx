@@ -15,7 +15,6 @@ import { useTranslation } from '@site/src/hooks/useTranslation';
 
 export default function () {
   const { t, language } = useTranslation(config);
-  console.log(language)
 
   const { colorMode } = useColorMode();
 
