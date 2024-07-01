@@ -14,7 +14,8 @@ import { IconRightArrow } from '@site/src/components/Icons/RightArrow';
 import { useTranslation } from '@site/src/hooks/useTranslation';
 
 export default function () {
-  const { t } = useTranslation(config);
+  const { t, language } = useTranslation(config);
+  console.log(language)
 
   const { colorMode } = useColorMode();
 
@@ -79,7 +80,7 @@ export default function () {
             ))}
           </Marquee>
           <div className={styles['more-link']}>
-            <a href="/user" className={styles['more-link-btn']}>
+            <a href={language === 'zh-CN' ? '/zh-CN/user': "/user"} className={styles['more-link-btn']}>
               { t.users.more }
               <IconRightArrow className={styles['more-link-icon']} />
             </a>

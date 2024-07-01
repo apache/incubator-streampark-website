@@ -6,5 +6,5 @@ export function useTranslation<T extends object>(localeConfig: T) {
     isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const t = localeConfig?.[language];
 
-  return { t };
+  return { t, language };
 }
