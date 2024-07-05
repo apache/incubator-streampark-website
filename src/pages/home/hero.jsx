@@ -1,26 +1,28 @@
-import React from "react";
+import React from 'react';
 
-import { useWindowSize } from '@docusaurus/theme-common'
-import useIsBrowser from "@docusaurus/useIsBrowser";
-import config from "./languages.json";
-import Dashboard from "../../../static/home/dashboard.svg";
-import Top1 from "../../../static/home/top1.svg";
-import Top2 from "../../../static/home/top2.svg";
-import Screenshot from "./screenshot";
-import clsx from "clsx";
+import { useWindowSize } from '@docusaurus/theme-common';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+import config from './languages.json';
+import Dashboard from '../../../static/home/dashboard.svg';
+import WaveTop from '../../../static/home/wave-top.svg';
+import WaveButton from '../../../static/home/wave-buttom.svg';
+import clsx from 'clsx';
+import { ShellCommand } from '@site/src/components'
 
 export default function () {
   const isBrowser = useIsBrowser();
   const language =
-    isBrowser && location.pathname.indexOf("/zh-CN/") === 0 ? "zh-CN" : "en";
+    isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
+
+  const INSTALL_COMMAND = `curl -L https://github.com/apache/streampark/raw/dev/streampark.sh | sh`
 
   return (
     <>
       <div className="overflow-hidden">
-        <Top1 className="top1" />
+        <WaveTop className="wave-top" />
       </div>
-      <div className="section hero-main pt-4 pb-2 overflow-hidden main-page">
+      <div className="section hero-main pt-4 pb-2 overflow-hidden main-page mt-lg-6">
         {/* background overlay */}
         <div className="overlay opacity-90 z-index-n1"></div>
         <div className="container-fluid pb-2 cover-container container-hero hero-px">
@@ -30,43 +32,43 @@ export default function () {
               data-aos="fade-right"
             >
               <div className="text-center mt-0">
-                <div className="mb-5 system_info pt-0">
-                  <div className="fw-bold mb-3 d-flex justify-content-center">
+                <div className="mb-4 system_info pt-0">
+                  <div className="fw-bold mb-4 d-flex justify-content-center">
                     <div
                       className="d-flex flex-column align-items-center"
-                      style={{ width: "max-content" }}
+                      style={{ width: 'max-content' }}
                     >
-                      <div className="text-right" style={{ width: "100%" }}>
+                      <div className="text-right" style={{ width: '100%' }}>
                         <span className="badge incubating fs-6 tag">
                           Incubating
                         </span>
                       </div>
-                      <span className="project_title">Apache StreamPark<span className="tm">™</span></span>
+                      <span className="project_title">
+                        Apache StreamPark<span className="tm">™</span>
+                      </span>
                     </div>
                   </div>
-                  <p className="desc lead">
+                  <p className="desc lead slogan-desc">
                     {dataSource.slogan.description}
                   </p>
                 </div>
                 <div className="d-flex flex-column align-items-center">
                   <div>
-                    <a className="btn streampark-btn btn mt-30 ztop" href="https://github.com/apache/incubator-streampark"
-                      target="_blank">
+                    <a
+                      className="btn streampark-btn btn mt-30 ztop"
+                      href="https://github.com/apache/incubator-streampark"
+                      target="_blank"
+                    >
                       <i className="lni-github-original"></i>&nbsp;GitHub
                     </a>
-                    <a className="btn streampark-btn btn-green mt-30 ml-3 ztop" href="/docs/user-guide/quick-start"
-                      style={{ marginLeft: '10px' }}>
+                    <a
+                      className="btn streampark-btn btn-green mt-30 ml-3 ztop"
+                      href="/docs/user-guide/quick-start"
+                      style={{ marginLeft: '10px' }}
+                    >
                       <i className="lni-play"></i>&nbsp;Get started
                     </a>
                   </div>
-                  {/* <div className="shields ztop mt-2">
-                    <img src="https://img.shields.io/github/stars/apache/incubator-streampark.svg?style=for-the-badge"
-                      className="wow fadeInUp"></img>
-                    <img src="https://img.shields.io/github/forks/apache/incubator-streampark.svg?style=for-the-badge"
-                      className="wow fadeInUp"></img>
-                    <img src="https://img.shields.io/github/downloads/apache/streampark/total.svg?style=for-the-badge"
-                      className="wow fadeInUp"></img>
-                  </div> */}
                 </div>
               </div>
             </div>
@@ -78,8 +80,13 @@ export default function () {
           {/* hero image */}
           {HeroImage()}
         </div>
-        <div className='pt-6 pt-6 cover-top'>
-          <Top2 className="top2" />
+
+        <div className="d-flex justify-content-center pt-4">
+          <ShellCommand command={INSTALL_COMMAND} />
+        </div>
+
+        <div className="pt-4 cover-top">
+          <WaveButton className="wave-button" />
         </div>
       </div>
     </>
@@ -87,100 +94,102 @@ export default function () {
 }
 
 function HeroImage() {
-  const windowSize = useWindowSize()
+  const windowSize = useWindowSize();
   if (windowSize === 'mobile') {
-    return null
+    return null;
   }
   return (
     <div className="col-9 pt-4 align-self-center">
-      <div
-        className="text-right"
-        data-aos="fade-up"
-        data-aos-delay="100"
-      >
-        <Dashboard
-          className="img-fluid"
-        />
+      <div className="text-right" data-aos="fade-up" data-aos-delay="100">
+        <Dashboard className="img-fluid" />
       </div>
     </div>
   );
 }
 
-
-function Button({ href, theme = "primary", icon, children, className, ...props }) {
+function Button({
+  href,
+  theme = 'primary',
+  icon,
+  children,
+  className,
+  ...props
+}) {
   return (
     <a
-      className={clsx("btn streampark-btn ztop", `btn-${theme}`, className)}
+      className={clsx('btn streampark-btn ztop', `btn-${theme}`, className)}
       href={href}
       {...props}
     >
       {typeof icon === 'string' ? <i className={clsx(icon, 'mr-2')} /> : icon}
       {children}
     </a>
-  )
+  );
 }
 
 function AchievementBanner() {
   const formatNumber = (num) => {
     if (num < 1000) {
-      return num
+      return num;
     } else if (num < 1000_000) {
-      return (num / 1000).toFixed(1) + 'k+'
+      return (num / 1000).toFixed(1) + 'k+';
     } else {
-      return (num / 1000_000).toFixed(1) + 'm+'
+      return (num / 1000_000).toFixed(1) + 'm+';
     }
-  }
+  };
 
-  const numberIncrementAnimation = (end = 0, { start = 0, duration = 1000, rate = 50, callback } = {}) => {
-    const step = (end - start) / duration * rate
-    let current = start
+  const numberIncrementAnimation = (
+    end = 0,
+    { start = 0, duration = 1000, rate = 50, callback } = {},
+  ) => {
+    const step = ((end - start) / duration) * rate;
+    let current = start;
     const timer = setInterval(() => {
       current += parseInt(step.toFixed(0));
       if (current >= end) {
-        clearInterval(timer)
-        current = end
+        clearInterval(timer);
+        current = end;
       }
-      callback(current)
-    }, rate)
+      callback(current);
+    }, rate);
     if (typeof callback === 'function') {
-      callback(current)
+      callback(current);
     }
-    return current
-  }
+    return current;
+  };
 
   const [counter, setCounter] = React.useState({
     stars: 3710,
     forks: 963,
-    downloads: 9900
-  })
+    downloads: 9900,
+  });
 
   React.useEffect(() => {
     numberIncrementAnimation(3710, {
       callback: (current) => {
-        setCounter(state => ({
+        setCounter((state) => ({
           ...state,
-          stars: current
-        }))
-      }
-    })
+          stars: current,
+        }));
+      },
+    });
     numberIncrementAnimation(963, {
       callback: (current) => {
-        setCounter(state => ({
+        setCounter((state) => ({
           ...state,
-          forks: current
-        }))
-      }
-    })
+          forks: current,
+        }));
+      },
+    });
     numberIncrementAnimation(9900, {
       callback: (current) => {
-        setCounter(state => ({
+        setCounter((state) => ({
           ...state,
-          downloads: current
-        })
-        )
-      }
-    })
-  }, [])
+          downloads: current,
+        }));
+      },
+    });
+  }, []);
 
   // FIXME: 需要解决 github api 请求速率限制的问题
   /* React.useEffect(() => {

@@ -28,6 +28,7 @@
 
 .swiper-item img {
   height: 56px;
+  max-width: 180px;
   margin: 0;
 }
 

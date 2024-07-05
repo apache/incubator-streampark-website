@@ -11,15 +11,19 @@
   --secondary-bg-color: #f7f9fe;
 
   font-family: 'Poppins', sans-serif !important;
-
   /* wrap */
-  .top1 {
-    height: 180px;
-    margin-top: -15px;
+  .wave-top {
+    position: absolute;
+    height: 600px;
+    width: 120%;
+    margin-top: -250px;
+    right: -100px;
+    transform: rotate(10deg);
   }
 
-  .top2 {
-    margin-top: -70px;
+  .wave-button {
+    height: 250px;
+    margin-top: -20px;
   }
 
   .hero-main {
@@ -36,13 +40,19 @@
     .cover-top {
       display: flex;
       flex-direction: column;
-      border-bottom: 2px solid var(--primary-color);
       vertical-align: bottom;
-      height: 200px;
-      transform: scaleX(3) rotate(-3deg);
+      height: 300px;
+    }
+
+    .quickstart-curl {
+      display: inline-flex;
+      border: 1px solid rebeccapurple;
+      text-align: center;
     }
 
     .system_info {
+      max-width: 80%;
+      display: inline-block;
       .project_title {
         font-weight: 200;
         line-height: 1;
@@ -741,13 +751,13 @@
 
 @media (min-width: 1200px) {
   .system_info .project_title {
-    font-size: 3.5rem !important;
+    font-size: 4rem !important;
   }
 }
 
 @media (min-width: 1400px) {
   .system_info .project_title {
-    font-size: 4rem !important;
+    font-size: 4.5rem !important;
   }
 }
 

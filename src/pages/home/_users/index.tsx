@@ -10,7 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Marquee from 'react-fast-marquee';
 import styles from './styles.module.css';
-import { IconRightArrow } from '@site/src/components/Icons/RightArrow';
+import RightArrowIcon from '@site/static/icons/arrow-right.svg';
 import { useTranslation } from '@site/src/hooks/useTranslation';
 
 export default function () {
@@ -81,7 +81,7 @@ export default function () {
           <div className={styles['more-link']}>
             <a href={language === 'zh-CN' ? '/zh-CN/user': "/user"} className={styles['more-link-btn']}>
               { t.users.more }
-              <IconRightArrow className={styles['more-link-icon']} />
+              <RightArrowIcon className={styles['more-link-icon']} />
             </a>
           </div>
         </section>
