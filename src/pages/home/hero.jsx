@@ -7,7 +7,7 @@ import Dashboard from '../../../static/home/dashboard.svg';
 import WaveTop from '../../../static/home/wave-top.svg';
 import WaveButton from '../../../static/home/wave-buttom.svg';
 import clsx from 'clsx';
-import { ShellCommand } from '@site/src/components'
+import { ShellCommand } from '@site/src/components';
 
 export default function () {
   const isBrowser = useIsBrowser();
@@ -15,11 +15,11 @@ export default function () {
     isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
   const dataSource = config?.[language];
 
-  const INSTALL_COMMAND = `curl -L https://github.com/apache/streampark/raw/dev/streampark.sh | sh`
+  const INSTALL_COMMAND = `curl -L https://github.com/apache/streampark/raw/dev/streampark.sh | sh`;
 
   return (
     <>
-      <div className="overflow-hidden">
+      <div className="wave-top-wrapper">
         <WaveTop className="wave-top" />
       </div>
       <div className="section hero-main pt-4 pb-2 overflow-hidden main-page mt-lg-6">

@@ -11,7 +11,6 @@
   text-align: center;
 }
 
-
 .swiper-item {
   padding: 0 20px;
   height: 86px;
@@ -30,6 +29,17 @@
   height: 56px;
   max-width: 180px;
   margin: 0;
+}
+
+@media only screen and (max-width: 767px) {
+  .trusted-users .swiper-item {
+    height: 64px;
+    line-height: 64px;
+  }
+
+  .trusted-users .swiper-item img {
+    height: 48px;
+  }
 }
 
 .more-link {
