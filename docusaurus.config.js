@@ -19,6 +19,8 @@
 const path = require('path')
 // TODO: [remove] 代码块只用dark主题
 const darkTheme = require('prism-react-renderer/themes/vsDark')
+const lightTheme = require('prism-react-renderer/themes/vsLight');
+
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -287,7 +289,7 @@ const config = {
       },
 
       prism: {
-        theme: darkTheme,
+        theme: lightTheme,
         darkTheme: darkTheme,
         additionalLanguages: ['powershell', 'java', 'scala', 'yaml'],
         magicComments: [
