@@ -126,7 +126,7 @@ tar -xzvf apache-streampark_2.12-${release.version}-incubating-bin.tar.gz
 - [ ] 如果依赖的是Apache许可证并且存在`NOTICE`文件，那么这些`NOTICE`文件也需要加入到版本的`NOTICE`文件中
 - [ ] .....
 
-详细的检查项，可以参考此文章：[ASF第三方许可证策](
+详细的检查项，可以参考此文章：[ASF第三方许可证策](https://www.apache.org/legal/resolved.html)
 
 ### 2.5. 源码编译验证
 
@@ -172,7 +172,6 @@ cd apache-streampark-${release_version}-incubating-src
 - [ ] 检查是否有多余文件或文件夹，例如空文件夹等
 - [ ] .....
 
-https://apache.org/legal/resolved.html)
 
 
 
