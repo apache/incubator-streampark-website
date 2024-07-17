@@ -19,6 +19,7 @@
 const path = require('path')
 // TODO: [remove] 代码块只用dark主题
 const darkTheme = require('prism-react-renderer/themes/vsDark')
+const tailwindPlugin = require('./plugins/tailwind-config.cjs')
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -313,6 +314,17 @@ const config = {
         sidebarPath: require.resolve('./sidebars.js'),
       },
     ],
+    tailwindPlugin,
+    // async function tailwindcss(context, options) {
+    //   return {
+    //     name: "docusaurus-tailwindcss",
+    //     configurePostCss(postcssOptions) {
+    //       postcssOptions.plugins.push(require("tailwindcss"));
+    //       postcssOptions.plugins.push(require("autoprefixer"));
+    //       return postcssOptions;
+    //     },
+    //   };
+    // },
     // load github info
     path.resolve(__dirname, 'plugins', 'github-info')
   ],
