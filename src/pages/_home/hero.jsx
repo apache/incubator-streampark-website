@@ -8,6 +8,7 @@ import WaveTop from '../../../static/home/wave-top.svg';
 import WaveButton from '../../../static/home/wave-buttom.svg';
 import clsx from 'clsx';
 import { ShellCommand } from '@site/src/components';
+import ScreenMonitor from '@site/src/components/ScreenMonitor';
 
 export default function () {
   const isBrowser = useIsBrowser();
@@ -78,7 +79,8 @@ export default function () {
         </div>
         <div className="d-flex flex-row justify-content-center">
           {/* hero image */}
-          {HeroImage()}
+          {/* {HeroImage()} */}
+          <ScreenMonitor />
         </div>
 
         <div className="d-flex justify-content-center pt-4">
@@ -127,119 +129,3 @@ function Button({
   );
 }
 
-function AchievementBanner() {
-  const formatNumber = (num) => {
-    if (num < 1000) {
-      return num;
-    } else if (num < 1000_000) {
-      return (num / 1000).toFixed(1) + 'k+';
-    } else {
-      return (num / 1000_000).toFixed(1) + 'm+';
-    }
-  };
-
-  const numberIncrementAnimation = (
-    end = 0,
-    { start = 0, duration = 1000, rate = 50, callback } = {},
-  ) => {
-    const step = ((end - start) / duration) * rate;
-    let current = start;
-    const timer = setInterval(() => {
-      current += parseInt(step.toFixed(0));
-      if (current >= end) {
-        clearInterval(timer);
-        current = end;
-      }
-      callback(current);
-    }, rate);
-    if (typeof callback === 'function') {
-      callback(current);
-    }
-    return current;
-  };
-
-  const [counter, setCounter] = React.useState({
-    stars: 3710,
-    forks: 963,
-    downloads: 9900,
-  });
-
-  React.useEffect(() => {
-    numberIncrementAnimation(3710, {
-      callback: (current) => {
-        setCounter((state) => ({
-          ...state,
-          stars: current,
-        }));
-      },
-    });
-    numberIncrementAnimation(963, {
-      callback: (current) => {
-        setCounter((state) => ({
-          ...state,
-          forks: current,
-        }));
-      },
-    });
-    numberIncrementAnimation(9900, {
-      callback: (current) => {
-        setCounter((state) => ({
-          ...state,
-          downloads: current,
-        }));
-      },
-    });
-  }, []);
-
-  // FIXME: 需要解决 github api 请求速率限制的问题
-  /* React.useEffect(() => {
-    fetch('https://api.github.com/repos/apache/incubator-streampark')
-      .then(res => res.json())
-      .then(data => {
-        setCounter(state => ({
-          ...state,
-          stars: data.stargazers_count,
-          forks: data.forks_count,
-        }))
-      })
-    fetch('https://api.github.com/repos/apache/incubator-streampark/releases')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        let totalDownloads = 0;
-        for (let i = 0; i < data.length; ++i) {
-          for (let j = 0; j < data[i].assets.length; ++j) {
-            totalDownloads += data[i].assets[j].download_count;
-          }
-        }
-
-        setCounter(state => ({
-          ...state,
-          downloads: totalDownloads
-        }))
-      })
-  }, []) */
-
-  return (
-    <section className="achievement-banner">
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(counter.stars)}
-        </div>
-        <div>Github stars</div>
-      </div>
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(counter.forks)}
-        </div>
-        <div>Github forks</div>
-      </div>
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(counter.downloads)}
-        </div>
-        <div>Total downloads</div>
-      </div>
-    </section>
-  );
-}

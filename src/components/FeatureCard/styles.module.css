@@ -1,6 +1,7 @@
 .feature-card-wrapper {
   position: relative;
   min-width: 387px;
+  max-width: 400px;
   padding: 40px;
   background: var(--secondary-bg-color);
 
@@ -47,7 +48,7 @@
 .feature-icon-wrapper {
   position: absolute;
   top: -32px;
-  left: 40px;
+  left: 24px;
   background-color: var(--bg-color);
   padding: 8px;
   width: 64px;

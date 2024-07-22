@@ -4,11 +4,9 @@
   color: #000;
   font-size: 16px;
   border-radius: 8px;
-  margin: 20px auto;
   background-color: #f6f8fa;
   height: 40px;
-  max-width: 80%;
-  /* padding: 4px; */
+  width: max-content;
 }
 
 [data-theme='dark'] .shell-command-block {
@@ -19,6 +17,7 @@
 .shell-command-block pre {
   flex: 1;
   min-width: 0;
+  width: fit-content;
   border-radius: 4px;
   padding: 10px 0 10px 20px;
   color: inherit;
@@ -46,6 +45,7 @@
   outline: none;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .shell-command-block .copy-icon:hover {
@@ -53,6 +53,12 @@
   background-color: #ebedf0;
   /* font-size: 18px; */
   transition: all 0.3s;
+}
+
+.shell-command-block .copy-icon svg {
+  display: inline;
+  line-height: 32px;
+  vertical-align: -0.05em;
 }
 
 [data-theme='dark'] .shell-command-block .copy-icon:hover {

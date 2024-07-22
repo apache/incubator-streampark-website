@@ -10,11 +10,7 @@ interface Props {
   command: string;
 }
 
-export default function ShellCommand({
-  className,
-  style,
-  command = `curl -L https://github.com/apache/streampark/raw/dev/streampark.sh | sh`,
-}: Props) {
+export default function ShellCommand({ className, style, command }: Props) {
   const [copied, setCopied] = useState(false);
 
   function copyCommand() {
@@ -28,7 +24,6 @@ export default function ShellCommand({
     <div
       className={clsx(styles['shell-command-block'], className)}
       style={style}
-      data-aos="fade-up"
     >
       {Highlighter(command)}
       <button className={styles['copy-icon']} onClick={copyCommand}>
@@ -59,14 +54,15 @@ function Highlighter(command: string): React.ReactNode {
 
   return (
     <pre>
+      <code key={'$'} className="select-none mr-1">
+        $
+      </code>
       {tokens.map((token, index) => {
         return (
-          <>
-            <code className={styles[getCodeStyleName(token, index)]}>
-              {token}
-            </code>
+          <code key={token} className={styles[getCodeStyleName(token, index)]}>
+            {token}
             {index < tokens.length && ' '}
-          </>
+          </code>
         );
       })}
     </pre>

@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import styles from './style.module.css';
 
 interface TitleProps {
   className?: string;
@@ -8,16 +9,16 @@ interface TitleProps {
   description: React.ReactNode;
 }
 
-export default function Index(props: TitleProps) {
+export default function SectionTitle(props: TitleProps) {
   return (
-    <div className="row text-center">
+    <div className="text-center">
       <div className="col-12">
         <div className="mb-5 pt-6">
-          <h2 className="article-title h3 fw-bold">
+          <h2 className="article-title text-lg lg:text-2xl font-semibold">
             {props.title}
           </h2>
-          <hr className="divider my-4" />
-          <p className="lead desc">{props.description}</p>
+          <hr className={clsx(styles['divider'], 'my-4')} />
+          <p className="text-base">{props.description}</p>
         </div>
       </div>
     </div>

@@ -1,0 +1,19 @@
+/* You can ignore the warnings in the editor about the unknown at-rules */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles here */
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.postion-center {
+  @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
+.absolute-center {
+  @apply absolute;
+  .postion-center();
+}
