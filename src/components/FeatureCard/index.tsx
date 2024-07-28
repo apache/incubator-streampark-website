@@ -40,6 +40,7 @@ export default function FeatureCard(props: Props) {
         <div className={clsx(styles['feature-body'])}>
           <h3 className={styles['feature-title']}>{props.title}</h3>
           <p>{props.content}</p>
+          <div className={styles['bubble']}></div>
         </div>
       </div>
     </div>
