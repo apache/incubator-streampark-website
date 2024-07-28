@@ -76,7 +76,7 @@ export default function HomePage() {
           Start using Apache StreamPark™ in minutes
         </div>
         <div className="mx-auto px-2">
-          <ShellCommand command={INSTALL_COMMAND} className="max-w-[80%]" />
+          <ShellCommand command={INSTALL_COMMAND} className="max-w-[80vw] md:max-w-full" />
           <p className="text-xs md:text-sm text-neutral-400 dark:text-neutral-600 mx-auto mt-2 pl-2">
             <span>Or install other release version from the&nbsp;</span>
             <a href="/download" className="text-primary-400">
