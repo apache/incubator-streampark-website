@@ -53,6 +53,7 @@ export default function HomePage() {
       >
         <TopWaveImage className="absolute bottom-0 right-0  w-[1400px] -rotate-6" />
       </div>
+
       <section className="banner-section container mt-16 flex flex-col">
         <BannerTitle />
         <div
@@ -61,22 +62,24 @@ export default function HomePage() {
           data-aos-duration="6000"
           data-aos-offset="100"
         >
-          {/* <Button>Get Start</Button> */}
           <GetStartButton>Get Start</GetStartButton>
           <GitHubButton>View on GitHub</GitHubButton>
         </div>
       </section>
-      {/* <ScreenMonitor /> */}
-      <Browser className="aspect-video !h-auto bg-shadow-primary">
-        {/* <SPDashboardImage /> */}
+
+      <Browser className="!h-auto bg-shadow-primary">
         <BannerVideo />
       </Browser>
+
       <section data-aos="fade-up" className="flex flex-col items-start my-10">
         <div className="text-base lg:text-xl text-neutral-600 dark:text-neutral-400 mx-auto mb-4">
           Start using Apache StreamPark™ in minutes
         </div>
         <div className="mx-auto px-2">
-          <ShellCommand command={INSTALL_COMMAND} className="max-w-[80vw] md:max-w-full" />
+          <ShellCommand
+            command={INSTALL_COMMAND}
+            className="max-w-[80vw] md:max-w-full"
+          />
           <p className="text-xs md:text-sm text-neutral-400 dark:text-neutral-600 mx-auto mt-2 pl-2">
             <span>Or install other release version from the&nbsp;</span>
             <a href="/download" className="text-primary-400">
@@ -86,17 +89,17 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
       <div className="flex justify-end" data-aos="slide-left">
         <BottomWaveImage className="h-[120px] md:h-[250px] w-full shrink-0 mt-[36px] md:mt-[75px]" />
         <BottomWaveImage className="h-[120px] md:h-[250px] w-full shrink-0" />
       </div>
-      <section className="lg:pb-16 lg:px-20">
-        <BrowserOnly>{() => <AchievementBanner />}</BrowserOnly>
-      </section>
+
       <section className="lg:pb-20">
         <SectionTitle title={t.users.title} description={''} />
         <BrowserOnly>{() => <TrustedUsers />}</BrowserOnly>
       </section>
+
       <section className="lg:py-20 bg-[#f7f9fe] dark:bg-[#1a1b1c]">
         <div className="w-full overflow-hidden">
           <SectionTitle
@@ -117,6 +120,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
       <section className="lg:py-20">
         <div className="w-full overflow-hidden">
           <SectionTitle
@@ -125,6 +129,10 @@ export default function HomePage() {
           />
           <BrowserOnly>{() => <Development />}</BrowserOnly>
         </div>
+      </section>
+
+      <section className="p-0">
+        <BrowserOnly>{() => <AchievementBanner />}</BrowserOnly>
       </section>
     </div>
   );

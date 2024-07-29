@@ -98,47 +98,50 @@ export default function AchievementBanner(props: AchievementBannerProps) {
     } else {
       fetchGithubState();
     }
+    // startAnimation();
   }, []);
 
   const containerRef = React.useRef<HTMLDivElement>();
 
   // useDOMVisibilityChange(containerRef.current, {
-  //   onChange: (visible) => {
+  //   onChange: React.useCallback((visible) => {
   //     if (visible) {
-  //       startAnimation()
+  //       startAnimation();
   //     }
-  //   }
-  // })
+  //   }),
+  // });
 
   return (
-    <section
-      ref={containerRef}
-      className={clsx('achievement-banner', props.className)}
-      data-aos="fade-up"
-    >
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(githubState.stars)}
+    <section className={clsx('achievement-banner-wrapper')}>
+      <div
+        ref={containerRef}
+        className={clsx('achievement-banner', props.className)}
+      >
+        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="100">
+          <div className="achievement-banner-item__highlight">
+            {formatNumber(githubState.stars)}
+          </div>
+          <div>Github stars</div>
         </div>
-        <div>Github stars</div>
-      </div>
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(githubState.forks)}
+        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="200">
+          <div className="achievement-banner-item__highlight">
+            {formatNumber(githubState.forks)}
+          </div>
+          <div>Github forks</div>
         </div>
-        <div>Github forks</div>
-      </div>
-      <div className="achievement-banner-item">
-        <div className="achievement-banner-item__highlight">
-          {formatNumber(githubState.downloads)}
+        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="300">
+          <div className="achievement-banner-item__highlight">
+            {formatNumber(githubState.downloads)}
+          </div>
+          <div>Total downloads</div>
         </div>
-        <div>Total downloads</div>
       </div>
     </section>
   );
 }
 
 function formatNumber(num: number) {
+  console.log('num: ', num);
   if (num < 1000) {
     return num;
   } else if (num < 1000_000) {
