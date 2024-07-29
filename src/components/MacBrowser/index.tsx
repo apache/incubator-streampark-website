@@ -9,11 +9,11 @@ interface MacBrowserProps {
 }
 
 export default function MacBrowser(props: MacBrowserProps) {
-  const [url, setUrl] = useState('https://streampark.apache.org/');
+  const [url, setUrl] = useState('https://streampark.apache.org');
 
-  useEffect(() => {
-    setUrl(window.location.origin);
-  }, []);
+  // useEffect(() => {
+  //   setUrl(window.location.origin);
+  // }, []);
 
   return (
     <div
