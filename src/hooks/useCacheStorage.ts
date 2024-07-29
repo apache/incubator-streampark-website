@@ -9,7 +9,7 @@ export function useCacheStorage<T = any>({
       key,
       JSON.stringify({
         data: value,
-        expires,
+        expiresAt: Date.now() + expires,
       }),
     );
   }
@@ -18,9 +18,10 @@ export function useCacheStorage<T = any>({
     const cached = storage.getItem(key);
     if (cached) {
       const parsed = JSON.parse(cached);
-      if (Date.now() < parsed.expires) {
+      if (Date.now() < parsed.expiresAt) {
         return parsed.data;
       } else {
+        console.log(11)
         storage.removeItem(key);
       }
     }
