@@ -100,6 +100,10 @@ export default function HomePage() {
         <BrowserOnly>{() => <TrustedUsers />}</BrowserOnly>
       </section>
 
+      <section className="p-0">
+        <BrowserOnly>{() => <AchievementBanner />}</BrowserOnly>
+      </section>
+
       <section className="lg:py-20 bg-[#f7f9fe] dark:bg-[#1a1b1c]">
         <div className="w-full overflow-hidden">
           <SectionTitle
@@ -131,9 +135,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="p-0">
+      {/* <section className="p-0">
         <BrowserOnly>{() => <AchievementBanner />}</BrowserOnly>
-      </section>
+      </section> */}
     </div>
   );
 }

@@ -4,6 +4,9 @@ import clsx from 'clsx';
 import './styles.less';
 import { useDOMVisibilityChange } from '@site/src/hooks/useDomVisibilityChange';
 import { useCacheStorage } from '@site/src/hooks/useCacheStorage';
+import IconFork from '@site/static/icons/fork.svg';
+import IconStar from '@site/static/icons/star.svg';
+import IconDownload from '@site/static/icons/download.svg';
 
 interface AchievementBannerProps {
   className?: string;
@@ -117,23 +120,44 @@ export default function AchievementBanner(props: AchievementBannerProps) {
         ref={containerRef}
         className={clsx('achievement-banner', props.className)}
       >
-        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="100">
+        <div
+          className="achievement-banner-item"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <div className="flex items-center">
+            <IconStar className="mr-2" />
+            <span>Github stars</span>
+          </div>
           <div className="achievement-banner-item__highlight">
             {formatNumber(githubState.stars)}
           </div>
-          <div>Github stars</div>
         </div>
-        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="200">
+        <div
+          className="achievement-banner-item"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <div className="flex items-center">
+            <IconFork className="mr-2" />
+            <span>Github forks</span>
+          </div>
           <div className="achievement-banner-item__highlight">
             {formatNumber(githubState.forks)}
           </div>
-          <div>Github forks</div>
         </div>
-        <div className="achievement-banner-item" data-aos="fade-up" data-aos-delay="300">
+        <div
+          className="achievement-banner-item"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <div className="flex items-center">
+            <IconDownload className="mr-2" />
+            <span>Total downloads</span>
+          </div>
           <div className="achievement-banner-item__highlight">
             {formatNumber(githubState.downloads)}
           </div>
-          <div>Total downloads</div>
         </div>
       </div>
     </section>
