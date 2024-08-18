@@ -1,0 +1,123 @@
+.feature-card-wrapper {
+  position: relative;
+  min-width: 387px;
+  max-width: 400px;
+  padding: 40px;
+  background: var(--secondary-bg-color);
+
+  transition: background 0s,
+    /* disable transition when theme switch */ transform 0.3s;
+}
+
+.feature-card-wrapper:nth-of-type(1) {
+  --feature-icon-color: rgb(65, 146, 246);
+  --feature-icon-shadow: rgba(65, 146, 246, 0.2);
+  --animation-delay: 0ms;
+}
+.feature-card-wrapper:nth-of-type(2) {
+  --feature-icon-color: rgb(173, 103, 247);
+  --feature-icon-shadow: rgba(173, 103, 247, 0.2);
+  --animation-delay: 1s;
+}
+.feature-card-wrapper:nth-of-type(3) {
+  --feature-icon-color: rgb(119, 216, 128);
+  --feature-icon-shadow: rgba(119, 216, 128, 0.2);
+  --animation-delay: 1.8s;
+}
+
+.feature-body {
+  height: 240px;
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 32px;
+  padding-top: 36px;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05));
+  overflow: hidden;
+
+  /* --animation-delay: attr(data-aos-delay); */
+}
+
+.feature-body p {
+  font-weight: normal;
+  color: var(--ifm-color-secondary-contrast-foreground);
+  margin: 0 0 var(--ifm-paragraph-margin-bottom);
+  line-height: 1.75em;
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 450;
+  line-height: 1.6;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.feature-icon-wrapper {
+  position: absolute;
+  top: -24px;
+  left: 32px;
+  background-color: var(--bg-color);
+  padding: 8px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  line-height: 52px;
+  font-size: 1.85rem;
+  background: var(--feature-icon-color);
+  color: var(--bg-color);
+  text-align: center;
+  border-radius: 50%;
+  /* box-shadow: 0 2px 4px 6px var(--feature-icon-shadow); */
+  /* background: radial-gradient(50% 50% at 50% 50%, var(--feature-icon-color) 20%, var(--feature-icon-shadow) 100%); */
+}
+
+.features-icon i {
+  line-height: inherit;
+  font-weight: bold;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -60%;
+  right: -60%;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    var(--feature-icon-shadow) 0,
+    transparent 100%
+  );
+  animation: breathing infinite 10s ease-in-out;
+  animation-delay: var(--animation-delay);
+  transition: transform 0.3s ease-in;
+  pointer-events: none;
+}
+
+.feature-card-wrapper:hover .bubble {
+  animation-play-state: paused;
+  transform: scale(2);
+  transition: transform 0.3s ease-out;
+}
+
+@keyframes breathing {
+  0% {
+    right: -50%;
+  }
+  25% {
+    right: -20%;
+  }
+  50% {
+    right: -50%;
+  }
+  75% {
+    right: 30%;
+  }
+  100% {
+    right: -50%;
+  }
+}

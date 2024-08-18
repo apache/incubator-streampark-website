@@ -1,0 +1,127 @@
+{
+  "zh-CN": {
+    "common": {
+      "getStart": "快速开始",
+      "architecture": "系统架构",
+      "learnMore": "了解更多",
+      "coreFeatures": "核 心 特 性",
+      "coreFeaturesDesc": "StreamPark™ 让流处理作业开发 & 管理更简单的核心特性",
+      "development": "开 发 框 架",
+      "developmentDesc": "StreamPark™ 提供了开发框架，可快速完成流处理作业开发",
+      "ourUsers": "Our Users",
+      "readMore": "阅读更多",
+      "download": "下载",
+      "releaseDate": "发布日期",
+      "newFeatures": "新特性",
+      "enhancement": "增强点",
+      "bugFixs": "问题修复",
+      "changeLog": "详细变更"
+    },
+    "slogan": {
+      "key": "让流处理更简单!",
+      "description": "Apache StreamPark™ 是一个流处理应用程序开发管理框架，旨在轻松构建和管理流处理应用程序，提供使用 Apache Flink® 和 Apache Spark™ 编写流处理应用的开发框架和一站式实时计算平台，核心能力包括不限于应用开发、部署、管理、运维、实时数仓等。"
+    },
+    "feature": [
+      {
+        "title": "简单易用",
+        "icon": "lni-layers",
+        "details": "Apache StreamPark™ 提供了一系列快捷 API 和 Connector，开箱即用，作业状态自动追踪，快速完成作业的开发和管理。"
+      },
+      {
+        "title": "流批一体",
+        "icon": "lni-shuffle",
+        "details": "Apache StreamPark™  同时支持 Apache Flink® & Apache Spark™，无缝支持流式处理和批处理，连接互通，创造无限可能。"
+      },
+      {
+        "title": "一站式解决方案",
+        "icon": "lni-display-alt",
+        "details": "Apache StreamPark™  为流处理作业提供全生命周期支持，从开发到部署，集等众多功能于一身，是一站式流处理平台。"
+      }
+    ],
+    "development": [
+      {
+        "icon": "lni-code",
+        "title": "编写代码",
+        "description": "1. 使用 Apache StreamPark™ 提供的快捷 API 开发流处理作业。"
+      },
+      {
+        "icon": "lni-bug",
+        "title": "调试代码",
+        "description": "2. 传入 Apache StreamPark™ 约定的配置，进行本地作业开发调试。"
+      },
+      {
+        "icon": "lni-bolt-alt",
+        "title": "部署作业",
+        "description": "3. 使用 Apache StreamPark™ 提供的平台来部署和管理你的作业。"
+      }
+    ],
+    "users": {
+      "title": "Apache StreamPark™ 赢得了诸多用户的信赖",
+      "description": "Apache StreamPark™ 已经被广泛应用于金融、电商、物流、互联网、制造等行业，帮助用户快速构建和管理流处理作业，提升数据处理效率。",
+      "more": "更多合作伙伴"
+    }
+  },
+  "en": {
+    "common": {
+      "getStart": "Quick Start",
+      "architecture": "System Architecture",
+      "description": "Description",
+      "learnMore": "Learn More",
+      "coreFeatures": "Key Features",
+      "coreFeaturesDesc": "The key features of StreamPark™ is to make your stream processing easier.",
+      "development": "Development Framework",
+      "developmentDesc": "StreamPark™ provided a development framework to quickly develop stream processing applications.",
+      "ourUsers": "Our Users",
+      "readMore": "Read More",
+      "download": "Download",
+      "releaseDate": "Release Date",
+      "newFeatures": "New Features",
+      "enhancement": "Enhancement point",
+      "bugFixs": "Bug Fix",
+      "changeLog": "Changelog"
+    },
+    "slogan": {
+      "key": "make stream processing easier!",
+      "description":  "Make stream processing easier! Easy-to-use streaming application development framework and operation platform, with Apache Flink® and Apache Spark™ supported, provides full lifecycle support for stream processing applications."
+    },
+    "feature": [
+      {
+        "title": "Easy to use",
+        "icon": "lni-layers",
+        "details": "Only one service, easy deployment. Automatic application status tracking, enabling development and management of applications within minutes."
+      },
+      {
+        "title": "Unified Batch & Streaming",
+        "icon": "lni-shuffle",
+        "details": "StreamPark™ supports both Apache Flink® and Apache Spark™, making it easier to seamlessly support streaming and batch processing."
+      },
+      {
+        "title": "One-stop Solution",
+        "icon": "lni-display-alt",
+        "details": "StreamPark™ provides full lifecycle support for stream processing applications.from development to deployment, It is an one-stop streaming platform."
+      }
+    ],
+    "development": [
+      {
+        "icon": "lni-code",
+        "title": "Write Code",
+        "description": "1. Develop your code quickly using the StreamPark™ API"
+      },
+      {
+        "icon": "lni-bug",
+        "title": "Debug Application",
+        "description": "2. Debug your code with the application configuration"
+      },
+      {
+        "icon": "lni-bolt-alt",
+        "title": "Deploy Application",
+        "description": "3. Deploy and manage your applications using StreamPark™"
+      }
+    ],
+    "users": {
+      "title": "Apache StreamPark™ is trust by",
+      "description": "StreamPark™ has been widely used in finance, e-commerce, logistics, Internet, manufacturing and other industries, helping users quickly build and manage stream processing jobs and improve data processing efficiency.",
+      "more": "More Partners"
+    }
+  }
+}

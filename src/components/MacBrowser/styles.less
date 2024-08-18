@@ -1,0 +1,71 @@
+.mac-browser {
+  --browser-bg-color: #323030;
+  --browser-header-button-bg-color: #423f40;
+  --browser-address-bar-bg-color: #413f3f;
+  --browser-address-bar-text-color: #fff;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(800px, 80%);
+  // max-width: min(800px, 80%);
+  min-height: 400px;
+  height: max-content;
+  margin: 40px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--browser-bg-color);
+}
+
+// [data-theme='dark'] .mac-browser {
+//   --browser-bg-color: #ffffff;
+//   --browser-header-button-bg-color: #e0e0e0;
+//   --browser-address-bar-bg-color: #dfdfdf;
+//   --browser-address-bar-text-color: #414141;
+// }
+
+.mac-browser__header {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  background-color: var(--browser-bg-color);
+  padding: 6px 12px;
+}
+
+.mac-browser__buttons {
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
+}
+
+.mac-browser__button {
+  display: inline-block;
+  background-color: var(--browser-header-button-bg-color);
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}
+
+.mac-browser__address-bar {
+  background-color: var(--browser-address-bar-bg-color);
+  color: var(--browser-address-bar-text-color);
+  width: 40%;
+  height: 20px;
+  text-align: center;
+  // justify-self: center;
+  margin: auto;
+  border-radius: 4px;
+  font-size: 10px;
+  line-height: 20px;
+}
+
+.mac-browser__content {
+  overflow: hidden;
+  // height: calc(100% - 36px);
+  width: 100%;
+  background-color: var(--browser-header-button-bg-color);
+  flex: 1;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  // border: 2px solid var(--browser-bg-color);
+}

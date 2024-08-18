@@ -1,13 +1,15 @@
-@import "colors.less";
-@import "default.less";
+@import './tailwind.less';
+@import './colors.less';
+@import './default.less';
 
 /* Attemps to fix active link on KB page in dark mode */
-.sidebarItemLink_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
+.sidebarItemLink_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module
+  .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
   color: #e2e3e7 !important;
 }
 
 .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
-  color: #E2E3E7 !important;
+  color: #e2e3e7 !important;
 }
 
 .sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-BlogSidebar-Desktop-styles-module {
@@ -104,7 +106,6 @@
 .menu__caret {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
-
 }
 
 .navbar__logo {
@@ -142,7 +143,7 @@
   line-height: 21px;
 }
 
-article[itemprop="blogPost"] {
+article[itemprop='blogPost'] {
   margin-top: 2rem;
 }
 
@@ -231,7 +232,7 @@ code {
 
 /* text headings within admonitions */
 .admonition h5 {
-  --ifm-heading-color: #27242D;
+  --ifm-heading-color: #27242d;
 }
 
 .docusaurus-highlight-code-line {
@@ -240,7 +241,6 @@ code {
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
 }
-
 
 .tabs__item--active {
   --ifm-tabd-color: var(--click-color-accent);
@@ -265,12 +265,13 @@ code {
 .button--lg {
   margin: 10px 8px;
   --tw-bg-opacity: 1;
-  background-color: rgb(255 178 0/var(--tw-bg-opacity));
+  background-color: rgb(255 178 0 / var(--tw-bg-opacity));
   color: white;
   font-size: 14px;
   font-weight: 700;
   font-stretch: 100%;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 .button.button--secondary {
@@ -289,11 +290,11 @@ li.theme-doc-sidebar-item-category-level-1 {
   .menu__list-item-collapsible {
     font-weight: 700;
 
-    &:hover>a[href] {
+    &:hover > a[href] {
       background: var(--ifm-menu-color-background-hover);
     }
 
-    &>.menu__link--active {
+    & > .menu__link--active {
       font-weight: 700;
     }
   }
@@ -334,7 +335,7 @@ li.theme-doc-sidebar-item-category-level-1 {
   padding-left: 2.2rem;
 }
 
-li.theme-doc-sidebar-item-category-level-2>.menu__list {
+li.theme-doc-sidebar-item-category-level-2 > .menu__list {
   border-left: 1px solid var(--click-color-stroke);
 }
 
@@ -455,7 +456,7 @@ prism-code {
 }
 
 .sidebarWithHideableNavbar_d0QC {
-  background-color: #312D3B;
+  background-color: #312d3b;
 }
 
 .margin-bottom--lg {
@@ -486,7 +487,6 @@ prism-code {
   flex: 1 1 auto;
   min-height: auto;
 }
-
 
 .search-result-match {
   font-size: 1.3rem;
@@ -527,7 +527,6 @@ table td {
   height: 100%;
 }
 
-
 .two_column_home_list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -539,7 +538,7 @@ table td {
 
 @media screen and (max-width: 600px) {
   .two_column_home_list {
-    grid-template-columns: repeat(1, minmax(0, 1fr))
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
 
@@ -674,11 +673,9 @@ table td {
     text-align: center;
     justify-content: center;
   }
-
 }
 
 .navbar-sidebar__item {
-
   .sign-in {
     display: flex;
     align-items: center;
@@ -689,7 +686,7 @@ table td {
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
-    transition: all .15s;
+    transition: all 0.15s;
     opacity: 1;
     border: 1px solid var(--click-color-secondary-button-stroke);
     color: var(--click-color-secondary-button-text);
@@ -741,7 +738,7 @@ table td {
   }
 
   .dropdown__link {
-    padding: .5rem 1.5rem;
+    padding: 0.5rem 1.5rem;
   }
 }
 
@@ -755,7 +752,7 @@ table td {
 }
 
 .dropdown {
-  &>.navbar__link:after {
+  & > .navbar__link:after {
     border: none;
     background: var(--ifm-menu-link-sublist-icon);
     background-position: center;
@@ -763,6 +760,7 @@ table td {
     height: var(--default-line-height);
     width: var(--default-line-height);
     top: initial;
+    margin-left: 0px;
   }
 
   .dropdown__link {
@@ -789,7 +787,7 @@ hr {
     }
   }
 
-  &>h2 {
+  & > h2 {
     margin-top: 32px;
     padding-top: 32px;
     margin-bottom: 12px;
@@ -812,14 +810,12 @@ hr {
   }
 
   details {
-
     h1,
     h2,
     h3 {
       color: var(--click-color-text-inverse);
     }
   }
-
 }
 
 .main-content-wrapper {
@@ -908,7 +904,6 @@ button.DocSearch {
       background: var(--click-color-success-background);
     }
   }
-
 }
 
 .footer__link-item {
@@ -944,23 +939,29 @@ html {
   font-size: 16px;
 }
 
-html[data-theme="dark"] {
+html[data-theme='dark'] {
   background: var(--click-color-background);
   background-attachment: fixed;
 }
-
-
 
 // 设定全局字体大小为14px
 body {
   font-size: var(--default-font);
   line-height: var(--default-line-height);
-  font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-family: var(--ifm-font-family-base), -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
   overflow-x: hidden;
   height: auto !important;
 }
 
+[data-theme='dark'] .navbar {
+  background: rgba(36, 37, 38, 0.55);
+}
+
 .navbar {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
 
   .navbar-sidebar {
     background: inherit;
@@ -1053,7 +1054,7 @@ img {
       &::before {
         border: 0.5rem solid #0000;
         border-bottom: 0.5rem solid #fff;
-        content: "";
+        content: '';
         display: block;
         position: absolute;
         right: 3.625rem;
@@ -1065,7 +1066,8 @@ img {
   // apache logo
   .footerLogoLink {
     opacity: 0.5;
-    transition: opacity var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+    transition: opacity var(--ifm-transition-fast)
+      var(--ifm-transition-timing-default);
 
     &:hover {
       opacity: 1;
@@ -1077,7 +1079,7 @@ img {
   }
 
   .footer__logo {
-    content: url("/image/apache-incubator.svg");
+    content: url('/image/apache-incubator.svg');
     display: inline-block;
     width: 138px;
   }
@@ -1085,12 +1087,11 @@ img {
 
 [data-theme='dark'] .footer {
   .footer__logo {
-    content: url("/image/apache-incubator-dark.svg");
+    content: url('/image/apache-incubator-dark.svg');
   }
 }
 
 @media screen and (max-width: 996px) {
-
   .container,
   .container-hero {
     margin-left: 12px !important;
@@ -1169,4 +1170,3 @@ img {
   }
   border: 1px solid var(--ifm-table-head-background);
 }
-
