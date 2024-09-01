@@ -1,6 +1,6 @@
 ---
-id: 'how_to_release'
-title: How to Release
+id: 'how_to_release_version_2.1.x'
+title: How to Release Version 2.1.x
 sidebar_position: 4
 ---
 
@@ -112,7 +112,7 @@ uid         [ultimate] muchunjin (for apache StreamPark release create at 202305
 sub   rsa4096/0C5A4E1C 2023-05-01 [E]
 
 # Send public key to keyserver via key id
-$ gpg --keyserver keyserver.ubuntu.com --send-key 584EE68E
+$ gpg --keyserver keyserver.ubuntu.com --send-key 05016886
 # Among them, keyserver.ubuntu.com is the selected keyserver, it is recommended to use this, because the Apache Nexus verification uses this keyserver
 ```
 
@@ -124,7 +124,7 @@ echo "standard-resolver" >  ~/.gnupg/dirmngr.conf
 sudo pkill dirmngr
 ```
 
-#### 2.3 Check if the key is created successfully
+### 2.3 Check if the key is created successfully
 
 Verify whether it is synchronized to the public network, it will take about a minute to find out the answer, if not successful, you can upload and retry multiple times.
 
@@ -143,7 +143,7 @@ If the query results are as follows, it means that the key is successfully creat
 
 ![图片](https://github.com/apache/incubator-streampark/assets/19602424/73ada3f2-2d2e-4b76-b25c-34a52db6a069)
 
-#### 2.4 Add the gpg public key to the KEYS file of the Apache SVN project warehouse
+### 2.4 Add the gpg public key to the KEYS file of the Apache SVN project warehouse
 
 - Apache StreamPark Branch Dev https://dist.apache.org/repos/dist/dev/incubator/streampark
 - Apache StreamPark Branch Release https://dist.apache.org/repos/dist/release/incubator/streampark/
@@ -178,7 +178,150 @@ $ (gpg --list-sigs muchunjin@apache.org && gpg --export --armor muchunjin@apache
 $ svn ci -m "add gpg key for muchunjin"
 ```
 
-#### 2.5 Configure apache maven address and user password settings
+## 3. Prepare material package
+
+### 3.1 Based on dev or dev-2.1. x branch depending on the situation, create a `release-${release_version}-rcx` branch, such as release-2.1.0-rc1, And create a tag named v2.1.0-rc1 based on the release-2.1.0-rc1 branch, and set this tag as pre-release.
+
+![图片](https://user-images.githubusercontent.com/19602424/236656362-1d346faa-6582-44eb-9722-8bb2de0eaa92.png)
+
+### 3.2 clone release branch to local
+
+```shell
+git clone -b release-2.1.0-rc1 -c core.autocrlf=false git@github.com:apache/incubator-streampark.git
+```
+
+### 3.3 Compile the binary package
+
+> Scala 2.11 compilation and packaging
+
+```shell
+> ./build.sh # choose "mixed mode" and "scala 2.11"
+```
+
+> Scala 2.12 compilation and packaging
+
+```shell
+> ./build.sh # choose "mixed mode" and "scala 2.12"
+```
+
+> Package the project source code
+
+```shell
+git archive \
+--format=tar.gz \
+--output="dist/apache-streampark-2.1.0-incubating-src.tar.gz" \
+--prefix=apache-streampark-2.1.0-incubating-src/ \
+release-2.1.0-rc1
+```
+
+> The following 3 files will be generated
+
+```
+apache-streampark-2.1.0-incubating-src.tar.gz
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
+```
+
+### 3.4 Sign binary and source packages
+
+```shell
+cd dist
+
+# sign
+for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done
+
+# SHA512
+for i in *.tar.gz; do echo $i; sha512sum $i > $i.sha512 ; done
+```
+
+> The final file list is as follows
+
+```
+apache-streampark-2.1.0-incubating-src.tar.gz
+apache-streampark-2.1.0-incubating-src.tar.gz.asc
+apache-streampark-2.1.0-incubating-src.tar.gz.sha512
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz.asc
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz.sha512
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz.asc
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz.sha512
+```
+
+### 3.5 Verify signature
+
+```shell
+$ cd dist
+
+# Verify signature
+$ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+
+apache-streampark-2.1.0-incubating-src.tar.gz
+gpg: Signature made Tue May  2 12:16:35 2023 CST
+gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
+gpg: Good signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
+gpg: Signature made Tue May  2 12:16:36 2023 CST
+gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
+gpg: Good signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
+gpg: Signature made Tue May  2 12:16:37 2023 CST
+gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
+gpg: BAD signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
+
+# Verify SHA512
+$ for i in *.tar.gz; do echo $i; sha512sum --check $i.sha512; done
+
+apache-streampark-2.1.0-incubating-src.tar.gz
+apache-streampark-2.1.0-incubating-src.tar.gz: OK
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
+apache-streampark_2.11-2.1.0-incubating-bin.tar.gz: OK
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
+apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
+```
+
+### 3.6 Publish the dev directory of the Apache SVN warehouse of the material package
+
+```shell
+# Check out the dev directory of the Apache SVN warehouse to the streampark_svn_dev directory under dist in the root directory of the Apache StreamPark project
+# svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
+
+svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
+```
+
+Create a version number directory and name it in the form of `${release_version}-${RC_version}`. RC_version starts from 1, that is, the candidate version starts from RC1. During the release process, there is a problem that causes the vote to fail. If it needs to be corrected, it needs to iterate the RC version , the RC version number needs to be +1. For example: Vote for version 2.1.0-RC1. If the vote passes without any problems, the RC1 version material will be released as the final version material. If there is a problem (when the streampark/incubator community votes, the voters will strictly check various release requirements and compliance issues) and need to be corrected, then re-initiate the vote after the correction, and the candidate version for the next vote is 2.1.0- RC2.
+
+```shell
+mkdir -p dist/streampark_svn_dev/2.1.0-RC1
+cp -f dist/* dist/streampark_svn_dev/2.1.0-RC1
+```
+
+Commit to SVN
+
+```shell
+cd dist/streampark_svn_dev/
+
+# 1.check svn status
+svn status
+
+# 2. add to svn
+svn add 2.0.0-RC1
+
+svn status
+
+# 3. Submit to svn remote server
+svn commit -m "release for StreamPark 2.1.0"
+```
+
+### 3.7 Check Apache SVN Commit Results
+
+> Visit the address https://dist.apache.org/repos/dist/dev/incubator/streampark/2.1.0-RC1/ in the browser
+
+![图片](https://github.com/apache/incubator-streampark/assets/19602424/e4763537-af9f-4f2a-967d-912e6670b360)
+
+## 4. Release Apache Nexus
+
+### 4.1 Configure apache maven address and user password settings
 
 - Generate master password
 ```shell
@@ -240,21 +383,7 @@ $ mvn --encrypt-password <apache passphrase>
   </profiles>
 ```
 
-## 3. Prepare material package & release Apache Nexus
-
-#### 3.1 Based on the dev branch, create a `release-${release_version}-rcx` branch, such as release-2.1.0-rc1, And create a tag named v2.1.0-rc1 based on the release-2.1.0-rc1 branch, and set this tag as pre-release.
-
-![图片](https://user-images.githubusercontent.com/19602424/236656362-1d346faa-6582-44eb-9722-8bb2de0eaa92.png)
-
-#### 3.2 clone release branch to local
-
-```shell
-git clone -b release-2.1.0-rc1 -c core.autocrlf=false git@github.com:apache/incubator-streampark.git
-```
-
-#### 3.3 Publish the relevant JARs to Apache Nexus
-
-##### 3.3.1 Release scala 2.11 to the Apache Nexus repository
+### 4.2 Release scala 2.11 to the Apache Nexus repository
 
 ```shell
 mvn clean install \
@@ -275,7 +404,7 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.2 Release scala 2.12 to the Apache Nexus repository
+### 4.3 Release scala 2.12 to the Apache Nexus repository
 
 ```shell
 mvn clean install \
@@ -304,144 +433,15 @@ mvn deploy \
 -DretryFailedDeploymentCount=3
 ```
 
-##### 3.3.3 Check for successful publishing to the Apache Nexus repository
+### 4.4 Check for successful publishing to the Apache Nexus repository
 
 > Visit https://repository.apache.org/ and log in, if there are scala 2.11, scala 2.12, it means success.
 
 ![图片](https://user-images.githubusercontent.com/19602424/236657233-08d142eb-5f81-427b-a04d-9ab3172199c1.png)
 
-#### 3.4 Compile the binary package
+## 5. Enter the community voting stage
 
-> Scala 2.11 compilation and packaging
-
-```shell
-> ./build.sh # choose "mixed mode" and "scala 2.11"
-```
-
-> Scala 2.12 compilation and packaging
-
-```shell
-> ./build.sh # choose "mixed mode" and "scala 2.12"
-```
-
-> Package the project source code
-
-```shell
-git archive \
---format=tar.gz \
---output="dist/apache-streampark-2.1.0-incubating-src.tar.gz" \
---prefix=apache-streampark-2.1.0-incubating-src/ \
-release-2.1.0-rc1
-```
-
-> The following 3 files will be generated
-
-```
-apache-streampark-2.1.0-incubating-src.tar.gz
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
-```
-
-#### 3.4 Sign binary and source packages
-
-```shell
-cd dist
-
-# sign
-for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done
-
-# SHA512
-for i in *.tar.gz; do echo $i; sha512sum $i > $i.sha512 ; done
-```
-
-> The final file list is as follows
-
-```
-apache-streampark-2.1.0-incubating-src.tar.gz
-apache-streampark-2.1.0-incubating-src.tar.gz.asc
-apache-streampark-2.1.0-incubating-src.tar.gz.sha512
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz.asc
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz.sha512
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz.asc
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz.sha512
-```
-
-#### 3.5 Verify signature
-
-```shell
-$ cd dist
-
-# Verify signature
-$ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
-
-apache-streampark-2.1.0-incubating-src.tar.gz
-gpg: Signature made Tue May  2 12:16:35 2023 CST
-gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: Good signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
-gpg: Signature made Tue May  2 12:16:36 2023 CST
-gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: Good signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
-gpg: Signature made Tue May  2 12:16:37 2023 CST
-gpg:                using RSA key 85778A4CE4DD04B7E07813ABACFB69E705016886
-gpg: BAD signature from "muchunjin (for apache StreamPark release create at 20230501) <muchunjin@apache.org>" [ultimate]
-
-# Verify SHA512
-$ for i in *.tar.gz; do echo $i; sha512sum --check $i.sha512; done
-
-apache-streampark-2.1.0-incubating-src.tar.gz
-apache-streampark-2.1.0-incubating-src.tar.gz: OK
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz
-apache-streampark_2.11-2.1.0-incubating-bin.tar.gz: OK
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz
-apache-streampark_2.12-2.1.0-incubating-bin.tar.gz: OK
-```
-
-#### 3.6 Publish the dev directory of the Apache SVN warehouse of the material package
-
-```shell
-# Check out the dev directory of the Apache SVN warehouse to the streampark_svn_dev directory under dist in the root directory of the Apache StreamPark project
-# svn co https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
-
-svn co --depth empty https://dist.apache.org/repos/dist/dev/incubator/streampark dist/streampark_svn_dev
-```
-
-Create a version number directory and name it in the form of `${release_version}-${RC_version}`. RC_version starts from 1, that is, the candidate version starts from RC1. During the release process, there is a problem that causes the vote to fail. If it needs to be corrected, it needs to iterate the RC version , the RC version number needs to be +1. For example: Vote for version 2.1.0-RC1. If the vote passes without any problems, the RC1 version material will be released as the final version material. If there is a problem (when the streampark/incubator community votes, the voters will strictly check various release requirements and compliance issues) and need to be corrected, then re-initiate the vote after the correction, and the candidate version for the next vote is 2.1.0- RC2.
-
-```shell
-mkdir -p dist/streampark_svn_dev/2.1.0-RC1
-cp -f dist/* dist/streampark_svn_dev/2.1.0-RC1
-```
-
-Commit to SVN
-
-```shell
-cd dist/streampark_svn_dev/
-
-# 1.check svn status
-svn status
-
-# 2. add to svn
-svn add 2.0.0-RC1
-
-svn status
-
-# 3. Submit to svn remote server
-svn commit -m "release for StreamPark 2.1.0"
-```
-
-#### 3.7 Check Apache SVN Commit Results
-
-> Visit the address https://dist.apache.org/repos/dist/dev/incubator/streampark/2.1.0-RC1/ in the browser
-
-![图片](https://github.com/apache/incubator-streampark/assets/19602424/e4763537-af9f-4f2a-967d-912e6670b360)
-
-## 3. Enter the community voting stage
-
-#### 3.1 Send a Community Vote Email
+### 5.1 Send a Community Vote Email
 
 Send a voting email in the community requires at least three `+1` and no `-1`.
 
@@ -549,7 +549,7 @@ Visit this address https://lists.apache.org/list.html?dev@streampark.apache.org,
 Right-click the title and click Copy Link Address to get the link
 ![图片](https://github.com/apache/incubator-streampark/assets/19602424/1616da5b-7891-45cc-b956-a0ba5e7ce874)
 
-#### 3.2 Send Incubator Community voting mail
+### 5.2 Send Incubator Community voting mail
 
 Send a voting email in the incubator community requires at least three `+1` and no `-1`.
 
@@ -670,15 +670,15 @@ Then right-click the title and click Copy Link Address to get the link.
 
 Wait a day to see if the tutor has any other comments, if not, send the following announcement email
 
-## 4. Complete the final publishing steps
+## 6. Complete the final publishing steps
 
-#### 4.1 Migrating source and binary packages
+### 6.1 Migrating source and binary packages
 
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/incubator/streampark/2.1.0-RC1 https://dist.apache.org/repos/dist/release/incubator/streampark/2.1.0  -m "transfer packages for 2.1.0-RC1"
 ```
 
-#### 4.2 Publish releases in the Apache Staging repository
+### 6.2 Publish releases in the Apache Staging repository
 
 - Log in to http://repository.apache.org , log in with your Apache account
 - Click Staging repositories on the left
@@ -686,7 +686,7 @@ svn mv https://dist.apache.org/repos/dist/dev/incubator/streampark/2.1.0-RC1 htt
 - Click the Release button above, this process will perform a series of checks
 > It usually takes 24 hours for the warehouse to synchronize to other data sources
 
-#### 4.3 Add the new version download address to the official website
+### 6.3 Add the new version download address to the official website
 
 Add the following to the src/pages/download/data.json file on the official website
 
@@ -717,7 +717,7 @@ Open the official website address https://streampark.apache.org/download/ to see
 
 ![图片](https://github.com/apache/incubator-streampark/assets/19602424/e7900fb2-7bfc-4fa1-bd40-9806e6a822ef)
 
-#### 4.4 Generate a release on github
+### 6.4 Generate a release on github
 
 Create a tag named v2.1.0 based on the release-2.1.0-rc1 branch, and set this tag to latest release.
 
@@ -738,7 +738,7 @@ Then click the `Publish release` button.
 
 The rename the release-2.1.0-rc1 branch to release-2.1.0.
 
-#### 4.5 Send new version announcement email
+### 6.5 Send new version announcement email
 
 > `Send to`: general@incubator.apache.org <br />
 > `cc`: dev@streampark.apache.org <br />
