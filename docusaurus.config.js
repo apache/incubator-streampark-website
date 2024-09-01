@@ -168,8 +168,8 @@ const config = {
                 to: "/community/submit_guide/documentation_style_guide",
               },
               {
-                label: "How to release",
-                to: "/community/release/how_to_release",
+                label: "How to release version 2.1.x",
+                to: "/community/release/how_to_release_version_2.1.x",
               },
               {
                 label: "How to Verify Release",
