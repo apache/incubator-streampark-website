@@ -255,7 +255,7 @@ if [[ -n "${FLINK_PROCESS}" ]]; then
   FLINK_NAME=${ARRAY[1]}
   FLINK_PORT=${ARRAY[2]}
 else
-  FLINK_NAME="flink-1.19.0"
+  FLINK_NAME="flink-1.20.0"
   FLINK_URL="https://archive.apache.org/dist/flink/${FLINK_NAME}/${FLINK_NAME}-bin-scala_2.12.tgz"
   FLINK_TAR="${FLINK_NAME}-bin-scala_2.12.tgz"
   FLINK_HOME="${WORK_DIR}"/${SP_NAME}/flink/${FLINK_NAME}
