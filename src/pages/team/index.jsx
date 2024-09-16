@@ -46,7 +46,7 @@ export default function () {
                 dataSource.mentor.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-10 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -73,7 +73,7 @@ export default function () {
                 dataSource.PPMC.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-10 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">
@@ -100,7 +100,7 @@ export default function () {
                 dataSource.committer.map((item, i) => (
                   <div className='team-box my-3' key={i} data-aos="fade-up" data-aos-delay={i * 100}>
                     <div className="hover-top-in text-center" >
-                      <div className="team-user overflow-hidden z-index-1 position-relative px-5 d-flex justify-content-center">
+                      <div className="team-user overflow-hidden z-10 position-relative px-5 d-flex justify-content-center">
                         <img className="team-user-img" src={avatarUrl(item.githubId)} title="" alt="" />
                       </div>
                       <div className="position-relative bg-team text-center hover-top--in">

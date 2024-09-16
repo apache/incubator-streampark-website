@@ -1,0 +1,90 @@
+.shell-command-block {
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #f6f8fa;
+  height: 40px;
+  width: max-content;
+}
+
+[data-theme='dark'] .shell-command-block {
+  background-color: #1a1a1a;
+  color: #ebedf0;
+}
+
+.shell-command-block pre {
+  flex: 1;
+  min-width: 0;
+  width: fit-content;
+  border-radius: 4px;
+  padding: 10px 0 10px 20px;
+  color: inherit;
+  margin: 0;
+  height: 40px;
+  line-height: 1;
+  background-color: inherit;
+}
+
+.shell-command-block code {
+  font-weight: normal;
+}
+
+.shell-command-block .copy-icon {
+  cursor: pointer;
+  color: #636c76;
+  line-height: 36px;
+  height: 32px;
+  width: 32px;
+  text-align: center;
+  margin: 4px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  appearance: none;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.shell-command-block .copy-icon:hover {
+  color: #000;
+  background-color: #ebedf0;
+  /* font-size: 18px; */
+  transition: all 0.3s;
+}
+
+.shell-command-block .copy-icon svg {
+  display: inline;
+  line-height: 32px;
+  vertical-align: -0.05em;
+}
+
+[data-theme='dark'] .shell-command-block .copy-icon:hover {
+  background-color: #45494f;
+}
+
+.code-cmd {
+  color: #f15a1e;
+}
+
+.code-opt {
+  color: #f15a1e;
+}
+
+.code-opr {
+  color: red;
+}
+
+[data-theme='dark'] .code-cmd {
+  color: #ffa07a;
+}
+
+[data-theme='dark'] .code-opt {
+  color: #ffa07a;
+}
+
+[data-theme='dark'] .code-opr {
+  color: rgb(162, 68, 68);
+}

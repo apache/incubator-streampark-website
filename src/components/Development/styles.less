@@ -1,0 +1,101 @@
+/*------------------------------------
+  Process
+------------------------------------*/
+
+@import url('/src/css/bootstrap.min.css');
+@import url('/src/css/lineicons.min.css');
+
+.performance {
+  .performance-block-first {
+    margin-bottom: 1rem;
+
+    & > div:first-child {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .process-vertical {
+    list-style: none;
+    margin: 0;
+
+    .process-vertical-item {
+      display: -ms-flexbox;
+      display: flex;
+
+      &:last-child .process-vertical-icon::before {
+        display: none;
+      }
+
+      .process-vertical-icon {
+        position: relative;
+        width: 4rem;
+        -ms-flex-negative: 0;
+        flex-shrink: 0;
+        text-align: center;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 45%;
+          top: 4rem;
+          bottom: -4rem;
+          border-left: 2px dashed #e5e7eb;
+        }
+
+        .process-vertical-icon-bg {
+          background: #f9fafb;
+          border: #e5e7eb 1px solid;
+          height: 4rem;
+          line-height: 4rem;
+          width: 4rem;
+          color: #333;
+
+          i {
+            font-size: 2rem;
+          }
+        }
+
+        span {
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .process-vertical-content {
+      margin-left: 1rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .border-dot {
+    --width: min(100%, 500px);
+    width: var(--width);
+    margin-left: max(calc((100% / 2 - var(--width)) / 2), 0); // 取中
+    border: 1px dashed #e8e8e8;
+    opacity: 0.7;
+    margin-bottom: 5rem;
+  }
+}
+
+[data-theme='dark'] .performance {
+  .process-vertical {
+    .process-vertical-item {
+      .process-vertical-icon {
+        &::before {
+          border-left: 2px dashed #666;
+        }
+
+        .process-vertical-icon-bg {
+          background: #242526;
+          border: #666 1px solid;
+          color: unset;
+        }
+      }
+    }
+  }
+
+  .border-dot {
+    border: 1px dashed #666;
+  }
+}

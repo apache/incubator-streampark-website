@@ -1,0 +1,21 @@
+.broder-pulse {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  border-radius: 50%;
+  animation: pulse-border 1500ms ease-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}

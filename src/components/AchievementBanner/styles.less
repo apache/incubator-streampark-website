@@ -1,0 +1,58 @@
+.achievement-banner-wrapper {
+  background-image: url("/home/bg-blue-banner.jpg");
+  height: 200px;
+  
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 100px;
+
+  .achievement-banner {
+    width: 70%;
+  }
+
+  .achievement-banner-item {
+    height: 200px;
+    color: #ddd;
+  }
+
+  .achievement-banner-item__highlight {
+    color: #fff;
+  }
+}
+
+.achievement-banner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0 auto;
+  width: min(800px, 80%);
+}
+
+.achievement-banner-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4c576c;
+  line-height: 1.6;
+  font-size: 0.75rem;
+}
+
+.achievement-banner-item__highlight {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+@media screen and (min-width: 767px) {
+  .achievement-banner-item__highlight {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+  .achievement-banner-item {
+    line-height: 1.6;
+    font-size: 1.25rem;
+  }
+}

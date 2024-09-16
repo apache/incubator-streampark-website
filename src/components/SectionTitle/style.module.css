@@ -1,0 +1,17 @@
+hr.divider {
+  margin-left: auto;
+  margin-right: auto;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  max-width: 8rem;
+  height: 0.2rem;
+  opacity: 0.85;
+  background: linear-gradient(90deg, #e24997, #2d2ed4)
+}
+
+hr.divider.double-hr {
+  border-style: solid;
+  height: 0.25rem;
+  max-width: 7rem;
+  opacity: 0.85;
+}
