@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="docs-wrapper plugin-docs plugin-id-community docs-version-current docs-doc-page docs-doc-id-submit_guide/code_style_and_quality_guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">代码风格和质量指南 | Apache StreamPark (incubating)</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://streampark.apache.org/zh-CN/community/submit_guide/code_style_and_quality_guide"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-community-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-community-current"><meta data-rh="true" property="og:title" content="代码风格和质量指南 | Apache StreamPark (incubating)"><meta data-rh="true" name="description" content="&lt;!--"><meta data-rh="true" property="og:description" content="&lt;!--"><link data-rh="true" rel="icon" href="/zh-CN/image/favicon.ico"><link data-rh="true" rel="canonical" href="https://streampark.apache.org/zh-CN/community/submit_guide/code_style_and_quality_guide"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide" hreflang="en"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/zh-CN/community/submit_guide/code_style_and_quality_guide" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/zh-CN/blog/rss.xml" title="Apache StreamPark (incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/zh-CN/blog/atom.xml" title="Apache StreamPark (incubating) Atom Feed"><link rel="stylesheet" href="/zh-CN/assets/css/styles.973b1f1a.css">
+<script src="/zh-CN/assets/js/runtime~main.470707f1.js" defer="defer"></script>
+<script src="/zh-CN/assets/js/main.ef599892.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_BCtO" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/zh-CN/"><div class="navbar__logo"><img src="/zh-CN/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--light_uT2j"><img src="/zh-CN/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--dark_ENih"></div><b class="navbar__title text--truncate">StreamPark</b></a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/zh-CN/docs/get-started/intro">文档</a><a class="navbar__item navbar__link" href="/zh-CN/download">下载</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">社区</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank" rel="noopener noreferrer" class="dropdown__link">行为守则</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/mailing_lists">加入邮件列表</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/become_committer">成为 Committer</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/become_pmc_member">成为 PMC 成员</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/new_committer_process">新的 Committer 流程</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/new_pmc_ember_process">新的 PMC 成员流程</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/document">文档</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/submit_code">提交代码</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/zh-CN/community/submit_guide/code_style_and_quality_guide">代码风格和质量指南</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/documentation_style_guide">文档书写规范</a></li><li><a class="dropdown__link" href="/zh-CN/community/release/how_to_release_version_2.1.x">How to release version 2.1.x</a></li><li><a class="dropdown__link" href="/zh-CN/community/release/how_to_verify_release">如何验证发版</a></li></ul></div><a class="navbar__item navbar__link" href="/zh-CN/team">团队</a><a class="navbar__item navbar__link" href="/zh-CN/user">用户</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Apache</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">基金会</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">证书</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank" rel="noopener noreferrer" class="dropdown__link">事件</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">安全</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">赞助</a></li><li><a href="https://www.apache.org/foundation/policies/privacy.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">致谢</a></li></ul></div><a class="navbar__item navbar__link" href="/zh-CN/blog">博客</a><a href="https://github.com/apache/incubator-streampark/issues/507" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">FAQ</a><a href="https://github.com/apache/incubator-streampark" target="_blank" class="githubStars_qnS9"><div class="githubStarsContainer_O7dk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.75C4.27062 1.75 1.25 4.77062 1.25 8.5C1.25 11.4869 3.18219 14.0097 5.86531 14.9041C6.20281 14.9631 6.32937 14.7606 6.32937 14.5834C6.32937 14.4231 6.32094 13.8916 6.32094 13.3263C4.625 13.6384 4.18625 12.9128 4.05125 12.5331C3.97531 12.3391 3.64625 11.74 3.35938 11.5797C3.12312 11.4531 2.78562 11.1409 3.35094 11.1325C3.8825 11.1241 4.26219 11.6219 4.38875 11.8244C4.99625 12.8453 5.96656 12.5584 6.35469 12.3813C6.41375 11.9425 6.59094 11.6472 6.785 11.4784C5.28312 11.3097 3.71375 10.7275 3.71375 8.14563C3.71375 7.41156 3.97531 6.80406 4.40563 6.33156C4.33812 6.16281 4.10187 5.47094 4.47312 4.54281C4.47312 4.54281 5.03844 4.36563 6.32937 5.23469C6.86937 5.08281 7.44313 5.00687 8.01688 5.00687C8.59063 5.00687 9.16438 5.08281 9.70438 5.23469C10.9953 4.35719 11.5606 4.54281 11.5606 4.54281C11.9319 5.47094 11.6956 6.16281 11.6281 6.33156C12.0584 6.80406 12.32 7.40312 12.32 8.14563C12.32 10.7359 10.7422 11.3097 9.24031 11.4784C9.485 11.6894 9.69594 12.0944 9.69594 12.7272C9.69594 13.63 9.6875 14.3556 9.6875 14.5834C9.6875 14.7606 9.81406 14.9716 10.1516 14.9041C12.8178 14.0097 14.75 11.4784 14.75 8.5C14.75 4.77062 11.7294 1.75 8 1.75Z" fill="currentColor"></path></svg><span class="githubText_YlX6">3.9k</span></div></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_DSK9"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></a><ul class="dropdown__menu"><li><a href="/community/submit_guide/code_style_and_quality_guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/zh-CN/community/submit_guide/code_style_and_quality_guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-CN">简体中文</a></li></ul></div><a class="colorModeButton_yITp undefined"><svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></a><div class="navbarSearchContainer_dCNk"><div class="navbar__search searchBarContainer_SuYZ"><input placeholder="搜索" aria-label="Search" class="navbar__search-input"><div class="loadingRing_HgBb searchBarLoadingRing_om0w"><div></div><div></div><div></div><div></div></div></div></div><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_pmYA"><div class="docsWrapper_xNxE"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_yIRJ" type="button"></button><div class="docRoot_vmqG"><aside class="theme-doc-sidebar-container docSidebarContainer_hlm_"><div class="sidebarViewport_c8HV"><div class="sidebar_mhZE"><div class="sidebarSearchContainer_Lwc8"></div><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP" style="padding-top:1.75rem;padding-bottom:250px;overflow-y:auto"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh-CN/community/contribution_guide/mailing_lists">贡献指引</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/zh-CN/community/submit_guide/document">代码提交</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/document">文档说明</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/submit_code">提交代码</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/zh-CN/community/submit_guide/code_style_and_quality_guide">代码风格和质量指南</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/documentation_style_guide">文档书写规范</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh-CN/community/release/how_to_release_version_2.1.x">版本发布</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_Ke0w"><div class="container padding-top--md padding-bottom--lg"><div class="row" style="flex-wrap:nowrap"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_FXM1" aria-label="页面路径"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/zh-CN/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_vXXl"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">代码提交</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">代码风格和质量指南</span><meta itemprop="position" content="2"></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>代码风格和质量指南</h1></header><h2 class="anchor anchorWithStickyNavbar_myWT" id="1-拉取请求与变更规则">1 拉取请求与变更规则<a href="#1-拉取请求与变更规则" class="hash-link" aria-label="1 拉取请求与变更规则的直接链接" title="1 拉取请求与变更规则的直接链接">​</a></h2>
+<ol>
+<li>
+<p><code>ISSUE</code>/<code>PR</code>(拉取请求) 的引导和命名</p>
+<ul>
+<li>确保 <code>PR</code> 与 <code>ISSUE</code> 相对应。</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：<code>Hotfix</code> 问题不需要遵循此规则，例如修复 <code>JavaDoc</code> 或 <code>document</code> 文件中的拼写错误。</p>
+</blockquote>
+<ul>
+<li>标题命名格式<br>
+<!-- -->当命名 <code>PR</code> 时，可以参考拉取请求的 <code>[ISSUE-XXXX][Feature/Improve/Refactor/Bug/Cleanup] Title</code>，
+其中 <code>ISSUE-XXXX</code> 应替换为实际的 <code>ISSUE</code> 编号。<!-- -->
+<ul>
+<li>第二部分描述了 <code>PR</code> 的类型，例如新功能、改进、重构等。</li>
+<li>如果所有对 <code>PR</code> 的更改都在某个模块或组件内，则可以在提交消息中指示。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>描述</p>
+<ul>
+<li>请填写 <code>PR</code> 模板以描述贡献。这样，审阅者可以从描述中，而不仅仅是从代码中，了解问题和解决方案。</li>
+<li>确保描述足以说明 <code>PR</code> 所解决的问题。</li>
+<li>小的更改不需要过多的描述。</li>
+<li>在理想情况下，问题描述在 <code>ISSUE</code> 中，大部分描述都是从那里复制的。</li>
+</ul>
+</li>
+<li>
+<p>尝试将更改分解为纯类型的更改</p>
+<ul>
+<li>建议 <code>PR</code> 应将诸如 <code>Cleanup</code>、<code>Refactor</code>、<code>Improve</code> 和 <code>Feature</code> 之类的更改排列到分隔的 <code>PRs</code>/<code>Commits</code> 中。</li>
+<li>这样，审阅者可以独立查看清理和重构，并确保这些更改不会更改行为  。</li>
+<li>然后，审阅者可以独立审查核心更改，并确保它们是干净和健壮的更改。</li>
+<li>在极端情况下，如果需要回滚提交，它可以为版本回滚选择提供最佳的粒度。</li>
+<li>此外，重大贡献应分解为一组可以独立审查的独立更改。</li>
+</ul>
+</li>
+<li>
+<p>提交消息<br>
+<!-- -->消息的提交应遵循与 <code>PR</code> 类似的模式：<code>[ISSUE-XXXX][Feature/Improve/Refactor/Cleanup] 拉取请求的标题</code>。</p>
+<ul>
+<li><code>[ISSUE-xxxx1][Improve(ment)] 改进 ...</code></li>
+<li><code>[ISSUE-xxxx2][Refactor] 重构 ...</code></li>
+<li><code>[ISSUE-xxxx3][Feature] 支持 ...</code></li>
+<li><code>[ISSUE-xxxx4][Bug] 修复  ...</code></li>
+<li><code>[ISSUE-xxxx5][Feature][subtask] 支持 ...</code></li>
+<li><code>[Hotfix][module_name] 修复 xxx 注释 ...</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>注意</strong>：尝试使用 git 历史记录而不是带注释的代码（不是强制的）</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="2-代码检查样式">2 代码检查样式<a href="#2-代码检查样式" class="hash-link" aria-label="2 代码检查样式的直接链接" title="2 代码检查样式的直接链接">​</a></h2>
+<ul>
+<li>
+<p>后端代码格式化 Maven 插件：<code>spotless</code>
+在安装插件后，只需在项目仓库根目录中运行 <code>mvn spotless:apply</code>。</p>
+</li>
+<li>
+<p>后端代码规范 Maven 插件：<code>checkstyle</code>
+在安装插件后，只需运行 <code>mvn checkstyle:checkstyle</code>。</p>
+</li>
+<li>
+<p>前端代码格式化插件 <code>eslint</code></p>
+<ul>
+<li>原始命令是 <code>npx eslint --cache --max-warnings 0 &quot;{src,mock}/**/*.{vue,ts,tsx}&quot; --fix</code></li>
+<li>封装为 <code>npm run lint:eslint</code></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="3-编程规范">3 编程规范<a href="#3-编程规范" class="hash-link" aria-label="3 编程规范的直接链接" title="3 编程 规范的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="31-命名风格">3.1 命名风格<a href="#31-命名风格" class="hash-link" aria-label="3.1 命名风格的直接链接" title="3.1 命名风格的直接链接">​</a></h3>
+<ol>
+<li>
+<p>优先为变量命名选择名词，这样更容易区分<code>变量</code>或<code>方法</code>。</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Cache&lt;String&gt; publicKeyCache;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>变量的拼音缩写是禁止的（排除地名等名词），例如chengdu。</p>
+</li>
+<li>
+<p>推荐的变量名以 <code>类型</code> 结尾。
+对于 <code>Collection/List</code> 类型的变量，取 <code>xxxx</code> （复数表示多个元素）或以 <code>xxxList</code> （特定类型）结束。
+对于 <code>map</code> 类型的变量，清晰地描述 <code>key</code> 和 <code>value</code>：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Map&lt;Long, User&gt; idUserMap;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Map&lt;Long, String&gt; userIdNameMap;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>通过其名称直观地知道变量的类型和含义。
+方法名称应首先以动词开始，如下所示：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  void computeVcores(Object parameter1);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<blockquote>
+<p>注意：在 <code>Builder</code> 工具类中不必严格遵循这项规则。</p>
+</blockquote>
+</li>
+<li>
+<p>数据库层（非服务层）的基本 <code>CRUD</code> 的方法名称应根据 <code>com.baomidou.mybatisplus.core.mapper.BaseMapper</code> 的名称统一标准化：</p>
+<ul>
+<li>
+<p>如果执行数据库查询操作，方法的名称应以 <code>select</code> 开头。</p>
+<p>当查询单条记录时可以使用<code>selectXxx</code>，例如<code>selectApp</code></p>
+<p>当查询多条记录时可以使用<code>selectXxxs</code>表示集合结果，例如<code>selectApps</code>，如果实体以<code>s</code>结尾，可以使用<code>List</code>如<code>selectStatusList</code>；</p>
+<p>如果是分页结果，则可以使用<code>selectPage</code>；如果是<code>Map</code>结果，建议参考<code>Map</code>命名规则如<code>selectIdUserMap</code></p>
+<p>当查询包含具体条件时可以使用<code>selectXxxByXxx</code>命名，例如<code>listById</code>、<code>selectAppsByProjectId</code></p>
+<blockquote>
+<p>如遇到太长的实体可以酌情缩写，原则是“见名知意”且做到不啰嗦，例如<code>selectApplications</code>缩写为<code>selectApps</code>，但如果没有合适的缩写，不建议缩写
+如果是<code>Mapper</code>查询<code>selectRecentK8sClusterIds</code>，则也可以采取<code>selectList</code>命名</p>
+</blockquote>
+</li>
+<li>
+<p>如果执行数据库的 <mark> 更新 </mark> 语句操作，方法的名称应以 <code>update</code> 开头。</p>
+</li>
+<li>
+<p>如果执行数据库的 <mark> 插入 </mark> 语句操作，方法的名称应以 <code>insert</code> 开头。</p>
+</li>
+<li>
+<p>如果执行数据库的 <mark> 删除 </mark> 语句操作，方法的名称应以 <code>delete</code> 开头。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>服务层的基本 <code>CRUD</code> 方法命名应参考 <code>com.baomidou.mybatisplus.extension.service.IService</code>：</p>
+<ul>
+<li>如果执行数据库的 <mark> 选择 </mark> 操作来查询多个记录，方法的  名称应以 <code>list</code> 开头，例如 <code>listByIds</code>、<code>listByXxx</code>。</li>
+<li>如果执行数据库的 <mark> 选择 </mark> 操作查询单个记录，方法的名称应以 <code>get</code> 开头，例如 <code>getByName</code> 和 <code>getOne</code>。</li>
+<li>如果执行数据库的 <mark> 更新 </mark> 操作，方法的名称应以 <code>update</code> 开头。</li>
+<li>如果执行数据库的 <mark> 插入 </mark> 操作，方法的名称应以 <code>save</code> 开头。</li>
+<li>如果执行数据库的 <mark> 删除 </mark> 操作，方法的名称应以 <code>remove</code> 开头。</li>
+</ul>
+</li>
+<li>
+<p>参数的命名</p>
+<ul>
+<li>最好保持同一接口中相同类型的参数的命名一致。</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="32-常量变量定义">3.2 常量变量定义<a href="#32-常量变量定义" class="hash-link" aria-label="3.2 常量变量定义的直接链接" title="3.2 常量变量定义的直接链接">​</a></h3>
+<ol>
+<li>
+<p>将所有类的 <code>serialVersionUID</code> 设置为 <code>1L</code>，遵循 <code>Flink</code> 的 <code>serialVersionUID</code>。</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  private static final long serialVersionUID = -8713837118340960775L;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> private static final long serialVersionUID = 1L;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>多余的字符串应提取为常量</p>
+<blockquote>
+<p>如果一个常量被硬编码两次或多次，请直接提取它为常量并更改相应的引用。
+通常，<code>log</code> 中的常量可以忽略提取。</p>
+</blockquote>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public static RestResponse success(Object data) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;status&quot;, &quot;success&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;code&quot;, ResponseCode.CODE_SUCCESS);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;data&quot;, data);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public static RestResponse error() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;status&quot;, &quot;error&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;code&quot;, ResponseCode.CODE_FAIL);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;data&quot;, null);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<blockquote>
+<p>字符串提取为常量引用。</p>
+</blockquote>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String STATUS = &quot;status&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String CODE = &quot;code&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String DATA = &quot;data&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static RestResponse success(Object data) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(STATUS, &quot;success&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(CODE, ResponseCode.CODE_SUCCESS);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(DATA, data);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static RestResponse error() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(STATUS, &quot;error&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(CODE, ResponseCode.CODE_FAIL);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(DATA, null);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>确保代码的可读性和直观性</p>
+</li>
+</ol>
+<ul>
+<li>
+<p><code>annotation</code> 符号中的字符串不需要提取为常量。</p>
+</li>
+<li>
+<p>被引用的 <code>package</code> 或 <code>resource</code> 名称不需要提取为常量。</p>
+</li>
+</ul>
+<ol start="4">
+<li>
+<p>未被重新分配的变量也必须声明为 <mark> final </mark> 类型。</p>
+</li>
+<li>
+<p>关于 <code>constant/variable</code> 行的排序顺序</p>
+<p>按以下顺序对类中的变量行进行排序：</p>
+<ol>
+<li><code>public static final V</code>, <code>static final V</code>,<code>protected static final V</code>, <code>private static final V</code></li>
+<li><code>public static v</code>, <code>static v</code>,<code>protected static v</code>, <code>private static v</code></li>
+<li><code>public v</code>, <code>v</code>, <code>protected v</code>, <code>private v</code></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="33-方法规则">3.3 方法规则<a href="#33-方法规则" class="hash-link" aria-label="3.3 方法规则的直接链接" title="3.3 方法规则的直接链接">​</a></h3>
+<ol>
+<li>
+<p>按照 <code>public</code>、<code>protected</code>、<code>private</code> 的顺序对类中的方法进行排序。</p>
+<p>类的静态方法可以放在非静态方法之后，并根据一致的方法可见性进行排序。</p>
+</li>
+<li>
+<p>当方法有限制时，方法的参数和返回值需要用 <code>@Nonnull</code> 或 <code>@Nullable</code> 注释和约束进行注释。</p>
+<p>例如，如果参数不能为 null，最好添加一个 <code>@Nonnull</code> 注释。如果返回值可以为 null，则应首先添加 <code>@Nullable</code> 注释。</p>
+<mark> 注意：包名为 <code>javax.validation.requirements </code> </mark>
+</li>
+<li>
+<p>如果方法中的代码行数太多，请尝试在适当的点上使用多个子方法来分段方法体。</p>
+<p>一般来说，需要坚持以下原则：</p>
+<ul>
+<li>便于测试</li>
+<li>有好的语义</li>
+<li>易于阅读</li>
+</ul>
+<p>此外，还需要考虑在组件、逻辑、抽象和场景等方面的切割是否合理。</p>
+<blockquote>
+<p>然而，目前还没有明确的演示定义。在演变过程中，我们将为开发者提供更多的示例，以便他们有更清晰的参考和理解。</p>
+</blockquote>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="34-集合规则">3.4 集合规则<a href="#34-集合规则" class="hash-link" aria-label="3.4 集合规则的直接链接" title="3.4 集合规则的直接 链接">​</a></h3>
+<ol>
+<li>
+<p>对于返回的 <code>collection</code> 值，除非有特殊的 <code>concurrent</code> (如线程安全)，总是返回 <code>interface</code>，例如：</p>
+<ul>
+<li>如果使用 <code>ArrayList</code>，则返回 <mark> List </mark></li>
+<li>如果使用 <code>HashMap</code>，则返回 <mark> Map </mark></li>
+<li>如果使用 <code>HashSet</code>，则返回 <mark> Set </mark></li>
+</ul>
+</li>
+<li>
+<p>如果存在多线程，可以使用以下声明或返回类型：</p>
+</li>
+</ol>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  private CurrentHashMap map;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public CurrentHashMap funName();</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="3">
+<li>
+<p>使用 <code>isEmpty()</code> 而不是 <code>length() == 0</code> 或者 <code>size() == 0</code></p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (pathPart.length() == 0) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (pathPart.isEmpty()) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="35-并发处理">3.5 并发处理<a href="#35-并发处理" class="hash-link" aria-label="3.5 并发处理的直接链接" title="3.5 并发处理的直接链接">​</a></h3>
+<ol>
+<li>
+<p>需要管理 <code>线程池</code>，使用统一的入口点获取 <code>线程池</code>。</p>
+<mark> 注意：在演变过程中，我们将为开发者提供更多的示例，以便他们有更清晰的参考和理解。 </mark>
+</li>
+<li>
+<p><code>线程池</code> 需要进行资源约束，以防止因处理不当导致的资源泄露。</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="36-控制条件语句">3.6 控制/条件语句<a href="#36-控制条件语句" class="hash-link" aria-label="3.6 控制/条件语句的直接链接" title="3.6 控制/条件语句的直接链接">​</a></h3>
+<ol>
+<li>
+<p>避免因不合理的 <code>条件/控制</code> 分支顺序导致：</p>
+<ul>
+<li>多个代码行的 <code>深度</code> 为 <code>n+1</code></li>
+<li>多余的行</li>
+</ul>
+</li>
+</ol>
+<p>一般来说，如果一个方法的代码行深度由于连续嵌套的 <code>if... else..</code> 超过了 <code>2+ Tabs</code>，那么应该考虑试图</p>
+<ul>
+<li><code>合并分支</code>，</li>
+<li><code>反转分支条件</code></li>
+<li><code>提取私有方法</code></li>
+</ul>
+<p>以减少代码行深度并提高可读性，例如：</p>
+<ul>
+<li>联合或将逻辑合并到下一级调用中<!-- -->
+<ul>
+<li>负面示例：<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (isInsert) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    save(platform);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  } else {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">     updateById(platform);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>正面示例：<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  saveOrUpdate(platform);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>合并 条件<!-- -->
+<ul>
+<li>负面示例：<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (expression1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    if(expression2) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">        ......</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+<div class="codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-text codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">- 正面示例：  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ```java</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (expression1 &amp;&amp; expression2) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">     ......</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>反转条件<!-- -->
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public void doSomething() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // 忽略更深的代码块行</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // .....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (condition1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   } else {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public void doSomething() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // 忽略更深的代码块行</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // .....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (!condition1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>使用单一变量或方法减少复杂的条件表达式<!-- -->
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (dbType.indexOf(&quot;sqlserver&quot;) &gt;= 0 || dbType.indexOf(&quot;sql server&quot;) &gt;= 0) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (containsSqlServer(dbType)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    ....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  //.....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  // containsSqlServer的定义</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在未来，使用 <code>sonarlint</code> 和 <code>better highlights</code> 检查代码深度看起来是个不错的选择。</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="37-代码注释规则">3.7 代码注释规则<a href="#37-代码注释规则" class="hash-link" aria-label="3.7 代码注释规则的直接链接" title="3.7 代码注释规则的直接链接">​</a></h3>
+<ol>
+<li>
+<p>方法缺少注释：</p>
+<ul>
+<li><code>When</code>：该方法何时可以被调用</li>
+<li><code>How</code>：如何使用此方法以及如何传递参数等</li>
+<li><code>What</code>：此方法实现了哪些功能</li>
+<li><code>Note</code>：在调用此方法时开发人员应注意什么</li>
+</ul>
+</li>
+<li>
+<p>缺少必要的类头部描  述注释。</p>
+<p>添加 <code>What</code>，<code>Note</code> 等，如上述 <code>1</code> 中提到的。</p>
+</li>
+<li>
+<p>在接口中的方法声明必须被注释。</p>
+<ul>
+<li>
+<p>如果实现的语义和接口声明的注释内容不一致，则具体的实现方法也需要用注释重写。</p>
+</li>
+<li>
+<p>如果方法实现的语义与接口声明的注释内容一致，则建议不写注释以避免重复的注释。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>在注释行中的第一个词需要大写，如 <code>param</code> 行，<code>return</code> 行。
+如果特殊引用作为主题不需要大写，需要注意特殊符号，例如引号。</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="38-java-lambda-表达式">3.8 Java Lambda 表达式<a href="#38-java-lambda-表达式" class="hash-link" aria-label="3.8 Java Lambda 表达式的直接链接" title="3.8 Java Lambda 表达式的直接链接">​</a></h3>
+<ol>
+<li>
+<p>更倾向于使用 <code>non-capturing</code> lambda（不包含对外部范围的引用的lambda）。
+Capturing lambda 在每次调用时都需要创建一个新的对象实例。<code>Non-capturing</code> lambda 可以为每次调用使用相同的实例。</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, x -&gt; key.toLowerCase())</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> map.computeIfAbsent(key, k -&gt; k.toLowerCase());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>考虑使用方法引用而不是内联lambda</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, k-&gt; Loader.load(k));</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, Loader::load);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="39-java-streams">3.9 Java Streams<a href="#39-java-streams" class="hash-link" aria-label="3.9 Java Streams的直接链接" title="3.9 Java Streams的直接链接">​</a></h3>
+<ul>
+<li>
+<p>在任何对性能敏感的代码中避免使用 Java Streams。</p>
+</li>
+<li>
+<p>使用 Java Streams 的主要动机是为了提高代码的可读性。因此，它们可以在代码的某些部分中很好地匹配，这些部分不是数据密集型的，而是处理协调。</p>
+</li>
+<li>
+<p>即使在后一种情况下，也试图限制范围到一个方法，或者一个内部类中的几个私  有方法。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="310-前置条件检查">3.10 前置条件检查<a href="#310-前置条件检查" class="hash-link" aria-label="3.10 前置条件检查的直接链接" title="3.10 前置条件检查的直接链接">​</a></h3>
+<ol>
+<li>使用统一的 <code>Utils.requireXXX</code> 来完成前提的验证，如果可能的话，用新的前置条件检查替换 <code>AlertXXException.throwIfXXX</code>。</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="311-stringutils">3.11 StringUtils<a href="#311-stringutils" class="hash-link" aria-label="3.11 StringUtils的直接链接" title="3.11 StringUtils的直接链接">​</a></h3>
+<ol>
+<li>
+<p>使用 <code>StringUtils.isBlank</code> 而不是 <code>StringUtils.isEmpty</code></p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isEmpty(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面 示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isBlank(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>使用 <code>StringUtils.isNotBlank</code> 而不是 <code>StringUtils.isNotEmpty</code></p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isNotEmpty(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="  复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isNotBlank(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>使用 <code>StringUtils.isAllBlank</code> 而不是 <code>StringUtils.isAllEmpty</code></p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isAllEmpty(name, age)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isAllBlank(name, age)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="312-enum-类">3.12 <code>Enum</code> 类<a href="#312-enum-类" class="hash-link" aria-label="312-enum-类的直接链接" title="312-enum-类的直接链接">​</a></h3>
+<ol>
+<li>
+<p>枚举值比较</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (status.equals(JobStatus.RUNNING)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (status == JobStatus.RUNNING) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>枚举类不需要实现 Serializable</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus implements Serializable {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>使用 <code>Enum.name()</code> 而不是 <code>Enum.toString()</code></p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">System.out.println(JobStatus.RUNNING.toString());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">System.out.println(JobStatus.RUNNING.name());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>枚举类名称统一使用 Enum 后缀</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatusEnum {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="313-deprecated-注解">3.13 <code>Deprecated</code> 注解<a href="#313-deprecated-注解" class="hash-link" aria-label="313-deprecated-注解的直接链接" title="313-deprecated-注解的直接链接">​</a></h3>
+<ul>
+<li>
+<p>负面示例:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">@deprecated</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public void process(String input) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">@Deprecated</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public void process(String input) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="4-异常处理">4 异常处理<a href="#4-异常处理" class="hash-link" aria-label="4 异常处理的直接链接" title="4 异常处理的直接链接">​</a></h2>
+<p><code>streampark-console-service</code> 模块是处理用户请求的核心模块。
+我们努力提供最好的用户体验是非常必要的。<br>
+<!-- -->因此，我们引入了 <a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java" target="_blank" rel="noopener noreferrer">AbstractApiException</a>
+及其子类以获得更友好的交互效果。非 <code>AbstractApiException</code> 被视为内部服务器错误，不需要通知用户交互细节。<br>
+<!-- -->基于上述前提，我们需要注意处理 <code>AbstractApiException</code>。<br>
+<!-- -->例如，在处理与用户操作错误或缺少数据错误的逻辑时，我们应该通过以下 <code>AbstractApiException</code> 的子类之一抛出异常：</p>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiDetailException.java" target="_blank" rel="noopener noreferrer">ApiDetailException</a></li>
+</ul>
+<blockquote>
+<p>需要通知前端的异常消息，是一个详细的异常消息，例如 stackTrace 信息，通常伴随着大量的异常日志，
+例如：<code>Failed to start job</code>，需要在前端显示异常(stackTrace 信息)。</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiAlertException.java" target="_blank" rel="noopener noreferrer">ApiAlertException</a></li>
+</ul>
+<blockquote>
+<p>需要通知前端的异常消息，通常是一个简单、清晰的消息，例如：</p>
+<ol>
+<li>用户名已存在</li>
+<li>没有权限，请联系管理员</li>
+<li>...</li>
+</ol>
+</blockquote>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AlertException.java" target="_blank" rel="noopener noreferrer">AlertException</a></li>
+</ul>
+<blockquote>
+<p>在处理警报逻辑时需要通知前端的异常消息。</p>
+</blockquote>
+<ul>
+<li>或者其他用于获得良好用户交互的异常。</li>
+</ul>
+<p>除了处理异常的分类，我们最好使异常消息准确而简洁，并试图确保异常中遵循以下几点：</p>
+<ul>
+<li>显示异常情况的当前状态。</li>
+<li>显示异常情况的解决方案。</li>
+<li>或其他适合的交互信息。</li>
+</ul>
+<p>如果需要，请点击 <a href="https://github.com/apache/incubator-streampark/issues/2325" target="_blank" rel="noopener noreferrer">Issue-2325</a> 以获取更多关于该项的详细信息。</p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="5-日志">5 日志<a href="#5-日志" class="hash-link" aria-label="5 日志的直接链接" title="5 日志的直接链接">​</a></h2>
+<ol>
+<li>
+<p>使用 <code>占位符</code> 进行日志输出：</p>
+<ul>
+<li>负面示例<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  log.info(&quot;Deploy cluster request &quot; + deployRequest);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>正面示例<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  log.info(&quot;load plugin:{} to {}&quot;, file.getName(), appPlugins);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>打印日志时，注意选择 <code>日志级别</code></p>
+<p>当打印日志内容时，如果传递了日志占位符的实际参数，必须避免过早评估，以避免由日志级别导致的不必要评估。</p>
+<ul>
+<li>
+<p>负面示例：</p>
+<p>假设当前日志级别为 <code>INFO</code>：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> // 忽略声明行。</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> List&lt;User&gt; userList = getUsersByBatch(1000);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> LOG.debug(&quot;All users: {}&quot;, getAllUserIds(userList));</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>正面示例：</p>
+<p>在这种情况下，我们应该在进行实际的日志调用之前提前确定日志级别，如下所示：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> // 忽略声明行。</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> List&lt;User&gt; userList = getUsersByBatch(1000);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> if (LOG.isDebugEnabled()) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   LOG.debug(&quot;All ids of users: {}&quot;, getAllIDsOfUsers(userList));	</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="6-测试">6 测试<a href="#6-测试" class="hash-link" aria-label="6 测试的直接链接" title="6 测试的直接链接">​</a></h2>
+<ol>
+<li>
+<p>对于用于 <code>测试</code> 的一些 <code>代码/变量</code>，您可以使用 <code>@VisableForTesting</code> 注解来指示。</p>
+</li>
+<li>
+<p>建议使用 <code>JUnit5</code> 进行测试用例的准备。</p>
+</li>
+<li>
+<p>使用 <code>AssertJ</code> 进行断言语句的开发。</p>
+</li>
+<li>
+<p>关于测试的实现。</p>
+<ul>
+<li>
+<p>如果测试用例只测试一个不需要如 hadoop、远程 flink 会话集群等外部组件的 <code>独立</code> 类或方法，可以直接使用 <code>JUnit5</code> 和 <code>Mockito</code> 进行编写。</p>
+</li>
+<li>
+<p>如果测试用例需要一个 <code>真实的数据库</code>、环境或后端环境，
+但不需要与外部组件进行交互，建议直接继承 <code>SpringUnitTestBase</code>。</p>
+</li>
+<li>
+<p>如果测试用例需要 <code>真实的数据库、环境</code> 或 <code>后端环境</code>，
+但需要与外部组件 (<code>远程 Flink 会话集群</code>、<code>Hadoop 集群</code>) 进行交互，建议通过直接继承 <code>SpringIntegrationTestBase</code> 来编写测试用例。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>只建议在关键测试环节上使用集成测试，以避免使 <code>CI</code> 的开销时间过长和资源负荷过重。</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="参考资料">参考资料<a href="#参考资料" class="hash-link" aria-label="参考资料的直接链接" title="参考资料的直接链接">​</a></h2>
+<ul>
+<li><a href="https://site.mockito.org/" target="_blank" rel="noopener noreferrer">https://site.mockito.org/</a></li>
+<li><a href="https://flink.apache.org/zh/how-to-contribute/code-style-and-quality-preamble/" target="_blank" rel="noopener noreferrer">https://flink.apache.org/zh/how-to-contribute/code-style-and-quality-preamble/</a></li>
+<li><a href="https://alibaba.github.io/p3c/" target="_blank" rel="noopener noreferrer">https://alibaba.github.io/p3c/</a></li>
+<li><a href="https://rules.sonarsource.com/java/" target="_blank" rel="noopener noreferrer">https://rules.sonarsource.com/java/</a></li>
+<li><a href="https://joel-costigliola.github.io/assertj/index.html" target="_blank" rel="noopener noreferrer">https://joel-costigliola.github.io/assertj/index.html</a></li>
+<li><a href="https://junit.org/junit5/" target="_blank" rel="noopener noreferrer">https://junit.org/junit5/</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev paginationNavLink_UdUv" href="/zh-CN/community/submit_guide/submit_code"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.2751 19.175L10.3251 18.125L5.4501 13.25H21.6001V11.75H5.4501L10.3251 6.87501L9.2751 5.82501L2.5751 12.5L9.2751 19.175Z" fill="currentColor"></path></svg><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">上一页</div><div class="paginationNavLabel_YPzM pagination-nav__label">提交代码</div></div></a><a class="pagination-nav__link pagination-nav__link--next paginationNavLink_UdUv" href="/zh-CN/community/submit_guide/documentation_style_guide"><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">下一页</div><div class="paginationNavLabel_YPzM pagination-nav__label">文档书写规范</div></div><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7249 19.175L13.6749 18.125L18.5499 13.25H2.3999V11.75H18.5499L13.6749 6.87501L14.7249 5.82501L21.4249 12.5L14.7249 19.175Z" fill="currentColor"></path></svg></a></nav></div></div><div class="col col--3"><div class="docTOCContainer_nkwD theme-doc-toc-desktop-container"><div class="tableOfContents_jeP5 thin-scrollbar docTOC_GnpH theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-拉取请求与变更规则" class="table-of-contents__link toc-highlight">1 拉取请求与变更规则</a></li><li><a href="#2-代码检查样式" class="table-of-contents__link toc-highlight">2 代码检查样式</a></li><li><a href="#3-编程规范" class="table-of-contents__link toc-highlight">3 编程规范</a><ul><li><a href="#31-命名风格" class="table-of-contents__link toc-highlight">3.1 命名风格</a></li><li><a href="#32-常量变量定义" class="table-of-contents__link toc-highlight">3.2 常量变量定义</a></li><li><a href="#33-方法规则" class="table-of-contents__link toc-highlight">3.3 方法规则</a></li><li><a href="#34-集合规则" class="table-of-contents__link toc-highlight">3.4 集合规则</a></li><li><a href="#35-并发处理" class="table-of-contents__link toc-highlight">3.5 并发处理</a></li><li><a href="#36-控制条件语句" class="table-of-contents__link toc-highlight">3.6 控制/条件语句</a></li><li><a href="#37-代码注释规则" class="table-of-contents__link toc-highlight">3.7 代码注释规则</a></li><li><a href="#38-java-lambda-表达式" class="table-of-contents__link toc-highlight">3.8 Java Lambda 表达式</a></li><li><a href="#39-java-streams" class="table-of-contents__link toc-highlight">3.9 Java Streams</a></li><li><a href="#310-前置条件检查" class="table-of-contents__link toc-highlight">3.10 前置条件检查</a></li><li><a href="#311-stringutils" class="table-of-contents__link toc-highlight">3.11 StringUtils</a></li><li><a href="#312-enum-类" class="table-of-contents__link toc-highlight">3.12 <code>Enum</code> 类</a></li><li><a href="#313-deprecated-注解" class="table-of-contents__link toc-highlight">3.13 <code>Deprecated</code> 注解</a></li></ul></li><li><a href="#4-异常处理" class="table-of-contents__link toc-highlight">4 异常处理</a></li><li><a href="#5-日志" class="table-of-contents__link toc-highlight">5 日志</a></li><li><a href="#6-测试" class="table-of-contents__link toc-highlight">6 测试</a></li><li><a href="#参考资料" class="table-of-contents__link toc-highlight">参考资料</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">加入社区</div><ul class="footer__items clean-list"><li class="footer__item">
+                <div class="subscribe-box btns">
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark"><i class="fa fa-github"></i><span>Github</span></a>
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark/issues"><i class="fa fa-slack"></i><span>Issue Tracking</span></a>
+                  <a class="btn btn-primary" href="javascript:void(0)">
+                    <i class="fa fa-wechat"></i>
+                    <span>Wechat</span>
+                    <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                  </a>
+                </div>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><div>
+        <div>
+          <div style="margin-bottom: 30px;">
+            <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+              <img alt="Apache Incubator logo" class="footer__logo" width="200">
+            </a>
+          </div>
+          <div>
+            <p>
+            Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span>
+            Copyright © 2022-2024 The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+          </span>
+        </div>
+      </div></div></div></div></footer></div>
+</body>
+</html>

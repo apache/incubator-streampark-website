@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="mdx-wrapper mdx-page plugin-pages plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">Apache StreamPark (incubating)</title><meta data-rh="true" property="og:title" content="Apache StreamPark (incubating)"><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://streampark.apache.org/download/release-note/2.0.0"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="description" content="Release Notes 2.0.0"><meta data-rh="true" property="og:description" content="Release Notes 2.0.0"><link data-rh="true" rel="icon" href="/image/favicon.ico"><link data-rh="true" rel="canonical" href="https://streampark.apache.org/download/release-note/2.0.0"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/download/release-note/2.0.0" hreflang="en"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/zh-CN/download/release-note/2.0.0" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/download/release-note/2.0.0" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Apache StreamPark (incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Apache StreamPark (incubating) Atom Feed"><link rel="stylesheet" href="/assets/css/styles.2815dd1e.css">
+<script src="/assets/js/runtime~main.788200c2.js" defer="defer"></script>
+<script src="/assets/js/main.237a4499.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_BCtO" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--light_uT2j"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--dark_ENih"></div><b class="navbar__title text--truncate">StreamPark</b></a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/docs/get-started/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/download">Download</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Community</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank" rel="noopener noreferrer" class="dropdown__link">Code of conduct</a></li><li><a class="dropdown__link" href="/community/contribution_guide/mailing_lists">Join the mailing lists</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_committer">Become A Committer</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_pmc_member">Become A PMC member</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_committer_process">New Committer Process</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_pmc_ember_process">New PMC Member Process</a></li><li><a class="dropdown__link" href="/community/submit_guide/document">Documentation Notice</a></li><li><a class="dropdown__link" href="/community/submit_guide/submit_code">Submit Code</a></li><li><a class="dropdown__link" href="/community/submit_guide/code_style_and_quality_guide">Code style and quality guide</a></li><li><a class="dropdown__link" href="/community/submit_guide/documentation_style_guide">Documentation style guide</a></li><li><a class="dropdown__link" href="/community/release/how_to_release_version_2.1.x">How to release version 2.1.x</a></li><li><a class="dropdown__link" href="/community/release/how_to_verify_release">How to Verify Release</a></li></ul></div><a class="navbar__item navbar__link" href="/team">Team</a><a class="navbar__item navbar__link" href="/user">Users</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ASF</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Foundation</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">License</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank" rel="noopener noreferrer" class="dropdown__link">Events</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Security</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Sponsorship</a></li><li><a href="https://www.apache.org/foundation/policies/privacy.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Thanks</a></li></ul></div><a class="navbar__item navbar__link" href="/blog">Blog</a><a href="https://github.com/apache/incubator-streampark/issues/507" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">FAQ</a><a href="https://github.com/apache/incubator-streampark" target="_blank" class="githubStars_qnS9"><div class="githubStarsContainer_O7dk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.75C4.27062 1.75 1.25 4.77062 1.25 8.5C1.25 11.4869 3.18219 14.0097 5.86531 14.9041C6.20281 14.9631 6.32937 14.7606 6.32937 14.5834C6.32937 14.4231 6.32094 13.8916 6.32094 13.3263C4.625 13.6384 4.18625 12.9128 4.05125 12.5331C3.97531 12.3391 3.64625 11.74 3.35938 11.5797C3.12312 11.4531 2.78562 11.1409 3.35094 11.1325C3.8825 11.1241 4.26219 11.6219 4.38875 11.8244C4.99625 12.8453 5.96656 12.5584 6.35469 12.3813C6.41375 11.9425 6.59094 11.6472 6.785 11.4784C5.28312 11.3097 3.71375 10.7275 3.71375 8.14563C3.71375 7.41156 3.97531 6.80406 4.40563 6.33156C4.33812 6.16281 4.10187 5.47094 4.47312 4.54281C4.47312 4.54281 5.03844 4.36563 6.32937 5.23469C6.86937 5.08281 7.44313 5.00687 8.01688 5.00687C8.59063 5.00687 9.16438 5.08281 9.70438 5.23469C10.9953 4.35719 11.5606 4.54281 11.5606 4.54281C11.9319 5.47094 11.6956 6.16281 11.6281 6.33156C12.0584 6.80406 12.32 7.40312 12.32 8.14563C12.32 10.7359 10.7422 11.3097 9.24031 11.4784C9.485 11.6894 9.69594 12.0944 9.69594 12.7272C9.69594 13.63 9.6875 14.3556 9.6875 14.5834C9.6875 14.7606 9.81406 14.9716 10.1516 14.9041C12.8178 14.0097 14.75 11.4784 14.75 8.5C14.75 4.77062 11.7294 1.75 8 1.75Z" fill="currentColor"></path></svg><span class="githubText_YlX6">3.9k</span></div></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_DSK9"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></a><ul class="dropdown__menu"><li><a href="/download/release-note/2.0.0" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/zh-CN/download/release-note/2.0.0" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-CN">简体中文</a></li></ul></div><a class="colorModeButton_yITp undefined"><svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></a><div class="navbarSearchContainer_dCNk"><div class="navbar__search searchBarContainer_SuYZ"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_HgBb searchBarLoadingRing_om0w"><div></div><div></div><div></div><div></div></div></div></div><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_pmYA"><main class="container container--fluid margin-vert--lg"><div class="row mdxPageWrapper_BrYh"><div class="col col--8"><article><h2 class="anchor anchorWithStickyNavbar_myWT" id="release-notes-200">Release Notes 2.0.0<a href="#release-notes-200" class="hash-link" aria-label="Direct link to Release Notes 2.0.0" title="Direct link to Release Notes 2.0.0">​</a></h2>
+<div style="height:30px"></div>
+<p>Apache StreamPark (incubating) 2.0.0 is the first Apache version since StreamPark joined the ASF incubator. In this version, many new features have been added, and many bugs have been fixed. It is important for the stability and functionality of the entire product this
+A very big improvement, as follows:</p>
+<div style="height:30px"></div>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="features">Features<a href="#features" class="hash-link" aria-label="Direct link to Features" title="Direct link to Features">​</a></h3>
+<hr>
+<ul>
+<li>Ldap login support (#1181)</li>
+<li>Add team management (#1265)</li>
+<li>The front-end handles the exception display uniformly (#1281)</li>
+<li>Build script support. (#1021)</li>
+<li>Spark support. (#1338)</li>
+<li>Support Flink 1.16 submit (#1938)</li>
+<li>Support the team management (#1733)</li>
+<li>Added variable management (#1850)</li>
+<li>New WebUI ready based on vue3 (#2003)</li>
+<li>i18n Support (#2088)</li>
+<li>HOCON conf file support (#1968)</li>
+<li>Unify flink configuration (#1858)</li>
+<li>knox proxy cluster #1044 (#1052)</li>
+<li>Verify flinksql support hive Dialect (#1170)</li>
+<li>Remove unnecessary findUserRole (#1883)</li>
+<li>Show the project build log in Web UI (#1673)</li>
+<li>Execution run-mode support streaming and batch (#1670)</li>
+<li>feishu, dingtalk, wecom alert support. (#1138)</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="improvements">Improvements<a href="#improvements" class="hash-link" aria-label="Direct link to Improvements" title="Direct link to Improvements">​</a></h3>
+<hr>
+<ul>
+<li>Kerberos httpclient support (#1090)</li>
+<li>Database postgres support (#1457)</li>
+<li>Simplify checkpoint/state related configuration (#1755)</li>
+<li>Simplify restartStrategy related configuration (#1749)</li>
+<li>Simplify the configuration of runtime-mode and parallelism-default (#1764)</li>
+<li>Simplify the configuration of watermark interval (#1745)</li>
+<li>Split each version of sql-upgrade.sql into a different directory (#1696)</li>
+<li>Sender Email takes effect immediately when the configuration is modified (#1586)</li>
+<li>The common module avoids using Flink api (#1763)</li>
+<li>Unified swagger api docs description (#2096)</li>
+<li>Update mysql upgrade sql (#1651)</li>
+<li>after change team the routers need to be regenerated (#1868)</li>
+<li>applist search-box improvement (#1271)</li>
+<li>change app name synchronously when changing k8s-clusterId (#1221)</li>
+<li>check savepoint path improvement.</li>
+<li>deploy flink on k8s job-state improvement</li>
+<li>flink on k8s metric-watcher improvement (#1292)</li>
+<li>flinksql syntax improvement and testcase added (#1237)</li>
+<li>maven dependency optimization (#1014)</li>
+<li>workspace class Improvement (#1928)</li>
+<li>front-end api-exception improvement (#2031)</li>
+<li>get appname improvement (#2075)</li>
+<li>history upload-jars improvement (#2114)</li>
+<li>on k8s mode kubernetes.container.image.pull-policy improvement (#2057)</li>
+<li>support paging in other database (#1475)</li>
+<li>Precision state judgment based on archive logs (#1910)</li>
+<li></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="bugfix">Bugfix<a href="#bugfix" class="hash-link" aria-label="Direct link to Bugfix" title="Direct link to Bugfix">​</a></h3>
+<hr>
+<ul>
+<li>fix same name udf updated, it can&#x27;t work(#1204) (#1273)</li>
+<li>parse create function syntax bug fixed. (#1216)</li>
+<li>kerberos getLoginUser bug fixed .#1030 (#1055)</li>
+<li>Added SUSPENDED button and removed FINISHED redundant configuration(#1176) (#1940)</li>
+<li>After building the project, the build time is not updated (#2058)</li>
+<li>An error is reported when the mysql upgrade sql statement is executed #2048 (#2050)</li>
+<li>Depend Apps button permission control failed (#1971)</li>
+<li>Failed to mark the latest savepoint and checkpoint #1989 (#1991)</li>
+<li>Fix Copy is missing projectid and moudle bug fixed (#1498)</li>
+<li>Fix pop-up window shows flink-conf.yaml bug #1420 (#1421)</li>
+<li>Fix streampark login failure when switching postgres data sources (#1461)</li>
+<li>Fix the  SavePointMapper obsolete @update latest type bug (#1540)</li>
+<li>Fix the Latest checkpoint not updated when job restart in K8S mode bug (#1476)</li>
+<li>Fix the NPE bug and refactor some code (#1656)</li>
+<li>Fix the help when user/role name already exists (#1635)</li>
+<li>Fix the job cannot be start due to wrong type (#1825)</li>
+<li>Fix the mapping between alarmType and implement class(#2046)</li>
+<li>Fix the mysql field name bug (#1483)</li>
+<li>Fix the tail buffer memory leak (#1664)</li>
+<li>Fix the wrong duration (#1585)</li>
+<li>Flink auto recover taskmanager failed #1175 (#1178)</li>
+<li>Flink cluster cannot modify the flink version #1992 (#1993)</li>
+<li>StreamPark cannot search for failed status tasks (#1917)</li>
+<li>Taskmanager memory usage statistics calculation error on yarn mode #1061 (#1065)</li>
+<li>The configured value cannot be cleared in the System Setting module #2084 (#2085)</li>
+<li>The copy function of the application does not copy the args information (#2083)</li>
+<li>The yarn-queue parameter is specified but does not take effect (#1330)</li>
+<li>dynamicProperties env.java.opts not support bug fixed (#2019)</li>
+<li>extractProgramArgs parsing args parameter error (#1652)</li>
+<li>find jar in error path #1060 (#1064)</li>
+<li>fix delete job bug fixed (#1391)</li>
+<li>fix spark build error caused by scala 2.11 (#1331)</li>
+<li>fix yarn session address config loss (#1312)</li>
+<li>fixed &#x27;Kube Conf File&#x27; param can not displayed at Flink Cluster Edit Page (#1879)</li>
+<li>fixed the ignore restored option bug (#1839)</li>
+<li>flink cluster management bug fixed (#2100)</li>
+<li>flink-job archivefile parse bug fixed (#2094)</li>
+<li>front-end enum bug fixed (#2023)</li>
+<li>generate pom with correctly parsed version (#2151)</li>
+<li>get param from application config bug fixed. (#2165)</li>
+<li>http client default auth #1075 (#1078)</li>
+<li>init config filter null value (#1963)</li>
+<li>project list modules bug fixed (#2026)</li>
+<li>should use fromYamlFile function to read conf file in flink 1.15 shims (#1410)</li>
+<li>submit flink job argument type mismath #1165 (#1182)</li>
+<li>support flinksql set syntax (#1926)</li>
+<li>update mysql.version from &#x27;8.0.16&#x27; to &#x27;8.0.27&#x27; as CVE-2021-2471. (#2141)</li>
+<li>yarn kerberos acl #1046 (#1053)</li>
+<li>yarn-queue don&#x27;t work fixed (#1332)</li>
+<li>Fixed some job properties are not replicated bug When copy a job (#1559)</li>
+<li>Non-admin user can&#x27;t login problem fixed (#1346)</li>
+<li>fix custom savepoint address reading failed on canceling job bug (#1433)</li>
+<li>fixed the build.sh bug (#1916)</li>
+<li>application conf bug (#2035)</li>
+<li>cluster edit bug ,header show lock (#2098)</li>
+<li>copy api bug fix (#2125)</li>
+<li>fix application create bug and add variable preview (#1927)</li>
+<li>fix variable drawer bug,fix dark theme style bug (#2016)</li>
+<li>handle history version error,improve login footer style (#1957)</li>
+<li>history version compare bug,Fix option logs link jumping problem (#1995)</li>
+<li>page style and application bug (#1903)</li>
+<li>project list pagination error (#2155)</li>
+<li>swagger interface call back-end interface can not get parameter values (#1601)</li>
+<li>user modal gender bug, flinksql editor fullscreen (#2000)</li>
+<li>username len and fix role error (#2005)</li>
+<li>copy application miss param bug fix (#1503)</li>
+<li>init ddl schema bug fixed. (#1472)</li>
+<li>job build state bug fixed. (#1530)</li>
+<li>kerberos tgtRefreshTime bug fixed. (#1542)</li>
+<li>ldap login bug fixed. (#1507)</li>
+<li>log4j conflict fixed. (#1478)</li>
+<li>on k8s get metrics bug fixed (#1999）</li>
+<li>postgresql schema ddl and init data bug fixed. (#1509)</li>
+<li>primary key auto_increment bug fixed (#1469)</li>
+<li>project query failure bug fixed</li>
+<li>send alert job&#x27; monitor-url bug fixed.</li>
+<li>yarn knox proxy unnecessary kerberos auth, just for page redirect (#1154)</li>
+<li>yarn-session cluster in remote mode can&#x27;t edit bug fixed (#1315)</li>
+</ul></article></div><div class="col col--2"><div class="tableOfContents_jeP5 thin-scrollbar" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#release-notes-200" class="table-of-contents__link toc-highlight">Release Notes 2.0.0</a><ul><li><a href="#features" class="table-of-contents__link toc-highlight">Features</a></li><li><a href="#improvements" class="table-of-contents__link toc-highlight">Improvements</a></li><li><a href="#bugfix" class="table-of-contents__link toc-highlight">Bugfix</a></li></ul></li></ul></div></div></div></main></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Join Community</div><ul class="footer__items clean-list"><li class="footer__item">
+                <div class="subscribe-box btns">
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark"><i class="fa fa-github"></i><span>Github</span></a>
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark/issues"><i class="fa fa-slack"></i><span>Issue Tracking</span></a>
+                  <a class="btn btn-primary" href="javascript:void(0)">
+                    <i class="fa fa-wechat"></i>
+                    <span>Wechat</span>
+                    <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                  </a>
+                </div>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><div>
+        <div>
+          <div style="margin-bottom: 30px;">
+            <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+              <img alt="Apache Incubator logo" class="footer__logo" width="200">
+            </a>
+          </div>
+          <div>
+            <p>
+            Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span>
+            Copyright © 2022-2024 The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+          </span>
+        </div>
+      </div></div></div></div></footer></div>
+</body>
+</html>

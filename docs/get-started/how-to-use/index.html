@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-get-started/how-to-use" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">How to Use Platform | Apache StreamPark (incubating)</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://streampark.apache.org/docs/get-started/how-to-use"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="How to Use Platform | Apache StreamPark (incubating)"><meta data-rh="true" name="description" content="Note: This section is designed to provide a convenient process for submitting Flink jobs using the StreamPark platform through simple operational steps."><meta data-rh="true" property="og:description" content="Note: This section is designed to provide a convenient process for submitting Flink jobs using the StreamPark platform through simple operational steps."><link data-rh="true" rel="icon" href="/image/favicon.ico"><link data-rh="true" rel="canonical" href="https://streampark.apache.org/docs/get-started/how-to-use"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/docs/get-started/how-to-use" hreflang="en"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/zh-CN/docs/get-started/how-to-use" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/docs/get-started/how-to-use" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Apache StreamPark (incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Apache StreamPark (incubating) Atom Feed"><link rel="stylesheet" href="/assets/css/styles.2815dd1e.css">
+<script src="/assets/js/runtime~main.788200c2.js" defer="defer"></script>
+<script src="/assets/js/main.237a4499.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_BCtO" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--light_uT2j"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--dark_ENih"></div><b class="navbar__title text--truncate">StreamPark</b></a></div><div class="navbar__items navbar__items--right"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/get-started/intro">Docs</a><a class="navbar__item navbar__link" href="/download">Download</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Community</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank" rel="noopener noreferrer" class="dropdown__link">Code of conduct</a></li><li><a class="dropdown__link" href="/community/contribution_guide/mailing_lists">Join the mailing lists</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_committer">Become A Committer</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_pmc_member">Become A PMC member</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_committer_process">New Committer Process</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_pmc_ember_process">New PMC Member Process</a></li><li><a class="dropdown__link" href="/community/submit_guide/document">Documentation Notice</a></li><li><a class="dropdown__link" href="/community/submit_guide/submit_code">Submit Code</a></li><li><a class="dropdown__link" href="/community/submit_guide/code_style_and_quality_guide">Code style and quality guide</a></li><li><a class="dropdown__link" href="/community/submit_guide/documentation_style_guide">Documentation style guide</a></li><li><a class="dropdown__link" href="/community/release/how_to_release_version_2.1.x">How to release version 2.1.x</a></li><li><a class="dropdown__link" href="/community/release/how_to_verify_release">How to Verify Release</a></li></ul></div><a class="navbar__item navbar__link" href="/team">Team</a><a class="navbar__item navbar__link" href="/user">Users</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ASF</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Foundation</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">License</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank" rel="noopener noreferrer" class="dropdown__link">Events</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Security</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Sponsorship</a></li><li><a href="https://www.apache.org/foundation/policies/privacy.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Thanks</a></li></ul></div><a class="navbar__item navbar__link" href="/blog">Blog</a><a href="https://github.com/apache/incubator-streampark/issues/507" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">FAQ</a><a href="https://github.com/apache/incubator-streampark" target="_blank" class="githubStars_qnS9"><div class="githubStarsContainer_O7dk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.75C4.27062 1.75 1.25 4.77062 1.25 8.5C1.25 11.4869 3.18219 14.0097 5.86531 14.9041C6.20281 14.9631 6.32937 14.7606 6.32937 14.5834C6.32937 14.4231 6.32094 13.8916 6.32094 13.3263C4.625 13.6384 4.18625 12.9128 4.05125 12.5331C3.97531 12.3391 3.64625 11.74 3.35938 11.5797C3.12312 11.4531 2.78562 11.1409 3.35094 11.1325C3.8825 11.1241 4.26219 11.6219 4.38875 11.8244C4.99625 12.8453 5.96656 12.5584 6.35469 12.3813C6.41375 11.9425 6.59094 11.6472 6.785 11.4784C5.28312 11.3097 3.71375 10.7275 3.71375 8.14563C3.71375 7.41156 3.97531 6.80406 4.40563 6.33156C4.33812 6.16281 4.10187 5.47094 4.47312 4.54281C4.47312 4.54281 5.03844 4.36563 6.32937 5.23469C6.86937 5.08281 7.44313 5.00687 8.01688 5.00687C8.59063 5.00687 9.16438 5.08281 9.70438 5.23469C10.9953 4.35719 11.5606 4.54281 11.5606 4.54281C11.9319 5.47094 11.6956 6.16281 11.6281 6.33156C12.0584 6.80406 12.32 7.40312 12.32 8.14563C12.32 10.7359 10.7422 11.3097 9.24031 11.4784C9.485 11.6894 9.69594 12.0944 9.69594 12.7272C9.69594 13.63 9.6875 14.3556 9.6875 14.5834C9.6875 14.7606 9.81406 14.9716 10.1516 14.9041C12.8178 14.0097 14.75 11.4784 14.75 8.5C14.75 4.77062 11.7294 1.75 8 1.75Z" fill="currentColor"></path></svg><span class="githubText_YlX6">3.9k</span></div></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_DSK9"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></a><ul class="dropdown__menu"><li><a href="/docs/get-started/how-to-use" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/zh-CN/docs/get-started/how-to-use" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-CN">简体中文</a></li></ul></div><a class="colorModeButton_yITp undefined"><svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></a><div class="navbarSearchContainer_dCNk"><div class="navbar__search searchBarContainer_SuYZ"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_HgBb searchBarLoadingRing_om0w"><div></div><div></div><div></div><div></div></div></div></div><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_pmYA"><div class="docsWrapper_xNxE"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_yIRJ" type="button"></button><div class="docRoot_vmqG"><aside class="theme-doc-sidebar-container docSidebarContainer_hlm_"><div class="sidebarViewport_c8HV"><div class="sidebar_mhZE"><div class="sidebarSearchContainer_Lwc8"></div><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_Y1UP" style="padding-top:1.75rem;padding-bottom:250px;overflow-y:auto"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/docs/get-started/intro">Get Started</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/get-started/intro">What is Apache StreamPark™</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/get-started/deployment">Platform Deployment</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/get-started/docker-deployment">Platform Deployment using Docker</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/get-started/how-to-use">How to Use Platform</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/docs/platform/alert">Platform User Guide</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/docs/framework/dev-model">Development Framework</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/docs/development/development">Development Guide</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_Ke0w"><div class="container padding-top--md padding-bottom--lg"><div class="row" style="flex-wrap:nowrap"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_FXM1" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_vXXl"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Get Started</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">How to Use Platform</span><meta itemprop="position" content="2"></li></ul></nav><div class="theme-doc-markdown markdown"><h1>Quick Start</h1>
+<blockquote>
+<p>Note: This section is designed to provide a convenient process for submitting Flink jobs using the StreamPark platform through simple operational steps.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="configure-flink_home">Configure FLINK_HOME<a href="#configure-flink_home" class="hash-link" aria-label="Direct link to Configure FLINK_HOME" title="Direct link to Configure FLINK_HOME">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="1_config_flink_home" src="/assets/images/1_config_flink_home-246fb02bb92fe8d5109d2eb3da01dea5.png" width="1917" height="1954" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="2_add_flink_home_info" src="/assets/images/2_add_flink_home_info-64de4968630bd8b307d36a620b9cec9c.png" width="3838" height="1959" class="img__KcZ"></p>
+<blockquote>
+<p>Click &quot;OK&quot; to save</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="3_display_flink_home_config" src="/assets/images/3_display_flink_home_config-4ab8b2b0418e178cc6f0b444828f1341.png" width="1917" height="1954" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="configure-flink-cluster">Configure Flink Cluster<a href="#configure-flink-cluster" class="hash-link" aria-label="Direct link to Configure Flink Cluster" title="Direct link to Configure Flink Cluster">​</a></h2>
+<blockquote>
+<p>Depending on the Flink deployment mode and resource management method, StreamPark supports the following six job modes:</p>
+<ul>
+<li><strong>Standalone Session</strong></li>
+<li><strong>Yarn Session</strong></li>
+<li><strong>Yarn Per-job</strong></li>
+<li><strong>Yarn Application</strong></li>
+<li><strong>K8s Session</strong></li>
+<li><strong>K8s Application</strong></li>
+</ul>
+</blockquote>
+<p>For this guide, choose the simpler Standalone Session mode (<strong>indicated by the green line in the image below</strong>) for a quick start.</p>
+<p><img decoding="async" loading="lazy" alt="4_flink_deployment_execute_model" src="/assets/images/4_flink_deployment_execute_model-8d8236126fff0455e8f6d319ac8ee0bd.png" width="440" height="273" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="start-flink-standalone-session-on-server">Start Flink Standalone Session on Server<a href="#start-flink-standalone-session-on-server" class="hash-link" aria-label="Direct link to Start Flink Standalone Session on Server" title="Direct link to Start Flink Standalone Session on Server">​</a></h3>
+<div class="language-bash codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-bash codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">start-cluster.sh</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" alt="5_start_flink_standalone_session_service" src="/assets/images/5_start_flink_standalone_session_service-8f808dec058b639fd6792f67b52b480d.png" width="667" height="99" class="img__KcZ"></p>
+<blockquote>
+<p>Page access: <a href="http://vm:8081/" target="_blank" rel="noopener noreferrer">http://vm:8081/</a></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="6_flink_standalone_session_web_ui" src="/assets/images/6_flink_standalone_session_web_ui-c5f73ccb60329b89b1d4882e1c4f8d45.png" width="3840" height="2098" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="configure-flink-cluster-1">Configure Flink Cluster<a href="#configure-flink-cluster-1" class="hash-link" aria-label="Direct link to Configure Flink Cluster" title="Direct link to Configure Flink Cluster">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="7_config_flink_cluster_menu.png" src="/assets/images/7_config_flink_cluster_menu-90b43c74c75774d1ea610ac8e5003188.png" width="3840" height="2098" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="8_add_flink_cluster_info.png" src="/assets/images/8_add_flink_cluster_info-02cff13f55de89ee1bd6a34dc557c5dd.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="9_add_flink_cluster_successfully" src="/assets/images/9_add_flink_cluster_successfully-c2eb59b780fc3f27e70c3911b5c81301.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="10_display_flink_cluster_list" src="/assets/images/10_display_flink_cluster_list-f3bf4ea6dd3331d4a33b34e363bf200e.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="create-job">Create Job<a href="#create-job" class="hash-link" aria-label="Direct link to Create Job" title="Direct link to Create Job">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="11_add_flink_job_menu" src="/assets/images/11_add_flink_job_menu-655020740842addde3a077799bcf45e9.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="main-parameters">Main Parameters<a href="#main-parameters" class="hash-link" aria-label="Direct link to Main Parameters" title="Direct link to Main Parameters">​</a></h3>
+<blockquote>
+<ul>
+<li>Development Mode: Choose “Flink SQL”</li>
+<li>Execution Mode: Choose “remote”</li>
+<li>Flink Version: Select &quot;flink-1.17&quot;, as configured in “1.1 Configure FLINK_HOME”</li>
+<li>Flink Cluster: Select “myStandalonSession”, as configured in “1.2 Configure FLINK Cluster”</li>
+<li>Flink SQL: See example below</li>
+<li>Application Name: Job name</li>
+</ul>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="create-job-1">Create Job<a href="#create-job-1" class="hash-link" aria-label="Direct link to Create Job" title="Direct link to Create Job">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="12_add_flink_job_param_1" src="/assets/images/12_add_flink_job_param_1-9fc8141a1b1bdcc08f72a2d942a0851e.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="13_add_flink_job_param_2" src="/assets/images/13_add_flink_job_param_2-9ce486607a0337a5d82b042a3e916a58.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="14_add_flink_job_param_3" src="/assets/images/14_add_flink_job_param_3-782062a69f1e90109c4c46cc3a118e64.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="save-job">Save Job<a href="#save-job" class="hash-link" aria-label="Direct link to Save Job" title="Direct link to Save Job">​</a></h3>
+<blockquote>
+<p>Click the blue “Submit” button to submit the job</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="15_save_flink_job" src="/assets/images/15_save_flink_job-cff0a1c78d69e80ea24604e77e3aca71.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="16_display_flink_job_list" src="/assets/images/16_display_flink_job_list-a4f258aee00dbc0651200a4bd4799fe8.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="build-job">Build Job<a href="#build-job" class="hash-link" aria-label="Direct link to Build Job" title="Direct link to Build Job">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="17_build_flink_job" src="/assets/images/17_build_flink_job-b455de447c56928fc7275a21ea2d2508.png" width="3840" height="1959" class="img__KcZ"></p>
+<blockquote>
+<p>Build successful</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="18_build_flink_job_successfully" src="/assets/images/18_build_flink_job_successfully-f0e41d98d78e47a0aec79db0231a1142.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="start-job">Start Job<a href="#start-job" class="hash-link" aria-label="Direct link to Start Job" title="Direct link to Start Job">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="19_start_flink_job" src="/assets/images/19_start_flink_job-acf6aa098463b632f338ef9b8cb940c3.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="start-checkpoint-settings">Start Checkpoint Settings<a href="#start-checkpoint-settings" class="hash-link" aria-label="Direct link to Start Checkpoint Settings" title="Direct link to Start Checkpoint Settings">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="20_set_checkpoint_when_start_flink_job" src="/assets/images/20_set_checkpoint_when_start_flink_job-140fad79ad2243bb07c2b57961a73c6f.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="submit-job">Submit Job<a href="#submit-job" class="hash-link" aria-label="Direct link to Submit Job" title="Direct link to Submit Job">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="21_submit_flink_job_1" src="/assets/images/21_submit_flink_job_1-dc9d4c29102fb2bdf4242d9a5cff4de1.png" width="3840" height="1959" class="img__KcZ">
+<img decoding="async" loading="lazy" alt="22_submit_flink_job_2" src="/assets/images/22_submit_flink_job_2-10686fdc4d0383edc432123c11356334.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="check-job-status">Check Job Status<a href="#check-job-status" class="hash-link" aria-label="Direct link to Check Job Status" title="Direct link to Check Job Status">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="view-via-apache-streampark-dashboard">View via Apache StreamPark™ Dashboard<a href="#view-via-apache-streampark-dashboard" class="hash-link" aria-label="Direct link to View via Apache StreamPark™ Dashboard" title="Direct link to View via Apache StreamPark™ Dashboard">​</a></h3>
+<blockquote>
+<p>StreamPark dashboard</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="23_flink_job_dashboard" src="/assets/images/23_flink_job_dashboard-a0e5574779839abebb989b279a7d6a98.png" width="3840" height="1959" class="img__KcZ"></p>
+<blockquote>
+<p>View job details</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="24_display_flink_job_details" src="/assets/images/24_display_flink_job_details-31b5337f36eacab688c54fc76377feae.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="25_display_flink_job_details_page" src="/assets/images/25_display_flink_job_details_page-41a7c0501bdf2ce4ec5f16473143ec43.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="view-native-flink-web-ui">View Native Flink Web UI<a href="#view-native-flink-web-ui" class="hash-link" aria-label="Direct link to View Native Flink Web UI" title="Direct link to View Native Flink Web UI">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="26_display_native_flink_job_web_ui" src="/assets/images/26_display_native_flink_job_web_ui-ce8bab69c0d932e35f431f80fe7052fd.png" width="3840" height="1959" class="img__KcZ"></p>
+<p>![27_display_native_flink_job_web_ui_2](/doc/image_en/platform-usage/27_display_native_flink_job</p>
+<p>_web_ui_2.png)</p>
+<blockquote>
+<p>With this, the process of submitting a Flink job using the StreamPark platform is essentially complete. Below is a brief summary of the general process for managing Flink jobs on the StreamPark platform.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="apache-streampark-platforms-process-for-managing-flink-jobs">Apache StreamPark™ Platform&#x27;s Process for Managing Flink Jobs<a href="#apache-streampark-platforms-process-for-managing-flink-jobs" class="hash-link" aria-label="Direct link to Apache StreamPark™ Platform&#x27;s Process for Managing Flink Jobs" title="Direct link to Apache StreamPark™ Platform&#x27;s Process for Managing Flink Jobs">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="28_streampark_process_workflow" src="/assets/images/28_streampark_process_workflow-7fd6a79c2e020b9ea257022a2ed61a57.png" width="209" height="1105" class="img__KcZ"></p>
+<blockquote>
+<p>Stopping, modifying, and deleting Flink jobs through the StreamPark platform is relatively simple and can be experienced by users themselves. It is worth noting that: <strong>If a job is in a running state, it cannot be deleted and must be stopped first</strong>.</p>
+</blockquote>
+<h1>Apache StreamPark™ System Module Introduction</h1>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="system-settings">System Settings<a href="#system-settings" class="hash-link" aria-label="Direct link to System Settings" title="Direct link to System Settings">​</a></h2>
+<blockquote>
+<p>Menu location</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="29_streampark_system_menu" src="/assets/images/29_streampark_system_menu-9fd0ca98887efb7cf31bd251a7503741.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="user-management">User Management<a href="#user-management" class="hash-link" aria-label="Direct link to User Management" title="Direct link to User Management">​</a></h3>
+<blockquote>
+<p>For managing users of the StreamPark platform</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="30_streampark_user_management_menu" src="/assets/images/30_streampark_user_management_menu-492dfc52980c62a99f2a8b6ee746f923.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="token-management">Token Management<a href="#token-management" class="hash-link" aria-label="Direct link to Token Management" title="Direct link to Token Management">​</a></h3>
+<blockquote>
+<p>Allows users to operate Flink jobs in the form of Restful APIs</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="31_streampark_token_management_menu" src="/assets/images/31_streampark_token_management_menu-eb14faf845ab86acbee0d31417c9c321.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="32_streampark_token_management_menu_usage" src="/assets/images/32_streampark_token_management_menu_usage-cafe14fbd9f24364b3795651a72d2f3a.png" width="3840" height="1959" class="img__KcZ"></p>
+<div class="language-bash codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-bash codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">curl -X POST &#x27;/flink/app/cancel&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">-H &#x27;Authorization: 69qMW7reOXhrAh29LjPWwwP+quFqLf++MbPbsB9/NcTCKGzZE2EU7tBUBU5gqG236VF5pMyVrsE5K7hBWiyuLuJRqmxKdPct4lbGrjZZqkv5lBBYExxYVMIl+f5MZ9dbqqslZifFx3P4A//NYgGwkx5PpizomwkE+oZOqg0+c2apU0UZ9T7Dpnu/tPLk9g5w9q+6ZS2p+rTllPiEgyBnSw==&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">-H &#x27;Content-Type: application/x-www-form-urlencoded; charset=UTF-8&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">--data-urlencode &#x27;savePoint=&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">--data-urlencode &#x27;id=100001&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">--data-urlencode &#x27;savePointed=false&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">--data-urlencode &#x27;drain=false&#x27; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">-i</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="role-management">Role Management<a href="#role-management" class="hash-link" aria-label="Direct link to Role Management" title="Direct link to Role Management">​</a></h3>
+<blockquote>
+<p>User roles: Currently, there are two types, develop and admin.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="33_streampark_role_menu" src="/assets/images/33_streampark_role_menu-ab1e7a0172c324af7da49a112c50106b.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="team-management">Team Management<a href="#team-management" class="hash-link" aria-label="Direct link to Team Management" title="Direct link to Team Management">​</a></h3>
+<blockquote>
+<p>Teams: Used to distinguish and manage jobs of different teams in an enterprise.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="34_streampark_team_menu" src="/assets/images/34_streampark_team_menu-c965a23a07e6eba715cd00ba3d59450a.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="member-management">Member Management<a href="#member-management" class="hash-link" aria-label="Direct link to Member Management" title="Direct link to Member Management">​</a></h3>
+<blockquote>
+<p>(Team) member management</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="35_streampark_member_menu" src="/assets/images/35_streampark_member_menu-98cb402419a52f4deb1dcdb937a0c81c.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="menu-management">Menu Management<a href="#menu-management" class="hash-link" aria-label="Direct link to Menu Management" title="Direct link to Menu Management">​</a></h3>
+<blockquote>
+<p>Managing system menus</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="36_streampark_menu_management" src="/assets/images/36_streampark_menu_management-8d5d7913f5e4b87c931588e3fc291d66.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="apache-streampark-menu-modules">Apache StreamPark™ Menu Modules<a href="#apache-streampark-menu-modules" class="hash-link" aria-label="Direct link to Apache StreamPark™ Menu Modules" title="Direct link to Apache StreamPark™ Menu Modules">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="project">Project<a href="#project" class="hash-link" aria-label="Direct link to Project" title="Direct link to Project">​</a></h3>
+<blockquote>
+<p>StreamPark integrates with code repositories to achieve CICD</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="37_streampark_project_menu" src="/assets/images/37_streampark_project_menu-05040f758eab8ef9a6b9d8cfa945585a.png" width="3840" height="1959" class="img__KcZ"></p>
+<blockquote>
+<p>To use, click &quot;+ Add new,&quot; configure repo information, and save.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="38_streampark_project_menu_usage_1" src="/assets/images/38_streampark_project_menu_usage_1-d27732ec9c1f92c8fe953614e234dd8b.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="39_streampark_project_menu_usage_2" src="/assets/images/39_streampark_project_menu_usage_2-29a21c3cf1f35949b98a3fec192418a6.png" width="3840" height="1959" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="application">Application<a href="#application" class="hash-link" aria-label="Direct link to Application" title="Direct link to Application">​</a></h3>
+<blockquote>
+<p><strong>Core Module: Used for full lifecycle management (creation, build, start, stop, delete, etc.) of Flink jobs.</strong></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="40_application_menu" src="/assets/images/40_application_menu-8d9525e6d86e32f0cf585bdbde5b5883.png" width="1366" height="651" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="variable">Variable<a href="#variable" class="hash-link" aria-label="Direct link to Variable" title="Direct link to Variable">​</a></h3>
+<blockquote>
+<p>Variable management: Manage variables that can be used when creating Application jobs.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="41_variable_menu_usage_1" src="/assets/images/41_variable_menu_usage_1-33b3f127e94eb19d053201d994166f9f.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="42_variable_menu_usage_2" src="/assets/images/42_variable_menu_usage_2-8d039a764acf8ff3025cc5dc33f2106c.png" width="3838" height="1956" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="43_variable_menu_usage_3" src="/assets/images/43_variable_menu_usage_3-793db12d13e687be94e01a087723b6e7.png" width="3838" height="1954" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="setting">Setting<a href="#setting" class="hash-link" aria-label="Direct link to Setting" title="Direct link to Setting">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="system-setting">System Setting<a href="#system-setting" class="hash-link" aria-label="Direct link to System Setting" title="Direct link to System Setting">​</a></h4>
+<blockquote>
+<p>For system configurations: Maven, Docker, alert email, Ingress</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="44_system_menu_1" src="/assets/images/44_system_menu_1-c581b1adbe9416649eccd38a52db6750.png" width="3838" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="45_system_menu_2" src="/assets/images/45_system_menu_2-42596e5f6171e4813f78b23c1527e82a.png" width="3838" height="1960" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="46_system_menu_3" src="/assets/images/46_system_menu_3-ca90698bed0553f6577bbbb4f1723467.png" width="3838" height="1951" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="47_system_menu_4" src="/assets/images/47_system_menu_4-688d00e1798dad39cc32679ebc8a1365.png" width="3832" height="1960" class="img__KcZ"></p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="alert-setting">Alert Setting<a href="#alert-setting" class="hash-link" aria-label="Direct link to Alert Setting" title="Direct link to Alert Setting">​</a></h4>
+<blockquote>
+<p>Supports multiple alert notification modes</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="48_alert_setting_menu" src="/assets/images/48_alert_setting_menu-a037245184bf609af36463fa946f0929.png" width="3838" height="1957" class="img__KcZ"></p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="flink-home">Flink Home<a href="#flink-home" class="hash-link" aria-label="Direct link to Flink Home" title="Direct link to Flink Home">​</a></h4>
+<blockquote>
+<p>【<strong>To be improved</strong>】Can perform some operations on Flink jobs, such as validation of Flink SQL, etc.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="49_flink_home_list" src="/assets/images/49_flink_home_list-bdd106e9bdd2ffca109ccca61fd20adb.png" width="3838" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="50_flink_home_usage" src="/assets/images/50_flink_home_usage-380c085a7ed7e77c927b41e3fd4dfe4e.png" width="3838" height="1957" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="51_flink_home_usage_2" src="/assets/images/51_flink_home_usage_2-3d75e34d881c22ccc188b37f02a08387.png" width="3838" height="1953" class="img__KcZ"></p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="flink-cluster">Flink Cluster<a href="#flink-cluster" class="hash-link" aria-label="Direct link to Flink Cluster" title="Direct link to Flink Cluster">​</a></h4>
+<blockquote>
+<ul>
+<li>For executing Flink jobs in Session mode, there are three types based on different resource management methods: Standalone, Yarn, K8s</li>
+<li>【<strong>To be improved</strong>】Application scenario: Suitable for scenarios with sufficient resources and where job isolation requirements are not very strict</li>
+<li>For more on session mode, see: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/overview/#session-mode" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/overview/#session-mode</a></li>
+</ul>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="52_add_flink_cluster_info" src="/assets/images/52_add_flink_cluster_info-27a925745999ed17a4bbced55ccd1d3c.png" width="3837" height="1953" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="53_display_flink_cluster_list" src="/assets/images/53_display_flink_cluster_list-a2dea9c5b00ee90cc941b4ab8e6ce9a3.png" width="3838" height="1956" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="54_visit_flink_cluster_web_ui" src="/assets/images/54_visit_flink_cluster_web_ui-cd7de25c4e43195916f032fc7e226135.png" width="3837" height="1720" class="img__KcZ"></p>
+<h1>Using Native Flink with Apache StreamPark™</h1>
+<blockquote>
+<p>【<strong>To be improved</strong>】In fact, a key feature of StreamPark is the optimization of the management mode for native Flink jobs at the user level, enabling users to rapidly develop, deploy, run, and monitor Flink jobs using the platform. Meaning, if users are familiar with native Flink, they will find StreamPark even more intuitive to use.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="flink-deployment-modes">Flink Deployment Modes<a href="#flink-deployment-modes" class="hash-link" aria-label="Direct link to Flink Deployment Modes" title="Direct link to Flink Deployment Modes">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-to-use-in-apache-streampark">How to Use in Apache StreamPark™<a href="#how-to-use-in-apache-streampark" class="hash-link" aria-label="Direct link to How to Use in Apache StreamPark™" title="Direct link to How to Use in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p><strong>Session Mode</strong></p>
+</blockquote>
+<ol>
+<li>Configure Flink Cluster</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="61_flink_session_cluster_usage_1" src="/assets/images/61_flink_session_cluster_usage_1-c0eaf08dc4c9dbd8dd7d7127e479c219.png" width="3835" height="1959" class="img__KcZ"></p>
+<ol start="2">
+<li>When creating a job, select the corresponding resource manager&#x27;s model and an established Flink Cluster in Execution Mode</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="62_flink_session_cluster_usage_2" src="/assets/images/62_flink_session_cluster_usage_2-0b0d90394a6f29afde37039ba190ee4d.png" width="3835" height="1554" class="img__KcZ"></p>
+<blockquote>
+<p><strong>Application Mode</strong></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="63_flink_application_model_usage_1" src="/assets/images/63_flink_application_model_usage_1-e304961086f64945a5eae939dc8fef19.png" width="3838" height="1783" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="64_flink_application_model_usage_2" src="/assets/images/64_flink_application_model_usage_2-ff0c09c7bde6c7d1e9654aff084f5f40.png" width="3837" height="1564" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="65_flink_application_model_usage_3" src="/assets/images/65_flink_application_model_usage_3-62ef8a576d861e999e5f18bca1320886.png" width="3835" height="1588" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="66_flink_application_model_usage_4" src="/assets/images/66_flink_application_model_usage_4-497406736296d1f8eb37d23f68710a5c.png" width="3835" height="1656" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="setting-job-parameters">Setting Job Parameters<a href="#setting-job-parameters" class="hash-link" aria-label="Direct link to Setting Job Parameters" title="Direct link to Setting Job Parameters">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="native-flink-job-parameters">Native Flink Job Parameters<a href="#native-flink-job-parameters" class="hash-link" aria-label="Direct link to Native Flink Job Parameters" title="Direct link to Native Flink Job Parameters">​</a></h3>
+<blockquote>
+<p>Official website: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/config/" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/deployment/config/</a></p>
+</blockquote>
+<blockquote>
+<p>Native submission command (with parameters)</p>
+</blockquote>
+<div class="language-bash codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-bash codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">flink run-application -t yarn-application \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">	-Dyarn.provided.lib.dirs=&quot;hdfs://myhdfs/my-remote-flink-dist-dir&quot; \</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">	hdfs://myhdfs/jars/my-application.jar</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-to-use-in-apache-streampark-1">How to Use in Apache StreamPark™<a href="#how-to-use-in-apache-streampark-1" class="hash-link" aria-label="Direct link to How to Use in Apache StreamPark™" title="Direct link to How to Use in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p>When creating or modifying a job, add in “Dynamic Properties” as per the specified format</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="67_dynamic_params_usage" src="/assets/images/67_dynamic_params_usage-c8bcc3e941044d808bf3d89398b06897.png" width="3838" height="1782" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="alert-strategy">Alert Strategy<a href="#alert-strategy" class="hash-link" aria-label="Direct link to Alert Strategy" title="Direct link to Alert Strategy">​</a></h2>
+<blockquote>
+<p>【<strong>To be improved</strong>】</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="native-flink-restart-mechanism">Native Flink Restart Mechanism<a href="#native-flink-restart-mechanism" class="hash-link" aria-label="Direct link to Native Flink Restart Mechanism" title="Direct link to Native Flink Restart Mechanism">​</a></h3>
+<blockquote>
+<p>Reference: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/task_failure_recovery/" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/task_failure_recovery/</a></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="68_native_flink_restart_strategy" src="/assets/images/68_native_flink_restart_strategy-afe159cfde1938f73301f5d2f5d8e0ec.png" width="775" height="331" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-to-use-in-apache-streampark-2">How to Use in Apache StreamPark™<a href="#how-to-use-in-apache-streampark-2" class="hash-link" aria-label="Direct link to How to Use in Apache StreamPark™" title="Direct link to How to Use in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p>【<strong>To be improved</strong>】Generally, alerts are triggered when a job fails or an anomaly occurs</p>
+</blockquote>
+<ol>
+<li>Configure alert notifications</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="69_streampark_alert_settings_1" src="/assets/images/69_streampark_alert_settings_1-faec89fe7f8ce829685c28d4387274c4.png" width="3840" height="1959" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="70_streampark_alert_settings_2" src="/assets/images/70_streampark_alert_settings_2-521de9ad9a66bfed906063b1596e8119.png" width="3840" height="1959" class="img__KcZ"></p>
+<ol start="2">
+<li>When creating or modifying a job, configure in &quot;Fault Alert Template&quot; and “CheckPoint Failure Options”</li>
+</ol>
+<p><img decoding="async" loading="lazy" alt="71_streampark_alert_usage" src="/assets/images/71_streampark_alert_usage-a3b0338077095a944670b53584e0a0b3.png" width="3840" height="1959" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="cpsp">cp/sp<a href="#cpsp" class="hash-link" aria-label="Direct link to cp/sp" title="Direct link to cp/sp">​</a></h2>
+<blockquote>
+<p>【<strong>To be improved</strong>】</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="native-flink-checkpoint-and-savepoint">Native Flink Checkpoint and Savepoint<a href="#native-flink-checkpoint-and-savepoint" class="hash-link" aria-label="Direct link to Native Flink Checkpoint and Savepoint" title="Direct link to Native Flink Checkpoint and Savepoint">​</a></h3>
+<blockquote>
+<p>cp: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/fault-tolerance/checkpointing/" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/datastream/fault-tolerance/checkpointing/</a>
+sp: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/savepoints/" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/state/savepoints/</a></p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="72_native_flink_save_checkpoint_gramma" src="/assets/images/72_native_flink_save_checkpoint_gramma-2a15a651ae450499783a35cff9fd9c9a.png" width="1345" height="154" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-to-configure-savepoint-in-apache-streampark">How to Configure Savepoint in Apache StreamPark™<a href="#how-to-configure-savepoint-in-apache-streampark" class="hash-link" aria-label="Direct link to How to Configure Savepoint in Apache StreamPark™" title="Direct link to How to Configure Savepoint in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p>Users can set a savepoint when stopping a job</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="73_streampark_save_checkpoint" src="/assets/images/73_streampark_save_checkpoint-932e42066f6140bf66a412c2f192d0c1.png" width="1366" height="651" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="74_streampark_set_checkpoint_location" src="/assets/images/74_streampark_set_checkpoint_location-2ca7e8a34023b235f04e9ea012187bb5.png" width="1366" height="651" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="75_streampark_save_checkpoint_log" src="/assets/images/75_streampark_save_checkpoint_log-5e06a0db9e648eef893aad9f1ec5f222.png" width="1240" height="97" class="img__KcZ"></p>
+<blockquote>
+<p>View savepoint</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="76_show_checkpoint_file_name" src="/assets/images/76_show_checkpoint_file_name-9848305b415c965dfcab0c53b04a400e.png" width="1222" height="95" class="img__KcZ"></p>
+<p><img decoding="async" loading="lazy" alt="77_show_checkpoint_file_name_2" src="/assets/images/77_show_checkpoint_file_name_2-a322ac7cc9031bc7971b373849d87861.png" width="1338" height="468" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-to-restore-a-job-from-a-specified-savepoint-in-apache-streampark">How to Restore a Job from a Specified Savepoint in Apache StreamPark™<a href="#how-to-restore-a-job-from-a-specified-savepoint-in-apache-streampark" class="hash-link" aria-label="Direct link to How to Restore a Job from a Specified Savepoint in Apache StreamPark™" title="Direct link to How to Restore a Job from a Specified Savepoint in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p>Users have the option to choose during job startup</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="78_usage_checkpoint_in_streampark" src="/assets/images/78_usage_checkpoint_in_streampark-cee144525153fdfff4680f9fd45bbe72.png" width="1366" height="651" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="job-status">Job Status<a href="#job-status" class="hash-link" aria-label="Direct link to Job Status" title="Direct link to Job Status">​</a></h2>
+<blockquote>
+<p>【<strong>To be improved</strong>】</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="native-flink-job-status">Native Flink Job Status<a href="#native-flink-job-status" class="hash-link" aria-label="Direct link to Native Flink Job Status" title="Direct link to Native Flink Job Status">​</a></h3>
+<blockquote>
+<p>Reference: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/internals/job_scheduling/#jobmanager-data-structures" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/internals/job_scheduling/#jobmanager-data-structures</a></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="job-status-in-apache-streampark">Job Status in Apache StreamPark™<a href="#job-status-in-apache-streampark" class="hash-link" aria-label="Direct link to Job Status in Apache StreamPark™" title="Direct link to Job Status in Apache StreamPark™">​</a></h3>
+<blockquote>
+<p>【<strong>To be improved</strong>】</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="job-details">Job Details<a href="#job-details" class="hash-link" aria-label="Direct link to Job Details" title="Direct link to Job Details">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="native-flink-job-details">Native Flink Job Details<a href="#native-flink-job-details" class="hash-link" aria-label="Direct link to Native Flink Job Details" title="Direct link to Native Flink Job Details">​</a></h3>
+<blockquote>
+<p>View through “<a href="http://hadoop:8088/proxy/application_1701871016253_0004/#/" target="_blank" rel="noopener noreferrer">Apache Flink® Dashboard</a>”</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="80_native_flink_job_details_page" src="/assets/images/80_native_flink_job_details_page-40a268af87d494532c22fb6b7e1e08d9.png" width="3838" height="1554" class="img__KcZ"></p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="job-details-in-apache-streampark">Job Details in Apache StreamPark™<a href="#job-details-in-apache-streampark" class="hash-link" aria-label="Direct link to Job Details in Apache StreamPark™" title="Direct link to Job Details in Apache StreamPark™">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="81_streampark_flink_job_details_page" src="/assets/images/81_streampark_flink_job_details_page-f5013d80700f0db63376ff2c9ed03ff8.png" width="3840" height="1563" class="img__KcZ"></p>
+<blockquote>
+<p>In addition, for jobs in k8s mode, StreamPark also supports real-time display of startup logs, as shown below</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="82_streampark_flink_job_starting_log_info" src="/assets/images/82_streampark_flink_job_starting_log_info-bb5b893073b64ccd49327b6d7273be9b.png" width="825" height="372" class="img__KcZ"></p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="integration-with-third-party-systems">Integration with Third-Party Systems<a href="#integration-with-third-party-systems" class="hash-link" aria-label="Direct link to Integration with Third-Party Systems" title="Direct link to Integration with Third-Party Systems">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-native-flink-integrates-with-third-party-systems">How Native Flink Integrates with Third-Party Systems<a href="#how-native-flink-integrates-with-third-party-systems" class="hash-link" aria-label="Direct link to How Native Flink Integrates with Third-Party Systems" title="Direct link to How Native Flink Integrates with Third-Party Systems">​</a></h3>
+<blockquote>
+<p>Native Flink provides a REST API
+Reference: <a href="https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/" target="_blank" rel="noopener noreferrer">https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/ops/rest_api/</a></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="how-apache-streampark-integrates-with-third-party-systems">How Apache StreamPark™ Integrates with Third-Party Systems<a href="#how-apache-streampark-integrates-with-third-party-systems" class="hash-link" aria-label="Direct link to How Apache StreamPark™ Integrates with Third-Party Systems" title="Direct link to How Apache StreamPark™ Integrates with Third-Party Systems">​</a></h3>
+<blockquote>
+<p>StreamPark also provides Restful APIs, supporting integration with other systems.
+For example, it offers REST API interfaces for starting and stopping jobs.</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="83_streampark_restful_api_1" src="/assets/images/83_streampark_restful_api_1-0636c29af897df6645fd485298db10fe.png" width="3838" height="1954" class="img__KcZ">
+<img decoding="async" loading="lazy" alt="84_streampark_restful_api_2" src="/assets/images/84_streampark_restful_api_2-64c75d2b90d0a1285f84a92f13c25972.png" width="3838" height="2022" class="img__KcZ"></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/apache/incubator-streampark-website/edit/dev/docs/get-started/4.platformBasicUsage.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_WHnd" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_YCJs"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev paginationNavLink_UdUv" href="/docs/get-started/docker-deployment"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.2751 19.175L10.3251 18.125L5.4501 13.25H21.6001V11.75H5.4501L10.3251 6.87501L9.2751 5.82501L2.5751 12.5L9.2751 19.175Z" fill="currentColor"></path></svg><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">Previous</div><div class="paginationNavLabel_YPzM pagination-nav__label">Platform Deployment using Docker</div></div></a><a class="pagination-nav__link pagination-nav__link--next paginationNavLink_UdUv" href="/docs/platform/alert"><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">Next</div><div class="paginationNavLabel_YPzM pagination-nav__label">Alert Configuration</div></div><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7249 19.175L13.6749 18.125L18.5499 13.25H2.3999V11.75H18.5499L13.6749 6.87501L14.7249 5.82501L21.4249 12.5L14.7249 19.175Z" fill="currentColor"></path></svg></a></nav></div></div><div class="col col--3"><div class="docTOCContainer_nkwD theme-doc-toc-desktop-container"><div class="tableOfContents_jeP5 thin-scrollbar docTOC_GnpH theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#configure-flink_home" class="table-of-contents__link toc-highlight">Configure FLINK_HOME</a></li><li><a href="#configure-flink-cluster" class="table-of-contents__link toc-highlight">Configure Flink Cluster</a><ul><li><a href="#start-flink-standalone-session-on-server" class="table-of-contents__link toc-highlight">Start Flink Standalone Session on Server</a></li><li><a href="#configure-flink-cluster-1" class="table-of-contents__link toc-highlight">Configure Flink Cluster</a></li></ul></li><li><a href="#create-job" class="table-of-contents__link toc-highlight">Create Job</a><ul><li><a href="#main-parameters" class="table-of-contents__link toc-highlight">Main Parameters</a></li><li><a href="#create-job-1" class="table-of-contents__link toc-highlight">Create Job</a></li><li><a href="#save-job" class="table-of-contents__link toc-highlight">Save Job</a></li></ul></li><li><a href="#build-job" class="table-of-contents__link toc-highlight">Build Job</a></li><li><a href="#start-job" class="table-of-contents__link toc-highlight">Start Job</a><ul><li><a href="#start-checkpoint-settings" class="table-of-contents__link toc-highlight">Start Checkpoint Settings</a></li><li><a href="#submit-job" class="table-of-contents__link toc-highlight">Submit Job</a></li></ul></li><li><a href="#check-job-status" class="table-of-contents__link toc-highlight">Check Job Status</a><ul><li><a href="#view-via-apache-streampark-dashboard" class="table-of-contents__link toc-highlight">View via Apache StreamPark™ Dashboard</a></li><li><a href="#view-native-flink-web-ui" class="table-of-contents__link toc-highlight">View Native Flink Web UI</a></li></ul></li><li><a href="#apache-streampark-platforms-process-for-managing-flink-jobs" class="table-of-contents__link toc-highlight">Apache StreamPark™ Platform&#39;s Process for Managing Flink Jobs</a></li><li><a href="#system-settings" class="table-of-contents__link toc-highlight">System Settings</a><ul><li><a href="#user-management" class="table-of-contents__link toc-highlight">User Management</a></li><li><a href="#token-management" class="table-of-contents__link toc-highlight">Token Management</a></li><li><a href="#role-management" class="table-of-contents__link toc-highlight">Role Management</a></li><li><a href="#team-management" class="table-of-contents__link toc-highlight">Team Management</a></li><li><a href="#member-management" class="table-of-contents__link toc-highlight">Member Management</a></li><li><a href="#menu-management" class="table-of-contents__link toc-highlight">Menu Management</a></li></ul></li><li><a href="#apache-streampark-menu-modules" class="table-of-contents__link toc-highlight">Apache StreamPark™ Menu Modules</a><ul><li><a href="#project" class="table-of-contents__link toc-highlight">Project</a></li><li><a href="#application" class="table-of-contents__link toc-highlight">Application</a></li><li><a href="#variable" class="table-of-contents__link toc-highlight">Variable</a></li><li><a href="#setting" class="table-of-contents__link toc-highlight">Setting</a></li></ul></li><li><a href="#flink-deployment-modes" class="table-of-contents__link toc-highlight">Flink Deployment Modes</a><ul><li><a href="#how-to-use-in-apache-streampark" class="table-of-contents__link toc-highlight">How to Use in Apache StreamPark™</a></li></ul></li><li><a href="#setting-job-parameters" class="table-of-contents__link toc-highlight">Setting Job Parameters</a><ul><li><a href="#native-flink-job-parameters" class="table-of-contents__link toc-highlight">Native Flink Job Parameters</a></li><li><a href="#how-to-use-in-apache-streampark-1" class="table-of-contents__link toc-highlight">How to Use in Apache StreamPark™</a></li></ul></li><li><a href="#alert-strategy" class="table-of-contents__link toc-highlight">Alert Strategy</a><ul><li><a href="#native-flink-restart-mechanism" class="table-of-contents__link toc-highlight">Native Flink Restart Mechanism</a></li><li><a href="#how-to-use-in-apache-streampark-2" class="table-of-contents__link toc-highlight">How to Use in Apache StreamPark™</a></li></ul></li><li><a href="#cpsp" class="table-of-contents__link toc-highlight">cp/sp</a><ul><li><a href="#native-flink-checkpoint-and-savepoint" class="table-of-contents__link toc-highlight">Native Flink Checkpoint and Savepoint</a></li><li><a href="#how-to-configure-savepoint-in-apache-streampark" class="table-of-contents__link toc-highlight">How to Configure Savepoint in Apache StreamPark™</a></li><li><a href="#how-to-restore-a-job-from-a-specified-savepoint-in-apache-streampark" class="table-of-contents__link toc-highlight">How to Restore a Job from a Specified Savepoint in Apache StreamPark™</a></li></ul></li><li><a href="#job-status" class="table-of-contents__link toc-highlight">Job Status</a><ul><li><a href="#native-flink-job-status" class="table-of-contents__link toc-highlight">Native Flink Job Status</a></li><li><a href="#job-status-in-apache-streampark" class="table-of-contents__link toc-highlight">Job Status in Apache StreamPark™</a></li></ul></li><li><a href="#job-details" class="table-of-contents__link toc-highlight">Job Details</a><ul><li><a href="#native-flink-job-details" class="table-of-contents__link toc-highlight">Native Flink Job Details</a></li><li><a href="#job-details-in-apache-streampark" class="table-of-contents__link toc-highlight">Job Details in Apache StreamPark™</a></li></ul></li><li><a href="#integration-with-third-party-systems" class="table-of-contents__link toc-highlight">Integration with Third-Party Systems</a><ul><li><a href="#how-native-flink-integrates-with-third-party-systems" class="table-of-contents__link toc-highlight">How Native Flink Integrates with Third-Party Systems</a></li><li><a href="#how-apache-streampark-integrates-with-third-party-systems" class="table-of-contents__link toc-highlight">How Apache StreamPark™ Integrates with Third-Party Systems</a></li></ul></li></ul></div></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Join Community</div><ul class="footer__items clean-list"><li class="footer__item">
+                <div class="subscribe-box btns">
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark"><i class="fa fa-github"></i><span>Github</span></a>
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark/issues"><i class="fa fa-slack"></i><span>Issue Tracking</span></a>
+                  <a class="btn btn-primary" href="javascript:void(0)">
+                    <i class="fa fa-wechat"></i>
+                    <span>Wechat</span>
+                    <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                  </a>
+                </div>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><div>
+        <div>
+          <div style="margin-bottom: 30px;">
+            <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+              <img alt="Apache Incubator logo" class="footer__logo" width="200">
+            </a>
+          </div>
+          <div>
+            <p>
+            Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span>
+            Copyright © 2022-2024 The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+          </span>
+        </div>
+      </div></div></div></div></footer></div>
+</body>
+</html>

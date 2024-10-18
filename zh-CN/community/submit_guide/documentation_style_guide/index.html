@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="zh-CN" dir="ltr" class="docs-wrapper plugin-docs plugin-id-community docs-version-current docs-doc-page docs-doc-id-submit_guide/documentation_style_guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">文档书写规范 | Apache StreamPark (incubating)</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://streampark.apache.org/zh-CN/community/submit_guide/documentation_style_guide"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-community-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-community-current"><meta data-rh="true" property="og:title" content="文档书写规范 | Apache StreamPark (incubating)"><meta data-rh="true" name="description" content="&lt;!--"><meta data-rh="true" property="og:description" content="&lt;!--"><link data-rh="true" rel="icon" href="/zh-CN/image/favicon.ico"><link data-rh="true" rel="canonical" href="https://streampark.apache.org/zh-CN/community/submit_guide/documentation_style_guide"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/documentation_style_guide" hreflang="en"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/zh-CN/community/submit_guide/documentation_style_guide" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/documentation_style_guide" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/zh-CN/blog/rss.xml" title="Apache StreamPark (incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/zh-CN/blog/atom.xml" title="Apache StreamPark (incubating) Atom Feed"><link rel="stylesheet" href="/zh-CN/assets/css/styles.973b1f1a.css">
+<script src="/zh-CN/assets/js/runtime~main.470707f1.js" defer="defer"></script>
+<script src="/zh-CN/assets/js/main.ef599892.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_BCtO" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/zh-CN/"><div class="navbar__logo"><img src="/zh-CN/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--light_uT2j"><img src="/zh-CN/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--dark_ENih"></div><b class="navbar__title text--truncate">StreamPark</b></a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/zh-CN/docs/get-started/intro">文档</a><a class="navbar__item navbar__link" href="/zh-CN/download">下载</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">社区</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank" rel="noopener noreferrer" class="dropdown__link">行为守则</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/mailing_lists">加入邮件列表</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/become_committer">成为 Committer</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/become_pmc_member">成为 PMC 成员</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/new_committer_process">新的 Committer 流程</a></li><li><a class="dropdown__link" href="/zh-CN/community/contribution_guide/new_pmc_ember_process">新的 PMC 成员流程</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/document">文档</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/submit_code">提交代码</a></li><li><a class="dropdown__link" href="/zh-CN/community/submit_guide/code_style_and_quality_guide">代码风格和质量指南</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/zh-CN/community/submit_guide/documentation_style_guide">文档书写规范</a></li><li><a class="dropdown__link" href="/zh-CN/community/release/how_to_release_version_2.1.x">How to release version 2.1.x</a></li><li><a class="dropdown__link" href="/zh-CN/community/release/how_to_verify_release">如何验证发版</a></li></ul></div><a class="navbar__item navbar__link" href="/zh-CN/team">团队</a><a class="navbar__item navbar__link" href="/zh-CN/user">用户</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Apache</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">基金会</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">证书</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank" rel="noopener noreferrer" class="dropdown__link">事件</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">安全</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">赞助</a></li><li><a href="https://www.apache.org/foundation/policies/privacy.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">致谢</a></li></ul></div><a class="navbar__item navbar__link" href="/zh-CN/blog">博客</a><a href="https://github.com/apache/incubator-streampark/issues/507" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">FAQ</a><a href="https://github.com/apache/incubator-streampark" target="_blank" class="githubStars_qnS9"><div class="githubStarsContainer_O7dk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.75C4.27062 1.75 1.25 4.77062 1.25 8.5C1.25 11.4869 3.18219 14.0097 5.86531 14.9041C6.20281 14.9631 6.32937 14.7606 6.32937 14.5834C6.32937 14.4231 6.32094 13.8916 6.32094 13.3263C4.625 13.6384 4.18625 12.9128 4.05125 12.5331C3.97531 12.3391 3.64625 11.74 3.35938 11.5797C3.12312 11.4531 2.78562 11.1409 3.35094 11.1325C3.8825 11.1241 4.26219 11.6219 4.38875 11.8244C4.99625 12.8453 5.96656 12.5584 6.35469 12.3813C6.41375 11.9425 6.59094 11.6472 6.785 11.4784C5.28312 11.3097 3.71375 10.7275 3.71375 8.14563C3.71375 7.41156 3.97531 6.80406 4.40563 6.33156C4.33812 6.16281 4.10187 5.47094 4.47312 4.54281C4.47312 4.54281 5.03844 4.36563 6.32937 5.23469C6.86937 5.08281 7.44313 5.00687 8.01688 5.00687C8.59063 5.00687 9.16438 5.08281 9.70438 5.23469C10.9953 4.35719 11.5606 4.54281 11.5606 4.54281C11.9319 5.47094 11.6956 6.16281 11.6281 6.33156C12.0584 6.80406 12.32 7.40312 12.32 8.14563C12.32 10.7359 10.7422 11.3097 9.24031 11.4784C9.485 11.6894 9.69594 12.0944 9.69594 12.7272C9.69594 13.63 9.6875 14.3556 9.6875 14.5834C9.6875 14.7606 9.81406 14.9716 10.1516 14.9041C12.8178 14.0097 14.75 11.4784 14.75 8.5C14.75 4.77062 11.7294 1.75 8 1.75Z" fill="currentColor"></path></svg><span class="githubText_YlX6">3.9k</span></div></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_DSK9"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></a><ul class="dropdown__menu"><li><a href="/community/submit_guide/documentation_style_guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/zh-CN/community/submit_guide/documentation_style_guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-CN">简体中文</a></li></ul></div><a class="colorModeButton_yITp undefined"><svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></a><div class="navbarSearchContainer_dCNk"><div class="navbar__search searchBarContainer_SuYZ"><input placeholder="搜索" aria-label="Search" class="navbar__search-input"><div class="loadingRing_HgBb searchBarLoadingRing_om0w"><div></div><div></div><div></div><div></div></div></div></div><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_pmYA"><div class="docsWrapper_xNxE"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_yIRJ" type="button"></button><div class="docRoot_vmqG"><aside class="theme-doc-sidebar-container docSidebarContainer_hlm_"><div class="sidebarViewport_c8HV"><div class="sidebar_mhZE"><div class="sidebarSearchContainer_Lwc8"></div><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP" style="padding-top:1.75rem;padding-bottom:250px;overflow-y:auto"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh-CN/community/contribution_guide/mailing_lists">贡献指引</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/zh-CN/community/submit_guide/document">代码提交</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/document">文档说明</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/submit_code">提交代码</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/zh-CN/community/submit_guide/code_style_and_quality_guide">代码风格和质量指南</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/zh-CN/community/submit_guide/documentation_style_guide">文档书写规范</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/zh-CN/community/release/how_to_release_version_2.1.x">版本发布</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_Ke0w"><div class="container padding-top--md padding-bottom--lg"><div class="row" style="flex-wrap:nowrap"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_FXM1" aria-label="页面路径"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/zh-CN/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_vXXl"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">代码提交</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">文档书写规范</span><meta itemprop="position" content="2"></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>文档书写规范</h1></header><h2 class="anchor anchorWithStickyNavbar_myWT" id="1-英文文档规范">1 英文文档规范<a href="#1-英文文档规范" class="hash-link" aria-label="1 英文文档规范的直接链接" title="1 英文文档规范的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="11-必要的换行符">1.1 必要的换行符<a href="#11-必要的换行符" class="hash-link" aria-label="1.1 必要的换行符的直接链接" title="1.1 必要的换行符的直接链接">​</a></h3>
+<p>当你在编写文档时，请在近似行长度的位置（120个字符）处主动使用换行符，以便开发人员阅读和审查。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="12-3-c-原则">1.2 <a href="https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Writing_style_guide#%E8%80%83%E8%99%91%E5%86%99%E4%BD%9C%E7%9A%84%E2%80%9C3c%E2%80%9D%E5%87%86%E5%88%99" target="_blank" rel="noopener noreferrer">3-C 原则</a><a href="#12-3-c-原则" class="hash-link" aria-label="12-3-c-原则的直接链接" title="12-3-c-原则的直接链接">​</a></h3>
+<ul>
+<li>
+<p>清晰<br>
+<!-- -->确保语句表达清晰简洁。一般来说，使用主动语态和毫不含糊的代词。
+写短句，坚持每句话一个观点。
+在使用新术语之前，有必要对其进行定义并维护目标受众。</p>
+</li>
+<li>
+<p>简单<br>
+<!-- -->在编写文档时，明确主要表达的内容是很重要的。如果你提供了太多细节， 这一页会变得枯燥难懂，而且很少被使用。</p>
+</li>
+<li>
+<p>一致性
+确保在当前页面和跨页面的时候使用一致性的表述。</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="13-减少标记标识">1.3 减少标记标识<a href="#13-减少标记标识" class="hash-link" aria-label="1.3 减少标记标识的直接链接" title="1.3 减少标记标识的直接链接">​</a></h3>
+<p>减少标记的数量（如代码块、粗体文本），除非是绝对必要的，因为 过多的标记标识会使渲染的文档变得非常难以阅读。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="14-正确的引用">1.4 正确的引用<a href="#14-正确的引用" class="hash-link" aria-label="1.4 正确的引用的直接链接" title="1.4 正确的引用的直接链接">​</a></h3>
+<ul>
+<li>正例：<!-- -->
+<blockquote>
+<p>Apache HBase, ClickHouse.</p>
+</blockquote>
+</li>
+<li>反例：<!-- -->
+<blockquote>
+<p>Apache Hbase, Clickhouse.</p>
+</blockquote>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="15-完整性和可用性">1.5 完整性和可用性<a href="#15-完整性和可用性" class="hash-link" aria-label="1.5 完整性和可用性的直接链接" title="1.5 完整性和可用性的直接链接">​</a></h3>
+<ul>
+<li>英文文档应具有相应的中文文档页面。</li>
+<li>英文文档中引用的内部链接应确保目标页面存在，并且其他语言的相应页面应该是可访问的。</li>
+<li>英文文档中引用的外部链接应确保目标页面存在。</li>
+<li>如果有不完整的资源，最好声明补充时间和计划，并在必要时添加简单的解释。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="16-包容性地表达">1.6 包容性地表达<a href="#16-包容性地表达" class="hash-link" aria-label="1.6 包容性地表达的直接链接" title="1.6 包容性地表达的直接链接">​</a></h3>
+<p>点击 <a href="https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Writing_style_guide#%E4%BD%BF%E7%94%A8%E5%8C%85%E5%AE%B9%E6%80%A7%E8%AF%AD%E8%A8%80" target="_blank" rel="noopener noreferrer">这里</a> 获取更多的细节。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="17-空格">1.7 空格<a href="#17-空格" class="hash-link" aria-label="1.7 空格的直接链接" title="1.7 空格的直接链接">​</a></h3>
+<p>如下情况需要保证空格分隔。</p>
+<ul>
+<li>单词和数字之间</li>
+<li>单词和单位之间</li>
+<li>数字和单位之间</li>
+<li>单词和连接之间</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="18-标点符号">1.8 标点符号<a href="#18-标点符号" class="hash-link" aria-label="1.8 标点符号的直接链接" title="1.8 标点符号的直接链接">​</a></h3>
+<ul>
+<li>使用英文输入法时，请使用半角英文标点符号。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="19-句首字母大写">1.9 句首字母大写<a href="#19-句首字母大写" class="hash-link" aria-label="1.9 句首字母大写的直接链接" title="1.9 句首字母大写的直接链接">​</a></h3>
+<p>除非是特殊情况，否则句子中第一个单词的第一个字母应该大写。</p>
+<ul>
+<li>正例：<!-- -->
+<blockquote>
+<p>&#x27;nameMap&#x27;(Assuming the attribute name is &#x27;nameMap&#x27;) is an attribute of class <code>Demo</code>.</p>
+<p>Jige is a pretty basketball player.</p>
+</blockquote>
+</li>
+<li>反例：<!-- -->
+<blockquote>
+<p>&#x27;NameMap&#x27; is an attribute of class <code>Demo</code>.</p>
+<p>Jige is a pretty basketball player.</p>
+</blockquote>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="更严谨的规范">更严谨的规范<a href="#更严谨的规范" class="hash-link" aria-label="更严谨的规范的直接链接" title="更严谨的规范的直接链接">​</a></h3>
+<p>如果你有兴趣确保更高质量的文档的标准化写作，请让参考 <a href="https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Writing_style_guide" target="_blank" rel="noopener noreferrer">这里</a>。</p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="2-中文文档规范">2 中文文档规范<a href="#2-中文文档规范" class="hash-link" aria-label="2 中文文档规范的直接链接" title="2 中文文档规范的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="21-空格">2.1 空格<a href="#21-空格" class="hash-link" aria-label="2.1 空格的直接链接" title="2.1 空格的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="211-中英文之间">2.1.1 中英文之间<a href="#211-中英文之间" class="hash-link" aria-label="2.1.1 中英文之间的直接链接" title="2.1.1 中英文之间的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>Apache Flink® 是 Apache StreamPark 支持的计算引擎之一。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>Apache Flink® 是 Apache StreamPark支持的计算引擎之一。</p>
+<p>Apache Flink是 Apache StreamPark 支持的计算引擎之一。</p>
+</blockquote>
+<p>特别地：对于产品术语，请以官方定义的方式书写。</p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="212-文字和数字之间">2.1.2 文字和数字之间<a href="#212-文字和数字之间" class="hash-link" aria-label="2.1.2 文字和数字之间的直接链接" title="2.1.2 文字和数字之间的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>某个公司的 Apache StreamPark 平台运行了 5000 个 Apache Flink® 作业。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>某个公司的 Apache StreamPark 平台运行了5000 个 Apache Flink® 作业。</p>
+<p>某个公司的 Apache StreamPark 平台运行了 5000个 Apache Flink® 作业。</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="213-数字和单位之间">2.1.3 数字和单位之间<a href="#213-数字和单位之间" class="hash-link" aria-label="2.1.3 数字和单位之间的直接链接" title="2.1.3 数字和单位之间的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>某公司的 Apache StreamPark 平台可用内存资源接近 100 PB。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>某公司的 Apache StreamPark 平台可用内存资源接近 100PB。</p>
+</blockquote>
+<p>特别地，无需在度数、百分比和数字之间添加空格：</p>
+<p>正例：</p>
+<blockquote>
+<p>角度为 90° 的角，就是直角。</p>
+<p>Apache StreamPark 可以给 Apache Flink® 作业管理带来约 15% 的效率提升。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>角度为 90 ° 的角，就是直角。</p>
+<p>Apache StreamPark 可以给 Apache Flink® 作业管理带来约 15 % 的效率提升。</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="214-全角标点符号和其他字符之间不需要空格">2.1.4 全角标点符号和其他字符之间不需要空格<a href="#214-全角标点符号和其他字符之间不需要空格" class="hash-link" aria-label="2.1.4 全角标点符号和其他字符之间不需要空格的直接链接" title="2.1.4 全角标点符号和其他字符之间不需要空格的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>公司的计算平台刚刚升级成了 Apache StreamPark，好开心！</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>公司的计算平台刚刚升级成了 Apache StreamPark ，好开心！</p>
+<p>公司的计算平台刚刚升级成了 Apache StreamPark， 好开心！</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="215-文字与超链接之间">2.1.5 文字与超链接之间<a href="#215-文字与超链接之间" class="hash-link" aria-label="2.1.5 文字与超链接之间的直接链接" title="2.1.5 文字与超链接之间的直接链接">​</a></h4>
+<p>使用方式：</p>
+<blockquote>
+<p>请 <a href="http://localhost" target="_blank" rel="noopener noreferrer">提交一个 issue</a> 反馈到 Apache StreamPark 社区。</p>
+<p>访问 Apache StreamPark 的最新动态，请 <a href="http://localhost" target="_blank" rel="noopener noreferrer">点击这里</a> 进行订阅！</p>
+</blockquote>
+<p>对比用法：</p>
+<blockquote>
+<p>请<a href="http://localhost" target="_blank" rel="noopener noreferrer">提交一个 issue</a>反馈到 Apache StreamPark 社区。</p>
+<p>访问 Apache StreamPark 的最新动态，请<a href="http://localhost" target="_blank" rel="noopener noreferrer">点击这里</a>进行订阅！</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="22-标点符号">2.2 标点符号<a href="#22-标点符号" class="hash-link" aria-label="2.2 标点符号的直接链接" title="2.2 标点符号的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="221-do-not-repeat-punctuation-marks">2.2.1 Do not repeat punctuation marks<a href="#221-do-not-repeat-punctuation-marks" class="hash-link" aria-label="2.2.1 Do not repeat punctuation marks的直接链接" title="2.2.1 Do not repeat punctuation marks的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>哇！Apache StreamPark！</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>哇！Apache StreamPark！！！</p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2" target="_blank" rel="noopener noreferrer">Full angle and half angle</a></p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="222-使用全角中文标点符号">2.2.2 使用全角中文标点符号<a href="#222-使用全角中文标点符号" class="hash-link" aria-label="2.2.2 使用全角中文标点符号的直接链接" title="2.2.2 使用全角中文标点符号的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>Apache StreamPark 是一个不错的大数据计算平台的选型。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>Apache StreamPark 是一个不错的大数据计算平台的选型.</p>
+</blockquote>
+<p>特别是当中文句子包含英文书籍或报纸标题时，不应使用中文书名号，而应以斜体字标明。</p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="223-使用半角数字">2.2.3 使用半角数字<a href="#223-使用半角数字" class="hash-link" aria-label="2.2.3 使用半角数字的直接链接" title="2.2.3 使用半角数字的直接链接">​</a></h4>
+<p>正例：</p>
+<blockquote>
+<p>某公司的 Apache StreamPark 平台稳定运行了 1000 个 Application。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>某公司的 Apache StreamPark 平台稳定运行了 １０００ 个 Application。</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="224-半角标点符号的特  殊用法">2.2.4 半角标点符号的特殊用法<a href="#224-半角标点符号的特殊用法" class="hash-link" aria-label="2.2.4 半角标点符号的特殊用法的直接链接" title="2.2.4 半角标点符号的特殊用法的直接链接">​</a></h4>
+<p>特别地，当遇到完整的英语句子和特殊名词时，在内容中使用半角标点符号。</p>
+<p>正例：</p>
+<blockquote>
+<p>乔布斯那句话是怎么说的？“Stay hungry, stay foolish.”</p>
+<p>推荐你阅读 <em>Hackers &amp; Painters: Big Ideas from the Computer Age</em>，非常地有趣。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>乔布斯那句话是怎么说的？“Stay hungry，stay foolish。”</p>
+<p>推荐你阅读《Hackers＆Painters：Big Ideas from the Computer Age》，非常的有趣。</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="225-引号">2.2.5 引号<a href="#225-引号" class="hash-link" aria-label="2.2.5 引号的直接链接" title="2.2.5 引号的直接链接">​</a></h3>
+<p>建议使用如下示例的引用方式：</p>
+<blockquote>
+<p>鸡哥说：“老师，‘鸡你太美’的‘坤’是谁？”</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="23-名词">2.3 名词<a href="#23-名词" class="hash-link" aria-label="2.3 名词的直接链接" title="2.3 名词的直接链接">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="231-正确的大小写">2.3.1 正确的大小写<a href="#231-正确的大小写" class="hash-link" aria-label="2.3.1 正确的大小写的直接链接" title="2.3.1 正确的大小写的直接链接">​</a></h4>
+<p>专有名词应正确使用大小写。</p>
+<p>正例：</p>
+<blockquote>
+<p>使用 GitHub 克隆 Apache StreamPark 代码仓库。</p>
+<p>Apache StreamPark 支持的生态有 Apache Flink、Spark、Flink-CDC、Paimon、Hudi, Inc.。</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>使用 gitHub 克隆 Apache StreamPark 代码仓库。</p>
+<p>使用 Github 克隆 Apache StreamPark 代码仓库。</p>
+<p>Apache StreamPark 支持的生态有 Apache flink、Spark、Flink-CDC、Paimon、Hudi, Inc.。</p>
+<p>Apache StreamPark 支持的生态有 apache Flink、spark、flink-cdc、Paimon、Hudi, Inc.。</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="232-不恰当的缩写">2.3.2 不恰当的缩写<a href="#232-不恰当的缩写" class="hash-link" aria-label="2.3.2 不恰当的缩写的直接链接" title="2.3.2 不恰当的缩写的直接链接">​</a></h4>
+<p>不要使用非常规的缩写。</p>
+<p>正例：</p>
+<blockquote>
+<p>Apache StreamPark 使用了 TypeScript、HTML5 技术吗？</p>
+</blockquote>
+<p>反例：</p>
+<blockquote>
+<p>Apache StreamPark 使用了 ts、h5 技术吗？</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="3-中文翻译">3 中文翻译<a href="#3-中文翻译" class="hash-link" aria-label="3 中文翻译的直接链接" title="3 中文翻译的直接链接">​</a></h2>
+<ul>
+<li>社区推荐优先推荐撰写英文文档，然后根据英文文档翻译为中文文档。</li>
+<li>翻译时以 <code>2 中文规范</code> 为基准，并兼顾如下几点：</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="31-使用纯文本工具进行翻译不要使用富文本工具">3.1 使用纯文本工具进行翻译，不要使用富文本工具<a href="#31-使用纯文本工具进行翻译不要使用富文本工具" class="hash-link" aria-label="3.1 使用纯文本工具进行翻译，不要使用富文本工具的直接链接" title="3.1 使用纯文本工具进行翻译，不要使用富文本工具的直接链接">​</a></h3>
+<p>使用纯文本工具可以进行翻译，可以有效避免增加新行、删除行、破坏链接、破坏引号、破坏星号等行为。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="32-汉字与英文数字之间需空格">3.2 汉字与英文、数字之间需空格<a href="#32-汉字与英文数字之间需空格" class="hash-link" aria-label="3.2 汉字与英文、数字之间需空格的  直接链接" title="3.2 汉字与英文、数字之间需空格的直接链接">​</a></h3>
+<p>参考中文文档规范部分</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="33-文档链接">3.3 文档链接<a href="#33-文档链接" class="hash-link" aria-label="3.3 文档链接的直接链接" title="3.3 文档链接的直接链接">​</a></h3>
+<p>英文版文档中可能会包含引用文档中其他文章的绝对链接，此时要注意将链接修改为中文版的 URL。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="34-一般用你而不是您">3.4 一般用“你”，而不是“您”<a href="#34-一般用你而不是您" class="hash-link" aria-label="3.4 一般用“你”，而不是“您”的直接链接" title="3.4 一般用“你”，而不是“您”的直接链接">​</a></h3>
+<p>为了风格统一，我们建议在一般情况下使用“你”即可，这样与读者距离近一些。当然必要的时候可以使用“您”来称呼，比如 warning 提示的时候。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="35-示例代码及注释">3.5 示例代码及注释<a href="#35-示例代码及注释" class="hash-link" aria-label="3.5 示例代码及注释的直接链接" title="3.5 示例代码及注释的直接链接">​</a></h3>
+<p>示例代码中的注释最好能够翻译，当然也可以选择不翻译（当注释很简单时）。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="36-意译优于直译">3.6 意译优于直译<a href="#36-意译优于直译" class="hash-link" aria-label="3.6 意译优于直译的直接链接" title="3.6 意译优于直译的直接链接">​</a></h3>
+<p>社区不推荐把原文一字不漏地、逐句地翻译。因为有些情况下不但不准确而且有时候读着会很别扭。所以建议在翻译完以后，
+自己多读几遍，看看是否符合原意、是否绕口、是否简洁。
+在充分理解原文的基础上，可以适当采用意译的方式来翻译。有时候为了简化句子，有些数量词、助词、主语都可以省略。</p>
+<p>简述两种示例情况如下：</p>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="361-不必要的所有格翻译">3.6.1 不必要的所有格翻译<a href="#361-不必要的所有格翻译" class="hash-link" aria-label="3.6.1 不必要的所有格翻译的直接链接" title="3.6.1 不必要的所有格翻译的直接链接">​</a></h4>
+<p>英文中经常会用 <code>&#x27;s</code> 来表达从属关系，一字不落地都将其翻译成 &quot;的&quot; 就会很翻译腔。在中文里面有些 &quot;的&quot; 完全可以去掉，
+不会影响表达的意思，还能简洁很多，看下面的例子：</p>
+<ul>
+<li>
+<p>示例：<br>
+<!-- -->Flink&#x27;s documentation is located in the docs folder in Flink&#x27;s source code repository</p>
+<ul>
+<li>
+<p>反例：将&quot;的&quot;字都翻译出来，但是读起来很不顺畅</p>
+<blockquote>
+<p>Flink 的文档位于 Flink 的源码仓库的 docs 文件夹中。</p>
+</blockquote>
+</li>
+<li>
+<p>正例：去掉不必要的&quot;的&quot;字，就会简洁很多：</p>
+<blockquote>
+<p>Flink 文档位于 Flink 源码仓库的 docs 文件夹中。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_myWT" id="362-不必要的量词冠词的翻译">3.6.2 不必要的量词/冠词的翻译<a href="#362-不必要的量词冠词的翻译" class="hash-link" aria-label="3.6.2 不必要的量词/冠词的翻译的直接链接" title="3.6.2 不必要的量词/冠词的翻译的直接链接">​</a></h4>
+<p>英文一般比较严谨，当代表多个时，会使用复数名字，在翻译成中文时，一般不需要刻意把这种复数翻译出来。</p>
+<p>在英文里，当单数可数名词时，前面一般会有“a”或“an”，但在中文里我们大多数时候是不用把“一个...”给翻译出来的。</p>
+<ul>
+<li>
+<p>示例：<br>
+<!-- -->State is a first-class citizen in Flink.</p>
+<ul>
+<li>
+<p>反例：将“a”翻译成“一个”</p>
+<blockquote>
+<p>状态是 Flink 中的一个一等公民</p>
+</blockquote>
+</li>
+<li>
+<p>正例：去掉不必要的“一个”</p>
+<blockquote>
+<p>状态是 Flink 中的一等公民</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>虽然看起来没什么问题，但是这里的“一个”完全是多余的，去掉之后不但不会影响翻译效果，而且还会显得更加简洁。</p>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="37-专业术语">3.7 专业术语<a href="#37-专业术语" class="hash-link" aria-label="3.7 专业术语的直接链接" title="3.7 专业术语的直接链接">​</a></h3>
+<ul>
+<li>Application，Checkpoint，Savepoint，Team 等，及当前没有合适的对应统一名词的翻译可以直接使用英文进行表述</li>
+<li>重要：文章中第一次出现专业术语翻译的地方需要给出英文原文。例如：“如果看到反压（back pressure）警告，则...”</li>
+<li>专有词要注意大小写，如 Apache Flink，Java，Scala，API，SQL，不要用小写的 apache flink, java, scala, api, sql。</li>
+<li>当单词是指代码中的属性名、方法名、对象名、类名、标签名等时，可以不译。<br>
+<!-- -->例如 &quot;parallelism parameter&quot; 不需要翻译成“并发参数”，而是应为“parallelism 属性”。</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="38-编写或者翻译文档时及时换行">3.8 编写或者翻译文档时及时换行<a href="#38-编写或者翻译文档时及时换行" class="hash-link" aria-label="3.8 编写或者翻译文档时及时换行的直接链接" title="3.8 编写或者翻译文档时及时换行的直接链接">​</a></h3>
+<p>编写文档时，在近似行字符数（120 chars）附近主动换行，方便 review 和 开发者阅读.</p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="references">References<a href="#references" class="hash-link" aria-label="References的直接链接" title="References的直接链接">​</a></h2>
+<ul>
+<li><a href="https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md" target="_blank" rel="noopener noreferrer">https://github.com/sparanoid/chinese-copywriting-guidelines/blob/master/README.zh-Hans.md</a></li>
+<li><a href="https://github.com/apache/incubator-streampark-website/pull/347" target="_blank" rel="noopener noreferrer">https://github.com/apache/incubator-streampark-website/pull/347</a></li>
+<li><a href="https://github.com/apache/incubator-streampark-website/pull/349" target="_blank" rel="noopener noreferrer">https://github.com/apache/incubator-streampark-website/pull/349</a></li>
+<li><a href="https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications" target="_blank" rel="noopener noreferrer">https://cwiki.apache.org/confluence/display/FLINK/Flink+Translation+Specifications</a></li>
+<li><a href="https://lists.apache.org/thread/0p40kdbkoqdto2zlvwbw3r9xo3hfnm4g" target="_blank" rel="noopener noreferrer">https://lists.apache.org/thread/0p40kdbkoqdto2zlvwbw3r9xo3hfnm4g</a></li>
+<li><a href="https://www.thoughtco.com/guidelines-for-using-capital-letters-1691724" target="_blank" rel="noopener noreferrer">Guidelines for Using Capital Letters - ThoughtCo.</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Letter_case" target="_blank" rel="noopener noreferrer">Letter case - Wikipedia</a></li>
+<li><a href="https://en.oxforddictionaries.com/grammar/punctuation" target="_blank" rel="noopener noreferrer">Punctuation - Oxford Dictionaries</a></li>
+<li><a href="https://owl.english.purdue.edu/owl/section/1/6/" target="_blank" rel="noopener noreferrer">Punctuation - The Purdue OWL</a></li>
+<li><a href="https://www.wikihow.com/Use-English-Punctuation-Correctly" target="_blank" rel="noopener noreferrer">How to Use English Punctuation Correctly - wikiHow</a></li>
+<li><a href="https://zh.opensuse.org/index.php?title=Help:%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener noreferrer">Format - openSUSE</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%BD%A2%E5%92%8C%E5%8D%8A%E5%BD%A2" target="_blank" rel="noopener noreferrer">Full Form and Half Form - Wikipedia</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/MDN/Writing_guidelines/Writing_style_guide" target="_blank" rel="noopener noreferrer">Document Writing Specification</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev paginationNavLink_UdUv" href="/zh-CN/community/submit_guide/code_style_and_quality_guide"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.2751 19.175L10.3251 18.125L5.4501 13.25H21.6001V11.75H5.4501L10.3251 6.87501L9.2751 5.82501L2.5751 12.5L9.2751 19.175Z" fill="currentColor"></path></svg><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">上一页</div><div class="paginationNavLabel_YPzM pagination-nav__label">代码风格和质量指南</div></div></a><a class="pagination-nav__link pagination-nav__link--next paginationNavLink_UdUv" href="/zh-CN/community/release/how_to_release_version_2.1.x"><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">下一页</div><div class="paginationNavLabel_YPzM pagination-nav__label">How to Release Version 2.1.x</div></div><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7249 19.175L13.6749 18.125L18.5499 13.25H2.3999V11.75H18.5499L13.6749 6.87501L14.7249 5.82501L21.4249 12.5L14.7249 19.175Z" fill="currentColor"></path></svg></a></nav></div></div><div class="col col--3"><div class="docTOCContainer_nkwD theme-doc-toc-desktop-container"><div class="tableOfContents_jeP5 thin-scrollbar docTOC_GnpH theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-英文文档规范" class="table-of-contents__link toc-highlight">1 英文文档规范</a><ul><li><a href="#11-必要的换行符" class="table-of-contents__link toc-highlight">1.1  必要的换行符</a></li><li><a href="#12-3-c-原则" class="table-of-contents__link toc-highlight">1.2 3-C 原则</a></li><li><a href="#13-减少标记标识" class="table-of-contents__link toc-highlight">1.3 减少标记标识</a></li><li><a href="#14-正确的引用" class="table-of-contents__link toc-highlight">1.4 正确的引用</a></li><li><a href="#15-完整性和可用性" class="table-of-contents__link toc-highlight">1.5 完整性和可用性</a></li><li><a href="#16-包容性地表达" class="table-of-contents__link toc-highlight">1.6 包容性地表达</a></li><li><a href="#17-空格" class="table-of-contents__link toc-highlight">1.7 空格</a></li><li><a href="#18-标点符号" class="table-of-contents__link toc-highlight">1.8 标点符号</a></li><li><a href="#19-句首字母大写" class="table-of-contents__link toc-highlight">1.9 句首字母大写</a></li><li><a href="#更严谨的规范" class="table-of-contents__link toc-highlight">更严谨的规范</a></li></ul></li><li><a href="#2-中文文档规范" class="table-of-contents__link toc-highlight">2 中文文档规范</a><ul><li><a href="#21-空格" class="table-of-contents__link toc-highlight">2.1 空格</a></li><li><a href="#22-标点符号" class="table-of-contents__link toc-highlight">2.2 标点符号</a></li><li><a href="#225-引号" class="table-of-contents__link toc-highlight">2.2.5 引号</a></li><li><a href="#23-名词" class="table-of-contents__link toc-highlight">2.3 名词</a></li></ul></li><li><a href="#3-中文翻译" class="table-of-contents__link toc-highlight">3 中文翻译</a><ul><li><a href="#31-使用纯文本工具进行翻译不要使用富文本工具" class="table-of-contents__link toc-highlight">3.1 使用纯文本工具进行翻译，不要使用富文本工具</a></li><li><a href="#32-汉字与英文数字之间需空格" class="table-of-contents__link toc-highlight">3.2 汉字与英文、数字之间需空格</a></li><li><a href="#33-文档链接" class="table-of-contents__link toc-highlight">3.3 文档链接</a></li><li><a href="#34-一般用你而不是您" class="table-of-contents__link toc-highlight">3.4 一般用“你”，而不是“您”</a></li><li><a href="#35-示例代码及注释" class="table-of-contents__link toc-highlight">3.5 示例代码及注释</a></li><li><a href="#36-意译优于直译" class="table-of-contents__link toc-highlight">3.6 意译优于直译</a></li><li><a href="#37-专业术语" class="table-of-contents__link toc-highlight">3.7 专业术语</a></li><li><a href="#38-编写或者翻译文档时及时换行" class="table-of-contents__link toc-highlight">3.8 编写或者翻译文档时及时换行</a></li></ul></li><li><a href="#references" class="table-of-contents__link toc-highlight">References</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">加入社区</div><ul class="footer__items clean-list"><li class="footer__item">
+                <div class="subscribe-box btns">
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark"><i class="fa fa-github"></i><span>Github</span></a>
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark/issues"><i class="fa fa-slack"></i><span>Issue Tracking</span></a>
+                  <a class="btn btn-primary" href="javascript:void(0)">
+                    <i class="fa fa-wechat"></i>
+                    <span>Wechat</span>
+                    <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                  </a>
+                </div>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><div>
+        <div>
+          <div style="margin-bottom: 30px;">
+            <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+              <img alt="Apache Incubator logo" class="footer__logo" width="200">
+            </a>
+          </div>
+          <div>
+            <p>
+            Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span>
+            Copyright © 2022-2024 The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+          </span>
+        </div>
+      </div></div></div></div></footer></div>
+</body>
+</html>

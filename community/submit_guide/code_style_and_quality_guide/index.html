@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-community docs-version-current docs-doc-page docs-doc-id-submit_guide/code_style_and_quality_guide" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.3.2">
+<title data-rh="true">Code style and quality guide | Apache StreamPark (incubating)</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-community-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-community-current"><meta data-rh="true" property="og:title" content="Code style and quality guide | Apache StreamPark (incubating)"><meta data-rh="true" name="description" content="&lt;!--"><meta data-rh="true" property="og:description" content="&lt;!--"><link data-rh="true" rel="icon" href="/image/favicon.ico"><link data-rh="true" rel="canonical" href="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide" hreflang="en"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/zh-CN/community/submit_guide/code_style_and_quality_guide" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://streampark.apache.org/community/submit_guide/code_style_and_quality_guide" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Apache StreamPark (incubating) RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Apache StreamPark (incubating) Atom Feed"><link rel="stylesheet" href="/assets/css/styles.2815dd1e.css">
+<script src="/assets/js/runtime~main.788200c2.js" defer="defer"></script>
+<script src="/assets/js/main.237a4499.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?t("light"):t("dark")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_BCtO" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--light_uT2j"><img src="/image/logo.png" alt="StreamPark Logo" class="themedComponent_Cvhi themedComponent--dark_ENih"></div><b class="navbar__title text--truncate">StreamPark</b></a></div><div class="navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/docs/get-started/intro">Docs</a><a class="navbar__item navbar__link" href="/download">Download</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Community</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/foundation/policies/conduct" target="_blank" rel="noopener noreferrer" class="dropdown__link">Code of conduct</a></li><li><a class="dropdown__link" href="/community/contribution_guide/mailing_lists">Join the mailing lists</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_committer">Become A Committer</a></li><li><a class="dropdown__link" href="/community/contribution_guide/become_pmc_member">Become A PMC member</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_committer_process">New Committer Process</a></li><li><a class="dropdown__link" href="/community/contribution_guide/new_pmc_ember_process">New PMC Member Process</a></li><li><a class="dropdown__link" href="/community/submit_guide/document">Documentation Notice</a></li><li><a class="dropdown__link" href="/community/submit_guide/submit_code">Submit Code</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/community/submit_guide/code_style_and_quality_guide">Code style and quality guide</a></li><li><a class="dropdown__link" href="/community/submit_guide/documentation_style_guide">Documentation style guide</a></li><li><a class="dropdown__link" href="/community/release/how_to_release_version_2.1.x">How to release version 2.1.x</a></li><li><a class="dropdown__link" href="/community/release/how_to_verify_release">How to Verify Release</a></li></ul></div><a class="navbar__item navbar__link" href="/team">Team</a><a class="navbar__item navbar__link" href="/user">Users</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">ASF</a><ul class="dropdown__menu"><li><a href="https://www.apache.org/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Foundation</a></li><li><a href="https://www.apache.org/licenses/" target="_blank" rel="noopener noreferrer" class="dropdown__link">License</a></li><li><a href="https://www.apache.org/events/current-event" target="_blank" rel="noopener noreferrer" class="dropdown__link">Events</a></li><li><a href="https://www.apache.org/security/" target="_blank" rel="noopener noreferrer" class="dropdown__link">Security</a></li><li><a href="https://www.apache.org/foundation/sponsorship.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Sponsorship</a></li><li><a href="https://www.apache.org/foundation/policies/privacy.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Privacy</a></li><li><a href="https://www.apache.org/foundation/thanks.html" target="_blank" rel="noopener noreferrer" class="dropdown__link">Thanks</a></li></ul></div><a class="navbar__item navbar__link" href="/blog">Blog</a><a href="https://github.com/apache/incubator-streampark/issues/507" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">FAQ</a><a href="https://github.com/apache/incubator-streampark" target="_blank" class="githubStars_qnS9"><div class="githubStarsContainer_O7dk"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 1.75C4.27062 1.75 1.25 4.77062 1.25 8.5C1.25 11.4869 3.18219 14.0097 5.86531 14.9041C6.20281 14.9631 6.32937 14.7606 6.32937 14.5834C6.32937 14.4231 6.32094 13.8916 6.32094 13.3263C4.625 13.6384 4.18625 12.9128 4.05125 12.5331C3.97531 12.3391 3.64625 11.74 3.35938 11.5797C3.12312 11.4531 2.78562 11.1409 3.35094 11.1325C3.8825 11.1241 4.26219 11.6219 4.38875 11.8244C4.99625 12.8453 5.96656 12.5584 6.35469 12.3813C6.41375 11.9425 6.59094 11.6472 6.785 11.4784C5.28312 11.3097 3.71375 10.7275 3.71375 8.14563C3.71375 7.41156 3.97531 6.80406 4.40563 6.33156C4.33812 6.16281 4.10187 5.47094 4.47312 4.54281C4.47312 4.54281 5.03844 4.36563 6.32937 5.23469C6.86937 5.08281 7.44313 5.00687 8.01688 5.00687C8.59063 5.00687 9.16438 5.08281 9.70438 5.23469C10.9953 4.35719 11.5606 4.54281 11.5606 4.54281C11.9319 5.47094 11.6956 6.16281 11.6281 6.33156C12.0584 6.80406 12.32 7.40312 12.32 8.14563C12.32 10.7359 10.7422 11.3097 9.24031 11.4784C9.485 11.6894 9.69594 12.0944 9.69594 12.7272C9.69594 13.63 9.6875 14.3556 9.6875 14.5834C9.6875 14.7606 9.81406 14.9716 10.1516 14.9041C12.8178 14.0097 14.75 11.4784 14.75 8.5C14.75 4.77062 11.7294 1.75 8 1.75Z" fill="currentColor"></path></svg><span class="githubText_YlX6">3.9k</span></div></a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_DSK9"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg></a><ul class="dropdown__menu"><li><a href="/community/submit_guide/code_style_and_quality_guide" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li><li><a href="/zh-CN/community/submit_guide/code_style_and_quality_guide" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-CN">简体中文</a></li></ul></div><a class="colorModeButton_yITp undefined"><svg xmlns="http://www.w3.org/2000/svg" fill="none" width="16" height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg></a><div class="navbarSearchContainer_dCNk"><div class="navbar__search searchBarContainer_SuYZ"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_HgBb searchBarLoadingRing_om0w"><div></div><div></div><div></div><div></div></div></div></div><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_pmYA"><div class="docsWrapper_xNxE"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_yIRJ" type="button"></button><div class="docRoot_vmqG"><aside class="theme-doc-sidebar-container docSidebarContainer_hlm_"><div class="sidebarViewport_c8HV"><div class="sidebar_mhZE"><div class="sidebarSearchContainer_Lwc8"></div><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_Y1UP" style="padding-top:1.75rem;padding-bottom:250px;overflow-y:auto"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/community/contribution_guide/mailing_lists">Contribution Guide</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" href="/community/submit_guide/document">Submit Guide</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/community/submit_guide/document">Documentation Notice</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/community/submit_guide/submit_code">Submit Code</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/community/submit_guide/code_style_and_quality_guide">Code style and quality guide</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/community/submit_guide/documentation_style_guide">Documentation Style Guide</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menuListItemCollapsed_i9wL menu__list-item-collapsible" data-link="true"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/community/release/how_to_release_version_2.1.x">Release</a></div></li></ul></nav></div></div></aside><main class="docMainContainer_Ke0w"><div class="container padding-top--md padding-bottom--lg"><div class="row" style="flex-wrap:nowrap"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_FXM1" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_vXXl"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Submit Guide</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Code style and quality guide</span><meta itemprop="position" content="2"></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>Code style and quality guide</h1></header><h2 class="anchor anchorWithStickyNavbar_myWT" id="1-pull-requests--changes-rule">1 Pull Requests &amp; Changes Rule<a href="#1-pull-requests--changes-rule" class="hash-link" aria-label="Direct link to 1 Pull Requests &amp; Changes Rule" title="Direct link to 1 Pull Requests &amp; Changes Rule">​</a></h2>
+<ol>
+<li>
+<p><code>ISSUE</code>/<code>PR</code>(pull request) driving and naming</p>
+<ul>
+<li>Ensure that <code>PR</code> corresponds to <code>ISSUE</code>.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong>: <code>Hotfix</code> issue does not need to follow this rule, such as fixing spelling errors in <code>JavaDoc</code> or <code>document</code> files.</p>
+</blockquote>
+<ul>
+<li>Title naming format<br>
+<!-- -->When naming <code>PR</code>, you can refer to the <code>[ISSUE-XXXX][Feature/Improve/Refactor/Bug/Cleanup] Title</code> of the pull request,
+where <code>ISSUE-XXXX</code> should be replaced with the actual <code>ISSUE</code> number.<!-- -->
+<ul>
+<li>The second part describes the type of <code>PR</code>, such as new features, improvement, refactor, etc.</li>
+<li>If all changes to <code>PR</code> are within a certain module or component, they can be indicated in the commit message.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Description</p>
+<ul>
+<li>Please fill in the <code>PR</code> template to describe the contribution. So that the reviewer can understand the problem and solution from the description, rather than just from the code.</li>
+<li>Ensure that the description is sufficient to illustrate the problem addressed by the <code>PR</code>.</li>
+<li>Small changes do not require too much description.</li>
+<li>In an ideal scenario, the problem is described in <code>ISSUE</code>, and most of the description is copied from there.</li>
+</ul>
+</li>
+<li>
+<p>Try to break down changes into pure types of changes</p>
+<ul>
+<li>It&#x27;s recommended that <code>PR</code> should be arranged changes such as <code>Cleanup</code>, <code>Refactor</code>, <code>Improve</code>, and <code>Feature</code> into separated <code>PRs</code>/<code>Commits</code>.</li>
+<li>In this way, the reviewers can independently view cleaning and refactoring, and ensure that these changes do not change behavior.</li>
+<li>Then, the reviewer can independently review the core changes and ensure that they are a clean and robust change.</li>
+<li>In extreme cases, if a rollback commit is required, it can provide the optimal granularity for version rollback selection.</li>
+<li>In addition, significant contributions should be split into a set of independent changes that can be reviewed independently.</li>
+</ul>
+</li>
+<li>
+<p>Commit message<br>
+<!-- -->The commit of messages should follow a pattern similar to the <code>PR</code>: <code>[ISSUE-XXXX][Feature/Improve/Refactor/Cleanup] Title of the pull request</code>.</p>
+<ul>
+<li><code>[ISSUE-xxxx1][Improve(ment)] Improve ...</code></li>
+<li><code>[ISSUE-xxxx2][Refactor] Refactor ...</code></li>
+<li><code>[ISSUE-xxxx3][Feature] Support ...</code></li>
+<li><code>[ISSUE-xxxx4][Bug] Fix  ...</code></li>
+<li><code>[ISSUE-xxxx5][Feature][subtask] Support ...</code></li>
+<li><code>[Hotfix][module_name] Fix xxx comments ...</code></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong>: Try to use git history instead of annotated code (not mandatory)</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="2-code-checkstyle">2 Code Checkstyle<a href="#2-code-checkstyle" class="hash-link" aria-label="Direct link to 2 Code Checkstyle" title="Direct link to 2 Code Checkstyle">​</a></h2>
+<ul>
+<li>
+<p>Backend code formatting Maven plugin: <code>spotless</code>
+Just run <code>mvn spotless:apply</code> in the project repo root directory after installing the plugin.</p>
+</li>
+<li>
+<p>Backend code specification Maven plugin: <code>checkstyle</code>
+Just run <code>mvn checkstyle:checkstyle</code> after installing the plugin.</p>
+</li>
+<li>
+<p>Frontend code formatting plugin <code>eslint</code></p>
+<ul>
+<li>The original command is <code>npx eslint --cache --max-warnings 0 &quot;{src,mock}/**/*.{vue,ts,tsx}&quot; --fix</code></li>
+<li>Encapsulated as <code>npm run lint:eslint</code></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="3-programming-specification">3 Programming Specification<a href="#3-programming-specification" class="hash-link" aria-label="Direct link to 3 Programming Specification" title="Direct link to 3 Programming Specification">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="31-naming-style">3.1 Naming Style<a href="#31-naming-style" class="hash-link" aria-label="Direct link to 3.1 Naming Style" title="Direct link to 3.1 Naming Style">​</a></h3>
+<ol>
+<li>
+<p>Prioritize selecting nouns for variable naming, it&#x27;s easier to distinguish between <code>variables</code> or <code>methods</code>.</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Cache&lt;String&gt; publicKeyCache;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Pinyin abbreviations are prohibited for variables (excluding nouns such as place names), such as chengdu.</p>
+</li>
+<li>
+<p>It is recommended to end variable names with a <code>type</code>.<br>
+<!-- -->For variables of type <code>Collection/List</code>, take <code>xxxx</code> (plural representing multiple elements) or end with <code>xxxList</code> (specific type).<br>
+<!-- -->For variables of type <code>map</code>, describe the <code>key</code> and <code>value</code> clearly:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Map&lt;Long, User&gt; idUserMap;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  Map&lt;Long, String&gt; userIdNameMap;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>That can intuitively know the type and meaning of the variable through its name.<br>
+<!-- -->Method names should start with a verb first as follows:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  void computeVcores(Object parameter1);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<blockquote>
+<p>Note: It is not necessary to strictly follow this rule in the <code>Builder</code> tool class.</p>
+</blockquote>
+</li>
+<li>
+<p>The methods name of basic <code>CRUD</code> of the database layer (non-service layer) should be uniformly standardized according to name <code>com.baomidou.mybatisplus.core.mapper.BaseMapper</code>:</p>
+<ul>
+<li>
+<p>If performing a database query operation, the method name should start with <code>select</code>.</p>
+<p>When querying a single record, you can use <code>selectXxx</code>, such as <code>selectApp</code>.</p>
+<p>When querying multiple records, you can use <code>selectXxxs</code> to indicate a collection result, such as <code>selectApps</code>. If the entity ends with <code>s</code>, you can use <code>List</code>, such as <code>selectStatusList</code>.</p>
+<p>If the result is paginated, you can use <code>selectPage</code>. If the result is a <code>Map</code>, it is recommended to follow the <code>Map</code> naming conventions, such as <code>selectIdUserMap</code>.</p>
+<p>When the query includes specific conditions, you can use <code>selectXxxByXxx</code> naming, such as <code>listById</code> or <code>selectAppsByProjectId</code>.</p>
+<blockquote>
+<p>In cases of excessively long entity names, consider abbreviating judiciously. The principle is to be “clear and concise.” For example, <code>selectApplications</code> can be abbreviated to <code>selectApps</code>. However, if there is no suitable abbreviation, abbreviation is not recommended.
+For <code>Mapper</code> queries like <code>selectRecentK8sClusterIds</code>, you can also adopt the <code>selectList</code> naming convention.</p>
+</blockquote>
+</li>
+<li>
+<p>If perform a database <mark> update </mark> statement operation, the name of the method should be started with <code>update</code></p>
+</li>
+<li>
+<p>If perform a database <mark> insert </mark> statement operation, the name of the method should be started with <code>insert</code></p>
+</li>
+<li>
+<p>If perform a database <mark> delete </mark> statement operation, the name of the method should be started with <code>delete</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>The methods name of basic <code>CRUD</code> of the service layer should be named as <code>com.baomidou.mybatisplus.extension.service.IService</code>:</p>
+<ul>
+<li>If perform a database <mark> select </mark> operation to query multiple records, the name of the method should be started with a <code>list</code>, such as <code>listByIds</code>, <code>listByXxx</code></li>
+<li>If perform a database <mark> select </mark> operation to query a single record, the name of the method should be started with get, such as <code>getByName</code> and <code>getOne</code></li>
+<li>If perform a database <mark> update </mark> operation, the name of the method should be started with <code>update</code></li>
+<li>If perform a database <mark> insert </mark> operation, the name of the method should be started with <code>save</code></li>
+<li>If perform a database <mark> delete </mark> operation, the name of the method should be started with <code>remove</code></li>
+</ul>
+</li>
+<li>
+<p>Naming of parameters</p>
+<ul>
+<li>It&#x27;s best to maintain consistent parameter naming for parameters of the same type in the same interface.</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="32-constant-variables-definition">3.2 Constant Variables Definition<a href="#32-constant-variables-definition" class="hash-link" aria-label="Direct link to 3.2 Constant Variables Definition" title="Direct link to 3.2 Constant Variables Definition">​</a></h3>
+<ol>
+<li>
+<p>Set the <code>serialVersionUID</code> of all classes to <code>1L</code>, following <code>Flink</code>&#x27;s <code>serialVersionUID</code>.</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  private static final long serialVersionUID = -8713837118340960775L;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> private static final long serialVersionUID = 1L;</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Redundant strings should be extracted as constants</p>
+<blockquote>
+<p>If a constant has been hardcoded twice or more times, please directly extract it as a constant and change the corresponding reference.
+In generally, constants in <code>log</code> can be ignored to extract.</p>
+</blockquote>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public static RestResponse success(Object data) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;status&quot;, &quot;success&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;code&quot;, ResponseCode.CODE_SUCCESS);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;data&quot;, data);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public static RestResponse error() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;status&quot;, &quot;error&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;code&quot;, ResponseCode.CODE_FAIL);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    resp.put(&quot;data&quot;, null);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<blockquote>
+<p>Strings are extracted as constant references.</p>
+</blockquote>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String STATUS = &quot;status&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String CODE = &quot;code&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static final String DATA = &quot;data&quot;;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static RestResponse success(Object data) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(STATUS, &quot;success&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(CODE, ResponseCode.CODE_SUCCESS);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(DATA, data);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public static RestResponse error() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      RestResponse resp = new RestResponse();</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(STATUS, &quot;error&quot;);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(CODE, ResponseCode.CODE_FAIL);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      resp.put(DATA, null);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return resp;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Ensure code readability and intuitiveness</p>
+</li>
+</ol>
+<ul>
+<li>
+<p>The string in the <code>annotation</code> symbol doesn&#x27;t need to be extracted as constant.</p>
+</li>
+<li>
+<p>The referenced <code>package</code> or <code>resource</code> name doesn&#x27;t need to be extracted as constant.</p>
+</li>
+</ul>
+<ol start="4">
+<li>
+<p>Variables that have not been reassigned must also be declared as <mark> final </mark> types.</p>
+</li>
+<li>
+<p>About the arrangement order of <code>constant/variable</code> lines</p>
+<p>Sort the variable lines in the class in the order of</p>
+<ol>
+<li><code>public static final V</code>, <code>static final V</code>,<code>protected static final V</code>, <code>private static final V</code></li>
+<li><code>public static v</code>, <code>static v</code>,<code>protected static v</code>, <code>private static v</code></li>
+<li><code>public v</code>, <code>v</code>, <code>protected v</code>, <code>private v</code></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="33-methods-rule">3.3 Methods Rule<a href="#33-methods-rule" class="hash-link" aria-label="Direct link to 3.3 Methods Rule" title="Direct link to 3.3 Methods Rule">​</a></h3>
+<ol>
+<li>
+<p>Sort the methods in the class in the order of <code>public</code>, <code>protected</code>, <code>private</code></p>
+<p>Static methods of a class can be placed after non-static methods and sorted according to consistent method visibility.</p>
+</li>
+<li>
+<p>When there are restrictions on the method, the parameters and returned values of the method need to be annotated with <code>@Nonnull</code> or <code>@Nullable</code> annotations and constraints.</p>
+<p>For example, if the parameter cannot be null, it is best to add a <code>@Nonnull</code> annotation. If the returned value can be null, the <code>@Nullable</code> annotation should be added first.</p>
+<mark> Note: that the package name is <code>javax.validation.requirements </code> </mark>
+</li>
+<li>
+<p>If there are too many lines of code in the method, please have a try on using multiple sub methods at appropriate points to segment the method body.</p>
+<p>Generally speaking, it needs to adhere to the following principles:</p>
+<ul>
+<li>Convenient testing</li>
+<li>Good semantics</li>
+<li>Easy to read</li>
+</ul>
+<p>In addition, it is also necessary to consider whether the splitting is reasonable in terms of components, logic, abstraction, and other aspects in the scenario.</p>
+<blockquote>
+<p>However, there is currently no clear definition of demo. During the evolution process, we will provide additional examples for developers to have a clearer reference and understanding.</p>
+</blockquote>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="34-collection-rule">3.4 Collection Rule<a href="#34-collection-rule" class="hash-link" aria-label="Direct link to 3.4 Collection Rule" title="Direct link to 3.4 Collection Rule">​</a></h3>
+<ol>
+<li>
+<p>For <code>collection</code> returned values, unless there are special <code>concurrent</code> (such as thread safety), always return the <code>interface</code>, such as:</p>
+<ul>
+<li>returns <mark> List </mark> if use <code>ArrayList</code></li>
+<li>returns <mark> Map </mark> if use <code>HashMap</code></li>
+<li>returns <mark> Set </mark> if use <code>HashSet</code></li>
+</ul>
+</li>
+<li>
+<p>If there are multiple threads, the following declaration or returned types can be used:</p>
+</li>
+</ol>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  private CurrentHashMap map;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public CurrentHashMap funName();</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="3">
+<li>
+<p>Use <code>isEmpty()</code> instead of <code>length() == 0</code> or <code>size() == 0</code></p>
+<ul>
+<li>
+<p>Negative demo：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (pathPart.length() == 0) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo：</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (pathPart.isEmpty()) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="35-concurrent-processing">3.5 Concurrent Processing<a href="#35-concurrent-processing" class="hash-link" aria-label="Direct link to 3.5 Concurrent Processing" title="Direct link to 3.5 Concurrent Processing">​</a></h3>
+<ol>
+<li>
+<p>The <code>thread pool</code> needs to be managed, using a unified entry point to obtain the <code>thread pool</code>.</p>
+<mark> Note: During the evolution process, we will provide additional examples for developers to have a clearer reference and understanding. </mark>
+</li>
+<li>
+<p><code>Thread pool</code> needs to be resource constrained to prevent resource leakage caused by improper handling</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="36-controlcondition-statements">3.6 Control/Condition Statements<a href="#36-controlcondition-statements" class="hash-link" aria-label="Direct link to 3.6 Control/Condition Statements" title="Direct link to 3.6 Control/Condition Statements">​</a></h3>
+<ol>
+<li>
+<p>Avoid unreasonable <code>condition/control</code> branches order leads to:</p>
+<ul>
+<li>Multiple code line <code>depths</code> of <code>n+1</code></li>
+<li>Redundant lines</li>
+</ul>
+</li>
+</ol>
+<p>Generally speaking, if a method&#x27;s code line depth exceeds <code>2+ Tabs</code> due to continuous nested <code>if... else..</code>, it should be considered to try</p>
+<ul>
+<li><code>merging branches</code>,</li>
+<li><code>inverting branch conditions</code></li>
+<li><code>extracting private methods</code></li>
+</ul>
+<p>to reduce code line depth and improve readability like follows:</p>
+<ul>
+<li>Union or merge the logic into the next level calling<!-- -->
+<ul>
+<li>Negative demo:<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (isInsert) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    save(platform);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  } else {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">     updateById(platform);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Positive demo:<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  saveOrUpdate(platform);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>Merge the conditions<!-- -->
+<ul>
+<li>Negative demo:<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (expression1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    if(expression2) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">        ......</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+<div class="codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-text codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">- Positive demo:  </span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ```java</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (expression1 &amp;&amp; expression2) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">     ......</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Reverse the condition<!-- -->
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public void doSomething() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // Ignored more deeper block lines</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // .....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (condition1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   } else {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  public void doSomething() {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // Ignored more deeper block lines</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // .....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   if (!condition1) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">      return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   // ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>Using a single variable or method to reduce the complex conditional expression<!-- -->
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (dbType.indexOf(&quot;sqlserver&quot;) &gt;= 0 || dbType.indexOf(&quot;sql server&quot;) &gt;= 0) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  if (containsSqlServer(dbType)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">    ....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  }</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  //.....</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  // definition of the containsSqlServer</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Using <code>sonarlint</code> and <code>better highlights</code> to check code depth looks like good in the future.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="37-code-comments-rule">3.7 Code Comments Rule<a href="#37-code-comments-rule" class="hash-link" aria-label="Direct link to 3.7 Code Comments Rule" title="Direct link to 3.7 Code Comments Rule">​</a></h3>
+<ol>
+<li>
+<p>Method lacks comments:</p>
+<ul>
+<li><code>When</code>: When can the method be called</li>
+<li><code>How</code>: How to use this method and how to pass parameters, etc.</li>
+<li><code>What</code>: What functions does this method achieve</li>
+<li><code>Note</code>: What should developers pay attention to when calling this method</li>
+</ul>
+</li>
+<li>
+<p>Missing necessary class header description comments.</p>
+<p>Add <code>What</code>, <code>Note</code>, etc. like mentioned in the <code>1</code>.</p>
+</li>
+<li>
+<p>The method declaration in the interface must be annotated.</p>
+<ul>
+<li>
+<p>If the semantics of the implementation and the annotation content at the interface declaration are inconsistent, the specific implementation method also needs to be rewritten with annotations.</p>
+</li>
+<li>
+<p>If the semantics of the method implementation are consistent with the annotation content at the interface declaration, it is not recommended to write annotations to avoid duplicate annotations.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The first word in the comment lines need to be capitalized, like <code>param</code> lines, <code>return</code> lines.
+If a special reference as a subject does not need to be capitalized, special symbols such as quotation marks need to be noted.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="38-java-lambdas">3.8 Java Lambdas<a href="#38-java-lambdas" class="hash-link" aria-label="Direct link to 3.8 Java Lambdas" title="Direct link to 3.8 Java Lambdas">​</a></h3>
+<ol>
+<li>
+<p>Prefer <code>non-capturing</code> lambdas (lambdas that do not contain references to the outer scope).
+Capturing lambdas need to create a new object instance for every call. <code>Non-capturing</code> lambdas can use the same instance for each invocation.</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, x -&gt; key.toLowerCase())</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> map.computeIfAbsent(key, k -&gt; k.toLowerCase());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Consider method references instead of inline lambdas</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, k-&gt; Loader.load(k));</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  map.computeIfAbsent(key, Loader::load);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="39-java-streams">3.9 Java Streams<a href="#39-java-streams" class="hash-link" aria-label="Direct link to 3.9 Java Streams" title="Direct link to 3.9 Java Streams">​</a></h3>
+<ul>
+<li>
+<p>Avoid Java Streams in any performance critical code.</p>
+</li>
+<li>
+<p>The main motivation to use Java Streams would be to improve code readability. As such, they can be a good match in parts of the code that are not data-intensive, but deal with coordination.</p>
+</li>
+<li>
+<p>Even in the latter case, try to limit the scope to a method, or a few private methods within an internal class.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="310-pre-conditions-checking">3.10 Pre-Conditions Checking<a href="#310-pre-conditions-checking" class="hash-link" aria-label="Direct link to 3.10 Pre-Conditions Checking" title="Direct link to 3.10 Pre-Conditions Checking">​</a></h3>
+<ol>
+<li>Use a unified <code>Utils.requireXXX</code> to complete the validation of the prerequisite, and if possible, replace the <code>AlertXXException.throwIfXXX</code> by new pre-conditions checking.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="311-stringutils">3.11 StringUtils<a href="#311-stringutils" class="hash-link" aria-label="Direct link to 3.11 StringUtils" title="Direct link to 3.11 StringUtils">​</a></h3>
+<ol>
+<li>
+<p>Use <code>StringUtils.isBlank</code> instead of <code>StringUtils.isEmpty</code></p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isEmpty(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isBlank(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Use <code>StringUtils.isNotBlank</code> instead of <code>StringUtils.isNotEmpty</code></p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isNotEmpty(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isNotBlank(name)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Use <code>StringUtils.isAllBlank</code> instead of <code>StringUtils.isAllEmpty</code></p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isAllEmpty(name, age)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (StringUtils.isAllBlank(name, age)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="312-enum-class">3.12 <code>Enum</code> Class<a href="#312-enum-class" class="hash-link" aria-label="Direct link to 312-enum-class" title="Direct link to 312-enum-class">​</a></h3>
+<ol>
+<li>
+<p>Enumeration value comparison</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (status.equals(JobStatus.RUNNING)) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">if (status == JobStatus.RUNNING) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  return;</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Enumeration classes do not need to implement Serializable</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus implements Serializable {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Use <code>Enum.name()</code> instead of <code>Enum.toString()</code></p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">System.out.println(JobStatus.RUNNING.toString());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">System.out.println(JobStatus.RUNNING.name());</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Enumeration class names uniformly use the Enum suffix</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatus {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">public enum JobStatusEnum {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_myWT" id="313-deprecated-annotation">3.13 <code>Deprecated</code> Annotation<a href="#313-deprecated-annotation" class="hash-link" aria-label="Direct link to 313-deprecated-annotation" title="Direct link to 313-deprecated-annotation">​</a></h3>
+<ul>
+<li>
+<p>Negative demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">@deprecated</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public void process(String input) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">@Deprecated</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">public void process(String input) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">  ...</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="4-exception-processing">4 Exception Processing<a href="#4-exception-processing" class="hash-link" aria-label="Direct link to 4 Exception Processing" title="Direct link to 4 Exception Processing">​</a></h2>
+<p>This <code>streampark-console-service</code> module is the core module for processing user requests.
+It&#x27;s very necessary to strive to provide the best user experience.<br>
+<!-- -->So, we introduced the <a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AbstractApiException.java" target="_blank" rel="noopener noreferrer">AbstractApiException</a>
+and its subclasses to get more friendly interaction effect. Non-<code>AbstractApiException</code> is treated as internal server errors correspondingly, which needn&#x27;t notify the interaction details to users.<br>
+<!-- -->Based on the above premise, we need to pay attention to the handling of <code>AbstractApiException</code>.<br>
+<!-- -->For example, we should throw an exception by one of followed subclasses of <code>AbstractApiException</code> when processing logic with the user operation errors or missing data errors:</p>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiDetailException.java" target="_blank" rel="noopener noreferrer">ApiDetailException</a></li>
+</ul>
+<blockquote>
+<p>An exception message that needs to be notified to front-end, is a detailed exception message, such as the stackTrace info, often accompanied by a large number of exception logs,
+e.g: <code>Failed to start job</code>, need to display the exception(stackTrace info) to front-end.</p>
+</blockquote>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/ApiAlertException.java" target="_blank" rel="noopener noreferrer">ApiAlertException</a></li>
+</ul>
+<blockquote>
+<p>An exception message that needs to be notified to front-end, usually a simple, clear message, e.g:</p>
+<ol>
+<li>Username already exists</li>
+<li>No permission, please contact the administrator</li>
+<li>...</li>
+</ol>
+</blockquote>
+<ul>
+<li><a href="https://github.com/apache/incubator-streampark/blob/dev/streampark-console/streampark-console-service/src/main/java/org/apache/streampark/console/base/exception/AlertException.java" target="_blank" rel="noopener noreferrer">AlertException</a></li>
+</ul>
+<blockquote>
+<p>An exception message that needs to be notified to front-end when processing alert logic.</p>
+</blockquote>
+<ul>
+<li>Or others exceptions used to get fine users interaction.</li>
+</ul>
+<p>In addition to handling the classification of exceptions, we&#x27;d better make the precise and concise exception message and try to ensure the follows in the exception:</p>
+<ul>
+<li>Display the current status of the abnormal case.</li>
+<li>Display the solutions to the abnormal case.</li>
+<li>Or others information fit the pretty interaction.</li>
+</ul>
+<p>Please click <a href="https://github.com/apache/incubator-streampark/issues/2325" target="_blank" rel="noopener noreferrer">Issue-2325</a> for more details about the items if needed.</p>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="5-log">5 Log<a href="#5-log" class="hash-link" aria-label="Direct link to 5 Log" title="Direct link to 5 Log">​</a></h2>
+<ol>
+<li>
+<p>Use <code>placeholders</code> for log output:</p>
+<ul>
+<li>Negative demo<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  log.info(&quot;Deploy cluster request &quot; + deployRequest);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>Positive demo<!-- -->
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain">  log.info(&quot;load plugin:{} to {}&quot;, file.getName(), appPlugins);</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+<li>
+<p>Pay attention to the selection of <code>log level</code> when printing logs</p>
+<p>When printing the log content, if the actual parameters of the log placeholder are passed, it is necessary to avoid premature evaluation to avoid unnecessary evaluation caused by the log level.</p>
+<ul>
+<li>
+<p>Negative demo:</p>
+<p>Assuming the current log level is <code>INFO</code>:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> // ignored declaration lines.</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> List&lt;User&gt; userList = getUsersByBatch(1000);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> LOG.debug(&quot;All users: {}&quot;, getAllUserIds(userList));</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Positive demo:</p>
+<p>In this case, we should determine the log level in advance before making actual log calls as follows:</p>
+<div class="language-java codeBlockContainer_APcc theme-code-block"><div class="codeBlockContent_IhPH"><pre tabindex="0" class="prism-code language-java codeBlock_tTXe thin-scrollbar" style="color:#9CDCFE;background-color:#1E1E1E"><code class="codeBlockLines_qImF"><span class="token-line" style="color:#9CDCFE"><span class="token plain"> // ignored declaration lines.</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> List&lt;User&gt; userList = getUsersByBatch(1000);</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> if (LOG.isDebugEnabled()) {</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain">   LOG.debug(&quot;All ids of users: {}&quot;, getAllIDsOfUsers(userList));	</span><br></span><span class="token-line" style="color:#9CDCFE"><span class="token plain"> }</span><br></span></code></pre><div class="buttonGroup_inAn"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_N8Av" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_EGLt"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_gJas"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="6-testing">6 Testing<a href="#6-testing" class="hash-link" aria-label="Direct link to 6 Testing" title="Direct link to 6 Testing">​</a></h2>
+<ol>
+<li>
+<p>For some of the <code>code/variables</code> used for <code>testing</code>, you can use <code>@VisableForTesting</code> annotation to indicate that</p>
+</li>
+<li>
+<p>It&#x27;s recommended to use <code>JUnit5</code> to develop test case preparation</p>
+</li>
+<li>
+<p>Using <code>AssertJ</code> to develop assertions statements.</p>
+</li>
+<li>
+<p>About the implementation of tests.</p>
+<ul>
+<li>
+<p>If the test case only tests an <code>independent</code> class or method that does not require external components such as hadoop,
+remote flink session cluster, etc., it can be written directly using <code>JUnit5</code> &amp; <code>Mockito</code>.</p>
+</li>
+<li>
+<p>If the test case needs a <code>real database</code>, environment or backend environment,
+but doesn&#x27;t need to interact with external components, it&#x27;s recommended to inherit directly from <code>SpringUnitTestBase</code>.</p>
+</li>
+<li>
+<p>If the test case requires <code>a real database, environment</code> or <code>backend environment</code>,
+but needs to <code>interact with external components</code> (<code>Remote Flink session cluster</code>, <code>Hadoop cluster</code>),
+it&#x27;s recommended to write the test case by directly inheriting <code>SpringIntegrationTestBase</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>It&#x27;s only recommended to use integration tests on critical test links to avoid making the <code>CI</code> overhead time too long and the resource load too heavy.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_myWT" id="references">References<a href="#references" class="hash-link" aria-label="Direct link to References" title="Direct link to References">​</a></h2>
+<ul>
+<li><a href="https://site.mockito.org/" target="_blank" rel="noopener noreferrer">https://site.mockito.org/</a></li>
+<li><a href="https://flink.apache.org/zh/how-to-contribute/code-style-and-quality-preamble/" target="_blank" rel="noopener noreferrer">https://flink.apache.org/zh/how-to-contribute/code-style-and-quality-preamble/</a></li>
+<li><a href="https://alibaba.github.io/p3c/" target="_blank" rel="noopener noreferrer">https://alibaba.github.io/p3c/</a></li>
+<li><a href="https://rules.sonarsource.com/java/" target="_blank" rel="noopener noreferrer">https://rules.sonarsource.com/java/</a></li>
+<li><a href="https://joel-costigliola.github.io/assertj/index.html" target="_blank" rel="noopener noreferrer">https://joel-costigliola.github.io/assertj/index.html</a></li>
+<li><a href="https://junit.org/junit5/" target="_blank" rel="noopener noreferrer">https://junit.org/junit5/</a></li>
+</ul></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev paginationNavLink_UdUv" href="/community/submit_guide/submit_code"><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.2751 19.175L10.3251 18.125L5.4501 13.25H21.6001V11.75H5.4501L10.3251 6.87501L9.2751 5.82501L2.5751 12.5L9.2751 19.175Z" fill="currentColor"></path></svg><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">Previous</div><div class="paginationNavLabel_YPzM pagination-nav__label">Submit Code</div></div></a><a class="pagination-nav__link pagination-nav__link--next paginationNavLink_UdUv" href="/community/submit_guide/documentation_style_guide"><div class="paginationNavContent__3xr"><div class="pagination-nav__sublabel">Next</div><div class="paginationNavLabel_YPzM pagination-nav__label">Documentation Style Guide</div></div><svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7249 19.175L13.6749 18.125L18.5499 13.25H2.3999V11.75H18.5499L13.6749 6.87501L14.7249 5.82501L21.4249 12.5L14.7249 19.175Z" fill="currentColor"></path></svg></a></nav></div></div><div class="col col--3"><div class="docTOCContainer_nkwD theme-doc-toc-desktop-container"><div class="tableOfContents_jeP5 thin-scrollbar docTOC_GnpH theme-doc-toc-desktop" style="opacity:0;transform:translateX(100px) translateZ(0)"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-pull-requests--changes-rule" class="table-of-contents__link toc-highlight">1 Pull Requests &amp; Changes Rule</a></li><li><a href="#2-code-checkstyle" class="table-of-contents__link toc-highlight">2 Code Checkstyle</a></li><li><a href="#3-programming-specification" class="table-of-contents__link toc-highlight">3 Programming Specification</a><ul><li><a href="#31-naming-style" class="table-of-contents__link toc-highlight">3.1 Naming Style</a></li><li><a href="#32-constant-variables-definition" class="table-of-contents__link toc-highlight">3.2 Constant Variables Definition</a></li><li><a href="#33-methods-rule" class="table-of-contents__link toc-highlight">3.3 Methods Rule</a></li><li><a href="#34-collection-rule" class="table-of-contents__link toc-highlight">3.4 Collection Rule</a></li><li><a href="#35-concurrent-processing" class="table-of-contents__link toc-highlight">3.5 Concurrent Processing</a></li><li><a href="#36-controlcondition-statements" class="table-of-contents__link toc-highlight">3.6 Control/Condition Statements</a></li><li><a href="#37-code-comments-rule" class="table-of-contents__link toc-highlight">3.7 Code Comments Rule</a></li><li><a href="#38-java-lambdas" class="table-of-contents__link toc-highlight">3.8 Java Lambdas</a></li><li><a href="#39-java-streams" class="table-of-contents__link toc-highlight">3.9 Java Streams</a></li><li><a href="#310-pre-conditions-checking" class="table-of-contents__link toc-highlight">3.10 Pre-Conditions Checking</a></li><li><a href="#311-stringutils" class="table-of-contents__link toc-highlight">3.11 StringUtils</a></li><li><a href="#312-enum-class" class="table-of-contents__link toc-highlight">3.12 <code>Enum</code> Class</a></li><li><a href="#313-deprecated-annotation" class="table-of-contents__link toc-highlight">3.13 <code>Deprecated</code> Annotation</a></li></ul></li><li><a href="#4-exception-processing" class="table-of-contents__link toc-highlight">4 Exception Processing</a></li><li><a href="#5-log" class="table-of-contents__link toc-highlight">5 Log</a></li><li><a href="#6-testing" class="table-of-contents__link toc-highlight">6 Testing</a></li><li><a href="#references" class="table-of-contents__link toc-highlight">References</a></li></ul></div></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Join Community</div><ul class="footer__items clean-list"><li class="footer__item">
+                <div class="subscribe-box btns">
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark"><i class="fa fa-github"></i><span>Github</span></a>
+                  <a class="btn btn-primary" href="https://github.com/apache/incubator-streampark/issues"><i class="fa fa-slack"></i><span>Issue Tracking</span></a>
+                  <a class="btn btn-primary" href="javascript:void(0)">
+                    <i class="fa fa-wechat"></i>
+                    <span>Wechat</span>
+                    <div class="wechat-dropdown"><img src="/image/join_wechat.png" alt="weChat"></div>
+                  </a>
+                </div>
+              </li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright"><div>
+        <div>
+          <div style="margin-bottom: 30px;">
+            <a href="https://incubator.apache.org/" class="footerLogoLink" one-link-mark="yes">
+              <img alt="Apache Incubator logo" class="footer__logo" width="200">
+            </a>
+          </div>
+          <div>
+            <p>
+            Apache StreamPark is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by the Apache Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <span>
+            Copyright © 2022-2024 The Apache Software Foundation. Apache StreamPark, StreamPark, and its feather logo are trademarks of The Apache Software Foundation.
+          </span>
+        </div>
+      </div></div></div></div></footer></div>
+</body>
+</html>
