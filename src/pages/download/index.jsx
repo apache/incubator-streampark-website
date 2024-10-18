@@ -19,8 +19,8 @@ export default function () {
         <h2 className="fs-4 mb-4 fw-bold">{dataSource.download}</h2>
         <div>
           <span> {dataSource.downloadDesc1}</span>
-          <li>apache-streampark_<span style={{ color: 'red' }}>2.11</span>-<span style={{ color: 'blue' }}>2.1.4</span>-incubating-bin.tar.gz</li>
-          <li>apache-streampark_<span style={{ color: 'red' }}>2.12</span>-<span style={{ color: 'blue' }}>2.1.4</span>-incubating-bin.tar.gz</li>
+          <li>apache-streampark_<span style={{ color: 'red' }}>2.11</span>-<span style={{ color: 'blue' }}>2.1.5</span>-incubating-bin.tar.gz</li>
+          <li>apache-streampark_<span style={{ color: 'red' }}>2.12</span>-<span style={{ color: 'blue' }}>2.1.5</span>-incubating-bin.tar.gz</li>
           <span>{dataSource.downloadDesc2}</span>
         </div>
         <h3 className="fs-4 mb-4 mt-4 fw-bold">{dataSource.latestVersion}</h3>
